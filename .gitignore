@@ -1,0 +1,64 @@
+.idea
+
+# automations
+.sst
+.sst.config.*
+
+cdk.context.json
+
+# builds
+apps/**/metacraft
+apps/**/builds
+packages/**/lib
+.swc
+.tamagui
+.next
+.open-next
+
+# cdk
+cdk.out
+
+# dependencies
+node_modules
+.pnp
+.pnp.js
+.yarn/cache
+.yarn/install-state.gz
+
+# testing
+coverage
+
+# next.js
+.next/
+out/
+build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# local env files
+.env
+.env.*
+
+# configs
+GoogleService-info*.plist
+google-services*.json
+apps/**/ios/tmp.xcconfig
+
+# turbo
+.turbo
+
+# vscode
+.vscode
+.prettierrc
+.history
+
+playground
+
