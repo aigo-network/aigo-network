@@ -1,12 +1,12 @@
 import { FC, useEffect } from 'react';
-import Animated, { useAnimatedStyle, withSpring, useSharedValue, withTiming } from 'react-native-reanimated';
+import Animated, { useAnimatedStyle, withSpring, useSharedValue } from 'react-native-reanimated';
 
 interface Props {
   size: number;
 }
 
 export const AnimatedBox: FC<Props> = ({ size }) => {
-  const radius = useSharedValue(100);
+  const radius = useSharedValue(18);
   const rotation = useSharedValue(0);
   const containerStyle = useAnimatedStyle(() => {
 	return {
@@ -20,8 +20,8 @@ export const AnimatedBox: FC<Props> = ({ size }) => {
   });
 
   useEffect(() => {
-	radius.value = withTiming(8, { duration: 1000 })
-	rotation.value = withSpring(Math.random() * 360, { damping: 10 });
+	radius.value = withSpring(size / 2, { damping: 20 })
+	rotation.value = withSpring(Math.random() * 360 - 180, { damping: 15 });
   }, []);
 
   return (
