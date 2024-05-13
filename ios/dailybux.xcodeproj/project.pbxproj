@@ -15,6 +15,12 @@
 		59B769983B40F60434725B5F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 4EBB6C1E7DA596E9A4885AE3 /* PrivacyInfo.xcprivacy */; };
 		7699B88040F8A987B510C191 /* libPods-dailybux-dailybuxTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-dailybux-dailybuxTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		B3252ECECEC642C4808F42B5 /* Gabarito-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6424F6ED05624881BFD01F91 /* Gabarito-Black.ttf */; };
+		B80FDE3FA53A4F45ABADF039 /* Gabarito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7F04754D2C154B87975D8BA6 /* Gabarito-Bold.ttf */; };
+		858FCA2F15D049248F2DE665 /* Gabarito-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 207057142BE24CE3BEDD7300 /* Gabarito-ExtraBold.ttf */; };
+		5524E31DCD894EECB1550C8F /* Gabarito-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5FAC343BC7E4B6EABD2ED90 /* Gabarito-Medium.ttf */; };
+		3DE1816A31A647F88BF24F8A /* Gabarito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 983581CB70AD481FB17C39B4 /* Gabarito-Regular.ttf */; };
+		EB9B7F678D254EFFA1336667 /* Gabarito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 449FBB88D0834ED3BB5961FB /* Gabarito-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +53,12 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = dailybux/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-dailybux-dailybuxTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dailybux-dailybuxTests.release.xcconfig"; path = "Target Support Files/Pods-dailybux-dailybuxTests/Pods-dailybux-dailybuxTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		6424F6ED05624881BFD01F91 /* Gabarito-Black.ttf */ = {isa = PBXFileReference; name = "Gabarito-Black.ttf"; path = "../assets/fonts/Gabarito-Black.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7F04754D2C154B87975D8BA6 /* Gabarito-Bold.ttf */ = {isa = PBXFileReference; name = "Gabarito-Bold.ttf"; path = "../assets/fonts/Gabarito-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		207057142BE24CE3BEDD7300 /* Gabarito-ExtraBold.ttf */ = {isa = PBXFileReference; name = "Gabarito-ExtraBold.ttf"; path = "../assets/fonts/Gabarito-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		A5FAC343BC7E4B6EABD2ED90 /* Gabarito-Medium.ttf */ = {isa = PBXFileReference; name = "Gabarito-Medium.ttf"; path = "../assets/fonts/Gabarito-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		983581CB70AD481FB17C39B4 /* Gabarito-Regular.ttf */ = {isa = PBXFileReference; name = "Gabarito-Regular.ttf"; path = "../assets/fonts/Gabarito-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		449FBB88D0834ED3BB5961FB /* Gabarito-SemiBold.ttf */ = {isa = PBXFileReference; name = "Gabarito-SemiBold.ttf"; path = "../assets/fonts/Gabarito-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +139,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				9A9EF44363F94A68AE4A83FD /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -152,6 +165,20 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		9A9EF44363F94A68AE4A83FD /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				6424F6ED05624881BFD01F91 /* Gabarito-Black.ttf */,
+				7F04754D2C154B87975D8BA6 /* Gabarito-Bold.ttf */,
+				207057142BE24CE3BEDD7300 /* Gabarito-ExtraBold.ttf */,
+				A5FAC343BC7E4B6EABD2ED90 /* Gabarito-Medium.ttf */,
+				983581CB70AD481FB17C39B4 /* Gabarito-Regular.ttf */,
+				449FBB88D0834ED3BB5961FB /* Gabarito-SemiBold.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -249,6 +276,12 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				59B769983B40F60434725B5F /* PrivacyInfo.xcprivacy in Resources */,
+				B3252ECECEC642C4808F42B5 /* Gabarito-Black.ttf in Resources */,
+				B80FDE3FA53A4F45ABADF039 /* Gabarito-Bold.ttf in Resources */,
+				858FCA2F15D049248F2DE665 /* Gabarito-ExtraBold.ttf in Resources */,
+				5524E31DCD894EECB1550C8F /* Gabarito-Medium.ttf in Resources */,
+				3DE1816A31A647F88BF24F8A /* Gabarito-Regular.ttf in Resources */,
+				EB9B7F678D254EFFA1336667 /* Gabarito-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
