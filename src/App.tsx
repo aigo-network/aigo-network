@@ -21,7 +21,7 @@ export const AppContainer: FC = () => {
                     animationEnabled: true,
                 }}>
 
-                    <Stack.Screen name='login' component={LoginScreen} options={{cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter}} />
+                    <Stack.Screen name='Login' component={LoginScreen} options={{cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter}} />
                 </Stack.Navigator>
             </NavigationContainer>
         </SafeAreaProvider>

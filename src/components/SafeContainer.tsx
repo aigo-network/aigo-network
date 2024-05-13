@@ -5,9 +5,10 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface Props {
     children: ReactNode;
+    style?: ViewStyle;
 }
 
-export const SafeContainer: FC<Props> = ({children}) => {
+export const SafeContainer: FC<Props> = ({ children, style }) => {
     const insets = useSafeAreaInsets();
     const containerStyle = {
         flex: 1,
@@ -19,7 +20,7 @@ export const SafeContainer: FC<Props> = ({children}) => {
     } as ViewStyle;
 
     return (
-        <View style={containerStyle}>
+        <View style={[containerStyle, style]}>
             {children}
         </View>
     )
