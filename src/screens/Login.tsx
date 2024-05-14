@@ -1,5 +1,6 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import SafeContainer from "components/SafeContainer";
+import { handleSignInGoogle } from "utils/auth";
 
 export const LoginScreen = () => {
     return (
@@ -8,7 +9,7 @@ export const LoginScreen = () => {
                 <Image source={require('assets/img/login/logo.png')} style={styles.logoImg} />
                 <Image source={require('assets/img/login/shipper.png')} />
                 <Text style={styles.text}>{'Turns your everyday\nActions into rewards'}</Text>
-                <TouchableOpacity style={styles.loginBtn}>
+                <TouchableOpacity style={styles.loginBtn} onPress={handleSignInGoogle}>
                     <Image source={require('assets/img/login/google-login.png')} />
                 </TouchableOpacity>
             </SafeContainer>
