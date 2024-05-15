@@ -60,6 +60,8 @@
 		A5FAC343BC7E4B6EABD2ED90 /* Gabarito-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Gabarito-Medium.ttf"; path = "../assets/fonts/Gabarito-Medium.ttf"; sourceTree = "<group>"; };
 		C70EC86B2BF36FDD00D7E3A9 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		C70EC8702BF38D8C00D7E3A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C7C78ECC2BF45F1C008C31E3 /* dailybuxDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = dailybuxDebug.entitlements; path = dailybux/dailybuxDebug.entitlements; sourceTree = "<group>"; };
+		C7C78ECD2BF463BE008C31E3 /* dailybuxRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = dailybuxRelease.entitlements; path = dailybux/dailybuxRelease.entitlements; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F88BAEFF415CB82E5DC8BF39 /* Pods_dailybux.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dailybux.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -104,6 +106,8 @@
 		13B07FAE1A68108700A75B9A /* dailybux */ = {
 			isa = PBXGroup;
 			children = (
+				C7C78ECD2BF463BE008C31E3 /* dailybuxRelease.entitlements */,
+				C7C78ECC2BF45F1C008C31E3 /* dailybuxDebug.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -523,7 +527,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = dailybux/dailybuxDebug.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 45D5324LK8;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = dailybux/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -550,7 +556,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = dailybux/dailybuxRelease.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 45D5324LK8;
 				INFOPLIST_FILE = dailybux/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -562,6 +570,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = network.aigo.app;
 				PRODUCT_NAME = dailybux;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

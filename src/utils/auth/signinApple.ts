@@ -1,0 +1,19 @@
+import { appleAuth } from '@invertase/react-native-apple-authentication';
+import auth from '@react-native-firebase/auth';
+
+export const handleSignInApple = async () => {
+    const appleAuthRequestResponse = await appleAuth.performRequest({
+        requestedOperation: appleAuth.Operation.LOGIN,
+        requestedScopes: [appleAuth.Scope.FULL_NAME],
+    });
+
+    if (!appleAuthRequestResponse.identityToken) {
+        throw new Error('Apple Sign-In failed');
+    }
+
+    const { identityToken, nonce } = appleAuthRequestResponse;
+    const appleCredential = auth.AppleAuthProvider.credential(identityToken, nonce);
+    const { user } = await auth().signInWithCredential(appleCredential);
+    console.log(JSON.stringify(user, null, 2));
+    return user;
+}

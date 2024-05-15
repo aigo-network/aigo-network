@@ -1,6 +1,7 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import SafeContainer from "components/SafeContainer";
-import { handleSignInGoogle } from "utils/auth";
+import { handleSignInGoogle, handleSignInApple } from "utils/auth";
+import { AppleButton } from "@invertase/react-native-apple-authentication";
 
 export const LoginScreen = () => {
     return (
@@ -12,6 +13,7 @@ export const LoginScreen = () => {
                 <TouchableOpacity style={styles.loginBtn} onPress={handleSignInGoogle}>
                     <Image source={require('assets/img/login/google-login.png')} />
                 </TouchableOpacity>
+                <AppleButton buttonStyle={AppleButton.Style.WHITE} buttonType={AppleButton.Type.CONTINUE} style={{width: 259, height: 55, borderRadius: 30, overflow: 'hidden'}} onPress={handleSignInApple} />
             </SafeContainer>
         </View>
     )
