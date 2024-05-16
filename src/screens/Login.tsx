@@ -1,5 +1,6 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import SafeContainer from "components/SafeContainer";
+import { handleSignInGoogle, handleSignInApple } from "utils/auth";
 import { Button } from "components/Button";
 
 export const LoginScreen = () => {
@@ -17,6 +18,7 @@ export const LoginScreen = () => {
                         	<Image source={require('assets/img/login/google-logo.png')} />
                     	}
 						style={styles.btn}
+						onPress={handleSignInGoogle}
 					>
                         <Text style={styles.btnText}>Log in with Google</Text>
                     </Button>
@@ -24,6 +26,7 @@ export const LoginScreen = () => {
                         	<Image source={require('assets/img/login/apple-logo.png')} />
                     	}
 						style={styles.btn}
+						onPress={handleSignInApple}
 					>
                         <Text style={styles.btnText}>Log in with Apple</Text>
                     </Button>
