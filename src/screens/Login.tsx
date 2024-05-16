@@ -1,19 +1,37 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import SafeContainer from "components/SafeContainer";
 import { handleSignInGoogle, handleSignInApple } from "utils/auth";
-import { AppleButton } from "@invertase/react-native-apple-authentication";
+import { Button } from "components/Button";
 
 export const LoginScreen = () => {
     return (
         <View style={styles.container}>
+			<Image source={require('assets/img/login/background-logo.png')} style={styles.backgroundImage} />
             <SafeContainer style={styles.safeContainer}>
-                <Image source={require('assets/img/login/logo.png')} style={styles.logoImg} />
-                <Image source={require('assets/img/login/shipper.png')} />
-                <Text style={styles.text}>{'Turns your everyday\nActions into rewards'}</Text>
-                <TouchableOpacity style={styles.loginBtn} onPress={handleSignInGoogle}>
-                    <Image source={require('assets/img/login/google-login.png')} />
-                </TouchableOpacity>
-                <AppleButton buttonStyle={AppleButton.Style.WHITE} buttonType={AppleButton.Type.CONTINUE} style={{width: 259, height: 55, borderRadius: 30, overflow: 'hidden'}} onPress={handleSignInApple} />
+				<View>
+					<Image source={require('assets/img/login/logo.png')} style={styles.logoImg} />
+					<Text style={styles.welcome}>{`Welcome to\nAiGO`}</Text>
+					<Text style={styles.slogan}>{'Turns your everyday\nActions into rewards'}</Text>
+				</View>
+                <View style={styles.btnGroup}>
+                    <Button prefix={
+                        	<Image source={require('assets/img/login/google-logo.png')} />
+                    	}
+						style={styles.btn}
+						onPress={handleSignInGoogle}
+					>
+                        <Text style={styles.btnText}>Log in with Google</Text>
+                    </Button>
+                    <Button prefix={
+                        	<Image source={require('assets/img/login/apple-logo.png')} />
+                    	}
+						style={styles.btn}
+						onPress={handleSignInApple}
+					>
+                        <Text style={styles.btnText}>Log in with Apple</Text>
+                    </Button>
+                </View>
+				<Text style={styles.version}>Version 0.1</Text>
             </SafeContainer>
         </View>
     )
@@ -26,21 +44,54 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#6740ff',
     },
+	backgroundImage: {
+		position: 'absolute',
+		bottom: 0,
+		left: 200,
+	},
     safeContainer: {
-        justifyContent: 'center',
+        justifyContent: 'space-between',
     },
     logoImg: {
-        aspectRatio: 273 / 67,
-        marginBottom: 36,
+		alignSelf: 'center',
+        aspectRatio: 150 / 138,
+		marginTop: 120,
+        marginBottom: 24,
     },
-    text: {
-        marginTop: 30,
+    welcome: {
         fontFamily: 'Gabarito',
-        fontWeight: '500',
+        fontWeight: '600',
+        fontSize: 42,
+        textAlign: 'center',
+        color: '#fff',
+    },
+    slogan: {
+        alignSelf: 'center',
+        marginTop: 14,
+        fontFamily: 'Gabarito',
         fontSize: 19,
-        color: 'rgba(255, 255, 255, .8)',
+        color: '#a0fa82',
     },
-    loginBtn: {
-        marginTop: 68,
+    btnGroup: {
+		flex: 1,
+        gap: 17,
+        paddingHorizontal: 40,
+		justifyContent: 'flex-end',
+		paddingBottom: 50,
     },
+	btn:{
+		paddingVertical: 15,
+		backgroundColor: '#ededed',
+		borderRadius: 50,
+	},
+    btnText: {
+        textAlign: 'center',
+		fontFamily: 'Gabarito',
+		fontSize: 20,
+    },
+	version: {
+		fontFamily: 'Gabarito',
+		textAlign: 'center',
+		color: '#fff',
+	}
 })
