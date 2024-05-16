@@ -12,7 +12,6 @@ export const SafeContainer: FC<Props> = ({ children, style }) => {
     const insets = useSafeAreaInsets();
     const containerStyle = {
         flex: 1,
-        alignItems: 'center',
         paddingTop: insets.top,
         paddingBottom: insets.bottom,
         paddingLeft: insets.left,
