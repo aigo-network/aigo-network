@@ -8,6 +8,11 @@ GoogleSignin.configure({
 
 export const handleSignInGoogle = async () => {
     const { idToken } = await GoogleSignin.signIn();
+
+	if (!idToken) {
+		throw new Error('Google Sign-In failed')
+	}
+
     const googleCredential = auth.GoogleAuthProvider.credential(idToken);
     const { user } = await auth().signInWithCredential(googleCredential);
     return user;

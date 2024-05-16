@@ -1,17 +1,17 @@
 import type { FC } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { appState, appActions } from 'state/app';
+import { StyleSheet } from 'react-native';
+import { appState } from 'state/app';
 import { useSnapshot } from 'valtio';
-import AnimatedBox from 'components/AnimatedBox';
 import { NavigationContainer } from '@react-navigation/native';
 import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import LoginScreen from 'screens/Login';
+import ProfileName from 'screens/Onboard/ProfileName';
 
 const Stack = createStackNavigator();
 
 export const AppContainer: FC = () => {
-	const { counter } = useSnapshot(appState)
+	const { signedIn } = useSnapshot(appState);
 
 	return (
         <SafeAreaProvider>
@@ -20,8 +20,17 @@ export const AppContainer: FC = () => {
                     headerShown: false,
                     animationEnabled: true,
                 }}>
-
-                    <Stack.Screen name='Login' component={LoginScreen} options={{cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter}} />
+					<Stack.Group>
+					{
+						!signedIn ? (
+							<Stack.Screen name='Login' component={LoginScreen} options={{cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter}} />
+						) : (
+							<Stack.Group screenOptions={{headerShown: false}}>
+								<Stack.Screen name='OnboardName' component={ProfileName} />
+							</Stack.Group>
+						)
+					}
+					</Stack.Group>
                 </Stack.Navigator>
             </NavigationContainer>
         </SafeAreaProvider>
