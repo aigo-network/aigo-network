@@ -10,6 +10,7 @@
     ],
     "compilerOptions": {
         "baseUrl": ".",
+        "moduleResolution": "Bundler",
         "paths": {
             "assets/*": [
                 "./assets/*"
@@ -28,6 +29,9 @@
             ],
             "screens/*": [
                 "./src/screens/*"
+            ],
+            "api/*": [
+                "./src/api/*"
             ]
         }
     }

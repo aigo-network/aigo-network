@@ -4,10 +4,10 @@ import { StyleSheet, View } from 'react-native';
 import type { StackScreenProps } from '@react-navigation/stack';
 import DescriptionCard from 'components/DescriptionCard';
 import { appActions, appState } from 'state/app';
-import type { RootParamList } from 'utils/navigation';
 import { useSnapshot } from 'valtio';
 
 import OnboardLayout from './OnboardLayout';
+import type { RootStackParamList } from 'utils/navigation';
 
 const userDescription = [
 	{
@@ -37,7 +37,7 @@ const userDescription = [
 ];
 
 export const UserDescription: FC<
-	StackScreenProps<RootParamList, 'OnboardDescription'>
+	StackScreenProps<RootStackParamList, 'OnboardDescription'>
 > = ({ navigation }) => {
 	const [itemWidth, setItemWidth] = useState(0);
 	const { userDescription: selectedList } = useSnapshot(appState);
@@ -50,11 +50,11 @@ export const UserDescription: FC<
 
 	return (
 		<OnboardLayout
+			currentIndex={1}
 			disabled={!selectedList.length}
 			onPress={onContinuePress}
 			title="What's best describe you"
 			subTitle="You can choose multiple options"
-			screenOrder={2}
 		>
 			<View
 				style={styles.container}

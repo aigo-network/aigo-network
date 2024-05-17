@@ -1,18 +1,30 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
 import type { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import { useNavigation } from '@react-navigation/native';
+import { graphqlClient } from 'api/graphql';
 import { Button } from 'components/Button';
 import AppIcon from 'components/icon/AppIcon';
 import SafeContainer from 'components/SafeContainer';
-import { appActions } from 'state/app';
-import { handleSignInApple, handleSignInGoogle } from 'utils/auth';
+import type { SignInFunction } from 'utils/auth';
+import { signInWithApple, signInWithGoogle } from 'utils/auth';
 import { config } from 'utils/config';
 
 export const LoginScreen = () => {
-	const handleSignIn = async (
-		callback: () => Promise<FirebaseAuthTypes.User>,
-	) => {
-		const user = await callback();
-		appActions.setUser(user);
+	const { navigate } = useNavigation();
+
+	const handleSignIn = async (signIn: SignInFunction) => {
+		try {
+			const authUser = await signIn();
+			if (!authUser) return;
+			const { user } = await graphqlClient.completeOnboarding();
+			if (user?.completeOnboarding) {
+				navigate('Home');
+			} else {
+				navigate('OnboardName');
+			}
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return (
@@ -37,7 +49,7 @@ export const LoginScreen = () => {
 							<Image source={require('assets/img/login/google-logo.png')} />
 						}
 						style={styles.btn}
-						onPress={() => handleSignIn(handleSignInGoogle)}
+						onPress={() => handleSignIn(signInWithGoogle)}
 					>
 						<Text style={styles.btnText}>Log in with Google</Text>
 					</Button>
@@ -46,7 +58,7 @@ export const LoginScreen = () => {
 							<Image source={require('assets/img/login/apple-logo.png')} />
 						}
 						style={styles.btn}
-						onPress={() => handleSignIn(handleSignInApple)}
+						onPress={() => handleSignIn(signInWithApple)}
 					>
 						<Text style={styles.btnText}>Log in with Apple</Text>
 					</Button>
@@ -103,6 +115,7 @@ const styles = StyleSheet.create({
 	btnText: {
 		textAlign: 'center',
 		fontSize: 20,
+		color: '#000',
 	},
 	version: {
 		textAlign: 'center',

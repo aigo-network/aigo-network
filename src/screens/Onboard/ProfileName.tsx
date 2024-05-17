@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { type FC, useState } from 'react';
 import {
 	Keyboard,
 	KeyboardAvoidingView,
@@ -8,17 +8,22 @@ import {
 	TouchableWithoutFeedback,
 	View,
 } from 'react-native';
+import auth from '@react-native-firebase/auth';
 import type { StackScreenProps } from '@react-navigation/stack';
-import { appActions, appState } from 'state/app';
-import type { RootParamList } from 'utils/navigation';
-import { useSnapshot } from 'valtio';
+import { appActions } from 'state/app';
+import type { RootStackParamList } from 'utils/navigation';
 
 import OnboardLayout from './OnboardLayout';
 
 export const ProfileName: FC<
-	StackScreenProps<RootParamList, 'OnboardName'>
+	StackScreenProps<RootStackParamList, 'OnboardName'>
 > = ({ navigation }) => {
-	const { profileName } = useSnapshot(appState);
+	const [name, setName] = useState(auth().currentUser?.displayName || '');
+
+	const handleContinue = () => {
+		appActions.updateOnboarding({ name });
+		navigation.navigate('OnboardDescription');
+	};
 
 	return (
 		<KeyboardAvoidingView
@@ -26,10 +31,9 @@ export const ProfileName: FC<
 			style={styles.keyboardContainer}
 		>
 			<OnboardLayout
-				disabled={!profileName}
-				onPress={() => {
-					navigation.navigate('OnboardDescription');
-				}}
+				currentIndex={0}
+				disabled={!name}
+				onPress={handleContinue}
 				mainBtnText="Looks good :)"
 				title="Name your profile"
 				subTitle="Choose a nickname for your account"
@@ -40,10 +44,9 @@ export const ProfileName: FC<
 						style={styles.input}
 						placeholder="Your name"
 						placeholderTextColor="#afb2ff"
-						value={profileName}
-						onChangeText={(name) => {
-							appActions.setProfileName(name);
-						}}
+						value={name}
+						onChangeText={setName}
+						autoFocus
 					/>
 				</View>
 				<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -66,6 +69,7 @@ const styles = StyleSheet.create({
 	},
 	input: {
 		textAlign: 'center',
-		fontSize: 25,
+		fontSize: 30,
+		fontWeight: '500',
 	},
 });

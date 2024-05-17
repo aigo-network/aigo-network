@@ -25,7 +25,7 @@ interface Props {
 	children: ReactNode;
 	title: string;
 	subTitle: string;
-	screenOrder: number;
+	currentIndex: number;
 	mainBtnText?: string;
 }
 
@@ -37,11 +37,12 @@ export const OnboardLayout: FC<Props> = ({
 	children,
 	title,
 	subTitle,
-	screenOrder,
+	currentIndex,
 	mainBtnText,
 }) => {
 	const navigation = useNavigation();
 	const [keyboardShown, setKeyboardShown] = useState(Keyboard.isVisible());
+	const totalOnboardingSteps = 2;
 	const paddingBot = useSharedValue(40);
 	const btnBackgroundColor = {
 		backgroundColor: disabled ? '#ebf7e6' : '#a0fa82',
@@ -71,6 +72,9 @@ export const OnboardLayout: FC<Props> = ({
 	return (
 		<View style={styles.container}>
 			<SafeContainer>
+				<View style={styles.progressContainer}>
+					<ProgressBar current={currentIndex} length={totalOnboardingSteps} />
+				</View>
 				<View style={styles.contentContainer}>
 					<View style={styles.layoutHeader}>
 						{navigation.canGoBack() && (
@@ -83,7 +87,7 @@ export const OnboardLayout: FC<Props> = ({
 						)}
 						<Indicator
 							style={{ flex: 1 }}
-							activeIndex={screenOrder}
+							activeIndex={currentIndex}
 							numberOfItems={3}
 						/>
 						{navigation.canGoBack() && <View style={{ width: 24 }} />}
@@ -132,6 +136,11 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'space-between',
+	},
+	progressContainer: {
+		alignItems: 'center',
+		marginTop: 20,
+		marginBottom: 40,
 	},
 	text: {
 		fontFamily: 'Gabarito',

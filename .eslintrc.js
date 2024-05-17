@@ -1,7 +1,7 @@
 module.exports = {
 	root: true,
 	extends: ['@metacraft/eslint-config'],
-	ignorePatterns: ['node_modules', 'src/graphql/types.ts'],
+	ignorePatterns: ['node_modules', 'src/api/sdk.ts'],
 	env: {
 		node: true,
 	},
