@@ -6,6 +6,7 @@ import {
 	createStackNavigator,
 } from '@react-navigation/stack';
 import LoginScreen from 'screens/Login';
+import CityName from 'screens/Onboard/CityName';
 import ProfileName from 'screens/Onboard/ProfileName';
 import UserDescription from 'screens/Onboard/UserDescription';
 import { appState } from 'state/app';
@@ -43,6 +44,7 @@ export const AppContainer: FC = () => {
 								name="OnboardDescription"
 								component={UserDescription}
 							/>
+							<Stack.Screen name="OnboardCity" component={CityName} />
 						</Stack.Group>
 					)}
 				</Stack.Navigator>
