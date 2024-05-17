@@ -49,6 +49,7 @@ export const UserDescription: FC<
 
 	return (
 		<OnboardLayout
+			currentIndex={1}
 			disabled={!selectedList.length}
 			onPress={onContinuePress}
 			title="What's best describe you"

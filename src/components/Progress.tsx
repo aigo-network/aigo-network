@@ -17,7 +17,7 @@ export const ProgressBar: FC<Props> = ({ current, length }) => {
 
 	const animatedStyle = useAnimatedStyle(() => {
 		return {
-			width: withTiming(focusWidth.value, { duration: 600 }),
+			width: withTiming(focusWidth.value, { duration: 800 }),
 		};
 	});
 

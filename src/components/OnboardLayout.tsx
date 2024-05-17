@@ -17,6 +17,7 @@ interface Props {
 	children: ReactNode;
 	title: string;
 	subTitle: string;
+	currentIndex: number;
 	mainBtnText?: string;
 }
 
@@ -28,8 +29,10 @@ export const OnboardLayout: FC<Props> = ({
 	children,
 	title,
 	subTitle,
+	currentIndex,
 	mainBtnText,
 }) => {
+	const totalOnboardingSteps = 2;
 	const paddingBot = useSharedValue(40);
 	const btnBackgroundColor = {
 		backgroundColor: disabled ? '#ebf7e6' : '#a0fa82',
@@ -58,7 +61,7 @@ export const OnboardLayout: FC<Props> = ({
 		<View style={styles.container}>
 			<SafeContainer>
 				<View style={styles.progressContainer}>
-					<ProgressBar current={1} length={4} />
+					<ProgressBar current={currentIndex} length={totalOnboardingSteps} />
 				</View>
 				<View style={styles.contentContainer}>
 					<Text style={[styles.text, styles.title]}>{title}</Text>

@@ -25,6 +25,7 @@ export const ProfileName: FC<
 			style={styles.keyboardContainer}
 		>
 			<OnboardLayout
+				currentIndex={0}
 				disabled={!profileName}
 				onPress={() => {
 					navigation.navigate('OnboardDescription');
