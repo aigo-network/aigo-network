@@ -1,5 +1,4 @@
-import { Text } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import { Text, TextInput } from 'react-native';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export const setDefaultProps = (Component: any, defaultProps: any) => {

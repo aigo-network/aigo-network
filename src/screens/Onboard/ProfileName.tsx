@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import {
 	Keyboard,
 	KeyboardAvoidingView,
@@ -7,11 +8,15 @@ import {
 	TouchableWithoutFeedback,
 	View,
 } from 'react-native';
+import type { StackScreenProps } from '@react-navigation/stack';
 import OnboardLayout from 'components/OnboardLayout';
 import { appActions, appState } from 'state/app';
+import type { RootParamList } from 'utils/navigation';
 import { useSnapshot } from 'valtio';
 
-export const ProfileName = () => {
+export const ProfileName: FC<
+	StackScreenProps<RootParamList, 'OnboardName'>
+> = ({ navigation }) => {
 	const { profileName } = useSnapshot(appState);
 
 	return (
@@ -21,7 +26,9 @@ export const ProfileName = () => {
 		>
 			<OnboardLayout
 				disabled={!profileName}
-				onPress={() => {}}
+				onPress={() => {
+					navigation.navigate('OnboardDescription');
+				}}
 				mainBtnText="Looks good :)"
 				title="Name your profile"
 				subTitle="Choose a nickname for your account"

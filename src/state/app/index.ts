@@ -11,6 +11,9 @@ export const appActions = {
 	setProfileName: (name: string) => {
 		appState.profileName = name;
 	},
+	setUserDescription: (descriptionList: string[]) => {
+		appState.userDescription = descriptionList;
+	},
 };
 
 export { appState } from './shared';

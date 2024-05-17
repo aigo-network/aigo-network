@@ -6,6 +6,7 @@ interface AppState {
 	signedIn: boolean;
 	user?: FirebaseAuthTypes.User;
 	profileName: string;
+	userDescription: string[];
 }
 
 export const appState = proxy<AppState>({
@@ -13,4 +14,5 @@ export const appState = proxy<AppState>({
 	signedIn: false,
 	user: undefined,
 	profileName: '',
+	userDescription: [],
 });
