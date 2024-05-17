@@ -95,14 +95,24 @@ export type UserProfile = {
   phoneNumber?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type UserFullProfileQueryVariables = Exact<{ [key: string]: never; }>;
+export type UserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type UserFullProfileQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', GOPoints?: number | null, city?: string | null, createdAt?: any | null, deletedAt?: any | null, descriptions?: Array<UserDescription | null> | null, email?: string | null, id?: string | null, imageUrl?: string | null, invitationCode?: string | null, invitedBy?: string | null, name?: string | null, updatedAt?: any | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null } | null } | null };
+export type UserQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', GOPoints?: number | null, city?: string | null, createdAt?: any | null, deletedAt?: any | null, descriptions?: Array<UserDescription | null> | null, email?: string | null, id?: string | null, imageUrl?: string | null, invitationCode?: string | null, invitedBy?: string | null, name?: string | null, updatedAt?: any | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null } | null } | null };
+
+export type CompleteOnboardingQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export const UserFullProfileDocument = gql`
-    query userFullProfile {
+export type CompleteOnboardingQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', name?: string | null, email?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, completeOnboarding?: boolean | null } | null };
+
+export type DailyMissionsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type DailyMissionsQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null } | null } | null };
+
+
+export const UserDocument = gql`
+    query user {
   user {
     GOPoints
     city
@@ -125,6 +135,29 @@ export const UserFullProfileDocument = gql`
   }
 }
     `;
+export const CompleteOnboardingDocument = gql`
+    query completeOnboarding {
+  user {
+    name
+    email
+    city
+    descriptions
+    completeOnboarding
+  }
+}
+    `;
+export const DailyMissionsDocument = gql`
+    query dailyMissions {
+  user {
+    dailyMissions {
+      checkIn {
+        date
+        completed
+      }
+    }
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
@@ -133,8 +166,14 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    userFullProfile(variables?: UserFullProfileQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<UserFullProfileQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<UserFullProfileQuery>(UserFullProfileDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'userFullProfile', 'query', variables);
+    user(variables?: UserQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<UserQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<UserQuery>(UserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'user', 'query', variables);
+    },
+    completeOnboarding(variables?: CompleteOnboardingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CompleteOnboardingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CompleteOnboardingQuery>(CompleteOnboardingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'completeOnboarding', 'query', variables);
+    },
+    dailyMissions(variables?: DailyMissionsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<DailyMissionsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<DailyMissionsQuery>(DailyMissionsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'dailyMissions', 'query', variables);
     }
   };
 }
