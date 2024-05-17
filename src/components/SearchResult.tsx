@@ -58,6 +58,17 @@ export const SearchResult: FC<Props> = ({
 		);
 	};
 
+	if (textSearch.length > 0 && data.length === 0) {
+		return (
+			<View>
+				<Text style={styles.emptyTitle}>No result</Text>
+				<Text
+					style={styles.emptyText}
+				>{`Can't find what you're looking for.\nTry search for different city`}</Text>
+			</View>
+		);
+	}
+
 	return (
 		<FlatList
 			data={data}
@@ -79,5 +90,19 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 30,
 		paddingVertical: 5,
 	},
-	itemText: { lineHeight: 25 },
+	itemText: {
+		lineHeight: 25,
+	},
+
+	emptyTitle: {
+		fontSize: 25,
+		textAlign: 'center',
+		marginTop: 50,
+	},
+	emptyText: {
+		fontSize: 16,
+		color: '#969AFF',
+		textAlign: 'center',
+		marginTop: 10,
+	},
 });
