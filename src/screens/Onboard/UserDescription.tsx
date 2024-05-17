@@ -43,7 +43,7 @@ export const UserDescription: FC<
 		setSelectedList(newSelectedList);
 	};
 	const onContinuePress = () => {
-		appActions.setUserDescription(selectedList);
+		appActions.updateOnboarding({ description: selectedList });
 		navigation.navigate('OnboardCity');
 	};
 

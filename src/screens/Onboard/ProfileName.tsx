@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { type FC, useState } from 'react';
 import {
 	Keyboard,
 	KeyboardAvoidingView,
@@ -8,16 +8,21 @@ import {
 	TouchableWithoutFeedback,
 	View,
 } from 'react-native';
+import auth from '@react-native-firebase/auth';
 import type { StackScreenProps } from '@react-navigation/stack';
 import OnboardLayout from 'components/OnboardLayout';
-import { appActions, appState } from 'state/app';
+import { appActions } from 'state/app';
 import type { RootStackParamList } from 'utils/navigation';
-import { useSnapshot } from 'valtio';
 
 export const ProfileName: FC<
 	StackScreenProps<RootStackParamList, 'OnboardName'>
 > = ({ navigation }) => {
-	const { profileName } = useSnapshot(appState);
+	const [name, setName] = useState(auth().currentUser?.displayName || '');
+
+	const handleContinue = () => {
+		appActions.updateOnboarding({ name });
+		navigation.navigate('OnboardDescription');
+	};
 
 	return (
 		<KeyboardAvoidingView
@@ -26,10 +31,8 @@ export const ProfileName: FC<
 		>
 			<OnboardLayout
 				currentIndex={0}
-				disabled={!profileName}
-				onPress={() => {
-					navigation.navigate('OnboardDescription');
-				}}
+				disabled={!name}
+				onPress={handleContinue}
 				mainBtnText="Looks good :)"
 				title="Name your profile"
 				subTitle="Choose a nickname for your account"
@@ -39,10 +42,9 @@ export const ProfileName: FC<
 						style={styles.input}
 						placeholder="Your name"
 						placeholderTextColor="#afb2ff"
-						value={profileName}
-						onChangeText={(name) => {
-							appActions.setProfileName(name);
-						}}
+						value={name}
+						onChangeText={setName}
+						autoFocus
 					/>
 				</View>
 				<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -65,6 +67,7 @@ const styles = StyleSheet.create({
 	},
 	input: {
 		textAlign: 'center',
-		fontSize: 25,
+		fontSize: 30,
+		fontWeight: '500',
 	},
 });
