@@ -8,6 +8,7 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { Button } from './Button';
+import ProgressBar from './Progress';
 import SafeContainer from './SafeContainer';
 
 interface Props {
@@ -56,6 +57,9 @@ export const OnboardLayout: FC<Props> = ({
 	return (
 		<View style={styles.container}>
 			<SafeContainer>
+				<View style={styles.progressContainer}>
+					<ProgressBar current={1} length={4} />
+				</View>
 				<View style={styles.contentContainer}>
 					<Text style={[styles.text, styles.title]}>{title}</Text>
 					<Text style={[styles.text, styles.subTitle]}>{subTitle}</Text>
@@ -83,6 +87,11 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: '#6740ff',
+	},
+	progressContainer: {
+		alignItems: 'center',
+		marginTop: 20,
+		marginBottom: 40,
 	},
 	text: {
 		fontFamily: 'Gabarito',
