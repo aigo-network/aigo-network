@@ -1,11 +1,31 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { graphqlClient } from 'api/graphql';
 import AppIcon from 'components/AppIcon';
 import { Button } from 'components/Button';
 import SafeContainer from 'components/SafeContainer';
-import { handleSignInApple, handleSignInGoogle } from 'utils/auth';
+import type { SignInFunction } from 'utils/auth';
+import { signInWithApple, signInWithGoogle } from 'utils/auth';
 import { config } from 'utils/config';
 
 export const LoginScreen = () => {
+	const { navigate } = useNavigation();
+
+	const handleSignIn = async (signIn: SignInFunction) => {
+		try {
+			const authUser = await signIn();
+			if (!authUser) return;
+			const { user } = await graphqlClient.completeOnboarding();
+			if (user?.completeOnboarding) {
+				navigate('Home');
+			} else {
+				navigate('OnboardName');
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	return (
 		<View style={styles.container}>
 			<Image
@@ -28,7 +48,7 @@ export const LoginScreen = () => {
 							<Image source={require('assets/img/login/google-logo.png')} />
 						}
 						style={styles.btn}
-						onPress={handleSignInGoogle}
+						onPress={() => handleSignIn(signInWithGoogle)}
 					>
 						<Text style={styles.btnText}>Log in with Google</Text>
 					</Button>
@@ -37,7 +57,7 @@ export const LoginScreen = () => {
 							<Image source={require('assets/img/login/apple-logo.png')} />
 						}
 						style={styles.btn}
-						onPress={handleSignInApple}
+						onPress={() => handleSignIn(signInWithApple)}
 					>
 						<Text style={styles.btnText}>Log in with Apple</Text>
 					</Button>

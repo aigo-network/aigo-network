@@ -1,7 +1,9 @@
 import { appleAuth } from '@invertase/react-native-apple-authentication';
 import auth from '@react-native-firebase/auth';
 
-export const handleSignInApple = async () => {
+import type { SignInFunction } from './types';
+
+export const signInWithApple: SignInFunction = async () => {
 	const appleAuthRequestResponse = await appleAuth.performRequest({
 		requestedOperation: appleAuth.Operation.LOGIN,
 		requestedScopes: [appleAuth.Scope.FULL_NAME],

@@ -4,7 +4,7 @@ import Animated, { FadeInUp, runOnJS } from 'react-native-reanimated';
 import { useNavigation } from '@react-navigation/native';
 import AppIcon from 'components/AppIcon';
 import SafeContainer from 'components/SafeContainer';
-import { authPromise } from 'utils/auth';
+import { initAuthPromise } from 'utils/auth';
 import { config } from 'utils/config';
 
 export const SplashScreen = () => {
@@ -21,7 +21,7 @@ export const SplashScreen = () => {
 
 	useEffect(() => {
 		const resolveAppInit = async () => {
-			const [user] = await Promise.all([authPromise, animationRef.current]);
+			const [user] = await Promise.all([initAuthPromise, animationRef.current]);
 			if (!user) {
 				navigate('Login');
 			} else if (!user.completeOnboarding) {
