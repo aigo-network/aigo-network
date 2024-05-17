@@ -11,11 +11,11 @@ import {
 import type { StackScreenProps } from '@react-navigation/stack';
 import OnboardLayout from 'components/OnboardLayout';
 import { appActions, appState } from 'state/app';
-import type { RootParamList } from 'utils/navigation';
+import type { RootStackParamList } from 'utils/navigation';
 import { useSnapshot } from 'valtio';
 
 export const ProfileName: FC<
-	StackScreenProps<RootParamList, 'OnboardName'>
+	StackScreenProps<RootStackParamList, 'OnboardName'>
 > = ({ navigation }) => {
 	const { profileName } = useSnapshot(appState);
 

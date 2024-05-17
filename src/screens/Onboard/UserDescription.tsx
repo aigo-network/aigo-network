@@ -5,7 +5,7 @@ import type { StackScreenProps } from '@react-navigation/stack';
 import DescriptionCard from 'components/DescriptionCard';
 import OnboardLayout from 'components/OnboardLayout';
 import { appActions } from 'state/app';
-import type { RootParamList } from 'utils/navigation';
+import type { RootStackParamList } from 'utils/navigation';
 
 const userDescription = [
 	{
@@ -35,7 +35,7 @@ const userDescription = [
 ];
 
 export const UserDescription: FC<
-	StackScreenProps<RootParamList, 'OnboardDescription'>
+	StackScreenProps<RootStackParamList, 'OnboardDescription'>
 > = ({ navigation }) => {
 	const [itemWidth, setItemWidth] = useState(0);
 	const [selectedList, setSelectedList] = useState<string[]>([]);

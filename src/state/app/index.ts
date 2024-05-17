@@ -1,12 +1,10 @@
-import type { FirebaseAuthTypes } from '@react-native-firebase/auth';
+import type { User } from 'api/graphql';
 
 import { appState } from './shared';
 
 export const appActions = {
-	increaseCounter: (amount: number = 1) => (appState.counter += amount),
-	setUser: (user: FirebaseAuthTypes.User) => {
-		appState.user = user;
-		appState.signedIn = !!user;
+	setAppUser: (user: User) => {
+		appState.appUser = user;
 	},
 	setProfileName: (name: string) => {
 		appState.profileName = name;

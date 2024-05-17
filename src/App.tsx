@@ -5,20 +5,19 @@ import {
 	CardStyleInterpolators,
 	createStackNavigator,
 } from '@react-navigation/stack';
+import HomeScreen from 'screens/Home';
 import LoginScreen from 'screens/Login';
 import ProfileName from 'screens/Onboard/ProfileName';
 import UserDescription from 'screens/Onboard/UserDescription';
-import { appState } from 'state/app';
-import type { RootParamList } from 'utils/navigation';
-import { useSnapshot } from 'valtio';
+import SplashScreen from 'screens/Splash';
+import type { RootStackParamList } from 'utils/navigation';
 
 import 'utils/global';
+import 'utils/auth';
 
-const Stack = createStackNavigator<RootParamList>();
+const Stack = createStackNavigator<RootStackParamList>();
 
 export const AppContainer: FC = () => {
-	const { signedIn } = useSnapshot(appState);
-
 	return (
 		<SafeAreaProvider>
 			<NavigationContainer>
@@ -28,23 +27,31 @@ export const AppContainer: FC = () => {
 						animationEnabled: true,
 					}}
 				>
-					{!signedIn ? (
+					<Stack.Screen
+						name="Splash"
+						component={SplashScreen}
+						options={{
+							cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
+						}}
+					/>
+					<Stack.Screen
+						name="Login"
+						component={LoginScreen}
+						options={{
+							cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
+						}}
+					/>
+					<Stack.Group screenOptions={{ headerShown: false }}>
+						<Stack.Screen name="OnboardName" component={ProfileName} />
 						<Stack.Screen
-							name="Login"
-							component={LoginScreen}
-							options={{
-								cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
-							}}
+							name="OnboardDescription"
+							component={UserDescription}
 						/>
-					) : (
-						<Stack.Group screenOptions={{ headerShown: false }}>
-							<Stack.Screen name="OnboardName" component={ProfileName} />
-							<Stack.Screen
-								name="OnboardDescription"
-								component={UserDescription}
-							/>
-						</Stack.Group>
-					)}
+					</Stack.Group>
+
+					<Stack.Group screenOptions={{ headerShown: false }}>
+						<Stack.Screen name="Home" component={HomeScreen} />
+					</Stack.Group>
 				</Stack.Navigator>
 			</NavigationContainer>
 		</SafeAreaProvider>
