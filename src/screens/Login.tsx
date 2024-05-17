@@ -10,6 +10,9 @@ import { config } from 'utils/config';
 
 export const LoginScreen = () => {
 	const { navigate } = useNavigation();
+	const backgroundSrc = require('assets/img/login/background-logo.png');
+	const googleIconSrc = require('assets/img/login/google-logo.png');
+	const appleIconSrc = require('assets/img/login/apple-logo.png');
 
 	const handleSignIn = async (signIn: SignInFunction) => {
 		try {
@@ -28,10 +31,7 @@ export const LoginScreen = () => {
 
 	return (
 		<View style={styles.container}>
-			<Image
-				source={require('assets/img/login/background-logo.png')}
-				style={styles.backgroundImage}
-			/>
+			<Image source={backgroundSrc} style={styles.backgroundImage} />
 			<SafeContainer style={styles.safeContainer}>
 				<View>
 					<View style={styles.logoImg}>
@@ -44,18 +44,14 @@ export const LoginScreen = () => {
 				</View>
 				<View style={styles.btnGroup}>
 					<Button
-						prefix={
-							<Image source={require('assets/img/login/google-logo.png')} />
-						}
+						prefix={<Image source={googleIconSrc} />}
 						style={styles.btn}
 						onPress={() => handleSignIn(signInWithGoogle)}
 					>
 						<Text style={styles.btnText}>Log in with Google</Text>
 					</Button>
 					<Button
-						prefix={
-							<Image source={require('assets/img/login/apple-logo.png')} />
-						}
+						prefix={<Image source={appleIconSrc} />}
 						style={styles.btn}
 						onPress={() => handleSignIn(signInWithApple)}
 					>
