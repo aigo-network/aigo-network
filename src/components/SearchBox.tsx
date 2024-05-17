@@ -6,16 +6,25 @@ import CloseIcon from './icon/CloseIcon';
 import SearchIcon from './icon/SearchIcon';
 
 interface Props {
+	textSearch?: string;
 	onChangeText?: (text: string) => void;
 	style?: ViewStyle;
 }
 
-export const SearchBox: FC<Props> = ({ style, onChangeText }) => {
-	const [input, setInput] = useState('');
+export const SearchBox: FC<Props> = ({
+	style,
+	onChangeText,
+	textSearch = '',
+}) => {
+	const [input, setInput] = useState(textSearch);
 
 	useEffect(() => {
 		onChangeText?.(input);
 	}, [input]);
+
+	useEffect(() => {
+		setInput(textSearch);
+	}, [textSearch]);
 
 	return (
 		<View style={[styles.container, style]}>

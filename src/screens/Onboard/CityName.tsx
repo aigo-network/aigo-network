@@ -1,45 +1,32 @@
 import { useEffect, useState } from 'react';
-import type { ListRenderItem } from 'react-native';
-import {
-	KeyboardAvoidingView,
-	Platform,
-	StyleSheet,
-	Text,
-	TouchableWithoutFeedback,
-	View,
-} from 'react-native';
+import { KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import SearchBox from 'components/SearchBox';
+import type { CitiesData } from 'components/SearchResult';
 import SearchResult from 'components/SearchResult';
+import { appActions, appState } from 'state/app';
 import citiesList from 'utils/cities.json';
+import { useSnapshot } from 'valtio';
 
 import OnboardLayout from './OnboardLayout';
 
-interface CitiesData {
-	name: string;
-	country: string;
-	subcountry: string;
-	geonameid: number;
-}
-
 const citiesDataList: CitiesData[] = citiesList;
 
-const searchRenderItem: ListRenderItem<CitiesData> = ({ item }) => {
-	return (
-		<View style={{
-			height: 30,
-		}}>
-			<Text>{`${item.name}, ${item.subcountry} ${item.country}`}</Text>
-		</View>
-	);
-};
-
 export const CityName = () => {
+	const { navigate } = useNavigation();
+	const {
+		onboarding: { city },
+	} = useSnapshot(appState);
 	const [searchText, setSearchText] = useState('');
 	const [listCitiesFiltered, setListCitiesFiltered] = useState<CitiesData[]>(
 		[],
 	);
 	const onSearchChange = (searchText: string) => {
 		setSearchText(searchText);
+	};
+	const onItemSelect = (item: CitiesData) => {
+		setSearchText(item.name);
+		appActions.updateOnboarding({ city: item.name });
 	};
 
 	useEffect(() => {
@@ -59,24 +46,29 @@ export const CityName = () => {
 			style={styles.keyboardContainer}
 		>
 			<OnboardLayout
-				disabled
-				onPress={() => {}}
+				currentIndex={3}
+				disabled={!city}
+				onPress={() => navigate('Home')}
 				title="Name your city"
 				subTitle="Mark yourself in your city to connect with pals"
-				screenOrder={3}
 			>
-					<View style={styles.searchContainer}>
-						<SearchBox style={styles.searchBox} onChangeText={onSearchChange} />
-						<KeyboardAvoidingView
-							behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-						>
-							<SearchResult
-								style={styles.searchResult}
-								data={listCitiesFiltered}
-								renderItem={searchRenderItem}
-							/>
-						</KeyboardAvoidingView>
-					</View>
+				<View style={styles.searchContainer}>
+					<SearchBox
+						style={styles.searchBox}
+						onChangeText={onSearchChange}
+						textSearch={searchText}
+					/>
+					<KeyboardAvoidingView
+						behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+					>
+						<SearchResult
+							style={styles.searchResult}
+							data={listCitiesFiltered}
+							textSearch={searchText}
+							onItemPress={onItemSelect}
+						/>
+					</KeyboardAvoidingView>
+				</View>
 			</OnboardLayout>
 		</KeyboardAvoidingView>
 	);

@@ -1,0 +1,83 @@
+import type { FC } from 'react';
+import type { ViewStyle } from 'react-native';
+import {
+	FlatList,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+} from 'react-native';
+
+export interface CitiesData {
+	name: string;
+	country: string;
+	subcountry: string;
+	geonameid: number;
+}
+
+interface ItemProps {
+	item: CitiesData;
+	textSearch: string;
+	onPress?: (item: CitiesData) => void;
+}
+
+interface Props {
+	style?: ViewStyle;
+	data: CitiesData[];
+	textSearch: string;
+	onItemPress?: (item: CitiesData) => void;
+}
+
+const SearchRenderItem: FC<ItemProps> = ({ item, textSearch, onPress }) => {
+	return (
+		<TouchableOpacity onPress={() => onPress?.(item)}>
+			<View style={styles.itemContainer}>
+				<Text style={styles.itemText}>
+					<Text style={{ fontWeight: '700' }}>{textSearch}</Text>
+					{`${item.name.replace(textSearch, '')}, ${item.subcountry} ${item.country}`}
+				</Text>
+			</View>
+		</TouchableOpacity>
+	);
+};
+
+export const SearchResult: FC<Props> = ({
+	style,
+	data,
+	textSearch,
+	onItemPress,
+}) => {
+	const containerStyle = { paddingVertical: data.length > 0 ? 10 : 0 };
+	const renderItem = ({ item }: { item: CitiesData }) => {
+		return (
+			<SearchRenderItem
+				item={item}
+				textSearch={textSearch}
+				onPress={onItemPress}
+			/>
+		);
+	};
+
+	return (
+		<FlatList
+			data={data}
+			renderItem={renderItem}
+			style={[styles.container, containerStyle, style]}
+		/>
+	);
+};
+
+export default SearchResult;
+
+const styles = StyleSheet.create({
+	container: {
+		backgroundColor: '#7653ff',
+		maxHeight: 300,
+		borderRadius: 25,
+	},
+	itemContainer: {
+		paddingHorizontal: 30,
+		paddingVertical: 5,
+	},
+	itemText: { lineHeight: 25 },
+});
