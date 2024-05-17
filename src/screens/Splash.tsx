@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeInUp, runOnJS } from 'react-native-reanimated';
 import { useNavigation } from '@react-navigation/native';
-import AppIcon from 'components/AppIcon';
+import AppIcon from 'components/icon/AppIcon';
 import SafeContainer from 'components/SafeContainer';
 import { initAuthPromise } from 'utils/auth';
 import { config } from 'utils/config';

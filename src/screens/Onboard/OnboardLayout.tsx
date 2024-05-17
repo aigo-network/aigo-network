@@ -42,7 +42,6 @@ export const OnboardLayout: FC<Props> = ({
 }) => {
 	const navigation = useNavigation();
 	const [keyboardShown, setKeyboardShown] = useState(Keyboard.isVisible());
-	const totalOnboardingSteps = 2;
 	const paddingBot = useSharedValue(40);
 	const btnBackgroundColor = {
 		backgroundColor: disabled ? '#ebf7e6' : '#a0fa82',
@@ -72,9 +71,6 @@ export const OnboardLayout: FC<Props> = ({
 	return (
 		<View style={styles.container}>
 			<SafeContainer>
-				<View style={styles.progressContainer}>
-					<ProgressBar current={currentIndex} length={totalOnboardingSteps} />
-				</View>
 				<View style={styles.contentContainer}>
 					<View style={styles.layoutHeader}>
 						{navigation.canGoBack() && (
@@ -136,11 +132,6 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'space-between',
-	},
-	progressContainer: {
-		alignItems: 'center',
-		marginTop: 20,
-		marginBottom: 40,
 	},
 	text: {
 		fontFamily: 'Gabarito',

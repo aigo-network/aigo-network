@@ -48,8 +48,8 @@ export const AppContainer: FC = () => {
 							name="OnboardDescription"
 							component={UserDescription}
 						/>
-							<Stack.Screen name="OnboardCity" component={CityName} />
-						</Stack.Group>
+						<Stack.Screen name="OnboardCity" component={CityName} />
+					</Stack.Group>
 
 					<Stack.Group screenOptions={{ headerShown: false }}>
 						<Stack.Screen name="Home" component={HomeScreen} />

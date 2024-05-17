@@ -31,13 +31,12 @@ export const ProfileName: FC<
 			style={styles.keyboardContainer}
 		>
 			<OnboardLayout
-				currentIndex={0}
+				currentIndex={1}
 				disabled={!name}
 				onPress={handleContinue}
 				mainBtnText="Looks good :)"
 				title="Name your profile"
 				subTitle="Choose a nickname for your account"
-				screenOrder={1}
 			>
 				<View style={styles.container}>
 					<TextInput
