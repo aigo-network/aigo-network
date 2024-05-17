@@ -1,0 +1,62 @@
+import { StyleSheet, Text, View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+
+import { sharedStyles } from './shared';
+
+export const Invite = () => {
+	return (
+		<View style={[sharedStyles.container, styles.container]}>
+			<View style={styles.titleContainer}>
+				<Text style={styles.titleText}>Invite your friends</Text>
+				<Text style={styles.descriptionText}>
+					Receive
+					<Text style={styles.pointText}> 10 GO/referral</Text> & earn 10% from
+					their earning
+				</Text>
+			</View>
+			<View style={styles.inviteContainer}>
+				<Text style={styles.inviteCountText}>0 Referrals</Text>
+				<TouchableOpacity style={styles.inviteButton}>
+					<Text>Invite</Text>
+				</TouchableOpacity>
+			</View>
+		</View>
+	);
+};
+
+export default Invite;
+
+const styles = StyleSheet.create({
+	container: {
+		flexDirection: 'row',
+	},
+	titleContainer: {
+		flex: 1,
+		gap: 6,
+	},
+	titleText: {
+		fontSize: 18,
+		color: '#000',
+	},
+	inviteCountText: {
+		color: '#000',
+		fontSize: 14,
+	},
+	inviteContainer: {
+		gap: 8,
+		alignItems: 'center',
+	},
+	descriptionText: {
+		flex: 1,
+		color: '#A9A9A9',
+	},
+	pointText: {
+		color: '#714CFE',
+	},
+	inviteButton: {
+		padding: 10,
+		paddingHorizontal: 24,
+		borderRadius: 20,
+		backgroundColor: '#6740FF',
+	},
+});

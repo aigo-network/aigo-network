@@ -5,6 +5,7 @@ import { appActions, appState } from 'state/app';
 import { useSnapshot } from 'valtio';
 
 import Header from './Header';
+import Invite from './Invite';
 import Social from './Social';
 
 export const HomeScreen = () => {
@@ -24,6 +25,7 @@ export const HomeScreen = () => {
 			<Header />
 			<View style={styles.mainContainer}>
 				<Social />
+				<Invite />
 			</View>
 		</View>
 	);
@@ -38,5 +40,6 @@ const styles = StyleSheet.create({
 	},
 	mainContainer: {
 		paddingHorizontal: 16,
+		gap: 16,
 	},
 });

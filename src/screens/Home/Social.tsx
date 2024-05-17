@@ -2,6 +2,8 @@ import { useRef, useState } from 'react';
 import { Image, Linking, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+import { sharedStyles } from './shared';
+
 export const Social = () => {
 	const containerRef = useRef(null);
 	const [imageWidth, setImageWidth] = useState(0);
@@ -22,7 +24,7 @@ export const Social = () => {
 	return (
 		<View
 			ref={containerRef}
-			style={styles.container}
+			style={sharedStyles.container}
 			onLayout={(e) => {
 				setImageWidth(e.nativeEvent.layout.width / 2 - 20);
 			}}
@@ -58,22 +60,6 @@ export const Social = () => {
 export default Social;
 
 const styles = StyleSheet.create({
-	container: {
-		backgroundColor: '#fff',
-		padding: 16,
-		paddingTop: 18,
-		paddingBottom: 22,
-		borderRadius: 20,
-		shadowColor: '#000000',
-		shadowOffset: {
-			width: 0,
-			height: 1,
-		},
-		shadowOpacity: 0.1,
-		shadowRadius: 1.5,
-		elevation: 2,
-		gap: 14,
-	},
 	titleContainer: {
 		flexDirection: 'row',
 		alignItems: 'center',
