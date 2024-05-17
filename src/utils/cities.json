@@ -1,0 +1,716 @@
+[
+	{
+		"name": "Heung-hai",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangbuk-do",
+		"geonameid": 1832015
+	  },
+	  {
+		"name": "Enjitsu",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangbuk-do",
+		"geonameid": 1832215
+	  },
+	  {
+		"name": "Neietsu",
+		"country": "South Korea",
+		"subcountry": "Gangwon-do",
+		"geonameid": 1832257
+	  },
+	  {
+		"name": "Eisen",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangbuk-do",
+		"geonameid": 1832384
+	  },
+	  {
+		"name": "Reiko",
+		"country": "South Korea",
+		"subcountry": "Jeollanam-do",
+		"geonameid": 1832501
+	  },
+	  {
+		"name": "Yŏng-dong",
+		"country": "South Korea",
+		"subcountry": "Chungcheongbuk-do",
+		"geonameid": 1832566
+	  },
+	  {
+		"name": "Eisen",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangbuk-do",
+		"geonameid": 1832617
+	  },
+	  {
+		"name": "Yeoju",
+		"country": "South Korea",
+		"subcountry": "Gyeonggi-do",
+		"geonameid": 1832743
+	  },
+	  {
+		"name": "Yesan",
+		"country": "South Korea",
+		"subcountry": "Chungcheongnam-do",
+		"geonameid": 1832771
+	  },
+	  {
+		"name": "Yangsan",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangnam-do",
+		"geonameid": 1832828
+	  },
+	  {
+		"name": "Yangp'yŏng",
+		"country": "South Korea",
+		"subcountry": "Gyeonggi-do",
+		"geonameid": 1832830
+	  },
+	  {
+		"name": "Yangju",
+		"country": "South Korea",
+		"subcountry": "Gyeonggi-do",
+		"geonameid": 1832847
+	  },
+	  {
+		"name": "Yanggu",
+		"country": "South Korea",
+		"subcountry": "Gangwon-do",
+		"geonameid": 1832909
+	  },
+	  {
+		"name": "Wŏnju",
+		"country": "South Korea",
+		"subcountry": "Gangwon-do",
+		"geonameid": 1833105
+	  },
+	  {
+		"name": "Wanju",
+		"country": "South Korea",
+		"subcountry": "Jeollabuk-do",
+		"geonameid": 1833466
+	  },
+	  {
+		"name": "Waegwan",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangbuk-do",
+		"geonameid": 1833514
+	  },
+	  {
+		"name": "Ulsan",
+		"country": "South Korea",
+		"subcountry": "Ulsan",
+		"geonameid": 1833747
+	  },
+	  {
+		"name": "Uijeongbu-si",
+		"country": "South Korea",
+		"subcountry": "Gyeonggi-do",
+		"geonameid": 1833788
+	  },
+	  {
+		"name": "Tangjin",
+		"country": "South Korea",
+		"subcountry": "Chungcheongnam-do",
+		"geonameid": 1834885
+	  },
+	  {
+		"name": "Taesal-li",
+		"country": "South Korea",
+		"subcountry": "Chungcheongnam-do",
+		"geonameid": 1835096
+	  },
+	  {
+		"name": "Daejeon",
+		"country": "South Korea",
+		"subcountry": "Daejeon",
+		"geonameid": 1835235
+	  },
+	  {
+		"name": "Daegu",
+		"country": "South Korea",
+		"subcountry": "Daegu",
+		"geonameid": 1835329
+	  },
+	  {
+		"name": "Taisen-ri",
+		"country": "South Korea",
+		"subcountry": "Chungcheongnam-do",
+		"geonameid": 1835447
+	  },
+	  {
+		"name": "T’aebaek",
+		"country": "South Korea",
+		"subcountry": "Gangwon-do",
+		"geonameid": 1835515
+	  },
+	  {
+		"name": "Suwon-si",
+		"country": "South Korea",
+		"subcountry": "Gyeonggi-do",
+		"geonameid": 1835553
+	  },
+	  {
+		"name": "Suncheon",
+		"country": "South Korea",
+		"subcountry": "Jeollanam-do",
+		"geonameid": 1835648
+	  },
+	  {
+		"name": "Seoul",
+		"country": "South Korea",
+		"subcountry": "Seoul",
+		"geonameid": 1835848
+	  },
+	  {
+		"name": "Suisan",
+		"country": "South Korea",
+		"subcountry": "Chungcheongnam-do",
+		"geonameid": 1835895
+	  },
+	  {
+		"name": "Jenzan",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangbuk-do",
+		"geonameid": 1835967
+	  },
+	  {
+		"name": "Seonghwan",
+		"country": "South Korea",
+		"subcountry": "Chungcheongnam-do",
+		"geonameid": 1836208
+	  },
+	  {
+		"name": "Sokcho",
+		"country": "South Korea",
+		"subcountry": "Gangwon-do",
+		"geonameid": 1836553
+	  },
+	  {
+		"name": "Sangju",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangbuk-do",
+		"geonameid": 1837706
+	  },
+	  {
+		"name": "Santyoku",
+		"country": "South Korea",
+		"subcountry": "Gangwon-do",
+		"geonameid": 1838069
+	  },
+	  {
+		"name": "Fuyo",
+		"country": "South Korea",
+		"subcountry": "Chungcheongnam-do",
+		"geonameid": 1838508
+	  },
+	  {
+		"name": "Busan",
+		"country": "South Korea",
+		"subcountry": "Busan",
+		"geonameid": 1838524
+	  },
+	  {
+		"name": "Bucheon-si",
+		"country": "South Korea",
+		"subcountry": "Gyeonggi-do",
+		"geonameid": 1838716
+	  },
+	  {
+		"name": "Puan",
+		"country": "South Korea",
+		"subcountry": "Jeollabuk-do",
+		"geonameid": 1838722
+	  },
+	  {
+		"name": "Beolgyo",
+		"country": "South Korea",
+		"subcountry": "Jeollanam-do",
+		"geonameid": 1839011
+	  },
+	  {
+		"name": "Pohang",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangbuk-do",
+		"geonameid": 1839071
+	  },
+	  {
+		"name": "Osan",
+		"country": "South Korea",
+		"subcountry": "Gyeonggi-do",
+		"geonameid": 1839652
+	  },
+	  {
+		"name": "Asan",
+		"country": "South Korea",
+		"subcountry": "Chungcheongnam-do",
+		"geonameid": 1839726
+	  },
+	  {
+		"name": "Okcheon",
+		"country": "South Korea",
+		"subcountry": "Chungcheongbuk-do",
+		"geonameid": 1839873
+	  },
+	  {
+		"name": "Kosong",
+		"country": "South Korea",
+		"subcountry": "Gangwon-do",
+		"geonameid": 1840179
+	  },
+	  {
+		"name": "Nonsan",
+		"country": "South Korea",
+		"subcountry": "Chungcheongnam-do",
+		"geonameid": 1840211
+	  },
+	  {
+		"name": "Nangen",
+		"country": "South Korea",
+		"subcountry": "Jeollabuk-do",
+		"geonameid": 1840379
+	  },
+	  {
+		"name": "Naju",
+		"country": "South Korea",
+		"subcountry": "Jeollanam-do",
+		"geonameid": 1840536
+	  },
+	  {
+		"name": "Munsan",
+		"country": "South Korea",
+		"subcountry": "Gyeonggi-do",
+		"geonameid": 1840862
+	  },
+	  {
+		"name": "Mungyeong",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangbuk-do",
+		"geonameid": 1840886
+	  },
+	  {
+		"name": "Muan",
+		"country": "South Korea",
+		"subcountry": "Jeollanam-do",
+		"geonameid": 1840982
+	  },
+	  {
+		"name": "Moppo",
+		"country": "South Korea",
+		"subcountry": "Jeollanam-do",
+		"geonameid": 1841066
+	  },
+	  {
+		"name": "Miryang",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangnam-do",
+		"geonameid": 1841149
+	  },
+	  {
+		"name": "Gyeongsan-si",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangbuk-do",
+		"geonameid": 1841598
+	  },
+	  {
+		"name": "Kyonju",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangbuk-do",
+		"geonameid": 1841603
+	  },
+	  {
+		"name": "Kwangyang",
+		"country": "South Korea",
+		"subcountry": "Jeollanam-do",
+		"geonameid": 1841775
+	  },
+	  {
+		"name": "Gwangju",
+		"country": "South Korea",
+		"subcountry": "Gyeonggi-do",
+		"geonameid": 1841810
+	  },
+	  {
+		"name": "Gwangju",
+		"country": "South Korea",
+		"subcountry": "Gwangju",
+		"geonameid": 1841811
+	  },
+	  {
+		"name": "Kurye",
+		"country": "South Korea",
+		"subcountry": "Jeollanam-do",
+		"geonameid": 1841976
+	  },
+	  {
+		"name": "Guri-si",
+		"country": "South Korea",
+		"subcountry": "Gyeonggi-do",
+		"geonameid": 1841988
+	  },
+	  {
+		"name": "Kunwi",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangbuk-do",
+		"geonameid": 1842016
+	  },
+	  {
+		"name": "Kunsan",
+		"country": "South Korea",
+		"subcountry": "Jeollabuk-do",
+		"geonameid": 1842025
+	  },
+	  {
+		"name": "Kinzan",
+		"country": "South Korea",
+		"subcountry": "Chungcheongnam-do",
+		"geonameid": 1842153
+	  },
+	  {
+		"name": "Gumi",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangbuk-do",
+		"geonameid": 1842225
+	  },
+	  {
+		"name": "Goyang-si",
+		"country": "South Korea",
+		"subcountry": "Gyeonggi-do",
+		"geonameid": 1842485
+	  },
+	  {
+		"name": "Goseong",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangnam-do",
+		"geonameid": 1842518
+	  },
+	  {
+		"name": "Gongju",
+		"country": "South Korea",
+		"subcountry": "Chungcheongnam-do",
+		"geonameid": 1842616
+	  },
+	  {
+		"name": "Kyosai",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangnam-do",
+		"geonameid": 1842754
+	  },
+	  {
+		"name": "Koesan",
+		"country": "South Korea",
+		"subcountry": "Chungcheongbuk-do",
+		"geonameid": 1842800
+	  },
+	  {
+		"name": "Koch'ang",
+		"country": "South Korea",
+		"subcountry": "Jeollabuk-do",
+		"geonameid": 1842859
+	  },
+	  {
+		"name": "Kimje",
+		"country": "South Korea",
+		"subcountry": "Jeollabuk-do",
+		"geonameid": 1842939
+	  },
+	  {
+		"name": "Kimhae",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangnam-do",
+		"geonameid": 1842943
+	  },
+	  {
+		"name": "Gimcheon",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangbuk-do",
+		"geonameid": 1842944
+	  },
+	  {
+		"name": "Gijang",
+		"country": "South Korea",
+		"subcountry": "Busan",
+		"geonameid": 1842966
+	  },
+	  {
+		"name": "Gapyeong",
+		"country": "South Korea",
+		"subcountry": "Gyeonggi-do",
+		"geonameid": 1843082
+	  },
+	  {
+		"name": "Kang-neung",
+		"country": "South Korea",
+		"subcountry": "Gangwon-do",
+		"geonameid": 1843137
+	  },
+	  {
+		"name": "Ganghwa-gun",
+		"country": "South Korea",
+		"subcountry": "Incheon",
+		"geonameid": 1843163
+	  },
+	  {
+		"name": "Iksan",
+		"country": "South Korea",
+		"subcountry": "Jeollabuk-do",
+		"geonameid": 1843491
+	  },
+	  {
+		"name": "Incheon",
+		"country": "South Korea",
+		"subcountry": "Incheon",
+		"geonameid": 1843564
+	  },
+	  {
+		"name": "Imsil",
+		"country": "South Korea",
+		"subcountry": "Jeollabuk-do",
+		"geonameid": 1843585
+	  },
+	  {
+		"name": "Icheon-si",
+		"country": "South Korea",
+		"subcountry": "Gyeonggi-do",
+		"geonameid": 1843702
+	  },
+	  {
+		"name": "Hwasun",
+		"country": "South Korea",
+		"subcountry": "Jeollanam-do",
+		"geonameid": 1843841
+	  },
+	  {
+		"name": "Hwaseong-si",
+		"country": "South Korea",
+		"subcountry": "Gyeonggi-do",
+		"geonameid": 1843847
+	  },
+	  {
+		"name": "Hwacheon",
+		"country": "South Korea",
+		"subcountry": "Gangwon-do",
+		"geonameid": 1844045
+	  },
+	  {
+		"name": "Hongsung",
+		"country": "South Korea",
+		"subcountry": "Chungcheongnam-do",
+		"geonameid": 1844174
+	  },
+	  {
+		"name": "Hongch’ŏn",
+		"country": "South Korea",
+		"subcountry": "Gangwon-do",
+		"geonameid": 1844191
+	  },
+	  {
+		"name": "Hayang",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangbuk-do",
+		"geonameid": 1844308
+	  },
+	  {
+		"name": "Haenam",
+		"country": "South Korea",
+		"subcountry": "Jeollanam-do",
+		"geonameid": 1844751
+	  },
+	  {
+		"name": "Chuncheon",
+		"country": "South Korea",
+		"subcountry": "Gangwon-do",
+		"geonameid": 1845136
+	  },
+	  {
+		"name": "Jeonju",
+		"country": "South Korea",
+		"subcountry": "Jeollabuk-do",
+		"geonameid": 1845457
+	  },
+	  {
+		"name": "Cheongsong gun",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangbuk-do",
+		"geonameid": 1845519
+	  },
+	  {
+		"name": "Cheongju-si",
+		"country": "South Korea",
+		"subcountry": "Chungcheongbuk-do",
+		"geonameid": 1845604
+	  },
+	  {
+		"name": "Cheonan",
+		"country": "South Korea",
+		"subcountry": "Chungcheongnam-do",
+		"geonameid": 1845759
+	  },
+	  {
+		"name": "Chinju",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangnam-do",
+		"geonameid": 1846052
+	  },
+	  {
+		"name": "Chinch'ŏn",
+		"country": "South Korea",
+		"subcountry": "Chungcheongbuk-do",
+		"geonameid": 1846095
+	  },
+	  {
+		"name": "Jinan-gun",
+		"country": "South Korea",
+		"subcountry": "Jeollabuk-do",
+		"geonameid": 1846114
+	  },
+	  {
+		"name": "Jeju City",
+		"country": "South Korea",
+		"subcountry": "Jeju-do",
+		"geonameid": 1846266
+	  },
+	  {
+		"name": "Changwon",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangnam-do",
+		"geonameid": 1846326
+	  },
+	  {
+		"name": "Changsu",
+		"country": "South Korea",
+		"subcountry": "Jeollabuk-do",
+		"geonameid": 1846355
+	  },
+	  {
+		"name": "Anyang-si",
+		"country": "South Korea",
+		"subcountry": "Gyeonggi-do",
+		"geonameid": 1846898
+	  },
+	  {
+		"name": "Anseong",
+		"country": "South Korea",
+		"subcountry": "Gyeonggi-do",
+		"geonameid": 1846912
+	  },
+	  {
+		"name": "Ansan-si",
+		"country": "South Korea",
+		"subcountry": "Gyeonggi-do",
+		"geonameid": 1846918
+	  },
+	  {
+		"name": "Andong",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangbuk-do",
+		"geonameid": 1846986
+	  },
+	  {
+		"name": "Gaigeturi",
+		"country": "South Korea",
+		"subcountry": "Jeju-do",
+		"geonameid": 1847050
+	  },
+	  {
+		"name": "Sinhyeon",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangnam-do",
+		"geonameid": 1882056
+	  },
+	  {
+		"name": "Yeosu",
+		"country": "South Korea",
+		"subcountry": "Jeollanam-do",
+		"geonameid": 1884138
+	  },
+	  {
+		"name": "Yŏnmu",
+		"country": "South Korea",
+		"subcountry": "Chungcheongnam-do",
+		"geonameid": 1886598
+	  },
+	  {
+		"name": "Tonghae",
+		"country": "South Korea",
+		"subcountry": "Gangwon-do",
+		"geonameid": 1892823
+	  },
+	  {
+		"name": "Pubal",
+		"country": "South Korea",
+		"subcountry": "Gyeonggi-do",
+		"geonameid": 1896953
+	  },
+	  {
+		"name": "Seongnam-si",
+		"country": "South Korea",
+		"subcountry": "Gyeonggi-do",
+		"geonameid": 1897000
+	  },
+	  {
+		"name": "Hanam",
+		"country": "South Korea",
+		"subcountry": "Gyeonggi-do",
+		"geonameid": 1897007
+	  },
+	  {
+		"name": "Hwado",
+		"country": "South Korea",
+		"subcountry": "Gyeonggi-do",
+		"geonameid": 1897118
+	  },
+	  {
+		"name": "Namyangju",
+		"country": "South Korea",
+		"subcountry": "Gyeonggi-do",
+		"geonameid": 1897122
+	  },
+	  {
+		"name": "Ungsang",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangnam-do",
+		"geonameid": 1912205
+	  },
+	  {
+		"name": "Wabu",
+		"country": "South Korea",
+		"subcountry": "Gyeonggi-do",
+		"geonameid": 1912209
+	  },
+	  {
+		"name": "Naesŏ",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangnam-do",
+		"geonameid": 1925936
+	  },
+	  {
+		"name": "Hwawŏn",
+		"country": "South Korea",
+		"subcountry": "Daegu",
+		"geonameid": 1925943
+	  },
+	  {
+		"name": "Kwangmyŏng",
+		"country": "South Korea",
+		"subcountry": "Gyeonggi-do",
+		"geonameid": 1948005
+	  },
+	  {
+		"name": "Sinan",
+		"country": "South Korea",
+		"subcountry": "Jeollanam-do",
+		"geonameid": 6395804
+	  },
+	  {
+		"name": "Seogwipo",
+		"country": "South Korea",
+		"subcountry": "Jeju-do",
+		"geonameid": 6621166
+	  },
+	  {
+		"name": "Changnyeong",
+		"country": "South Korea",
+		"subcountry": "Gyeongsangnam-do",
+		"geonameid": 6903078
+	  }
+]
