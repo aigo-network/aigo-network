@@ -17,4 +17,8 @@ export const sharedStyles = StyleSheet.create({
 		elevation: 2,
 		gap: 14,
 	},
+	title: {
+		color: '#000',
+		fontSize: 17,
+	},
 });

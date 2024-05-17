@@ -7,7 +7,7 @@ export const Invite = () => {
 	return (
 		<View style={[sharedStyles.container, styles.container]}>
 			<View style={styles.titleContainer}>
-				<Text style={styles.titleText}>Invite your friends</Text>
+				<Text style={sharedStyles.title}>Invite your friends</Text>
 				<Text style={styles.descriptionText}>
 					Receive
 					<Text style={styles.pointText}> 10 GO/referral</Text> & earn 10% from
@@ -32,18 +32,14 @@ const styles = StyleSheet.create({
 	},
 	titleContainer: {
 		flex: 1,
-		gap: 6,
-	},
-	titleText: {
-		fontSize: 18,
-		color: '#000',
+		gap: 8,
 	},
 	inviteCountText: {
 		color: '#000',
 		fontSize: 14,
 	},
 	inviteContainer: {
-		gap: 8,
+		gap: 10,
 		alignItems: 'center',
 	},
 	descriptionText: {
@@ -54,8 +50,8 @@ const styles = StyleSheet.create({
 		color: '#714CFE',
 	},
 	inviteButton: {
-		padding: 10,
-		paddingHorizontal: 24,
+		padding: 7,
+		paddingHorizontal: 26,
 		borderRadius: 20,
 		backgroundColor: '#6740FF',
 	},

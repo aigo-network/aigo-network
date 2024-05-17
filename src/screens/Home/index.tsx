@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { graphqlClient } from 'api/graphql';
 import { appActions, appState } from 'state/app';
 import { useSnapshot } from 'valtio';
 
+import DailyCheckIn from './DailyCheckIn';
+import DailyMissions from './DailyMissions';
 import Header from './Header';
 import Invite from './Invite';
 import Social from './Social';
@@ -23,10 +25,15 @@ export const HomeScreen = () => {
 	return (
 		<View style={styles.container}>
 			<Header />
-			<View style={styles.mainContainer}>
+			<ScrollView
+				style={styles.mainContainer}
+				contentContainerStyle={styles.mainContentContainer}
+			>
 				<Social />
 				<Invite />
-			</View>
+				<DailyCheckIn />
+				<DailyMissions />
+			</ScrollView>
 		</View>
 	);
 };
@@ -39,7 +46,12 @@ const styles = StyleSheet.create({
 		backgroundColor: '#F7F7F7',
 	},
 	mainContainer: {
+		flex: 1,
+	},
+	mainContentContainer: {
+		flexGrow: 1,
 		paddingHorizontal: 16,
 		gap: 16,
+		paddingTop: 10,
 	},
 });
