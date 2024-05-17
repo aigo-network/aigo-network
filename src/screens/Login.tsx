@@ -15,7 +15,7 @@ export const LoginScreen = () => {
 		try {
 			const authUser = await signIn();
 			if (!authUser) return;
-			const { user } = await graphqlClient.completeOnboarding();
+			const { user } = await graphqlClient.getUserProfile();
 			if (user?.completeOnboarding) {
 				navigate('Home');
 			} else {

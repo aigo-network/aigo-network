@@ -1,7 +1,7 @@
 import { gql } from 'graphql-request';
 
 export const userQuery = gql`
-	query user {
+	query getUser {
 		user {
 			id
 			name
@@ -23,8 +23,8 @@ export const userQuery = gql`
 	}
 `;
 
-export const userCompleteOnboardingQuery = gql`
-	query completeOnboarding {
+export const userProfileQuery = gql`
+	query getUserProfile {
 		user {
 			id
 			name
@@ -33,20 +33,6 @@ export const userCompleteOnboardingQuery = gql`
 			descriptions
 			GOPoints
 			completeOnboarding
-		}
-	}
-`;
-
-export const dailyMissionQuery = gql`
-	query dailyMissions {
-		user {
-			id
-			dailyMissions {
-				checkIn {
-					date
-					completed
-				}
-			}
 		}
 	}
 `;

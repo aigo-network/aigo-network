@@ -4,48 +4,24 @@ import { StyleSheet, View } from 'react-native';
 import type { StackScreenProps } from '@react-navigation/stack';
 import DescriptionCard from 'components/DescriptionCard';
 import { appActions, appState } from 'state/app';
+import { userDescriptions } from 'state/app/types';
 import type { RootStackParamList } from 'utils/navigation';
 import { useSnapshot } from 'valtio';
 
 import OnboardLayout from './OnboardLayout';
-
-const userDescription = [
-	{
-		label: 'Nyam Nyam Driver',
-		value: 'NyamNyamDriver',
-	},
-	{
-		label: 'City Explorer',
-		value: 'CityExplorer',
-	},
-	{
-		label: 'Fitness Enthusiast',
-		value: 'FitnessEnthusiast',
-	},
-	{
-		label: 'Commuter',
-		value: 'Commuter',
-	},
-	{
-		label: 'Traveler',
-		value: 'Traveler',
-	},
-	{
-		label: 'Casual user',
-		value: 'CasualUser',
-	},
-];
 
 export const UserDescription: FC<
 	StackScreenProps<RootStackParamList, 'OnboardDescription'>
 > = ({ navigation }) => {
 	const [itemWidth, setItemWidth] = useState(0);
 	const {
-		onboarding: { description },
+		onboarding: { descriptions },
 	} = useSnapshot(appState);
+
 	const onItemPress = (newSelectedList: string[]) => {
-		appActions.updateOnboarding({ description: newSelectedList });
+		appActions.updateOnboarding({ descriptions: newSelectedList as never });
 	};
+
 	const onContinuePress = () => {
 		navigation.navigate('OnboardCity');
 	};
@@ -53,7 +29,7 @@ export const UserDescription: FC<
 	return (
 		<OnboardLayout
 			currentIndex={2}
-			disabled={!description?.length}
+			disabled={!descriptions?.length}
 			onPress={onContinuePress}
 			title="What's best describe you"
 			subTitle="You can choose multiple options"
@@ -65,12 +41,12 @@ export const UserDescription: FC<
 					setItemWidth(Math.floor(availableSpace / 2));
 				}}
 			>
-				{userDescription?.map((item) => {
+				{userDescriptions?.map((item, index) => {
 					return (
 						<DescriptionCard
-							key={item.value}
+							key={index}
 							item={item}
-							selectedList={description || []}
+							selectedList={descriptions || []}
 							onPress={onItemPress}
 							width={itemWidth}
 						/>

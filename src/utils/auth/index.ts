@@ -12,7 +12,7 @@ auth().onIdTokenChanged(async (authUser) => {
 		if (initAuthResolved) return;
 
 		try {
-			const { user } = await graphqlClient.completeOnboarding();
+			const { user } = await graphqlClient.getUserProfile();
 			if (user) {
 				appActions.setAppUser(user);
 				resolveInitAuthPromise(user);

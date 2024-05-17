@@ -1,6 +1,7 @@
 import type { FC, ReactNode } from 'react';
 import { useEffect, useState } from 'react';
 import {
+	ActivityIndicator,
 	Keyboard,
 	StyleSheet,
 	Text,
@@ -21,7 +22,7 @@ import SafeContainer from 'components/SafeContainer';
 
 interface Props {
 	disabled: boolean;
-	onPress: () => void;
+	onPress: () => Promise<void> | void;
 	children: ReactNode;
 	title: string;
 	subTitle: string;
@@ -41,6 +42,7 @@ export const OnboardLayout: FC<Props> = ({
 	mainBtnText,
 }) => {
 	const navigation = useNavigation();
+	const [loading, setLoading] = useState(false);
 	const [keyboardShown, setKeyboardShown] = useState(Keyboard.isVisible());
 	const paddingBot = useSharedValue(40);
 	const btnBackgroundColor = {
@@ -51,6 +53,12 @@ export const OnboardLayout: FC<Props> = ({
 		() => ({ paddingBottom: paddingBot.value }),
 		[paddingBot],
 	);
+
+	const handlePressContinue = async () => {
+		setLoading(true);
+		await onPress();
+		setLoading(false);
+	};
 
 	useEffect(() => {
 		const showSubscription = Keyboard.addListener('keyboardWillShow', () => {
@@ -99,16 +107,21 @@ export const OnboardLayout: FC<Props> = ({
 						</TouchableWithoutFeedback>
 					</View>
 				)}
+
 				<AnimatedView style={[styles.btnContainer, btnPaddingBottom]}>
-					<Button
-						style={[styles.btn, btnBackgroundColor]}
-						onPress={onPress}
-						disabled={disabled}
-					>
-						<Text style={[styles.btnText, btnTextColor]}>
-							{mainBtnText || 'Continue'}
-						</Text>
-					</Button>
+					{loading ? (
+						<ActivityIndicator color={'#ffffff'} />
+					) : (
+						<Button
+							style={[styles.btn, btnBackgroundColor]}
+							onPress={handlePressContinue}
+							disabled={disabled}
+						>
+							<Text style={[styles.btnText, btnTextColor]}>
+								{mainBtnText || 'Continue'}
+							</Text>
+						</Button>
+					)}
 				</AnimatedView>
 			</SafeContainer>
 		</View>

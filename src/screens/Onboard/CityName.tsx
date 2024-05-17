@@ -9,6 +9,7 @@ import citiesList from 'utils/cities.json';
 import { useSnapshot } from 'valtio';
 
 import OnboardLayout from './OnboardLayout';
+import { completeOnboarding } from './shared';
 
 const citiesDataList: CitiesData[] = citiesList;
 
@@ -26,7 +27,18 @@ export const CityName = () => {
 	};
 	const onItemSelect = (item: CitiesData) => {
 		setSearchText(item.name);
-		appActions.updateOnboarding({ city: item.name });
+		appActions.updateOnboarding({
+			city: `${item.name}, ${item.subcountry}, ${item.country}`,
+		});
+	};
+
+	const handleCompleteOnboarding = async () => {
+		try {
+			await completeOnboarding();
+			navigate('Home');
+		} catch (error) {
+			console.log('Failed to complete onboarding: ', error);
+		}
 	};
 
 	useEffect(() => {
@@ -48,7 +60,7 @@ export const CityName = () => {
 			<OnboardLayout
 				currentIndex={3}
 				disabled={!city}
-				onPress={() => navigate('Home')}
+				onPress={handleCompleteOnboarding}
 				title="Name your city"
 				subTitle="Mark yourself in your city to connect with pals"
 			>

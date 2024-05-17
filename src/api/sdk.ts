@@ -95,24 +95,65 @@ export type UserProfile = {
   phoneNumber?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type UserQueryVariables = Exact<{ [key: string]: never; }>;
+export type UpdateProfileMutationVariables = Exact<{
+  profile?: InputMaybe<UserProfile>;
+}>;
 
 
-export type UserQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, imageUrl?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, GOPoints?: number | null, invitationCode?: string | null, createdAt?: any | null, updatedAt?: any | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null } | null } | null };
+export type UpdateProfileMutation = { __typename?: 'RootMutation', updateProfile?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, descriptions?: Array<UserDescription | null> | null, city?: string | null, imageUrl?: string | null } | null };
 
-export type CompleteOnboardingQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type CompleteOnboardingQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, GOPoints?: number | null, completeOnboarding?: boolean | null } | null };
-
-export type DailyMissionsQueryVariables = Exact<{ [key: string]: never; }>;
+export type CompleteOnboardingMutationVariables = Exact<{ [key: string]: never; }>;
 
 
-export type DailyMissionsQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null } | null } | null };
+export type CompleteOnboardingMutation = { __typename?: 'RootMutation', completeOnboarding?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, imageUrl?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, GOPoints?: number | null, invitationCode?: string | null, createdAt?: any | null, updatedAt?: any | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null } | null } | null };
+
+export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export const UserDocument = gql`
-    query user {
+export type GetUserQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, imageUrl?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, GOPoints?: number | null, invitationCode?: string | null, createdAt?: any | null, updatedAt?: any | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null } | null } | null };
+
+export type GetUserProfileQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetUserProfileQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, GOPoints?: number | null, completeOnboarding?: boolean | null } | null };
+
+
+export const UpdateProfileDocument = gql`
+    mutation updateProfile($profile: UserProfile) {
+  updateProfile(profile: $profile) {
+    id
+    name
+    email
+    descriptions
+    city
+    imageUrl
+  }
+}
+    `;
+export const CompleteOnboardingDocument = gql`
+    mutation completeOnboarding {
+  completeOnboarding {
+    id
+    name
+    email
+    imageUrl
+    city
+    descriptions
+    GOPoints
+    dailyMissions {
+      checkIn {
+        date
+        completed
+      }
+    }
+    invitationCode
+    createdAt
+    updatedAt
+  }
+}
+    `;
+export const GetUserDocument = gql`
+    query getUser {
   user {
     id
     name
@@ -133,8 +174,8 @@ export const UserDocument = gql`
   }
 }
     `;
-export const CompleteOnboardingDocument = gql`
-    query completeOnboarding {
+export const GetUserProfileDocument = gql`
+    query getUserProfile {
   user {
     id
     name
@@ -146,19 +187,6 @@ export const CompleteOnboardingDocument = gql`
   }
 }
     `;
-export const DailyMissionsDocument = gql`
-    query dailyMissions {
-  user {
-    id
-    dailyMissions {
-      checkIn {
-        date
-        completed
-      }
-    }
-  }
-}
-    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
@@ -167,14 +195,17 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    user(variables?: UserQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<UserQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<UserQuery>(UserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'user', 'query', variables);
+    updateProfile(variables?: UpdateProfileMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<UpdateProfileMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<UpdateProfileMutation>(UpdateProfileDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'updateProfile', 'mutation', variables);
     },
-    completeOnboarding(variables?: CompleteOnboardingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CompleteOnboardingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<CompleteOnboardingQuery>(CompleteOnboardingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'completeOnboarding', 'query', variables);
+    completeOnboarding(variables?: CompleteOnboardingMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CompleteOnboardingMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CompleteOnboardingMutation>(CompleteOnboardingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'completeOnboarding', 'mutation', variables);
     },
-    dailyMissions(variables?: DailyMissionsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<DailyMissionsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<DailyMissionsQuery>(DailyMissionsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'dailyMissions', 'query', variables);
+    getUser(variables?: GetUserQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetUserQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetUserQuery>(GetUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUser', 'query', variables);
+    },
+    getUserProfile(variables?: GetUserProfileQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetUserProfileQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetUserProfileQuery>(GetUserProfileDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUserProfile', 'query', variables);
     }
   };
 }
