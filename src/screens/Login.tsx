@@ -78,7 +78,6 @@ const styles = StyleSheet.create({
 		marginBottom: 24,
 	},
 	welcome: {
-		fontFamily: 'Gabarito',
 		fontWeight: '600',
 		fontSize: 42,
 		textAlign: 'center',
@@ -87,7 +86,6 @@ const styles = StyleSheet.create({
 	slogan: {
 		alignSelf: 'center',
 		marginTop: 14,
-		fontFamily: 'Gabarito',
 		fontSize: 19,
 		color: '#a0fa82',
 	},
@@ -105,11 +103,9 @@ const styles = StyleSheet.create({
 	},
 	btnText: {
 		textAlign: 'center',
-		fontFamily: 'Gabarito',
 		fontSize: 20,
 	},
 	version: {
-		fontFamily: 'Gabarito',
 		textAlign: 'center',
 		color: '#fff',
 	},

@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
 	input: {
 		textAlign: 'center',
 		fontSize: 25,
-		fontFamily: 'Gabarito',
 		color: '#fff',
 	},
 });

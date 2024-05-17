@@ -10,6 +10,8 @@ import ProfileName from 'screens/Onboard/ProfileName';
 import { appState } from 'state/app';
 import { useSnapshot } from 'valtio';
 
+import 'utils/global';
+
 const Stack = createStackNavigator();
 
 export const AppContainer: FC = () => {
