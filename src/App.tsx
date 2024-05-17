@@ -7,12 +7,14 @@ import {
 } from '@react-navigation/stack';
 import LoginScreen from 'screens/Login';
 import ProfileName from 'screens/Onboard/ProfileName';
+import UserDescription from 'screens/Onboard/UserDescription';
 import { appState } from 'state/app';
+import type { RootParamList } from 'utils/navigation';
 import { useSnapshot } from 'valtio';
 
 import 'utils/global';
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<RootParamList>();
 
 export const AppContainer: FC = () => {
 	const { signedIn } = useSnapshot(appState);
@@ -26,22 +28,23 @@ export const AppContainer: FC = () => {
 						animationEnabled: true,
 					}}
 				>
-					<Stack.Group>
-						{!signedIn ? (
+					{!signedIn ? (
+						<Stack.Screen
+							name="Login"
+							component={LoginScreen}
+							options={{
+								cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
+							}}
+						/>
+					) : (
+						<Stack.Group screenOptions={{ headerShown: false }}>
+							<Stack.Screen name="OnboardName" component={ProfileName} />
 							<Stack.Screen
-								name="Login"
-								component={LoginScreen}
-								options={{
-									cardStyleInterpolator:
-										CardStyleInterpolators.forFadeFromCenter,
-								}}
+								name="OnboardDescription"
+								component={UserDescription}
 							/>
-						) : (
-							<Stack.Group screenOptions={{ headerShown: false }}>
-								<Stack.Screen name="OnboardName" component={ProfileName} />
-							</Stack.Group>
-						)}
-					</Stack.Group>
+						</Stack.Group>
+					)}
 				</Stack.Navigator>
 			</NavigationContainer>
 		</SafeAreaProvider>
