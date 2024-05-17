@@ -1,6 +1,11 @@
 import type { FC, ReactNode } from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Keyboard, StyleSheet, Text, View } from 'react-native';
+import Animated, {
+	useAnimatedStyle,
+	useSharedValue,
+	withTiming,
+} from 'react-native-reanimated';
 
 import { Button } from './Button';
 import SafeContainer from './SafeContainer';
@@ -14,6 +19,8 @@ interface Props {
 	mainBtnText?: string;
 }
 
+const AnimatedView = Animated.createAnimatedComponent(View);
+
 export const OnboardLayout: FC<Props> = ({
 	disabled,
 	onPress,
@@ -22,19 +29,22 @@ export const OnboardLayout: FC<Props> = ({
 	subTitle,
 	mainBtnText,
 }) => {
-	const [keyboardShown, setKeyboardShown] = useState(Keyboard.isVisible());
+	const paddingBot = useSharedValue(40);
 	const btnBackgroundColor = {
 		backgroundColor: disabled ? '#ebf7e6' : '#a0fa82',
 	};
 	const btnTextColor = { color: disabled ? '#b1c2ab' : '#6740ff' };
-	const btnPaddingBottom = { paddingBottom: keyboardShown ? 0 : 40 };
+	const btnPaddingBottom = useAnimatedStyle(
+		() => ({ paddingBottom: paddingBot.value }),
+		[paddingBot],
+	);
 
 	useEffect(() => {
-		const showSubscription = Keyboard.addListener('keyboardDidShow', () => {
-			setKeyboardShown(Keyboard.isVisible());
+		const showSubscription = Keyboard.addListener('keyboardWillShow', () => {
+			paddingBot.value = withTiming(0);
 		});
-		const hideSubscription = Keyboard.addListener('keyboardDidHide', () => {
-			setKeyboardShown(Keyboard.isVisible());
+		const hideSubscription = Keyboard.addListener('keyboardWillHide', () => {
+			paddingBot.value = withTiming(40);
 		});
 
 		return () => {
@@ -51,7 +61,7 @@ export const OnboardLayout: FC<Props> = ({
 					<Text style={[styles.text, styles.subTitle]}>{subTitle}</Text>
 					{children}
 				</View>
-				<View style={[styles.btnContainer, btnPaddingBottom]}>
+				<AnimatedView style={[styles.btnContainer, btnPaddingBottom]}>
 					<Button
 						style={[styles.btn, btnBackgroundColor]}
 						onPress={onPress}
@@ -61,7 +71,7 @@ export const OnboardLayout: FC<Props> = ({
 							{mainBtnText || 'Continue'}
 						</Text>
 					</Button>
-				</View>
+				</AnimatedView>
 			</SafeContainer>
 		</View>
 	);
