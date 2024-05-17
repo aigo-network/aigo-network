@@ -24,6 +24,10 @@ export const SplashScreen = () => {
 			const [user] = await Promise.all([authPromise, animationRef.current]);
 			if (!user) {
 				navigate('Login');
+			} else if (!user.completeOnboarding) {
+				navigate('OnboardName');
+			} else {
+				navigate('Home');
 			}
 		};
 

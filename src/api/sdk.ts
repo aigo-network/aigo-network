@@ -98,39 +98,37 @@ export type UserProfile = {
 export type UserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type UserQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', GOPoints?: number | null, city?: string | null, createdAt?: any | null, deletedAt?: any | null, descriptions?: Array<UserDescription | null> | null, email?: string | null, id?: string | null, imageUrl?: string | null, invitationCode?: string | null, invitedBy?: string | null, name?: string | null, updatedAt?: any | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null } | null } | null };
+export type UserQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, imageUrl?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, GOPoints?: number | null, invitationCode?: string | null, createdAt?: any | null, updatedAt?: any | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null } | null } | null };
 
 export type CompleteOnboardingQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CompleteOnboardingQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', name?: string | null, email?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, completeOnboarding?: boolean | null } | null };
+export type CompleteOnboardingQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, GOPoints?: number | null, completeOnboarding?: boolean | null } | null };
 
 export type DailyMissionsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type DailyMissionsQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null } | null } | null };
+export type DailyMissionsQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null } | null } | null };
 
 
 export const UserDocument = gql`
     query user {
   user {
-    GOPoints
+    id
+    name
+    email
+    imageUrl
     city
-    createdAt
+    descriptions
+    GOPoints
     dailyMissions {
       checkIn {
         date
         completed
       }
     }
-    deletedAt
-    descriptions
-    email
-    id
-    imageUrl
     invitationCode
-    invitedBy
-    name
+    createdAt
     updatedAt
   }
 }
@@ -138,10 +136,12 @@ export const UserDocument = gql`
 export const CompleteOnboardingDocument = gql`
     query completeOnboarding {
   user {
+    id
     name
     email
     city
     descriptions
+    GOPoints
     completeOnboarding
   }
 }
@@ -149,6 +149,7 @@ export const CompleteOnboardingDocument = gql`
 export const DailyMissionsDocument = gql`
     query dailyMissions {
   user {
+    id
     dailyMissions {
       checkIn {
         date

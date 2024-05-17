@@ -9,6 +9,8 @@ import { appActions } from 'state/app';
 auth().onIdTokenChanged(async (authUser) => {
 	if (authUser) {
 		const { user } = await graphqlClient.completeOnboarding();
+		console.log(user?.id, '<--');
+		console.log('resolve');
 		if (user) {
 			appActions.setAppUser(user);
 			resolveAuthPromise(user);

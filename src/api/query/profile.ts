@@ -3,23 +3,21 @@ import { gql } from 'graphql-request';
 export const userQuery = gql`
 	query user {
 		user {
-			GOPoints
+			id
+			name
+			email
+			imageUrl
 			city
-			createdAt
+			descriptions
+			GOPoints
 			dailyMissions {
 				checkIn {
 					date
 					completed
 				}
 			}
-			deletedAt
-			descriptions
-			email
-			id
-			imageUrl
 			invitationCode
-			invitedBy
-			name
+			createdAt
 			updatedAt
 		}
 	}
@@ -28,10 +26,12 @@ export const userQuery = gql`
 export const userCompleteOnboardingQuery = gql`
 	query completeOnboarding {
 		user {
+			id
 			name
 			email
 			city
 			descriptions
+			GOPoints
 			completeOnboarding
 		}
 	}
@@ -40,6 +40,7 @@ export const userCompleteOnboardingQuery = gql`
 export const dailyMissionQuery = gql`
 	query dailyMissions {
 		user {
+			id
 			dailyMissions {
 				checkIn {
 					date
