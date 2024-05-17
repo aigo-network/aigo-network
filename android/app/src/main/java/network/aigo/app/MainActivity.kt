@@ -1,4 +1,4 @@
-package com.aigo
+package network.aigo.app
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

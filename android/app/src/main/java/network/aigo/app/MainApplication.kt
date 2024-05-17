@@ -1,4 +1,4 @@
-package com.aigo
+package network.aigo.app
 
 import android.app.Application
 import com.facebook.react.PackageList
