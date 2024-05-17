@@ -1,8 +1,8 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { graphqlClient } from 'api/graphql';
-import AppIcon from 'components/AppIcon';
 import { Button } from 'components/Button';
+import AppIcon from 'components/icon/AppIcon';
 import SafeContainer from 'components/SafeContainer';
 import type { SignInFunction } from 'utils/auth';
 import { signInWithApple, signInWithGoogle } from 'utils/auth';

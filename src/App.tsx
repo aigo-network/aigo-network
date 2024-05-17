@@ -7,6 +7,7 @@ import {
 } from '@react-navigation/stack';
 import HomeScreen from 'screens/Home';
 import LoginScreen from 'screens/Login';
+import CityName from 'screens/Onboard/CityName';
 import ProfileName from 'screens/Onboard/ProfileName';
 import UserDescription from 'screens/Onboard/UserDescription';
 import SplashScreen from 'screens/Splash';
@@ -47,6 +48,7 @@ export const AppContainer: FC = () => {
 							name="OnboardDescription"
 							component={UserDescription}
 						/>
+						<Stack.Screen name="OnboardCity" component={CityName} />
 					</Stack.Group>
 
 					<Stack.Group screenOptions={{ headerShown: false }}>

@@ -1,15 +1,23 @@
 import type { FC, ReactNode } from 'react';
-import { useEffect } from 'react';
-import { Keyboard, StyleSheet, Text, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import {
+	Keyboard,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	TouchableWithoutFeedback,
+	View,
+} from 'react-native';
 import Animated, {
 	useAnimatedStyle,
 	useSharedValue,
 	withTiming,
 } from 'react-native-reanimated';
-
-import { Button } from './Button';
-import ProgressBar from './Progress';
-import SafeContainer from './SafeContainer';
+import { useNavigation } from '@react-navigation/native';
+import { Button } from 'components/Button';
+import LeftArrowIcon from 'components/icon/LeftArrowIcon';
+import Indicator from 'components/Indicator';
+import SafeContainer from 'components/SafeContainer';
 
 interface Props {
 	disabled: boolean;
@@ -32,7 +40,8 @@ export const OnboardLayout: FC<Props> = ({
 	currentIndex,
 	mainBtnText,
 }) => {
-	const totalOnboardingSteps = 2;
+	const navigation = useNavigation();
+	const [keyboardShown, setKeyboardShown] = useState(Keyboard.isVisible());
 	const paddingBot = useSharedValue(40);
 	const btnBackgroundColor = {
 		backgroundColor: disabled ? '#ebf7e6' : '#a0fa82',
@@ -46,9 +55,11 @@ export const OnboardLayout: FC<Props> = ({
 	useEffect(() => {
 		const showSubscription = Keyboard.addListener('keyboardWillShow', () => {
 			paddingBot.value = withTiming(0);
+			setKeyboardShown(true);
 		});
 		const hideSubscription = Keyboard.addListener('keyboardWillHide', () => {
 			paddingBot.value = withTiming(40);
+			setKeyboardShown(false);
 		});
 
 		return () => {
@@ -60,14 +71,34 @@ export const OnboardLayout: FC<Props> = ({
 	return (
 		<View style={styles.container}>
 			<SafeContainer>
-				<View style={styles.progressContainer}>
-					<ProgressBar current={currentIndex} length={totalOnboardingSteps} />
-				</View>
 				<View style={styles.contentContainer}>
+					<View style={styles.layoutHeader}>
+						{navigation.canGoBack() && (
+							<TouchableOpacity
+								hitSlop={10}
+								onPress={() => navigation.goBack()}
+							>
+								<LeftArrowIcon width={24} />
+							</TouchableOpacity>
+						)}
+						<Indicator
+							style={{ flex: 1 }}
+							activeIndex={currentIndex}
+							numberOfItems={3}
+						/>
+						{navigation.canGoBack() && <View style={{ width: 24 }} />}
+					</View>
 					<Text style={[styles.text, styles.title]}>{title}</Text>
 					<Text style={[styles.text, styles.subTitle]}>{subTitle}</Text>
 					{children}
 				</View>
+				{keyboardShown && (
+					<View style={styles.keyboardLayer}>
+						<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+							<View style={{ flex: 1 }} />
+						</TouchableWithoutFeedback>
+					</View>
+				)}
 				<AnimatedView style={[styles.btnContainer, btnPaddingBottom]}>
 					<Button
 						style={[styles.btn, btnBackgroundColor]}
@@ -91,10 +122,16 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: '#6740ff',
 	},
-	progressContainer: {
-		alignItems: 'center',
+	contentContainer: {
+		flex: 1,
+	},
+	layoutHeader: {
+		paddingHorizontal: 25,
 		marginTop: 20,
-		marginBottom: 40,
+		marginBottom: 50,
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'space-between',
 	},
 	text: {
 		fontFamily: 'Gabarito',
@@ -108,11 +145,15 @@ const styles = StyleSheet.create({
 		marginTop: 10,
 		fontSize: 16,
 	},
-	contentContainer: {
-		flex: 1,
+	keyboardLayer: {
+		position: 'absolute',
+		top: 0,
+		bottom: 0,
+		left: 0,
+		right: 0,
 	},
 	btnContainer: {
-		paddingHorizontal: 40,
+		paddingHorizontal: 25,
 		justifyContent: 'flex-end',
 	},
 	btn: {

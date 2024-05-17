@@ -10,9 +10,10 @@ import {
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import type { StackScreenProps } from '@react-navigation/stack';
-import OnboardLayout from 'components/OnboardLayout';
 import { appActions } from 'state/app';
 import type { RootStackParamList } from 'utils/navigation';
+
+import OnboardLayout from './OnboardLayout';
 
 export const ProfileName: FC<
 	StackScreenProps<RootStackParamList, 'OnboardName'>
@@ -30,7 +31,7 @@ export const ProfileName: FC<
 			style={styles.keyboardContainer}
 		>
 			<OnboardLayout
-				currentIndex={0}
+				currentIndex={1}
 				disabled={!name}
 				onPress={handleContinue}
 				mainBtnText="Looks good :)"

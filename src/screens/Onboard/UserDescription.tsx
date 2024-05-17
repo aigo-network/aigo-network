@@ -3,9 +3,11 @@ import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import type { StackScreenProps } from '@react-navigation/stack';
 import DescriptionCard from 'components/DescriptionCard';
-import OnboardLayout from 'components/OnboardLayout';
-import { appActions } from 'state/app';
+import { appActions, appState } from 'state/app';
 import type { RootStackParamList } from 'utils/navigation';
+import { useSnapshot } from 'valtio';
+
+import OnboardLayout from './OnboardLayout';
 
 const userDescription = [
 	{
@@ -38,19 +40,20 @@ export const UserDescription: FC<
 	StackScreenProps<RootStackParamList, 'OnboardDescription'>
 > = ({ navigation }) => {
 	const [itemWidth, setItemWidth] = useState(0);
-	const [selectedList, setSelectedList] = useState<string[]>([]);
+	const {
+		onboarding: { description },
+	} = useSnapshot(appState);
 	const onItemPress = (newSelectedList: string[]) => {
-		setSelectedList(newSelectedList);
+		appActions.updateOnboarding({ description: newSelectedList });
 	};
 	const onContinuePress = () => {
-		appActions.updateOnboarding({ description: selectedList });
 		navigation.navigate('OnboardCity');
 	};
 
 	return (
 		<OnboardLayout
-			currentIndex={1}
-			disabled={!selectedList.length}
+			currentIndex={2}
+			disabled={!description?.length}
 			onPress={onContinuePress}
 			title="What's best describe you"
 			subTitle="You can choose multiple options"
@@ -62,12 +65,12 @@ export const UserDescription: FC<
 					setItemWidth(Math.floor(availableSpace / 2));
 				}}
 			>
-				{userDescription.map((description) => {
+				{userDescription?.map((item) => {
 					return (
 						<DescriptionCard
-							key={description.value}
-							item={description}
-							selectedList={selectedList}
+							key={item.value}
+							item={item}
+							selectedList={description || []}
 							onPress={onItemPress}
 							width={itemWidth}
 						/>
