@@ -1,6 +1,11 @@
-import type { FC } from 'react';
+import { type FC, useEffect } from 'react';
 import type { ViewStyle } from 'react-native';
 import { StyleSheet, View } from 'react-native';
+import Animated, {
+	useAnimatedStyle,
+	useSharedValue,
+	withTiming,
+} from 'react-native-reanimated';
 
 interface Props {
 	activeIndex: number;
@@ -9,6 +14,18 @@ interface Props {
 }
 
 export const Indicator: FC<Props> = ({ activeIndex, numberOfItems, style }) => {
+	const focusWidth = useSharedValue(0);
+
+	const animatedStyle = useAnimatedStyle(() => {
+		return {
+			width: withTiming(focusWidth.value, { duration: 800 }),
+		};
+	});
+
+	useEffect(() => {
+		focusWidth.value = 46;
+	}, []);
+
 	return (
 		<View style={[styles.container, style]}>
 			{Array(numberOfItems)
@@ -16,10 +33,12 @@ export const Indicator: FC<Props> = ({ activeIndex, numberOfItems, style }) => {
 				.map((_, idx) => {
 					const isActive = idx + 1 === activeIndex;
 					return (
-						<View
+						<Animated.View
 							key={idx}
 							style={
-								isActive ? styles.activeIndicator : styles.inactiveIndicator
+								isActive
+									? [styles.activeIndicator, animatedStyle]
+									: styles.inactiveIndicator
 							}
 						/>
 					);
@@ -44,7 +63,6 @@ const styles = StyleSheet.create({
 		borderRadius: 32,
 	},
 	activeIndicator: {
-		width: 40,
 		height: 8,
 		backgroundColor: '#fff',
 		borderRadius: 32,

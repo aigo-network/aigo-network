@@ -73,7 +73,7 @@ export const OnboardLayout: FC<Props> = ({
 			<SafeContainer>
 				<View style={styles.contentContainer}>
 					<View style={styles.layoutHeader}>
-						{navigation.canGoBack() && (
+						{navigation.canGoBack() && currentIndex > 1 && (
 							<TouchableOpacity
 								hitSlop={10}
 								onPress={() => navigation.goBack()}
