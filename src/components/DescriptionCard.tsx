@@ -7,7 +7,7 @@ interface Props {
 		label: string;
 		value: string;
 	};
-	selectedList: string[];
+	selectedList: readonly string[];
 	width?: number;
 	onPress?: (selectedList: string[]) => void;
 }
@@ -18,7 +18,7 @@ export const DescriptionCard: FC<Props> = ({
 	width,
 	onPress,
 }) => {
-	const [isSelected, setIsSelected] = useState(false);
+	const [isSelected, setIsSelected] = useState(selectedList.includes(item.value));
 	const handleCardPressed = () => {
 		const idx = selectedList.findIndex((value) => value === item.value);
 		if (idx === -1) {
