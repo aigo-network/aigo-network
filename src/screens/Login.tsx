@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
 import type { FirebaseAuthTypes } from '@react-native-firebase/auth';
-import AppIcon from 'components/AppIcon';
+import AppIcon from 'components/icon/AppIcon';
 import { Button } from 'components/Button';
 import SafeContainer from 'components/SafeContainer';
 import { appActions } from 'state/app';

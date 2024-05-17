@@ -15,7 +15,7 @@ import Animated, {
 import { useNavigation } from '@react-navigation/native';
 import { Button } from 'components/Button';
 import Indicator from 'components/Indicator';
-import LeftArrowIcon from 'components/LeftArrow';
+import LeftArrowIcon from 'components/icon/LeftArrowIcon';
 import SafeContainer from 'components/SafeContainer';
 
 interface Props {
