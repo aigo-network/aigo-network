@@ -1,0 +1,144 @@
+schema {
+  query: RootQuery
+  mutation: RootMutation
+}
+
+""""""
+type DailyCheckIn {
+  """"""
+  completed: Boolean
+
+  """"""
+  date: DateTime
+}
+
+""""""
+type DailyMissions {
+  """"""
+  checkIn: DailyCheckIn
+}
+
+"""
+The `DateTime` scalar type represents a DateTime. The DateTime is serialized as an RFC 3339 quoted string
+"""
+scalar DateTime
+
+""""""
+type Invitation {
+  """"""
+  invitedBy: String
+
+  """"""
+  invitedId: String
+}
+
+""""""
+type RootMutation {
+  """"""
+  checkIn: DailyCheckIn
+
+  """"""
+  completeOnboarding: User
+
+  """"""
+  inputInvitationCode(code: String): Invitation
+
+  """"""
+  updateProfile(profile: UserProfile): User
+}
+
+""""""
+type RootQuery {
+  """"""
+  ping: String
+
+  """"""
+  user: User
+}
+
+""""""
+type User {
+  """"""
+  GOPoints: Int
+
+  """"""
+  city: String
+
+  """"""
+  completeOnboarding: Boolean
+
+  """"""
+  createdAt: DateTime
+
+  """"""
+  dailyMissions: DailyMissions
+
+  """"""
+  deletedAt: DateTime
+
+  """"""
+  descriptions: [UserDescription]
+
+  """"""
+  email: String
+
+  """"""
+  id: String
+
+  """"""
+  imageUrl: String
+
+  """"""
+  invitationCode: String
+
+  """"""
+  invitedBy: String
+
+  """"""
+  name: String
+
+  """"""
+  updatedAt: DateTime
+}
+
+""""""
+enum UserDescription {
+  """"""
+  CasualUser
+
+  """"""
+  CityExplorer
+
+  """"""
+  Commuter
+
+  """"""
+  FitnessEnthusiast
+
+  """"""
+  NyamNyamDriver
+
+  """"""
+  Traveler
+}
+
+""""""
+input UserProfile {
+  """"""
+  city: String
+
+  """"""
+  descriptions: [UserDescription]
+
+  """"""
+  email: String
+
+  """"""
+  imageUrl: String
+
+  """"""
+  name: String
+
+  """"""
+  phoneNumber: String
+}
