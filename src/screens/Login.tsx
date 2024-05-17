@@ -1,7 +1,7 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
 import type { FirebaseAuthTypes } from '@react-native-firebase/auth';
-import AppIcon from 'components/icon/AppIcon';
 import { Button } from 'components/Button';
+import AppIcon from 'components/icon/AppIcon';
 import SafeContainer from 'components/SafeContainer';
 import { appActions } from 'state/app';
 import { handleSignInApple, handleSignInGoogle } from 'utils/auth';

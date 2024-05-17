@@ -14,8 +14,8 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useNavigation } from '@react-navigation/native';
 import { Button } from 'components/Button';
-import Indicator from 'components/Indicator';
 import LeftArrowIcon from 'components/icon/LeftArrowIcon';
+import Indicator from 'components/Indicator';
 import SafeContainer from 'components/SafeContainer';
 
 interface Props {
@@ -77,7 +77,11 @@ export const OnboardLayout: FC<Props> = ({
 								<LeftArrowIcon width={24} />
 							</TouchableOpacity>
 						)}
-						<Indicator style={{flex: 1}} activeIndex={screenOrder} numberOfItems={3} />
+						<Indicator
+							style={{ flex: 1 }}
+							activeIndex={screenOrder}
+							numberOfItems={3}
+						/>
 						{navigation.canGoBack() && <View style={{ width: 24 }} />}
 					</View>
 					<Text style={[styles.text, styles.title]}>{title}</Text>

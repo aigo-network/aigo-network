@@ -18,7 +18,9 @@ export const DescriptionCard: FC<Props> = ({
 	width,
 	onPress,
 }) => {
-	const [isSelected, setIsSelected] = useState(selectedList.includes(item.value));
+	const [isSelected, setIsSelected] = useState(
+		selectedList.includes(item.value),
+	);
 	const handleCardPressed = () => {
 		const idx = selectedList.findIndex((value) => value === item.value);
 		if (idx === -1) {

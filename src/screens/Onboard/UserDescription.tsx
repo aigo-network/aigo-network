@@ -5,9 +5,9 @@ import type { StackScreenProps } from '@react-navigation/stack';
 import DescriptionCard from 'components/DescriptionCard';
 import { appActions, appState } from 'state/app';
 import type { RootParamList } from 'utils/navigation';
+import { useSnapshot } from 'valtio';
 
 import OnboardLayout from './OnboardLayout';
-import { useSnapshot } from 'valtio';
 
 const userDescription = [
 	{
@@ -40,7 +40,7 @@ export const UserDescription: FC<
 	StackScreenProps<RootParamList, 'OnboardDescription'>
 > = ({ navigation }) => {
 	const [itemWidth, setItemWidth] = useState(0);
-	const {userDescription: selectedList} = useSnapshot(appState);
+	const { userDescription: selectedList } = useSnapshot(appState);
 	const onItemPress = (newSelectedList: string[]) => {
 		appActions.setUserDescription(newSelectedList);
 	};
