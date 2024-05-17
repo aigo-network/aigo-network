@@ -9,10 +9,11 @@ import {
 	View,
 } from 'react-native';
 import type { StackScreenProps } from '@react-navigation/stack';
-import OnboardLayout from 'components/OnboardLayout';
 import { appActions, appState } from 'state/app';
 import type { RootParamList } from 'utils/navigation';
 import { useSnapshot } from 'valtio';
+
+import OnboardLayout from './OnboardLayout';
 
 export const ProfileName: FC<
 	StackScreenProps<RootParamList, 'OnboardName'>
@@ -32,6 +33,7 @@ export const ProfileName: FC<
 				mainBtnText="Looks good :)"
 				title="Name your profile"
 				subTitle="Choose a nickname for your account"
+				screenOrder={1}
 			>
 				<View style={styles.container}>
 					<TextInput

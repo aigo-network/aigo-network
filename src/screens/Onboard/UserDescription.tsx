@@ -3,9 +3,11 @@ import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import type { StackScreenProps } from '@react-navigation/stack';
 import DescriptionCard from 'components/DescriptionCard';
-import OnboardLayout from 'components/OnboardLayout';
-import { appActions } from 'state/app';
+import { appActions, appState } from 'state/app';
 import type { RootParamList } from 'utils/navigation';
+
+import OnboardLayout from './OnboardLayout';
+import { useSnapshot } from 'valtio';
 
 const userDescription = [
 	{
@@ -38,12 +40,11 @@ export const UserDescription: FC<
 	StackScreenProps<RootParamList, 'OnboardDescription'>
 > = ({ navigation }) => {
 	const [itemWidth, setItemWidth] = useState(0);
-	const [selectedList, setSelectedList] = useState<string[]>([]);
+	const {userDescription: selectedList} = useSnapshot(appState);
 	const onItemPress = (newSelectedList: string[]) => {
-		setSelectedList(newSelectedList);
+		appActions.setUserDescription(newSelectedList);
 	};
 	const onContinuePress = () => {
-		appActions.setUserDescription(selectedList);
 		navigation.navigate('OnboardCity');
 	};
 
@@ -53,6 +54,7 @@ export const UserDescription: FC<
 			onPress={onContinuePress}
 			title="What's best describe you"
 			subTitle="You can choose multiple options"
+			screenOrder={2}
 		>
 			<View
 				style={styles.container}
