@@ -1,9 +1,7 @@
 import auth from '@react-native-firebase/auth';
 import { graphqlClient } from 'api/graphql';
 import { appActions, appState } from 'state/app';
-
-const defaultAvatar =
-	'https://aigo-app.s3.ap-south-1.amazonaws.com/images/default-avatar.png';
+import { defaultAvatar } from 'utils/misc';
 
 export const completeOnboarding = async () => {
 	const onboardingProfile = appState.onboarding;
