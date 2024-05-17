@@ -1,10 +1,11 @@
 import type { FC, ReactNode } from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
 	Keyboard,
 	StyleSheet,
 	Text,
 	TouchableOpacity,
+	TouchableWithoutFeedback,
 	View,
 } from 'react-native';
 import Animated, {
@@ -40,6 +41,7 @@ export const OnboardLayout: FC<Props> = ({
 	mainBtnText,
 }) => {
 	const navigation = useNavigation();
+	const [keyboardShown, setKeyboardShown] = useState(Keyboard.isVisible());
 	const paddingBot = useSharedValue(40);
 	const btnBackgroundColor = {
 		backgroundColor: disabled ? '#ebf7e6' : '#a0fa82',
@@ -53,9 +55,11 @@ export const OnboardLayout: FC<Props> = ({
 	useEffect(() => {
 		const showSubscription = Keyboard.addListener('keyboardWillShow', () => {
 			paddingBot.value = withTiming(0);
+			setKeyboardShown(true);
 		});
 		const hideSubscription = Keyboard.addListener('keyboardWillHide', () => {
 			paddingBot.value = withTiming(40);
+			setKeyboardShown(false);
 		});
 
 		return () => {
@@ -88,6 +92,13 @@ export const OnboardLayout: FC<Props> = ({
 					<Text style={[styles.text, styles.subTitle]}>{subTitle}</Text>
 					{children}
 				</View>
+				{keyboardShown && (
+					<View style={styles.keyboardLayer}>
+						<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+							<View style={{ flex: 1 }} />
+						</TouchableWithoutFeedback>
+					</View>
+				)}
 				<AnimatedView style={[styles.btnContainer, btnPaddingBottom]}>
 					<Button
 						style={[styles.btn, btnBackgroundColor]}
@@ -115,7 +126,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	layoutHeader: {
-		paddingHorizontal: 40,
+		paddingHorizontal: 25,
 		marginTop: 20,
 		marginBottom: 50,
 		flexDirection: 'row',
@@ -134,8 +145,15 @@ const styles = StyleSheet.create({
 		marginTop: 10,
 		fontSize: 16,
 	},
+	keyboardLayer: {
+		position: 'absolute',
+		top: 0,
+		bottom: 0,
+		left: 0,
+		right: 0,
+	},
 	btnContainer: {
-		paddingHorizontal: 40,
+		paddingHorizontal: 25,
 		justifyContent: 'flex-end',
 	},
 	btn: {
