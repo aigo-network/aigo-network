@@ -1,7 +1,9 @@
-import { Keyboard, StyleSheet, Text, View } from "react-native"
-import SafeContainer from "./SafeContainer";
-import { Button } from "./Button";
-import { FC, ReactNode, useEffect, useState } from "react";
+import type { FC, ReactNode } from 'react';
+import { useEffect, useState } from 'react';
+import { Keyboard, StyleSheet, Text, View } from 'react-native';
+
+import { Button } from './Button';
+import SafeContainer from './SafeContainer';
 
 interface Props {
 	disabled: boolean;
@@ -9,28 +11,37 @@ interface Props {
 	children: ReactNode;
 	title: string;
 	subTitle: string;
-	mainBtnText?: string; 
+	mainBtnText?: string;
 }
 
-export const OnboardLayout: FC<Props> = ({ disabled, onPress, children, title, subTitle, mainBtnText }) => {
+export const OnboardLayout: FC<Props> = ({
+	disabled,
+	onPress,
+	children,
+	title,
+	subTitle,
+	mainBtnText,
+}) => {
 	const [keyboardShown, setKeyboardShown] = useState(Keyboard.isVisible());
-	const btnBackgroundColor = {backgroundColor: disabled ? '#ebf7e6' : '#a0fa82'};
-	const btnTextColor = {color: disabled ? '#b1c2ab' : '#6740ff'};
-	const btnPaddingBottom = {paddingBottom: keyboardShown ? 0 : 40};
+	const btnBackgroundColor = {
+		backgroundColor: disabled ? '#ebf7e6' : '#a0fa82',
+	};
+	const btnTextColor = { color: disabled ? '#b1c2ab' : '#6740ff' };
+	const btnPaddingBottom = { paddingBottom: keyboardShown ? 0 : 40 };
 
 	useEffect(() => {
 		const showSubscription = Keyboard.addListener('keyboardDidShow', () => {
 			setKeyboardShown(Keyboard.isVisible());
-		})
+		});
 		const hideSubscription = Keyboard.addListener('keyboardDidHide', () => {
 			setKeyboardShown(Keyboard.isVisible());
-		})
+		});
 
 		return () => {
 			showSubscription.remove();
 			hideSubscription.remove();
-		}
-	}, [])
+		};
+	}, []);
 
 	return (
 		<View style={styles.container}>
@@ -41,14 +52,20 @@ export const OnboardLayout: FC<Props> = ({ disabled, onPress, children, title, s
 					{children}
 				</View>
 				<View style={[styles.btnContainer, btnPaddingBottom]}>
-					<Button style={[styles.btn, btnBackgroundColor]} onPress={onPress} disabled={disabled}>
-						<Text style={[styles.btnText, btnTextColor]}>{mainBtnText || 'Continue'}</Text>
+					<Button
+						style={[styles.btn, btnBackgroundColor]}
+						onPress={onPress}
+						disabled={disabled}
+					>
+						<Text style={[styles.btnText, btnTextColor]}>
+							{mainBtnText || 'Continue'}
+						</Text>
 					</Button>
 				</View>
 			</SafeContainer>
 		</View>
-	)
-}
+	);
+};
 
 export default OnboardLayout;
 
@@ -87,4 +104,4 @@ const styles = StyleSheet.create({
 		fontWeight: '500',
 		fontSize: 19,
 	},
-})
+});

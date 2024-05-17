@@ -1,2 +1,2 @@
-export * from './signinGoogle';
 export * from './signinApple';
+export * from './signinGoogle';

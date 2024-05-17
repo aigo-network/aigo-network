@@ -17,4 +17,3 @@ const config: CodegenConfig = {
 };
 
 export default config;
-
