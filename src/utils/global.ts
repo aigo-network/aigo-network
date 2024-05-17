@@ -20,5 +20,15 @@ export const setDefaultProps = (Component: any, defaultProps: any) => {
 	};
 };
 
-setDefaultProps(Text, { style: { fontFamily: 'Gabarito' } });
-setDefaultProps(TextInput, { style: { fontFamily: 'Gabarito' } });
+setDefaultProps(Text, {
+	style: {
+		fontFamily: 'Gabarito',
+		color: '#fff',
+	},
+});
+setDefaultProps(TextInput, {
+	style: {
+		fontFamily: 'Gabarito',
+		color: '#fff',
+	},
+});

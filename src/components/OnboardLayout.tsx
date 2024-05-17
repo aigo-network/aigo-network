@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
 	},
 	text: {
 		fontFamily: 'Gabarito',
-		color: '#fff',
 		textAlign: 'center',
 	},
 	title: {

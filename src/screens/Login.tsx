@@ -81,7 +81,6 @@ const styles = StyleSheet.create({
 		fontWeight: '600',
 		fontSize: 42,
 		textAlign: 'center',
-		color: '#fff',
 	},
 	slogan: {
 		alignSelf: 'center',
@@ -107,6 +106,5 @@ const styles = StyleSheet.create({
 	},
 	version: {
 		textAlign: 'center',
-		color: '#fff',
 	},
 });
