@@ -5,6 +5,7 @@ import { Button } from 'components/Button';
 import SafeContainer from 'components/SafeContainer';
 import { appActions } from 'state/app';
 import { handleSignInApple, handleSignInGoogle } from 'utils/auth';
+import { config } from 'utils/config';
 
 export const LoginScreen = () => {
 	const handleSignIn = async (
@@ -50,7 +51,7 @@ export const LoginScreen = () => {
 						<Text style={styles.btnText}>Log in with Apple</Text>
 					</Button>
 				</View>
-				<Text style={styles.version}>Version 0.1</Text>
+				<Text style={styles.version}>Version {config.version}</Text>
 			</SafeContainer>
 		</View>
 	);
