@@ -1,4 +1,4 @@
-package com.dailybux
+package com.aigo
 
 import android.app.Application
 import com.facebook.react.PackageList

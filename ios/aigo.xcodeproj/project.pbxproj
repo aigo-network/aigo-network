@@ -7,20 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* dailybuxTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* dailybuxTests.m */; };
+		00E356F31AD99517003FC87E /* aigoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* aigoTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2274D3555B07C05D6C57DB1A /* Pods_dailybux.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F88BAEFF415CB82E5DC8BF39 /* Pods_dailybux.framework */; };
 		3DE1816A31A647F88BF24F8A /* Gabarito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 983581CB70AD481FB17C39B4 /* Gabarito-Regular.ttf */; };
-		4756B75394F7C94E6A88AF61 /* Pods_dailybux_dailybuxTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C2654296331A842DC12E5CE /* Pods_dailybux_dailybuxTests.framework */; };
 		5524E31DCD894EECB1550C8F /* Gabarito-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5FAC343BC7E4B6EABD2ED90 /* Gabarito-Medium.ttf */; };
 		59B769983B40F60434725B5F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 4EBB6C1E7DA596E9A4885AE3 /* PrivacyInfo.xcprivacy */; };
+		803C64AB8DE53FB2A9E74822 /* Pods_aigo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED48479517FC01F18E577C1F /* Pods_aigo.framework */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		858FCA2F15D049248F2DE665 /* Gabarito-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 207057142BE24CE3BEDD7300 /* Gabarito-ExtraBold.ttf */; };
 		B3252ECECEC642C4808F42B5 /* Gabarito-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6424F6ED05624881BFD01F91 /* Gabarito-Black.ttf */; };
 		B80FDE3FA53A4F45ABADF039 /* Gabarito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7F04754D2C154B87975D8BA6 /* Gabarito-Bold.ttf */; };
 		C70EC8712BF38D9F00D7E3A9 /* GoogleService-Info.plist in Sources */ = {isa = PBXBuildFile; fileRef = C70EC8702BF38D8C00D7E3A9 /* GoogleService-Info.plist */; };
+		EB87F59E0D3FD698D8AE278C /* Pods_aigo_aigoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB773626073DA1C94E276EB5 /* Pods_aigo_aigoTests.framework */; };
 		EB9B7F678D254EFFA1336667 /* Gabarito-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 449FBB88D0834ED3BB5961FB /* Gabarito-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
@@ -30,40 +30,40 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = dailybux;
+			remoteInfo = aigo;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* dailybuxTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dailybuxTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* aigoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = aigoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* dailybuxTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dailybuxTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* dailybux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dailybux.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = dailybux/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = dailybux/AppDelegate.mm; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = dailybux/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = dailybux/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = dailybux/main.m; sourceTree = "<group>"; };
-		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = dailybux/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* aigoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = aigoTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* aigo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aigo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = aigo/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = aigo/AppDelegate.mm; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = aigo/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = aigo/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = aigo/main.m; sourceTree = "<group>"; };
+		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = aigo/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		207057142BE24CE3BEDD7300 /* Gabarito-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Gabarito-ExtraBold.ttf"; path = "../assets/fonts/Gabarito-ExtraBold.ttf"; sourceTree = "<group>"; };
-		3B4392A12AC88292D35C810B /* Pods-dailybux.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dailybux.debug.xcconfig"; path = "Target Support Files/Pods-dailybux/Pods-dailybux.debug.xcconfig"; sourceTree = "<group>"; };
+		3B4392A12AC88292D35C810B /* Pods-aigo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aigo.debug.xcconfig"; path = "Target Support Files/Pods-aigo/Pods-aigo.debug.xcconfig"; sourceTree = "<group>"; };
 		449FBB88D0834ED3BB5961FB /* Gabarito-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Gabarito-SemiBold.ttf"; path = "../assets/fonts/Gabarito-SemiBold.ttf"; sourceTree = "<group>"; };
-		4EBB6C1E7DA596E9A4885AE3 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = dailybux/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		5709B34CF0A7D63546082F79 /* Pods-dailybux.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dailybux.release.xcconfig"; path = "Target Support Files/Pods-dailybux/Pods-dailybux.release.xcconfig"; sourceTree = "<group>"; };
-		5B7EB9410499542E8C5724F5 /* Pods-dailybux-dailybuxTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dailybux-dailybuxTests.debug.xcconfig"; path = "Target Support Files/Pods-dailybux-dailybuxTests/Pods-dailybux-dailybuxTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4EBB6C1E7DA596E9A4885AE3 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = aigo/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		5709B34CF0A7D63546082F79 /* Pods-aigo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aigo.release.xcconfig"; path = "Target Support Files/Pods-aigo/Pods-aigo.release.xcconfig"; sourceTree = "<group>"; };
+		5B7EB9410499542E8C5724F5 /* Pods-aigo-aigoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aigo-aigoTests.debug.xcconfig"; path = "Target Support Files/Pods-aigo-aigoTests/Pods-aigo-aigoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6424F6ED05624881BFD01F91 /* Gabarito-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Gabarito-Black.ttf"; path = "../assets/fonts/Gabarito-Black.ttf"; sourceTree = "<group>"; };
-		7C2654296331A842DC12E5CE /* Pods_dailybux_dailybuxTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dailybux_dailybuxTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F04754D2C154B87975D8BA6 /* Gabarito-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Gabarito-Bold.ttf"; path = "../assets/fonts/Gabarito-Bold.ttf"; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = dailybux/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		89C6BE57DB24E9ADA2F236DE /* Pods-dailybux-dailybuxTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dailybux-dailybuxTests.release.xcconfig"; path = "Target Support Files/Pods-dailybux-dailybuxTests/Pods-dailybux-dailybuxTests.release.xcconfig"; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = aigo/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		89C6BE57DB24E9ADA2F236DE /* Pods-aigo-aigoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aigo-aigoTests.release.xcconfig"; path = "Target Support Files/Pods-aigo-aigoTests/Pods-aigo-aigoTests.release.xcconfig"; sourceTree = "<group>"; };
 		983581CB70AD481FB17C39B4 /* Gabarito-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Gabarito-Regular.ttf"; path = "../assets/fonts/Gabarito-Regular.ttf"; sourceTree = "<group>"; };
 		A5FAC343BC7E4B6EABD2ED90 /* Gabarito-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Gabarito-Medium.ttf"; path = "../assets/fonts/Gabarito-Medium.ttf"; sourceTree = "<group>"; };
 		C70EC86B2BF36FDD00D7E3A9 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		C70EC8702BF38D8C00D7E3A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		C7C78ECC2BF45F1C008C31E3 /* dailybuxDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = dailybuxDebug.entitlements; path = dailybux/dailybuxDebug.entitlements; sourceTree = "<group>"; };
-		C7C78ECD2BF463BE008C31E3 /* dailybuxRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = dailybuxRelease.entitlements; path = dailybux/dailybuxRelease.entitlements; sourceTree = "<group>"; };
+		C7C78ECC2BF45F1C008C31E3 /* dailybuxDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = dailybuxDebug.entitlements; path = aigo/dailybuxDebug.entitlements; sourceTree = "<group>"; };
+		C7C78ECD2BF463BE008C31E3 /* aigoRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = aigoRelease.entitlements; path = aigo/aigoRelease.entitlements; sourceTree = "<group>"; };
+		CB773626073DA1C94E276EB5 /* Pods_aigo_aigoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aigo_aigoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F88BAEFF415CB82E5DC8BF39 /* Pods_dailybux.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_dailybux.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED48479517FC01F18E577C1F /* Pods_aigo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_aigo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4756B75394F7C94E6A88AF61 /* Pods_dailybux_dailybuxTests.framework in Frameworks */,
+				EB87F59E0D3FD698D8AE278C /* Pods_aigo_aigoTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,20 +79,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2274D3555B07C05D6C57DB1A /* Pods_dailybux.framework in Frameworks */,
+				803C64AB8DE53FB2A9E74822 /* Pods_aigo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* dailybuxTests */ = {
+		00E356EF1AD99517003FC87E /* aigoTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* dailybuxTests.m */,
+				00E356F21AD99517003FC87E /* aigoTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = dailybuxTests;
+			path = aigoTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -103,10 +103,10 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* dailybux */ = {
+		13B07FAE1A68108700A75B9A /* aigo */ = {
 			isa = PBXGroup;
 			children = (
-				C7C78ECD2BF463BE008C31E3 /* dailybuxRelease.entitlements */,
+				C7C78ECD2BF463BE008C31E3 /* aigoRelease.entitlements */,
 				C7C78ECC2BF45F1C008C31E3 /* dailybuxDebug.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
@@ -117,15 +117,15 @@
 				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
 				4EBB6C1E7DA596E9A4885AE3 /* PrivacyInfo.xcprivacy */,
 			);
-			name = dailybux;
+			name = aigo;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				F88BAEFF415CB82E5DC8BF39 /* Pods_dailybux.framework */,
-				7C2654296331A842DC12E5CE /* Pods_dailybux_dailybuxTests.framework */,
+				ED48479517FC01F18E577C1F /* Pods_aigo.framework */,
+				CB773626073DA1C94E276EB5 /* Pods_aigo_aigoTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -142,9 +142,9 @@
 			children = (
 				C70EC8702BF38D8C00D7E3A9 /* GoogleService-Info.plist */,
 				C70EC86B2BF36FDD00D7E3A9 /* Config.xcconfig */,
-				13B07FAE1A68108700A75B9A /* dailybux */,
+				13B07FAE1A68108700A75B9A /* aigo */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* dailybuxTests */,
+				00E356EF1AD99517003FC87E /* aigoTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
@@ -158,8 +158,8 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* dailybux.app */,
-				00E356EE1AD99517003FC87E /* dailybuxTests.xctest */,
+				13B07F961A680F5B00A75B9A /* aigo.app */,
+				00E356EE1AD99517003FC87E /* aigoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -180,10 +180,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3B4392A12AC88292D35C810B /* Pods-dailybux.debug.xcconfig */,
-				5709B34CF0A7D63546082F79 /* Pods-dailybux.release.xcconfig */,
-				5B7EB9410499542E8C5724F5 /* Pods-dailybux-dailybuxTests.debug.xcconfig */,
-				89C6BE57DB24E9ADA2F236DE /* Pods-dailybux-dailybuxTests.release.xcconfig */,
+				3B4392A12AC88292D35C810B /* Pods-aigo.debug.xcconfig */,
+				5709B34CF0A7D63546082F79 /* Pods-aigo.release.xcconfig */,
+				5B7EB9410499542E8C5724F5 /* Pods-aigo-aigoTests.debug.xcconfig */,
+				89C6BE57DB24E9ADA2F236DE /* Pods-aigo-aigoTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -191,9 +191,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* dailybuxTests */ = {
+		00E356ED1AD99517003FC87E /* aigoTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "dailybuxTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "aigoTests" */;
 			buildPhases = (
 				A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -207,14 +207,13 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = dailybuxTests;
-			productName = dailybuxTests;
-			productReference = 00E356EE1AD99517003FC87E /* dailybuxTests.xctest */;
+			name = aigoTests;
+			productReference = 00E356EE1AD99517003FC87E /* aigoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* dailybux */ = {
+		13B07F861A680F5B00A75B9A /* aigo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "dailybux" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "aigo" */;
 			buildPhases = (
 				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
@@ -229,9 +228,9 @@
 			);
 			dependencies = (
 			);
-			name = dailybux;
-			productName = dailybux;
-			productReference = 13B07F961A680F5B00A75B9A /* dailybux.app */;
+			name = aigo;
+			productName = aigo;
+			productReference = 13B07F961A680F5B00A75B9A /* aigo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -251,7 +250,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "dailybux" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "aigo" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -264,8 +263,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* dailybux */,
-				00E356ED1AD99517003FC87E /* dailybuxTests */,
+				13B07F861A680F5B00A75B9A /* aigo */,
+				00E356ED1AD99517003FC87E /* aigoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -319,15 +318,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-dailybux/Pods-dailybux-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-aigo/Pods-aigo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-dailybux/Pods-dailybux-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-aigo/Pods-aigo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dailybux/Pods-dailybux-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-aigo/Pods-aigo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		328D68AD8826C1B832E69174 /* [CP-User] [RNFB] Core Configuration */ = {
@@ -358,7 +357,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-dailybux-dailybuxTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-aigo-aigoTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -380,7 +379,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-dailybux-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-aigo-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -393,15 +392,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-dailybux-dailybuxTests/Pods-dailybux-dailybuxTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-aigo-aigoTests/Pods-aigo-aigoTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-dailybux-dailybuxTests/Pods-dailybux-dailybuxTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-aigo-aigoTests/Pods-aigo-aigoTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dailybux-dailybuxTests/Pods-dailybux-dailybuxTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-aigo-aigoTests/Pods-aigo-aigoTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
@@ -410,15 +409,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-dailybux/Pods-dailybux-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-aigo/Pods-aigo-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-dailybux/Pods-dailybux-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-aigo/Pods-aigo-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dailybux/Pods-dailybux-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-aigo/Pods-aigo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */ = {
@@ -427,15 +426,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-dailybux-dailybuxTests/Pods-dailybux-dailybuxTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-aigo-aigoTests/Pods-aigo-aigoTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-dailybux-dailybuxTests/Pods-dailybux-dailybuxTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-aigo-aigoTests/Pods-aigo-aigoTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dailybux-dailybuxTests/Pods-dailybux-dailybuxTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-aigo-aigoTests/Pods-aigo-aigoTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -445,7 +444,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* dailybuxTests.m in Sources */,
+				00E356F31AD99517003FC87E /* aigoTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,7 +463,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* dailybux */;
+			target = 13B07F861A680F5B00A75B9A /* aigo */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -472,14 +471,14 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-dailybux-dailybuxTests.debug.xcconfig */;
+			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-aigo-aigoTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = dailybuxTests/Info.plist;
+				INFOPLIST_FILE = aigoTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -493,17 +492,17 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dailybux.app/dailybux";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/aigo.app/aigo";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-dailybux-dailybuxTests.release.xcconfig */;
+			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-aigo-aigoTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = dailybuxTests/Info.plist;
+				INFOPLIST_FILE = aigoTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -517,21 +516,22 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dailybux.app/dailybux";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/aigo.app/aigo";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-dailybux.debug.xcconfig */;
+			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-aigo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = dailybux/dailybuxDebug.entitlements;
+				CODE_SIGN_ENTITLEMENTS = aigo/dailybuxDebug.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 45D5324LK8;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = dailybux/Info.plist;
+				INFOPLIST_FILE = aigo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = aigo;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -543,7 +543,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = network.aigo.app;
-				PRODUCT_NAME = dailybux;
+				PRODUCT_NAME = aigo;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -552,14 +552,15 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-dailybux.release.xcconfig */;
+			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-aigo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = dailybux/dailybuxRelease.entitlements;
+				CODE_SIGN_ENTITLEMENTS = aigo/aigoRelease.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 45D5324LK8;
-				INFOPLIST_FILE = dailybux/Info.plist;
+				INFOPLIST_FILE = aigo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = aigo;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -571,7 +572,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = network.aigo.app;
-				PRODUCT_NAME = dailybux;
+				PRODUCT_NAME = aigo;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -763,7 +764,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "dailybuxTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "aigoTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -772,7 +773,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "dailybux" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "aigo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -781,7 +782,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "dailybux" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "aigo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
