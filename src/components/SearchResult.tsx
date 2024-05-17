@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { type FC, Fragment } from 'react';
 import type { ViewStyle } from 'react-native';
 import {
 	FlatList,
@@ -15,6 +15,9 @@ export interface CitiesData {
 	geonameid: number;
 }
 
+export const cityToString = (city: CitiesData) =>
+	`${city.name}, ${city.subcountry} ${city.country}`;
+
 interface ItemProps {
 	item: CitiesData;
 	textSearch: string;
@@ -29,12 +32,20 @@ interface Props {
 }
 
 const SearchRenderItem: FC<ItemProps> = ({ item, textSearch, onPress }) => {
+	const cityString = cityToString(item);
+
 	return (
 		<TouchableOpacity onPress={() => onPress?.(item)}>
 			<View style={styles.itemContainer}>
 				<Text style={styles.itemText}>
-					<Text style={{ fontWeight: '700' }}>{textSearch}</Text>
-					{`${item.name.replace(textSearch, '')}, ${item.subcountry} ${item.country}`}
+					{textSearch === cityString ? (
+						<Text style={{ fontWeight: '700' }}>{textSearch}</Text>
+					) : (
+						<Fragment>
+							<Text style={{ fontWeight: '700' }}>{textSearch}</Text>
+							{`${item.name.replace(textSearch, '')}, ${item.subcountry} ${item.country}`}
+						</Fragment>
+					)}
 				</Text>
 			</View>
 		</TouchableOpacity>

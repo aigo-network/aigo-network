@@ -3,7 +3,7 @@ import { KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import SearchBox from 'components/SearchBox';
 import type { CitiesData } from 'components/SearchResult';
-import SearchResult from 'components/SearchResult';
+import SearchResult, { cityToString } from 'components/SearchResult';
 import { appActions, appState } from 'state/app';
 import citiesList from 'utils/cities.json';
 import { useSnapshot } from 'valtio';
@@ -26,10 +26,9 @@ export const CityName = () => {
 		setSearchText(searchText);
 	};
 	const onItemSelect = (item: CitiesData) => {
-		setSearchText(item.name);
-		appActions.updateOnboarding({
-			city: `${item.name}, ${item.subcountry}, ${item.country}`,
-		});
+		const city = cityToString(item);
+		setSearchText(city);
+		appActions.updateOnboarding({ city });
 	};
 
 	const handleCompleteOnboarding = async () => {
@@ -46,7 +45,9 @@ export const CityName = () => {
 			if (!searchText) {
 				return false;
 			} else {
-				return item.name.includes(searchText);
+				return (
+					item.name.includes(searchText) || searchText === cityToString(item)
+				);
 			}
 		});
 		setListCitiesFiltered(filtered);
