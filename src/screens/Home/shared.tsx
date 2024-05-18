@@ -47,7 +47,7 @@ export const showInvitationCode = () => {
 export const showCheckInPoint = () => {
 	const { cleanModal } = showModal(
 		<Animated.View style={{ minWidth: 360 }} entering={FadeInDown}>
-			<PointPopup point={30} onPressClose={() => cleanModal()} />
+			<PointPopup point={10} onPressClose={() => cleanModal()} />
 		</Animated.View>,
 		{
 			id: 'checkin-point-popup',

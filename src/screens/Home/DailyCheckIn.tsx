@@ -22,6 +22,8 @@ export const DailyCheckIn = () => {
 	const handleCheckIn = async () => {
 		setLoading(true);
 		const { checkIn } = await graphqlClient.checkIn();
+		const { user } = await graphqlClient.getUser();
+		if (user) appActions.setAppUser(user);
 		if (checkIn) appActions.updateCheckIn(checkIn);
 		if (checkIn?.completed) {
 			showCheckInPoint();

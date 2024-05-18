@@ -9,7 +9,7 @@ export const Invite = () => {
 				<Text style={sharedStyles.title}>Invite your friends</Text>
 				<Text style={styles.descriptionText}>
 					Receive
-					<Text style={styles.pointText}> 10 GO/referral</Text> & earn 10% from
+					<Text style={styles.pointText}> 30 GO/referral</Text> & earn 10% from
 					their earning
 				</Text>
 			</View>

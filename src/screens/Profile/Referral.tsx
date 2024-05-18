@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { graphqlClient } from 'api/graphql';
 import { Button } from 'components/Button';
+import { appActions } from 'state/app';
 
 import { showReferralPoint } from './shared';
 
@@ -21,6 +22,8 @@ export const Referral = () => {
 		setLoading(true);
 		try {
 			await graphqlClient.inputInvitationCode({ code });
+			const { user } = await graphqlClient.getUser();
+			if (user) appActions.setAppUser(user);
 			showReferralPoint();
 		} catch (error) {
 			setError('Code is not valid. Please try again');
