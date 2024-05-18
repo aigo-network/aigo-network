@@ -2,6 +2,7 @@ import type { FC, ReactNode } from 'react';
 import { useState } from 'react';
 import type { LayoutChangeEvent, LayoutRectangle } from 'react-native';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
+import Animated, { FadeIn } from 'react-native-reanimated';
 import { useSnapshot } from 'valtio';
 
 import ModalContainer from './ModalContainer';
@@ -30,10 +31,12 @@ export const ModalProvider: FC<Props> = ({ children }) => {
 		<View style={styles.container} onLayout={handleLayoutChange}>
 			{children}
 			{showBackdrop && (
-				<TouchableOpacity
-					style={styles.backdrop}
-					onPress={handlePressBackdrop}
-				/>
+				<Animated.View entering={FadeIn} style={styles.backdropContainer}>
+					<TouchableOpacity
+						style={styles.backdrop}
+						onPress={handlePressBackdrop}
+					/>
+				</Animated.View>
 			)}
 			{configs.map((config) => {
 				return (
@@ -54,13 +57,16 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 	},
-	backdrop: {
+	backdropContainer: {
 		position: 'absolute',
-		backgroundColor: '#000',
-		opacity: 0.4,
 		top: 0,
 		left: 0,
 		bottom: 0,
 		right: 0,
+	},
+	backdrop: {
+		flex: 1,
+		backgroundColor: '#000',
+		opacity: 0.6,
 	},
 });
