@@ -39,7 +39,7 @@ export const ProfileScreen = () => {
 						hitSlop={14}
 						onPress={goBack}
 					>
-						<LeftArrowIcon color={'#000'} width={20} />
+						<LeftArrowIcon color={'#000'} width={16} />
 					</TouchableOpacity>
 					<Text style={styles.title}>Profile</Text>
 				</View>
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
 		gap: 10,
 	},
 	title: {
-		fontSize: 20,
+		fontSize: 18,
 		fontWeight: '500',
 		color: '#000',
 	},
