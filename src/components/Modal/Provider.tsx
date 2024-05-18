@@ -1,9 +1,11 @@
 import type { FC, ReactNode } from 'react';
-import { Fragment } from 'react';
+import { useState } from 'react';
+import type { LayoutChangeEvent, LayoutRectangle } from 'react-native';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useSnapshot } from 'valtio';
 
-import { cleanModal, modalComponentMap, modalConfigMap } from './state';
+import ModalContainer from './ModalContainer';
+import { cleanModal, modalConfigMap } from './state';
 
 type Props = {
 	children: ReactNode;
@@ -13,6 +15,11 @@ export const ModalProvider: FC<Props> = ({ children }) => {
 	const configMap = useSnapshot(modalConfigMap);
 	const configs = Object.values(configMap);
 	const showBackdrop = configs.some((c) => c.showBackdrop);
+	const [layout, setLayout] = useState<LayoutRectangle>();
+
+	const handleLayoutChange = (e: LayoutChangeEvent) => {
+		setLayout(e.nativeEvent.layout);
+	};
 
 	const handlePressBackdrop = () => {
 		const { id } = configs[configs.length - 1];
@@ -20,7 +27,7 @@ export const ModalProvider: FC<Props> = ({ children }) => {
 	};
 
 	return (
-		<View style={styles.container}>
+		<View style={styles.container} onLayout={handleLayoutChange}>
 			{children}
 			{showBackdrop && (
 				<TouchableOpacity
@@ -29,8 +36,13 @@ export const ModalProvider: FC<Props> = ({ children }) => {
 				/>
 			)}
 			{configs.map((config) => {
-				const component = modalComponentMap[config.id];
-				return <Fragment key={config.id}>{component}</Fragment>;
+				return (
+					<ModalContainer
+						config={config}
+						key={config.id}
+						parentLayout={layout}
+					/>
+				);
 			})}
 		</View>
 	);
