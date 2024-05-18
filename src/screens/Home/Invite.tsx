@@ -1,7 +1,6 @@
-import { StyleSheet, Text, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import { sharedStyles } from './shared';
+import { sharedStyles, showInvitationCode } from './shared';
 
 export const Invite = () => {
 	return (
@@ -16,7 +15,11 @@ export const Invite = () => {
 			</View>
 			<View style={styles.inviteContainer}>
 				<Text style={styles.inviteCountText}>0 Referrals</Text>
-				<TouchableOpacity style={styles.inviteButton}>
+				<TouchableOpacity
+					style={styles.inviteButton}
+					hitSlop={14}
+					onPress={showInvitationCode}
+				>
 					<Text>Invite</Text>
 				</TouchableOpacity>
 			</View>
