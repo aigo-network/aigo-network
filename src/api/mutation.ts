@@ -35,3 +35,12 @@ export const completeOnboardingMutation = gql`
 		}
 	}
 `;
+
+export const checkInMutation = gql`
+	mutation checkIn {
+		checkIn {
+			date
+			completed
+		}
+	}
+`;

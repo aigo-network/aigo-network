@@ -1,22 +1,53 @@
+import { useState } from 'react';
 import {
+	ActivityIndicator,
 	ScrollView,
 	StyleSheet,
 	Text,
 	TouchableOpacity,
 	View,
 } from 'react-native';
+import { graphqlClient } from 'api/graphql';
 import CheckIn from 'components/CheckIn';
+import { appActions, appState } from 'state/app';
+import { useSnapshot } from 'valtio';
 
-import { sharedStyles } from './shared';
+import { sharedStyles, showCheckInPoint } from './shared';
 
 export const DailyCheckIn = () => {
+	const { appUser } = useSnapshot(appState);
+	const [loading, setLoading] = useState(false);
+	const todayCheckedIn = !!appUser?.dailyMissions?.checkIn?.completed;
+
+	const handleCheckIn = async () => {
+		setLoading(true);
+		const { checkIn } = await graphqlClient.checkIn();
+		if (checkIn) appActions.updateCheckIn(checkIn);
+		if (checkIn?.completed) {
+			showCheckInPoint();
+		}
+		setLoading(false);
+	};
+
 	return (
 		<View style={[sharedStyles.container, styles.container]}>
 			<View style={styles.titleContainer}>
 				<Text style={sharedStyles.title}>DailyCheckin</Text>
-				<TouchableOpacity style={styles.checkInButton}>
-					<Text>Check in</Text>
-				</TouchableOpacity>
+				{loading ? (
+					<ActivityIndicator />
+				) : (
+					<TouchableOpacity
+						style={[
+							styles.checkInButton,
+							todayCheckedIn && styles.disableCheckInButton,
+						]}
+						onPress={handleCheckIn}
+						disabled={todayCheckedIn}
+						hitSlop={14}
+					>
+						<Text>Check in</Text>
+					</TouchableOpacity>
+				)}
 			</View>
 			<ScrollView
 				style={styles.checkInsContainer}
@@ -59,5 +90,8 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 18,
 		borderRadius: 20,
 		backgroundColor: '#6740FF',
+	},
+	disableCheckInButton: {
+		backgroundColor: '#BEB2EB80',
 	},
 });

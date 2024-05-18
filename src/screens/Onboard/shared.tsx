@@ -35,7 +35,7 @@ export const completeOnboarding = async () => {
 		const { cleanModal } = showModal(
 			<Animated.View entering={FadeInDown}>
 				<PointPopup
-					point={user?.GOPoints || 50}
+					point={50}
 					description="Your account is ready to use. You will be redirected to the Home Page in a few seconds."
 					onPressClose={() => {
 						cleanModal();

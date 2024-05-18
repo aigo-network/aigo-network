@@ -5,7 +5,7 @@ import X from './icon/X';
 
 type Props = {
 	point: number;
-	description: string;
+	description?: string;
 	onPressClose?: () => void;
 };
 
@@ -29,7 +29,7 @@ export const PointPopup: FC<Props> = ({ point, description, onPressClose }) => {
 					<Text style={styles.highlightText}>{`${point} GO`}</Text>
 				</Text>
 			</View>
-			<Text style={styles.descriptionText}>{description}</Text>
+			{description && <Text style={styles.descriptionText}>{description}</Text>}
 		</View>
 	);
 };
@@ -39,7 +39,7 @@ export default PointPopup;
 const styles = StyleSheet.create({
 	container: {
 		backgroundColor: '#fff',
-		maxWidth: 340,
+		width: 360,
 		gap: 20,
 		alignItems: 'center',
 		padding: 30,

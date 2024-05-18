@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { InviteCode } from 'components/InviteCode';
 import { Align, showModal } from 'components/Modal';
+import PointPopup from 'components/PointPopup';
 import { appState } from 'state/app';
 
 export const sharedStyles = StyleSheet.create({
@@ -39,6 +40,19 @@ export const showInvitationCode = () => {
 			id: 'invitation-code',
 			align: Align.CenterCenter,
 			showBackdrop: true,
+		},
+	);
+};
+
+export const showCheckInPoint = () => {
+	const { cleanModal } = showModal(
+		<Animated.View style={{ minWidth: 360 }} entering={FadeInDown}>
+			<PointPopup point={30} onPressClose={() => cleanModal()} />
+		</Animated.View>,
+		{
+			id: 'checkin-point-popup',
+			showBackdrop: true,
+			align: Align.CenterCenter,
 		},
 	);
 };
