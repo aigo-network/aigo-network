@@ -17,6 +17,10 @@ export const appActions = {
 			appState.appUser.dailyMissions = { checkIn };
 		}
 	},
+	cleanState: () => {
+		appState.appUser = undefined;
+		appState.onboarding = {};
+	},
 };
 
 export { appState } from './shared';

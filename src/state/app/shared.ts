@@ -8,6 +8,8 @@ interface AppState {
 	onboarding: Partial<Onboarding>;
 }
 
-export const appState = proxy<AppState>({
+export const initAppState = {
 	onboarding: {},
-});
+};
+
+export const appState = proxy<AppState>(initAppState);

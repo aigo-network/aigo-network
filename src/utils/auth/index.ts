@@ -30,12 +30,24 @@ auth().onIdTokenChanged(async (authUser) => {
 
 let initAuthResolved = false;
 let resolveInitAuthPromise: (user: User | undefined) => void;
-export const initAuthPromise = new Promise<User | undefined>((resolve) => {
+export let initAuthPromise = new Promise<User | undefined>((resolve) => {
 	resolveInitAuthPromise = (user) => {
 		resolve(user);
 		initAuthResolved = true;
 	};
 });
+
+export const logOut = async () => {
+	initAuthResolved = false;
+	initAuthPromise = new Promise<User | undefined>((resolve) => {
+		resolveInitAuthPromise = (user) => {
+			resolve(user);
+		};
+	});
+
+	await auth().signOut();
+	appActions.cleanState();
+};
 
 export * from './signinApple';
 export * from './signinGoogle';

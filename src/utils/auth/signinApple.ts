@@ -1,5 +1,6 @@
 import { appleAuth } from '@invertase/react-native-apple-authentication';
 import auth from '@react-native-firebase/auth';
+import { setJWT } from 'api/jwt';
 
 import type { SignInFunction } from './types';
 
@@ -19,5 +20,8 @@ export const signInWithApple: SignInFunction = async () => {
 		nonce,
 	);
 	const { user } = await auth().signInWithCredential(appleCredential);
+	const jwt = await auth().currentUser?.getIdToken();
+	if (jwt) setJWT(jwt);
+
 	return user;
 };

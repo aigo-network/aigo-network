@@ -1,9 +1,20 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import LogOut from 'components/icon/LogOut';
 import Telegram from 'components/icon/Telegram';
 import Twitter from 'components/icon/Twitter';
+import { logOut } from 'utils/auth';
 
 export const Footer = () => {
+	const { reset } = useNavigation();
+	const handleLogOut = () => {
+		reset({
+			index: 1,
+			routes: [{ name: 'Splash' }],
+		});
+		logOut();
+	};
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.aboutContainer}>
@@ -20,7 +31,9 @@ export const Footer = () => {
 
 			<TouchableOpacity style={styles.logOutButton}>
 				<LogOut width={24} />
-				<Text style={styles.logOutText}>Log out</Text>
+				<Text style={styles.logOutText} onPress={handleLogOut}>
+					Log out
+				</Text>
 			</TouchableOpacity>
 		</View>
 	);
