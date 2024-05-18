@@ -1,5 +1,6 @@
 import type { FC } from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import LottieView from 'lottie-react-native';
 
 import X from './icon/X';
 
@@ -12,6 +13,15 @@ type Props = {
 export const PointPopup: FC<Props> = ({ point, description, onPressClose }) => {
 	return (
 		<View style={styles.container}>
+			<View style={styles.giftContainer}>
+				<LottieView
+					source={require('assets/gift-lottie.json')}
+					style={styles.gift}
+					autoPlay
+					loop
+				/>
+			</View>
+
 			<TouchableOpacity
 				style={styles.closeButton}
 				hitSlop={14}
@@ -19,14 +29,14 @@ export const PointPopup: FC<Props> = ({ point, description, onPressClose }) => {
 			>
 				<X color={'#9F9F9F'} width={14} />
 			</TouchableOpacity>
-			<Image
+			{/* <Image
 				style={styles.pointTick}
 				source={require('assets/img/point-tick.png')}
-			/>
+			/> */}
 			<View>
 				<Text style={styles.titleText}>
-					{'Yay! You’ve got '}
-					<Text style={styles.highlightText}>{`${point} GO`}</Text>
+					{"🎁 You've Earned "}
+					<Text style={styles.highlightText}>{`${point} GO!`}</Text>
 				</Text>
 			</View>
 			{description && <Text style={styles.descriptionText}>{description}</Text>}
@@ -55,9 +65,16 @@ const styles = StyleSheet.create({
 		right: 10,
 		top: 10,
 	},
-	pointTick: {
-		width: 130,
-		height: 130,
+	giftContainer: {
+		width: 200,
+		height: 200,
+	},
+	gift: {
+		position: 'absolute',
+		left: -100,
+		top: -140,
+		width: 400,
+		height: 400,
 	},
 	descriptionText: {
 		fontSize: 16,
