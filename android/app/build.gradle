@@ -99,6 +99,14 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            if (project.env.get("ANDROID_STORE_FILE")) {
+                storeFile file(project.env.get("ANDROID_STORE_FILE"))
+                storePassword project.env.get("ANDROID_STORE_PASSWORD")
+                keyAlias project.env.get("ANDROID_KEY_ALIAS")
+                keyPassword project.env.get("ANDROID_KEY_PASSWORD")
+            }
+        }
     }
     buildTypes {
         debug {
@@ -111,6 +119,15 @@ android {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
+    }
+
+    afterEvaluate {
+        task("copyGoogleServicesJson", type: Exec) {
+            print(project.gradle.startParameter.taskNames)
+            def environment = project.gradle.startParameter.taskNames.any { it.contains("Release") } ? "production" : "development"
+            commandLine('bash', '-c', "cp -r google-services-${environment}.json google-services.json")
+        }
+        preBuild.dependsOn "copyGoogleServicesJson"
     }
 }
 
