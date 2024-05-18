@@ -34,7 +34,9 @@ export const DailyCheckIn = () => {
 			<View style={styles.titleContainer}>
 				<Text style={sharedStyles.title}>DailyCheckin</Text>
 				{loading ? (
-					<ActivityIndicator />
+					<View style={styles.loadingContainer}>
+						<ActivityIndicator />
+					</View>
 				) : (
 					<TouchableOpacity
 						style={[
@@ -76,6 +78,12 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
+	},
+	loadingContainer: {
+		width: 50,
+		height: 33,
+		alignItems: 'center',
+		justifyContent: 'center',
 	},
 	checkInsContainer: {
 		flexDirection: 'row',
