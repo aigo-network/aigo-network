@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Animated, { FadeInUp, runOnJS } from 'react-native-reanimated';
+import Animated, { FadeInDown, runOnJS } from 'react-native-reanimated';
 import { useNavigation } from '@react-navigation/native';
 import AppIcon from 'components/icon/AppIcon';
 import SafeContainer from 'components/SafeContainer';
@@ -15,7 +15,7 @@ export const SplashScreen = () => {
 			resolveAnimationRef.current = resolve as never;
 		}),
 	);
-	const IconFadeIn = FadeInUp.duration(600).withCallback(() => {
+	const IconFadeIn = FadeInDown.springify().withCallback(() => {
 		runOnJS(resolveAnimationRef.current)();
 	});
 
