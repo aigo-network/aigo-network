@@ -32,11 +32,14 @@ export const completeOnboarding = async () => {
 	if (user) appActions.setAppUser(user);
 
 	setTimeout(() => {
-		showModal(
+		const { cleanModal } = showModal(
 			<Animated.View entering={FadeInDown}>
 				<PointPopup
 					point={user?.GOPoints || 50}
 					description="Your account is ready to use. You will be redirected to the Home Page in a few seconds."
+					onPressClose={() => {
+						cleanModal();
+					}}
 				/>
 			</Animated.View>,
 			{
@@ -45,5 +48,5 @@ export const completeOnboarding = async () => {
 				align: Align.CenterCenter,
 			},
 		);
-	}, 500);
+	}, 650);
 };

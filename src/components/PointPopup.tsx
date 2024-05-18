@@ -9,10 +9,14 @@ type Props = {
 	onPressClose?: () => void;
 };
 
-export const PointPopup: FC<Props> = ({ point, description }) => {
+export const PointPopup: FC<Props> = ({ point, description, onPressClose }) => {
 	return (
 		<View style={styles.container}>
-			<TouchableOpacity style={styles.closeButton} hitSlop={14}>
+			<TouchableOpacity
+				style={styles.closeButton}
+				hitSlop={14}
+				onPress={onPressClose}
+			>
 				<X color={'#9F9F9F'} width={14} />
 			</TouchableOpacity>
 			<Image
