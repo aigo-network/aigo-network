@@ -5,6 +5,7 @@ import {
 	CardStyleInterpolators,
 	createStackNavigator,
 } from '@react-navigation/stack';
+import ModalProvider from 'components/Modal/Provider';
 import HomeScreen from 'screens/Home';
 import LoginScreen from 'screens/Login';
 import CityName from 'screens/Onboard/CityName';
@@ -21,41 +22,43 @@ const Stack = createStackNavigator<RootStackParamList>();
 export const AppContainer: FC = () => {
 	return (
 		<SafeAreaProvider>
-			<NavigationContainer>
-				<Stack.Navigator
-					screenOptions={{
-						headerShown: false,
-						animationEnabled: true,
-					}}
-				>
-					<Stack.Screen
-						name="Splash"
-						component={SplashScreen}
-						options={{
-							cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
+			<ModalProvider>
+				<NavigationContainer>
+					<Stack.Navigator
+						screenOptions={{
+							headerShown: false,
+							animationEnabled: true,
 						}}
-					/>
-					<Stack.Screen
-						name="Login"
-						component={LoginScreen}
-						options={{
-							cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
-						}}
-					/>
-					<Stack.Group screenOptions={{ headerShown: false }}>
-						<Stack.Screen name="OnboardName" component={ProfileName} />
+					>
 						<Stack.Screen
-							name="OnboardDescription"
-							component={UserDescription}
+							name="Splash"
+							component={SplashScreen}
+							options={{
+								cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
+							}}
 						/>
-						<Stack.Screen name="OnboardCity" component={CityName} />
-					</Stack.Group>
+						<Stack.Screen
+							name="Login"
+							component={LoginScreen}
+							options={{
+								cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
+							}}
+						/>
+						<Stack.Group screenOptions={{ headerShown: false }}>
+							<Stack.Screen name="OnboardName" component={ProfileName} />
+							<Stack.Screen
+								name="OnboardDescription"
+								component={UserDescription}
+							/>
+							<Stack.Screen name="OnboardCity" component={CityName} />
+						</Stack.Group>
 
-					<Stack.Group screenOptions={{ headerShown: false }}>
-						<Stack.Screen name="Home" component={HomeScreen} />
-					</Stack.Group>
-				</Stack.Navigator>
-			</NavigationContainer>
+						<Stack.Group screenOptions={{ headerShown: false }}>
+							<Stack.Screen name="Home" component={HomeScreen} />
+						</Stack.Group>
+					</Stack.Navigator>
+				</NavigationContainer>
+			</ModalProvider>
 		</SafeAreaProvider>
 	);
 };
