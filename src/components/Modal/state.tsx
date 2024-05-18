@@ -10,6 +10,11 @@ export const modalConfigMap = proxy<Record<string, ModalConfig>>({});
 
 export const modalComponentMap: Record<string, ReactNode> = {};
 
+export const cleanModal = (id: string) => {
+	delete modalComponentMap[id];
+	delete modalConfigMap[id];
+};
+
 export const showModal = (component: ReactNode, config: ModalConfig) => {
 	delete modalComponentMap[config.id];
 	delete modalConfigMap[config.id];
@@ -18,8 +23,7 @@ export const showModal = (component: ReactNode, config: ModalConfig) => {
 
 	return {
 		cleanModal: () => {
-			delete modalComponentMap[config.id];
-			delete modalConfigMap[config.id];
+			cleanModal(config.id);
 		},
 	};
 };
