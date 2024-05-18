@@ -1,11 +1,13 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
 import PlaceIcon from 'components/icon/PlaceIcon';
 import { appState } from 'state/app';
 import { defaultAvatar } from 'utils/misc';
 import { useSnapshot } from 'valtio';
 
 export const Header = () => {
+	const { navigate } = useNavigation();
 	const insets = useSafeAreaInsets();
 	const { appUser } = useSnapshot(appState);
 
@@ -20,10 +22,12 @@ export const Header = () => {
 					</View>
 				</View>
 
-				<Image
-					style={styles.avatar}
-					source={{ uri: appUser?.imageUrl || defaultAvatar }}
-				/>
+				<TouchableOpacity onPress={() => navigate('Profile')}>
+					<Image
+						style={styles.avatar}
+						source={{ uri: appUser?.imageUrl || defaultAvatar }}
+					/>
+				</TouchableOpacity>
 			</View>
 
 			<View style={styles.balanceContainer}>

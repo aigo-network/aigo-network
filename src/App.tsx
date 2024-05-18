@@ -11,6 +11,7 @@ import LoginScreen from 'screens/Login';
 import CityName from 'screens/Onboard/CityName';
 import ProfileName from 'screens/Onboard/ProfileName';
 import UserDescription from 'screens/Onboard/UserDescription';
+import ProfileScreen from 'screens/Profile';
 import SplashScreen from 'screens/Splash';
 import type { RootStackParamList } from 'utils/navigation';
 
@@ -55,6 +56,7 @@ export const AppContainer: FC = () => {
 
 						<Stack.Group screenOptions={{ headerShown: false }}>
 							<Stack.Screen name="Home" component={HomeScreen} />
+							<Stack.Screen name="Profile" component={ProfileScreen} />
 						</Stack.Group>
 					</Stack.Navigator>
 				</NavigationContainer>

@@ -5,6 +5,7 @@ export type RootStackParamList = {
 	OnboardDescription: undefined;
 	OnboardCity: undefined;
 	Home: undefined;
+	Profile: undefined;
 };
 
 declare global {

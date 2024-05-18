@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { graphqlClient } from 'api/graphql';
-import { appActions, appState } from 'state/app';
-import { useSnapshot } from 'valtio';
+import { appActions } from 'state/app';
 
 import DailyCheckIn from './DailyCheckIn';
 import DailyMissions from './DailyMissions';
@@ -11,9 +10,6 @@ import Invite from './Invite';
 import Social from './Social';
 
 export const HomeScreen = () => {
-	const { appUser } = useSnapshot(appState);
-	console.log(appUser);
-
 	useEffect(() => {
 		const loadUser = async () => {
 			const { user } = await graphqlClient.getUser();
