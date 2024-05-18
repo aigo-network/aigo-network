@@ -5,7 +5,7 @@ import PointPopup from 'components/PointPopup';
 export const showReferralPoint = () => {
 	const { cleanModal } = showModal(
 		<Animated.View style={{ minWidth: 360 }} entering={FadeInDown}>
-			<PointPopup point={50} onPressClose={() => cleanModal()} />
+			<PointPopup point={30} onPressClose={() => cleanModal()} />
 		</Animated.View>,
 		{
 			id: 'referral-point-popup',
