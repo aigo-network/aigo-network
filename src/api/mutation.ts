@@ -44,3 +44,12 @@ export const checkInMutation = gql`
 		}
 	}
 `;
+
+export const inputInvitationCodeMutation = gql`
+	mutation inputInvitationCode($code: String) {
+		inputInvitationCode(code: $code) {
+			invitedBy
+			invitedId
+		}
+	}
+`;
