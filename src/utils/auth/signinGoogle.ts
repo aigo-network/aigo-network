@@ -6,7 +6,9 @@ import { config } from 'utils/config';
 import type { SignInFunction } from './types';
 
 GoogleSignin.configure({
-	webClientId: config.GOOGLE_SIGNIN_CLIENT_ID,
+	webClientId: config.FIREBASE_WEB_CLIENT_ID,
+	iosClientId: config.FIREBASE_IOS_CLIENT_ID, // optional
+	offlineAccess: true,
 });
 
 export const signInWithGoogle: SignInFunction = async () => {
