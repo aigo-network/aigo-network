@@ -5,11 +5,11 @@ import { Align, showModal } from 'components/Modal';
 import PointPopup from 'components/PointPopup';
 import { appActions, appState } from 'state/app';
 import { config } from 'utils/config';
-import { defaultAvatar } from 'utils/misc';
+import { defaultAvatar, defaultEmail } from 'utils/misc';
 
 export const completeOnboarding = async () => {
 	const onboardingProfile = appState.onboarding;
-	const email = auth().currentUser?.email;
+	const email = auth().currentUser?.email || defaultEmail;
 	const imageUrl = auth().currentUser?.photoURL || defaultAvatar;
 	const { updateProfile: updatedUser } = await graphqlClient.updateProfile({
 		profile: {
