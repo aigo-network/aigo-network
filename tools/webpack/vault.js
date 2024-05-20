@@ -42,7 +42,7 @@ const vaultOptions = {
 
 		const androidProps = fieldMap['android/local.properties'];
 
-		if (androidProps.value) {
+		if (androidProps?.value) {
 			const sdkPath = process.env.ANDROID_HOME || process.env.ANDROID_SDK_ROOT;
 			const dynamicHead = `sdk.dir="${sdkPath}"`;
 			const generatedProps = `${dynamicHead}\n\n${androidProps.value}`;
