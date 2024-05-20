@@ -4,6 +4,7 @@ import { graphqlClient } from 'api/graphql';
 import { Align, showModal } from 'components/Modal';
 import PointPopup from 'components/PointPopup';
 import { appActions, appState } from 'state/app';
+import { config } from 'utils/config';
 import { defaultAvatar } from 'utils/misc';
 
 export const completeOnboarding = async () => {
@@ -35,7 +36,7 @@ export const completeOnboarding = async () => {
 		const { cleanModal } = showModal(
 			<Animated.View entering={FadeInDown}>
 				<PointPopup
-					point={50}
+					point={config.activity.CompleteOnboarding.points}
 					description="Your account is ready to use. You will be redirected to the Home Page in a few seconds."
 					onPressClose={() => {
 						cleanModal();

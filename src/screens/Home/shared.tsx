@@ -4,6 +4,7 @@ import { InviteCode } from 'components/InviteCode';
 import { Align, showModal } from 'components/Modal';
 import PointPopup from 'components/PointPopup';
 import { appState } from 'state/app';
+import { config } from 'utils/config';
 
 export const sharedStyles = StyleSheet.create({
 	container: {
@@ -47,7 +48,10 @@ export const showInvitationCode = () => {
 export const showCheckInPoint = () => {
 	const { cleanModal } = showModal(
 		<Animated.View style={{ minWidth: 360 }} entering={FadeInDown}>
-			<PointPopup point={10} onPressClose={() => cleanModal()} />
+			<PointPopup
+				point={config.activity.DailyCheckIn.points}
+				onPressClose={() => cleanModal()}
+			/>
 		</Animated.View>,
 		{
 			id: 'checkin-point-popup',

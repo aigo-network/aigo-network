@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
+import { config } from 'utils/config';
 
 import Tick from './icon/Tick';
 import X from './icon/X';
@@ -20,7 +21,9 @@ export const CheckIn: FC<Props> = ({ status, dayNumber }) => {
 					status.includes('today') && styles.highlight,
 				]}
 			>
-				<Text style={{ color: colorMap[status].text }}>5 GO</Text>
+				<Text style={{ color: colorMap[status].text }}>
+					{config.activity.DailyCheckIn.points} GO
+				</Text>
 				{status === 'checkedIn' ? (
 					<View
 						style={[{ backgroundColor: colorMap[status].iconBg }, styles.icon]}

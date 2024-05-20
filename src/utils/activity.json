@@ -1,0 +1,13 @@
+{
+    "activity": {
+        "CompleteOnboarding": {
+            "points": 200
+        },
+        "InviteFriend": {
+            "points": 100
+        },
+        "DailyCheckIn": {
+            "points": 10
+        }
+    }
+}

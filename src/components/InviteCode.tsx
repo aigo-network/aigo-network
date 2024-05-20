@@ -1,6 +1,7 @@
 import { type FC, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Clipboard from '@react-native-clipboard/clipboard';
+import { config } from 'utils/config';
 
 import Copy from './icon/Copy';
 import Tick from './icon/Tick';
@@ -34,7 +35,9 @@ export const InviteCode: FC<Props> = ({ code, onPressClose }) => {
 					{'Click copy or Share button to \n'}
 					<Text style={styles.description}>
 						invite friends and receive{' '}
-						<Text style={styles.pointText}>50 GO/referral</Text>
+						<Text style={styles.pointText}>
+							{config.activity.InviteFriend.points} GO/referral
+						</Text>
 					</Text>
 				</Text>
 			</View>

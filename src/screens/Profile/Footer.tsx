@@ -10,6 +10,7 @@ import LogOut from 'components/icon/LogOut';
 import Telegram from 'components/icon/Telegram';
 import Twitter from 'components/icon/Twitter';
 import { logOut } from 'utils/auth';
+import { config } from 'utils/config';
 
 export const Footer = () => {
 	const { reset } = useNavigation();
@@ -58,6 +59,7 @@ export const Footer = () => {
 					Log out
 				</Text>
 			</TouchableOpacity>
+			<Text style={styles.version}>Version {config.version}</Text>
 		</View>
 	);
 };
@@ -101,5 +103,9 @@ const styles = StyleSheet.create({
 	logOutText: {
 		fontSize: 18,
 		color: '#D84A4A',
+	},
+	version: {
+		textAlign: 'center',
+		color: '#4d4d4d',
 	},
 });

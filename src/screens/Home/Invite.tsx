@@ -1,4 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { config } from 'utils/config';
 
 import { sharedStyles, showInvitationCode } from './shared';
 
@@ -9,8 +10,11 @@ export const Invite = () => {
 				<Text style={sharedStyles.title}>Invite your friends</Text>
 				<Text style={styles.descriptionText}>
 					Receive
-					<Text style={styles.pointText}> 30 GO/referral</Text> & earn 10% from
-					their earning
+					<Text style={styles.pointText}>
+						{' '}
+						{config.activity.InviteFriend.points} GO/referral
+					</Text>{' '}
+					& earn 10% from their earning
 				</Text>
 			</View>
 			<View style={styles.inviteContainer}>
