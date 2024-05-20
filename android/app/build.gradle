@@ -100,11 +100,11 @@ android {
             keyPassword 'android'
         }
         release {
-            if (project.hasProperty("STORE_FILE")) {
-                storeFile file(STORE_FILE)
-                storePassword STORE_PASSWORD
-                keyAlias KEY_ALIAS
-                keyPassword KEY_PASSWORD
+            if (project.hasProperty("AIGO_STORE_FILE")) {
+                storeFile file(AIGO_STORE_FILE)
+                storePassword AIGO_STORE_PASSWORD
+                keyAlias AIGO_KEY_ALIAS
+                keyPassword AIGO_KEY_PASSWORD
             }
         }
     }
@@ -115,7 +115,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
