@@ -42,11 +42,13 @@ export const CityName = () => {
 
 	useEffect(() => {
 		const filtered = citiesDataList.filter((item) => {
+			const lowerCaseSearch = searchText.toLowerCase();
 			if (!searchText) {
 				return false;
 			} else {
 				return (
-					item.name.includes(searchText) || searchText === cityToString(item)
+					item.name.toLowerCase().includes(lowerCaseSearch) ||
+					lowerCaseSearch === cityToString(item).toLowerCase()
 				);
 			}
 		});
