@@ -58,7 +58,9 @@ const styles = StyleSheet.create({
 		color: '#000',
 	},
 	fieldValue: {
+		flex: 1,
 		fontSize: 16,
 		color: '#6C6764',
+		textAlign: 'right',
 	},
 });
