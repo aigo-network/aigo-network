@@ -23,8 +23,6 @@ export const signInWithApple: SignInFunction = async () => {
 		identityToken = authResponse.identityToken;
 		nonce = authResponse.nonce;
 	} else if (Platform.OS === 'android') {
-		console.log(config.FIREBASE_APPLE_AUTH_SERVICE_ID, '<-- serviceId');
-		console.log(config.FIREBASE_APPLE_AUTH_REDIRECT_URL, '<-- redirectUri');
 		appleAuthAndroid.configure({
 			clientId: config.FIREBASE_APPLE_AUTH_SERVICE_ID,
 			redirectUri: config.FIREBASE_APPLE_AUTH_REDIRECT_URL,
