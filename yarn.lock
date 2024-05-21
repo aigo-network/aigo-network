@@ -4166,6 +4166,7 @@ __metadata:
     react-native-screens: "npm:^3.31.1"
     react-native-svg: "npm:^15.2.0"
     react-native-url-polyfill: "npm:^2.0.0"
+    react-native-uuid: "npm:^2.0.2"
     react-test-renderer: "npm:18.2.0"
     typescript: "npm:5.4.5"
     valtio: "npm:^1.13.2"
@@ -10446,6 +10447,13 @@ __metadata:
   peerDependencies:
     react-native: "*"
   checksum: 10/6a8d605eeb1b0ee9b0f47f1866acc2edfa2131a4a8fb1ea3839ceb507e225b894ed66f49a3bd826fc964f2c8005b3678c9d3b65d07eb0a3b979be830cb618686
+  languageName: node
+  linkType: hard
+
+"react-native-uuid@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "react-native-uuid@npm:2.0.2"
+  checksum: 10/f9abcd2ae5d35e037dd26d5abfc684c0bfba6494b92a835b89f90fb9fe932d96d94c3ea9ec23fa79b46d5246e7a8689db88e174ba6044f3724ea3476e3348ccc
   languageName: node
   linkType: hard
 
