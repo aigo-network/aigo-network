@@ -1,4 +1,4 @@
-const { writeFile } = require('fs/promises');
+const { writeFile, unlink } = require('fs/promises');
 
 const vaultOptions = {
 	onePassword: {
@@ -11,6 +11,9 @@ const vaultOptions = {
 		],
 	},
 	callback: async (fieldMap) => {
+		const sharedEnv = fieldMap['.env.shared'];
+		const androidProps = fieldMap['android/local.properties'];
+
 		for (const environment of ['production', 'development']) {
 			const googleServiceKey = `android/app/google-services-${environment}.json`;
 			const googleServiceJson = fieldMap[googleServiceKey];
@@ -35,12 +38,18 @@ const vaultOptions = {
 					injectedHead += `FIREBASE_WEB_CLIENT_ID="${webAuthId}"\n`;
 				}
 
+				if (sharedEnv?.value) {
+					injectedHead += `${sharedEnv.value}\n`;
+				}
+
 				const combinedEnvContent = `${injectedHead}\n${originalEnvContent}`;
 				await writeFile(envFileName, combinedEnvContent);
 			}
 		}
 
-		const androidProps = fieldMap['android/local.properties'];
+		if (sharedEnv?.title) {
+			await unlink(sharedEnv.title);
+		}
 
 		if (androidProps?.value) {
 			const sdkPath = process.env.ANDROID_HOME || process.env.ANDROID_SDK_ROOT;
