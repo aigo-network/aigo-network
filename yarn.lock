@@ -4165,6 +4165,7 @@ __metadata:
     react-native-safe-area-context: "npm:^4.10.1"
     react-native-screens: "npm:^3.31.1"
     react-native-svg: "npm:^15.2.0"
+    react-native-tracking-transparency: "npm:^0.1.2"
     react-native-url-polyfill: "npm:^2.0.0"
     react-native-uuid: "npm:^2.0.2"
     react-test-renderer: "npm:18.2.0"
@@ -10436,6 +10437,16 @@ __metadata:
     react: "*"
     react-native: "*"
   checksum: 10/5042e1377b9d66679898ce812760691d01602efac27a32eed0914b518652c66d575dc7eb1493d3315a7db043d4974796d9107fe17f4b331b6bbbff16906016e9
+  languageName: node
+  linkType: hard
+
+"react-native-tracking-transparency@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "react-native-tracking-transparency@npm:0.1.2"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10/f62c2ac274dc06c6078ded70672c4ade54b532503fecbea607eb89d87cdaff91ecc0f061bfabb71a4d26336dad5611849cea4d07d7eca0d8bccca0d708b1a931
   languageName: node
   linkType: hard
 
