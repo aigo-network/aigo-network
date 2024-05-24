@@ -1,7 +1,11 @@
 import { useEffect } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { Platform, ScrollView, StyleSheet, View } from 'react-native';
+import {
+	getTrackingStatus,
+	requestTrackingPermission,
+} from 'react-native-tracking-transparency';
 import { graphqlClient } from 'api/graphql';
-import { appActions } from 'state/app';
+import { appActions, appState } from 'state/app';
 
 import DailyCheckIn from './DailyCheckIn';
 import DailyMissions from './DailyMissions';
@@ -10,6 +14,24 @@ import Invite from './Invite';
 import Social from './Social';
 
 export const HomeScreen = () => {
+	useEffect(() => {
+		const handleTrackingStatus = async () => {
+			if (Platform.OS === 'ios') {
+				const trackingStatus = await getTrackingStatus().catch((error) =>
+					console.log(error),
+				);
+
+				if (trackingStatus === 'not-determined') {
+					const status = await requestTrackingPermission();
+					appState.trackingStatus = status;
+				} else if (trackingStatus) {
+					appState.trackingStatus = trackingStatus;
+				}
+			}
+		};
+
+		handleTrackingStatus();
+	}, []);
 	useEffect(() => {
 		const loadUser = async () => {
 			const { user } = await graphqlClient.getUser();
