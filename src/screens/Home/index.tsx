@@ -5,7 +5,7 @@ import {
 	requestTrackingPermission,
 } from 'react-native-tracking-transparency';
 import { graphqlClient } from 'api/graphql';
-import { appActions, appState } from 'state/app';
+import { appActions } from 'state/app';
 
 import DailyCheckIn from './DailyCheckIn';
 import DailyMissions from './DailyMissions';
@@ -22,10 +22,7 @@ export const HomeScreen = () => {
 				);
 
 				if (trackingStatus === 'not-determined') {
-					const status = await requestTrackingPermission();
-					appState.trackingStatus = status;
-				} else if (trackingStatus) {
-					appState.trackingStatus = trackingStatus;
+					await requestTrackingPermission();
 				}
 			}
 		};
