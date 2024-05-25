@@ -41,6 +41,9 @@ type RootMutation {
   completeOnboarding: User
 
   """"""
+  deleteUser: User
+
+  """"""
   inputInvitationCode(code: String): Invitation
 
   """"""

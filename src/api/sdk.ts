@@ -39,6 +39,7 @@ export type RootMutation = {
   __typename?: 'RootMutation';
   checkIn?: Maybe<DailyCheckIn>;
   completeOnboarding?: Maybe<User>;
+  deleteUser?: Maybe<User>;
   inputInvitationCode?: Maybe<Invitation>;
   updateProfile?: Maybe<User>;
 };
@@ -66,7 +67,6 @@ export type User = {
   completeOnboarding?: Maybe<Scalars['Boolean']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   dailyMissions?: Maybe<DailyMissions>;
-  deletedAt?: Maybe<Scalars['DateTime']['output']>;
   descriptions?: Maybe<Array<Maybe<UserDescription>>>;
   email?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['String']['output']>;
@@ -118,6 +118,11 @@ export type InputInvitationCodeMutationVariables = Exact<{
 
 
 export type InputInvitationCodeMutation = { __typename?: 'RootMutation', inputInvitationCode?: { __typename?: 'Invitation', invitedBy?: string | null, invitedId?: string | null } | null };
+
+export type DeleteUserMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type DeleteUserMutation = { __typename?: 'RootMutation', deleteUser?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, imageUrl?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, GOPoints?: number | null, invitationCode?: string | null, createdAt?: any | null, updatedAt?: any | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null } | null } | null };
 
 export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -180,6 +185,28 @@ export const InputInvitationCodeDocument = gql`
   }
 }
     `;
+export const DeleteUserDocument = gql`
+    mutation deleteUser {
+  deleteUser {
+    id
+    name
+    email
+    imageUrl
+    city
+    descriptions
+    GOPoints
+    dailyMissions {
+      checkIn {
+        date
+        completed
+      }
+    }
+    invitationCode
+    createdAt
+    updatedAt
+  }
+}
+    `;
 export const GetUserDocument = gql`
     query getUser {
   user {
@@ -234,6 +261,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     inputInvitationCode(variables?: InputInvitationCodeMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<InputInvitationCodeMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<InputInvitationCodeMutation>(InputInvitationCodeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'inputInvitationCode', 'mutation', variables);
+    },
+    deleteUser(variables?: DeleteUserMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<DeleteUserMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<DeleteUserMutation>(DeleteUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'deleteUser', 'mutation', variables);
     },
     getUser(variables?: GetUserQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetUserQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetUserQuery>(GetUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUser', 'query', variables);
