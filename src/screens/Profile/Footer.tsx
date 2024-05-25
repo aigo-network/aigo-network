@@ -6,11 +6,14 @@ import {
 	View,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { graphqlClient } from 'api/graphql';
 import LogOut from 'components/icon/LogOut';
 import Telegram from 'components/icon/Telegram';
 import Twitter from 'components/icon/Twitter';
 import { logOut } from 'utils/auth';
 import { config } from 'utils/config';
+
+import { showDeleteUserConfirm } from './shared';
 
 export const Footer = () => {
 	const { reset } = useNavigation();
@@ -24,11 +27,21 @@ export const Footer = () => {
 	};
 
 	const handleLogOut = () => {
-		reset({
-			index: 1,
-			routes: [{ name: 'Splash' }],
+		const logout = () => {
+			reset({
+				index: 1,
+				routes: [{ name: 'Splash' }],
+			});
+			logOut();
+		};
+
+		const deleteUser = async () => {
+			await graphqlClient.deleteUser();
+		};
+		showDeleteUserConfirm({
+			logout,
+			deleteUser,
 		});
-		logOut();
 	};
 
 	return (
@@ -53,11 +66,9 @@ export const Footer = () => {
 				</View>
 			</View>
 
-			<TouchableOpacity style={styles.logOutButton}>
+			<TouchableOpacity style={styles.logOutButton} onPress={handleLogOut}>
 				<LogOut width={24} />
-				<Text style={styles.logOutText} onPress={handleLogOut}>
-					Log out
-				</Text>
+				<Text style={styles.logOutText}>Log out</Text>
 			</TouchableOpacity>
 			<Text style={styles.version}>Version {config.version}</Text>
 		</View>
