@@ -1,12 +1,12 @@
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import ConfirmPopup from 'components/ConfirmPopup';
-import { Align, showModal } from 'components/Modal';
 import PointPopup from 'components/PointPopup';
+import { Align, showModal } from 'empty-modal';
 import { config } from 'utils/config';
 
 export const showReferralPoint = () => {
 	const { cleanModal } = showModal(
-		<Animated.View style={{ minWidth: 360 }} entering={FadeInDown}>
+		<Animated.View entering={FadeInDown}>
 			<PointPopup
 				point={config.activity.InviteFriend.points}
 				onPressClose={() => cleanModal()}
@@ -15,7 +15,8 @@ export const showReferralPoint = () => {
 		{
 			id: 'referral-point-popup',
 			showBackdrop: true,
-			align: Align.CenterCenter,
+			xOffset: 16,
+			align: Align.FullCenter,
 		},
 	);
 };
@@ -47,7 +48,8 @@ export const showDeleteUserConfirm = ({
 		{
 			id: 'confirm-delete-user',
 			showBackdrop: true,
-			align: Align.CenterCenter,
+			xOffset: 16,
+			align: Align.FullCenter,
 		},
 	);
 };

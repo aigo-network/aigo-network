@@ -72,7 +72,6 @@ export default InviteCode;
 const styles = StyleSheet.create({
 	container: {
 		backgroundColor: '#FFFFFF',
-		minWidth: 360,
 		padding: 30,
 		paddingTop: 70,
 		paddingBottom: 40,

@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { InviteCode } from 'components/InviteCode';
-import { Align, showModal } from 'components/Modal';
 import PointPopup from 'components/PointPopup';
+import { Align, showModal } from 'empty-modal';
 import { appState } from 'state/app';
 import { config } from 'utils/config';
 
@@ -39,7 +39,8 @@ export const showInvitationCode = () => {
 		</Animated.View>,
 		{
 			id: 'invitation-code',
-			align: Align.CenterCenter,
+			align: Align.FullCenter,
+			xOffset: 16,
 			showBackdrop: true,
 		},
 	);
@@ -56,6 +57,7 @@ export const showCheckInPoint = () => {
 		{
 			id: 'checkin-point-popup',
 			showBackdrop: true,
+			xOffset: 16,
 			align: Align.CenterCenter,
 		},
 	);

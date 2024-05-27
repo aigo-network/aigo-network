@@ -5,7 +5,7 @@ import {
 	CardStyleInterpolators,
 	createStackNavigator,
 } from '@react-navigation/stack';
-import ModalProvider from 'components/Modal/Provider';
+import { ModalProvider } from 'empty-modal';
 import HomeScreen from 'screens/Home';
 import LoginScreen from 'screens/Login';
 import CityName from 'screens/Onboard/CityName';
