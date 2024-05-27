@@ -19,7 +19,8 @@ export const InviteCode: FC<Props> = ({ code, onPressClose }) => {
 
 	const handleSharePress = () => {
 		Share.open({
-			message: `Hey! Let's download AiGO App at https://app.aigo.network/download?inviteCode=${code}\nUse my invitation code for 100 GO points: ${code}`,
+			message: `Hey! Let's download AiGO App at https://app.aigo.network/download?inviteCode=${code}
+Use my invitation code for 100 GO points: ${code}`,
 		});
 	};
 

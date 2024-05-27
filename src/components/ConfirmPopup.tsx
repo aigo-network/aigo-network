@@ -44,7 +44,6 @@ export default ConfirmPopup;
 
 const styles = StyleSheet.create({
 	container: {
-		width: 360,
 		backgroundColor: '#fff',
 		paddingHorizontal: 30,
 		paddingTop: 60,
