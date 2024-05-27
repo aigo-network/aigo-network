@@ -75,8 +75,7 @@ export const Footer = () => {
 					style={styles.logOutButton}
 					onPress={handleDeleteAccount}
 				>
-					<LogOut width={24} />
-					<Text style={styles.logOutText}>Log out and delete account</Text>
+					<Text style={styles.deleteAccountText}>Delete account</Text>
 				</TouchableOpacity>
 			</View>
 			<Text style={styles.version}>Version {config.version}</Text>
@@ -115,7 +114,8 @@ const styles = StyleSheet.create({
 	},
 	logOutGroup: {
 		marginTop: 30,
-		padding: 16,
+		paddingTop: 16,
+		paddingBottom: 8,
 		gap: 10,
 	},
 	logOutButton: {
@@ -126,6 +126,11 @@ const styles = StyleSheet.create({
 	logOutText: {
 		fontSize: 18,
 		color: '#D84A4A',
+	},
+	deleteAccountText: {
+		fontSize: 18,
+		color: '#CCCCCC',
+		marginTop: 24,
 	},
 	version: {
 		textAlign: 'center',
