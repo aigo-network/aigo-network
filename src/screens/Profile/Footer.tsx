@@ -13,7 +13,7 @@ import Twitter from 'components/icon/Twitter';
 import { logOut } from 'utils/auth';
 import { config } from 'utils/config';
 
-import { showDeleteUserConfirm } from './shared';
+import { showDeleteUserConfirm, showLogOutConfirm } from './shared';
 
 export const Footer = () => {
 	const { reset } = useNavigation();
@@ -26,12 +26,18 @@ export const Footer = () => {
 		Linking.openURL('https://t.me/aigo_network');
 	};
 
-	const handleLogOut = () => {
+	const logOutAndResetRoute = () => {
+		logOut();
 		reset({
 			index: 1,
 			routes: [{ name: 'Splash' }],
 		});
-		logOut();
+	};
+
+	const handleLogOut = () => {
+		showLogOutConfirm({
+			logout: logOutAndResetRoute,
+		});
 	};
 
 	const handleDeleteAccount = () => {
@@ -39,7 +45,7 @@ export const Footer = () => {
 			await graphqlClient.deleteUser();
 		};
 		showDeleteUserConfirm({
-			logout: handleLogOut,
+			logout: logOutAndResetRoute,
 			deleteUser,
 		});
 	};

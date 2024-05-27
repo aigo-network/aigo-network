@@ -21,6 +21,32 @@ export const showReferralPoint = () => {
 	);
 };
 
+export const showLogOutConfirm = ({ logout }: { logout: () => void }) => {
+	const { cleanModal } = showModal(
+		<Animated.View entering={FadeInDown}>
+			<ConfirmPopup
+				onClose={() => {
+					cleanModal();
+				}}
+				message="Are you sure to logout?"
+				onConfirm={() => {
+					logout();
+					cleanModal();
+				}}
+				onReject={() => {
+					cleanModal();
+				}}
+			/>
+		</Animated.View>,
+		{
+			id: 'confirm-logout',
+			showBackdrop: true,
+			xOffset: 16,
+			align: Align.FullCenter,
+		},
+	);
+};
+
 export const showDeleteUserConfirm = ({
 	deleteUser,
 	logout,
