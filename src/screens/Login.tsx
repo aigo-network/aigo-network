@@ -4,12 +4,15 @@ import { graphqlClient } from 'api/graphql';
 import { Button } from 'components/Button';
 import AppIcon from 'components/icon/AppIcon';
 import SafeContainer from 'components/SafeContainer';
+import { appState } from 'state/app';
 import type { SignInFunction } from 'utils/auth';
 import { signInWithApple, signInWithGoogle } from 'utils/auth';
 import { config } from 'utils/config';
+import { useSnapshot } from 'valtio';
 
 export const LoginScreen = () => {
 	const { navigate } = useNavigation();
+	const { version, buildNumber } = useSnapshot(appState);
 	const backgroundSrc = require('assets/img/login/background-logo.png');
 	const googleIconSrc = require('assets/img/login/google-logo.png');
 	const appleIconSrc = require('assets/img/login/apple-logo.png');
@@ -58,7 +61,9 @@ export const LoginScreen = () => {
 						<Text style={styles.btnText}>Log in with Apple</Text>
 					</Button>
 				</View>
-				<Text style={styles.version}>Version {config.version}</Text>
+				<Text style={styles.version}>
+					Version {version} ({buildNumber})
+				</Text>
 			</SafeContainer>
 		</View>
 	);

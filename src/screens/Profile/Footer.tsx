@@ -10,12 +10,15 @@ import { graphqlClient } from 'api/graphql';
 import LogOut from 'components/icon/LogOut';
 import Telegram from 'components/icon/Telegram';
 import Twitter from 'components/icon/Twitter';
+import { appState } from 'state/app';
 import { logOut } from 'utils/auth';
 import { config } from 'utils/config';
+import { useSnapshot } from 'valtio';
 
 import { showDeleteUserConfirm, showLogOutConfirm } from './shared';
 
 export const Footer = () => {
+	const { version, buildNumber } = useSnapshot(appState);
 	const { reset } = useNavigation();
 
 	const handlePressFollowTwitter = () => {
@@ -84,7 +87,9 @@ export const Footer = () => {
 					<Text style={styles.deleteAccountText}>Delete account</Text>
 				</TouchableOpacity>
 			</View>
-			<Text style={styles.version}>Version {config.version}</Text>
+			<Text style={styles.version}>
+				Version {version} ({buildNumber})
+			</Text>
 		</View>
 	);
 };
