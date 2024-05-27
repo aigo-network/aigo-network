@@ -11,6 +11,8 @@
     "compilerOptions": {
         "baseUrl": ".",
         "moduleResolution": "Bundler",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
         "paths": {
             "assets/*": [
                 "./assets/*"

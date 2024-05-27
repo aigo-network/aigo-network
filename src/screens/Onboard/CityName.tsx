@@ -15,6 +15,9 @@ const citiesDataList: CitiesData[] = citiesList;
 
 export const CityName = () => {
 	const { reset } = useNavigation();
+	const { title, description, continueButton } = useSnapshot(
+		appState.content.screens.onboard.city,
+	);
 	const {
 		onboarding: { city },
 	} = useSnapshot(appState);
@@ -73,8 +76,9 @@ export const CityName = () => {
 				currentIndex={3}
 				disabled={!citySelected}
 				onPress={handleCompleteOnboarding}
-				title="Name your city"
-				subTitle="Mark yourself in your city to connect with pals"
+				title={title}
+				subTitle={description}
+				mainBtnText={continueButton}
 			>
 				<View style={styles.searchContainer}>
 					<SearchBox

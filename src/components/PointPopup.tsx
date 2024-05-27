@@ -1,6 +1,8 @@
 import type { FC } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import LottieView from 'lottie-react-native';
+import { appState } from 'state/app';
+import { useSnapshot } from 'valtio';
 
 import X from './icon/X';
 
@@ -11,6 +13,7 @@ type Props = {
 };
 
 export const PointPopup: FC<Props> = ({ point, description, onPressClose }) => {
+	const { messagePrefix } = useSnapshot(appState.content.modal.earnPoints);
 	return (
 		<View style={styles.container}>
 			<View style={styles.giftContainer}>
@@ -35,7 +38,7 @@ export const PointPopup: FC<Props> = ({ point, description, onPressClose }) => {
 			/> */}
 			<View>
 				<Text style={styles.titleText}>
-					{"🎁 You've Earned "}
+					{`🎁 ${messagePrefix} `}
 					<Text style={styles.highlightText}>{`${point} GO!`}</Text>
 				</Text>
 			</View>

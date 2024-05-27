@@ -4,10 +4,13 @@ import Animated, { FadeInDown, runOnJS } from 'react-native-reanimated';
 import { useNavigation } from '@react-navigation/native';
 import AppIcon from 'components/icon/AppIcon';
 import SafeContainer from 'components/SafeContainer';
+import { appState } from 'state/app';
 import { initAuthPromise } from 'utils/auth';
 import { config } from 'utils/config';
+import { useSnapshot } from 'valtio';
 
 export const SplashScreen = () => {
+	const splashContent = useSnapshot(appState.content.screens.splash);
 	const { navigate } = useNavigation();
 	const resolveAnimationRef = useRef(() => {});
 	const animationRef = useRef(
@@ -40,7 +43,9 @@ export const SplashScreen = () => {
 				<Animated.View entering={IconFadeIn} style={styles.iconContainer}>
 					<AppIcon />
 				</Animated.View>
-				<Text style={styles.version}>Version {config.version}</Text>
+				<Text style={styles.version}>
+					{splashContent.versionPrefix} {config.version}
+				</Text>
 			</SafeContainer>
 		</View>
 	);

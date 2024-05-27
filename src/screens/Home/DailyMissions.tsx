@@ -1,11 +1,16 @@
 import { StyleSheet, Text, View } from 'react-native';
+import { appState } from 'state/app';
+import { useSnapshot } from 'valtio';
 
 import { sharedStyles } from './shared';
 
 export const DailyMissions = () => {
+	const homeContent = useSnapshot(appState.content.screens.home);
 	return (
 		<View style={[sharedStyles.container, styles.container]}>
-			<Text style={sharedStyles.title}>Daily Missions</Text>
+			<Text style={sharedStyles.title}>
+				{homeContent.dailyCheckInSection.title}
+			</Text>
 		</View>
 	);
 };

@@ -26,7 +26,7 @@ export const completeOnboarding = async () => {
 		!updatedUser.city ||
 		!updatedUser.descriptions
 	) {
-		throw Error('Can not update profile, something went wrong');
+		throw Error(appState.content.screens.onboard.updateProfileError);
 	}
 
 	const { completeOnboarding: user } = await graphqlClient.completeOnboarding();
@@ -37,7 +37,9 @@ export const completeOnboarding = async () => {
 			<Animated.View entering={FadeInDown}>
 				<PointPopup
 					point={config.activity.CompleteOnboarding.points}
-					description="Your account is ready to use. You will be redirected to the Home Page in a few seconds."
+					description={
+						appState.content.modal.earnPoints.completedOnboardingMessage
+					}
 					onPressClose={() => {
 						cleanModal();
 					}}

@@ -4,11 +4,14 @@ import { graphqlClient } from 'api/graphql';
 import { Button } from 'components/Button';
 import AppIcon from 'components/icon/AppIcon';
 import SafeContainer from 'components/SafeContainer';
+import { appState } from 'state/app';
 import type { SignInFunction } from 'utils/auth';
 import { signInWithApple, signInWithGoogle } from 'utils/auth';
 import { config } from 'utils/config';
+import { useSnapshot } from 'valtio';
 
 export const LoginScreen = () => {
+	const logInContent = useSnapshot(appState.content.screens.logIn);
 	const { navigate } = useNavigation();
 	const backgroundSrc = require('assets/img/login/background-logo.png');
 	const googleIconSrc = require('assets/img/login/google-logo.png');
@@ -37,10 +40,8 @@ export const LoginScreen = () => {
 					<View style={styles.logoImg}>
 						<AppIcon />
 					</View>
-					<Text style={styles.welcome}>{`Welcome to\nAiGO`}</Text>
-					<Text style={styles.slogan}>
-						{'Turns your everyday\nActions into rewards'}
-					</Text>
+					<Text style={styles.welcome}>{logInContent.welcome}</Text>
+					<Text style={styles.slogan}>{logInContent.slogan}</Text>
 				</View>
 				<View style={styles.btnGroup}>
 					<Button
@@ -48,17 +49,19 @@ export const LoginScreen = () => {
 						style={styles.btn}
 						onPress={() => handleSignIn(signInWithGoogle)}
 					>
-						<Text style={styles.btnText}>Log in with Google</Text>
+						<Text style={styles.btnText}>{logInContent.googleButton}</Text>
 					</Button>
 					<Button
 						prefix={<Image source={appleIconSrc} />}
 						style={styles.btn}
 						onPress={() => handleSignIn(signInWithApple)}
 					>
-						<Text style={styles.btnText}>Log in with Apple</Text>
+						<Text style={styles.btnText}>{logInContent.appleButton}</Text>
 					</Button>
 				</View>
-				<Text style={styles.version}>Version {config.version}</Text>
+				<Text style={styles.version}>
+					{logInContent.versionPrefix} {config.version}
+				</Text>
 			</SafeContainer>
 		</View>
 	);

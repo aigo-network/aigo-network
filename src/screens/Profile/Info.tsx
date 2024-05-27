@@ -3,30 +3,37 @@ import { appState } from 'state/app';
 import { useSnapshot } from 'valtio';
 
 export const Info = () => {
+	const { infoTitle, defaultInfo } = useSnapshot(
+		appState.content.screens.profile,
+	);
 	const { appUser } = useSnapshot(appState);
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.title}>Account Information</Text>
+			<Text style={styles.title}>{infoTitle.account}</Text>
 			<View style={styles.infoContainer}>
 				<View style={styles.fieldContainer}>
-					<Text style={styles.fieldTitle}>Name</Text>
-					<Text style={styles.fieldValue}>{appUser?.name || 'Anonymous'}</Text>
-				</View>
-				<View style={styles.fieldContainer}>
-					<Text style={styles.fieldTitle}>Email</Text>
+					<Text style={styles.fieldTitle}>{infoTitle.name}</Text>
 					<Text style={styles.fieldValue}>
-						{appUser?.email || 'anonymous@aigo.network'}
+						{appUser?.name || defaultInfo.name}
 					</Text>
 				</View>
 				<View style={styles.fieldContainer}>
-					<Text style={styles.fieldTitle}>City</Text>
-					<Text style={styles.fieldValue}>{appUser?.city || 'AiGO City'}</Text>
+					<Text style={styles.fieldTitle}>{infoTitle.name}</Text>
+					<Text style={styles.fieldValue}>
+						{appUser?.email || defaultInfo.email}
+					</Text>
 				</View>
 				<View style={styles.fieldContainer}>
-					<Text style={styles.fieldTitle}>Descriptions</Text>
+					<Text style={styles.fieldTitle}>{infoTitle.city}</Text>
 					<Text style={styles.fieldValue}>
-						{appUser?.descriptions?.join(', ') || 'AiGO lover'}
+						{appUser?.city || defaultInfo.city}
+					</Text>
+				</View>
+				<View style={styles.fieldContainer}>
+					<Text style={styles.fieldTitle}>{infoTitle.descriptions}</Text>
+					<Text style={styles.fieldValue}>
+						{appUser?.descriptions?.join(', ') || defaultInfo.description}
 					</Text>
 				</View>
 			</View>

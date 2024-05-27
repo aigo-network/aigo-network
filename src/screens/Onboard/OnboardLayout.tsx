@@ -27,7 +27,7 @@ interface Props {
 	title: string;
 	subTitle: string;
 	currentIndex: number;
-	mainBtnText?: string;
+	mainBtnText: string;
 }
 
 const AnimatedView = Animated.createAnimatedComponent(View);
@@ -117,9 +117,7 @@ export const OnboardLayout: FC<Props> = ({
 							onPress={handlePressContinue}
 							disabled={disabled}
 						>
-							<Text style={[styles.btnText, btnTextColor]}>
-								{mainBtnText || 'Continue'}
-							</Text>
+							<Text style={[styles.btnText, btnTextColor]}>{mainBtnText}</Text>
 						</Button>
 					)}
 				</AnimatedView>

@@ -1,30 +1,38 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { appState } from 'state/app';
 import { config } from 'utils/config';
+import { useSnapshot } from 'valtio';
 
 import { sharedStyles, showInvitationCode } from './shared';
 
 export const Invite = () => {
+	const homeContent = useSnapshot(appState.content.screens.home);
 	return (
 		<View style={[sharedStyles.container, styles.container]}>
 			<View style={styles.titleContainer}>
-				<Text style={sharedStyles.title}>Invite your friends</Text>
+				<Text style={sharedStyles.title}>
+					{homeContent.inviteSection.title}
+				</Text>
 				<Text style={styles.descriptionText}>
-					Receive
+					{homeContent.inviteSection.descriptionPrefix}
 					<Text style={styles.pointText}>
 						{' '}
-						{config.activity.InviteFriend.points} GO/referral
+						{config.activity.InviteFriend.points} GO/
+						{homeContent.inviteSection.referral}
 					</Text>{' '}
-					& earn 10% from their earning
+					{homeContent.inviteSection.descriptionSuffix}
 				</Text>
 			</View>
 			<View style={styles.inviteContainer}>
-				<Text style={styles.inviteCountText}>0 Referrals</Text>
+				<Text style={styles.inviteCountText}>
+					0 {homeContent.inviteSection.referralCountSuffix}
+				</Text>
 				<TouchableOpacity
 					style={styles.inviteButton}
 					hitSlop={14}
 					onPress={showInvitationCode}
 				>
-					<Text>Invite</Text>
+					<Text>{homeContent.inviteSection.inviteButton}</Text>
 				</TouchableOpacity>
 			</View>
 		</View>

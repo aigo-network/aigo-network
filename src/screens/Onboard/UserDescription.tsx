@@ -13,6 +13,9 @@ import OnboardLayout from './OnboardLayout';
 export const UserDescription: FC<
 	StackScreenProps<RootStackParamList, 'OnboardDescription'>
 > = ({ navigation }) => {
+	const { title, description, continueButton } = useSnapshot(
+		appState.content.screens.onboard.userDescriptions,
+	);
 	const [itemWidth, setItemWidth] = useState(0);
 	const {
 		onboarding: { descriptions },
@@ -31,8 +34,9 @@ export const UserDescription: FC<
 			currentIndex={2}
 			disabled={!descriptions?.length}
 			onPress={onContinuePress}
-			title="What's best describe you"
-			subTitle="You can choose multiple options"
+			title={title}
+			subTitle={description}
+			mainBtnText={continueButton}
 		>
 			<View
 				style={styles.container}
@@ -41,7 +45,7 @@ export const UserDescription: FC<
 					setItemWidth(Math.floor(availableSpace / 2));
 				}}
 			>
-				{userDescriptions?.map((item, index) => {
+				{userDescriptions()?.map((item, index) => {
 					return (
 						<DescriptionCard
 							key={index}

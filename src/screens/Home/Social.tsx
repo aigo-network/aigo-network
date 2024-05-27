@@ -1,10 +1,13 @@
 import { useRef, useState } from 'react';
 import { Image, Linking, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { appState } from 'state/app';
+import { useSnapshot } from 'valtio';
 
 import { sharedStyles } from './shared';
 
 export const Social = () => {
+	const homeContent = useSnapshot(appState.content.screens.home);
 	const containerRef = useRef(null);
 	const [imageWidth, setImageWidth] = useState(0);
 	const imageHeight = (imageWidth * 424) / 770;
@@ -34,7 +37,7 @@ export const Social = () => {
 					style={styles.icon}
 					source={require('assets/img/game-controller.png')}
 				/>
-				<Text style={styles.title}>Stay updated with us</Text>
+				<Text style={styles.title}>{homeContent.socialSection.title}</Text>
 			</View>
 
 			<View style={styles.imageContainer}>

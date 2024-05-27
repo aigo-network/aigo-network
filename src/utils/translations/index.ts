@@ -1,0 +1,120 @@
+import en from './en.json';
+import kr from './en.json';
+
+export const translations: Record<LangKey, Content> = { en, kr };
+
+export type LangKey = 'en' | 'kr';
+
+export type Content = {
+	modal: {
+		confirmLogOutMessage: string;
+		confirmDeleteAccountMessage: string;
+		invite: {
+			title: string;
+			description: string;
+			referral: string;
+			messagePrefix: string;
+			messageSuffix: string;
+			codeTitle: string;
+			shareButton: string;
+		};
+		earnPoints: {
+			messagePrefix: string;
+			completedOnboardingMessage: string;
+		};
+	};
+	screens: {
+		splash: {
+			versionPrefix: string;
+		};
+		logIn: {
+			welcome: string;
+			slogan: string;
+			appleButton: string;
+			googleButton: string;
+			versionPrefix: string;
+		};
+		onboard: {
+			name: {
+				title: string;
+				description: string;
+				continueButton: string;
+			};
+			city: {
+				title: string;
+				description: string;
+				continueButton: string;
+			};
+			userDescriptions: {
+				title: string;
+				description: string;
+				continueButton: string;
+				descriptions: {
+					NyamNyamDriver: string;
+					CityExplorer: string;
+					FitnessEnthusiast: string;
+					Commuter: string;
+					Traveler: string;
+					CasualUser: string;
+				};
+			};
+			updateProfileError: string;
+		};
+		home: {
+			headerSection: {
+				welcomePrefix: string;
+				balanceTitle: string;
+			};
+			socialSection: {
+				title: string;
+				followTwitterButton: string;
+				joinTelegramButton: string;
+			};
+			inviteSection: {
+				title: string;
+				referral: string;
+				referralCountSuffix: string;
+				descriptionPrefix: string;
+				descriptionSuffix: string;
+				inviteButton: string;
+			};
+			dailyCheckInSection: {
+				title: string;
+				checkInButton: string;
+			};
+		};
+		profile: {
+			title: string;
+			unknownUsername: string;
+			totalBalanceTitle: string;
+			viewHistoryButton: string;
+			infoTitle: {
+				account: string;
+				name: string;
+				email: string;
+				city: string;
+				descriptions: string;
+			};
+			defaultInfo: {
+				name: string;
+				email: string;
+				city: string;
+				description: string;
+			};
+			referralSection: {
+				title: string;
+				descriptionPrefix: string;
+				descriptionSuffix: string;
+				enterCodePlaceholder: string;
+				invalidCodeError: string;
+				verifyButton: string;
+			};
+			footerSection: {
+				title: string;
+				logOutButton: string;
+				deleteAccountButton: string;
+				versionPrefix: string;
+			};
+		};
+	};
+};
