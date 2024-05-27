@@ -19,16 +19,21 @@ export const CityName = () => {
 		onboarding: { city },
 	} = useSnapshot(appState);
 	const [searchText, setSearchText] = useState('');
+	const [citySelected, setCitySelected] = useState(false);
 	const [listCitiesFiltered, setListCitiesFiltered] = useState<CitiesData[]>(
 		[],
 	);
-	const onSearchChange = (searchText: string) => {
-		setSearchText(searchText);
+	const onSearchChange = (searchValue: string) => {
+		setSearchText(searchValue);
+		if (searchValue.length < searchText.length) {
+			setCitySelected(false);
+		}
 	};
 	const onItemSelect = (item: CitiesData) => {
 		const city = cityToString(item);
 		setSearchText(city);
 		appActions.updateOnboarding({ city });
+		setCitySelected(true);
 	};
 
 	const handleCompleteOnboarding = async () => {
@@ -55,6 +60,10 @@ export const CityName = () => {
 		setListCitiesFiltered(filtered);
 	}, [searchText]);
 
+	useEffect(() => {
+		setSearchText(city || '');
+	}, [city]);
+
 	return (
 		<KeyboardAvoidingView
 			behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -62,7 +71,7 @@ export const CityName = () => {
 		>
 			<OnboardLayout
 				currentIndex={3}
-				disabled={!city}
+				disabled={!citySelected}
 				onPress={handleCompleteOnboarding}
 				title="Name your city"
 				subTitle="Mark yourself in your city to connect with pals"

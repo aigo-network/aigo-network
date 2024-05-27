@@ -8,7 +8,7 @@ interface AppState {
 	onboarding: Partial<Onboarding>;
 }
 
-export const initAppState = {
+export const initAppState: AppState = {
 	onboarding: {},
 };
 

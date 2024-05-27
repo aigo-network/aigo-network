@@ -62,8 +62,8 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>This requires your permission to track in order to personalize your experiences.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Gabarito-Black.ttf</string>

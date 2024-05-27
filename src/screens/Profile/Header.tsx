@@ -34,9 +34,9 @@ export const Header = () => {
 						{appUser?.GOPoints || 0} GO
 					</Text>
 				</View>
-				<TouchableOpacity style={styles.historyButton}>
+				{/* <TouchableOpacity style={styles.historyButton}>
 					<Text>View history</Text>
-				</TouchableOpacity>
+				</TouchableOpacity> */}
 			</View>
 		</View>
 	);

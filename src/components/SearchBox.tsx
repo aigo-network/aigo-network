@@ -1,4 +1,5 @@
-import { type FC, useEffect, useState } from 'react';
+import type { FC } from 'react';
+import { useEffect, useState } from 'react';
 import type { ViewStyle } from 'react-native';
 import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 
