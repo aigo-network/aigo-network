@@ -27,19 +27,19 @@ export const Footer = () => {
 	};
 
 	const handleLogOut = () => {
-		const logout = () => {
-			reset({
-				index: 1,
-				routes: [{ name: 'Splash' }],
-			});
-			logOut();
-		};
+		reset({
+			index: 1,
+			routes: [{ name: 'Splash' }],
+		});
+		logOut();
+	};
 
+	const handleDeleteAccount = () => {
 		const deleteUser = async () => {
 			await graphqlClient.deleteUser();
 		};
 		showDeleteUserConfirm({
-			logout,
+			logout: handleLogOut,
 			deleteUser,
 		});
 	};
@@ -66,10 +66,19 @@ export const Footer = () => {
 				</View>
 			</View>
 
-			<TouchableOpacity style={styles.logOutButton} onPress={handleLogOut}>
-				<LogOut width={24} />
-				<Text style={styles.logOutText}>Log out</Text>
-			</TouchableOpacity>
+			<View style={styles.logOutGroup}>
+				<TouchableOpacity style={styles.logOutButton} onPress={handleLogOut}>
+					<LogOut width={24} />
+					<Text style={styles.logOutText}>Log out</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+					style={styles.logOutButton}
+					onPress={handleDeleteAccount}
+				>
+					<LogOut width={24} />
+					<Text style={styles.logOutText}>Log out and delete account</Text>
+				</TouchableOpacity>
+			</View>
 			<Text style={styles.version}>Version {config.version}</Text>
 		</View>
 	);
@@ -104,11 +113,14 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		backgroundColor: '#DDDDDD',
 	},
+	logOutGroup: {
+		marginTop: 30,
+		padding: 16,
+		gap: 10,
+	},
 	logOutButton: {
 		flexDirection: 'row',
 		gap: 6,
-		marginTop: 30,
-		padding: 16,
 		alignSelf: 'center',
 	},
 	logOutText: {
