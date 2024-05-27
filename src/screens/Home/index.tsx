@@ -47,7 +47,7 @@ export const HomeScreen = () => {
 				<Social />
 				<Invite />
 				<DailyCheckIn />
-				<DailyMissions />
+				{/* <DailyMissions /> */}
 			</ScrollView>
 		</View>
 	);

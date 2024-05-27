@@ -34,7 +34,7 @@ export const DailyCheckIn = () => {
 	return (
 		<View style={[sharedStyles.container, styles.container]}>
 			<View style={styles.titleContainer}>
-				<Text style={sharedStyles.title}>DailyCheckin</Text>
+				<Text style={sharedStyles.title}>Daily Checkin</Text>
 				{loading ? (
 					<View style={styles.loadingContainer}>
 						<ActivityIndicator />
@@ -54,17 +54,19 @@ export const DailyCheckIn = () => {
 				)}
 			</View>
 			<ScrollView
+				horizontal
+				snapToInterval={checkInWidth + 4}
 				style={styles.checkInsContainer}
 				contentContainerStyle={styles.checkInsContentContainer}
 				showsHorizontalScrollIndicator={false}
 			>
-				<CheckIn width={10} status="checkedIn" dayNumber={1} />
-				<CheckIn width={10} status="missed" dayNumber={2} />
-				<CheckIn width={10} status="today" dayNumber={3} />
-				<CheckIn width={10} status="next" dayNumber={4} />
-				<CheckIn width={10} status="next" dayNumber={5} />
-				<CheckIn width={10} status="next" dayNumber={6} />
-				<CheckIn width={10} status="next" dayNumber={7} />
+				<CheckIn width={checkInWidth} status="checkedIn" dayNumber={1} />
+				<CheckIn width={checkInWidth} status="missed" dayNumber={2} />
+				<CheckIn width={checkInWidth} status="today" dayNumber={3} />
+				<CheckIn width={checkInWidth} status="next" dayNumber={4} />
+				<CheckIn width={checkInWidth} status="next" dayNumber={5} />
+				<CheckIn width={checkInWidth} status="next" dayNumber={6} />
+				<CheckIn width={checkInWidth} status="next" dayNumber={7} />
 			</ScrollView>
 		</View>
 	);
@@ -72,6 +74,7 @@ export const DailyCheckIn = () => {
 
 export default DailyCheckIn;
 
+const checkInWidth = 60;
 const styles = StyleSheet.create({
 	container: {
 		paddingTop: 10,
