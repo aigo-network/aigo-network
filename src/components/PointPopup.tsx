@@ -49,7 +49,6 @@ export default PointPopup;
 const styles = StyleSheet.create({
 	container: {
 		backgroundColor: '#fff',
-		width: 360,
 		gap: 20,
 		alignItems: 'center',
 		padding: 30,

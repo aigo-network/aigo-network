@@ -1,8 +1,8 @@
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import auth from '@react-native-firebase/auth';
 import { graphqlClient } from 'api/graphql';
-import { Align, showModal } from 'components/Modal';
 import PointPopup from 'components/PointPopup';
+import { Align, showModal } from 'empty-modal';
 import { appActions, appState } from 'state/app';
 import { config } from 'utils/config';
 import { defaultAvatar, defaultEmail } from 'utils/misc';
@@ -46,7 +46,8 @@ export const completeOnboarding = async () => {
 			{
 				id: 'onboarding-point-popup',
 				showBackdrop: true,
-				align: Align.CenterCenter,
+				xOffset: 16,
+				align: Align.FullCenter,
 			},
 		);
 	}, 650);
