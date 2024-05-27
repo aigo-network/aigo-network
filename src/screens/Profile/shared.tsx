@@ -41,7 +41,6 @@ export const showDeleteUserConfirm = ({
 				}}
 				onReject={() => {
 					cleanModal();
-					logout();
 				}}
 			/>
 		</Animated.View>,
