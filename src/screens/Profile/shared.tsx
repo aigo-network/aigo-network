@@ -30,16 +30,16 @@ export const showDeleteUserConfirm = ({
 	const { cleanModal } = showModal(
 		<Animated.View entering={FadeInDown}>
 			<ConfirmPopup
-				onPressClose={() => {
+				onClose={() => {
 					cleanModal();
 				}}
 				message="Do you want to delete your account?"
-				onConfirmPress={() => {
+				onConfirm={() => {
 					cleanModal();
 					deleteUser();
 					logout();
 				}}
-				onRejectPress={() => {
+				onReject={() => {
 					cleanModal();
 					logout();
 				}}
