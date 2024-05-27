@@ -7,12 +7,12 @@ import SafeContainer from 'components/SafeContainer';
 import { appState } from 'state/app';
 import type { SignInFunction } from 'utils/auth';
 import { signInWithApple, signInWithGoogle } from 'utils/auth';
-import { config } from 'utils/config';
 import { useSnapshot } from 'valtio';
 
 export const LoginScreen = () => {
 	const logInContent = useSnapshot(appState.content.screens.logIn);
 	const { navigate } = useNavigation();
+	const { version, buildNumber } = useSnapshot(appState);
 	const backgroundSrc = require('assets/img/login/background-logo.png');
 	const googleIconSrc = require('assets/img/login/google-logo.png');
 	const appleIconSrc = require('assets/img/login/apple-logo.png');
@@ -60,7 +60,7 @@ export const LoginScreen = () => {
 					</Button>
 				</View>
 				<Text style={styles.version}>
-					{logInContent.versionPrefix} {config.version}
+					{logInContent.versionPrefix} {version} ({buildNumber})
 				</Text>
 			</SafeContainer>
 		</View>

@@ -12,7 +12,6 @@ import Telegram from 'components/icon/Telegram';
 import Twitter from 'components/icon/Twitter';
 import { appState } from 'state/app';
 import { logOut } from 'utils/auth';
-import { config } from 'utils/config';
 import { useSnapshot } from 'valtio';
 
 import { showDeleteUserConfirm, showLogOutConfirm } from './shared';
@@ -21,6 +20,7 @@ export const Footer = () => {
 	const footerContent = useSnapshot(
 		appState.content.screens.profile.footerSection,
 	);
+	const { version, buildNumber } = useSnapshot(appState);
 	const { reset } = useNavigation();
 
 	const handlePressFollowTwitter = () => {
@@ -92,7 +92,7 @@ export const Footer = () => {
 				</TouchableOpacity>
 			</View>
 			<Text style={styles.version}>
-				{footerContent.versionPrefix} {config.version}
+				{footerContent.versionPrefix} {version} ({buildNumber})
 			</Text>
 		</View>
 	);

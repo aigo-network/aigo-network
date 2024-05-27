@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 interface Props {
 	item: {
@@ -21,6 +21,9 @@ export const DescriptionCard: FC<Props> = ({
 	const [isSelected, setIsSelected] = useState(
 		selectedList.includes(item.value),
 	);
+	const cardWidth = width ? { flexBasis: width } : {};
+	const labelStyle = { color: isSelected ? '#383535' : '#afb2ff' };
+
 	const handleCardPressed = () => {
 		const idx = selectedList.findIndex((value) => value === item.value);
 		if (idx === -1) {
@@ -33,23 +36,12 @@ export const DescriptionCard: FC<Props> = ({
 			setIsSelected(false);
 		}
 	};
-	const cardWidth = width ? { flexBasis: width } : {};
-	const cardStyle = isSelected
-		? {
-				backgroundColor: '#fffffe',
-				borderColor: '#e3e3e3',
-			}
-		: {
-				borderColor: '#afb2ff',
-			};
-	const labelStyle = { color: isSelected ? '#383535' : '#afb2ff' };
 
 	return (
-		<TouchableOpacity
-			style={[styles.container, cardWidth, cardStyle]}
-			onPress={handleCardPressed}
-		>
-			<Text style={[styles.label, labelStyle]}>{item.label}</Text>
+		<TouchableOpacity style={styles.container} onPress={handleCardPressed}>
+			<View style={[styles.card, isSelected && styles.selectedCard, cardWidth]}>
+				<Text style={[styles.label, labelStyle]}>{item.label}</Text>
+			</View>
 		</TouchableOpacity>
 	);
 };
@@ -58,17 +50,25 @@ export default DescriptionCard;
 
 const styles = StyleSheet.create({
 	container: {
+		width: '50%',
+	},
+	card: {
+		margin: 8,
 		paddingHorizontal: 20,
 		borderWidth: 1,
 		borderRadius: 16,
 		justifyContent: 'center',
 		height: 72,
-		flexGrow: 1,
+		borderColor: '#afb2ff',
 	},
 	label: {
 		fontFamily: 'Gabarito',
 		fontSize: 16,
 		lineHeight: 25,
 		textAlign: 'center',
+	},
+	selectedCard: {
+		backgroundColor: '#fffffe',
+		borderColor: '#e3e3e3',
 	},
 });

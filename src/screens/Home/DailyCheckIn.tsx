@@ -77,7 +77,7 @@ export const DailyCheckIn = () => {
 
 export default DailyCheckIn;
 
-const checkInWidth = 60;
+const checkInWidth = 66;
 const styles = StyleSheet.create({
 	container: {
 		paddingTop: 10,
