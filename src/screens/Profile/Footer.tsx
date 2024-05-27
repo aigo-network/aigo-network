@@ -6,11 +6,14 @@ import {
 	View,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { graphqlClient } from 'api/graphql';
 import LogOut from 'components/icon/LogOut';
 import Telegram from 'components/icon/Telegram';
 import Twitter from 'components/icon/Twitter';
 import { logOut } from 'utils/auth';
 import { config } from 'utils/config';
+
+import { showDeleteUserConfirm } from './shared';
 
 export const Footer = () => {
 	const { reset } = useNavigation();
@@ -29,6 +32,16 @@ export const Footer = () => {
 			routes: [{ name: 'Splash' }],
 		});
 		logOut();
+	};
+
+	const handleDeleteAccount = () => {
+		const deleteUser = async () => {
+			await graphqlClient.deleteUser();
+		};
+		showDeleteUserConfirm({
+			logout: handleLogOut,
+			deleteUser,
+		});
 	};
 
 	return (
@@ -53,12 +66,19 @@ export const Footer = () => {
 				</View>
 			</View>
 
-			<TouchableOpacity style={styles.logOutButton}>
-				<LogOut width={24} />
-				<Text style={styles.logOutText} onPress={handleLogOut}>
-					Log out
-				</Text>
-			</TouchableOpacity>
+			<View style={styles.logOutGroup}>
+				<TouchableOpacity style={styles.logOutButton} onPress={handleLogOut}>
+					<LogOut width={24} />
+					<Text style={styles.logOutText}>Log out</Text>
+				</TouchableOpacity>
+				<TouchableOpacity
+					style={styles.logOutButton}
+					onPress={handleDeleteAccount}
+				>
+					<LogOut width={24} />
+					<Text style={styles.logOutText}>Log out and delete account</Text>
+				</TouchableOpacity>
+			</View>
 			<Text style={styles.version}>Version {config.version}</Text>
 		</View>
 	);
@@ -93,11 +113,14 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		backgroundColor: '#DDDDDD',
 	},
+	logOutGroup: {
+		marginTop: 30,
+		padding: 16,
+		gap: 10,
+	},
 	logOutButton: {
 		flexDirection: 'row',
 		gap: 6,
-		marginTop: 30,
-		padding: 16,
 		alignSelf: 'center',
 	},
 	logOutText: {

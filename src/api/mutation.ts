@@ -53,3 +53,26 @@ export const inputInvitationCodeMutation = gql`
 		}
 	}
 `;
+
+export const deleteUserMutation = gql`
+	mutation deleteUser {
+		deleteUser {
+			id
+			name
+			email
+			imageUrl
+			city
+			descriptions
+			GOPoints
+			dailyMissions {
+				checkIn {
+					date
+					completed
+				}
+			}
+			invitationCode
+			createdAt
+			updatedAt
+		}
+	}
+`;

@@ -1,4 +1,5 @@
 import Animated, { FadeInDown } from 'react-native-reanimated';
+import ConfirmPopup from 'components/ConfirmPopup';
 import { Align, showModal } from 'components/Modal';
 import PointPopup from 'components/PointPopup';
 import { config } from 'utils/config';
@@ -13,6 +14,39 @@ export const showReferralPoint = () => {
 		</Animated.View>,
 		{
 			id: 'referral-point-popup',
+			showBackdrop: true,
+			align: Align.CenterCenter,
+		},
+	);
+};
+
+export const showDeleteUserConfirm = ({
+	deleteUser,
+	logout,
+}: {
+	deleteUser: () => void;
+	logout: () => void;
+}) => {
+	const { cleanModal } = showModal(
+		<Animated.View entering={FadeInDown}>
+			<ConfirmPopup
+				onClose={() => {
+					cleanModal();
+				}}
+				message="Do you want to delete your account?"
+				onConfirm={() => {
+					cleanModal();
+					deleteUser();
+					logout();
+				}}
+				onReject={() => {
+					cleanModal();
+					logout();
+				}}
+			/>
+		</Animated.View>,
+		{
+			id: 'confirm-delete-user',
 			showBackdrop: true,
 			align: Align.CenterCenter,
 		},
