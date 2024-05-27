@@ -1,5 +1,4 @@
 import type { FC } from 'react';
-import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import type { StackScreenProps } from '@react-navigation/stack';
 import DescriptionCard from 'components/DescriptionCard';
@@ -13,7 +12,6 @@ import OnboardLayout from './OnboardLayout';
 export const UserDescription: FC<
 	StackScreenProps<RootStackParamList, 'OnboardDescription'>
 > = ({ navigation }) => {
-	const [itemWidth, setItemWidth] = useState(0);
 	const {
 		onboarding: { descriptions },
 	} = useSnapshot(appState);
@@ -34,13 +32,7 @@ export const UserDescription: FC<
 			title="What's best describe you"
 			subTitle="You can choose multiple options"
 		>
-			<View
-				style={styles.container}
-				onLayout={({ nativeEvent }) => {
-					const availableSpace = nativeEvent.layout.width - (25 * 2 + 15);
-					setItemWidth(Math.floor(availableSpace / 2));
-				}}
-			>
+			<View style={styles.container}>
 				{userDescriptions?.map((item, index) => {
 					return (
 						<DescriptionCard
@@ -48,7 +40,6 @@ export const UserDescription: FC<
 							item={item}
 							selectedList={descriptions || []}
 							onPress={onItemPress}
-							width={itemWidth}
 						/>
 					);
 				})}
@@ -62,11 +53,11 @@ export default UserDescription;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		zIndex: 9,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignContent: 'center',
 		flexWrap: 'wrap',
-		gap: 15,
 		paddingHorizontal: 25,
 	},
 });

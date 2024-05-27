@@ -16,8 +16,8 @@ export const CheckIn: FC<Props> = ({ width, status, dayNumber }) => {
 		<View style={[styles.container, { width }]}>
 			<View
 				style={[
-					{ backgroundColor: colorMap[status].bg },
 					styles.boxContainer,
+					{ backgroundColor: colorMap[status].bg },
 					status.includes('today') && styles.highlight,
 				]}
 			>
@@ -52,7 +52,6 @@ export default CheckIn;
 
 const styles = StyleSheet.create({
 	container: {
-		alignItems: 'center',
 		gap: 4,
 	},
 	boxContainer: {
