@@ -7,15 +7,15 @@ import { Button } from './Button';
 interface Props {
 	message: string;
 	onPressClose: () => void;
-	onYesPress?: () => void;
-	onNoPress?: () => void;
+	onConfirmPress?: () => void;
+	onRejectPress?: () => void;
 }
 
 export const ConfirmPopup: FC<Props> = ({
 	message,
 	onPressClose,
-	onYesPress,
-	onNoPress,
+	onConfirmPress,
+	onRejectPress,
 }) => {
 	return (
 		<View style={styles.container}>
@@ -24,15 +24,15 @@ export const ConfirmPopup: FC<Props> = ({
 				hitSlop={14}
 				onPress={onPressClose}
 			>
-				<X color={'#9F9F9F'} width={14} />
+				<X color="#9F9F9F" width={14} />
 			</TouchableOpacity>
 			<Text style={styles.message}>{message}</Text>
 
 			<View style={styles.buttonGr}>
-				<Button style={styles.btn} onPress={onYesPress}>
+				<Button style={styles.btn} onPress={onConfirmPress}>
 					<Text style={styles.btnText}>Yes</Text>
 				</Button>
-				<Button style={styles.btn} onPress={onNoPress}>
+				<Button style={styles.btn} onPress={onRejectPress}>
 					<Text style={styles.btnText}>No</Text>
 				</Button>
 			</View>

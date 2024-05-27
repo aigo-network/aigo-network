@@ -34,12 +34,12 @@ export const showDeleteUserConfirm = ({
 					cleanModal();
 				}}
 				message="Do you want to delete your account?"
-				onYesPress={() => {
+				onConfirmPress={() => {
 					cleanModal();
 					deleteUser();
 					logout();
 				}}
-				onNoPress={() => {
+				onRejectPress={() => {
 					cleanModal();
 					logout();
 				}}
