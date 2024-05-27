@@ -1,5 +1,6 @@
 import { type FC, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import Share from 'react-native-share';
 import Clipboard from '@react-native-clipboard/clipboard';
 import { config } from 'utils/config';
 
@@ -15,7 +16,14 @@ type Props = {
 
 export const InviteCode: FC<Props> = ({ code, onPressClose }) => {
 	const [copied, setCopied] = useState(false);
-	const handlePressCopy = () => {
+
+	const handleSharePress = () => {
+		Share.open({
+			message: `Hey! Let's download AiGO App at https://app.aigo.network/download?inviteCode=${code}\nUse my invitation code for 100 GO points: ${code}`,
+		});
+	};
+
+	const handleCopyPress = () => {
 		Clipboard.setString(code);
 		setCopied(true);
 	};
@@ -52,7 +60,7 @@ export const InviteCode: FC<Props> = ({ code, onPressClose }) => {
 						<TouchableOpacity
 							style={styles.copyButton}
 							hitSlop={14}
-							onPress={handlePressCopy}
+							onPress={handleCopyPress}
 						>
 							<Copy color={'#343434'} width={13} />
 						</TouchableOpacity>
@@ -60,7 +68,7 @@ export const InviteCode: FC<Props> = ({ code, onPressClose }) => {
 				</View>
 			</View>
 
-			<Button style={styles.shareButton} onPress={handlePressCopy}>
+			<Button style={styles.shareButton} onPress={handleSharePress}>
 				<Text style={styles.shareButtonText}>Share with friends</Text>
 			</Button>
 		</View>

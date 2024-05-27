@@ -11,9 +11,9 @@ type Props = {
 	dayNumber: number;
 };
 
-export const CheckIn: FC<Props> = ({ status, dayNumber }) => {
+export const CheckIn: FC<Props> = ({ width, status, dayNumber }) => {
 	return (
-		<View style={styles.container}>
+		<View style={[styles.container, { width }]}>
 			<View
 				style={[
 					{ backgroundColor: colorMap[status].bg },
@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
 		borderRadius: 17,
 		justifyContent: 'center',
 		alignItems: 'center',
+		alignSelf: 'center',
 	},
 	highlight: {
 		borderWidth: 0.5,

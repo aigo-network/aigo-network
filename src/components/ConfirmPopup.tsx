@@ -32,8 +32,8 @@ export const ConfirmPopup: FC<Props> = ({
 				<Button style={styles.btn} onPress={onConfirm}>
 					<Text style={styles.btnText}>Yes</Text>
 				</Button>
-				<Button style={styles.btn} onPress={onReject}>
-					<Text style={styles.btnText}>No</Text>
+				<Button style={[styles.btn, styles.defaultBtn]} onPress={onReject}>
+					<Text style={[styles.btnText, styles.defaultBtnText]}>No</Text>
 				</Button>
 			</View>
 		</View>
@@ -73,14 +73,20 @@ const styles = StyleSheet.create({
 		gap: 15,
 	},
 	btn: {
-		backgroundColor: '#a0fa82',
-		paddingVertical: 5,
+		backgroundColor: '#EFEFEF',
+		paddingVertical: 12,
 		borderRadius: 50,
 		flex: 1,
+	},
+	defaultBtn: {
+		backgroundColor: '#a0fa82',
 	},
 	btnText: {
 		fontWeight: '500',
 		fontSize: 19,
+		color: '#4D4D4D',
+	},
+	defaultBtnText: {
 		color: '#6740FF',
 	},
 });
