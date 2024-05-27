@@ -12,12 +12,14 @@ import Telegram from 'components/icon/Telegram';
 import Twitter from 'components/icon/Twitter';
 import { appState } from 'state/app';
 import { logOut } from 'utils/auth';
-import { config } from 'utils/config';
 import { useSnapshot } from 'valtio';
 
 import { showDeleteUserConfirm, showLogOutConfirm } from './shared';
 
 export const Footer = () => {
+	const footerContent = useSnapshot(
+		appState.content.screens.profile.footerSection,
+	);
 	const { version, buildNumber } = useSnapshot(appState);
 	const { reset } = useNavigation();
 
@@ -56,7 +58,7 @@ export const Footer = () => {
 	return (
 		<View style={styles.container}>
 			<View style={styles.aboutContainer}>
-				<Text style={styles.title}>About AiGO Network</Text>
+				<Text style={styles.title}>{footerContent.title}</Text>
 				<View style={styles.socialContainer}>
 					<TouchableOpacity
 						style={styles.socialButton}
@@ -78,17 +80,19 @@ export const Footer = () => {
 			<View style={styles.logOutGroup}>
 				<TouchableOpacity style={styles.logOutButton} onPress={handleLogOut}>
 					<LogOut width={24} />
-					<Text style={styles.logOutText}>Log out</Text>
+					<Text style={styles.logOutText}>{footerContent.logOutButton}</Text>
 				</TouchableOpacity>
 				<TouchableOpacity
 					style={styles.logOutButton}
 					onPress={handleDeleteAccount}
 				>
-					<Text style={styles.deleteAccountText}>Delete account</Text>
+					<Text style={styles.deleteAccountText}>
+						{footerContent.deleteAccountButton}
+					</Text>
 				</TouchableOpacity>
 			</View>
 			<Text style={styles.version}>
-				Version {version} ({buildNumber})
+				{footerContent.versionPrefix} {version} ({buildNumber})
 			</Text>
 		</View>
 	);

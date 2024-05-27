@@ -2,7 +2,9 @@ import { type FC, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Share from 'react-native-share';
 import Clipboard from '@react-native-clipboard/clipboard';
+import { appState } from 'state/app';
 import { config } from 'utils/config';
+import { useSnapshot } from 'valtio';
 
 import Copy from './icon/Copy';
 import Tick from './icon/Tick';
@@ -15,12 +17,20 @@ type Props = {
 };
 
 export const InviteCode: FC<Props> = ({ code, onPressClose }) => {
+	const {
+		title,
+		description,
+		messagePrefix,
+		messageSuffix,
+		referral,
+		codeTitle,
+		shareButton,
+	} = useSnapshot(appState.content.modal.invite);
 	const [copied, setCopied] = useState(false);
 
 	const handleSharePress = () => {
 		Share.open({
-			message: `Hey! Let's download AiGO App at https://app.aigo.network/download?inviteCode=${code}
-Use my invitation code for 100 GO points: ${code}`,
+			message: `${messagePrefix} https://app.aigo.network/download?inviteCode=${code} ${messageSuffix}: ${code}`,
 		});
 	};
 
@@ -39,19 +49,16 @@ Use my invitation code for 100 GO points: ${code}`,
 				<X color={'#9F9F9F'} width={14} />
 			</TouchableOpacity>
 			<View style={styles.titleContainer}>
-				<Text style={styles.title}>Invite your friends !</Text>
+				<Text style={styles.title}>{title}</Text>
 				<Text style={styles.description}>
-					{'Click copy or Share button to \n'}
-					<Text style={styles.description}>
-						invite friends and receive{' '}
-						<Text style={styles.pointText}>
-							{config.activity.InviteFriend.points} GO/referral
-						</Text>
+					{description}{' '}
+					<Text style={styles.pointText}>
+						{config.activity.InviteFriend.points} GO/{referral}
 					</Text>
 				</Text>
 			</View>
 			<View style={styles.codeContainer}>
-				<Text style={styles.codeTitle}>Invitation Code</Text>
+				<Text style={styles.codeTitle}>{codeTitle}</Text>
 				<View style={styles.copyCodeContainer}>
 					<Text style={styles.codeText}>{code}</Text>
 
@@ -70,7 +77,7 @@ Use my invitation code for 100 GO points: ${code}`,
 			</View>
 
 			<Button style={styles.shareButton} onPress={handleSharePress}>
-				<Text style={styles.shareButtonText}>Share with friends</Text>
+				<Text style={styles.shareButtonText}>{shareButton}</Text>
 			</Button>
 		</View>
 	);

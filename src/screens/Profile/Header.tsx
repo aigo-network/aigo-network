@@ -1,9 +1,10 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { appState } from 'state/app';
 import { defaultAvatar } from 'utils/misc';
 import { useSnapshot } from 'valtio';
 
 export const Header = () => {
+	const profileContent = useSnapshot(appState.content.screens.profile);
 	const { appUser } = useSnapshot(appState);
 
 	return (
@@ -15,7 +16,9 @@ export const Header = () => {
 						source={{ uri: appUser?.imageUrl || defaultAvatar }}
 					/>
 				</View>
-				<Text style={styles.nameText}>{appUser?.name || 'Anonymous'}</Text>
+				<Text style={styles.nameText}>
+					{appUser?.name || profileContent.unknownUsername}
+				</Text>
 			</View>
 			<View style={styles.balanceContainer}>
 				<View style={styles.balanceBgContainer}>
@@ -29,13 +32,15 @@ export const Header = () => {
 					/>
 				</View>
 				<View style={styles.balanceTextContainer}>
-					<Text style={styles.balanceTitleText}>Total balance</Text>
+					<Text style={styles.balanceTitleText}>
+						{profileContent.totalBalanceTitle}
+					</Text>
 					<Text style={styles.balanceAmountText}>
 						{appUser?.GOPoints || 0} GO
 					</Text>
 				</View>
 				{/* <TouchableOpacity style={styles.historyButton}>
-					<Text>View history</Text>
+					<Text>{profileContent.viewHistory}</Text>
 				</TouchableOpacity> */}
 			</View>
 		</View>

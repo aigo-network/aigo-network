@@ -1,4 +1,6 @@
 import type { DailyCheckIn, User } from 'api/graphql';
+import type { LangKey } from 'utils/translations';
+import { translations } from 'utils/translations';
 
 import { appState } from './shared';
 import type { Onboarding } from './types';
@@ -20,6 +22,9 @@ export const appActions = {
 	cleanState: () => {
 		appState.appUser = undefined;
 		appState.onboarding = {};
+	},
+	updateContentLanguage: (key: LangKey) => {
+		appState.content = translations[key];
 	},
 };
 

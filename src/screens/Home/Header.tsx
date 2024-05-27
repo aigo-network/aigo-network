@@ -7,6 +7,7 @@ import { defaultAvatar } from 'utils/misc';
 import { useSnapshot } from 'valtio';
 
 export const Header = () => {
+	const homeContent = useSnapshot(appState.content.screens.home);
 	const { navigate } = useNavigation();
 	const insets = useSafeAreaInsets();
 	const { appUser } = useSnapshot(appState);
@@ -15,7 +16,9 @@ export const Header = () => {
 		<View style={[styles.container, { paddingTop: insets.top + 16 }]}>
 			<View style={styles.infoContainer}>
 				<View style={styles.nameContainer}>
-					<Text style={styles.name}>{`Hey ${appUser?.name}👋`}</Text>
+					<Text
+						style={styles.name}
+					>{`${homeContent.headerSection.welcomePrefix} ${appUser?.name}👋`}</Text>
 					<View style={styles.cityContainer}>
 						<PlaceIcon width={12} />
 						<Text style={styles.city}>{appUser?.city}</Text>
@@ -41,7 +44,9 @@ export const Header = () => {
 						source={require('assets/img/aigo-bg-icon.png')}
 					/>
 				</View>
-				<Text style={styles.balanceText}>Balance</Text>
+				<Text style={styles.balanceText}>
+					{homeContent.headerSection.balanceTitle}
+				</Text>
 				<View>
 					<Text
 						style={styles.balanceAmount}

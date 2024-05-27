@@ -8,11 +8,16 @@ import {
 } from 'react-native';
 import { graphqlClient } from 'api/graphql';
 import { Button } from 'components/Button';
-import { appActions } from 'state/app';
+import { appActions, appState } from 'state/app';
+import { config } from 'utils/config';
+import { useSnapshot } from 'valtio';
 
 import { showReferralPoint } from './shared';
 
 export const Referral = () => {
+	const referralContent = useSnapshot(
+		appState.content.screens.profile.referralSection,
+	);
 	const [code, setCode] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState('');
@@ -26,7 +31,7 @@ export const Referral = () => {
 			if (user) appActions.setAppUser(user);
 			showReferralPoint();
 		} catch (error) {
-			setError('Code is not valid. Please try again');
+			setError(referralContent.invalidCodeError);
 		}
 		setLoading(false);
 	};
@@ -38,10 +43,13 @@ export const Referral = () => {
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.title}>Referral code</Text>
+			<Text style={styles.title}>{referralContent.title}</Text>
 			<Text style={styles.descriptionText}>
-				Receive extra <Text style={styles.pointText}>50 GO </Text>
-				when entering your friend’s referral code
+				{referralContent.descriptionPrefix}{' '}
+				<Text style={styles.pointText}>
+					{config.activity.InviteFriend.points} GO{' '}
+				</Text>
+				{referralContent.descriptionSuffix}
 			</Text>
 
 			<View style={styles.inputContainer}>
@@ -49,7 +57,7 @@ export const Referral = () => {
 					style={[styles.codeInput, error !== '' && styles.errorCodeInput]}
 					value={code}
 					onChangeText={handleChangeText}
-					placeholder="enter referral code"
+					placeholder={referralContent.enterCodePlaceholder}
 					placeholderTextColor={'#C1C1C1'}
 					textAlign="center"
 				/>
@@ -71,7 +79,7 @@ export const Referral = () => {
 					<Text
 						style={[styles.verifyButtonText, !code && styles.disableButtonText]}
 					>
-						Verify now
+						{referralContent.verifyButton}
 					</Text>
 				</Button>
 			)}

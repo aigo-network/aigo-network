@@ -2,6 +2,7 @@ import Animated, { FadeInDown } from 'react-native-reanimated';
 import ConfirmPopup from 'components/ConfirmPopup';
 import PointPopup from 'components/PointPopup';
 import { Align, showModal } from 'empty-modal';
+import { appState } from 'state/app';
 import { config } from 'utils/config';
 
 export const showReferralPoint = () => {
@@ -22,13 +23,14 @@ export const showReferralPoint = () => {
 };
 
 export const showLogOutConfirm = ({ logout }: { logout: () => void }) => {
+	const message = appState.content.modal.confirmLogOutMessage;
 	const { cleanModal } = showModal(
 		<Animated.View entering={FadeInDown}>
 			<ConfirmPopup
 				onClose={() => {
 					cleanModal();
 				}}
-				message="Are you sure to logout?"
+				message={message}
 				onConfirm={() => {
 					logout();
 					cleanModal();
@@ -54,13 +56,14 @@ export const showDeleteUserConfirm = ({
 	deleteUser: () => void;
 	logout: () => void;
 }) => {
+	const message = appState.content.modal.confirmDeleteAccountMessage;
 	const { cleanModal } = showModal(
 		<Animated.View entering={FadeInDown}>
 			<ConfirmPopup
 				onClose={() => {
 					cleanModal();
 				}}
-				message="Do you want to delete your account?"
+				message={message}
 				onConfirm={() => {
 					cleanModal();
 					deleteUser();

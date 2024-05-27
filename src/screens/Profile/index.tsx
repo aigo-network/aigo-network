@@ -9,6 +9,8 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import LeftArrowIcon from 'components/icon/LeftArrowIcon';
 import SafeContainer from 'components/SafeContainer';
+import { appState } from 'state/app';
+import { useSnapshot } from 'valtio';
 
 import Footer from './Footer';
 import Header from './Header';
@@ -16,6 +18,7 @@ import Info from './Info';
 import Referral from './Referral';
 
 export const ProfileScreen = () => {
+	const profileContent = useSnapshot(appState.content.screens.profile);
 	const { goBack } = useNavigation();
 
 	return (
@@ -41,7 +44,7 @@ export const ProfileScreen = () => {
 					>
 						<LeftArrowIcon color={'#000'} width={16} />
 					</TouchableOpacity>
-					<Text style={styles.title}>Profile</Text>
+					<Text style={styles.title}>{profileContent.title}</Text>
 				</View>
 
 				<ScrollView

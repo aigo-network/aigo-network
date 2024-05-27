@@ -8,7 +8,6 @@ import { graphqlClient } from 'api/graphql';
 import { appActions } from 'state/app';
 
 import DailyCheckIn from './DailyCheckIn';
-import DailyMissions from './DailyMissions';
 import Header from './Header';
 import Invite from './Invite';
 import Social from './Social';

@@ -15,6 +15,7 @@ import { useSnapshot } from 'valtio';
 import { sharedStyles, showCheckInPoint } from './shared';
 
 export const DailyCheckIn = () => {
+	const homeContent = useSnapshot(appState.content.screens.home);
 	const { appUser } = useSnapshot(appState);
 	const [loading, setLoading] = useState(false);
 	const todayCheckedIn = !!appUser?.dailyMissions?.checkIn?.completed;
@@ -34,7 +35,9 @@ export const DailyCheckIn = () => {
 	return (
 		<View style={[sharedStyles.container, styles.container]}>
 			<View style={styles.titleContainer}>
-				<Text style={sharedStyles.title}>Daily Checkin</Text>
+				<Text style={sharedStyles.title}>
+					{homeContent.dailyCheckInSection.title}
+				</Text>
 				{loading ? (
 					<View style={styles.loadingContainer}>
 						<ActivityIndicator />
@@ -49,7 +52,7 @@ export const DailyCheckIn = () => {
 						disabled={todayCheckedIn}
 						hitSlop={14}
 					>
-						<Text>Check in</Text>
+						<Text>{homeContent.dailyCheckInSection.checkInButton}</Text>
 					</TouchableOpacity>
 				)}
 			</View>

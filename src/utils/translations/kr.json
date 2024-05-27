@@ -1,0 +1,117 @@
+{
+  "modal": {
+    "confirmLogOutMessage": "Are you sure to logout?",
+    "confirmDeleteAccountMessage": "Do you want to delete your account?",
+		"invite": {
+			"title": "Invite your friends !",
+      "description": "Click copy or Share button to \n invite friends and receive",
+			"referral": "referral",
+			"messagePrefix": "Hey! Let's download AiGO App at",
+			"messageSuffix": "Use my invitation code for 100 GO points",
+			"codeTitle": "Invitation code",
+			"shareButton": "Share with friends"
+		},
+    "earnPoints": {
+      "messagePrefix": "You've Earned",
+      "completedOnboardingMessage": ""
+    }
+  },
+  "screens": {
+    "splash": {
+      "versionPrefix": "Version"
+    },
+    "logIn": {
+      "welcome": "Welcome to\nAiGO",
+      "slogan": "Turns your everyday\nActions into rewards",
+      "googleButton": "Log in with Google",
+      "appleButton": "Log in with Apple",
+      "versionPrefix": "Version"
+    },
+    "onboard": {
+      "name": {
+        "title": "Name your profile",
+        "description": "Choose a nickname for your account",
+        "continueButton": "Looks good :)"
+      },
+      "city": {
+        "title": "Name your city",
+        "description": "Mark yourself in your city to connect with pals",
+        "continueButton": "Continue",
+        "descriptions": {
+					"NyamNyamDriver": "Nyam Nyam Driver",
+					"CityExplorer": "City Explorer",
+					"FitnessEnthusiast": "Fitness Enthusiast",
+					"Commuter": "Commuter",
+					"Traveler": "Traveler",
+					"CasualUser": "Casual user"
+        }
+      },
+      "descriptions": {
+        "title": "What's best describe you",
+        "description": "You can choose multiple options",
+        "continueButton": "Continue"
+      },
+      "updateProfileError": "Can not update profile, something went wrong"
+    },
+    "home": {
+      "headerSection": {
+        "welcomePrefix": "Hey",
+        "balanceTitle": "Balance"
+      },
+      "socialSection": {
+        "title": "Stay updated with us",
+        "followTwitterButton": "Follow Twitter",
+        "joinTelegramButton": "Join Telegram"
+      },
+      "inviteSection": {
+        "title": "Invite your friends",
+        "referral": "referral",
+        "referralCountSuffix": "Referrals",
+        "descriptionPrefix": "Receive",
+        "descriptionSuffix": "& earn 10% from their earning",
+        "inviteButton": "Invite"
+      },
+      "dailyCheckInSection": {
+        "title": "Daily Check-in",
+        "checkInButton": "Check-in"
+      },
+      "dailyMissionSection": {
+        "title": "Daily Missions"
+      }
+    },
+    "profile": {
+      "title": "Profile",
+      "unknownUsername": "Anonymous",
+      "totalBalanceTitle": "Total balance",
+      "viewHistoryButton": "View history",
+      "infoTitle": {
+        "account": "Account Information",
+        "name": "Name",
+        "email": "Email",
+        "city": "City",
+        "descriptions": "Descriptions"
+      },
+      "defaultInfo": {
+        "name": "Anonymous",
+        "email": "anonymous@aigo.network",
+        "city": "AiGO city",
+        "description": "AiGO lover"
+      },
+      "referralSection": {
+        "title": "Referral code",
+        "descriptionPrefix": "Receive extra",
+        "descriptionSuffix": "when entering your friend’s referral code",
+        "enterCodePlaceholder": "enter referral code",
+        "invalidCodeError": "Code is not valid. Please try again",
+        "verifyButton": "Verify now"
+      },
+      "footerSection": {
+        "title": "About AiGO Network",
+        "logOutButton": "Log out",
+        "deleteAccountButton": "Delete account",
+        "versionPrefix": "Version"
+      }
+    }
+  }
+}
+

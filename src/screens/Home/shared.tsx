@@ -58,7 +58,7 @@ export const showCheckInPoint = () => {
 			id: 'checkin-point-popup',
 			showBackdrop: true,
 			xOffset: 16,
-			align: Align.CenterCenter,
+			align: Align.FullCenter,
 		},
 	);
 };

@@ -10,14 +10,18 @@ import {
 } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import type { StackScreenProps } from '@react-navigation/stack';
-import { appActions } from 'state/app';
+import { appActions, appState } from 'state/app';
 import type { RootStackParamList } from 'utils/navigation';
+import { useSnapshot } from 'valtio';
 
 import OnboardLayout from './OnboardLayout';
 
 export const ProfileName: FC<
 	StackScreenProps<RootStackParamList, 'OnboardName'>
 > = ({ navigation }) => {
+	const { title, description, continueButton } = useSnapshot(
+		appState.content.screens.onboard.name,
+	);
 	const [name, setName] = useState(auth().currentUser?.displayName || '');
 
 	const handleContinue = () => {
@@ -34,9 +38,9 @@ export const ProfileName: FC<
 				currentIndex={1}
 				disabled={!name}
 				onPress={handleContinue}
-				mainBtnText="Looks good :)"
-				title="Name your profile"
-				subTitle="Choose a nickname for your account"
+				mainBtnText={continueButton}
+				title={title}
+				subTitle={description}
 			>
 				<View style={styles.container}>
 					<TextInput
