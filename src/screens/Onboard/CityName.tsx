@@ -14,7 +14,7 @@ import { completeOnboarding } from './shared';
 const citiesDataList: CitiesData[] = citiesList;
 
 export const CityName = () => {
-	const { navigate } = useNavigation();
+	const { reset } = useNavigation();
 	const {
 		onboarding: { city },
 	} = useSnapshot(appState);
@@ -39,7 +39,7 @@ export const CityName = () => {
 	const handleCompleteOnboarding = async () => {
 		try {
 			await completeOnboarding();
-			navigate('Home');
+			reset({ routes: [{ name: 'Home' }] });
 		} catch (error) {
 			console.log('Failed to complete onboarding: ', error);
 		}
