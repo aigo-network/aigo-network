@@ -28,7 +28,7 @@ export const showLogOutConfirm = ({ logout }: { logout: () => void }) => {
 		<Animated.View entering={FadeInDown}>
 			<ConfirmPopup
 				yesText={yes}
-				notText={no}
+				noText={no}
 				message={confirmLogOutMessage}
 				onClose={() => {
 					cleanModal();
@@ -64,7 +64,7 @@ export const showDeleteUserConfirm = ({
 			<ConfirmPopup
 				message={confirmDeleteAccountMessage}
 				yesText={yes}
-				notText={no}
+				noText={no}
 				onClose={() => {
 					cleanModal();
 				}}
