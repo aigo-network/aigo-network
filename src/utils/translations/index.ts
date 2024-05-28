@@ -1,5 +1,5 @@
 import en from './en.json';
-import kr from './en.json';
+import kr from './kr.json';
 
 export const translations: Record<LangKey, Content> = { en, kr };
 
