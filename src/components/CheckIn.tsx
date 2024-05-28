@@ -43,7 +43,9 @@ export const CheckIn: FC<Props> = ({ width, status, dayNumber }) => {
 					/>
 				)}
 			</View>
-			<Text style={{ color: colorMap[status].dayText }}>Day {dayNumber}</Text>
+			<Text style={{ textAlign: 'center', color: colorMap[status].dayText }}>
+				Day {dayNumber}
+			</Text>
 		</View>
 	);
 };

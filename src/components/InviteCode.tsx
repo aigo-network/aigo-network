@@ -28,10 +28,14 @@ export const InviteCode: FC<Props> = ({ code, onPressClose }) => {
 	} = useSnapshot(appState.content.modal.invite);
 	const [copied, setCopied] = useState(false);
 
-	const handleSharePress = () => {
-		Share.open({
-			message: `${messagePrefix} https://app.aigo.network/download?inviteCode=${code} ${messageSuffix}: ${code}`,
-		});
+	const handleSharePress = async () => {
+		try {
+			await Share.open({
+				message: `${messagePrefix} https://app.aigo.network/download?inviteCode=${code} ${messageSuffix}: ${code}`,
+			});
+		} catch (err) {
+			console.log('Share exception', err);
+		}
 	};
 
 	const handleCopyPress = () => {

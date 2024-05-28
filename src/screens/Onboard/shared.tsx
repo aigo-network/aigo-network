@@ -7,13 +7,15 @@ import { appActions, appState } from 'state/app';
 import { config } from 'utils/config';
 import { defaultAvatar, defaultEmail } from 'utils/misc';
 
-export const completeOnboarding = async () => {
-	const onboardingProfile = appState.onboarding;
+export const completeOnboarding = async (cityFallback?: string) => {
+	const { city, name, descriptions } = appState.onboarding;
 	const email = auth().currentUser?.email || defaultEmail;
 	const imageUrl = auth().currentUser?.photoURL || defaultAvatar;
 	const { updateProfile: updatedUser } = await graphqlClient.updateProfile({
 		profile: {
-			...onboardingProfile,
+			name,
+			descriptions,
+			city: city || cityFallback,
 			imageUrl,
 			email,
 		},

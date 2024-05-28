@@ -64,7 +64,7 @@ export const SearchResult: FC<Props> = ({
 				<Text style={styles.emptyTitle}>No result</Text>
 				<Text
 					style={styles.emptyText}
-				>{`Can't find what you're looking for.\nTry search for different city`}</Text>
+				>{`Can't find what you're looking for.\nTry search for different city or continue with the location you entered.`}</Text>
 			</View>
 		);
 	}

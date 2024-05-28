@@ -22,26 +22,23 @@ export const CityName = () => {
 		onboarding: { city },
 	} = useSnapshot(appState);
 	const [searchText, setSearchText] = useState('');
-	const [citySelected, setCitySelected] = useState(false);
 	const [listCitiesFiltered, setListCitiesFiltered] = useState<CitiesData[]>(
 		[],
 	);
+
 	const onSearchChange = (searchValue: string) => {
 		setSearchText(searchValue);
-		if (searchValue.length < searchText.length) {
-			setCitySelected(false);
-		}
 	};
+
 	const onItemSelect = (item: CitiesData) => {
 		const city = cityToString(item);
 		setSearchText(city);
 		appActions.updateOnboarding({ city });
-		setCitySelected(true);
 	};
 
 	const handleCompleteOnboarding = async () => {
 		try {
-			await completeOnboarding();
+			await completeOnboarding(searchText);
 			reset({ routes: [{ name: 'Home' }] });
 		} catch (error) {
 			console.log('Failed to complete onboarding: ', error);
@@ -74,7 +71,7 @@ export const CityName = () => {
 		>
 			<OnboardLayout
 				currentIndex={3}
-				disabled={!citySelected}
+				disabled={!searchText?.length}
 				onPress={handleCompleteOnboarding}
 				title={title}
 				subTitle={description}
