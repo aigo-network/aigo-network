@@ -15,12 +15,11 @@ import { useSnapshot } from 'valtio';
 import { showReferralPoint } from './shared';
 
 export const Referral = () => {
-	const referralContent = useSnapshot(
-		appState.content.screens.profile.referralSection,
-	);
 	const [code, setCode] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState('');
+	const { content } = useSnapshot(appState);
+	const referralContent = content.screens.profile.referralSection;
 
 	const handleInputInvitationCode = async () => {
 		if (!code) return;

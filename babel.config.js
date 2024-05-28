@@ -12,6 +12,7 @@ module.exports = {
 					state: './src/state',
 					stacks: './src/stacks',
 					screens: './src/screens',
+					modals: './src/modals',
 					api: './src/api',
 				},
 			},

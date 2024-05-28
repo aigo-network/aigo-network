@@ -12,12 +12,10 @@ import OnboardLayout from './OnboardLayout';
 export const UserDescription: FC<
 	StackScreenProps<RootStackParamList, 'OnboardDescription'>
 > = ({ navigation }) => {
-	const { title, description, continueButton } = useSnapshot(
-		appState.content.screens.onboard.userDescriptions,
-	);
-	const {
-		onboarding: { descriptions },
-	} = useSnapshot(appState);
+	const { content, onboarding } = useSnapshot(appState);
+	const { descriptions } = onboarding;
+	const { title, description, continueButton } =
+		content.screens.onboard.userDescriptions;
 
 	const onItemPress = (newSelectedList: string[]) => {
 		appActions.updateOnboarding({ descriptions: newSelectedList as never });

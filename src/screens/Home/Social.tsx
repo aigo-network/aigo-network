@@ -7,7 +7,8 @@ import { useSnapshot } from 'valtio';
 import { sharedStyles } from './shared';
 
 export const Social = () => {
-	const homeContent = useSnapshot(appState.content.screens.home);
+	const { content } = useSnapshot(appState);
+	const homeContent = content.screens.home;
 	const containerRef = useRef(null);
 	const [imageWidth, setImageWidth] = useState(0);
 	const imageHeight = (imageWidth * 424) / 770;

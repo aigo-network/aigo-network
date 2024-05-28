@@ -5,7 +5,9 @@ import { useSnapshot } from 'valtio';
 import { sharedStyles } from './shared';
 
 export const DailyMissions = () => {
-	const homeContent = useSnapshot(appState.content.screens.home);
+	const { content } = useSnapshot(appState);
+	const homeContent = content.screens.home;
+
 	return (
 		<View style={[sharedStyles.container, styles.container]}>
 			<Text style={sharedStyles.title}>

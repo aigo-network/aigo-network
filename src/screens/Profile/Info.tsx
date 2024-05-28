@@ -3,10 +3,8 @@ import { appState } from 'state/app';
 import { useSnapshot } from 'valtio';
 
 export const Info = () => {
-	const { infoTitle, defaultInfo } = useSnapshot(
-		appState.content.screens.profile,
-	);
-	const { appUser } = useSnapshot(appState);
+	const { content, appUser } = useSnapshot(appState);
+	const { infoTitle, defaultInfo } = content.screens.profile;
 
 	return (
 		<View style={styles.container}>
@@ -45,7 +43,7 @@ export default Info;
 
 const styles = StyleSheet.create({
 	container: {
-		marginTop: 18,
+		marginTop: 42,
 		gap: 18,
 	},
 	title: {

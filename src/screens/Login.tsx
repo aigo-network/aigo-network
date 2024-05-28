@@ -1,18 +1,19 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import { graphqlClient } from 'api/graphql';
 import { Button } from 'components/Button';
 import AppIcon from 'components/icon/AppIcon';
 import SafeContainer from 'components/SafeContainer';
-import { appState } from 'state/app';
+import { appActions, appState } from 'state/app';
 import type { SignInFunction } from 'utils/auth';
 import { signInWithApple, signInWithGoogle } from 'utils/auth';
 import { useSnapshot } from 'valtio';
 
 export const LoginScreen = () => {
-	const logInContent = useSnapshot(appState.content.screens.logIn);
 	const { navigate } = useNavigation();
-	const { version, buildNumber } = useSnapshot(appState);
+	const { version, buildNumber, content } = useSnapshot(appState);
+	const logInContent = content.screens.logIn;
 	const backgroundSrc = require('assets/img/login/background-logo.png');
 	const googleIconSrc = require('assets/img/login/google-logo.png');
 	const appleIconSrc = require('assets/img/login/apple-logo.png');
@@ -36,6 +37,11 @@ export const LoginScreen = () => {
 		<View style={styles.container}>
 			<Image source={backgroundSrc} style={styles.backgroundImage} />
 			<SafeContainer style={styles.safeContainer}>
+				<View style={styles.headingContainer}>
+					<TouchableOpacity onPress={() => appActions.showLanguageSelection()}>
+						<Text>{content.language}</Text>
+					</TouchableOpacity>
+				</View>
 				<View>
 					<View style={styles.logoImg}>
 						<AppIcon />
@@ -82,6 +88,10 @@ const styles = StyleSheet.create({
 	safeContainer: {
 		justifyContent: 'space-between',
 	},
+	headingContainer: {
+		flexDirection: 'row',
+		justifyContent: 'center',
+	},
 	logoImg: {
 		alignSelf: 'center',
 		marginTop: 120,
@@ -91,14 +101,12 @@ const styles = StyleSheet.create({
 		fontWeight: '600',
 		fontSize: 42,
 		textAlign: 'center',
-		paddingHorizontal: 20,
 	},
 	slogan: {
 		alignSelf: 'center',
 		marginTop: 14,
 		fontSize: 19,
 		color: '#a0fa82',
-		paddingHorizontal: 20,
 	},
 	btnGroup: {
 		flex: 1,
