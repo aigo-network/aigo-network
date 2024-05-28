@@ -8,6 +8,7 @@ import SearchIcon from './icon/SearchIcon';
 
 interface Props {
 	textSearch?: string;
+	searchPlaceholder?: string;
 	onChangeText?: (text: string) => void;
 	style?: ViewStyle;
 }
@@ -16,6 +17,7 @@ export const SearchBox: FC<Props> = ({
 	style,
 	onChangeText,
 	textSearch = '',
+	searchPlaceholder,
 }) => {
 	const [input, setInput] = useState(textSearch);
 
@@ -32,7 +34,7 @@ export const SearchBox: FC<Props> = ({
 			<SearchIcon />
 			<TextInput
 				style={styles.input}
-				placeholder="Search for a city"
+				placeholder={searchPlaceholder}
 				placeholderTextColor="#f4f4f4"
 				value={input}
 				onChangeText={(text) => {

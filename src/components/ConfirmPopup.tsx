@@ -9,6 +9,8 @@ interface Props {
 	onClose: () => void;
 	onConfirm?: () => void;
 	onReject?: () => void;
+	yesText?: string;
+	noText?: string;
 }
 
 export const ConfirmPopup: FC<Props> = ({
@@ -16,6 +18,8 @@ export const ConfirmPopup: FC<Props> = ({
 	onClose,
 	onConfirm,
 	onReject,
+	yesText,
+	noText,
 }) => {
 	return (
 		<View style={styles.container}>
@@ -30,10 +34,12 @@ export const ConfirmPopup: FC<Props> = ({
 
 			<View style={styles.buttonGr}>
 				<Button style={styles.btn} onPress={onConfirm}>
-					<Text style={styles.btnText}>Yes</Text>
+					<Text style={styles.btnText}>{yesText || 'Yes'}</Text>
 				</Button>
 				<Button style={[styles.btn, styles.defaultBtn]} onPress={onReject}>
-					<Text style={[styles.btnText, styles.defaultBtnText]}>No</Text>
+					<Text style={[styles.btnText, styles.defaultBtnText]}>
+						{noText || 'No'}
+					</Text>
 				</Button>
 			</View>
 		</View>

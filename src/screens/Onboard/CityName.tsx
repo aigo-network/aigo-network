@@ -15,9 +15,14 @@ const citiesDataList: CitiesData[] = citiesList;
 
 export const CityName = () => {
 	const { reset } = useNavigation();
-	const { title, description, continueButton } = useSnapshot(
-		appState.content.screens.onboard.city,
-	);
+	const {
+		title,
+		description,
+		continueButton,
+		searchPlaceholder,
+		emptySearchTitle,
+		emptySearchMessage,
+	} = useSnapshot(appState.content.screens.onboard.city);
 	const {
 		onboarding: { city },
 	} = useSnapshot(appState);
@@ -82,6 +87,7 @@ export const CityName = () => {
 						style={styles.searchBox}
 						onChangeText={onSearchChange}
 						textSearch={searchText}
+						searchPlaceholder={searchPlaceholder}
 					/>
 					<KeyboardAvoidingView
 						behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
@@ -90,6 +96,8 @@ export const CityName = () => {
 							style={styles.searchResult}
 							data={listCitiesFiltered}
 							textSearch={searchText}
+							emptySearchTitle={emptySearchTitle}
+							emptySearchMessage={emptySearchMessage}
 							onItemPress={onItemSelect}
 						/>
 					</KeyboardAvoidingView>

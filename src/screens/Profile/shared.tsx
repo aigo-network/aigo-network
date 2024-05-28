@@ -23,14 +23,16 @@ export const showReferralPoint = () => {
 };
 
 export const showLogOutConfirm = ({ logout }: { logout: () => void }) => {
-	const message = appState.content.modal.confirmLogOutMessage;
+	const { yes, no, confirmLogOutMessage } = appState.content.modal;
 	const { cleanModal } = showModal(
 		<Animated.View entering={FadeInDown}>
 			<ConfirmPopup
+				yesText={yes}
+				noText={no}
+				message={confirmLogOutMessage}
 				onClose={() => {
 					cleanModal();
 				}}
-				message={message}
 				onConfirm={() => {
 					logout();
 					cleanModal();
@@ -56,14 +58,16 @@ export const showDeleteUserConfirm = ({
 	deleteUser: () => void;
 	logout: () => void;
 }) => {
-	const message = appState.content.modal.confirmDeleteAccountMessage;
+	const { confirmDeleteAccountMessage, yes, no } = appState.content.modal;
 	const { cleanModal } = showModal(
 		<Animated.View entering={FadeInDown}>
 			<ConfirmPopup
+				message={confirmDeleteAccountMessage}
+				yesText={yes}
+				noText={no}
 				onClose={() => {
 					cleanModal();
 				}}
-				message={message}
 				onConfirm={() => {
 					cleanModal();
 					deleteUser();

@@ -15,36 +15,21 @@ export interface CitiesData {
 	geonameid: number;
 }
 
-export const cityToString = (city: CitiesData) =>
-	`${city.name}, ${city.subcountry} ${city.country}`;
-
-interface ItemProps {
-	item: CitiesData;
-	textSearch: string;
-	onPress?: (item: CitiesData) => void;
-}
-
 interface Props {
 	style?: ViewStyle;
 	data: CitiesData[];
 	textSearch: string;
+	emptySearchTitle?: string;
+	emptySearchMessage?: string;
 	onItemPress?: (item: CitiesData) => void;
 }
-
-const SearchRenderItem: FC<ItemProps> = ({ item, onPress }) => {
-	return (
-		<TouchableOpacity onPress={() => onPress?.(item)}>
-			<View style={styles.itemContainer}>
-				<Text style={styles.itemText}>{cityToString(item)}</Text>
-			</View>
-		</TouchableOpacity>
-	);
-};
 
 export const SearchResult: FC<Props> = ({
 	style,
 	data,
 	textSearch,
+	emptySearchTitle,
+	emptySearchMessage,
 	onItemPress,
 }) => {
 	const containerStyle = { paddingVertical: data.length > 0 ? 10 : 0 };
@@ -61,10 +46,8 @@ export const SearchResult: FC<Props> = ({
 	if (textSearch.length > 0 && data.length === 0) {
 		return (
 			<View>
-				<Text style={styles.emptyTitle}>No result</Text>
-				<Text
-					style={styles.emptyText}
-				>{`Can't find what you're looking for.\nTry search for different city or continue with the location you entered.`}</Text>
+				<Text style={styles.emptyTitle}>{emptySearchTitle}</Text>
+				<Text style={styles.emptyText}>{emptySearchMessage}</Text>
 			</View>
 		);
 	}
@@ -77,6 +60,25 @@ export const SearchResult: FC<Props> = ({
 		/>
 	);
 };
+
+interface ItemProps {
+	item: CitiesData;
+	textSearch: string;
+	onPress?: (item: CitiesData) => void;
+}
+
+const SearchRenderItem: FC<ItemProps> = ({ item, onPress }) => {
+	return (
+		<TouchableOpacity onPress={() => onPress?.(item)}>
+			<View style={styles.itemContainer}>
+				<Text style={styles.itemText}>{cityToString(item)}</Text>
+			</View>
+		</TouchableOpacity>
+	);
+};
+
+export const cityToString = (city: CitiesData) =>
+	`${city.name}, ${city.subcountry} ${city.country}`;
 
 export default SearchResult;
 
