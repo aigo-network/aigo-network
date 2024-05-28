@@ -7,6 +7,8 @@ export type LangKey = 'en' | 'kr';
 
 export type Content = {
 	modal: {
+		yes: string;
+		no: string;
 		confirmLogOutMessage: string;
 		confirmDeleteAccountMessage: string;
 		invite: {
@@ -44,6 +46,9 @@ export type Content = {
 				title: string;
 				description: string;
 				continueButton: string;
+				searchPlaceholder: string;
+				emptySearchTitle: string;
+				emptySearchMessage: string;
 			};
 			userDescriptions: {
 				title: string;
