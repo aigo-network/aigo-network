@@ -1,5 +1,7 @@
 {
   "modal": {
+    "yes": "Yes", 
+    "no": "No", 
     "confirmLogOutMessage": "Are you sure to logout?",
     "confirmDeleteAccountMessage": "Do you want to delete your account?",
 		"invite": {
@@ -13,7 +15,7 @@
 		},
     "earnPoints": {
       "messagePrefix": "You've Earned",
-      "completedOnboardingMessage": ""
+      "completedOnboardingMessage": "Your account is ready to use. You will be redirected to the Home Page in a few seconds."
     }
   },
   "screens": {
@@ -23,6 +25,7 @@
     "logIn": {
       "welcome": "Welcome to\nAiGO",
       "slogan": "Turns your everyday\nActions into rewards",
+      "phoneNumberButton": "Phone number",
       "googleButton": "Log in with Google",
       "appleButton": "Log in with Apple",
       "versionPrefix": "Version"
@@ -36,6 +39,14 @@
       "city": {
         "title": "Name your city",
         "description": "Mark yourself in your city to connect with pals",
+        "searchPlaceholder": "Search for a city",
+        "emptySearchTitle": "No result",
+        "emptySearchMessage": "Can't find what you're looking for.\nTry search for different city or continue with the location you entered.",
+        "continueButton": "Continue"
+      },
+      "userDescriptions": {
+        "title": "What's best describe you",
+        "description": "You can choose multiple options",
         "continueButton": "Continue",
         "descriptions": {
 					"NyamNyamDriver": "Nyam Nyam Driver",
@@ -45,11 +56,6 @@
 					"Traveler": "Traveler",
 					"CasualUser": "Casual user"
         }
-      },
-      "descriptions": {
-        "title": "What's best describe you",
-        "description": "You can choose multiple options",
-        "continueButton": "Continue"
       },
       "updateProfileError": "Can not update profile, something went wrong"
     },
