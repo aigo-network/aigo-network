@@ -2,120 +2,120 @@
   "modal": {
     "yes": "Yes", 
     "no": "No", 
-    "confirmLogOutMessage": "Are you sure to logout?",
-    "confirmDeleteAccountMessage": "Do you want to delete your account?",
+    "confirmLogOutMessage": "로그아웃하시겠습니까??",
+    "confirmDeleteAccountMessage": "계정을 삭제하시겠습니까??",
 		"invite": {
-			"title": "Invite your friends !",
-      "description": "Click copy or Share button to \n invite friends and receive",
-			"referral": "referral",
-			"messagePrefix": "Hey! Let's download AiGO App at",
-			"messageSuffix": "Use my invitation code for 100 GO points",
-			"codeTitle": "Invitation code",
-			"shareButton": "Share with friends"
+			"title": "친구 초대 하기!",
+      		"description": "친구를 초대하고 보상을 받으려면 복사 또는 공유 버튼을 클릭하세요",
+			"referral": "초대",
+			"messagePrefix": "AiGO 앱을 다운로드하세요",
+			"messageSuffix": " 자신의 초대 코드를 사용하고 100 GO 포인트를 받으세요",
+			"codeTitle": "초대 코드",
+			"shareButton": "친구에게 공유하기"
 		},
     "earnPoints": {
-      "messagePrefix": "You've Earned",
+      "messagePrefix": "포인트가 누적되었습니다",
       "completedOnboardingMessage": "Your account is ready to use. You will be redirected to the Home Page in a few seconds."
     }
   },
   "screens": {
     "splash": {
-      "versionPrefix": "Version"
+      "versionPrefix": "버전"
     },
     "logIn": {
-      "welcome": "Welcome to\nAiGO",
-      "slogan": "Turns your everyday\nActions into rewards",
+      "welcome": "AiGO에 오신 것을 환영합니다.",
+      "slogan": "당신의 일상적인 행동을 보상으로 전달합니다.",
       "phoneNumberButton": "Phone number",
-      "googleButton": "Log in with Google",
-      "appleButton": "Log in with Apple",
-      "versionPrefix": "Version"
+      "googleButton": "Google 계정으로 로그인",
+      "appleButton": "Apple 계정으로 로그인",
+      "versionPrefix": "버전"
     },
     "onboard": {
       "name": {
-        "title": "Name your profile",
-        "description": "Choose a nickname for your account",
-        "continueButton": "Looks good :)"
+        "title": "프로필 이름 설정",
+        "description": "닉네임 선택하기",
+        "continueButton": "좋아요 :)"
       },
       "city": {
-        "title": "Name your city",
-        "description": "Mark yourself in your city to connect with pals",
+        "title": "거주하는 도시 이름을 입력해주세요",
+        "description": "주변 지인들과 연결을 위해 거주하는 도시에서 자신을 표시하세요.",
         "searchPlaceholder": "Search for a city",
         "emptySearchTitle": "No result",
         "emptySearchMessage": "Can't find what you're looking for.\nTry search for different city or continue with the location you entered.",
-        "continueButton": "Continue"
+        "continueButton": "계속하기"
       },
       "userDescriptions": {
-        "title": "What's best describe you",
-        "description": "You can choose multiple options",
-        "continueButton": "Continue",
+        "title": "현재 자신과 가장 잘 맞는 것을 골라볼까요?",
+        "description": "여러 옵션을 선택할 수 있습니다.",
+        "continueButton": "계속하기",
         "descriptions": {
-					"NyamNyamDriver": "Nyam Nyam Driver",
-					"CityExplorer": "City Explorer",
-					"FitnessEnthusiast": "Fitness Enthusiast",
-					"Commuter": "Commuter",
-					"Traveler": "Traveler",
-					"CasualUser": "Casual user"
+					"NyamNyamDriver": "냠냠 라이더",
+					"CityExplorer": "도시 탐험가",
+					"FitnessEnthusiast": "운동 애호가",
+					"Commuter": "뚜벅이",
+					"Traveler": "여행자",
+					"CasualUser": "일반 사용자"
         }
       },
-      "updateProfileError": "Can not update profile, something went wrong"
+      "updateProfileError": "문제가 발생하여 프로필을 업데이트할 수 없습니다"
     },
     "home": {
       "headerSection": {
-        "welcomePrefix": "Hey",
-        "balanceTitle": "Balance"
+        "welcomePrefix": "안녕하세요",
+        "balanceTitle": "잔액"
       },
       "socialSection": {
-        "title": "Stay updated with us",
-        "followTwitterButton": "Follow Twitter",
-        "joinTelegramButton": "Join Telegram"
+        "title": "최신 소식을 계속 받아보세요",
+        "followTwitterButton": "트위터 팔로우",
+        "joinTelegramButton": "텔레그램 입장"
       },
       "inviteSection": {
-        "title": "Invite your friends",
-        "referral": "referral",
-        "referralCountSuffix": "Referrals",
-        "descriptionPrefix": "Receive",
-        "descriptionSuffix": "& earn 10% from their earning",
-        "inviteButton": "Invite"
+        "title": "친구 초대하기",
+        "referral": "초대",
+        "referralCountSuffix": "초대",
+        "descriptionPrefix": "받기",
+        "descriptionSuffix": "& 초대하신 분들의 보상에서 10%를 추가로 받아보세요",
+        "inviteButton": "초대하기"
       },
       "dailyCheckInSection": {
-        "title": "Daily Check-in",
-        "checkInButton": "Check-in"
+        "title": "출석 체크",
+        "checkInButton": "출석하기"
       },
       "dailyMissionSection": {
-        "title": "Daily Missions"
+        "title": "일일 미션"
       }
     },
     "profile": {
-      "title": "Profile",
-      "unknownUsername": "Anonymous",
-      "totalBalanceTitle": "Total balance",
-      "viewHistoryButton": "View history",
+      "title": "프로필",
+      "unknownUsername": "익명의 사용자",
+      "totalBalanceTitle": "총 밸런",
+      "viewHistoryButton": "이전 내역 보기",
       "infoTitle": {
-        "account": "Account Information",
-        "name": "Name",
-        "email": "Email",
-        "city": "City",
-        "descriptions": "Descriptions"
+        "account": "계정 정보",
+        "name": "이름",
+        "email": "이메일",
+        "city": "도시",
+        "descriptions": "설명"
       },
       "defaultInfo": {
-        "name": "Anonymous",
+        "name": "익명의 사용자",
         "email": "anonymous@aigo.network",
-        "city": "AiGO city",
-        "description": "AiGO lover"
+        "city": "AiGO 시티",
+        "description": "AiGO 러버"
       },
       "referralSection": {
-        "title": "Referral code",
-        "descriptionPrefix": "Receive extra",
-        "descriptionSuffix": "when entering your friend’s referral code",
-        "enterCodePlaceholder": "enter referral code",
-        "invalidCodeError": "Code is not valid. Please try again",
-        "verifyButton": "Verify now"
+        "title": "추천 코드",
+        "descriptionPrefix": "추가 보상 받기",
+        "descriptionSuffix": "친구의 추천 코드를 입력하면",
+        "enterCodePlaceholder": "초대 코드를 입력해주세요",
+        "invalidCodeError": "입력하신 코드가 맞지 않습니다, 다시 시도해주세요",
+        "verifyButton": "인증하기"
       },
       "footerSection": {
-        "title": "About AiGO Network",
-        "logOutButton": "Log out",
-        "deleteAccountButton": "Delete account",
-        "versionPrefix": "Version"
+        "title": "AiGO Network에 관하여",
+        "logOutButton": "로그아웃",
+        "deleteAccountButton": "계정 삭제하기",
+        "versionPrefix": "버전"
       }
     }
   }
