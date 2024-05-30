@@ -15,9 +15,9 @@ import { useSnapshot } from 'valtio';
 import { sharedStyles, showCheckInPoint } from './shared';
 
 export const DailyCheckIn = () => {
-	const homeContent = useSnapshot(appState.content.screens.home);
-	const { appUser } = useSnapshot(appState);
 	const [loading, setLoading] = useState(false);
+	const { content, appUser } = useSnapshot(appState);
+	const homeContent = content.screens.home;
 	const todayCheckedIn = !!appUser?.dailyMissions?.checkIn?.completed;
 
 	const handleCheckIn = async () => {

@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { getLocales } from 'react-native-localize';
 import Animated, { FadeInDown, runOnJS } from 'react-native-reanimated';
 import { useNavigation } from '@react-navigation/native';
 import AppIcon from 'components/icon/AppIcon';
@@ -22,7 +21,12 @@ export const SplashScreen = () => {
 
 	useEffect(() => {
 		const resolveAppInit = async () => {
-			const [user] = await Promise.all([initAuthPromise, animationRef.current]);
+			const [user] = await Promise.all([
+				initAuthPromise,
+				appActions.initTranslationModule(),
+				animationRef.current,
+			]);
+
 			if (!user) {
 				navigate('Login');
 			} else if (!user.completeOnboarding) {
@@ -33,21 +37,6 @@ export const SplashScreen = () => {
 		};
 
 		resolveAppInit();
-	}, []);
-
-	useEffect(() => {
-		const [defaultLocale] = getLocales();
-		const { languageCode } = defaultLocale;
-		console.log('language code', languageCode);
-		switch (languageCode) {
-			case 'ko':
-				console.log('update language');
-				appActions.updateContentLanguage('kr');
-				break;
-			default:
-				appActions.updateContentLanguage('en');
-				break;
-		}
 	}, []);
 
 	return (

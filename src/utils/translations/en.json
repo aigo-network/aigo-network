@@ -1,18 +1,19 @@
 {
+  "language": "English",
   "modal": {
-    "yes": "Yes", 
-    "no": "No", 
+    "yes": "Yes",
+    "no": "No",
     "confirmLogOutMessage": "Are you sure to logout?",
     "confirmDeleteAccountMessage": "Do you want to delete your account?",
-		"invite": {
-			"title": "Invite your friends !",
+    "invite": {
+      "title": "Invite your friends !",
       "description": "Click copy or Share button to \n invite friends and receive",
-			"referral": "referral",
-			"messagePrefix": "Hey! Let's download AiGO App at",
-			"messageSuffix": "Use my invitation code for 100 GO points",
-			"codeTitle": "Invitation code",
-			"shareButton": "Share with friends"
-		},
+      "referral": "referral",
+      "messagePrefix": "Hey! Let's download AiGO App at",
+      "messageSuffix": "Use my invitation code for 100 GO points",
+      "codeTitle": "Invitation code",
+      "shareButton": "Share with friends"
+    },
     "earnPoints": {
       "messagePrefix": "You've Earned",
       "completedOnboardingMessage": "Your account is ready to use. You will be redirected to the Home Page in a few seconds."
@@ -48,12 +49,12 @@
         "description": "You can choose multiple options",
         "continueButton": "Continue",
         "descriptions": {
-					"NyamNyamDriver": "Nyam Nyam Driver",
-					"CityExplorer": "City Explorer",
-					"FitnessEnthusiast": "Fitness Enthusiast",
-					"Commuter": "Commuter",
-					"Traveler": "Traveler",
-					"CasualUser": "Casual user"
+          "NyamNyamDriver": "Nyam Nyam Driver",
+          "CityExplorer": "City Explorer",
+          "FitnessEnthusiast": "Fitness Enthusiast",
+          "Commuter": "Commuter",
+          "Traveler": "Traveler",
+          "CasualUser": "Casual user"
         }
       },
       "updateProfileError": "Can not update profile, something went wrong"
@@ -101,6 +102,10 @@
         "email": "anonymous@aigo.network",
         "city": "AiGO city",
         "description": "AiGO lover"
+      },
+      "settingSection": {
+        "setting": "Settings",
+        "language": "Language"
       },
       "referralSection": {
         "title": "Referral code",

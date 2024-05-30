@@ -4,8 +4,8 @@ import { defaultAvatar } from 'utils/misc';
 import { useSnapshot } from 'valtio';
 
 export const Header = () => {
-	const profileContent = useSnapshot(appState.content.screens.profile);
-	const { appUser } = useSnapshot(appState);
+	const { content, appUser } = useSnapshot(appState);
+	const profileContent = content.screens.profile;
 
 	return (
 		<View style={styles.container}>

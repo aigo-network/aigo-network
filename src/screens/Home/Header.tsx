@@ -7,10 +7,10 @@ import { defaultAvatar } from 'utils/misc';
 import { useSnapshot } from 'valtio';
 
 export const Header = () => {
-	const homeContent = useSnapshot(appState.content.screens.home);
 	const { navigate } = useNavigation();
 	const insets = useSafeAreaInsets();
-	const { appUser } = useSnapshot(appState);
+	const { appUser, content } = useSnapshot(appState);
+	const homeContent = content.screens.home;
 
 	return (
 		<View style={[styles.container, { paddingTop: insets.top + 16 }]}>

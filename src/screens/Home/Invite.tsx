@@ -6,7 +6,9 @@ import { useSnapshot } from 'valtio';
 import { sharedStyles, showInvitationCode } from './shared';
 
 export const Invite = () => {
-	const homeContent = useSnapshot(appState.content.screens.home);
+	const { content } = useSnapshot(appState);
+	const homeContent = content.screens.home;
+
 	return (
 		<View style={[sharedStyles.container, styles.container]}>
 			<View style={styles.titleContainer}>

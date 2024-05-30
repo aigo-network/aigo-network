@@ -19,10 +19,9 @@ import OnboardLayout from './OnboardLayout';
 export const ProfileName: FC<
 	StackScreenProps<RootStackParamList, 'OnboardName'>
 > = ({ navigation }) => {
-	const { title, description, continueButton } = useSnapshot(
-		appState.content.screens.onboard.name,
-	);
 	const [name, setName] = useState(auth().currentUser?.displayName || '');
+	const { content } = useSnapshot(appState);
+	const { title, description, continueButton } = content.screens.onboard.name;
 
 	const handleContinue = () => {
 		appActions.updateOnboarding({ name });
