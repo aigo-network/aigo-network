@@ -13,7 +13,9 @@ type Props = {
 };
 
 export const PointPopup: FC<Props> = ({ point, description, onPressClose }) => {
-	const { messagePrefix } = useSnapshot(appState.content.modal.earnPoints);
+	const { content } = useSnapshot(appState);
+	const { messagePrefix } = content.modal.earnPoints;
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.giftContainer}>

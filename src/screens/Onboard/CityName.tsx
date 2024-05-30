@@ -15,6 +15,8 @@ const citiesDataList: CitiesData[] = citiesList;
 
 export const CityName = () => {
 	const { reset } = useNavigation();
+	const { content, onboarding } = useSnapshot(appState);
+	const { city } = onboarding;
 	const {
 		title,
 		description,
@@ -22,10 +24,7 @@ export const CityName = () => {
 		searchPlaceholder,
 		emptySearchTitle,
 		emptySearchMessage,
-	} = useSnapshot(appState.content.screens.onboard.city);
-	const {
-		onboarding: { city },
-	} = useSnapshot(appState);
+	} = content.screens.onboard.city;
 	const [searchText, setSearchText] = useState('');
 	const [listCitiesFiltered, setListCitiesFiltered] = useState<CitiesData[]>(
 		[],

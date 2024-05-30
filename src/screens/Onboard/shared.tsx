@@ -4,12 +4,16 @@ import { graphqlClient } from 'api/graphql';
 import PointPopup from 'components/PointPopup';
 import { Align, showModal } from 'empty-modal';
 import { appActions, appState } from 'state/app';
+import { getDefaultUserInfo } from 'state/app/userInfo';
 import { config } from 'utils/config';
 import { defaultAvatar, defaultEmail } from 'utils/misc';
 
 export const completeOnboarding = async (cityFallback?: string) => {
 	const { city, name, descriptions } = appState.onboarding;
-	const email = auth().currentUser?.email || defaultEmail;
+	const email =
+		auth().currentUser?.email ||
+		(await getDefaultUserInfo()).email ||
+		defaultEmail;
 	const imageUrl = auth().currentUser?.photoURL || defaultAvatar;
 	const { updateProfile: updatedUser } = await graphqlClient.updateProfile({
 		profile: {

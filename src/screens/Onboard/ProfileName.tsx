@@ -1,4 +1,5 @@
-import { type FC, useState } from 'react';
+import type { FC } from 'react';
+import { useEffect, useState } from 'react';
 import {
 	Keyboard,
 	KeyboardAvoidingView,
@@ -11,6 +12,7 @@ import {
 import auth from '@react-native-firebase/auth';
 import type { StackScreenProps } from '@react-navigation/stack';
 import { appActions, appState } from 'state/app';
+import { getDefaultUserInfo } from 'state/app/userInfo';
 import type { RootStackParamList } from 'utils/navigation';
 import { useSnapshot } from 'valtio';
 
@@ -19,15 +21,22 @@ import OnboardLayout from './OnboardLayout';
 export const ProfileName: FC<
 	StackScreenProps<RootStackParamList, 'OnboardName'>
 > = ({ navigation }) => {
-	const { title, description, continueButton } = useSnapshot(
-		appState.content.screens.onboard.name,
-	);
 	const [name, setName] = useState(auth().currentUser?.displayName || '');
+	const { content } = useSnapshot(appState);
+	const { title, description, continueButton } = content.screens.onboard.name;
 
 	const handleContinue = () => {
 		appActions.updateOnboarding({ name });
 		navigation.navigate('OnboardDescription');
 	};
+
+	useEffect(() => {
+		const loadDefaultUserInfo = async () => {
+			const userInfo = await getDefaultUserInfo();
+			setName(userInfo.displayName);
+		};
+		if (!name) loadDefaultUserInfo();
+	}, []);
 
 	return (
 		<KeyboardAvoidingView

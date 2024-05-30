@@ -16,9 +16,11 @@ import Footer from './Footer';
 import Header from './Header';
 import Info from './Info';
 import Referral from './Referral';
+import Settings from './Settings';
 
 export const ProfileScreen = () => {
-	const profileContent = useSnapshot(appState.content.screens.profile);
+	const { content } = useSnapshot(appState);
+	const profileContent = content.screens.profile;
 	const { goBack } = useNavigation();
 
 	return (
@@ -54,6 +56,7 @@ export const ProfileScreen = () => {
 				>
 					<Header />
 					<Info />
+					<Settings />
 					<Referral />
 					<Footer />
 				</ScrollView>

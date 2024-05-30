@@ -6,6 +6,7 @@ export const translations: Record<LangKey, Content> = { en, kr };
 export type LangKey = 'en' | 'kr';
 
 export type Content = {
+	language: string;
 	modal: {
 		yes: string;
 		no: string;
@@ -106,6 +107,10 @@ export type Content = {
 				email: string;
 				city: string;
 				description: string;
+			};
+			settingSection: {
+				setting: string;
+				language: string;
 			};
 			referralSection: {
 				title: string;

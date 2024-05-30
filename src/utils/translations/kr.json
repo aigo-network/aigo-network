@@ -1,18 +1,19 @@
 {
+  "language": "한국어",
   "modal": {
-    "yes": "Yes", 
-    "no": "No", 
+    "yes": "Yes",
+    "no": "No",
     "confirmLogOutMessage": "로그아웃하시겠습니까??",
     "confirmDeleteAccountMessage": "계정을 삭제하시겠습니까??",
-		"invite": {
-			"title": "친구 초대 하기!",
-      		"description": "친구를 초대하고 보상을 받으려면 복사 또는 공유 버튼을 클릭하세요",
-			"referral": "초대",
-			"messagePrefix": "AiGO 앱을 다운로드하세요",
-			"messageSuffix": " 자신의 초대 코드를 사용하고 100 GO 포인트를 받으세요",
-			"codeTitle": "초대 코드",
-			"shareButton": "친구에게 공유하기"
-		},
+    "invite": {
+      "title": "친구 초대 하기!",
+      "description": "친구를 초대하고 보상을 받으려면 복사 또는 공유 버튼을 클릭하세요",
+      "referral": "초대",
+      "messagePrefix": "AiGO 앱을 다운로드하세요",
+      "messageSuffix": " 자신의 초대 코드를 사용하고 100 GO 포인트를 받으세요",
+      "codeTitle": "초대 코드",
+      "shareButton": "친구에게 공유하기"
+    },
     "earnPoints": {
       "messagePrefix": "포인트가 누적되었습니다",
       "completedOnboardingMessage": "Your account is ready to use. You will be redirected to the Home Page in a few seconds."
@@ -49,12 +50,12 @@
         "description": "여러 옵션을 선택할 수 있습니다.",
         "continueButton": "계속하기",
         "descriptions": {
-					"NyamNyamDriver": "냠냠 라이더",
-					"CityExplorer": "도시 탐험가",
-					"FitnessEnthusiast": "운동 애호가",
-					"Commuter": "뚜벅이",
-					"Traveler": "여행자",
-					"CasualUser": "일반 사용자"
+          "NyamNyamDriver": "냠냠 라이더",
+          "CityExplorer": "도시 탐험가",
+          "FitnessEnthusiast": "운동 애호가",
+          "Commuter": "뚜벅이",
+          "Traveler": "여행자",
+          "CasualUser": "일반 사용자"
         }
       },
       "updateProfileError": "문제가 발생하여 프로필을 업데이트할 수 없습니다"
@@ -103,6 +104,10 @@
         "city": "AiGO 시티",
         "description": "AiGO 러버"
       },
+      "settingSection": {
+        "setting": "Settings",
+        "language": "Language"
+      },
       "referralSection": {
         "title": "추천 코드",
         "descriptionPrefix": "추가 보상 받기",
@@ -120,4 +125,3 @@
     }
   }
 }
-

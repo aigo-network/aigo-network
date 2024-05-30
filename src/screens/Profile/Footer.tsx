@@ -17,11 +17,9 @@ import { useSnapshot } from 'valtio';
 import { showDeleteUserConfirm, showLogOutConfirm } from './shared';
 
 export const Footer = () => {
-	const footerContent = useSnapshot(
-		appState.content.screens.profile.footerSection,
-	);
-	const { version, buildNumber } = useSnapshot(appState);
 	const { reset } = useNavigation();
+	const { content, version, buildNumber } = useSnapshot(appState);
+	const footerContent = content.screens.profile.footerSection;
 
 	const handlePressFollowTwitter = () => {
 		Linking.openURL('https://x.com/AIGO_Network');
