@@ -3,6 +3,7 @@ import type { User } from 'api/graphql';
 import { graphqlClient } from 'api/graphql';
 import { setJWT } from 'api/jwt';
 import { appActions } from 'state/app';
+import { cleanDefaultUserInfo } from 'state/app/userInfo';
 
 auth().onIdTokenChanged(async (authUser) => {
 	if (authUser) {
@@ -46,6 +47,7 @@ export const logOut = async () => {
 	});
 
 	await auth().signOut();
+	await cleanDefaultUserInfo();
 	appActions.cleanState();
 };
 
