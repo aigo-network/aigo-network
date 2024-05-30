@@ -22,6 +22,7 @@
     "empty-modal": "^0.0.5",
     "graphql": "^16.8.1",
     "graphql-request": "^7.0.1",
+    "libphonenumber-js": "^1.11.2",
     "lottie-react-native": "^6.7.2",
     "react": "18.2.0",
     "react-native": "0.74.1",
