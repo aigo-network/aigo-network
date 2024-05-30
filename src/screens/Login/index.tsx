@@ -34,6 +34,10 @@ export const LoginScreen = () => {
 		}
 	};
 
+	const handlePhoneSignIn = () => {
+		navigate('PhoneLogin');
+	};
+
 	return (
 		<View style={styles.container}>
 			<Image source={backgroundSrc} style={styles.backgroundImage} />
@@ -67,6 +71,7 @@ export const LoginScreen = () => {
 						}
 						suffix={<Image style={styles.nnIcon} source={nyamNyamSrc} />}
 						style={styles.btn}
+						onPress={handlePhoneSignIn}
 					>
 						<Text style={styles.btnText}>{logInContent.phoneNumberButton}</Text>
 					</Button>
@@ -103,14 +108,12 @@ const styles = StyleSheet.create({
 		fontWeight: '600',
 		fontSize: 42,
 		textAlign: 'center',
-		paddingHorizontal: 20,
 	},
 	slogan: {
 		alignSelf: 'center',
 		marginTop: 14,
 		fontSize: 19,
 		color: '#a0fa82',
-		paddingHorizontal: 20,
 	},
 	btnGroup: {
 		flex: 1,
