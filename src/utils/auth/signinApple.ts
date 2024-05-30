@@ -34,7 +34,7 @@ export const signInWithApple: SignInFunction = async () => {
 			const { givenName, familyName } = authResponse.fullName;
 			defaultUserInfo.displayName = [givenName, familyName].join(' ').trim();
 		}
-		setDefaultUserInfo(defaultUserInfo);
+		await setDefaultUserInfo(defaultUserInfo);
 	} else if (Platform.OS === 'android') {
 		appleAuthAndroid.configure({
 			clientId: config.FIREBASE_APPLE_AUTH_SERVICE_ID,
