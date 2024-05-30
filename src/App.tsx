@@ -8,6 +8,7 @@ import {
 import { ModalProvider } from 'empty-modal';
 import HomeScreen from 'screens/Home';
 import LoginScreen from 'screens/Login';
+import PhoneLoginScreen from 'screens/Login/PhoneLogin';
 import CityName from 'screens/Onboard/CityName';
 import ProfileName from 'screens/Onboard/ProfileName';
 import UserDescription from 'screens/Onboard/UserDescription';
@@ -38,13 +39,17 @@ export const AppContainer: FC = () => {
 								cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
 							}}
 						/>
-						<Stack.Screen
-							name="Login"
-							component={LoginScreen}
-							options={{
-								cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
-							}}
-						/>
+						<Stack.Group>
+							<Stack.Screen
+								name="Login"
+								component={LoginScreen}
+								options={{
+									cardStyleInterpolator:
+										CardStyleInterpolators.forFadeFromCenter,
+								}}
+							/>
+							<Stack.Screen name="PhoneLogin" component={PhoneLoginScreen} />
+						</Stack.Group>
 						<Stack.Group screenOptions={{ headerShown: false }}>
 							<Stack.Screen name="OnboardName" component={ProfileName} />
 							<Stack.Screen

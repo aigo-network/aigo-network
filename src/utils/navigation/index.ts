@@ -1,6 +1,7 @@
 export type RootStackParamList = {
 	Splash: undefined;
 	Login: undefined;
+	PhoneLogin: undefined;
 	OnboardName: undefined;
 	OnboardDescription: undefined;
 	OnboardCity: undefined;
