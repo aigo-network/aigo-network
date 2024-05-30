@@ -103,12 +103,14 @@ const styles = StyleSheet.create({
 		fontWeight: '600',
 		fontSize: 42,
 		textAlign: 'center',
+		paddingHorizontal: 20,
 	},
 	slogan: {
 		alignSelf: 'center',
 		marginTop: 14,
 		fontSize: 19,
 		color: '#a0fa82',
+		paddingHorizontal: 20,
 	},
 	btnGroup: {
 		flex: 1,

@@ -1,16 +1,14 @@
 import { useEffect, useRef } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { getLocales } from 'react-native-localize';
 import Animated, { FadeInDown, runOnJS } from 'react-native-reanimated';
 import { useNavigation } from '@react-navigation/native';
 import AppIcon from 'components/icon/AppIcon';
 import SafeContainer from 'components/SafeContainer';
-import { appState } from 'state/app';
+import { appActions } from 'state/app';
 import { initAuthPromise } from 'utils/auth';
-import { config } from 'utils/config';
-import { useSnapshot } from 'valtio';
 
 export const SplashScreen = () => {
-	const splashContent = useSnapshot(appState.content.screens.splash);
 	const { navigate } = useNavigation();
 	const resolveAnimationRef = useRef(() => {});
 	const animationRef = useRef(
@@ -37,15 +35,27 @@ export const SplashScreen = () => {
 		resolveAppInit();
 	}, []);
 
+	useEffect(() => {
+		const [defaultLocale] = getLocales();
+		const { languageCode } = defaultLocale;
+		console.log('language code', languageCode);
+		switch (languageCode) {
+			case 'ko':
+				console.log('update language');
+				appActions.updateContentLanguage('kr');
+				break;
+			default:
+				appActions.updateContentLanguage('en');
+				break;
+		}
+	}, []);
+
 	return (
 		<View style={styles.container}>
 			<SafeContainer>
 				<Animated.View entering={IconFadeIn} style={styles.iconContainer}>
 					<AppIcon />
 				</Animated.View>
-				<Text style={styles.version}>
-					{splashContent.versionPrefix} {config.version}
-				</Text>
 			</SafeContainer>
 		</View>
 	);
