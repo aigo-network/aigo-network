@@ -6,6 +6,7 @@ import {
 } from '@invertase/react-native-apple-authentication';
 import auth from '@react-native-firebase/auth';
 import { setJWT } from 'api/jwt';
+import { setDefaultUserInfo, type UserInfo } from 'state/app/userInfo';
 import { config } from 'utils/config';
 
 import type { SignInFunction } from './types';
@@ -22,6 +23,18 @@ export const signInWithApple: SignInFunction = async () => {
 
 		identityToken = authResponse.identityToken;
 		nonce = authResponse.nonce;
+
+		/**
+		 * set default user info to prevent missing name/email
+		 * from Apple auth in onboarding flow
+		 */
+		const defaultUserInfo: UserInfo = { email: '', displayName: '' };
+		if (authResponse.email) defaultUserInfo.email = authResponse.email;
+		if (authResponse.fullName) {
+			const { givenName, familyName } = authResponse.fullName;
+			defaultUserInfo.displayName = [givenName, familyName].join(' ').trim();
+		}
+		await setDefaultUserInfo(defaultUserInfo);
 	} else if (Platform.OS === 'android') {
 		appleAuthAndroid.configure({
 			clientId: config.FIREBASE_APPLE_AUTH_SERVICE_ID,
