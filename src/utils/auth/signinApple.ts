@@ -25,7 +25,8 @@ export const signInWithApple: SignInFunction = async () => {
 		nonce = authResponse.nonce;
 
 		/**
-		 * set default user info to prevent missing name/email from Apple auth response
+		 * set default user info to prevent missing name/email
+		 * from Apple auth in onboarding flow
 		 */
 		const defaultUserInfo: UserInfo = { email: '', displayName: '' };
 		if (authResponse.email) defaultUserInfo.email = authResponse.email;
