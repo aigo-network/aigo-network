@@ -35,6 +35,28 @@ export type Invitation = {
   invitedId?: Maybe<Scalars['String']['output']>;
 };
 
+export type NyamNyamUserProfile = {
+  __typename?: 'NyamNyamUserProfile';
+  NNID?: Maybe<Scalars['String']['output']>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  extKey?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  nick?: Maybe<Scalars['String']['output']>;
+  registrationNumber?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  verifiedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export enum PhoneNumberVerification {
+  /** Signed in by Phone number but mismatch with Phone number from user's profile */
+  Mismatch = 'MISMATCH',
+  /** Asked for verifying by OTP, continue to verify by SMS OTP */
+  OtpSmsVerifying = 'OTP_SMS_VERIFYING',
+  /** Correctly verified */
+  Verified = 'VERIFIED'
+}
+
 export type RootMutation = {
   __typename?: 'RootMutation';
   checkIn?: Maybe<DailyCheckIn>;
@@ -42,6 +64,14 @@ export type RootMutation = {
   deleteUser?: Maybe<User>;
   inputInvitationCode?: Maybe<Invitation>;
   updateProfile?: Maybe<User>;
+  verifyNyamNyamUser?: Maybe<NyamNyamUserProfile>;
+  /**
+   * Phone number must be added to user profile.
+   * 		If user signed-in by Phone number, it will check if Auth Phone number and Phone number in profile is matched or not.
+   * 		Else using OTP SMS to verify new phone number.
+   * 		
+   */
+  verifyPhoneNumber?: Maybe<PhoneNumberVerification>;
 };
 
 
@@ -54,6 +84,11 @@ export type RootMutationUpdateProfileArgs = {
   profile?: InputMaybe<UserProfile>;
 };
 
+
+export type RootMutationVerifyNyamNyamUserArgs = {
+  NNID?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type RootQuery = {
   __typename?: 'RootQuery';
   ping?: Maybe<Scalars['String']['output']>;
@@ -63,6 +98,7 @@ export type RootQuery = {
 export type User = {
   __typename?: 'User';
   GOPoints?: Maybe<Scalars['Int']['output']>;
+  NyamNyamUserProfile?: Maybe<NyamNyamUserProfile>;
   city?: Maybe<Scalars['String']['output']>;
   completeOnboarding?: Maybe<Scalars['Boolean']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
@@ -74,6 +110,9 @@ export type User = {
   invitationCode?: Maybe<Scalars['String']['output']>;
   invitedBy?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
+  phoneNumber?: Maybe<Scalars['String']['output']>;
+  phoneNumberVerified?: Maybe<Scalars['Boolean']['output']>;
+  phoneNumberVerifiedAt?: Maybe<Scalars['DateTime']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
