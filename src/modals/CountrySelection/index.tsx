@@ -42,6 +42,7 @@ const CountrySelectionModal: FC<Props> = ({ onClose, onItemSelect }) => {
 						textSearch={searchText}
 						placeholder="Search Countries"
 						placeholderTextColor="#7c969e"
+						autoFocus
 						onChangeText={(text) => {
 							setSearchText(text);
 						}}

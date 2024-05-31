@@ -83,11 +83,12 @@ export const CityName = () => {
 			>
 				<View style={styles.searchContainer}>
 					<SearchBox
-						style={styles.searchBox}
+						containerStyle={styles.searchBox}
 						onChangeText={onSearchChange}
 						textSearch={searchText}
 						placeholder={searchPlaceholder}
 						placeholderTextColor="f4f4f4"
+						autoFocus
 					/>
 					<KeyboardAvoidingView
 						behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
