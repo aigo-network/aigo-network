@@ -23,11 +23,6 @@ import LeftArrowIcon from 'components/icon/LeftArrowIcon';
 import OtpInput from 'components/OtpInput';
 import SafeContainer from 'components/SafeContainer';
 import { appActions, appState } from 'state/app';
-import { useSnapshot } from 'valtio';
-
-import '@react-native-firebase/app-check';
-import '@react-native-firebase/app-distribution';
-import '@react-native-firebase/analytics';
 
 const otpLength = 6;
 const AnimatedView = Animated.createAnimatedComponent(View);
@@ -38,7 +33,6 @@ const OtpInputScreen = () => {
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [keyboardShown, setKeyboardShown] = useState(Keyboard.isVisible());
-	const { phoneSignIn } = useSnapshot(appState);
 	const paddingBot = useSharedValue(0);
 	const disabled = otp.length !== otpLength;
 
@@ -60,7 +54,7 @@ const OtpInputScreen = () => {
 			const credential = await appState.phoneSignIn.confirmation?.confirm(otp);
 			if (!credential) throw new Error('Failed to get user credential');
 			appActions.updateOnboarding({
-				phoneNumber: phoneSignIn.phoneNumber?.number,
+				phoneNumber: appState.phoneSignIn.phoneNumber?.number,
 			});
 			const jwt = await auth().currentUser?.getIdToken();
 			if (jwt) setJWT(jwt);
@@ -115,7 +109,7 @@ const OtpInputScreen = () => {
 								We&apos;ve sent an SMS with a 6-digit activation code to your
 								phone{' '}
 								<Text style={styles.highlightPhoneNumber}>
-									{phoneSignIn.phoneNumber?.format('INTERNATIONAL')}
+									{appState.phoneSignIn.phoneNumber?.format('INTERNATIONAL')}
 								</Text>
 							</Text>
 						</View>
