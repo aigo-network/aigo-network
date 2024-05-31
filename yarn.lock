@@ -3277,37 +3277,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-firebase/analytics@npm:19.2.2":
-  version: 19.2.2
-  resolution: "@react-native-firebase/analytics@npm:19.2.2"
-  peerDependencies:
-    "@react-native-firebase/app": 19.2.2
-  checksum: 10/287dba35e2e235da1a807d4d3a621181f19f74fb515434379d092f2b4e66d6e1ff1d034ec1c2df3c2267cb1b3bacf720c4f7d7f2cba256555584cfaef5493342
-  languageName: node
-  linkType: hard
-
-"@react-native-firebase/app-check@npm:19.2.2":
-  version: 19.2.2
-  resolution: "@react-native-firebase/app-check@npm:19.2.2"
-  peerDependencies:
-    "@react-native-firebase/app": 19.2.2
-    expo: ">=47.0.0"
-  peerDependenciesMeta:
-    expo:
-      optional: true
-  checksum: 10/774faee7df5e526332f032388ded76f9077893f35d3815ce817a50cc29e43cc718e5cd96cfbb9a6fde9b521ee9ea1829b28cf864e9c638549dac8ab276553d98
-  languageName: node
-  linkType: hard
-
-"@react-native-firebase/app-distribution@npm:19.2.2":
-  version: 19.2.2
-  resolution: "@react-native-firebase/app-distribution@npm:19.2.2"
-  peerDependencies:
-    "@react-native-firebase/app": 19.2.2
-  checksum: 10/776fd98ea1b5ef635cde6e89bf625ce531f01fbdb77309358d13a39ddbf323518a228cfdc49b6e75d079f9e907f97aa145f5975481a87fee47a28561b7af80b6
-  languageName: node
-  linkType: hard
-
 "@react-native-firebase/app@npm:^19.2.2":
   version: 19.2.2
   resolution: "@react-native-firebase/app@npm:19.2.2"
@@ -4180,10 +4149,7 @@ __metadata:
     "@metacraft/tsconfig": "npm:^0.0.2"
     "@react-native-async-storage/async-storage": "npm:^1.23.1"
     "@react-native-clipboard/clipboard": "npm:^1.14.1"
-    "@react-native-firebase/analytics": "npm:19.2.2"
     "@react-native-firebase/app": "npm:^19.2.2"
-    "@react-native-firebase/app-check": "npm:19.2.2"
-    "@react-native-firebase/app-distribution": "npm:19.2.2"
     "@react-native-firebase/auth": "npm:^19.2.2"
     "@react-native-google-signin/google-signin": "npm:^11.0.1"
     "@react-native/babel-preset": "npm:0.74.83"
