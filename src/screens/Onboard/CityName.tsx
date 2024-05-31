@@ -86,7 +86,8 @@ export const CityName = () => {
 						style={styles.searchBox}
 						onChangeText={onSearchChange}
 						textSearch={searchText}
-						searchPlaceholder={searchPlaceholder}
+						placeholder={searchPlaceholder}
+						placeholderTextColor="f4f4f4"
 					/>
 					<KeyboardAvoidingView
 						behavior={Platform.OS === 'ios' ? 'padding' : 'height'}

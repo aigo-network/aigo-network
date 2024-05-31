@@ -1,23 +1,26 @@
 import type { FC } from 'react';
 import { useEffect, useState } from 'react';
-import type { ViewStyle } from 'react-native';
+import type { TextInputProps, TextStyle, ViewStyle } from 'react-native';
 import { StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
 
 import CloseIcon from './icon/CloseIcon';
 import SearchIcon from './icon/SearchIcon';
 
-interface Props {
+interface Props extends TextInputProps {
+	containerStyle?: ViewStyle;
+	inputStyle?: TextStyle;
+	iconColor?: string;
 	textSearch?: string;
-	searchPlaceholder?: string;
 	onChangeText?: (text: string) => void;
-	style?: ViewStyle;
 }
 
 export const SearchBox: FC<Props> = ({
-	style,
-	onChangeText,
+	containerStyle,
+	inputStyle,
+	iconColor,
 	textSearch = '',
-	searchPlaceholder,
+	onChangeText,
+	...props
 }) => {
 	const [input, setInput] = useState(textSearch);
 
@@ -30,12 +33,11 @@ export const SearchBox: FC<Props> = ({
 	}, [textSearch]);
 
 	return (
-		<View style={[styles.container, style]}>
-			<SearchIcon />
+		<View style={[styles.container, containerStyle]}>
+			<SearchIcon color={iconColor} />
 			<TextInput
-				style={styles.input}
-				placeholder={searchPlaceholder}
-				placeholderTextColor="#f4f4f4"
+				{...props}
+				style={[styles.input, inputStyle]}
 				value={input}
 				onChangeText={(text) => {
 					setInput(text);
