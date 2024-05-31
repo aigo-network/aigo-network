@@ -21,8 +21,11 @@ import { useNavigation } from '@react-navigation/native';
 import { Button } from 'components/Button';
 import LeftArrowIcon from 'components/icon/LeftArrowIcon';
 import SafeContainer from 'components/SafeContainer';
-import type { CountryCode } from 'libphonenumber-js';
+import type { CountryCode, PhoneNumber } from 'libphonenumber-js';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
+import type { CountryItem } from 'modals/CountrySelection/SelcetionItem';
+import { showCountrySelection } from 'modals/index';
+import { appActions } from 'state/app';
 import dialCode from 'utils/dialCode.json';
 
 const AnimatedView = Animated.createAnimatedComponent(View);
@@ -33,12 +36,12 @@ const PhoneLoginScreen = () => {
 	const [loading, setLoading] = useState(false);
 	const [phoneNumber, setPhoneNumber] = useState('');
 	const [keyboardShown, setKeyboardShown] = useState(Keyboard.isVisible());
-	const [countryInfo, setCountryInfo] = useState<{
-		name: string;
-		dial_code: string;
-		emoji: string;
-		code: string;
-	}>({ name: '', dial_code: '', emoji: '', code: '' });
+	const [countryInfo, setCountryInfo] = useState<CountryItem>({
+		name: '',
+		dial_code: '',
+		emoji: '',
+		code: '',
+	});
 	const parsedPhoneNumber = parsePhoneNumberFromString(
 		phoneNumber,
 		countryInfo.code as CountryCode,
@@ -53,12 +56,25 @@ const PhoneLoginScreen = () => {
 		[paddingBot],
 	);
 
+	const handleChangeCountry = (item: CountryItem) => {
+		setCountryInfo(item);
+	};
+
 	const signInWithPhoneNumber = async () => {
 		setLoading(true);
-		const confirm = await auth().signInWithPhoneNumber(
-			parsedPhoneNumber?.number as string,
-		);
-		console.log(JSON.stringify(confirm, null, 2));
+		try {
+			const confirmation = await auth().signInWithPhoneNumber(
+				parsedPhoneNumber?.number as string,
+			);
+			appActions.updatePhoneSignIn(
+				parsedPhoneNumber as PhoneNumber,
+				confirmation,
+			);
+			navigation.navigate('OtpInput');
+		} catch (error) {
+			console.log('phone sign in', error);
+			console.log('Error with phone sign in');
+		}
 		setLoading(false);
 	};
 
@@ -108,7 +124,10 @@ const PhoneLoginScreen = () => {
 								Please confirm your country code and enter your phone number.
 							</Text>
 							<View style={styles.countryContainer}>
-								<TouchableOpacity style={styles.countryBtn}>
+								<TouchableOpacity
+									style={styles.countryBtn}
+									onPress={() => showCountrySelection(handleChangeCountry)}
+								>
 									<Text style={{ fontSize: 24 }}>{countryInfo.emoji}</Text>
 									<Text style={{ fontSize: 17 }}>{countryInfo.name}</Text>
 								</TouchableOpacity>

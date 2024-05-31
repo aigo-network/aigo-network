@@ -15,11 +15,18 @@ interface Props {
 	index: number;
 	value?: string;
 	style?: ViewStyle;
+	isError?: boolean;
 }
 
 const AnimatedView = Animated.createAnimatedComponent(View);
 
-const SingleInput: FC<Props> = ({ activeIndex, index, value = '', style }) => {
+const SingleInput: FC<Props> = ({
+	activeIndex,
+	index,
+	value = '',
+	style,
+	isError = false,
+}) => {
 	const active = activeIndex === index;
 	const insertedValue = !!value;
 	const cursorOpacity = useSharedValue(0);
@@ -33,7 +40,7 @@ const SingleInput: FC<Props> = ({ activeIndex, index, value = '', style }) => {
 		if (active) {
 			cursorOpacity.value = withRepeat(
 				withSequence(
-					withTiming(1, { duration: 0 }),
+					withDelay(0, withTiming(1, { duration: 0 })),
 					withDelay(500, withTiming(0, { duration: 0 })),
 					withDelay(500, withTiming(1, { duration: 0 })),
 				),
@@ -51,6 +58,7 @@ const SingleInput: FC<Props> = ({ activeIndex, index, value = '', style }) => {
 				styles.container,
 				style,
 				insertedValue && styles.highlightContainer,
+				isError && styles.errorContainer,
 			]}
 		>
 			{active && !insertedValue ? (
@@ -75,6 +83,9 @@ const styles = StyleSheet.create({
 	},
 	highlightContainer: {
 		borderColor: '#fff',
+	},
+	errorContainer: {
+		borderColor: '#ff2400',
 	},
 	cursor: {
 		alignSelf: 'center',

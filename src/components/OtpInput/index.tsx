@@ -1,7 +1,7 @@
 import type { FC, RefObject } from 'react';
 import { useRef, useState } from 'react';
 import type { ViewStyle } from 'react-native';
-import { StyleSheet, TextInput } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 import SingleInput from './SingleInput';
@@ -10,6 +10,7 @@ interface Props {
 	inputLength?: number;
 	value?: string;
 	style?: ViewStyle;
+	errorMessage?: string;
 	onChangeText?: (text: string) => void;
 }
 
@@ -19,6 +20,7 @@ const OtpInput: FC<Props> = ({
 	inputLength = 6,
 	value = '',
 	style,
+	errorMessage,
 	onChangeText,
 }) => {
 	const inputRef: TextInputRef = useRef(null);
@@ -47,15 +49,20 @@ const OtpInput: FC<Props> = ({
 				onBlur={() => {
 					setIsFocused(false);
 				}}
+				keyboardType="number-pad"
 			/>
-			{Array.from({ length: inputLength }, (_, i) => i).map((index) => (
-				<SingleInput
-					key={index}
-					index={index}
-					activeIndex={activeIndex}
-					value={innerValue[index]}
-				/>
-			))}
+			<View style={styles.singleInputContainer}>
+				{Array.from({ length: inputLength }, (_, i) => i).map((index) => (
+					<SingleInput
+						key={index}
+						index={index}
+						activeIndex={activeIndex}
+						value={innerValue[index]}
+						isError={!!errorMessage}
+					/>
+				))}
+			</View>
+			<Text style={styles.errorText}>{errorMessage || ''}</Text>
 		</TouchableWithoutFeedback>
 	);
 };
@@ -64,14 +71,22 @@ export default OtpInput;
 
 const styles = StyleSheet.create({
 	container: {
-		flexDirection: 'row',
-		justifyContent: 'space-between',
 		position: 'relative',
-		gap: 10,
+		gap: 15,
 	},
 	input: {
 		position: 'absolute',
 		opacity: 0,
 	},
-	mask: {},
+	singleInputContainer: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		gap: 10,
+	},
+	errorText: {
+		marginTop: 20,
+		alignSelf: 'center',
+		color: '#ff5c33',
+		fontSize: 16,
+	},
 });
