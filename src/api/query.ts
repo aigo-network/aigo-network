@@ -6,6 +6,9 @@ export const userQuery = gql`
 			id
 			name
 			email
+			phoneNumber
+			phoneNumberVerified
+			phoneNumberVerifiedAt
 			imageUrl
 			city
 			descriptions
@@ -31,6 +34,9 @@ export const userProfileQuery = gql`
 			email
 			city
 			descriptions
+			phoneNumber
+			phoneNumberVerified
+			phoneNumberVerifiedAt
 			GOPoints
 			completeOnboarding
 		}
