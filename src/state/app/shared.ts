@@ -1,4 +1,5 @@
 import DeviceInfo from 'react-native-device-info';
+import type { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import type { User } from 'api/graphql';
 import type { PhoneNumber } from 'libphonenumber-js';
 import { type Content, translations } from 'utils/translations';
@@ -12,7 +13,10 @@ interface AppState {
 	content: Content;
 	version: string;
 	buildNumber: string;
-	phoneNumber?: PhoneNumber;
+	phoneSignIn: {
+		phoneNumber?: PhoneNumber;
+		confirmation?: FirebaseAuthTypes.ConfirmationResult;
+	};
 }
 
 export const initAppState: AppState = {
@@ -20,6 +24,7 @@ export const initAppState: AppState = {
 	content: translations.en,
 	version: DeviceInfo.getVersion(),
 	buildNumber: DeviceInfo.getBuildNumber(),
+	phoneSignIn: {},
 };
 
 export const appState = proxy<AppState>(initAppState);

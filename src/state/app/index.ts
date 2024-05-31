@@ -1,3 +1,4 @@
+import type { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import type { DailyCheckIn, User } from 'api/graphql';
 import type { PhoneNumber } from 'libphonenumber-js';
 import type { LangKey } from 'utils/translations';
@@ -35,8 +36,14 @@ export const appActions = {
 	updateContentLanguage: (key: LangKey) => {
 		appState.content = translations[key];
 	},
-	updatePhoneNumber: (phoneNumber: PhoneNumber) => {
-		appState.phoneNumber = phoneNumber;
+	updatePhoneSignIn: (
+		phoneNumber: PhoneNumber,
+		confirmation: FirebaseAuthTypes.ConfirmationResult,
+	) => {
+		appState.phoneSignIn = {
+			phoneNumber,
+			confirmation,
+		};
 	},
 };
 
