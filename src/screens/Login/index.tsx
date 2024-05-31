@@ -5,7 +5,8 @@ import { graphqlClient } from 'api/graphql';
 import { Button } from 'components/Button';
 import AppIcon from 'components/icon/AppIcon';
 import SafeContainer from 'components/SafeContainer';
-import { appActions, appState } from 'state/app';
+import { showLanguageSelection } from 'modals/index';
+import { appState } from 'state/app';
 import type { SignInFunction } from 'utils/auth';
 import { signInWithApple, signInWithGoogle } from 'utils/auth';
 import { useSnapshot } from 'valtio';
@@ -44,7 +45,7 @@ export const LoginScreen = () => {
 			<Image source={backgroundSrc} style={styles.backgroundImage} />
 			<SafeContainer style={styles.safeContainer}>
 				<View style={styles.headingContainer}>
-					<TouchableOpacity onPress={() => appActions.showLanguageSelection()}>
+					<TouchableOpacity onPress={() => showLanguageSelection()}>
 						<Text>{content.language}</Text>
 					</TouchableOpacity>
 				</View>

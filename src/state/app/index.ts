@@ -4,17 +4,12 @@ import type { PhoneNumber } from 'libphonenumber-js';
 import type { LangKey } from 'utils/translations';
 import { translations } from 'utils/translations';
 
-import {
-	initTranslationModule,
-	setAppLanguage,
-	showLanguageSelection,
-} from './language';
+import { initTranslationModule, setAppLanguage } from './language';
 import { appState } from './shared';
 import type { Onboarding } from './types';
 
 export const appActions = {
 	setAppLanguage,
-	showLanguageSelection,
 	initTranslationModule,
 	setAppUser: (user: User) => {
 		appState.appUser = user;

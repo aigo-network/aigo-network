@@ -1,5 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { appActions, appState } from 'state/app';
+import { showLanguageSelection } from 'modals/index';
+import { appState } from 'state/app';
 import { useSnapshot } from 'valtio';
 
 export const Settings = () => {
@@ -11,7 +12,7 @@ export const Settings = () => {
 			<Text style={styles.title}>{settingSection.setting}</Text>
 			<TouchableOpacity
 				style={styles.infoContainer}
-				onPress={appActions.showLanguageSelection}
+				onPress={showLanguageSelection}
 			>
 				<View style={styles.fieldContainer}>
 					<Text style={styles.fieldTitle}>{settingSection.language}</Text>
