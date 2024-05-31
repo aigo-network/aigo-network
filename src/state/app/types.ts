@@ -6,6 +6,7 @@ export type Onboarding = {
 	name: string;
 	city: string;
 	descriptions: UserDescription[];
+	phoneNumber?: string;
 };
 
 export const userDescriptions = () => {

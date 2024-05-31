@@ -22,11 +22,12 @@ import Button from 'components/Button';
 import LeftArrowIcon from 'components/icon/LeftArrowIcon';
 import OtpInput from 'components/OtpInput';
 import SafeContainer from 'components/SafeContainer';
-import { appState } from 'state/app';
+import { appActions, appState } from 'state/app';
 import { useSnapshot } from 'valtio';
 
 import '@react-native-firebase/app-check';
 import '@react-native-firebase/app-distribution';
+import '@react-native-firebase/analytics';
 
 const otpLength = 6;
 const AnimatedView = Animated.createAnimatedComponent(View);
@@ -58,6 +59,9 @@ const OtpInputScreen = () => {
 		try {
 			const credential = await appState.phoneSignIn.confirmation?.confirm(otp);
 			if (!credential) throw new Error('Failed to get user credential');
+			appActions.updateOnboarding({
+				phoneNumber: phoneSignIn.phoneNumber?.format('INTERNATIONAL'),
+			});
 			const jwt = await auth().currentUser?.getIdToken();
 			if (jwt) setJWT(jwt);
 			const { user } = await graphqlClient.getUserProfile();

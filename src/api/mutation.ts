@@ -9,6 +9,7 @@ export const updateProfile = gql`
 			descriptions
 			city
 			imageUrl
+			phoneNumber
 		}
 	}
 `;
@@ -22,6 +23,7 @@ export const completeOnboardingMutation = gql`
 			imageUrl
 			city
 			descriptions
+			phoneNumber
 			GOPoints
 			dailyMissions {
 				checkIn {
@@ -74,5 +76,11 @@ export const deleteUserMutation = gql`
 			createdAt
 			updatedAt
 		}
+	}
+`;
+
+export const verifyPhoneNumber = gql`
+	mutation verifyPhoneNumber {
+		verifyPhoneNumber
 	}
 `;
