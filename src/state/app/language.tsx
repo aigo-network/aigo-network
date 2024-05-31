@@ -1,8 +1,5 @@
 import { getLocales } from 'react-native-localize';
-import Animated, { FadeInDown } from 'react-native-reanimated';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Align, showModal } from 'empty-modal';
-import LanguageSelectionModal from 'modals/LanguageSelection';
 import type { LangKey } from 'utils/translations';
 import { translations } from 'utils/translations';
 
@@ -20,24 +17,6 @@ export const initTranslationModule = async () => {
 	} else {
 		setAppLanguage('en');
 	}
-};
-
-export const showLanguageSelection = () => {
-	const { cleanModal } = showModal(
-		<Animated.View entering={FadeInDown}>
-			<LanguageSelectionModal
-				onClose={() => {
-					cleanModal();
-				}}
-			/>
-		</Animated.View>,
-		{
-			id: 'language-selection',
-			showBackdrop: true,
-			xOffset: 16,
-			align: Align.FullCenter,
-		},
-	);
 };
 
 export const setAppLanguage = async (key: LangKey) => {
