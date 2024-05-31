@@ -60,7 +60,7 @@ const OtpInputScreen = () => {
 			const credential = await appState.phoneSignIn.confirmation?.confirm(otp);
 			if (!credential) throw new Error('Failed to get user credential');
 			appActions.updateOnboarding({
-				phoneNumber: phoneSignIn.phoneNumber?.format('INTERNATIONAL'),
+				phoneNumber: phoneSignIn.phoneNumber?.number,
 			});
 			const jwt = await auth().currentUser?.getIdToken();
 			if (jwt) setJWT(jwt);
