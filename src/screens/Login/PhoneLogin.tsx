@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import {
-	ActivityIndicator,
 	Keyboard,
 	KeyboardAvoidingView,
 	Platform,
@@ -142,21 +141,18 @@ const PhoneLoginScreen = () => {
 					)}
 
 					<AnimatedView style={[styles.btnContainer, btnPaddingBottom]}>
-						{loading ? (
-							<ActivityIndicator color={'#ffffff'} />
-						) : (
-							<Button
-								style={[styles.btn, isPhoneValid && styles.activeBtn]}
-								onPress={signInWithPhoneNumber}
-								disabled={!isPhoneValid}
+						<Button
+							style={[styles.btn, isPhoneValid && styles.activeBtn]}
+							onPress={signInWithPhoneNumber}
+							disabled={!isPhoneValid}
+							loading={loading}
+						>
+							<Text
+								style={[styles.btnText, isPhoneValid && styles.activeBtnText]}
 							>
-								<Text
-									style={[styles.btnText, isPhoneValid && styles.activeBtnText]}
-								>
-									{'Continue'}
-								</Text>
-							</Button>
-						)}
+								Continue
+							</Text>
+						</Button>
 					</AnimatedView>
 				</KeyboardAvoidingView>
 			</SafeContainer>
