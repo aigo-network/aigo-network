@@ -35,6 +35,28 @@ export type Invitation = {
   invitedId?: Maybe<Scalars['String']['output']>;
 };
 
+export type NyamNyamUserProfile = {
+  __typename?: 'NyamNyamUserProfile';
+  NNID?: Maybe<Scalars['String']['output']>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  extKey?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  nick?: Maybe<Scalars['String']['output']>;
+  registrationNumber?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  verifiedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export enum PhoneNumberVerification {
+  /** Signed in by Phone number but mismatch with Phone number from user's profile */
+  Mismatch = 'MISMATCH',
+  /** Asked for verifying by OTP, continue to verify by SMS OTP */
+  OtpSmsVerifying = 'OTP_SMS_VERIFYING',
+  /** Correctly verified */
+  Verified = 'VERIFIED'
+}
+
 export type RootMutation = {
   __typename?: 'RootMutation';
   checkIn?: Maybe<DailyCheckIn>;
@@ -42,6 +64,14 @@ export type RootMutation = {
   deleteUser?: Maybe<User>;
   inputInvitationCode?: Maybe<Invitation>;
   updateProfile?: Maybe<User>;
+  verifyNyamNyamUser?: Maybe<NyamNyamUserProfile>;
+  /**
+   * Phone number must be added to user profile.
+   * 		If user signed-in by Phone number, it will check if Auth Phone number and Phone number in profile is matched or not.
+   * 		Else using OTP SMS to verify new phone number.
+   * 		
+   */
+  verifyPhoneNumber?: Maybe<PhoneNumberVerification>;
 };
 
 
@@ -54,6 +84,11 @@ export type RootMutationUpdateProfileArgs = {
   profile?: InputMaybe<UserProfile>;
 };
 
+
+export type RootMutationVerifyNyamNyamUserArgs = {
+  NNID?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type RootQuery = {
   __typename?: 'RootQuery';
   ping?: Maybe<Scalars['String']['output']>;
@@ -63,6 +98,7 @@ export type RootQuery = {
 export type User = {
   __typename?: 'User';
   GOPoints?: Maybe<Scalars['Int']['output']>;
+  NyamNyamUserProfile?: Maybe<NyamNyamUserProfile>;
   city?: Maybe<Scalars['String']['output']>;
   completeOnboarding?: Maybe<Scalars['Boolean']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
@@ -74,6 +110,9 @@ export type User = {
   invitationCode?: Maybe<Scalars['String']['output']>;
   invitedBy?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
+  phoneNumber?: Maybe<Scalars['String']['output']>;
+  phoneNumberVerified?: Maybe<Scalars['Boolean']['output']>;
+  phoneNumberVerifiedAt?: Maybe<Scalars['DateTime']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
@@ -100,12 +139,12 @@ export type UpdateProfileMutationVariables = Exact<{
 }>;
 
 
-export type UpdateProfileMutation = { __typename?: 'RootMutation', updateProfile?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, descriptions?: Array<UserDescription | null> | null, city?: string | null, imageUrl?: string | null } | null };
+export type UpdateProfileMutation = { __typename?: 'RootMutation', updateProfile?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, descriptions?: Array<UserDescription | null> | null, city?: string | null, imageUrl?: string | null, phoneNumber?: string | null } | null };
 
 export type CompleteOnboardingMutationVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CompleteOnboardingMutation = { __typename?: 'RootMutation', completeOnboarding?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, imageUrl?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, GOPoints?: number | null, invitationCode?: string | null, createdAt?: any | null, updatedAt?: any | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null } | null } | null };
+export type CompleteOnboardingMutation = { __typename?: 'RootMutation', completeOnboarding?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, imageUrl?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, phoneNumber?: string | null, GOPoints?: number | null, invitationCode?: string | null, createdAt?: any | null, updatedAt?: any | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null } | null } | null };
 
 export type CheckInMutationVariables = Exact<{ [key: string]: never; }>;
 
@@ -124,15 +163,20 @@ export type DeleteUserMutationVariables = Exact<{ [key: string]: never; }>;
 
 export type DeleteUserMutation = { __typename?: 'RootMutation', deleteUser?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, imageUrl?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, GOPoints?: number | null, invitationCode?: string | null, createdAt?: any | null, updatedAt?: any | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null } | null } | null };
 
+export type VerifyPhoneNumberMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type VerifyPhoneNumberMutation = { __typename?: 'RootMutation', verifyPhoneNumber?: PhoneNumberVerification | null };
+
 export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, imageUrl?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, GOPoints?: number | null, invitationCode?: string | null, createdAt?: any | null, updatedAt?: any | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null } | null } | null };
+export type GetUserQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, phoneNumber?: string | null, phoneNumberVerified?: boolean | null, phoneNumberVerifiedAt?: any | null, imageUrl?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, GOPoints?: number | null, invitationCode?: string | null, createdAt?: any | null, updatedAt?: any | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null } | null } | null };
 
 export type GetUserProfileQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserProfileQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, GOPoints?: number | null, completeOnboarding?: boolean | null } | null };
+export type GetUserProfileQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, phoneNumber?: string | null, phoneNumberVerified?: boolean | null, phoneNumberVerifiedAt?: any | null, GOPoints?: number | null, completeOnboarding?: boolean | null } | null };
 
 
 export const UpdateProfileDocument = gql`
@@ -144,6 +188,7 @@ export const UpdateProfileDocument = gql`
     descriptions
     city
     imageUrl
+    phoneNumber
   }
 }
     `;
@@ -156,6 +201,7 @@ export const CompleteOnboardingDocument = gql`
     imageUrl
     city
     descriptions
+    phoneNumber
     GOPoints
     dailyMissions {
       checkIn {
@@ -207,12 +253,20 @@ export const DeleteUserDocument = gql`
   }
 }
     `;
+export const VerifyPhoneNumberDocument = gql`
+    mutation verifyPhoneNumber {
+  verifyPhoneNumber
+}
+    `;
 export const GetUserDocument = gql`
     query getUser {
   user {
     id
     name
     email
+    phoneNumber
+    phoneNumberVerified
+    phoneNumberVerifiedAt
     imageUrl
     city
     descriptions
@@ -237,6 +291,9 @@ export const GetUserProfileDocument = gql`
     email
     city
     descriptions
+    phoneNumber
+    phoneNumberVerified
+    phoneNumberVerifiedAt
     GOPoints
     completeOnboarding
   }
@@ -264,6 +321,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     deleteUser(variables?: DeleteUserMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<DeleteUserMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<DeleteUserMutation>(DeleteUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'deleteUser', 'mutation', variables);
+    },
+    verifyPhoneNumber(variables?: VerifyPhoneNumberMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<VerifyPhoneNumberMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<VerifyPhoneNumberMutation>(VerifyPhoneNumberDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'verifyPhoneNumber', 'mutation', variables);
     },
     getUser(variables?: GetUserQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetUserQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetUserQuery>(GetUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUser', 'query', variables);

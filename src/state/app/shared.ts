@@ -1,5 +1,6 @@
 import DeviceInfo from 'react-native-device-info';
 import type { User } from 'api/graphql';
+import type { PhoneNumber } from 'libphonenumber-js';
 import { type Content, translations } from 'utils/translations';
 import { proxy } from 'valtio';
 
@@ -11,6 +12,9 @@ interface AppState {
 	content: Content;
 	version: string;
 	buildNumber: string;
+	phoneSignIn: {
+		phoneNumber?: PhoneNumber;
+	};
 }
 
 export const initAppState: AppState = {
@@ -18,6 +22,7 @@ export const initAppState: AppState = {
 	content: translations.en,
 	version: DeviceInfo.getVersion(),
 	buildNumber: DeviceInfo.getBuildNumber(),
+	phoneSignIn: {},
 };
 
 export const appState = proxy<AppState>(initAppState);

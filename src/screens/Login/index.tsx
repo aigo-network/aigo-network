@@ -18,6 +18,8 @@ export const LoginScreen = () => {
 	const backgroundSrc = require('assets/img/login/background-logo.png');
 	const googleIconSrc = require('assets/img/login/google-logo.png');
 	const appleIconSrc = require('assets/img/login/apple-logo.png');
+	const phoneNumberSrc = require('assets/img/login/phone-number.png');
+	const nyamNyamSrc = require('assets/img/login/nyam-nyam-logo.png');
 
 	const handleSignIn = async (signIn: SignInFunction) => {
 		try {
@@ -32,6 +34,10 @@ export const LoginScreen = () => {
 		} catch (error) {
 			console.log(error);
 		}
+	};
+
+	const handlePhoneSignIn = () => {
+		navigate('PhoneLogin');
 	};
 
 	return (
@@ -50,20 +56,31 @@ export const LoginScreen = () => {
 					<Text style={styles.welcome}>{logInContent.welcome}</Text>
 					<Text style={styles.slogan}>{logInContent.slogan}</Text>
 				</View>
+
 				<View style={styles.btnGroup}>
 					<Button
-						prefix={<Image source={googleIconSrc} />}
+						prefix={<Image style={styles.googleIcon} source={googleIconSrc} />}
 						style={styles.btn}
 						onPress={() => handleSignIn(signInWithGoogle)}
 					>
 						<Text style={styles.btnText}>{logInContent.googleButton}</Text>
 					</Button>
 					<Button
-						prefix={<Image source={appleIconSrc} />}
+						prefix={<Image style={styles.appleIcon} source={appleIconSrc} />}
 						style={styles.btn}
 						onPress={() => handleSignIn(signInWithApple)}
 					>
 						<Text style={styles.btnText}>{logInContent.appleButton}</Text>
+					</Button>
+					<Button
+						prefix={
+							<Image style={styles.phoneNumberIcon} source={phoneNumberSrc} />
+						}
+						suffix={<Image style={styles.nnIcon} source={nyamNyamSrc} />}
+						style={styles.btn}
+						onPress={handlePhoneSignIn}
+					>
+						<Text style={styles.btnText}>{logInContent.phoneNumberButton}</Text>
 					</Button>
 				</View>
 				<Text style={styles.version}>
@@ -112,9 +129,25 @@ const styles = StyleSheet.create({
 	btnGroup: {
 		flex: 1,
 		gap: 17,
-		paddingHorizontal: 40,
+		paddingHorizontal: 24,
 		justifyContent: 'flex-end',
 		paddingBottom: 50,
+	},
+	googleIcon: {
+		width: 24,
+		height: 24,
+	},
+	appleIcon: {
+		width: 19,
+		height: 24,
+	},
+	phoneNumberIcon: {
+		width: 22,
+		height: 22,
+	},
+	nnIcon: {
+		width: 40,
+		height: 24,
 	},
 	btn: {
 		paddingVertical: 15,

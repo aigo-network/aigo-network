@@ -33,6 +33,7 @@ export type Content = {
 		logIn: {
 			welcome: string;
 			slogan: string;
+			phoneNumberButton: string;
 			appleButton: string;
 			googleButton: string;
 			versionPrefix: string;

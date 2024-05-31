@@ -1,4 +1,5 @@
 import type { DailyCheckIn, User } from 'api/graphql';
+import type { PhoneNumber } from 'libphonenumber-js';
 import type { LangKey } from 'utils/translations';
 import { translations } from 'utils/translations';
 
@@ -28,6 +29,11 @@ export const appActions = {
 	},
 	updateContentLanguage: (key: LangKey) => {
 		appState.content = translations[key];
+	},
+	updatePhoneSignIn: (phoneNumber: PhoneNumber) => {
+		appState.phoneSignIn = {
+			phoneNumber,
+		};
 	},
 };
 

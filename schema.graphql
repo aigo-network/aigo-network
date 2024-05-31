@@ -33,6 +33,50 @@ type Invitation {
 }
 
 """"""
+type NyamNyamUserProfile {
+  """"""
+  NNID: String
+
+  """"""
+  createdAt: DateTime
+
+  """"""
+  extKey: String
+
+  """"""
+  id: String
+
+  """"""
+  name: String
+
+  """"""
+  nick: String
+
+  """"""
+  registrationNumber: String
+
+  """"""
+  updatedAt: DateTime
+
+  """"""
+  verifiedAt: DateTime
+}
+
+""""""
+enum PhoneNumberVerification {
+  """
+  Signed in by Phone number but mismatch with Phone number from user's profile
+  """
+  MISMATCH
+
+  """Asked for verifying by OTP, continue to verify by SMS OTP"""
+  OTP_SMS_VERIFYING
+
+  """Correctly verified"""
+  VERIFIED
+}
+
+""""""
 type RootMutation {
   """"""
   checkIn: DailyCheckIn
@@ -48,6 +92,12 @@ type RootMutation {
 
   """"""
   updateProfile(profile: UserProfile): User
+
+  """"""
+  verifyNyamNyamUser(NNID: String): NyamNyamUserProfile
+
+  "Phone number must be added to user profile. \n\t\tIf user signed-in by Phone number, it will check if Auth Phone number and Phone number in profile is matched or not.\n\t\tElse using OTP SMS to verify new phone number.\n\t\t"
+  verifyPhoneNumber: PhoneNumberVerification
 }
 
 """"""
@@ -65,6 +115,9 @@ type User {
   GOPoints: Int
 
   """"""
+  NyamNyamUserProfile: NyamNyamUserProfile
+
+  """"""
   city: String
 
   """"""
@@ -75,9 +128,6 @@ type User {
 
   """"""
   dailyMissions: DailyMissions
-
-  """"""
-  deletedAt: DateTime
 
   """"""
   descriptions: [UserDescription]
@@ -99,6 +149,15 @@ type User {
 
   """"""
   name: String
+
+  """"""
+  phoneNumber: String
+
+  """"""
+  phoneNumberVerified: Boolean
+
+  """"""
+  phoneNumberVerifiedAt: DateTime
 
   """"""
   updatedAt: DateTime

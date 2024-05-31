@@ -5,6 +5,9 @@ const config: CodegenConfig = {
 	schema: 'https://dev.api.aigo.network/graphql',
 	documents: ['src/**/*.ts'],
 	generates: {
+		'./schema.graphql': {
+			plugins: ['schema-ast'],
+		},
 		'./src/api/sdk.ts': {
 			plugins: [
 				'typescript',

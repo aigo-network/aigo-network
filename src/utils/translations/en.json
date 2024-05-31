@@ -26,6 +26,7 @@
     "logIn": {
       "welcome": "Welcome to\nAiGO",
       "slogan": "Turns your everyday\nActions into rewards",
+      "phoneNumberButton": "Phone number",
       "googleButton": "Log in with Google",
       "appleButton": "Log in with Apple",
       "versionPrefix": "Version"

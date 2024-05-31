@@ -1,7 +1,6 @@
 import type { FC, ReactNode } from 'react';
 import { useEffect, useState } from 'react';
 import {
-	ActivityIndicator,
 	Keyboard,
 	StyleSheet,
 	Text,
@@ -109,17 +108,14 @@ export const OnboardLayout: FC<Props> = ({
 				)}
 
 				<AnimatedView style={[styles.btnContainer, btnPaddingBottom]}>
-					{loading ? (
-						<ActivityIndicator color={'#ffffff'} />
-					) : (
-						<Button
-							style={[styles.btn, btnBackgroundColor]}
-							onPress={handlePressContinue}
-							disabled={disabled}
-						>
-							<Text style={[styles.btnText, btnTextColor]}>{mainBtnText}</Text>
-						</Button>
-					)}
+					<Button
+						style={[styles.btn, btnBackgroundColor]}
+						onPress={handlePressContinue}
+						disabled={disabled}
+						loading={loading}
+					>
+						<Text style={[styles.btnText, btnTextColor]}>{mainBtnText}</Text>
+					</Button>
 				</AnimatedView>
 			</SafeContainer>
 		</View>

@@ -9,7 +9,7 @@ import { config } from 'utils/config';
 import { defaultAvatar, defaultEmail } from 'utils/misc';
 
 export const completeOnboarding = async (cityFallback?: string) => {
-	const { city, name, descriptions } = appState.onboarding;
+	const { city, name, descriptions, phoneNumber } = appState.onboarding;
 	const email =
 		auth().currentUser?.email ||
 		(await getDefaultUserInfo()).email ||
@@ -22,6 +22,7 @@ export const completeOnboarding = async (cityFallback?: string) => {
 			city: city || cityFallback,
 			imageUrl,
 			email,
+			phoneNumber,
 		},
 	});
 
@@ -37,6 +38,11 @@ export const completeOnboarding = async (cityFallback?: string) => {
 
 	const { completeOnboarding: user } = await graphqlClient.completeOnboarding();
 	if (user) appActions.setAppUser(user);
+
+	if (phoneNumber) {
+		const status = await graphqlClient.verifyPhoneNumber();
+		console.log(status);
+	}
 
 	setTimeout(() => {
 		const { cleanModal } = showModal(
