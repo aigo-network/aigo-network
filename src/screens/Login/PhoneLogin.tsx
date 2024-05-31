@@ -26,6 +26,7 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import type { CountryItem } from 'modals/CountrySelection/SelcetionItem';
 import { showCountrySelection } from 'modals/index';
 import { appActions } from 'state/app';
+import { setConfirmation } from 'utils/auth';
 import dialCode from 'utils/dialCode.json';
 
 const AnimatedView = Animated.createAnimatedComponent(View);
@@ -66,10 +67,8 @@ const PhoneLoginScreen = () => {
 			const confirmation = await auth().signInWithPhoneNumber(
 				parsedPhoneNumber?.number as string,
 			);
-			appActions.updatePhoneSignIn(
-				parsedPhoneNumber as PhoneNumber,
-				confirmation,
-			);
+			if (confirmation) setConfirmation(confirmation);
+			appActions.updatePhoneSignIn(parsedPhoneNumber as PhoneNumber);
 			navigation.navigate('OtpInput');
 		} catch (error) {
 			console.log('phone sign in', error);

@@ -1,3 +1,4 @@
+import type { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import auth from '@react-native-firebase/auth';
 import type { User } from 'api/graphql';
 import { graphqlClient } from 'api/graphql';
@@ -49,6 +50,13 @@ export const logOut = async () => {
 	await auth().signOut();
 	await cleanDefaultUserInfo();
 	appActions.cleanState();
+};
+
+export let confirmation: FirebaseAuthTypes.ConfirmationResult;
+export const setConfirmation = (
+	confirmationResult: FirebaseAuthTypes.ConfirmationResult,
+) => {
+	confirmation = confirmationResult;
 };
 
 export * from './signinApple';
