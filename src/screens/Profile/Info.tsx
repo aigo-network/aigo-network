@@ -1,12 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native';
+import { parsePhoneNumber } from 'libphonenumber-js';
 import { appState } from 'state/app';
 import { useSnapshot } from 'valtio';
 
 export const Info = () => {
 	const { content, appUser } = useSnapshot(appState);
 	const { infoTitle, defaultInfo } = content.screens.profile;
-	console.log(appUser);
-
+	const parsedPhoneNumber = appUser?.phoneNumber
+		? parsePhoneNumber(appUser?.phoneNumber)
+		: undefined;
 	return (
 		<View style={styles.container}>
 			<Text style={styles.title}>{infoTitle.account}</Text>
@@ -38,7 +40,8 @@ export const Info = () => {
 				<View style={styles.fieldContainer}>
 					<Text style={styles.fieldTitle}>{infoTitle.phoneNumber}</Text>
 					<Text style={styles.fieldValue}>
-						{appUser?.phoneNumber || defaultInfo.phoneNumber}
+						{parsedPhoneNumber?.format('INTERNATIONAL') ||
+							defaultInfo.phoneNumber}
 					</Text>
 				</View>
 			</View>
