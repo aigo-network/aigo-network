@@ -96,13 +96,15 @@
         "name": "이름",
         "email": "이메일",
         "city": "도시",
-        "descriptions": "설명"
+        "descriptions": "설명",
+		"phoneNumber": "Phone number"
       },
       "defaultInfo": {
         "name": "익명의 사용자",
         "email": "anonymous@aigo.network",
         "city": "AiGO 시티",
-        "description": "AiGO 러버"
+        "description": "AiGO 러버",
+		"phoneNumber": ""
       },
       "settingSection": {
         "setting": "Settings",

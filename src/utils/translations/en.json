@@ -96,13 +96,15 @@
         "name": "Name",
         "email": "Email",
         "city": "City",
-        "descriptions": "Descriptions"
+        "descriptions": "Descriptions",
+		"phoneNumber": "Phone number"
       },
       "defaultInfo": {
         "name": "Anonymous",
         "email": "anonymous@aigo.network",
         "city": "AiGO city",
-        "description": "AiGO lover"
+        "description": "AiGO lover",
+		"phoneNumber": ""
       },
       "settingSection": {
         "setting": "Settings",

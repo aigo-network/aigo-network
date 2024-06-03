@@ -5,6 +5,7 @@ import { useSnapshot } from 'valtio';
 export const Info = () => {
 	const { content, appUser } = useSnapshot(appState);
 	const { infoTitle, defaultInfo } = content.screens.profile;
+	console.log(appUser);
 
 	return (
 		<View style={styles.container}>
@@ -17,7 +18,7 @@ export const Info = () => {
 					</Text>
 				</View>
 				<View style={styles.fieldContainer}>
-					<Text style={styles.fieldTitle}>{infoTitle.name}</Text>
+					<Text style={styles.fieldTitle}>{infoTitle.email}</Text>
 					<Text style={styles.fieldValue}>
 						{appUser?.email || defaultInfo.email}
 					</Text>
@@ -32,6 +33,12 @@ export const Info = () => {
 					<Text style={styles.fieldTitle}>{infoTitle.descriptions}</Text>
 					<Text style={styles.fieldValue}>
 						{appUser?.descriptions?.join(', ') || defaultInfo.description}
+					</Text>
+				</View>
+				<View style={styles.fieldContainer}>
+					<Text style={styles.fieldTitle}>{infoTitle.phoneNumber}</Text>
+					<Text style={styles.fieldValue}>
+						{appUser?.phoneNumber || defaultInfo.phoneNumber}
 					</Text>
 				</View>
 			</View>

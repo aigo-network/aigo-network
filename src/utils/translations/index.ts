@@ -101,12 +101,14 @@ export type Content = {
 				email: string;
 				city: string;
 				descriptions: string;
+				phoneNumber: string;
 			};
 			defaultInfo: {
 				name: string;
 				email: string;
 				city: string;
 				description: string;
+				phoneNumber: string;
 			};
 			settingSection: {
 				setting: string;
