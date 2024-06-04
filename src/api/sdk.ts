@@ -64,6 +64,10 @@ export type RootMutation = {
   deleteUser?: Maybe<User>;
   inputInvitationCode?: Maybe<Invitation>;
   updateProfile?: Maybe<User>;
+  /**
+   * Verify Nyam Nyam Identity by calling NN API, needed NNID and Phone number.
+   * 	Phone Number must be added to profile and verified before verify Nyam Nyam user identity
+   */
   verifyNyamNyamUser?: Maybe<NyamNyamUserProfile>;
   /**
    * Phone number must be added to user profile.
@@ -176,7 +180,7 @@ export type GetUserQuery = { __typename?: 'RootQuery', user?: { __typename?: 'Us
 export type GetUserProfileQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserProfileQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, phoneNumber?: string | null, phoneNumberVerified?: boolean | null, phoneNumberVerifiedAt?: any | null, GOPoints?: number | null, completeOnboarding?: boolean | null } | null };
+export type GetUserProfileQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, phoneNumber?: string | null, phoneNumberVerified?: boolean | null, phoneNumberVerifiedAt?: any | null, GOPoints?: number | null, completeOnboarding?: boolean | null, NyamNyamUserProfile?: { __typename?: 'NyamNyamUserProfile', NNID?: string | null, createdAt?: any | null, extKey?: string | null, id?: string | null, name?: string | null, nick?: string | null, registrationNumber?: string | null, updatedAt?: any | null, verifiedAt?: any | null } | null } | null };
 
 
 export const UpdateProfileDocument = gql`
@@ -291,6 +295,17 @@ export const GetUserProfileDocument = gql`
     email
     city
     descriptions
+    NyamNyamUserProfile {
+      NNID
+      createdAt
+      extKey
+      id
+      name
+      nick
+      registrationNumber
+      updatedAt
+      verifiedAt
+    }
     phoneNumber
     phoneNumberVerified
     phoneNumberVerifiedAt

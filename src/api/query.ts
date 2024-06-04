@@ -34,6 +34,17 @@ export const userProfileQuery = gql`
 			email
 			city
 			descriptions
+			NyamNyamUserProfile {
+				NNID
+				createdAt
+				extKey
+				id
+				name
+				nick
+				registrationNumber
+				updatedAt
+				verifiedAt
+			}
 			phoneNumber
 			phoneNumberVerified
 			phoneNumberVerifiedAt
