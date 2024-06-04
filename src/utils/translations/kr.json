@@ -3,6 +3,8 @@
   "modal": {
     "yes": "Yes",
     "no": "No",
+	"cancel": "Cancel",
+	"confirm": "Confirm",
     "confirmLogOutMessage": "로그아웃하시겠습니까??",
     "confirmDeleteAccountMessage": "계정을 삭제하시겠습니까??",
     "invite": {
@@ -29,7 +31,17 @@
       "phoneNumberButton": "Phone number",
       "googleButton": "Google 계정으로 로그인",
       "appleButton": "Apple 계정으로 로그인",
-      "versionPrefix": "버전"
+      "versionPrefix": "버전",
+	  "phoneNumberLogin": {
+		  "login": "Login",
+		  "subText": "Please confirm your country code and enter your phone number",
+		  "continueButton": "계속하기"
+	  },
+	  "otpConfirm": {
+		  "enterCode": "Enter code",
+		  "subText": "We've sent as SMS with a 6-digit activation code to your phone",
+		  "verifyButton": "인증하기"
+	  }
     },
     "onboard": {
       "name": {
@@ -80,7 +92,8 @@
       },
       "dailyCheckInSection": {
         "title": "출석 체크",
-        "checkInButton": "출석하기"
+        "checkInButton": "출석하기",
+		"checkInDay": "Day"
       },
       "dailyMissionSection": {
         "title": "일일 미션"

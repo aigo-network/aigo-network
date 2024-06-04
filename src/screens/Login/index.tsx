@@ -119,8 +119,10 @@ const styles = StyleSheet.create({
 		fontWeight: '600',
 		fontSize: 42,
 		textAlign: 'center',
+		paddingHorizontal: 24,
 	},
 	slogan: {
+		paddingHorizontal: 24,
 		alignSelf: 'center',
 		marginTop: 14,
 		fontSize: 19,

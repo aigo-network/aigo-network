@@ -21,7 +21,7 @@ export const CheckIn: FC<Props> = ({ width, status, dayNumber }) => {
 					status.includes('today') && styles.highlight,
 				]}
 			>
-				<Text style={{ color: colorMap[status].text }}>
+				<Text style={[styles.checkInReward, { color: colorMap[status].text }]}>
 					{config.activity.DailyCheckIn.points} GO
 				</Text>
 				{status === 'checkedIn' ? (
@@ -72,6 +72,9 @@ const styles = StyleSheet.create({
 	highlight: {
 		borderWidth: 0.5,
 		borderColor: '#714CFE',
+	},
+	checkInReward: {
+		textAlign: 'center',
 	},
 });
 

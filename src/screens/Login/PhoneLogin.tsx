@@ -25,9 +25,10 @@ import type { CountryCode, PhoneNumber } from 'libphonenumber-js';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import type { CountryItem } from 'modals/CountrySelection/SelcetionItem';
 import { showCountrySelection } from 'modals/index';
-import { appActions } from 'state/app';
+import { appActions, appState } from 'state/app';
 import { setConfirmation } from 'utils/auth';
 import dialCode from 'utils/dialCode.json';
+import { useSnapshot } from 'valtio';
 
 const AnimatedView = Animated.createAnimatedComponent(View);
 
@@ -43,6 +44,9 @@ const PhoneLoginScreen = () => {
 		emoji: '',
 		code: '',
 	});
+	const { content } = useSnapshot(appState);
+	const { login, subText, continueButton } =
+		content.screens.logIn.phoneNumberLogin;
 	const parsedPhoneNumber = parsePhoneNumberFromString(
 		phoneNumber,
 		countryInfo.code as CountryCode,
@@ -118,10 +122,8 @@ const PhoneLoginScreen = () => {
 							</TouchableOpacity>
 						</View>
 						<View style={styles.content}>
-							<Text style={styles.title}>Login</Text>
-							<Text style={styles.subText}>
-								Please confirm your country code and enter your phone number.
-							</Text>
+							<Text style={styles.title}>{login}</Text>
+							<Text style={styles.subText}>{subText}.</Text>
 							<View style={styles.countryContainer}>
 								<TouchableOpacity
 									style={styles.countryBtn}
@@ -168,7 +170,7 @@ const PhoneLoginScreen = () => {
 							<Text
 								style={[styles.btnText, isPhoneValid && styles.activeBtnText]}
 							>
-								Continue
+								{continueButton}
 							</Text>
 						</Button>
 					</AnimatedView>
