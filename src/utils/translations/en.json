@@ -40,7 +40,7 @@
 	  "otpConfirm": {
 		  "enterCode": "Enter code",
 		  "subText": "We've sent as SMS with a 6-digit activation code to your phone",
-		  "verifyButton": "인증하기"
+		  "verifyButton": "Verify"
 	  }
     },
     "onboard": {

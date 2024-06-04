@@ -1,8 +1,8 @@
 {
   "language": "한국어",
   "modal": {
-    "yes": "Yes",
-    "no": "No",
+    "yes": "예",
+    "no": "아니요",
 	"cancel": "Cancel",
 	"confirm": "Confirm",
     "confirmLogOutMessage": "로그아웃하시겠습니까??",
@@ -18,7 +18,7 @@
     },
     "earnPoints": {
       "messagePrefix": "포인트가 누적되었습니다",
-      "completedOnboardingMessage": "Your account is ready to use. You will be redirected to the Home Page in a few seconds."
+      "completedOnboardingMessage": "계정을 사용할 준비가 되었습니다. 몇 초 안에 홈 페이지로 전환됩니다."
     }
   },
   "screens": {
@@ -28,7 +28,7 @@
     "logIn": {
       "welcome": "AiGO에 오신 것을 환영합니다.",
       "slogan": "당신의 일상적인 행동을 보상으로 전달합니다.",
-      "phoneNumberButton": "Phone number",
+      "phoneNumberButton": "핸드폰 번호",
       "googleButton": "Google 계정으로 로그인",
       "appleButton": "Apple 계정으로 로그인",
       "versionPrefix": "버전",
@@ -52,9 +52,9 @@
       "city": {
         "title": "거주하는 도시 이름을 입력해주세요",
         "description": "주변 지인들과 연결을 위해 거주하는 도시에서 자신을 표시하세요.",
-        "searchPlaceholder": "Search for a city",
-        "emptySearchTitle": "No result",
-        "emptySearchMessage": "Can't find what you're looking for.\nTry search for different city or continue with the location you entered.",
+        "searchPlaceholder": "도시 검색하기",
+        "emptySearchTitle": "찾을 수 없습니다",
+        "emptySearchMessage": "검색 결과를 찾을 수 없습니다. 다른 도시를 검색하거나 입력한 지역을 다시 확인해주세요.",
         "continueButton": "계속하기"
       },
       "userDescriptions": {
