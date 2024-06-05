@@ -131,6 +131,12 @@
         "deleteAccountButton": "계정 삭제하기",
         "versionPrefix": "버전"
       }
-    }
+    },
+	"nnidVerify": {
+		"title": "Nyam Nyam Box Verification",
+		"enterNNID": "Enter Nyam Nyam ID",
+		"subText": "Enter your user ID in Nyam Nyam Box App. Go to setting .... to find your ... ID number below",
+		"errorMessage": "ID not matched, try again."
+	}
   }
 }

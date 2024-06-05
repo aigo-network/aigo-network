@@ -136,5 +136,11 @@ export type Content = {
 				versionPrefix: string;
 			};
 		};
+		nnidVerify: {
+			title: string;
+			enterNNID: string;
+			subText: string;
+			errorMessage: string;
+		};
 	};
 };
