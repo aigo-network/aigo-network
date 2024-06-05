@@ -35,7 +35,8 @@ const OtpInputScreen = () => {
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [keyboardShown, setKeyboardShown] = useState(Keyboard.isVisible());
-	const { phoneSignIn } = useSnapshot(appState);
+	const { phoneSignIn, content } = useSnapshot(appState);
+	const { enterCode, subText, verifyButton } = content.screens.logIn.otpConfirm;
 	const paddingBot = useSharedValue(0);
 	const disabled = otp.length !== otpLength;
 
@@ -107,10 +108,9 @@ const OtpInputScreen = () => {
 							</TouchableOpacity>
 						</View>
 						<View style={styles.content}>
-							<Text style={styles.title}>Enter code</Text>
+							<Text style={styles.title}>{enterCode}</Text>
 							<Text style={styles.subText}>
-								We&apos;ve sent an SMS with a 6-digit activation code to your
-								phone{' '}
+								{subText}{' '}
 								<Text style={styles.highlightPhoneNumber}>
 									{phoneSignIn.phoneNumber?.format('INTERNATIONAL')}
 								</Text>
@@ -141,7 +141,7 @@ const OtpInputScreen = () => {
 							loading={loading}
 						>
 							<Text style={[styles.btnText, !disabled && styles.activeBtnText]}>
-								Verify
+								{verifyButton}
 							</Text>
 						</Button>
 					</AnimatedView>

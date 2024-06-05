@@ -3,6 +3,8 @@
   "modal": {
     "yes": "Yes",
     "no": "No",
+	"cancel": "Cancel",
+	"confirm": "Confirm",
     "confirmLogOutMessage": "Are you sure to logout?",
     "confirmDeleteAccountMessage": "Do you want to delete your account?",
     "invite": {
@@ -29,7 +31,17 @@
       "phoneNumberButton": "Phone number",
       "googleButton": "Log in with Google",
       "appleButton": "Log in with Apple",
-      "versionPrefix": "Version"
+      "versionPrefix": "Version",
+	  "phoneNumberLogin": {
+		  "login": "Login",
+		  "subText": "Please confirm your country code and enter your phone number",
+		  "continueButton": "Continue"
+	  },
+	  "otpConfirm": {
+		  "enterCode": "Enter code",
+		  "subText": "We've sent as SMS with a 6-digit activation code to your phone",
+		  "verifyButton": "Verify"
+	  }
     },
     "onboard": {
       "name": {
@@ -80,7 +92,8 @@
       },
       "dailyCheckInSection": {
         "title": "Daily Check-in",
-        "checkInButton": "Check-in"
+        "checkInButton": "Check-in",
+		"checkInDay": "Day"
       },
       "dailyMissionSection": {
         "title": "Daily Missions"

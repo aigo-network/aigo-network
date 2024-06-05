@@ -10,6 +10,8 @@ export type Content = {
 	modal: {
 		yes: string;
 		no: string;
+		cancel: string;
+		confirm: string;
 		confirmLogOutMessage: string;
 		confirmDeleteAccountMessage: string;
 		invite: {
@@ -37,6 +39,16 @@ export type Content = {
 			appleButton: string;
 			googleButton: string;
 			versionPrefix: string;
+			phoneNumberLogin: {
+				login: string;
+				subText: string;
+				continueButton: string;
+			};
+			otpConfirm: {
+				enterCode: string;
+				subText: string;
+				verifyButton: string;
+			};
 		};
 		onboard: {
 			name: {
@@ -88,6 +100,7 @@ export type Content = {
 			dailyCheckInSection: {
 				title: string;
 				checkInButton: string;
+				checkInDay: string;
 			};
 		};
 		profile: {
