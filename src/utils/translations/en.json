@@ -106,6 +106,13 @@
         "description": "AiGO lover",
 		"phoneNumber": ""
       },
+	  "partnerSection": {
+		"partner": "Partner Program",
+		"partnerName": "Nyam Nyam Box",
+		"descriptionPrefix": "Verify if you are a Nyam Nyam Box user to receive",
+		"reward": "100 GO",
+		"descriptionSuffix": "points"
+	  },
       "settingSection": {
         "setting": "Settings",
         "language": "Language"

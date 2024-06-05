@@ -15,11 +15,12 @@ import { useSnapshot } from 'valtio';
 import Footer from './Footer';
 import Header from './Header';
 import Info from './Info';
+import PartnerProgram from './Partner';
 import Referral from './Referral';
 import Settings from './Settings';
 
 export const ProfileScreen = () => {
-	const { content } = useSnapshot(appState);
+	const { content, appUser } = useSnapshot(appState);
 	const profileContent = content.screens.profile;
 	const { goBack } = useNavigation();
 
@@ -55,6 +56,7 @@ export const ProfileScreen = () => {
 					showsVerticalScrollIndicator={false}
 				>
 					<Header />
+					{appUser?.phoneNumber && <PartnerProgram />}
 					<Info />
 					<Settings />
 					<Referral />

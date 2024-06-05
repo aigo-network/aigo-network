@@ -110,6 +110,13 @@ export type Content = {
 				description: string;
 				phoneNumber: string;
 			};
+			partnerSection: {
+				partner: string;
+				partnerName: string;
+				descriptionPrefix: string;
+				reward: string;
+				descriptionSuffix: string;
+			};
 			settingSection: {
 				setting: string;
 				language: string;

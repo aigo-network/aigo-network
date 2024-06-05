@@ -3,11 +3,11 @@ import type { ColorValue } from 'react-native';
 import { Path, Svg } from 'react-native-svg';
 
 type Props = {
-	width: number;
-	color: ColorValue;
+	width?: number;
+	color?: ColorValue;
 };
 
-export const Tick: FC<Props> = ({ color, width = 10 }) => {
+export const Tick: FC<Props> = ({ color = '#fff', width = 10 }) => {
 	const height = (width * 7) / 10;
 	return (
 		<Svg width={width} height={height} viewBox="0 0 10 7" fill="none">
