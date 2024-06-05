@@ -7,6 +7,7 @@ import {
 	View,
 } from 'react-native';
 import Animated, {
+	FadeInDown,
 	useAnimatedStyle,
 	useSharedValue,
 	withTiming,
@@ -16,8 +17,11 @@ import { graphqlClient } from 'api/graphql';
 import Button from 'components/Button';
 import LeftArrowIcon from 'components/icon/LeftArrowIcon';
 import KeyboardView from 'components/KeyboardView';
+import PointPopup from 'components/PointPopup';
 import SafeContainer from 'components/SafeContainer';
+import { Align, showModal } from 'empty-modal';
 import { appActions, appState } from 'state/app';
+import points from 'utils/activity.json';
 import { useSnapshot } from 'valtio';
 
 const AnimatedView = Animated.createAnimatedComponent(View);
@@ -50,6 +54,24 @@ const NnidVerifyScreen = () => {
 		[paddingBot],
 	);
 
+	const showCompleteNyamNyamVerification = () => {
+		const { cleanModal } = showModal(
+			<Animated.View entering={FadeInDown}>
+				<PointPopup
+					point={points.activity.CompleteNyamNyamVerification.points}
+					onPressClose={() => {
+						cleanModal();
+					}}
+				/>
+			</Animated.View>,
+			{
+				id: 'complete-nyam-nyam-verification',
+				align: Align.CenterCenter,
+				showBackdrop: true,
+			},
+		);
+	};
+
 	const handleVerifyNyamNyamUser = async () => {
 		setLoading(true);
 
@@ -58,6 +80,8 @@ const NnidVerifyScreen = () => {
 			if (nyamNyamUser) {
 				const { user } = await graphqlClient.getUser();
 				user && appActions.setAppUser(user);
+				showCompleteNyamNyamVerification();
+				goBack();
 			}
 		} catch (error) {
 			console.log(error);

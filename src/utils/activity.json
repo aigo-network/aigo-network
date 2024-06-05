@@ -8,6 +8,9 @@
         },
         "DailyCheckIn": {
             "points": 10
-        }
+        },
+		"CompleteNyamNyamVerification": {
+			"points": 500
+		}
     }
 }

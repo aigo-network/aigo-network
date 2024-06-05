@@ -106,8 +106,9 @@ const styles = StyleSheet.create({
 		color: '#6740ff',
 	},
 	statusGroup: {
+		marginTop: 10,
 		flexDirection: 'row',
 		flexWrap: 'wrap',
-		gap: 10,
+		gap: 5,
 	},
 });

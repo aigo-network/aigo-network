@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#fff',
 		gap: 20,
 		alignItems: 'center',
-		padding: 30,
+		padding: 20,
 		paddingBottom: 40,
 		paddingTop: 60,
 		borderRadius: 20,
@@ -88,6 +88,7 @@ const styles = StyleSheet.create({
 	titleText: {
 		fontSize: 22,
 		color: '#000000',
+		textAlign: 'center',
 	},
 	highlightText: {
 		fontSize: 22,
