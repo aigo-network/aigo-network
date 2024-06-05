@@ -22,6 +22,7 @@ auth().onIdTokenChanged(async (authUser) => {
 				resolveInitAuthPromise(undefined);
 			}
 		} catch (err) {
+			await logOut();
 			console.log('Failed to resolve client from API:', err);
 		}
 	} else {
