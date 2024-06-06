@@ -32,12 +32,14 @@ const AnimatedView = Animated.createAnimatedComponent(View);
 type Props = {
 	title: string;
 	description: string;
+	continueButton: string;
 	signInWithPhoneNumber: (phoneNumber: PhoneNumber) => Promise<void> | void;
 };
 
 const PhoneLoginFeature: FC<Props> = ({
 	title,
 	description,
+	continueButton,
 	signInWithPhoneNumber,
 }) => {
 	const navigation = useNavigation();
@@ -163,7 +165,7 @@ const PhoneLoginFeature: FC<Props> = ({
 							<Text
 								style={[styles.btnText, isPhoneValid && styles.activeBtnText]}
 							>
-								Continue
+								{continueButton}
 							</Text>
 						</Button>
 					</AnimatedView>

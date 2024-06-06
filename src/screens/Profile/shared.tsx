@@ -23,12 +23,12 @@ export const showReferralPoint = () => {
 };
 
 export const showLogOutConfirm = ({ logout }: { logout: () => void }) => {
-	const { yes, no, confirmLogOutMessage } = appState.content.modal;
+	const { confirm, cancel, confirmLogOutMessage } = appState.content.modal;
 	const { cleanModal } = showModal(
 		<Animated.View entering={FadeInDown}>
 			<ConfirmPopup
-				yesText={yes}
-				noText={no}
+				yesText={confirm}
+				noText={cancel}
 				message={confirmLogOutMessage}
 				onClose={() => {
 					cleanModal();

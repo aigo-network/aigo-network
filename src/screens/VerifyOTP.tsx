@@ -2,12 +2,16 @@ import type { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import { graphqlClient } from 'api/graphql';
+import { appState } from 'state/app';
+import { useSnapshot } from 'valtio';
 
 import OTPFeature from './Login/OTPFeature';
 import { phoneAuthConfirmation } from './shared';
 
 export const VerifyOTPScreen = () => {
 	const { navigate } = useNavigation();
+	const { content } = useSnapshot(appState);
+	const { enterCode, subText, verifyButton } = content.screens.logIn.otpConfirm;
 
 	const confirmOTP = async (code: string) => {
 		let userCredential: FirebaseAuthTypes.UserCredential | undefined;
@@ -43,8 +47,9 @@ export const VerifyOTPScreen = () => {
 	};
 	return (
 		<OTPFeature
-			title="Enter code"
-			description="We've sent an SMS with a 6-digit activation code to your phone"
+			title={enterCode}
+			description={subText}
+			verifyButton={verifyButton}
 			confirmOTP={confirmOTP}
 		/>
 	);

@@ -47,14 +47,18 @@ export const Social = () => {
 						style={[styles.socialImage, imageSize]}
 						source={require('assets/img/follow-twitter-bg.png')}
 					/>
-					<Text style={styles.socialText}>Follow Twitter</Text>
+					<Text style={styles.socialText}>
+						{homeContent.socialSection.followTwitterButton}
+					</Text>
 				</TouchableOpacity>
 				<TouchableOpacity onPress={handlePressJoinTelegram}>
 					<Image
 						style={[styles.socialImage, imageSize]}
 						source={require('assets/img/join-telegram-bg.png')}
 					/>
-					<Text style={styles.socialText}>Join Telegram</Text>
+					<Text style={styles.socialText}>
+						{homeContent.socialSection.joinTelegramButton}
+					</Text>
 				</TouchableOpacity>
 			</View>
 		</View>

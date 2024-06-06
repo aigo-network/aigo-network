@@ -11,6 +11,8 @@ import { confirmation } from './shared';
 const OTPLoginScreen = () => {
 	const navigation = useNavigation();
 	const { phoneSignIn } = useSnapshot(appState);
+	const { content } = useSnapshot(appState);
+	const { enterCode, subText, verifyButton } = content.screens.logIn.otpConfirm;
 
 	const confirmOTP = async (code: string) => {
 		try {
@@ -41,8 +43,9 @@ const OTPLoginScreen = () => {
 
 	return (
 		<OTPFeature
-			title="Enter code"
-			description="We've sent an SMS with a 6-digit activation code to your phone"
+			title={enterCode}
+			description={subText}
+			verifyButton={verifyButton}
 			confirmOTP={confirmOTP}
 		/>
 	);

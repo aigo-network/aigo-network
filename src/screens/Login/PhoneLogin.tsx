@@ -1,14 +1,17 @@
 import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import type { PhoneNumber } from 'libphonenumber-js';
-import { appActions } from 'state/app';
+import { appActions, appState } from 'state/app';
+import { useSnapshot } from 'valtio';
 
 import PhoneFeature from './PhoneFeature';
 import { setConfirmation } from './shared';
 
 const PhoneLoginScreen = () => {
 	const navigation = useNavigation();
-
+	const { content } = useSnapshot(appState);
+	const { login, subText, continueButton } =
+		content.screens.logIn.phoneNumberLogin;
 	const signInWithPhoneNumber = async (phoneNumber: PhoneNumber) => {
 		try {
 			const confirmation = await auth().signInWithPhoneNumber(
@@ -24,8 +27,9 @@ const PhoneLoginScreen = () => {
 
 	return (
 		<PhoneFeature
-			title="Login"
-			description="Please confirm your country code and enter your phone number."
+			title={login}
+			description={subText}
+			continueButton={continueButton}
 			signInWithPhoneNumber={signInWithPhoneNumber}
 		/>
 	);

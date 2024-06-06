@@ -147,10 +147,12 @@ const styles = StyleSheet.create({
 	title: {
 		fontSize: 30,
 		fontWeight: '500',
+		marginHorizontal: 25,
 	},
 	subTitle: {
 		marginTop: 10,
 		fontSize: 16,
+		marginHorizontal: 25,
 	},
 	keyboardLayer: {
 		position: 'absolute',

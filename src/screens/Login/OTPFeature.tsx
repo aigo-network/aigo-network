@@ -29,10 +29,16 @@ const AnimatedView = Animated.createAnimatedComponent(View);
 type Props = {
 	title: string;
 	description: string;
+	verifyButton: string;
 	confirmOTP: (code: string) => Promise<void> | void;
 };
 
-const OTPFeature: FC<Props> = ({ title, description, confirmOTP }) => {
+const OTPFeature: FC<Props> = ({
+	title,
+	description,
+	verifyButton,
+	confirmOTP,
+}) => {
 	const navigation = useNavigation();
 	const [otp, setOtp] = useState('');
 	const [error, setError] = useState('');
@@ -130,7 +136,7 @@ const OTPFeature: FC<Props> = ({ title, description, confirmOTP }) => {
 							loading={loading}
 						>
 							<Text style={[styles.btnText, !disabled && styles.activeBtnText]}>
-								Verify
+								{verifyButton}
 							</Text>
 						</Button>
 					</AnimatedView>
