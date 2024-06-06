@@ -33,8 +33,14 @@ const VerifyNNIDScreen = () => {
 	const [nnid, setNnid] = useState('');
 	const [error, setError] = useState(false);
 	const { content } = useSnapshot(appState);
-	const { title, enterNNID, subText, errorMessage } =
-		content.screens.nnidVerify;
+	const {
+		title,
+		enterNNID,
+		subText,
+		errorMessage,
+		inputPlaceholder,
+		continueButton,
+	} = content.screens.nnidVerify;
 
 	const onKeyboardShow = () => {
 		paddingBot.value = withTiming(20);
@@ -107,7 +113,7 @@ const VerifyNNIDScreen = () => {
 								loading={loading}
 							>
 								<Text style={[styles.btnText, !!nnid && styles.activeBtnText]}>
-									Continue
+									{continueButton}
 								</Text>
 							</Button>
 						</AnimatedView>
@@ -132,7 +138,7 @@ const VerifyNNIDScreen = () => {
 							<TextInput
 								autoFocus
 								style={styles.input}
-								placeholder="Your ID"
+								placeholder={inputPlaceholder}
 								placeholderTextColor="#d0d0d0"
 								onChangeText={onChangeText}
 							/>

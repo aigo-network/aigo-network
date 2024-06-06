@@ -27,6 +27,11 @@ export type Content = {
 			messagePrefix: string;
 			completedOnboardingMessage: string;
 		};
+		citySelection: {
+			title: string;
+			placeholder: string;
+			cancelButton: string;
+		};
 	};
 	screens: {
 		splash: {
@@ -58,6 +63,7 @@ export type Content = {
 				title: string;
 				description: string;
 				continueButton: string;
+				inputPlaceholder: string;
 			};
 			city: {
 				title: string;
@@ -161,6 +167,8 @@ export type Content = {
 			enterNNID: string;
 			subText: string;
 			errorMessage: string;
+			inputPlaceholder: string;
+			continueButton: string;
 		};
 		phoneNumberVerify: {
 			title: string;

@@ -19,6 +19,11 @@
     "earnPoints": {
       "messagePrefix": "포인트가 누적되었습니다",
       "completedOnboardingMessage": "계정을 사용할 준비가 되었습니다. 몇 초 안에 홈 페이지로 전환됩니다."
+    },
+    "citySelection": {
+      "title": "Country Code",
+      "placeholder": "Search Countries",
+      "cancelButton": "Cancel"
     }
   },
   "screens": {
@@ -50,7 +55,8 @@
       "name": {
         "title": "프로필 이름 설정",
         "description": "닉네임 선택하기",
-        "continueButton": "좋아요 :)"
+        "continueButton": "좋아요 :)",
+        "inputPlaceholder": "Your name"
       },
       "city": {
         "title": "거주하는 도시 이름을 입력해주세요",
@@ -156,7 +162,9 @@
       "title": "Nyam Nyam Box Verification",
       "enterNNID": "Enter Nyam Nyam ID",
       "subText": "Enter your user ID in Nyam Nyam Box App. Go to setting .... to find your ... ID number below",
-      "errorMessage": "ID not matched, try again."
+      "errorMessage": "ID not matched, try again.",
+      "inputPlaceholder": "Your ID",
+      "continueButton": "Continue"
     },
     "phoneNumberVerify": {
       "title": "Verify Phone number",
@@ -166,10 +174,10 @@
         "title": "Enter code",
         "subText": "We've sent as SMS with a 6-digit activation code to your phone",
         "verifyButton": "Verify",
-				"wrongCodeError": "Wrong code, please try again",
-				"linkAccountError": "Failed to link account, something went wrong",
-				"updateAccountError": "Failed to get updated account, something went wrong",
-				"updateVerificationError": "Failed to update verification, something went wrong"
+        "wrongCodeError": "Wrong code, please try again",
+        "linkAccountError": "Failed to link account, something went wrong",
+        "updateAccountError": "Failed to get updated account, something went wrong",
+        "updateVerificationError": "Failed to update verification, something went wrong"
       }
     }
   }

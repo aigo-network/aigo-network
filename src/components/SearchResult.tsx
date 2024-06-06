@@ -45,7 +45,7 @@ export const SearchResult: FC<Props> = ({
 
 	if (textSearch.length > 0 && data.length === 0) {
 		return (
-			<View>
+			<View style={styles.emptyContainer}>
 				<Text style={styles.emptyTitle}>{emptySearchTitle}</Text>
 				<Text style={styles.emptyText}>{emptySearchMessage}</Text>
 			</View>
@@ -95,7 +95,10 @@ const styles = StyleSheet.create({
 	itemText: {
 		lineHeight: 25,
 	},
-
+	emptyContainer: {
+		flex: 1,
+		paddingHorizontal: 16,
+	},
 	emptyTitle: {
 		fontSize: 25,
 		textAlign: 'center',

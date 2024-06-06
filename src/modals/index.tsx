@@ -1,7 +1,8 @@
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { Align, showModal } from 'empty-modal';
+import { appState } from 'state/app';
 
-import type { CountryItem } from './CountrySelection/SelcetionItem';
+import type { CountryItem } from './CountrySelection/SelectionItem';
 import CountrySelectionModal from './CountrySelection';
 import LanguageSelectionModal from './LanguageSelection';
 
@@ -33,6 +34,9 @@ export const showCountrySelection = (
 					cleanModal();
 				}}
 				onItemSelect={onCountrySelection}
+				title={appState.content.modal.citySelection.title}
+				placeholder={appState.content.modal.citySelection.placeholder}
+				cancelButton={appState.content.modal.citySelection.cancelButton}
 			/>
 		</Animated.View>,
 		{

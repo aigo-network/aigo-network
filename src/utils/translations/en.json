@@ -19,6 +19,11 @@
     "earnPoints": {
       "messagePrefix": "You've Earned",
       "completedOnboardingMessage": "Your account is ready to use. You will be redirected to the Home Page in a few seconds."
+    },
+    "citySelection": {
+      "title": "Country Code",
+      "placeholder": "Search Countries",
+      "cancelButton": "Cancel"
     }
   },
   "screens": {
@@ -50,7 +55,8 @@
       "name": {
         "title": "Name your profile",
         "description": "Choose a nickname for your account",
-        "continueButton": "Looks good :)"
+        "continueButton": "Looks good :)",
+        "inputPlaceholder": "Your name"
       },
       "city": {
         "title": "Name your city",
@@ -156,7 +162,9 @@
       "title": "Nyam Nyam Box Verification",
       "enterNNID": "Enter Nyam Nyam ID",
       "subText": "Enter your user ID in Nyam Nyam Box App. Go to setting .... to find your ... ID number below",
-      "errorMessage": "ID not matched, try again."
+      "errorMessage": "ID not matched, try again.",
+      "inputPlaceholder": "Your ID",
+      "continueButton": "Continue"
     },
     "phoneNumberVerify": {
       "title": "Verify Phone number",

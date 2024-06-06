@@ -12,9 +12,18 @@ import { SelectionItem } from './SelectionItem';
 interface Props {
 	onClose?: () => void;
 	onItemSelect?: (item: CountryItem) => void;
+	title: string;
+	placeholder: string;
+	cancelButton: string;
 }
 
-const CountrySelectionModal: FC<Props> = ({ onClose, onItemSelect }) => {
+const CountrySelectionModal: FC<Props> = ({
+	onClose,
+	onItemSelect,
+	title,
+	placeholder,
+	cancelButton,
+}) => {
 	const [searchText, setSearchText] = useState('');
 	const handleItemSelect = (item: CountryItem) => {
 		onItemSelect?.(item);
@@ -33,14 +42,14 @@ const CountrySelectionModal: FC<Props> = ({ onClose, onItemSelect }) => {
 			<SafeContainer style={{ paddingTop: 0 }}>
 				<View style={styles.contentContainer}>
 					<View style={styles.titleContainer}>
-						<Text style={styles.title}>Country Code</Text>
+						<Text style={styles.title}>{title}</Text>
 					</View>
 					<SearchBox
 						containerStyle={styles.searchBox}
 						inputStyle={styles.searchBoxInput}
 						iconColor="#7c969e"
 						textSearch={searchText}
-						placeholder="Search Countries"
+						placeholder={placeholder}
 						placeholderTextColor="#7c969e"
 						autoFocus
 						onChangeText={(text) => {
@@ -60,7 +69,7 @@ const CountrySelectionModal: FC<Props> = ({ onClose, onItemSelect }) => {
 						}}
 					/>
 					<Button style={styles.btn} onPress={onClose}>
-						<Text style={styles.btnText}>Cancel</Text>
+						<Text style={styles.btnText}>{cancelButton}</Text>
 					</Button>
 				</View>
 			</SafeContainer>
