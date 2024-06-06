@@ -2,7 +2,7 @@ import type { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import { graphqlClient } from 'api/graphql';
-import { appState } from 'state/app';
+import { appActions, appState } from 'state/app';
 import { useSnapshot } from 'valtio';
 
 import OTPFeature from './Login/OTPFeature';
@@ -46,6 +46,7 @@ export const VerifyOTPScreen = () => {
 			const phoneNumber = userCredential.user.phoneNumber;
 			await graphqlClient.updateProfile({ profile: { phoneNumber } });
 			await graphqlClient.verifyPhoneNumber();
+			appActions.updatePhoneNumber(phoneNumber, true);
 		} catch (error) {
 			console.log('error', error);
 			throw Error(updateVerificationError);
