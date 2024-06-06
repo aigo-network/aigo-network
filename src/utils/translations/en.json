@@ -97,22 +97,26 @@
         "email": "Email",
         "city": "City",
         "descriptions": "Descriptions",
-		"phoneNumber": "Phone number"
+        "phoneNumber": "Phone number"
       },
       "defaultInfo": {
         "name": "Anonymous",
         "email": "anonymous@aigo.network",
         "city": "AiGO city",
         "description": "AiGO lover",
-		"phoneNumber": ""
+        "phoneNumber": ""
       },
-	  "partnerSection": {
-		"partner": "Partner Program",
-		"partnerName": "Nyam Nyam Box",
-		"descriptionPrefix": "Verify if you are a Nyam Nyam Box user to receive",
-		"reward": "100 GO",
-		"descriptionSuffix": "points"
-	  },
+      "partnerSection": {
+        "partner": "Partner Program",
+        "partnerName": "Nyam Nyam Box",
+        "descriptionPrefix": "Verify if you are a Nyam Nyam Box user to receive",
+        "reward": "100 GO",
+        "descriptionSuffix": "points",
+        "phoneNumberVerified": "Phone number verified",
+        "phoneNumberUnverified": "Phone number not verified",
+        "NyamNyamIdVerified": "Nyam Nyam ID verified",
+        "NyamNyamIdUnverified": "Nyam Nyam ID not verified"
+      },
       "settingSection": {
         "setting": "Settings",
         "language": "Language"

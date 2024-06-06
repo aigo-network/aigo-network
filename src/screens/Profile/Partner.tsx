@@ -41,13 +41,13 @@ const PartnerProgram = () => {
 						<View style={styles.statusGroup}>
 							<StatusTag
 								status={phoneNumberVerifyStatus}
-								goodLabel="Phone number verified"
-								warningLabel="Phone number not verified"
+								goodLabel={partnerSection.phoneNumberVerified}
+								warningLabel={partnerSection.phoneNumberUnverified}
 							/>
 							<StatusTag
 								status={nnidVerifyStatus}
-								goodLabel="Nyam Nyam ID verified"
-								warningLabel="Nyam Nyam ID not verified"
+								goodLabel={partnerSection.NyamNyamIdVerified}
+								warningLabel={partnerSection.NyamNyamIdUnverified}
 							/>
 						</View>
 					</View>

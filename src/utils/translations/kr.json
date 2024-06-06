@@ -97,22 +97,26 @@
         "email": "이메일",
         "city": "도시",
         "descriptions": "설명",
-		"phoneNumber": "Phone number"
+        "phoneNumber": "Phone number"
       },
       "defaultInfo": {
         "name": "익명의 사용자",
         "email": "anonymous@aigo.network",
         "city": "AiGO 시티",
         "description": "AiGO 러버",
-		"phoneNumber": ""
+        "phoneNumber": ""
       },
-	  "partnerSection": {
-		"partner": "Partner Program",
-		"partnerName": "Nyam Nyam Box",
-		"descriptionPrefix": "Verify if you are a Nyam Nyam Box user to receive",
-		"reward": "100 GO",
-		"descriptionSuffix": "points"
-	  },
+      "partnerSection": {
+        "partner": "Partner Program",
+        "partnerName": "Nyam Nyam Box",
+        "descriptionPrefix": "Verify if you are a Nyam Nyam Box user to receive",
+        "reward": "100 GO",
+        "descriptionSuffix": "points",
+        "phoneNumberVerified": "Phone number verified",
+        "phoneNumberUnverified": "Phone number not verified",
+        "NyamNyamIdVerified": "Nyam Nyam ID verified",
+        "NyamNyamIdUnverified": "Nyam Nyam ID not verified"
+      },
       "settingSection": {
         "setting": "Settings",
         "language": "Language"
@@ -132,11 +136,11 @@
         "versionPrefix": "버전"
       }
     },
-	"nnidVerify": {
-		"title": "Nyam Nyam Box Verification",
-		"enterNNID": "Enter Nyam Nyam ID",
-		"subText": "Enter your user ID in Nyam Nyam Box App. Go to setting .... to find your ... ID number below",
-		"errorMessage": "ID not matched, try again."
-	}
+    "nnidVerify": {
+      "title": "Nyam Nyam Box Verification",
+      "enterNNID": "Enter Nyam Nyam ID",
+      "subText": "Enter your user ID in Nyam Nyam Box App. Go to setting .... to find your ... ID number below",
+      "errorMessage": "ID not matched, try again."
+    }
   }
 }

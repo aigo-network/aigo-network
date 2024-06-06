@@ -116,6 +116,10 @@ export type Content = {
 				descriptionPrefix: string;
 				reward: string;
 				descriptionSuffix: string;
+				phoneNumberVerified: string;
+				phoneNumberUnverified: string;
+				NyamNyamIdVerified: string;
+				NyamNyamIdUnverified: string;
 			};
 			settingSection: {
 				setting: string;
