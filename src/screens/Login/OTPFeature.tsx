@@ -28,19 +28,21 @@ const AnimatedView = Animated.createAnimatedComponent(View);
 
 type Props = {
 	title: string;
+	code?: string;
 	description: string;
 	verifyButton: string;
 	confirmOTP: (code: string) => Promise<void> | void;
 };
 
 const OTPFeature: FC<Props> = ({
+	code = '',
 	title,
 	description,
 	verifyButton,
 	confirmOTP,
 }) => {
 	const navigation = useNavigation();
-	const [otp, setOtp] = useState('');
+	const [otp, setOtp] = useState(code);
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [keyboardShown, setKeyboardShown] = useState(Keyboard.isVisible());
@@ -69,6 +71,10 @@ const OTPFeature: FC<Props> = ({
 		}
 		setLoading(false);
 	};
+
+	useEffect(() => {
+		setOtp(code);
+	}, [code]);
 
 	useEffect(() => {
 		const showSubscription = Keyboard.addListener('keyboardWillShow', () => {
