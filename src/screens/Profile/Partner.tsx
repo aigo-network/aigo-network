@@ -2,6 +2,7 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import StatusTag, { Status } from 'components/StatusTag';
 import { appState } from 'state/app';
+import { config } from 'utils/config';
 import { useSnapshot } from 'valtio';
 
 const PartnerProgram = () => {
@@ -34,6 +35,7 @@ const PartnerProgram = () => {
 						<Text style={styles.boxDescription}>
 							{partnerSection.descriptionPrefix + ' '}
 							<Text style={styles.descriptionHighlight}>
+								{config.activity.CompleteNyamNyamVerification.points}{' '}
 								{partnerSection.reward}
 							</Text>{' '}
 							{partnerSection.descriptionSuffix}

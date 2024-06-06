@@ -22,6 +22,9 @@ type ActivityConfig = {
 	DailyCheckIn: {
 		points: number;
 	};
+	CompleteNyamNyamVerification: {
+		points: number;
+	};
 };
 
 export const config: AppConfig = {
