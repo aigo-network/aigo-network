@@ -23,7 +23,7 @@ import LeftArrowIcon from 'components/icon/LeftArrowIcon';
 import SafeContainer from 'components/SafeContainer';
 import type { CountryCode, PhoneNumber } from 'libphonenumber-js';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
-import type { CountryItem } from 'modals/CountrySelection/SelcetionItem';
+import type { CountryItem } from 'modals/CountrySelection/SelectionItem';
 import { showCountrySelection } from 'modals/index';
 import { appActions } from 'state/app';
 import { setConfirmation } from 'utils/auth';

@@ -6,8 +6,8 @@ import SafeContainer from 'components/SafeContainer';
 import SearchBox from 'components/SearchBox';
 import dialCode from 'utils/dialCode.json';
 
-import type { CountryItem } from './SelcetionItem';
-import { SelectionItem } from './SelcetionItem';
+import type { CountryItem } from './SelectionItem';
+import { SelectionItem } from './SelectionItem';
 
 interface Props {
 	onClose?: () => void;
