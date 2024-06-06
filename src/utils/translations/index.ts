@@ -27,6 +27,11 @@ export type Content = {
 			messagePrefix: string;
 			completedOnboardingMessage: string;
 		};
+		citySelection: {
+			title: string;
+			placeholder: string;
+			cancelButton: string;
+		};
 	};
 	screens: {
 		splash: {
@@ -48,6 +53,9 @@ export type Content = {
 				enterCode: string;
 				subText: string;
 				verifyButton: string;
+				wrongCodeError: string;
+				getCredentialsError: string;
+				getProfileError: string;
 			};
 		};
 		onboard: {
@@ -55,6 +63,7 @@ export type Content = {
 				title: string;
 				description: string;
 				continueButton: string;
+				inputPlaceholder: string;
 			};
 			city: {
 				title: string;
@@ -114,12 +123,25 @@ export type Content = {
 				email: string;
 				city: string;
 				descriptions: string;
+				phoneNumber: string;
 			};
 			defaultInfo: {
 				name: string;
 				email: string;
 				city: string;
 				description: string;
+				phoneNumber: string;
+			};
+			partnerSection: {
+				partner: string;
+				partnerName: string;
+				descriptionPrefix: string;
+				reward: string;
+				descriptionSuffix: string;
+				phoneNumberVerified: string;
+				phoneNumberUnverified: string;
+				NyamNyamIdVerified: string;
+				NyamNyamIdUnverified: string;
 			};
 			settingSection: {
 				setting: string;
@@ -138,6 +160,28 @@ export type Content = {
 				logOutButton: string;
 				deleteAccountButton: string;
 				versionPrefix: string;
+			};
+		};
+		nnidVerify: {
+			title: string;
+			enterNNID: string;
+			subText: string;
+			errorMessage: string;
+			inputPlaceholder: string;
+			continueButton: string;
+		};
+		phoneNumberVerify: {
+			title: string;
+			subText: string;
+			continueButton: string;
+			OTP: {
+				title: string;
+				subText: string;
+				verifyButton: string;
+				wrongCodeError: string;
+				linkAccountError: string;
+				updateAccountError: string;
+				updateVerificationError: string;
 			};
 		};
 	};

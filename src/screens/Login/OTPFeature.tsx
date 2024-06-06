@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import { useEffect, useState } from 'react';
 import {
 	Keyboard,
@@ -14,29 +15,36 @@ import Animated, {
 	useSharedValue,
 	withTiming,
 } from 'react-native-reanimated';
-import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
-import { graphqlClient } from 'api/graphql';
-import { setJWT } from 'api/jwt';
 import Button from 'components/Button';
 import LeftArrowIcon from 'components/icon/LeftArrowIcon';
 import OtpInput from 'components/OtpInput';
 import SafeContainer from 'components/SafeContainer';
-import { appActions, appState } from 'state/app';
-import { confirmation } from 'utils/auth';
+import { appState } from 'state/app';
 import { useSnapshot } from 'valtio';
 
 const otpLength = 6;
 const AnimatedView = Animated.createAnimatedComponent(View);
 
-const OtpInputScreen = () => {
+type Props = {
+	title: string;
+	description: string;
+	verifyButton: string;
+	confirmOTP: (code: string) => Promise<void> | void;
+};
+
+const OTPFeature: FC<Props> = ({
+	title,
+	description,
+	verifyButton,
+	confirmOTP,
+}) => {
 	const navigation = useNavigation();
 	const [otp, setOtp] = useState('');
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [keyboardShown, setKeyboardShown] = useState(Keyboard.isVisible());
-	const { phoneSignIn, content } = useSnapshot(appState);
-	const { enterCode, subText, verifyButton } = content.screens.logIn.otpConfirm;
+	const { phoneSignIn } = useSnapshot(appState);
 	const paddingBot = useSharedValue(0);
 	const disabled = otp.length !== otpLength;
 
@@ -52,25 +60,12 @@ const OtpInputScreen = () => {
 		}
 	};
 
-	const confirmOtp = async () => {
+	const wrappedConfirmOTP = async () => {
 		setLoading(true);
 		try {
-			const credential = await confirmation.confirm(otp);
-			if (!credential) throw new Error('Failed to get user credential');
-			appActions.updateOnboarding({
-				phoneNumber: phoneSignIn.phoneNumber?.number,
-			});
-			const jwt = await auth().currentUser?.getIdToken();
-			if (jwt) setJWT(jwt);
-			const { user } = await graphqlClient.getUserProfile();
-			if (user?.completeOnboarding) {
-				navigation.navigate('Home');
-			} else {
-				navigation.navigate('OnboardName');
-			}
+			await confirmOTP(otp);
 		} catch (error) {
-			console.log('error', error);
-			setError('Wrong code, please try again');
+			setError((error as Error).message);
 		}
 		setLoading(false);
 	};
@@ -108,9 +103,9 @@ const OtpInputScreen = () => {
 							</TouchableOpacity>
 						</View>
 						<View style={styles.content}>
-							<Text style={styles.title}>{enterCode}</Text>
+							<Text style={styles.title}>{title}</Text>
 							<Text style={styles.subText}>
-								{subText}{' '}
+								{description}{' '}
 								<Text style={styles.highlightPhoneNumber}>
 									{phoneSignIn.phoneNumber?.format('INTERNATIONAL')}
 								</Text>
@@ -136,7 +131,7 @@ const OtpInputScreen = () => {
 					<AnimatedView style={[styles.btnContainer, btnPaddingBottom]}>
 						<Button
 							style={[styles.btn, !disabled && styles.activeBtn]}
-							onPress={confirmOtp}
+							onPress={wrappedConfirmOTP}
 							disabled={disabled}
 							loading={loading}
 						>
@@ -151,7 +146,7 @@ const OtpInputScreen = () => {
 	);
 };
 
-export default OtpInputScreen;
+export default OTPFeature;
 
 const styles = StyleSheet.create({
 	container: {

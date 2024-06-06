@@ -23,7 +23,8 @@ export const ProfileName: FC<
 > = ({ navigation }) => {
 	const [name, setName] = useState(auth().currentUser?.displayName || '');
 	const { content } = useSnapshot(appState);
-	const { title, description, continueButton } = content.screens.onboard.name;
+	const { title, description, continueButton, inputPlaceholder } =
+		content.screens.onboard.name;
 
 	const handleContinue = () => {
 		appActions.updateOnboarding({ name });
@@ -54,7 +55,7 @@ export const ProfileName: FC<
 				<View style={styles.container}>
 					<TextInput
 						style={styles.input}
-						placeholder="Your name"
+						placeholder={inputPlaceholder}
 						placeholderTextColor="#afb2ff"
 						value={name}
 						onChangeText={setName}

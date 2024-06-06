@@ -93,7 +93,10 @@ type RootMutation {
   """"""
   updateProfile(profile: UserProfile): User
 
-  """"""
+  """
+  Verify Nyam Nyam Identity by calling NN API, needed NNID and Phone number.
+  	Phone Number must be added to profile and verified before verify Nyam Nyam user identity
+  """
   verifyNyamNyamUser(NNID: String): NyamNyamUserProfile
 
   "Phone number must be added to user profile. \n\t\tIf user signed-in by Phone number, it will check if Auth Phone number and Phone number in profile is matched or not.\n\t\tElse using OTP SMS to verify new phone number.\n\t\t"

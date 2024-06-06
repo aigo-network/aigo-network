@@ -84,3 +84,19 @@ export const verifyPhoneNumber = gql`
 		verifyPhoneNumber
 	}
 `;
+
+export const verifyNyamNyamUser = gql`
+	mutation verifyNyamNyamUser($nnid: String) {
+		verifyNyamNyamUser(NNID: $nnid) {
+			NNID
+			createdAt
+			extKey
+			id
+			name
+			nick
+			registrationNumber
+			updatedAt
+			verifiedAt
+		}
+	}
+`;

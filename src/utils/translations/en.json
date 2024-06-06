@@ -3,8 +3,8 @@
   "modal": {
     "yes": "Yes",
     "no": "No",
-	"cancel": "Cancel",
-	"confirm": "Confirm",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
     "confirmLogOutMessage": "Are you sure to logout?",
     "confirmDeleteAccountMessage": "Do you want to delete your account?",
     "invite": {
@@ -19,6 +19,11 @@
     "earnPoints": {
       "messagePrefix": "You've Earned",
       "completedOnboardingMessage": "Your account is ready to use. You will be redirected to the Home Page in a few seconds."
+    },
+    "citySelection": {
+      "title": "Country Code",
+      "placeholder": "Search Countries",
+      "cancelButton": "Cancel"
     }
   },
   "screens": {
@@ -32,22 +37,26 @@
       "googleButton": "Log in with Google",
       "appleButton": "Log in with Apple",
       "versionPrefix": "Version",
-	  "phoneNumberLogin": {
-		  "login": "Login",
-		  "subText": "Please confirm your country code and enter your phone number",
-		  "continueButton": "Continue"
-	  },
-	  "otpConfirm": {
-		  "enterCode": "Enter code",
-		  "subText": "We've sent as SMS with a 6-digit activation code to your phone",
-		  "verifyButton": "Verify"
-	  }
+      "phoneNumberLogin": {
+        "login": "Login",
+        "subText": "Please confirm your country code and enter your phone number",
+        "continueButton": "Continue"
+      },
+      "otpConfirm": {
+        "enterCode": "Enter code",
+        "subText": "We've sent as SMS with a 6-digit activation code to your phone",
+        "verifyButton": "Verify",
+        "wrongCodeError": "Wrong code, please try again",
+        "getCredentialsError": "Failed to get user credential",
+        "getProfileError": "Failed to update account, something went wrong"
+      }
     },
     "onboard": {
       "name": {
         "title": "Name your profile",
         "description": "Choose a nickname for your account",
-        "continueButton": "Looks good :)"
+        "continueButton": "Looks good :)",
+        "inputPlaceholder": "Your name"
       },
       "city": {
         "title": "Name your city",
@@ -93,7 +102,7 @@
       "dailyCheckInSection": {
         "title": "Daily Check-in",
         "checkInButton": "Check-in",
-		"checkInDay": "Day"
+        "checkInDay": "Day"
       },
       "dailyMissionSection": {
         "title": "Daily Missions"
@@ -109,13 +118,26 @@
         "name": "Name",
         "email": "Email",
         "city": "City",
-        "descriptions": "Descriptions"
+        "descriptions": "Descriptions",
+        "phoneNumber": "Phone number"
       },
       "defaultInfo": {
         "name": "Anonymous",
         "email": "anonymous@aigo.network",
         "city": "AiGO city",
-        "description": "AiGO lover"
+        "description": "AiGO lover",
+        "phoneNumber": ""
+      },
+      "partnerSection": {
+        "partner": "Partner Program",
+        "partnerName": "Nyam Nyam Box",
+        "descriptionPrefix": "Verify if you are a Nyam Nyam Box user to receive",
+        "reward": "GO",
+        "descriptionSuffix": "points",
+        "phoneNumberVerified": "Phone number verified",
+        "phoneNumberUnverified": "Phone number not verified",
+        "NyamNyamIdVerified": "Nyam Nyam ID verified",
+        "NyamNyamIdUnverified": "Nyam Nyam ID not verified"
       },
       "settingSection": {
         "setting": "Settings",
@@ -134,6 +156,28 @@
         "logOutButton": "Log out",
         "deleteAccountButton": "Delete account",
         "versionPrefix": "Version"
+      }
+    },
+    "nnidVerify": {
+      "title": "Nyam Nyam Box Verification",
+      "enterNNID": "Enter Nyam Nyam ID",
+      "subText": "Enter your user ID in Nyam Nyam Box App. Go to setting .... to find your ... ID number below",
+      "errorMessage": "ID not matched, try again.",
+      "inputPlaceholder": "Your ID",
+      "continueButton": "Continue"
+    },
+    "phoneNumberVerify": {
+      "title": "Verify Phone number",
+      "subText": "Please confirm your country code and enter your phone number.",
+      "continueButton": "Continue",
+      "OTP": {
+        "title": "Enter code",
+        "subText": "We've sent as SMS with a 6-digit activation code to your phone",
+        "verifyButton": "Verify",
+        "wrongCodeError": "Wrong code, please try again",
+        "linkAccountError": "Failed to link account, something went wrong",
+        "updateAccountError": "Failed to get updated account, something went wrong",
+        "updateVerificationError": "Failed to update verification, something went wrong"
       }
     }
   }

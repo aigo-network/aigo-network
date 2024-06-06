@@ -64,6 +64,10 @@ export type RootMutation = {
   deleteUser?: Maybe<User>;
   inputInvitationCode?: Maybe<Invitation>;
   updateProfile?: Maybe<User>;
+  /**
+   * Verify Nyam Nyam Identity by calling NN API, needed NNID and Phone number.
+   * 	Phone Number must be added to profile and verified before verify Nyam Nyam user identity
+   */
   verifyNyamNyamUser?: Maybe<NyamNyamUserProfile>;
   /**
    * Phone number must be added to user profile.
@@ -168,15 +172,22 @@ export type VerifyPhoneNumberMutationVariables = Exact<{ [key: string]: never; }
 
 export type VerifyPhoneNumberMutation = { __typename?: 'RootMutation', verifyPhoneNumber?: PhoneNumberVerification | null };
 
+export type VerifyNyamNyamUserMutationVariables = Exact<{
+  nnid?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type VerifyNyamNyamUserMutation = { __typename?: 'RootMutation', verifyNyamNyamUser?: { __typename?: 'NyamNyamUserProfile', NNID?: string | null, createdAt?: any | null, extKey?: string | null, id?: string | null, name?: string | null, nick?: string | null, registrationNumber?: string | null, updatedAt?: any | null, verifiedAt?: any | null } | null };
+
 export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, phoneNumber?: string | null, phoneNumberVerified?: boolean | null, phoneNumberVerifiedAt?: any | null, imageUrl?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, GOPoints?: number | null, invitationCode?: string | null, createdAt?: any | null, updatedAt?: any | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null } | null } | null };
+export type GetUserQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, phoneNumber?: string | null, phoneNumberVerified?: boolean | null, phoneNumberVerifiedAt?: any | null, imageUrl?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, GOPoints?: number | null, invitationCode?: string | null, createdAt?: any | null, updatedAt?: any | null, NyamNyamUserProfile?: { __typename?: 'NyamNyamUserProfile', NNID?: string | null, createdAt?: any | null, extKey?: string | null, id?: string | null, name?: string | null, nick?: string | null, registrationNumber?: string | null, updatedAt?: any | null, verifiedAt?: any | null } | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null } | null } | null };
 
 export type GetUserProfileQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserProfileQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, phoneNumber?: string | null, phoneNumberVerified?: boolean | null, phoneNumberVerifiedAt?: any | null, GOPoints?: number | null, completeOnboarding?: boolean | null } | null };
+export type GetUserProfileQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, phoneNumber?: string | null, phoneNumberVerified?: boolean | null, phoneNumberVerifiedAt?: any | null, GOPoints?: number | null, completeOnboarding?: boolean | null, NyamNyamUserProfile?: { __typename?: 'NyamNyamUserProfile', NNID?: string | null, createdAt?: any | null, extKey?: string | null, id?: string | null, name?: string | null, nick?: string | null, registrationNumber?: string | null, updatedAt?: any | null, verifiedAt?: any | null } | null } | null };
 
 
 export const UpdateProfileDocument = gql`
@@ -258,6 +269,21 @@ export const VerifyPhoneNumberDocument = gql`
   verifyPhoneNumber
 }
     `;
+export const VerifyNyamNyamUserDocument = gql`
+    mutation verifyNyamNyamUser($nnid: String) {
+  verifyNyamNyamUser(NNID: $nnid) {
+    NNID
+    createdAt
+    extKey
+    id
+    name
+    nick
+    registrationNumber
+    updatedAt
+    verifiedAt
+  }
+}
+    `;
 export const GetUserDocument = gql`
     query getUser {
   user {
@@ -270,6 +296,17 @@ export const GetUserDocument = gql`
     imageUrl
     city
     descriptions
+    NyamNyamUserProfile {
+      NNID
+      createdAt
+      extKey
+      id
+      name
+      nick
+      registrationNumber
+      updatedAt
+      verifiedAt
+    }
     GOPoints
     dailyMissions {
       checkIn {
@@ -291,6 +328,17 @@ export const GetUserProfileDocument = gql`
     email
     city
     descriptions
+    NyamNyamUserProfile {
+      NNID
+      createdAt
+      extKey
+      id
+      name
+      nick
+      registrationNumber
+      updatedAt
+      verifiedAt
+    }
     phoneNumber
     phoneNumberVerified
     phoneNumberVerifiedAt
@@ -324,6 +372,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     verifyPhoneNumber(variables?: VerifyPhoneNumberMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<VerifyPhoneNumberMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<VerifyPhoneNumberMutation>(VerifyPhoneNumberDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'verifyPhoneNumber', 'mutation', variables);
+    },
+    verifyNyamNyamUser(variables?: VerifyNyamNyamUserMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<VerifyNyamNyamUserMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<VerifyNyamNyamUserMutation>(VerifyNyamNyamUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'verifyNyamNyamUser', 'mutation', variables);
     },
     getUser(variables?: GetUserQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetUserQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetUserQuery>(GetUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUser', 'query', variables);

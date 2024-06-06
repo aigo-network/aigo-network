@@ -12,6 +12,17 @@ export const userQuery = gql`
 			imageUrl
 			city
 			descriptions
+			NyamNyamUserProfile {
+				NNID
+				createdAt
+				extKey
+				id
+				name
+				nick
+				registrationNumber
+				updatedAt
+				verifiedAt
+			}
 			GOPoints
 			dailyMissions {
 				checkIn {
@@ -34,6 +45,17 @@ export const userProfileQuery = gql`
 			email
 			city
 			descriptions
+			NyamNyamUserProfile {
+				NNID
+				createdAt
+				extKey
+				id
+				name
+				nick
+				registrationNumber
+				updatedAt
+				verifiedAt
+			}
 			phoneNumber
 			phoneNumberVerified
 			phoneNumberVerifiedAt

@@ -15,6 +15,7 @@ import { useSnapshot } from 'valtio';
 import Footer from './Footer';
 import Header from './Header';
 import Info from './Info';
+import PartnerProgram from './Partner';
 import Referral from './Referral';
 import Settings from './Settings';
 
@@ -55,6 +56,7 @@ export const ProfileScreen = () => {
 					showsVerticalScrollIndicator={false}
 				>
 					<Header />
+					<PartnerProgram />
 					<Info />
 					<Settings />
 					<Referral />

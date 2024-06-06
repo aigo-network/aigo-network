@@ -35,6 +35,12 @@ export const appActions = {
 			phoneNumber,
 		};
 	},
+	updatePhoneNumber: (phoneNumber: string, verified: boolean) => {
+		if (appState.appUser) {
+			appState.appUser.phoneNumber = phoneNumber;
+			appState.appUser.phoneNumberVerified = verified;
+		}
+	},
 };
 
 export { appState } from './shared';

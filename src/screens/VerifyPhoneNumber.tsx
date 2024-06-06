@@ -1,25 +1,22 @@
 import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import type { PhoneNumber } from 'libphonenumber-js';
-import { appActions, appState } from 'state/app';
+import { appState } from 'state/app';
 import { useSnapshot } from 'valtio';
 
-import PhoneFeature from './PhoneFeature';
-import { setConfirmation } from './shared';
+import PhoneFeature from './Login/PhoneFeature';
+import { setPhoneAuthConfirmation } from './shared';
 
-const PhoneLoginScreen = () => {
+export const VerifyPhoneNumberScreen = () => {
 	const navigation = useNavigation();
 	const { content } = useSnapshot(appState);
-	const { login, subText, continueButton } =
-		content.screens.logIn.phoneNumberLogin;
+	const { title, subText, continueButton } = content.screens.phoneNumberVerify;
+
 	const signInWithPhoneNumber = async (phoneNumber: PhoneNumber) => {
 		try {
-			const confirmation = await auth().signInWithPhoneNumber(
-				phoneNumber.number,
-			);
-			if (confirmation) setConfirmation(confirmation);
-			appActions.updatePhoneSignIn(phoneNumber);
-			navigation.navigate('OtpInput');
+			const confirmation = await auth().verifyPhoneNumber(phoneNumber.number);
+			setPhoneAuthConfirmation(confirmation);
+			navigation.navigate('VerifyOTP');
 		} catch (error) {
 			console.log('Error phone sign in:', error);
 		}
@@ -27,7 +24,7 @@ const PhoneLoginScreen = () => {
 
 	return (
 		<PhoneFeature
-			title={login}
+			title={title}
 			description={subText}
 			continueButton={continueButton}
 			signInWithPhoneNumber={signInWithPhoneNumber}
@@ -35,4 +32,4 @@ const PhoneLoginScreen = () => {
 	);
 };
 
-export default PhoneLoginScreen;
+export default VerifyPhoneNumberScreen;
