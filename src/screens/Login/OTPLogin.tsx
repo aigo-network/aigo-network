@@ -12,15 +12,22 @@ const OTPLoginScreen = () => {
 	const navigation = useNavigation();
 	const { phoneSignIn } = useSnapshot(appState);
 	const { content } = useSnapshot(appState);
-	const { enterCode, subText, verifyButton } = content.screens.logIn.otpConfirm;
+	const {
+		enterCode,
+		subText,
+		verifyButton,
+		wrongCodeError,
+		getCredentialsError,
+		getProfileError,
+	} = content.screens.logIn.otpConfirm;
 
 	const confirmOTP = async (code: string) => {
 		try {
 			const credential = await confirmation.confirm(code);
-			if (!credential) throw new Error('Failed to get user credential');
+			if (!credential) throw new Error(getCredentialsError);
 		} catch (error) {
 			console.log('error', error);
-			throw Error('Wrong code, please try again');
+			throw Error(wrongCodeError);
 		}
 
 		try {
@@ -37,7 +44,7 @@ const OTPLoginScreen = () => {
 			}
 		} catch (error) {
 			console.log('error', error);
-			throw Error('Failed to update account, something went wrong');
+			throw Error(getProfileError);
 		}
 	};
 

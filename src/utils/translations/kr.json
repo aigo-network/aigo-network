@@ -40,7 +40,10 @@
       "otpConfirm": {
         "enterCode": "코드를 입력하세요",
         "subText": "6자리 인증코드를 핸드폰으로 발송하였습니다",
-        "verifyButton": "인증하기"
+        "verifyButton": "인증하기",
+        "wrongCodeError": "Wrong code, please try again",
+        "getCredentialsError": "Failed to get user credential",
+        "getProfileError": "Failed to update account, something went wrong"
       }
     },
     "onboard": {
@@ -154,6 +157,20 @@
       "enterNNID": "Enter Nyam Nyam ID",
       "subText": "Enter your user ID in Nyam Nyam Box App. Go to setting .... to find your ... ID number below",
       "errorMessage": "ID not matched, try again."
+    },
+    "phoneNumberVerify": {
+      "title": "Verify Phone number",
+      "subText": "Please confirm your country code and enter your phone number.",
+      "continueButton": "Continue",
+      "OTP": {
+        "title": "Enter code",
+        "subText": "We've sent as SMS with a 6-digit activation code to your phone",
+        "verifyButton": "Verify",
+				"wrongCodeError": "Wrong code, please try again",
+				"linkAccountError": "Failed to link account, something went wrong",
+				"updateAccountError": "Failed to get updated account, something went wrong",
+				"updateVerificationError": "Failed to update verification, something went wrong"
+      }
     }
   }
 }

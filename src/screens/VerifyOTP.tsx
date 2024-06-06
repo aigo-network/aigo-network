@@ -11,7 +11,15 @@ import { phoneAuthConfirmation } from './shared';
 export const VerifyOTPScreen = () => {
 	const { navigate } = useNavigation();
 	const { content } = useSnapshot(appState);
-	const { enterCode, subText, verifyButton } = content.screens.logIn.otpConfirm;
+	const {
+		title,
+		subText,
+		verifyButton,
+		wrongCodeError,
+		linkAccountError,
+		updateAccountError,
+		updateVerificationError,
+	} = content.screens.phoneNumberVerify.OTP;
 
 	const confirmOTP = async (code: string) => {
 		let userCredential: FirebaseAuthTypes.UserCredential | undefined;
@@ -24,14 +32,14 @@ export const VerifyOTPScreen = () => {
 		} catch (error) {
 			const err = error as FirebaseAuthTypes.PhoneAuthError;
 			if (err.code == 'auth/invalid-verification-code') {
-				throw Error('Wrong code, please try again');
+				throw Error(wrongCodeError);
 			} else {
-				throw Error('Failed to link account, something went wrong');
+				throw Error(linkAccountError);
 			}
 		}
 
 		if (!userCredential || !userCredential.user.phoneNumber) {
-			throw Error('Failed to get updated account, something went wrong');
+			throw Error(updateAccountError);
 		}
 
 		try {
@@ -40,14 +48,14 @@ export const VerifyOTPScreen = () => {
 			await graphqlClient.verifyPhoneNumber();
 		} catch (error) {
 			console.log('error', error);
-			throw Error('Failed to update verification, something went wrong');
+			throw Error(updateVerificationError);
 		}
 
 		navigate('Profile');
 	};
 	return (
 		<OTPFeature
-			title={enterCode}
+			title={title}
 			description={subText}
 			verifyButton={verifyButton}
 			confirmOTP={confirmOTP}

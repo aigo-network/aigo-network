@@ -48,6 +48,9 @@ export type Content = {
 				enterCode: string;
 				subText: string;
 				verifyButton: string;
+				wrongCodeError: string;
+				getCredentialsError: string;
+				getProfileError: string;
 			};
 		};
 		onboard: {
@@ -158,6 +161,20 @@ export type Content = {
 			enterNNID: string;
 			subText: string;
 			errorMessage: string;
+		};
+		phoneNumberVerify: {
+			title: string;
+			subText: string;
+			continueButton: string;
+			OTP: {
+				title: string;
+				subText: string;
+				verifyButton: string;
+				wrongCodeError: string;
+				linkAccountError: string;
+				updateAccountError: string;
+				updateVerificationError: string;
+			};
 		};
 	};
 };
