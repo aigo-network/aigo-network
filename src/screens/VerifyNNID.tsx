@@ -72,7 +72,7 @@ const VerifyNNIDScreen = () => {
 			</Animated.View>,
 			{
 				id: 'complete-nyam-nyam-verification',
-				align: Align.CenterCenter,
+				align: Align.FullCenter,
 				showBackdrop: true,
 			},
 		);
