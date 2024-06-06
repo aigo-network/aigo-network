@@ -26,7 +26,7 @@ import { useSnapshot } from 'valtio';
 
 const AnimatedView = Animated.createAnimatedComponent(View);
 
-const NnidVerifyScreen = () => {
+const VerifyNNIDScreen = () => {
 	const { goBack } = useNavigation();
 	const paddingBot = useSharedValue(0);
 	const [loading, setLoading] = useState(false);
@@ -145,7 +145,7 @@ const NnidVerifyScreen = () => {
 	);
 };
 
-export default NnidVerifyScreen;
+export default VerifyNNIDScreen;
 
 const styles = StyleSheet.create({
 	container: {

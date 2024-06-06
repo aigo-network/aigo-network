@@ -20,7 +20,7 @@ import Referral from './Referral';
 import Settings from './Settings';
 
 export const ProfileScreen = () => {
-	const { content, appUser } = useSnapshot(appState);
+	const { content } = useSnapshot(appState);
 	const profileContent = content.screens.profile;
 	const { goBack } = useNavigation();
 
@@ -56,7 +56,7 @@ export const ProfileScreen = () => {
 					showsVerticalScrollIndicator={false}
 				>
 					<Header />
-					{appUser?.phoneNumber && <PartnerProgram />}
+					<PartnerProgram />
 					<Info />
 					<Settings />
 					<Referral />

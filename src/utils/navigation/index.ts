@@ -8,7 +8,8 @@ export type RootStackParamList = {
 	OnboardCity: undefined;
 	Home: undefined;
 	Profile: undefined;
-	NnidVerify: undefined;
+	VerifyNNID: undefined;
+	VerifyPhoneNumber: undefined;
 };
 
 declare global {

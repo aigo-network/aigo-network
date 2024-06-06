@@ -18,9 +18,9 @@ const PartnerProgram = () => {
 	const partnerImg = require('assets/img/nyam-nyam-partner-img.png');
 	const handleVerifyPartner = () => {
 		if (!appUser?.phoneNumberVerified) {
-			console.log('verify phone number');
+			navigate('VerifyPhoneNumber');
 		} else if (!appUser.NyamNyamUserProfile?.NNID) {
-			navigate('NnidVerify');
+			navigate('VerifyNNID');
 		}
 	};
 

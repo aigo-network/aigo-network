@@ -10,12 +10,13 @@ import HomeScreen from 'screens/Home';
 import LoginScreen from 'screens/Login';
 import OtpInputScreen from 'screens/Login/OtpLogin';
 import PhoneLoginScreen from 'screens/Login/PhoneLogin';
-import NnidVerifyScreen from 'screens/NnidVerify';
 import CityName from 'screens/Onboard/CityName';
 import ProfileName from 'screens/Onboard/ProfileName';
 import UserDescription from 'screens/Onboard/UserDescription';
 import ProfileScreen from 'screens/Profile';
 import SplashScreen from 'screens/Splash';
+import VerifyNNIDScreen from 'screens/VerifyNNID';
+import VerifyPhoneNumberScreen from 'screens/VerifyPhoneNumber';
 import type { RootStackParamList } from 'utils/navigation';
 
 import 'utils/global';
@@ -65,7 +66,11 @@ export const AppContainer: FC = () => {
 						<Stack.Group screenOptions={{ headerShown: false }}>
 							<Stack.Screen name="Home" component={HomeScreen} />
 							<Stack.Screen name="Profile" component={ProfileScreen} />
-							<Stack.Screen name="NnidVerify" component={NnidVerifyScreen} />
+							<Stack.Screen name="VerifyNNID" component={VerifyNNIDScreen} />
+							<Stack.Screen
+								name="VerifyPhoneNumber"
+								component={VerifyPhoneNumberScreen}
+							/>
 						</Stack.Group>
 					</Stack.Navigator>
 				</NavigationContainer>
