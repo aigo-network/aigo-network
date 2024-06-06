@@ -8,7 +8,7 @@ import {
 import { ModalProvider } from 'empty-modal';
 import HomeScreen from 'screens/Home';
 import LoginScreen from 'screens/Login';
-import OtpInputScreen from 'screens/Login/OtpLogin';
+import OtpLoginScreen from 'screens/Login/OTPLogin';
 import PhoneLoginScreen from 'screens/Login/PhoneLogin';
 import CityName from 'screens/Onboard/CityName';
 import ProfileName from 'screens/Onboard/ProfileName';
@@ -52,7 +52,7 @@ export const AppContainer: FC = () => {
 								}}
 							/>
 							<Stack.Screen name="PhoneLogin" component={PhoneLoginScreen} />
-							<Stack.Screen name="OtpInput" component={OtpInputScreen} />
+							<Stack.Screen name="OtpInput" component={OtpLoginScreen} />
 						</Stack.Group>
 						<Stack.Group screenOptions={{ headerShown: false }}>
 							<Stack.Screen name="OnboardName" component={ProfileName} />

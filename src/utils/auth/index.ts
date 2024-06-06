@@ -52,13 +52,6 @@ export const logOut = async () => {
 	appActions.cleanState();
 };
 
-export let confirmation: FirebaseAuthTypes.ConfirmationResult;
-export const setConfirmation = (
-	confirmationResult: FirebaseAuthTypes.ConfirmationResult,
-) => {
-	confirmation = confirmationResult;
-};
-
 export * from './signinApple';
 export * from './signinGoogle';
 export * from './types';
