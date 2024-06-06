@@ -10,6 +10,7 @@ export type RootStackParamList = {
 	Profile: undefined;
 	VerifyNNID: undefined;
 	VerifyPhoneNumber: undefined;
+	VerifyOTP: undefined;
 };
 
 declare global {

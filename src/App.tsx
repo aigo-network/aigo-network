@@ -16,6 +16,7 @@ import UserDescription from 'screens/Onboard/UserDescription';
 import ProfileScreen from 'screens/Profile';
 import SplashScreen from 'screens/Splash';
 import VerifyNNIDScreen from 'screens/VerifyNNID';
+import VerifyOTPScreen from 'screens/VerifyOTP';
 import VerifyPhoneNumberScreen from 'screens/VerifyPhoneNumber';
 import type { RootStackParamList } from 'utils/navigation';
 
@@ -71,6 +72,7 @@ export const AppContainer: FC = () => {
 								name="VerifyPhoneNumber"
 								component={VerifyPhoneNumberScreen}
 							/>
+							<Stack.Screen name="VerifyOTP" component={VerifyOTPScreen} />
 						</Stack.Group>
 					</Stack.Navigator>
 				</NavigationContainer>
