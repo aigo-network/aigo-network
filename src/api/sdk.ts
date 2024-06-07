@@ -27,6 +27,7 @@ export type DailyCheckIn = {
 export type DailyMissions = {
   __typename?: 'DailyMissions';
   checkIn?: Maybe<DailyCheckIn>;
+  latest7DaysCheckIn?: Maybe<Array<Maybe<DailyCheckIn>>>;
 };
 
 export type Invitation = {

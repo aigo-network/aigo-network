@@ -16,6 +16,9 @@ type DailyCheckIn {
 type DailyMissions {
   """"""
   checkIn: DailyCheckIn
+
+  """"""
+  latest7DaysCheckIn: [DailyCheckIn]
 }
 
 """
