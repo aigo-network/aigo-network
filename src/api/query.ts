@@ -29,6 +29,10 @@ export const userQuery = gql`
 					date
 					completed
 				}
+				latest7DaysCheckIn {
+					date
+					completed
+				}
 			}
 			invitationCode
 			createdAt
