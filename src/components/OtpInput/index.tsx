@@ -1,5 +1,5 @@
 import type { FC, RefObject } from 'react';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { ViewStyle } from 'react-native';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
@@ -32,6 +32,10 @@ const OtpInput: FC<Props> = ({
 	};
 	const activeIndex = isFocused ? innerValue.length : -1;
 
+	useEffect(() => {
+		setInnerValue(value);
+	}, [value]);
+
 	return (
 		<TouchableWithoutFeedback
 			style={[styles.container, style]}
@@ -49,6 +53,7 @@ const OtpInput: FC<Props> = ({
 				onBlur={() => {
 					setIsFocused(false);
 				}}
+				textContentType="oneTimeCode"
 				keyboardType="number-pad"
 			/>
 			<View style={styles.singleInputContainer}>
