@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import {
 	ActivityIndicator,
 	ScrollView,
@@ -7,6 +7,7 @@ import {
 	TouchableOpacity,
 	View,
 } from 'react-native';
+import type { DailyCheckIn as DailyCheckInType } from 'api/graphql';
 import { graphqlClient } from 'api/graphql';
 import CheckIn from 'components/CheckIn';
 import { appActions, appState } from 'state/app';
@@ -14,11 +15,38 @@ import { useSnapshot } from 'valtio';
 
 import { sharedStyles, showCheckInPoint } from './shared';
 
+const DAYS_PER_WEEK = 7;
+const MS_PER_DAY = 24 * 60 * 60 * 1000;
+
 export const DailyCheckIn = () => {
 	const [loading, setLoading] = useState(false);
 	const { content, appUser } = useSnapshot(appState);
 	const homeContent = content.screens.home;
 	const todayCheckedIn = !!appUser?.dailyMissions?.checkIn?.completed;
+
+	const latest7DaysCheckIns: (DailyCheckInType | null)[] = useMemo(() => {
+		const checkIns = [...(appUser?.dailyMissions?.latest7DaysCheckIn || [])];
+		const mergedCheckIns = [];
+		for (let i = 0; i < checkIns.length; i++) {
+			mergedCheckIns.push(checkIns[i]);
+			if (i === checkIns.length - 1) break;
+			const currentDate = new Date(checkIns[i]?.date);
+			const nextCheckInDate = new Date(checkIns[i + 1]?.date);
+			const daysBetween = Math.ceil(
+				(nextCheckInDate.getTime() - currentDate.getTime()) / MS_PER_DAY,
+			);
+			for (let j = 0; j < daysBetween - 1; j++)
+				mergedCheckIns.push({ completed: false });
+		}
+
+		if (mergedCheckIns.length < DAYS_PER_WEEK) {
+			mergedCheckIns.push(
+				...new Array(DAYS_PER_WEEK - mergedCheckIns.length).fill(null),
+			);
+		}
+
+		return mergedCheckIns;
+	}, [appUser]);
 
 	const handleCheckIn = async () => {
 		setLoading(true);
@@ -63,13 +91,18 @@ export const DailyCheckIn = () => {
 				contentContainerStyle={styles.checkInsContentContainer}
 				showsHorizontalScrollIndicator={false}
 			>
-				<CheckIn width={checkInWidth} status="checkedIn" dayNumber={1} />
-				<CheckIn width={checkInWidth} status="missed" dayNumber={2} />
-				<CheckIn width={checkInWidth} status="today" dayNumber={3} />
-				<CheckIn width={checkInWidth} status="next" dayNumber={4} />
-				<CheckIn width={checkInWidth} status="next" dayNumber={5} />
-				<CheckIn width={checkInWidth} status="next" dayNumber={6} />
-				<CheckIn width={checkInWidth} status="next" dayNumber={7} />
+				{latest7DaysCheckIns.map((c, i) => {
+					const status =
+						c === null ? 'next' : !c.completed ? 'missed' : 'today';
+					return (
+						<CheckIn
+							key={i}
+							width={checkInWidth}
+							status={status}
+							dayNumber={i + 1}
+						/>
+					);
+				})}
 			</ScrollView>
 		</View>
 	);
