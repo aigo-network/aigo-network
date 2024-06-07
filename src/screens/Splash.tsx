@@ -8,7 +8,7 @@ import { appActions } from 'state/app';
 import { initAuthPromise } from 'utils/auth';
 
 export const SplashScreen = () => {
-	const { navigate } = useNavigation();
+	const { reset } = useNavigation();
 	const resolveAnimationRef = useRef(() => {});
 	const animationRef = useRef(
 		new Promise((resolve) => {
@@ -28,11 +28,11 @@ export const SplashScreen = () => {
 			]);
 
 			if (!user) {
-				navigate('Login');
+				reset({ routes: [{ name: 'Login' }] });
 			} else if (!user.completeOnboarding) {
-				navigate('OnboardName');
+				reset({ routes: [{ name: 'OnboardName' }] });
 			} else {
-				navigate('Home');
+				reset({ routes: [{ name: 'Home' }] });
 			}
 		};
 
