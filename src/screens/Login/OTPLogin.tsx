@@ -32,9 +32,9 @@ const OTPLoginScreen = () => {
 			if (jwt) setJWT(jwt);
 			const { user } = await graphqlClient.getUserProfile();
 			if (user?.completeOnboarding) {
-				navigation.navigate('Home');
+				navigation.reset({ routes: [{ name: 'Home' }] });
 			} else {
-				navigation.navigate('OnboardName');
+				navigation.reset({ routes: [{ name: 'OnboardName' }] });
 			}
 		} catch (error) {
 			console.log('error', error);
