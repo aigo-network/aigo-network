@@ -41,7 +41,9 @@ export const DailyCheckIn = () => {
 		}
 
 		const currentDateIndex = mergedCheckIns.length - 1;
-		scrollViewRef.current?.scrollTo({ x: currentDateIndex * checkInWidth + 2 });
+		scrollViewRef.current?.scrollTo({
+			x: currentDateIndex * (checkInWidth + 4),
+		});
 
 		if (mergedCheckIns.length < DAYS_PER_WEEK) {
 			mergedCheckIns.push(

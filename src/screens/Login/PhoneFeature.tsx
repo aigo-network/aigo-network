@@ -107,7 +107,7 @@ const PhoneLoginFeature: FC<Props> = ({
 			<SafeContainer>
 				<KeyboardAvoidingView
 					style={styles.contentContainer}
-					behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+					behavior={Platform.OS === 'ios' ? 'padding' : undefined}
 				>
 					<View style={styles.upperContent}>
 						<View style={styles.header}>
