@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import {
 	ActivityIndicator,
 	ScrollView,
@@ -19,6 +19,7 @@ const DAYS_PER_WEEK = 7;
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
 export const DailyCheckIn = () => {
+	const scrollViewRef = useRef<ScrollView>(null);
 	const [loading, setLoading] = useState(false);
 	const { content, appUser } = useSnapshot(appState);
 	const homeContent = content.screens.home;
@@ -38,6 +39,9 @@ export const DailyCheckIn = () => {
 			for (let j = 0; j < daysBetween - 1; j++)
 				mergedCheckIns.push({ completed: false });
 		}
+
+		const currentDateIndex = mergedCheckIns.length - 1;
+		scrollViewRef.current?.scrollTo({ x: currentDateIndex * checkInWidth + 2 });
 
 		if (mergedCheckIns.length < DAYS_PER_WEEK) {
 			mergedCheckIns.push(
@@ -85,6 +89,7 @@ export const DailyCheckIn = () => {
 				)}
 			</View>
 			<ScrollView
+				ref={scrollViewRef}
 				horizontal
 				snapToInterval={checkInWidth + 4}
 				style={styles.checkInsContainer}
