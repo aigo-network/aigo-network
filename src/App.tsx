@@ -1,4 +1,5 @@
-import type { FC } from 'react';
+import { type FC, useEffect } from 'react';
+import { Platform, StatusBar } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import {
@@ -26,6 +27,13 @@ import 'utils/auth';
 const Stack = createStackNavigator<RootStackParamList>();
 
 export const AppContainer: FC = () => {
+	useEffect(() => {
+		if (Platform.OS === 'android') {
+			StatusBar.setBackgroundColor('transparent');
+			StatusBar.setTranslucent(true);
+		}
+	}, []);
+
 	return (
 		<SafeAreaProvider>
 			<ModalProvider>
