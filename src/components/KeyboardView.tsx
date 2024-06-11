@@ -47,7 +47,7 @@ const KeyboardView: FC<Props> = ({
 		<KeyboardAvoidingView
 			style={[styles.container, style]}
 			behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-			keyboardVerticalOffset={Platform.OS === 'ios' ? 20 : 0}
+			keyboardVerticalOffset={20}
 		>
 			{children}
 			{keyboardShown && (
