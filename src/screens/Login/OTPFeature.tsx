@@ -1,23 +1,14 @@
 import type { FC } from 'react';
 import { useEffect, useState } from 'react';
-import {
-	Keyboard,
-	KeyboardAvoidingView,
-	Platform,
-	StyleSheet,
-	Text,
-	TouchableOpacity,
-	TouchableWithoutFeedback,
-	View,
-} from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Animated, {
 	useAnimatedStyle,
 	useSharedValue,
-	withTiming,
 } from 'react-native-reanimated';
 import { useNavigation } from '@react-navigation/native';
 import Button from 'components/Button';
 import LeftArrowIcon from 'components/icon/LeftArrowIcon';
+import KeyboardView from 'components/KeyboardView';
 import OtpInput from 'components/OtpInput';
 import SafeContainer from 'components/SafeContainer';
 import { appState } from 'state/app';
@@ -45,7 +36,6 @@ const OTPFeature: FC<Props> = ({
 	const [otp, setOtp] = useState(code);
 	const [error, setError] = useState('');
 	const [loading, setLoading] = useState(false);
-	const [keyboardShown, setKeyboardShown] = useState(Keyboard.isVisible());
 	const { phoneSignIn } = useSnapshot(appState);
 	const paddingBot = useSharedValue(0);
 	const disabled = otp.length !== otpLength;
@@ -76,28 +66,27 @@ const OTPFeature: FC<Props> = ({
 		setOtp(code);
 	}, [code]);
 
-	useEffect(() => {
-		const showSubscription = Keyboard.addListener('keyboardWillShow', () => {
-			paddingBot.value = withTiming(20);
-			setKeyboardShown(true);
-		});
-		const hideSubscription = Keyboard.addListener('keyboardWillHide', () => {
-			paddingBot.value = withTiming(0);
-			setKeyboardShown(false);
-		});
-
-		return () => {
-			showSubscription.remove();
-			hideSubscription.remove();
-		};
-	}, []);
-
 	return (
 		<View style={styles.container}>
 			<SafeContainer>
-				<KeyboardAvoidingView
+				<KeyboardView
 					style={styles.contentContainer}
-					behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+					aboveMaskComponent={
+						<AnimatedView style={[styles.btnContainer, btnPaddingBottom]}>
+							<Button
+								style={[styles.btn, !disabled && styles.activeBtn]}
+								onPress={wrappedConfirmOTP}
+								disabled={disabled}
+								loading={loading}
+							>
+								<Text
+									style={[styles.btnText, !disabled && styles.activeBtnText]}
+								>
+									{verifyButton}
+								</Text>
+							</Button>
+						</AnimatedView>
+					}
 				>
 					<View style={styles.upperContent}>
 						<View style={styles.header}>
@@ -125,28 +114,7 @@ const OTPFeature: FC<Props> = ({
 							errorMessage={error}
 						/>
 					</View>
-
-					{keyboardShown && (
-						<View style={styles.keyboardLayer}>
-							<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-								<View style={{ flex: 1 }} />
-							</TouchableWithoutFeedback>
-						</View>
-					)}
-
-					<AnimatedView style={[styles.btnContainer, btnPaddingBottom]}>
-						<Button
-							style={[styles.btn, !disabled && styles.activeBtn]}
-							onPress={wrappedConfirmOTP}
-							disabled={disabled}
-							loading={loading}
-						>
-							<Text style={[styles.btnText, !disabled && styles.activeBtnText]}>
-								{verifyButton}
-							</Text>
-						</Button>
-					</AnimatedView>
-				</KeyboardAvoidingView>
+				</KeyboardView>
 			</SafeContainer>
 		</View>
 	);
