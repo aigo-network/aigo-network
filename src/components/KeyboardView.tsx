@@ -28,11 +28,11 @@ const KeyboardView: FC<Props> = ({
 	const [keyboardShown, setKeyboardShown] = useState(Keyboard.isVisible());
 
 	useEffect(() => {
-		const showSubscription = Keyboard.addListener('keyboardWillShow', () => {
+		const showSubscription = Keyboard.addListener('keyboardDidShow', () => {
 			onKeyboardShow?.();
 			setKeyboardShown(true);
 		});
-		const hideSubscription = Keyboard.addListener('keyboardWillHide', () => {
+		const hideSubscription = Keyboard.addListener('keyboardDidHide', () => {
 			onKeyboardHide?.();
 			setKeyboardShown(false);
 		});
@@ -46,7 +46,8 @@ const KeyboardView: FC<Props> = ({
 	return (
 		<KeyboardAvoidingView
 			style={[styles.container, style]}
-			behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+			behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+			keyboardVerticalOffset={20}
 		>
 			{children}
 			{keyboardShown && (

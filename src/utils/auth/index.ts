@@ -1,4 +1,3 @@
-import type { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import auth from '@react-native-firebase/auth';
 import type { User } from 'api/graphql';
 import { graphqlClient } from 'api/graphql';

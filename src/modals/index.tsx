@@ -1,4 +1,6 @@
+import { KeyboardAvoidingView, Platform } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
+import SafeContainer from 'components/SafeContainer';
 import { Align, showModal } from 'empty-modal';
 import { appState } from 'state/app';
 
@@ -29,15 +31,21 @@ export const showCountrySelection = (
 ) => {
 	const { cleanModal } = showModal(
 		<Animated.View entering={FadeInDown}>
-			<CountrySelectionModal
-				onClose={() => {
-					cleanModal();
-				}}
-				onItemSelect={onCountrySelection}
-				title={appState.content.modal.citySelection.title}
-				placeholder={appState.content.modal.citySelection.placeholder}
-				cancelButton={appState.content.modal.citySelection.cancelButton}
-			/>
+			<SafeContainer style={{ paddingBottom: 0 }}>
+				<KeyboardAvoidingView
+					behavior={Platform.OS === 'android' ? 'height' : undefined}
+				>
+					<CountrySelectionModal
+						onClose={() => {
+							cleanModal();
+						}}
+						onItemSelect={onCountrySelection}
+						title={appState.content.modal.citySelection.title}
+						placeholder={appState.content.modal.citySelection.placeholder}
+						cancelButton={appState.content.modal.citySelection.cancelButton}
+					/>
+				</KeyboardAvoidingView>
+			</SafeContainer>
 		</Animated.View>,
 		{
 			id: 'country-selection',

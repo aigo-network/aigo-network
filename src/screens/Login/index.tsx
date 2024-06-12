@@ -57,35 +57,41 @@ export const LoginScreen = () => {
 					<Text style={styles.slogan}>{logInContent.slogan}</Text>
 				</View>
 
-				<View style={styles.btnGroup}>
-					<Button
-						prefix={<Image style={styles.googleIcon} source={googleIconSrc} />}
-						style={styles.btn}
-						onPress={() => handleSignIn(signInWithGoogle)}
-					>
-						<Text style={styles.btnText}>{logInContent.googleButton}</Text>
-					</Button>
-					<Button
-						prefix={<Image style={styles.appleIcon} source={appleIconSrc} />}
-						style={styles.btn}
-						onPress={() => handleSignIn(signInWithApple)}
-					>
-						<Text style={styles.btnText}>{logInContent.appleButton}</Text>
-					</Button>
-					<Button
-						prefix={
-							<Image style={styles.phoneNumberIcon} source={phoneNumberSrc} />
-						}
-						suffix={<Image style={styles.nnIcon} source={nyamNyamSrc} />}
-						style={styles.btn}
-						onPress={handlePhoneSignIn}
-					>
-						<Text style={styles.btnText}>{logInContent.phoneNumberButton}</Text>
-					</Button>
+				<View style={styles.bottomGroup}>
+					<View style={styles.btnGroup}>
+						<Button
+							prefix={
+								<Image style={styles.googleIcon} source={googleIconSrc} />
+							}
+							style={styles.btn}
+							onPress={() => handleSignIn(signInWithGoogle)}
+						>
+							<Text style={styles.btnText}>{logInContent.googleButton}</Text>
+						</Button>
+						<Button
+							prefix={<Image style={styles.appleIcon} source={appleIconSrc} />}
+							style={styles.btn}
+							onPress={() => handleSignIn(signInWithApple)}
+						>
+							<Text style={styles.btnText}>{logInContent.appleButton}</Text>
+						</Button>
+						<Button
+							prefix={
+								<Image style={styles.phoneNumberIcon} source={phoneNumberSrc} />
+							}
+							suffix={<Image style={styles.nnIcon} source={nyamNyamSrc} />}
+							style={styles.btn}
+							onPress={handlePhoneSignIn}
+						>
+							<Text style={styles.btnText}>
+								{logInContent.phoneNumberButton}
+							</Text>
+						</Button>
+					</View>
+					<Text style={styles.version}>
+						{logInContent.versionPrefix} {version} ({buildNumber})
+					</Text>
 				</View>
-				<Text style={styles.version}>
-					{logInContent.versionPrefix} {version} ({buildNumber})
-				</Text>
 			</SafeContainer>
 		</View>
 	);
@@ -112,7 +118,6 @@ const styles = StyleSheet.create({
 	},
 	logoImg: {
 		alignSelf: 'center',
-		marginTop: 120,
 		marginBottom: 24,
 	},
 	welcome: {
@@ -128,12 +133,13 @@ const styles = StyleSheet.create({
 		fontSize: 19,
 		color: '#a0fa82',
 	},
+	bottomGroup: {
+		gap: 20,
+	},
 	btnGroup: {
-		flex: 1,
 		gap: 17,
 		paddingHorizontal: 24,
 		justifyContent: 'flex-end',
-		paddingBottom: 50,
 	},
 	googleIcon: {
 		width: 24,
