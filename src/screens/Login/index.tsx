@@ -12,7 +12,7 @@ import { signInWithApple, signInWithGoogle } from 'utils/auth';
 import { useSnapshot } from 'valtio';
 
 export const LoginScreen = () => {
-	const { navigate } = useNavigation();
+	const { navigate, reset } = useNavigation();
 	const { version, buildNumber, content } = useSnapshot(appState);
 	const logInContent = content.screens.logIn;
 	const backgroundSrc = require('assets/img/login/background-logo.png');
@@ -27,9 +27,13 @@ export const LoginScreen = () => {
 			if (!authUser) return;
 			const { user } = await graphqlClient.getUserProfile();
 			if (user?.completeOnboarding) {
-				navigate('Home');
+				reset({
+					routes: [{ name: 'Home' }],
+				});
 			} else {
-				navigate('OnboardName');
+				reset({
+					routes: [{ name: 'OnboardName' }],
+				});
 			}
 		} catch (error) {
 			console.log(error);
