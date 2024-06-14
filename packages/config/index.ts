@@ -2,7 +2,7 @@ import { activity } from './activity.json';
 import { envConfig } from './env';
 
 export const config: AppConfig = {
-	...(envConfig as EnvironmentConfig),
+	...envConfig,
 	activity,
 };
 
