@@ -1,6 +1,6 @@
 import { KeyboardAvoidingView, Platform } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import SafeContainer from 'components/SafeContainer';
+import SafeContainer from '@aigo/components/SafeContainer';
 import { Align, showModal } from 'empty-modal';
 import { appState } from 'state/app';
 

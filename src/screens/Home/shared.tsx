@@ -1,10 +1,10 @@
 import { StyleSheet } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { InviteCode } from 'components/InviteCode';
-import PointPopup from 'components/PointPopup';
+import { InviteCode } from '@aigo/components/InviteCode';
+import PointPopup from '@aigo/components/PointPopup';
+import { config } from '@aigo/config';
 import { Align, showModal } from 'empty-modal';
 import { appState } from 'state/app';
-import { config } from 'utils/config';
 
 export const sharedStyles = StyleSheet.create({
 	container: {
@@ -32,10 +32,30 @@ export const sharedStyles = StyleSheet.create({
 export const showInvitationCode = () => {
 	const code = appState.appUser?.invitationCode;
 	if (!code) return;
+	const points = config.activity.InviteFriend.points;
+	const {
+		title,
+		description,
+		messagePrefix,
+		messageSuffix,
+		referral,
+		codeTitle,
+		shareButton,
+	} = appState.content.modal.invite;
 
 	const { cleanModal } = showModal(
 		<Animated.View entering={FadeInDown.duration(500)}>
-			<InviteCode code={code} onPressClose={() => cleanModal()} />
+			<InviteCode
+				title={title}
+				description={description}
+				codeTitle={codeTitle}
+				code={code}
+				points={points}
+				referralText={referral}
+				shareMessage={`${messagePrefix} https://app.aigo.network/download?inviteCode=${code} ${messageSuffix}: ${code}`}
+				shareButtonText={shareButton}
+				onPressClose={() => cleanModal()}
+			/>
 		</Animated.View>,
 		{
 			id: 'invitation-code',

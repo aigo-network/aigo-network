@@ -1,10 +1,10 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { graphqlClient } from '@aigo/api/graphql';
+import { Button } from '@aigo/components/Button';
+import AppIcon from '@aigo/components/icon/AppIcon';
+import SafeContainer from '@aigo/components/SafeContainer';
 import { useNavigation } from '@react-navigation/native';
-import { graphqlClient } from 'api/graphql';
-import { Button } from 'components/Button';
-import AppIcon from 'components/icon/AppIcon';
-import SafeContainer from 'components/SafeContainer';
 import { showLanguageSelection } from 'modals/index';
 import { appState } from 'state/app';
 import type { SignInFunction } from 'utils/auth';

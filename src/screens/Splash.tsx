@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Animated, { FadeInDown, runOnJS } from 'react-native-reanimated';
+import AppIcon from '@aigo/components/icon/AppIcon';
+import SafeContainer from '@aigo/components/SafeContainer';
 import { useNavigation } from '@react-navigation/native';
-import AppIcon from 'components/icon/AppIcon';
-import SafeContainer from 'components/SafeContainer';
 import { appActions } from 'state/app';
 import { initAuthPromise } from 'utils/auth';
 

@@ -5,12 +5,12 @@ import Animated, {
 	useAnimatedStyle,
 	useSharedValue,
 } from 'react-native-reanimated';
+import Button from '@aigo/components/Button';
+import LeftArrowIcon from '@aigo/components/icon/LeftArrowIcon';
+import KeyboardView from '@aigo/components/KeyboardView';
+import OtpInput from '@aigo/components/OtpInput';
+import SafeContainer from '@aigo/components/SafeContainer';
 import { useNavigation } from '@react-navigation/native';
-import Button from 'components/Button';
-import LeftArrowIcon from 'components/icon/LeftArrowIcon';
-import KeyboardView from 'components/KeyboardView';
-import OtpInput from 'components/OtpInput';
-import SafeContainer from 'components/SafeContainer';
 import { appState } from 'state/app';
 import { useSnapshot } from 'valtio';
 

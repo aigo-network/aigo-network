@@ -1,11 +1,11 @@
 import Animated, { FadeInDown } from 'react-native-reanimated';
+import { graphqlClient } from '@aigo/api/graphql';
+import PointPopup from '@aigo/components/PointPopup';
+import { config } from '@aigo/config';
 import auth from '@react-native-firebase/auth';
-import { graphqlClient } from 'api/graphql';
-import PointPopup from 'components/PointPopup';
 import { Align, showModal } from 'empty-modal';
 import { appActions, appState } from 'state/app';
 import { getDefaultUserInfo } from 'state/app/userInfo';
-import { config } from 'utils/config';
 import { defaultAvatar, defaultEmail } from 'utils/misc';
 
 export const completeOnboarding = async (cityFallback?: string) => {

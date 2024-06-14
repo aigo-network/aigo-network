@@ -1,7 +1,7 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import PlaceIcon from '@aigo/components/icon/PlaceIcon';
 import { useNavigation } from '@react-navigation/native';
-import PlaceIcon from 'components/icon/PlaceIcon';
 import { appState } from 'state/app';
 import { defaultAvatar } from 'utils/misc';
 import { useSnapshot } from 'valtio';

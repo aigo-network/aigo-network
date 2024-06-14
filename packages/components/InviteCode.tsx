@@ -2,9 +2,6 @@ import { type FC, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Share from 'react-native-share';
 import Clipboard from '@react-native-clipboard/clipboard';
-import { appState } from 'state/app';
-import { config } from 'utils/config';
-import { useSnapshot } from 'valtio';
 
 import Copy from './icon/Copy';
 import Tick from './icon/Tick';
@@ -12,27 +9,33 @@ import X from './icon/X';
 import { Button } from './Button';
 
 type Props = {
+	points: number;
+	title: string;
+	description: string;
+	codeTitle: string;
 	code: string;
+	referralText: string;
+	shareMessage: string;
+	shareButtonText: string;
 	onPressClose?: () => void;
 };
 
-export const InviteCode: FC<Props> = ({ code, onPressClose }) => {
-	const {
-		title,
-		description,
-		messagePrefix,
-		messageSuffix,
-		referral,
-		codeTitle,
-		shareButton,
-	} = useSnapshot(appState.content.modal.invite);
+export const InviteCode: FC<Props> = ({
+	points,
+	title,
+	description,
+	codeTitle,
+	code,
+	referralText,
+	shareMessage,
+	shareButtonText,
+	onPressClose,
+}) => {
 	const [copied, setCopied] = useState(false);
 
 	const handleSharePress = async () => {
 		try {
-			await Share.open({
-				message: `${messagePrefix} https://app.aigo.network/download?inviteCode=${code} ${messageSuffix}: ${code}`,
-			});
+			await Share.open({ message: shareMessage });
 		} catch (err) {
 			console.log('Share exception', err);
 		}
@@ -57,7 +60,7 @@ export const InviteCode: FC<Props> = ({ code, onPressClose }) => {
 				<Text style={styles.description}>
 					{description}{' '}
 					<Text style={styles.pointText}>
-						{config.activity.InviteFriend.points} GO/{referral}
+						{points} GO/{referralText}
 					</Text>
 				</Text>
 			</View>
@@ -81,7 +84,7 @@ export const InviteCode: FC<Props> = ({ code, onPressClose }) => {
 			</View>
 
 			<Button style={styles.shareButton} onPress={handleSharePress}>
-				<Text style={styles.shareButtonText}>{shareButton}</Text>
+				<Text style={styles.shareButtonText}>{shareButtonText}</Text>
 			</Button>
 		</View>
 	);

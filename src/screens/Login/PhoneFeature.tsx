@@ -12,11 +12,11 @@ import Animated, {
 	useAnimatedStyle,
 	useSharedValue,
 } from 'react-native-reanimated';
+import { Button } from '@aigo/components/Button';
+import LeftArrowIcon from '@aigo/components/icon/LeftArrowIcon';
+import KeyboardView from '@aigo/components/KeyboardView';
+import SafeContainer from '@aigo/components/SafeContainer';
 import { useNavigation } from '@react-navigation/native';
-import { Button } from 'components/Button';
-import LeftArrowIcon from 'components/icon/LeftArrowIcon';
-import KeyboardView from 'components/KeyboardView';
-import SafeContainer from 'components/SafeContainer';
 import type { CountryCode, PhoneNumber } from 'libphonenumber-js';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import type { CountryItem } from 'modals/CountrySelection/SelectionItem';

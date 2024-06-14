@@ -1,6 +1,5 @@
 import type { FC } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import { config } from 'utils/config';
 
 import Tick from './icon/Tick';
 import X from './icon/X';
@@ -9,9 +8,10 @@ type Props = {
 	width: number;
 	status: 'checkedIn' | 'missed' | 'today' | 'todayCheckedIn' | 'next';
 	dayNumber: number;
+	points: number;
 };
 
-export const CheckIn: FC<Props> = ({ width, status, dayNumber }) => {
+export const CheckIn: FC<Props> = ({ width, status, points, dayNumber }) => {
 	return (
 		<View style={[styles.container, { width }]}>
 			<View
@@ -22,7 +22,7 @@ export const CheckIn: FC<Props> = ({ width, status, dayNumber }) => {
 				]}
 			>
 				<Text style={[styles.checkInReward, { color: colorMap[status].text }]}>
-					{config.activity.DailyCheckIn.points} GO
+					{points} GO
 				</Text>
 				{status === 'checkedIn' ? (
 					<View

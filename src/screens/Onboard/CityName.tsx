@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
+import SearchBox from '@aigo/components/SearchBox';
+import type { CitiesData } from '@aigo/components/SearchResult';
+import SearchResult, { cityToString } from '@aigo/components/SearchResult';
 import { useNavigation } from '@react-navigation/native';
-import SearchBox from 'components/SearchBox';
-import type { CitiesData } from 'components/SearchResult';
-import SearchResult, { cityToString } from 'components/SearchResult';
 import { appActions, appState } from 'state/app';
 import citiesList from 'utils/cities.json';
 import { useSnapshot } from 'valtio';

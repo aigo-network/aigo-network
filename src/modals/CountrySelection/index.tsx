@@ -1,9 +1,9 @@
 import type { FC } from 'react';
 import { useState } from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
-import Button from 'components/Button';
-import SafeContainer from 'components/SafeContainer';
-import SearchBox from 'components/SearchBox';
+import Button from '@aigo/components/Button';
+import SafeContainer from '@aigo/components/SafeContainer';
+import SearchBox from '@aigo/components/SearchBox';
 import dialCode from 'utils/dialCode.json';
 
 import type { CountryItem } from './SelectionItem';

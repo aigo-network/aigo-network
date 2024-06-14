@@ -1,4 +1,11 @@
 const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
+const path = require('path');
+
+const monoPackages = {
+	'@aigo/api': path.resolve(__dirname, './packages/api'),
+	'@aigo/config': path.resolve(__dirname, './packages/config'),
+	'@aigo/components': path.resolve(__dirname, './packages/components'),
+};
 
 /**
  * Metro configuration
@@ -7,7 +14,12 @@ const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
  * @type {import('metro-config').MetroConfig}
  */
 const config = {
+	watchFolders: [
+		path.resolve(__dirname, './node_modules'),
+		...Object.values(monoPackages),
+	],
 	resolver: {
+		extraNodeModules: monoPackages,
 		resolveRequest: (context, moduleName, platform) => {
 			if (moduleName.startsWith('graphql-request')) {
 				return {

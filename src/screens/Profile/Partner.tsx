@@ -1,8 +1,8 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import StatusTag, { Status } from '@aigo/components/StatusTag';
+import { config } from '@aigo/config';
 import { useNavigation } from '@react-navigation/native';
-import StatusTag, { Status } from 'components/StatusTag';
 import { appState } from 'state/app';
-import { config } from 'utils/config';
 import { useSnapshot } from 'valtio';
 
 const PartnerProgram = () => {

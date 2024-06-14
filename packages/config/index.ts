@@ -1,15 +1,22 @@
-import Config from 'react-native-config';
-
 import { activity } from './activity.json';
+import { envConfig } from './env';
 
-type AppConfig = {
+export const config: AppConfig = {
+	...(envConfig as EnvironmentConfig),
+	activity,
+};
+
+type AppConfig = EnvironmentConfig & {
+	activity: ActivityConfig;
+};
+
+type EnvironmentConfig = {
 	FIREBASE_IOS_CLIENT_ID: string;
 	FIREBASE_IOS_REVERSED_CLIENT_ID: string;
 	FIREBASE_WEB_CLIENT_ID: string;
 	FIREBASE_APPLE_AUTH_SERVICE_ID: string;
 	FIREBASE_APPLE_AUTH_REDIRECT_URL: string;
 	GRAPHQL_API_ENDPOINT: string;
-	activity: ActivityConfig;
 };
 
 type ActivityConfig = {
@@ -26,8 +33,3 @@ type ActivityConfig = {
 		points: number;
 	};
 };
-
-export const config: AppConfig = {
-	...Config,
-	activity,
-} as never;

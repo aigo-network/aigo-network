@@ -5,6 +5,32 @@ __metadata:
   version: 8
   cacheKey: 10
 
+"@aigo/api@workspace:packages/api":
+  version: 0.0.0-use.local
+  resolution: "@aigo/api@workspace:packages/api"
+  dependencies:
+    graphql-request: "npm:^7.0.1"
+  languageName: unknown
+  linkType: soft
+
+"@aigo/components@workspace:packages/components":
+  version: 0.0.0-use.local
+  resolution: "@aigo/components@workspace:packages/components"
+  dependencies:
+    "@types/react": "npm:^18.2.6"
+    lottie-react-native: "npm:^6.7.2"
+    react: "npm:18.2.0"
+    react-native: "npm:0.74.1"
+    react-native-reanimated: "npm:^3.11.0"
+  languageName: unknown
+  linkType: soft
+
+"@aigo/config@workspace:packages/config":
+  version: 0.0.0-use.local
+  resolution: "@aigo/config@workspace:packages/config"
+  languageName: unknown
+  linkType: soft
+
 "@ampproject/remapping@npm:^2.2.0":
   version: 2.3.0
   resolution: "@ampproject/remapping@npm:2.3.0"

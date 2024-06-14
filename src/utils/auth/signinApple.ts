@@ -1,13 +1,13 @@
 import { Platform } from 'react-native';
 import uuid from 'react-native-uuid';
+import { setJWT } from '@aigo/api/jwt';
+import { config } from '@aigo/config';
 import {
 	appleAuth,
 	appleAuthAndroid,
 } from '@invertase/react-native-apple-authentication';
 import auth from '@react-native-firebase/auth';
-import { setJWT } from 'api/jwt';
 import { setDefaultUserInfo, type UserInfo } from 'state/app/userInfo';
-import { config } from 'utils/config';
 
 import type { SignInFunction } from './types';
 

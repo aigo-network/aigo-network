@@ -6,10 +6,10 @@ import {
 	TextInput,
 	View,
 } from 'react-native';
-import { graphqlClient } from 'api/graphql';
-import { Button } from 'components/Button';
+import { graphqlClient } from '@aigo/api/graphql';
+import { Button } from '@aigo/components/Button';
+import { config } from '@aigo/config';
 import { appActions, appState } from 'state/app';
-import { config } from 'utils/config';
 import { useSnapshot } from 'valtio';
 
 import { showReferralPoint } from './shared';

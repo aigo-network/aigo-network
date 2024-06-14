@@ -6,9 +6,9 @@ import {
 	TouchableOpacity,
 	View,
 } from 'react-native';
+import LeftArrowIcon from '@aigo/components/icon/LeftArrowIcon';
+import SafeContainer from '@aigo/components/SafeContainer';
 import { useNavigation } from '@react-navigation/native';
-import LeftArrowIcon from 'components/icon/LeftArrowIcon';
-import SafeContainer from 'components/SafeContainer';
 import { appState } from 'state/app';
 import { useSnapshot } from 'valtio';
 

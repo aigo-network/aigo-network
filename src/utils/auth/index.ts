@@ -1,7 +1,7 @@
+import type { User } from '@aigo/api/graphql';
+import { graphqlClient } from '@aigo/api/graphql';
+import { setJWT } from '@aigo/api/jwt';
 import auth from '@react-native-firebase/auth';
-import type { User } from 'api/graphql';
-import { graphqlClient } from 'api/graphql';
-import { setJWT } from 'api/jwt';
 import { appActions } from 'state/app';
 import { cleanDefaultUserInfo } from 'state/app/userInfo';
 

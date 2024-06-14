@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
+import DescriptionCard from '@aigo/components/DescriptionCard';
 import type { StackScreenProps } from '@react-navigation/stack';
-import DescriptionCard from 'components/DescriptionCard';
 import { appActions, appState } from 'state/app';
 import { userDescriptions } from 'state/app/types';
 import type { RootStackParamList } from 'utils/navigation';

@@ -13,11 +13,11 @@ import Animated, {
 	useSharedValue,
 	withTiming,
 } from 'react-native-reanimated';
+import { Button } from '@aigo/components/Button';
+import LeftArrowIcon from '@aigo/components/icon/LeftArrowIcon';
+import Indicator from '@aigo/components/Indicator';
+import SafeContainer from '@aigo/components/SafeContainer';
 import { useNavigation } from '@react-navigation/native';
-import { Button } from 'components/Button';
-import LeftArrowIcon from 'components/icon/LeftArrowIcon';
-import Indicator from 'components/Indicator';
-import SafeContainer from 'components/SafeContainer';
 
 interface Props {
 	disabled: boolean;

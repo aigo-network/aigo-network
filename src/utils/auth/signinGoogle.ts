@@ -1,7 +1,7 @@
+import { setJWT } from '@aigo/api/jwt';
+import { config } from '@aigo/config';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import { setJWT } from 'api/jwt';
-import { config } from 'utils/config';
 
 import type { SignInFunction } from './types';
 

@@ -12,16 +12,16 @@ import Animated, {
 	useSharedValue,
 	withTiming,
 } from 'react-native-reanimated';
+import { graphqlClient } from '@aigo/api/graphql';
+import Button from '@aigo/components/Button';
+import LeftArrowIcon from '@aigo/components/icon/LeftArrowIcon';
+import KeyboardView from '@aigo/components/KeyboardView';
+import PointPopup from '@aigo/components/PointPopup';
+import SafeContainer from '@aigo/components/SafeContainer';
+import { config } from '@aigo/config';
 import { useNavigation } from '@react-navigation/native';
-import { graphqlClient } from 'api/graphql';
-import Button from 'components/Button';
-import LeftArrowIcon from 'components/icon/LeftArrowIcon';
-import KeyboardView from 'components/KeyboardView';
-import PointPopup from 'components/PointPopup';
-import SafeContainer from 'components/SafeContainer';
 import { Align, showModal } from 'empty-modal';
 import { appActions, appState } from 'state/app';
-import points from 'utils/activity.json';
 import { useSnapshot } from 'valtio';
 
 const AnimatedView = Animated.createAnimatedComponent(View);
@@ -61,10 +61,11 @@ const VerifyNNIDScreen = () => {
 	);
 
 	const showCompleteNyamNyamVerification = () => {
+		const points = config.activity.CompleteNyamNyamVerification.points;
 		const { cleanModal } = showModal(
 			<Animated.View entering={FadeInDown}>
 				<PointPopup
-					point={points.activity.CompleteNyamNyamVerification.points}
+					point={points}
 					onPressClose={() => {
 						cleanModal();
 					}}

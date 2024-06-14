@@ -1,7 +1,7 @@
+import { graphqlClient } from '@aigo/api/graphql';
 import type { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
-import { graphqlClient } from 'api/graphql';
 import { appActions, appState } from 'state/app';
 import { useSnapshot } from 'valtio';
 

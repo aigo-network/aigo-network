@@ -1,5 +1,5 @@
 import DeviceInfo from 'react-native-device-info';
-import type { User } from 'api/graphql';
+import type { User } from '@aigo/api/graphql';
 import type { PhoneNumber } from 'libphonenumber-js';
 import { type Content, translations } from 'utils/translations';
 import { proxy } from 'valtio';

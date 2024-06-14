@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { config } from '@aigo/config';
 import { appState } from 'state/app';
-import { config } from 'utils/config';
 import { useSnapshot } from 'valtio';
 
 import { sharedStyles, showInvitationCode } from './shared';

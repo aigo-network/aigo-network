@@ -5,11 +5,11 @@ import {
 	TouchableOpacity,
 	View,
 } from 'react-native';
+import { graphqlClient } from '@aigo/api/graphql';
+import LogOut from '@aigo/components/icon/LogOut';
+import Telegram from '@aigo/components/icon/Telegram';
+import Twitter from '@aigo/components/icon/Twitter';
 import { useNavigation } from '@react-navigation/native';
-import { graphqlClient } from 'api/graphql';
-import LogOut from 'components/icon/LogOut';
-import Telegram from 'components/icon/Telegram';
-import Twitter from 'components/icon/Twitter';
 import { appState } from 'state/app';
 import { logOut } from 'utils/auth';
 import { useSnapshot } from 'valtio';

@@ -1,7 +1,5 @@
 import type { FC } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { appState } from 'state/app';
-import { useSnapshot } from 'valtio';
 
 import X from './icon/X';
 import { Button } from './Button';
@@ -23,8 +21,6 @@ export const ConfirmPopup: FC<Props> = ({
 	yesText,
 	noText,
 }) => {
-	const { content } = useSnapshot(appState);
-	const { yes, no } = content.modal;
 	return (
 		<View style={styles.container}>
 			<TouchableOpacity
@@ -38,12 +34,10 @@ export const ConfirmPopup: FC<Props> = ({
 
 			<View style={styles.buttonGr}>
 				<Button style={styles.btn} onPress={onConfirm}>
-					<Text style={styles.btnText}>{yesText || yes}</Text>
+					<Text style={styles.btnText}>{yesText}</Text>
 				</Button>
 				<Button style={[styles.btn, styles.defaultBtn]} onPress={onReject}>
-					<Text style={[styles.btnText, styles.defaultBtnText]}>
-						{noText || no}
-					</Text>
+					<Text style={[styles.btnText, styles.defaultBtnText]}>{noText}</Text>
 				</Button>
 			</View>
 		</View>

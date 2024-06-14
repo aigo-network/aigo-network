@@ -1,5 +1,5 @@
+import { config } from '@aigo/config';
 import { GraphQLClient } from 'graphql-request';
-import { config } from 'utils/config';
 
 import { JWT } from './jwt';
 import { getSdk } from './sdk';

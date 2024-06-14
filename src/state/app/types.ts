@@ -1,4 +1,4 @@
-import { UserDescription } from 'api/graphql';
+import { UserDescription } from '@aigo/api/graphql';
 
 import { appState } from './shared';
 

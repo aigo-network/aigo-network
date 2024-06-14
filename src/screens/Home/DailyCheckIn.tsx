@@ -7,9 +7,10 @@ import {
 	TouchableOpacity,
 	View,
 } from 'react-native';
-import type { DailyCheckIn as DailyCheckInType } from 'api/graphql';
-import { graphqlClient } from 'api/graphql';
-import CheckIn from 'components/CheckIn';
+import type { DailyCheckIn as DailyCheckInType } from '@aigo/api/graphql';
+import { graphqlClient } from '@aigo/api/graphql';
+import CheckIn from '@aigo/components/CheckIn';
+import { config } from '@aigo/config';
 import { appActions, appState } from 'state/app';
 import { useSnapshot } from 'valtio';
 
@@ -24,6 +25,7 @@ export const DailyCheckIn = () => {
 	const { content, appUser } = useSnapshot(appState);
 	const homeContent = content.screens.home;
 	const todayCheckedIn = !!appUser?.dailyMissions?.checkIn?.completed;
+	const points = config.activity.DailyCheckIn.points;
 
 	const latest7DaysCheckIns: (DailyCheckInType | null)[] = useMemo(() => {
 		const checkIns = [...(appUser?.dailyMissions?.latest7DaysCheckIn || [])];
@@ -104,6 +106,7 @@ export const DailyCheckIn = () => {
 					return (
 						<CheckIn
 							key={i}
+							points={points}
 							width={checkInWidth}
 							status={status}
 							dayNumber={i + 1}

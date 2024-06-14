@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import CloseIcon from 'components/icon/X';
+import CloseIcon from '@aigo/components/icon/X';
 import { appActions } from 'state/app';
 import type { LangKey } from 'utils/translations';
 import { translations } from 'utils/translations';

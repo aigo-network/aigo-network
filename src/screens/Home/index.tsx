@@ -4,7 +4,7 @@ import {
 	getTrackingStatus,
 	requestTrackingPermission,
 } from 'react-native-tracking-transparency';
-import { graphqlClient } from 'api/graphql';
+import { graphqlClient } from '@aigo/api/graphql';
 import { appActions } from 'state/app';
 
 import DailyCheckIn from './DailyCheckIn';
