@@ -48,7 +48,7 @@
         "verifyButton": "Verify",
         "wrongCodeError": "Wrong code, please try again",
         "getCredentialsError": "Failed to get user credential",
-        "getProfileError": "Failed to update account, something went wrong"
+        "getProfileError": "Failed get profile, something went wrong"
       }
     },
     "onboard": {
