@@ -6,7 +6,7 @@ import X from './icon/X';
 
 type Props = {
 	point: number;
-	messagePrefix?: string;
+	messagePrefix: string;
 	description?: string;
 	onPressClose?: () => void;
 };
