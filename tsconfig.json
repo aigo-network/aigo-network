@@ -1,40 +1,12 @@
 {
     "extends": "@metacraft/tsconfig/application.json",
-    "include": [
-        "src",
-        "index*.js",
-        "globals.d.ts"
-    ],
     "exclude": [
-        "node_modules", "src/graphql/types.ts"
+        "node_modules"
     ],
     "compilerOptions": {
         "baseUrl": ".",
         "moduleResolution": "Bundler",
         "resolveJsonModule": true,
-        "esModuleInterop": true,
-        "paths": {
-            "assets/*": [
-                "./assets/*"
-            ],
-            "utils/*": [
-                "./src/utils/*"
-            ],
-            "state/*": [
-                "./src/state/*"
-            ],
-            "stacks/*": [
-                "./src/stacks/*"
-            ],
-            "screens/*": [
-                "./src/screens/*"
-            ],
-            "modals/*": [
-                "./src/modals/*"
-            ],
-            "api/*": [
-                "./src/api/*"
-            ]
-        }
+        "esModuleInterop": true
     }
 }

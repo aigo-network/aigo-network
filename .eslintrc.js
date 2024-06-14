@@ -1,7 +1,7 @@
 module.exports = {
 	root: true,
 	extends: ['@metacraft/eslint-config'],
-	ignorePatterns: ['node_modules', 'src/api/sdk.ts', 'packages/api/sdk.ts'],
+	ignorePatterns: ['node_modules', 'packages/api/sdk.ts'],
 	env: {
 		node: true,
 	},

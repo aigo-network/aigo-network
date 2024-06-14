@@ -61,11 +61,13 @@ const VerifyNNIDScreen = () => {
 	);
 
 	const showCompleteNyamNyamVerification = () => {
+		const { messagePrefix } = appState.content.modal.earnPoints;
 		const points = config.activity.CompleteNyamNyamVerification.points;
 		const { cleanModal } = showModal(
 			<Animated.View entering={FadeInDown}>
 				<PointPopup
 					point={points}
+					messagePrefix={messagePrefix}
 					onPressClose={() => {
 						cleanModal();
 					}}
