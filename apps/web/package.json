@@ -2,20 +2,26 @@
   "name": "web",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint --fix"
   },
   "dependencies": {
     "next": "14.2.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-native": "^0.74.2",
+    "react-native-reanimated": "^3.12.0",
+    "react-native-svg": "^15.3.0",
+    "react-native-web": "^0.19.12"
   },
   "devDependencies": {
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.6",
+    "@types/react-native": "^0.73.0",
     "typescript": "5.4.5"
   }
 }
