@@ -15,7 +15,7 @@ const vaultOptions = {
 		const androidProps = fieldMap['android/local.properties'];
 
 		for (const environment of ['production', 'development']) {
-			const googleServiceKey = `android/app/google-services-${environment}.json`;
+			const googleServiceKey = `apps/mobile/android/app/google-services-${environment}.json`;
 			const googleServiceJson = fieldMap[googleServiceKey];
 
 			if (googleServiceJson) {
