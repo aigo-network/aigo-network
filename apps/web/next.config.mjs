@@ -12,6 +12,9 @@ const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 const nextConfig = {
 	swcMinify: true,
 	transpilePackages: [
+		'@aigo/api',
+		'@aigo/config',
+		'@aigo/components',
 		'react',
 		'react-dom',
 		'react-native',

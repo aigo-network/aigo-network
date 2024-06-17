@@ -1,3 +1,5 @@
+import { graphqlClient } from '@aigo/api/graphql';
+import { injectGetJWTFunc } from '@aigo/api/jwt';
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
 
@@ -19,10 +21,22 @@ export const signInWithGoogle = async () => {
 	await signInWithRedirect(auth, provider);
 };
 
-export const signOut = async () => {
+export const logOut = async () => {
 	await auth.signOut();
 };
 
-auth.onIdTokenChanged((firebaseUser) => {
-	console.log(firebaseUser);
+injectGetJWTFunc(async () => {
+	return auth.currentUser?.getIdToken();
+});
+
+auth.onIdTokenChanged(async (authUser) => {
+	console.log('auth user', authUser);
+	if (authUser) {
+		try {
+			const { user } = await graphqlClient.getUserProfile();
+			console.log('user', user);
+		} catch (err) {
+			console.log('auth error', err);
+		}
+	}
 });

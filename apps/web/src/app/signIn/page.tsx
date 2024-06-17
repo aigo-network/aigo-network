@@ -1,7 +1,7 @@
 'use client';
 import { Button, StyleSheet, View } from 'react-native';
 
-import { signInWithGoogle } from './signIn';
+import { signInWithGoogle } from '../../utils/auth';
 
 export const SignIn = () => {
 	return (
