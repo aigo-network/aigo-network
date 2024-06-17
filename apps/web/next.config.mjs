@@ -33,9 +33,23 @@ const nextConfig = {
 			...config.resolve.extensions,
 		];
 
+		const environments = [
+			'FIREBASE_APP_ID',
+			'FIREBASE_API_KEY',
+			'FIREBASE_AUTH_DOMAIN',
+			'FIREBASE_PROJECT_ID',
+			'FIREBASE_STORAGE_BUCKET',
+			'FIREBASE_MESSAGING_SENDER_ID',
+			'FIREBASE_MEASUREMENT_ID',
+		].reduce((acc, cur) => {
+			acc[cur] = JSON.stringify(process.env[cur]);
+			return acc;
+		}, {});
+
 		config.plugins.push(
 			new DefinePlugin({
 				__DEV__: dev,
+				...environments,
 			}),
 		);
 
