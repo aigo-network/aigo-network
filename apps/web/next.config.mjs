@@ -1,11 +1,14 @@
-/** @type {import('next').NextConfig} */
 import path from 'path';
 import url from 'url';
 
+import dotenv from 'dotenv';
 import webpack from 'webpack';
+
 const { DefinePlugin } = webpack;
+
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
-console.log(path.resolve(__dirname, './raf.js'));
+
+/** @type {import('next').NextConfig} */
 const nextConfig = {
 	swcMinify: true,
 	transpilePackages: [
@@ -15,6 +18,9 @@ const nextConfig = {
 		'react-native-reanimated',
 	],
 	webpack: (config, { dev }) => {
+		const envFilename = dev ? '.env.development' : '.env.production';
+		dotenv.config({ path: path.join(__dirname, `../../${envFilename}`) });
+
 		config.resolve.alias = {
 			...(config.resolve.alias || {}),
 			'react-native$': 'react-native-web',
