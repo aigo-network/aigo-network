@@ -11,7 +11,7 @@ const rootNodeModules = path.resolve(__dirname, '../../node_modules');
 
 const graphqlRequestResolverPath = path.resolve(
 	__dirname,
-	'../../node_modules/graphql-request/build/entrypoints/main.js',
+	'../../node_modules/graphql-request/build/esm/index.js',
 );
 
 /**
