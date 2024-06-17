@@ -8,7 +8,7 @@ const config: CodegenConfig = {
 		'./schema.graphql': {
 			plugins: ['schema-ast'],
 		},
-		'./src/api/sdk.ts': {
+		'./packages/api/sdk.ts': {
 			plugins: [
 				'typescript',
 				'typescript-operations',
