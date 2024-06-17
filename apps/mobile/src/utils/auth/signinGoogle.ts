@@ -1,4 +1,3 @@
-import { setJWT } from '@aigo/api/jwt';
 import { config } from '@aigo/config';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
@@ -20,8 +19,6 @@ export const signInWithGoogle: SignInFunction = async () => {
 
 	const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 	const { user } = await auth().signInWithCredential(googleCredential);
-	const jwt = await auth().currentUser?.getIdToken();
-	if (jwt) setJWT(jwt);
 
 	return user;
 };

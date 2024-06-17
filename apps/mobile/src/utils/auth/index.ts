@@ -1,15 +1,16 @@
 import type { User } from '@aigo/api/graphql';
 import { graphqlClient } from '@aigo/api/graphql';
-import { setJWT } from '@aigo/api/jwt';
+import { injectGetJWTFunc } from '@aigo/api/jwt';
 import auth from '@react-native-firebase/auth';
 import { appActions } from 'state/app';
 import { cleanDefaultUserInfo } from 'state/app/userInfo';
 
+injectGetJWTFunc(async () => {
+	return await auth().currentUser?.getIdToken();
+});
+
 auth().onIdTokenChanged(async (authUser) => {
 	if (authUser) {
-		const jwt = await authUser.getIdToken();
-		if (jwt) setJWT(jwt);
-
 		if (initAuthResolved) return;
 
 		try {
@@ -25,7 +26,6 @@ auth().onIdTokenChanged(async (authUser) => {
 			console.log('Failed to resolve client from API:', err);
 		}
 	} else {
-		setJWT('');
 		resolveInitAuthPromise(undefined);
 	}
 });

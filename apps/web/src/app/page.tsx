@@ -7,7 +7,10 @@ import Animated, {
 	withTiming,
 } from 'react-native-reanimated';
 
+import '../utils/auth';
+
 const AnimatedView = Animated.createAnimatedComponent(View);
+
 export default function Home() {
 	const [, setRender] = useState({});
 

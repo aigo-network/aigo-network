@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { graphqlClient } from '@aigo/api/graphql';
-import { setJWT } from '@aigo/api/jwt';
 import auth from '@react-native-firebase/auth';
 import { useNavigation } from '@react-navigation/native';
 import { appActions, appState } from 'state/app';
@@ -28,8 +27,6 @@ const OTPLoginScreen = () => {
 			appActions.updateOnboarding({
 				phoneNumber: phoneSignIn.phoneNumber?.number,
 			});
-			const jwt = await auth().currentUser?.getIdToken();
-			if (jwt) setJWT(jwt);
 			const { user } = await graphqlClient.getUserProfile();
 			if (user?.completeOnboarding) {
 				navigation.reset({ routes: [{ name: 'Home' }] });
