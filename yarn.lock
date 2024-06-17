@@ -11423,26 +11423,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-reanimated@npm:^3.12.0":
-  version: 3.12.0
-  resolution: "react-native-reanimated@npm:3.12.0"
-  dependencies:
-    "@babel/plugin-transform-arrow-functions": "npm:^7.0.0-0"
-    "@babel/plugin-transform-nullish-coalescing-operator": "npm:^7.0.0-0"
-    "@babel/plugin-transform-optional-chaining": "npm:^7.0.0-0"
-    "@babel/plugin-transform-shorthand-properties": "npm:^7.0.0-0"
-    "@babel/plugin-transform-template-literals": "npm:^7.0.0-0"
-    "@babel/preset-typescript": "npm:^7.16.7"
-    convert-source-map: "npm:^2.0.0"
-    invariant: "npm:^2.2.4"
-  peerDependencies:
-    "@babel/core": ^7.0.0-0
-    react: "*"
-    react-native: "*"
-  checksum: 10/415fb2bfa3ef2134760358c017ae4919727e648a3615cf85d87a95604f17a5ab15fdb25601e266349a3532b0b8b47d73de43b31b2a5dce7d4301997da3c8c739
-  languageName: node
-  linkType: hard
-
 "react-native-safe-area-context@npm:^4.10.1":
   version: 4.10.4
   resolution: "react-native-safe-area-context@npm:4.10.4"
@@ -11533,7 +11513,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native@npm:*, react-native@npm:^0.74.2":
+"react-native@npm:*":
   version: 0.74.2
   resolution: "react-native@npm:0.74.2"
   dependencies:
@@ -13505,8 +13485,8 @@ __metadata:
     next: "npm:14.2.4"
     react: "npm:18.2.0"
     react-dom: "npm:18.2.0"
-    react-native: "npm:^0.74.2"
-    react-native-reanimated: "npm:^3.12.0"
+    react-native: "npm:0.74.1"
+    react-native-reanimated: "npm:3.11.0"
     react-native-svg: "npm:^15.3.0"
     react-native-web: "npm:^0.19.12"
     typescript: "npm:5.4.5"
