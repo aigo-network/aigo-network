@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
 
 const firebaseConfig = {
 	appId: FIREBASE_APP_ID,
@@ -16,7 +16,7 @@ const provider = new GoogleAuthProvider();
 export const auth = getAuth();
 
 export const signInWithGoogle = async () => {
-	await signInWithPopup(auth, provider);
+	await signInWithRedirect(auth, provider);
 };
 
 export const signOut = async () => {
