@@ -1,6 +1,5 @@
 import { Platform } from 'react-native';
 import uuid from 'react-native-uuid';
-import { setJWT } from '@aigo/api/jwt';
 import { config } from '@aigo/config';
 import {
 	appleAuth,
@@ -59,8 +58,6 @@ export const signInWithApple: SignInFunction = async () => {
 		nonce,
 	);
 	const { user } = await auth().signInWithCredential(appleCredential);
-	const jwt = await auth().currentUser?.getIdToken();
-	if (jwt) setJWT(jwt);
 
 	return user;
 };
