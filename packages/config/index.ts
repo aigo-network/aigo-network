@@ -1,9 +1,9 @@
-import { activity } from './activity.json';
+import jsonConfig from './activity.json';
 import { envConfig } from './env';
 
 export const config: AppConfig = {
 	...envConfig,
-	activity,
+	activity: jsonConfig.activity,
 };
 
 type AppConfig = EnvironmentConfig & {
@@ -16,6 +16,7 @@ type EnvironmentConfig = {
 	FIREBASE_WEB_CLIENT_ID: string;
 	FIREBASE_APPLE_AUTH_SERVICE_ID: string;
 	FIREBASE_APPLE_AUTH_REDIRECT_URL: string;
+
 	GRAPHQL_API_ENDPOINT: string;
 };
 

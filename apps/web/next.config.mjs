@@ -41,6 +41,7 @@ const nextConfig = {
 			'FIREBASE_STORAGE_BUCKET',
 			'FIREBASE_MESSAGING_SENDER_ID',
 			'FIREBASE_MEASUREMENT_ID',
+			'GRAPHQL_API_ENDPOINT',
 		].reduce((acc, cur) => {
 			acc[cur] = JSON.stringify(process.env[cur]);
 			return acc;
