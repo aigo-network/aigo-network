@@ -6,6 +6,8 @@ import Link from 'next/link';
 
 import BlurBackground from './BlurBackground';
 
+import { signInWithGoogle } from '@/utils/auth';
+
 interface Props {
 	style?: ViewStyle;
 }
@@ -31,23 +33,25 @@ const Header: FC<Props> = ({ style }) => {
 						</BlurBackground>
 					</TouchableOpacity>
 				</Link>
-				<TouchableOpacity>
-					<BlurBackground style={styles.socialIcon}>
-						<Image
-							src="/telegram-ic.svg"
-							alt="Telegram icon"
-							width={22}
-							height={19}
-						/>
-					</BlurBackground>
-				</TouchableOpacity>
+				<Link href="">
+					<TouchableOpacity>
+						<BlurBackground style={styles.socialIcon}>
+							<Image
+								src="/telegram-ic.svg"
+								alt="Telegram icon"
+								width={22}
+								height={19}
+							/>
+						</BlurBackground>
+					</TouchableOpacity>
+				</Link>
 				<TouchableOpacity>
 					<BlurBackground style={styles.downloadBtn}>
 						<Text style={styles.downloadText}>Download AiGO</Text>
 					</BlurBackground>
 				</TouchableOpacity>
 				<View style={styles.separateLine} />
-				<TouchableOpacity style={styles.signInBtn}>
+				<TouchableOpacity style={styles.signInBtn} onPress={signInWithGoogle}>
 					<Text style={[styles.downloadText, { color: '#000' }]}>Sign In</Text>
 				</TouchableOpacity>
 			</View>
