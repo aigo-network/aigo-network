@@ -9,7 +9,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint --fix",
-	"deploy:staging": "sst deploy --stage staging"
+	"deploy:development": "sst deploy --stage development"
   },
   "dependencies": {
     "firebase": "^10.12.2",
