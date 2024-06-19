@@ -3,6 +3,8 @@ import { StyleSheet, View } from 'react-native';
 import Image from 'next/image';
 
 import QuestCard from './QuestCard';
+import ReferralCode from './ReferralCode';
+import ReferralHistory from './ReferralHistory';
 
 const QuestBoard: FC = () => {
 	return (
@@ -34,6 +36,10 @@ const QuestBoard: FC = () => {
 						description="Connect with X or Google"
 					/>
 				</View>
+				<View style={styles.belowContainer}>
+					<ReferralCode />
+					<ReferralHistory />
+				</View>
 			</View>
 		</View>
 	);
@@ -64,11 +70,17 @@ const styles = StyleSheet.create({
 		backgroundColor: '#141414',
 		padding: 12,
 		transform: [{ translateY: -40 }],
+		gap: 36,
 	},
 	questContainer: {
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 		justifyContent: 'center',
+		gap: 12,
+	},
+	belowContainer: {
+		flexDirection: 'row',
+		flexWrap: 'wrap',
 		gap: 12,
 	},
 });
