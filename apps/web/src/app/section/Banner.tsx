@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
 		borderRadius: 30,
 		paddingHorizontal: 12,
 		paddingVertical: 8,
+		width: 'auto',
 	},
 	subTitleText: {
 		fontSize: 12,

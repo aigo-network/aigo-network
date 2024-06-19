@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import BlurBackground from './BlurBackground';
+import Button from './Button';
 
 import { signInWithGoogle } from '@/utils/auth';
 
@@ -22,7 +23,7 @@ const Header: FC<Props> = ({ style }) => {
 			</Link>
 			<View style={styles.rightContainer}>
 				<Link href="">
-					<TouchableOpacity>
+					<Button>
 						<BlurBackground style={styles.socialIcon}>
 							<Image
 								src="/twitter-ic.svg"
@@ -31,10 +32,10 @@ const Header: FC<Props> = ({ style }) => {
 								height={20}
 							/>
 						</BlurBackground>
-					</TouchableOpacity>
+					</Button>
 				</Link>
 				<Link href="">
-					<TouchableOpacity>
+					<Button>
 						<BlurBackground style={styles.socialIcon}>
 							<Image
 								src="/telegram-ic.svg"
@@ -43,17 +44,17 @@ const Header: FC<Props> = ({ style }) => {
 								height={19}
 							/>
 						</BlurBackground>
-					</TouchableOpacity>
+					</Button>
 				</Link>
-				<TouchableOpacity>
+				<Button>
 					<BlurBackground style={styles.downloadBtn}>
 						<Text style={styles.downloadText}>Download AiGO</Text>
 					</BlurBackground>
-				</TouchableOpacity>
+				</Button>
 				<View style={styles.separateLine} />
-				<TouchableOpacity style={styles.signInBtn} onPress={signInWithGoogle}>
+				<Button style={styles.signInBtn} onPress={signInWithGoogle}>
 					<Text style={[styles.downloadText, { color: '#000' }]}>Sign In</Text>
-				</TouchableOpacity>
+				</Button>
 			</View>
 		</View>
 	);
@@ -81,7 +82,6 @@ const styles = StyleSheet.create({
 	},
 	socialIcon: {
 		width: 48,
-		aspectRatio: 1,
 		borderRadius: 12,
 	},
 	downloadBtn: {

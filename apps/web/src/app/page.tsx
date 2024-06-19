@@ -5,6 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import '../utils/auth';
 
 import Banner from './section/Banner';
+import QuestBoard from './section/QuestBoard';
 
 export default function Home() {
 	const [, setRender] = useState({});
@@ -17,12 +18,11 @@ export default function Home() {
 	return (
 		<View style={styles.container}>
 			<Banner />
+			<QuestBoard />
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
-	container: {
-		backgroundColor: '#04080b',
-	},
+	container: {},
 });
