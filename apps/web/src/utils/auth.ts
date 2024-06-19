@@ -1,7 +1,12 @@
 import { graphqlClient } from '@aigo/api/graphql';
 import { injectGetJWTFunc } from '@aigo/api/jwt';
 import { initializeApp } from 'firebase/app';
-import { getAuth, GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
+import {
+	getAuth,
+	GoogleAuthProvider,
+	signInWithRedirect,
+	TwitterAuthProvider,
+} from 'firebase/auth';
 
 const firebaseConfig = {
 	appId: FIREBASE_APP_ID,
@@ -14,11 +19,16 @@ const firebaseConfig = {
 };
 
 initializeApp(firebaseConfig);
-const provider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider();
+const twitterProvider = new TwitterAuthProvider();
 export const auth = getAuth();
 
 export const signInWithGoogle = async () => {
-	await signInWithRedirect(auth, provider);
+	await signInWithRedirect(auth, googleProvider);
+};
+
+export const signInWithTwitter = async () => {
+	await signInWithRedirect(auth, twitterProvider);
 };
 
 export const logOut = async () => {

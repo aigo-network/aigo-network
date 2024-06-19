@@ -7,7 +7,7 @@ import Link from 'next/link';
 import BlurBackground from './BlurBackground';
 import Button from './Button';
 
-import { signInWithGoogle } from '@/utils/auth';
+import { signInWithTwitter } from '@/utils/auth';
 
 interface Props {
 	style?: ViewStyle;
@@ -52,7 +52,7 @@ const Header: FC<Props> = ({ style }) => {
 					</BlurBackground>
 				</Button>
 				<View style={styles.separateLine} />
-				<Button style={styles.signInBtn} onPress={signInWithGoogle}>
+				<Button style={styles.signInBtn} onPress={signInWithTwitter}>
 					<Text style={[styles.downloadText, { color: '#000' }]}>Sign In</Text>
 				</Button>
 			</View>
