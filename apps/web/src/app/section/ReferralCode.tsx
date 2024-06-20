@@ -59,11 +59,13 @@ const styles = StyleSheet.create({
 		marginTop: 15,
 		borderRadius: 8,
 		backgroundColor: '#1b1b1b',
+		minHeight: 230,
 		borderWidth: 1,
 		borderColor: '#262626',
 		overflow: 'hidden',
 	},
 	gridContainer: {
+		flex: 1,
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 		marginRight: -1,

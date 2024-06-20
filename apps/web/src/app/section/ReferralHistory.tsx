@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
 		minWidth: 360,
 	},
 	innerContainer: {
+		flex: 1,
 		marginTop: 15,
 		backgroundColor: '#1b1b1b',
 		borderRadius: 8,
@@ -98,7 +99,8 @@ const styles = StyleSheet.create({
 		color: '#5e6063',
 	},
 	itemsContainer: {
-		height: 134,
+		flex: 1,
+		maxHeight: 250,
 	},
 	itemsContentContainer: {
 		height: 134,
