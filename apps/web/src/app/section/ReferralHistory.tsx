@@ -128,19 +128,16 @@ const styles = StyleSheet.create({
 	},
 	firstColumn: {
 		flex: 1,
-		// width: 200,
 	},
 	dateColumn: {
 		flex: 1,
-		// width: 180,
 	},
 	rewardsColumn: {
 		flex: 1,
-		// width: 70,
 		textAlign: 'right',
 	},
 	contentText: {
-		fontSize: 16,
+		fontSize: 15,
 	},
 	separateLine: {
 		height: 1,

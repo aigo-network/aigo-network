@@ -31,7 +31,15 @@ export const ReferralCode: FC<Props> = ({ isMobile }) => {
 					{codes.concat({ id: 'dump', code: '' }).map((code) => {
 						return (
 							<View key={code?.id} style={styles.cellContainer}>
-								<Text>{code?.code}</Text>
+								<Text
+									style={[
+										styles.codeText,
+										!!code?.invitedId && styles.invitedCodeText,
+									]}
+								>
+									{code?.code}
+									{code?.invitedId ? ' (Used)' : ''}
+								</Text>
 							</View>
 						);
 					})}
@@ -91,6 +99,12 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 		paddingHorizontal: 24,
+	},
+	codeText: {
+		fontSize: 15,
+	},
+	invitedCodeText: {
+		color: '#707174',
 	},
 	commandContainer: {
 		flexDirection: 'row',
