@@ -8,9 +8,17 @@ interface Props {
 	order: number;
 	point: number;
 	description: string;
+	onActionPress?: () => void;
+	onCheckPress?: () => void;
 }
 
-const QuestCard: FC<Props> = ({ order, point, description }) => {
+const QuestCard: FC<Props> = ({
+	order,
+	point,
+	description,
+	onActionPress,
+	onCheckPress,
+}) => {
 	return (
 		<View style={styles.container}>
 			<Text style={styles.questOrder}>{String(order).padStart(2, '0')}</Text>
@@ -26,7 +34,7 @@ const QuestCard: FC<Props> = ({ order, point, description }) => {
 			</View>
 			<Text style={styles.questDescription}>{description}</Text>
 			<View style={styles.btnGroup}>
-				<Button style={styles.btnLeft}>
+				<Button style={styles.btnLeft} onPress={onCheckPress}>
 					<Image
 						src="/left-angle-ic.svg"
 						alt="left angle icon"
@@ -35,7 +43,7 @@ const QuestCard: FC<Props> = ({ order, point, description }) => {
 						style={{ alignSelf: 'center' }}
 					/>
 				</Button>
-				<Button style={styles.btnRight}>
+				<Button style={styles.btnRight} onPress={onActionPress}>
 					<Text style={styles.textRight}>Check</Text>
 				</Button>
 			</View>

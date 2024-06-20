@@ -6,6 +6,8 @@ import QuestCard from './QuestCard';
 import ReferralCode from './ReferralCode';
 import ReferralHistory from './ReferralHistory';
 
+import { showAppDownload } from '@/modals/ShowAppDownload';
+
 const QuestBoard: FC = () => {
 	return (
 		<View style={styles.container}>
@@ -29,6 +31,7 @@ const QuestBoard: FC = () => {
 						order={3}
 						point={128}
 						description={`Download AiGO on iOS\nor Android`}
+						onActionPress={showAppDownload}
 					/>
 					<QuestCard
 						order={4}
