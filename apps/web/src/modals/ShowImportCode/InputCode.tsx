@@ -27,7 +27,6 @@ const InputCode: FC<Props> = ({ handleClose }) => {
 			const message = (err as any)?.response?.errors?.[0]?.message;
 			const capitalizeMess =
 				(message as string)[0].toUpperCase() + (message as string).slice(1);
-			console.log('>>>', capitalizeMess);
 			setError(capitalizeMess);
 		}
 	};

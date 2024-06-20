@@ -1,6 +1,8 @@
 import { createContext } from 'react';
 import type { userAgent } from 'next/server';
 
+import { signInWithTwitter } from './auth';
+
 import { showImportCode } from '@/modals/ShowImportCode';
 import { appState } from '@/state/app';
 
@@ -33,9 +35,11 @@ export const getMobileOperatingSystem = (): OperatingSystem => {
 };
 
 export const ensureFarmingProfile = (callback?: () => void) => {
-	if (appState.web3FarmingProfile?.id) {
-		callback?.();
-	} else {
+	if (!appState.user?.id) {
+		signInWithTwitter();
+	} else if (!appState.web3FarmingProfile?.id) {
 		showImportCode();
+	} else {
+		callback?.();
 	}
 };

@@ -4,6 +4,8 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import CloseIcon from '@aigo/components/icon/CloseIcon';
 
+import { useIsMobile } from '@/hooks/responsive';
+
 interface Props {
 	style?: StyleProp<ViewStyle>;
 	contentContainerStyle?: StyleProp<ViewStyle>;
@@ -21,8 +23,13 @@ export const ModalContainer: FC<Props> = ({
 	children,
 	onClose,
 }) => {
+	const isMobile = useIsMobile();
+
 	return (
-		<Animated.View style={[styles.container, style]} entering={FadeInDown}>
+		<Animated.View
+			style={[styles.container, isMobile && styles.mobileContainer, style]}
+			entering={FadeInDown}
+		>
 			<View style={styles.headerContainer}>
 				<View style={styles.upperTitleContainer}>
 					<View style={styles.titleContainer}>
@@ -52,8 +59,11 @@ export default ModalContainer;
 const styles = StyleSheet.create({
 	container: {
 		borderRadius: 24,
-		width: 340,
+		width: 420,
 		backgroundColor: '#FFFFFF',
+	},
+	mobileContainer: {
+		width: 340,
 	},
 	headerContainer: {
 		paddingVertical: 18,

@@ -9,7 +9,6 @@ import ModalContainer from '@/components/ModalContainer';
 export const showImportCode = () => {
 	const { cleanModal } = showModal(
 		<ModalContainer
-			style={styles.container}
 			title="Import Code"
 			subTitle={
 				<Text style={styles.subTitleText}>
@@ -37,9 +36,6 @@ export const showImportCode = () => {
 };
 
 const styles = StyleSheet.create({
-	container: {
-		width: 470,
-	},
 	subTitleText: {
 		fontSize: 16,
 		lineHeight: 24,
