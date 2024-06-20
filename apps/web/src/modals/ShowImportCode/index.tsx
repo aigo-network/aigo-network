@@ -26,7 +26,7 @@ export const showImportCode = () => {
 			}
 			onClose={() => cleanModal()}
 		>
-			<InputCode />
+			<InputCode handleClose={() => cleanModal()} />
 		</ModalContainer>,
 		{
 			id: 'import-code',

@@ -6,7 +6,11 @@ import { graphqlClient } from '@aigo/api/graphql';
 import Button from '@/components/Button';
 import { appState } from '@/state/app';
 
-const InputCode: FC = () => {
+interface Props {
+	handleClose: () => void;
+}
+
+const InputCode: FC<Props> = ({ handleClose }) => {
 	const [code, setCode] = useState('');
 	const [error, setError] = useState('');
 	const onContinuePress = async () => {
@@ -15,9 +19,15 @@ const InputCode: FC = () => {
 				await graphqlClient.web3FarmingInitProfile({ referralCode: code });
 			if (web3FarmingInitProfile?.id) {
 				appState.web3FarmingProfile = web3FarmingInitProfile;
+				handleClose();
 			}
 		} catch (err) {
-			setError(err?.message);
+			console.log(JSON.stringify(err, null, 2));
+			const { message } = (err?.response?.errors?.[0]);
+			const capitalizeMess =
+				(message as string)[0].toUpperCase() + (message as string).slice(1);
+			console.log('>>>', capitalizeMess);
+			setError(capitalizeMess);
 		}
 	};
 
