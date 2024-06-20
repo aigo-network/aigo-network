@@ -286,9 +286,6 @@ enum Web3FarmingQuestType {
 """"""
 type Web3FarmingReferralCode {
   """"""
-  GOPoints: Int
-
-  """"""
   code: String
 
   """"""
@@ -301,7 +298,13 @@ type Web3FarmingReferralCode {
   invitedDate: DateTime
 
   """"""
+  invitedGOPoints: Int
+
+  """"""
   invitedId: String
+
+  """"""
+  referrerGOPoints: Int
 
   """"""
   updatedAt: DateTime

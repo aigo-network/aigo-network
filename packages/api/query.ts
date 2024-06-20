@@ -91,10 +91,11 @@ export const getWeb3FarmingProfile = gql`
 			}
 			referralCodes {
 				id
-				GOPoints
 				code
 				invitedId
 				invitedDate
+				invitedGOPoints
+				referrerGOPoints
 			}
 		}
 	}
