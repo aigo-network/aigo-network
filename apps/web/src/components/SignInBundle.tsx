@@ -17,8 +17,16 @@ interface Props {
 }
 
 export const SignInBundle: FC<Props> = ({ user, isAuthLoading }) => {
+	const handlePress = () => {
+		if (user) {
+			return;
+		} else {
+			signInWithTwitter();
+		}
+	};
+
 	return (
-		<Button style={styles.buttonContainer} onPress={signInWithTwitter}>
+		<Button style={styles.buttonContainer} onPress={handlePress}>
 			<DynamicLoading isLoading={isAuthLoading}>
 				{user?.uid ? (
 					<Avatar
