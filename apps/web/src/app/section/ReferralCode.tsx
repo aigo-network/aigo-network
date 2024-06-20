@@ -19,9 +19,6 @@ const ReferralCode: FC = () => (
 				<p> </p>
 			</div>
 			<div className={cssStyles.btnCell}>
-				{/* <div style={{ height: 48, margin: 12, backgroundColor: '#35363a', width: '100%' }}>
-					
-				</div> */}
 				<Button style={styles.copyBtn}>
 					<Image src="/copy-ic.svg" alt="Copy icon" width={24} height={24} />
 					<Text style={styles.copyTxt}>Copied Code</Text>
