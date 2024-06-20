@@ -7,7 +7,6 @@ import { useSnapshot } from 'valtio';
 
 import QuestCard from './QuestCard';
 import ReferralCode from './ReferralCode';
-import ReferralCodeOrg from './ReferralCodeOrg';
 import ReferralHistory from './ReferralHistory';
 import { getQuestOrder, questMetadataMap } from './shared';
 
@@ -68,7 +67,6 @@ const QuestBoard: FC = () => {
 				</View>
 				<View style={styles.belowContainer}>
 					<ReferralCode />
-					<ReferralCodeOrg />
 					<ReferralHistory />
 				</View>
 			</View>
