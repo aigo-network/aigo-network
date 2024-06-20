@@ -8040,6 +8040,7 @@ __metadata:
     graphql: "npm:^16.8.1"
     graphql-request: "npm:6.1.0"
     jest: "npm:^29.6.3"
+    sst: "npm:^2.43.2"
     typescript: "npm:5.4.5"
     webpack: "npm:^5.92.0"
   languageName: unknown
