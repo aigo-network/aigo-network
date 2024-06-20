@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import { ModalProvider } from 'empty-modal';
 
 import '@/utils/auth';
@@ -19,14 +19,16 @@ export default function Home() {
 
 	return (
 		<ModalProvider>
-			<View style={styles.container}>
+			<ScrollView style={styles.container}>
 				<Banner />
 				<QuestBoard />
-			</View>
+			</ScrollView>
 		</ModalProvider>
 	);
 }
 
 const styles = StyleSheet.create({
-	container: {},
+	container: {
+		height: '100vh' as never,
+	},
 });
