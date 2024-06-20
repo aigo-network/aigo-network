@@ -15,14 +15,16 @@ const InputCode: FC<Props> = ({ handleClose }) => {
 	const [error, setError] = useState('');
 	const onContinuePress = async () => {
 		try {
-			const { web3FarmingInitProfile } =
-				await graphqlClient.web3FarmingInitProfile({ referralCode: code });
-			if (web3FarmingInitProfile?.id) {
-				appState.web3FarmingProfile = web3FarmingInitProfile;
+			await graphqlClient.web3FarmingInitProfile({ referralCode: code });
+
+			const { user, web3FarmingProfile } =
+				await graphqlClient.getUserWithWeb3FarmingProfile();
+			if (web3FarmingProfile?.id) {
+				appState.user = user as never;
+				appState.web3FarmingProfile = web3FarmingProfile;
 				handleClose();
 			}
 		} catch (err) {
-			console.log(JSON.stringify(err, null, 2));
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			const message = (err as any)?.response?.errors?.[0]?.message;
 			const capitalizeMess =
