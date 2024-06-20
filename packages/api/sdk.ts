@@ -78,7 +78,8 @@ export type RootMutation = {
    */
   verifyPhoneNumber?: Maybe<PhoneNumberVerification>;
   web3FarmingInitProfile?: Maybe<Web3FarmingProfile>;
-  web3FarmingVerifyQuestAndClaimPoints?: Maybe<Web3FarmingProfile>;
+  web3FarmingRefreshReferrals?: Maybe<Array<Maybe<Web3FarmingQuest>>>;
+  web3FarmingVerifyQuestAndClaimPoints?: Maybe<Web3FarmingQuest>;
 };
 
 
@@ -174,7 +175,7 @@ export type Web3FarmingQuest = {
 };
 
 export enum Web3FarmingQuestType {
-  ConnectTwitter = 'ConnectTwitter',
+  ConnectEmail = 'ConnectEmail',
   DownloadApp = 'DownloadApp',
   LikeTwitterPost = 'LikeTwitterPost',
   RetweetTwitterPost = 'RetweetTwitterPost'

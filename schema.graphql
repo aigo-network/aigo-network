@@ -109,7 +109,10 @@ type RootMutation {
   web3FarmingInitProfile(referralCode: String): Web3FarmingProfile
 
   """"""
-  web3FarmingVerifyQuestAndClaimPoints(questId: String): Web3FarmingProfile
+  web3FarmingRefreshReferrals: [Web3FarmingQuest]
+
+  """"""
+  web3FarmingVerifyQuestAndClaimPoints(questId: String): Web3FarmingQuest
 }
 
 """"""
@@ -268,7 +271,7 @@ type Web3FarmingQuest {
 """"""
 enum Web3FarmingQuestType {
   """"""
-  ConnectTwitter
+  ConnectEmail
 
   """"""
   DownloadApp
