@@ -8,6 +8,8 @@ import {
 	TwitterAuthProvider,
 } from 'firebase/auth';
 
+import { appState } from '@/state/app';
+
 const firebaseConfig = {
 	appId: FIREBASE_APP_ID,
 	apiKey: FIREBASE_API_KEY,
@@ -44,7 +46,7 @@ auth.onIdTokenChanged(async (authUser) => {
 	if (authUser) {
 		try {
 			const { user } = await graphqlClient.getUserProfile();
-			console.log('user', user);
+			appState.user = user;
 		} catch (err) {
 			console.log('auth error', err);
 		}
