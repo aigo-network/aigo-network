@@ -68,8 +68,8 @@ const QuestBoard: FC<Props> = ({ isMobile }) => {
 						})}
 				</View>
 				<View style={styles.belowContainer}>
-					<ReferralCode />
-					<ReferralHistory />
+					<ReferralCode isMobile={isMobile} />
+					<ReferralHistory isMobile={isMobile} />
 				</View>
 			</View>
 		</View>
@@ -99,7 +99,6 @@ const styles = StyleSheet.create({
 		borderColor: '#1f1f1f',
 		borderRadius: 16,
 		backgroundColor: '#141414',
-		padding: 12,
 		transform: [{ translateY: -40 }],
 		gap: 36,
 	},
@@ -108,10 +107,13 @@ const styles = StyleSheet.create({
 		flexWrap: 'wrap',
 		justifyContent: 'center',
 		gap: 12,
+		marginTop: 12,
+		marginHorizontal: 12,
 	},
 	belowContainer: {
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 		gap: 12,
+		marginHorizontal: 12,
 	},
 });

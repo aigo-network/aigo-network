@@ -9,13 +9,19 @@ const usedFilter = (code: Web3FarmingReferralCode | null) => {
 	return code?.invitedId;
 };
 
-const ReferralHistory: FC = () => {
+interface Props {
+	isMobile?: boolean;
+}
+
+const ReferralHistory: FC<Props> = ({ isMobile }) => {
 	const { web3FarmingProfile } = useSnapshot(appState);
 	const usedCodes = web3FarmingProfile?.referralCodes?.filter(usedFilter) || [];
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.title}>REFERRAL HISTORY</Text>
+			<Text style={[styles.title, isMobile && styles.mobileTitle]}>
+				REFERRAL HISTORY
+			</Text>
 			<View style={styles.innerContainer}>
 				<View style={[styles.itemContainer]}>
 					<Text
@@ -27,7 +33,7 @@ const ReferralHistory: FC = () => {
 					<Text
 						style={[styles.dateColumn, styles.contentText, styles.titleText]}
 					>
-						Date & Time
+						{isMobile ? 'Date Time' : 'Date & Time'}
 					</Text>
 					<Text
 						style={[styles.rewardsColumn, styles.contentText, styles.titleText]}
@@ -84,7 +90,8 @@ export default ReferralHistory;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		minWidth: 360,
+		minWidth: 320,
+		marginBottom: 32,
 	},
 	innerContainer: {
 		flex: 1,
@@ -98,6 +105,9 @@ const styles = StyleSheet.create({
 		fontSize: 12,
 		fontWeight: '600',
 		color: '#5e6063',
+	},
+	mobileTitle: {
+		textAlign: 'center',
 	},
 	itemsContainer: {
 		flex: 1,

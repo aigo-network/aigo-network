@@ -38,7 +38,7 @@ const Banner: FC<Props> = ({ isMobile }) => {
 				</Text>
 			</View>
 
-			<Header style={styles.headerContainer} />
+			<Header style={[styles.headerContainer, styles.mobileHeaderContainer]} />
 		</View>
 	);
 };
@@ -71,6 +71,9 @@ const styles = StyleSheet.create({
 		top: 0,
 		left: 0,
 		right: 0,
+	},
+	mobileHeaderContainer: {
+		marginHorizontal: 24,
 	},
 	bannerTitleContainer: {
 		marginTop: 100,

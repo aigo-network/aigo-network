@@ -66,10 +66,8 @@ export const SignInBundle: FC<Props> = ({
 						displayTextStyle={styles.lightText}
 						displayText={user.name}
 					/>
-					<View style={styles.separateLine} />
-					<View>
-						<Text style={styles.lightText}>{points || 0} GO</Text>
-					</View>
+					{!isMobile && <View style={styles.separateLine} />}
+					<Text style={styles.lightText}>{points || 0} GO</Text>
 					<TouchableOpacity
 						hitSlop={34}
 						onPress={() => setShowDropdown((l) => !l)}
@@ -128,6 +126,7 @@ const styles = StyleSheet.create({
 		color: '#fff',
 		fontSize: 17,
 		lineHeight: 24,
+		marginRight: -12,
 	},
 	dropdownContainer: {
 		position: 'absolute',

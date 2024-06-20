@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import type { ViewStyle } from 'react-native';
+import type { StyleProp, ViewStyle } from 'react-native';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import AppIcon from '@aigo/components/icon/AppIcon';
 import Image from 'next/image';
@@ -14,7 +14,7 @@ import { useIsMobile } from '@/hooks/responsive';
 import { appState } from '@/state/app';
 
 interface Props {
-	style?: ViewStyle;
+	style?: StyleProp<ViewStyle> | StyleProp<ViewStyle>[];
 }
 
 const Header: FC<Props> = ({ style }) => {
@@ -61,7 +61,7 @@ const Header: FC<Props> = ({ style }) => {
 				{/* 		<Text style={styles.downloadText}>Download AiGO</Text> */}
 				{/* 	</BlurBackground> */}
 				{/* </Button> */}
-				<View style={styles.separateLine} />
+				{!isMobile && <View style={styles.separateLine} />}
 				<SignInBundle
 					user={authUser}
 					isAuthLoading={isAuthLoading}

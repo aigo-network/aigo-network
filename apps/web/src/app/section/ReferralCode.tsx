@@ -7,7 +7,11 @@ import { useSnapshot } from 'valtio';
 import Button from '@/components/Button';
 import { appState } from '@/state/app';
 
-export const ReferralCode: FC = () => {
+interface Props {
+	isMobile?: boolean;
+}
+
+export const ReferralCode: FC<Props> = ({ isMobile }) => {
 	const [copied, setCopied] = useState(false);
 	const { web3FarmingProfile } = useSnapshot(appState);
 	const codes = web3FarmingProfile?.referralCodes || [];
@@ -19,7 +23,9 @@ export const ReferralCode: FC = () => {
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.title}>YOUR REFERRAL</Text>
+			<Text style={[styles.title, isMobile && styles.mobileTitle]}>
+				YOUR REFERRAL
+			</Text>
 			<View style={styles.innerContainer}>
 				<View style={styles.gridContainer}>
 					{codes.concat({ id: 'dump', code: '' }).map((code) => {
@@ -48,12 +54,16 @@ export default ReferralCode;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		minWidth: 360,
+		minWidth: 320,
+		marginBottom: 32,
 	},
 	title: {
 		fontSize: 12,
 		fontWeight: '600',
 		color: '#5e6063',
+	},
+	mobileTitle: {
+		textAlign: 'center',
 	},
 	innerContainer: {
 		marginTop: 15,
