@@ -45,7 +45,7 @@ export default ModalContainer;
 const styles = StyleSheet.create({
 	container: {
 		borderRadius: 24,
-		width: 380,
+		width: 340,
 		backgroundColor: '#FFFFFF',
 	},
 	headerContainer: {

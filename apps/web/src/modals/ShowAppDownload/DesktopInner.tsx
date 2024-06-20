@@ -1,44 +1,44 @@
-import { type FC, useMemo, useRef, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { type FC, useMemo, useState } from 'react';
+import { Linking, StyleSheet, TouchableOpacity, View } from 'react-native';
 import QrCode from 'react-native-qrcode-svg';
-import { useSnapshot } from 'valtio';
+import type { User } from '@aigo/api/sdk';
 
+import DownloadButton from './DownloadButton';
+import type { DownloadOption } from './shared';
 import { getDownloadLinks } from './shared';
 
-import { appState } from '@/state/app';
-import { interTight } from '@/utils/style';
+interface Props {
+	user?: User;
+	links: DownloadOption[];
+}
 
-export const DesktopInner: FC = () => {
-	const { user } = useSnapshot(appState);
-	const qrRef = useRef<QrCode>();
-	const [activeIndex, setActiveIndex] = useState(0);
+export const DesktopInner: FC<Props> = ({ user, links }) => {
+	const [activeLink, setActiveLink] = useState(links[0]);
 	const downloadLinks = useMemo(() => getDownloadLinks(user as never), [user]);
-	const activeLink = downloadLinks[activeIndex];
 
-	const onButtonPress = (i: number) => {
-		setActiveIndex(i);
-		qrRef.current?.setState({ value: activeLink.storeUrl });
+	const onDownloadPress = () => {
+		Linking.openURL(activeLink.storeUrl);
 	};
 
 	return (
 		<View style={styles.container}>
-			<View style={styles.qrContainer}>
+			<TouchableOpacity style={styles.qrContainer} onPress={onDownloadPress}>
 				<View style={styles.qrInnerContainer}>
 					<QrCode value={activeLink.storeUrl} size={200} />
 				</View>
-			</View>
+			</TouchableOpacity>
 			<View style={styles.buttonsContainer}>
 				{downloadLinks.map((item, i) => {
-					const isActive = i === activeIndex;
+					const isActive = item.title === activeLink.title;
 
 					return (
-						<TouchableOpacity
-							key={item.title}
-							style={[styles.buttonContainer, isActive && styles.activeButton]}
-							onPress={() => onButtonPress(i)}
-						>
-							<Text style={styles.buttonText}>{item.title}</Text>
-						</TouchableOpacity>
+						<DownloadButton
+							key={i}
+							style={styles.buttonContainer}
+							item={item}
+							isActive={isActive}
+							onPress={setActiveLink}
+						/>
 					);
 				})}
 			</View>
@@ -69,17 +69,5 @@ const styles = StyleSheet.create({
 	},
 	buttonContainer: {
 		flex: 1,
-		height: 48,
-		borderRadius: 12,
-		backgroundColor: '#f2f2f2',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	activeButton: {
-		backgroundColor: '#81ddfb',
-	},
-	buttonText: {
-		fontFamily: interTight.style.fontFamily,
-		fontSize: 16,
 	},
 });
