@@ -30,7 +30,7 @@ export const ModalContainer: FC<Props> = ({
 					</View>
 					<View style={styles.commandContainer}>
 						<TouchableOpacity onPress={onClose}>
-							<CloseIcon width={30} />
+							<CloseIcon color={'#9C9D9F'} width={30} />
 						</TouchableOpacity>
 					</View>
 				</View>

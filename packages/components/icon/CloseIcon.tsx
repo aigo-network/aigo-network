@@ -1,11 +1,13 @@
 import type { FC } from 'react';
+import type { ColorValue } from 'react-native';
 import { Path, Svg } from 'react-native-svg';
 
 type Props = {
 	width?: number;
+	color?: ColorValue;
 };
 
-export const CloseIcon: FC<Props> = ({ width = 18 }) => {
+export const CloseIcon: FC<Props> = ({ width = 18, color }) => {
 	const height = width;
 
 	return (
@@ -17,7 +19,7 @@ export const CloseIcon: FC<Props> = ({ width = 18 }) => {
 			<Path d="M6 6L12 12L6 6ZM12 6L6 12L12 6Z" fill="#F0F0F0" />
 			<Path
 				d="M6 6L12 12M12 6L6 12"
-				stroke="#6740FF"
+				stroke={color || '#6740FF'}
 				strokeWidth="1.2"
 				strokeLinecap="round"
 			/>

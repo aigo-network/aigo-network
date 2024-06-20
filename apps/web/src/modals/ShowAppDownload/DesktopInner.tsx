@@ -53,9 +53,9 @@ const styles = StyleSheet.create({
 		paddingTop: 8,
 	},
 	qrContainer: {
-		alignItems: 'center',
+		alignSelf: 'center',
 		backgroundColor: '#f2f2f2',
-		paddingVertical: 24,
+		padding: 24,
 		borderRadius: 18,
 	},
 	qrInnerContainer: {

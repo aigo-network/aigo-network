@@ -23,7 +23,9 @@ export const DownloadButton: FC<Props> = ({
 			style={[styles.container, isActive && styles.activeContainer, style]}
 			onPress={() => onPress?.(item)}
 		>
-			<Text style={styles.buttonText}>{item.title}</Text>
+			<Text style={[styles.buttonText, !isActive && styles.inactiveText]}>
+				{item.title}
+			</Text>
 		</TouchableOpacity>
 	);
 };
@@ -36,12 +38,19 @@ const styles = StyleSheet.create({
 		borderRadius: 12,
 		backgroundColor: '#f2f2f2',
 		alignItems: 'center',
-		justifyContent: 'center',
+		flexDirection: 'row',
+		paddingHorizontal: 14,
 	},
 	activeContainer: {
 		backgroundColor: '#81ddfb',
 	},
 	buttonText: {
+		flex: 1,
 		fontSize: 16,
+		textAlign: 'center',
+		fontWeight: '500',
+	},
+	inactiveText: {
+		color: '#000',
 	},
 });
