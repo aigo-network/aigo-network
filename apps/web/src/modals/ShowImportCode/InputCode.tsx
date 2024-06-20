@@ -23,7 +23,8 @@ const InputCode: FC<Props> = ({ handleClose }) => {
 			}
 		} catch (err) {
 			console.log(JSON.stringify(err, null, 2));
-			const { message } = err?.response?.errors?.[0];
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			const message = (err as any)?.response?.errors?.[0]?.message;
 			const capitalizeMess =
 				(message as string)[0].toUpperCase() + (message as string).slice(1);
 			console.log('>>>', capitalizeMess);
@@ -36,7 +37,7 @@ const InputCode: FC<Props> = ({ handleClose }) => {
 			<TextInput
 				style={[
 					styles.input,
-					Platform.OS === 'web' && { outlineWidth: 0 },
+					Platform.OS === 'web' && ({ outlineWidth: 0 } as never),
 					!!error && styles.errorInput,
 				]}
 				onChangeText={setCode}
