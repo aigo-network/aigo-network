@@ -1,4 +1,5 @@
 import { graphqlClient } from '@aigo/api/graphql';
+import { Web3FarmingQuestType } from '@aigo/api/sdk';
 
 import { appState } from './shared';
 
@@ -17,8 +18,26 @@ const queryAndUpdateGOPoints = async () => {
 	}
 };
 
+const getStateByQuestType = (type?: Web3FarmingQuestType) => {
+	switch (type) {
+		case Web3FarmingQuestType.LikeTwitterPost: {
+			return appState.likeXCompleted;
+		}
+		case Web3FarmingQuestType.RetweetTwitterPost: {
+			return appState.reTweetCompleted;
+		}
+		case Web3FarmingQuestType.DownloadApp: {
+			return appState.downloadAppCompleted;
+		}
+		default: {
+			return false;
+		}
+	}
+};
+
 export const appActions = {
 	queryAndUpdateGOPoints,
+	getStateByQuestType,
 };
 
 export * from './shared';

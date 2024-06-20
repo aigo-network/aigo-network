@@ -87,6 +87,7 @@ export const getWeb3FarmingProfile = gql`
 				id
 				GOPoints
 				completed
+				createdAt
 				type
 			}
 			referralCodes {

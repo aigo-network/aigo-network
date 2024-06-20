@@ -10,6 +10,7 @@ import { questMetadataMap } from './shared';
 
 import { showAppDownload } from '@/modals/ShowAppDownload';
 import { appState } from '@/state/app';
+import { Web3FarmingQuestType } from '@aigo/api/sdk';
 
 const QuestBoard: FC = () => {
 	const { web3FarmingProfile } = useSnapshot(appState);
@@ -27,36 +28,59 @@ const QuestBoard: FC = () => {
 			<View style={styles.innerContainer}>
 				{web3FarmingProfile && (web3FarmingProfile.quests?.length || 0) > 0 ? (
 					<View style={styles.questContainer}>
-						{web3FarmingProfile.quests?.map((quest, index) => {
-							const hide = quest?.type && questMetadataMap[quest?.type].hide;
-							if (hide) return null;
+						{web3FarmingProfile.quests
+							?.toSorted((questA, questB) => {
+								return (
+									new Date(questA?.createdAt).getMilliseconds() -
+									new Date(questB?.createdAt).getMilliseconds()
+								);
+							})
+							.filter(
+								(quest) => quest?.type !== Web3FarmingQuestType.ConnectEmail,
+							)
+							.map((quest, index) => {
+								const hide = quest?.type && questMetadataMap[quest?.type].hide;
+								if (hide) return null;
 
-							const description =
-								quest?.type && questMetadataMap[quest?.type].description;
-							const action =
-								quest?.type && questMetadataMap[quest?.type].action;
-							return (
-								<QuestCard
-									order={index}
-									key={quest?.id}
-									point={quest?.GOPoints || 0}
-									description={description || ''}
-									onActionPress={action as never}
-								/>
-							);
-						})}
+								const description =
+									quest?.type && questMetadataMap[quest?.type].description;
+								const action =
+									quest?.type && questMetadataMap[quest?.type].action;
+								const check =
+									quest?.type && questMetadataMap[quest?.type].check;
+								return (
+									<QuestCard
+										order={index + 1}
+										key={quest?.id}
+										point={quest?.GOPoints || 0}
+										type={quest?.type}
+										description={description || ''}
+										isVerified={quest?.completed}
+										questId={quest?.id}
+										onActionPress={action as never}
+										onCheckPress={check}
+									/>
+								);
+							})}
 					</View>
 				) : (
 					<View style={styles.questContainer}>
-						<QuestCard order={1} point={128} description="Like our Post on X" />
+						<QuestCard
+							order={1}
+							point={128}
+							isVerified={false}
+							description="Like our Post on X"
+						/>
 						<QuestCard
 							order={2}
 							point={128}
+							isVerified={false}
 							description="Retweet our Post on X"
 						/>
 						<QuestCard
 							order={3}
 							point={128}
+							isVerified={false}
 							description={`Download AiGO on iOS or Android`}
 							onActionPress={showAppDownload}
 						/>

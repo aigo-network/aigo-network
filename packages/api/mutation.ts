@@ -124,3 +124,16 @@ export const web3FarmingInitProfile = gql`
 		}
 	}
 `;
+
+export const web3FarmingVerifyQuestAndClaimPoints = gql`
+	mutation web3FarmingVerifyQuestAndClaimPoints($questId: String) {
+		web3FarmingVerifyQuestAndClaimPoints(questId: $questId) {
+			id
+			GOPoints
+			completed
+			completedAt
+			createdAt
+			type
+		}
+	}
+`;

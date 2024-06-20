@@ -1,25 +1,55 @@
 import type { FC } from 'react';
+import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import type {
+	Web3FarmingQuestType,
+	Web3FarmingVerifyQuestAndClaimPointsMutation,
+} from '@aigo/api/sdk';
 import Image from 'next/image';
 
 import Button from '@/components/Button';
+import { appActions } from '@/state/app';
 import { ensureFarmingProfile } from '@/utils/helper';
 
 interface Props {
 	order: number;
 	point: number;
 	description: string;
+	type?: Web3FarmingQuestType | null;
+	questId?: string;
+	isVerified?: boolean | null;
 	onActionPress?: () => void;
-	onCheckPress?: () => void;
+	onCheckPress?: (
+		questId: string,
+	) => Promise<Web3FarmingVerifyQuestAndClaimPointsMutation>;
 }
 
 const QuestCard: FC<Props> = ({
 	order,
 	point,
 	description,
+	type,
+	questId,
+	isVerified = false,
 	onActionPress,
 	onCheckPress,
 }) => {
+	const [verified, setVerified] = useState(isVerified);
+	const [completed, setCompleted] = useState(
+		type ? appActions.getStateByQuestType(type) : false,
+	);
+	const overrideCheck = async () => {
+		if (completed) {
+			const { web3FarmingVerifyQuestAndClaimPoints } =
+				(await onCheckPress?.(questId || '')) || {};
+			setVerified(web3FarmingVerifyQuestAndClaimPoints?.completed || false);
+			appActions.queryAndUpdateGOPoints();
+		} else {
+			onActionPress?.();
+			setCompleted(type ? appActions.getStateByQuestType(type) : true);
+		}
+	};
+
 	return (
 		<View style={styles.container}>
 			<Text style={styles.questOrder}>{String(order).padStart(2, '0')}</Text>
@@ -34,26 +64,33 @@ const QuestCard: FC<Props> = ({
 				<Text style={styles.point}>{`+${point} GO`}</Text>
 			</View>
 			<Text style={styles.questDescription}>{description}</Text>
-			<View style={styles.btnGroup}>
-				<Button
-					style={styles.btnLeft}
-					onPress={() => ensureFarmingProfile(onActionPress)}
-				>
-					<Image
-						src="/left-angle-ic.svg"
-						alt="left angle icon"
-						width={8}
-						height={16}
-						style={{ alignSelf: 'center' }}
-					/>
+			{verified ? (
+				<Button style={styles.doneBtn}>
+					<Image src="/tick-ic.svg" alt="Tick icon" width={15} height={10} />
+					<Text style={styles.doneTxt}>Done</Text>
 				</Button>
-				<Button
-					style={styles.btnRight}
-					onPress={() => ensureFarmingProfile(onCheckPress)}
-				>
-					<Text style={styles.textRight}>Check</Text>
-				</Button>
-			</View>
+			) : (
+				<View style={styles.btnGroup}>
+					<Button
+						style={styles.btnLeft}
+						onPress={() => ensureFarmingProfile(onActionPress)}
+					>
+						<Image
+							src="/left-angle-ic.svg"
+							alt="left angle icon"
+							width={8}
+							height={16}
+							style={{ alignSelf: 'center' }}
+						/>
+					</Button>
+					<Button
+						style={styles.btnRight}
+						onPress={() => ensureFarmingProfile(overrideCheck)}
+					>
+						<Text style={styles.textRight}>Check</Text>
+					</Button>
+				</View>
+			)}
 		</View>
 	);
 };
@@ -136,5 +173,19 @@ const styles = StyleSheet.create({
 		fontWeight: '500',
 		lineHeight: 24,
 		textAlign: 'center',
+	},
+	doneBtn: {
+		backgroundColor: '#35363a',
+		justifyContent: 'center',
+		alignItems: 'center',
+		flexDirection: 'row',
+		marginHorizontal: 12,
+		marginBottom: 12,
+		gap: 12,
+	},
+	doneTxt: {
+		color: '#9c9d9f',
+		fontSize: 16,
+		lineHeight: 24,
 	},
 });

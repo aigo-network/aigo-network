@@ -23,7 +23,7 @@ const InputCode: FC<Props> = ({ handleClose }) => {
 			}
 		} catch (err) {
 			console.log(JSON.stringify(err, null, 2));
-			const { message } = (err?.response?.errors?.[0]);
+			const { message } = err?.response?.errors?.[0];
 			const capitalizeMess =
 				(message as string)[0].toUpperCase() + (message as string).slice(1);
 			console.log('>>>', capitalizeMess);
