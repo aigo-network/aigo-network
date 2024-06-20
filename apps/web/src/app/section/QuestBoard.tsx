@@ -10,11 +10,13 @@ import ReferralCode from './ReferralCode';
 import ReferralHistory from './ReferralHistory';
 import { getQuestOrder, questMetadataMap } from './shared';
 
-import { useIsMobile } from '@/hooks/responsive';
 import { appState } from '@/state/app';
 
-const QuestBoard: FC = () => {
-	const isMobile = useIsMobile();
+interface Props {
+	isMobile?: boolean;
+}
+
+const QuestBoard: FC<Props> = ({ isMobile }) => {
 	const { web3FarmingProfile } = useSnapshot(appState);
 	const quests = web3FarmingProfile?.quests || [];
 

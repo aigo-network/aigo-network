@@ -22,7 +22,7 @@ export const ReferralCode: FC = () => {
 			<Text style={styles.title}>YOUR REFERRAL</Text>
 			<View style={styles.innerContainer}>
 				<View style={styles.gridContainer}>
-					{codes.concat({ id: 'dump', code: '            ' }).map((code) => {
+					{codes.concat({ id: 'dump', code: '' }).map((code) => {
 						return (
 							<View key={code?.id} style={styles.cellContainer}>
 								<Text>{code?.code}</Text>
@@ -48,6 +48,7 @@ export default ReferralCode;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		minWidth: 360,
 	},
 	title: {
 		fontSize: 12,
@@ -69,7 +70,8 @@ const styles = StyleSheet.create({
 	},
 	cellContainer: {
 		flexGrow: 1,
-		maxWidth: 180,
+		flexBasis: 0,
+		minWidth: 220,
 		height: 52,
 		borderRightWidth: 1,
 		borderBottomWidth: 1,
@@ -81,8 +83,6 @@ const styles = StyleSheet.create({
 	commandContainer: {
 		flexDirection: 'row',
 		padding: 12,
-		// borderTopWidth: 1,
-		// borderColor: '#262626',
 	},
 	buttonContainer: {
 		backgroundColor: '#35363a',

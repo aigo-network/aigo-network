@@ -9,7 +9,10 @@ import '@/utils/global';
 import Banner from './section/Banner';
 import QuestBoard from './section/QuestBoard';
 
+import { useIsMobile } from '@/hooks/responsive';
+
 export default function Home() {
+	const isMobile = useIsMobile();
 	const [, setRender] = useState({});
 
 	useEffect(function updateState() {
@@ -20,8 +23,8 @@ export default function Home() {
 	return (
 		<ModalProvider>
 			<ScrollView style={styles.container}>
-				<Banner />
-				<QuestBoard />
+				<Banner isMobile={isMobile} />
+				<QuestBoard isMobile={isMobile} />
 			</ScrollView>
 		</ModalProvider>
 	);
