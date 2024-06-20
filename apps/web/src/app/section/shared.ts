@@ -1,6 +1,7 @@
 import { graphqlClient } from '@aigo/api/graphql';
 import type { Web3FarmingQuest, Web3FarmingQuestType } from '@aigo/api/sdk';
 
+import { showInformation } from '@/modals/Information';
 import { showAppDownload } from '@/modals/ShowAppDownload';
 import { appState } from '@/state/app';
 
@@ -67,8 +68,14 @@ export const questMetadataMap: Record<
 	DownloadApp: {
 		description: 'Download AiGO on iOS or Android',
 		action: downloadApp,
-		check: verifyQuest,
 		order: 3,
+		// check: verifyQuest,
+		check: (() => {
+			showInformation(
+				'Verify download AiGO',
+				'Nice! You are now an AiGO member, your quest is verifying and your points will be distribute when it’s complete!',
+			);
+		}) as never,
 	},
 	ConnectEmail: {
 		description: 'Connect with email',
