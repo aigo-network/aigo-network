@@ -45,6 +45,7 @@ const verifyQuest: CompleteQuestFunction = async (questId: string) => {
 export const questMetadataMap: Record<
 	Web3FarmingQuestType,
 	{
+		order: number;
 		description: string;
 		hide?: boolean;
 		action?: () => void;
@@ -55,19 +56,28 @@ export const questMetadataMap: Record<
 		description: 'Like our Post on X',
 		action: likeTwitter,
 		check: verifyQuest,
+		order: 1,
 	},
 	RetweetTwitterPost: {
 		description: 'Retweet our Post on X',
 		action: retweetTwitter,
 		check: verifyQuest,
+		order: 2,
 	},
 	DownloadApp: {
 		description: 'Download AiGO on iOS or Android',
 		action: downloadApp,
 		check: verifyQuest,
+		order: 3,
 	},
 	ConnectEmail: {
 		description: 'Connect with email',
 		hide: true,
+		order: 4,
 	},
+};
+
+export const getQuestOrder = (quest: Web3FarmingQuest) => {
+	if (!quest.type) return -1;
+	return questMetadataMap[quest.type].order;
 };

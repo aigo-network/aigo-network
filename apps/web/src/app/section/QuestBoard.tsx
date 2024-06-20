@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
+import type { Web3FarmingQuest } from '@aigo/api/sdk';
 import { Web3FarmingQuestType } from '@aigo/api/sdk';
 import Image from 'next/image';
 import { useSnapshot } from 'valtio';
@@ -7,7 +8,7 @@ import { useSnapshot } from 'valtio';
 import QuestCard from './QuestCard';
 import ReferralCode from './ReferralCode';
 import ReferralHistory from './ReferralHistory';
-import { questMetadataMap } from './shared';
+import { getQuestOrder, questMetadataMap } from './shared';
 
 import { showAppDownload } from '@/modals/ShowAppDownload';
 import { appState } from '@/state/app';
@@ -31,8 +32,8 @@ const QuestBoard: FC = () => {
 						{web3FarmingProfile.quests
 							?.toSorted((questA, questB) => {
 								return (
-									new Date(questA?.createdAt).getMilliseconds() -
-									new Date(questB?.createdAt).getMilliseconds()
+									getQuestOrder(questA as Web3FarmingQuest) -
+									getQuestOrder(questB as Web3FarmingQuest)
 								);
 							})
 							.filter(
