@@ -31,7 +31,7 @@ const Banner: FC = () => {
 					</Text>
 				</BlurBackground>
 				<Text style={styles.title}>
-					{'Neque Porro Quisquam\nClorem Siz Ipsum.'}
+					Transform Your Mobility{'\n'}To Incentives
 				</Text>
 			</View>
 		</View>
