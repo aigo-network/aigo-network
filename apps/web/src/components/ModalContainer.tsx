@@ -8,6 +8,7 @@ interface Props {
 	style?: StyleProp<ViewStyle>;
 	contentContainerStyle?: StyleProp<ViewStyle>;
 	title?: string;
+	subTitle?: string | ReactNode;
 	children?: ReactNode;
 	onClose?: () => void;
 }
@@ -16,20 +17,28 @@ export const ModalContainer: FC<Props> = ({
 	style,
 	contentContainerStyle,
 	title = 'Title',
+	subTitle = '',
 	children,
 	onClose,
 }) => {
 	return (
 		<Animated.View style={[styles.container, style]} entering={FadeInDown}>
 			<View style={styles.headerContainer}>
-				<View style={styles.titleContainer}>
-					<Text style={styles.titleText}>{title}</Text>
+				<View style={styles.upperTitleContainer}>
+					<View style={styles.titleContainer}>
+						<Text style={styles.titleText}>{title}</Text>
+					</View>
+					<View style={styles.commandContainer}>
+						<TouchableOpacity onPress={onClose}>
+							<CloseIcon width={30} />
+						</TouchableOpacity>
+					</View>
 				</View>
-				<View style={styles.commandContainer}>
-					<TouchableOpacity onPress={onClose}>
-						<CloseIcon width={30} />
-					</TouchableOpacity>
-				</View>
+				{subTitle && typeof subTitle === 'string' ? (
+					<Text style={styles.subTitleText}>{subTitle}</Text>
+				) : (
+					subTitle
+				)}
 			</View>
 			<View style={[styles.contentContainer, contentContainerStyle]}>
 				{children}
@@ -47,9 +56,12 @@ const styles = StyleSheet.create({
 		backgroundColor: '#FFFFFF',
 	},
 	headerContainer: {
-		flexDirection: 'row',
 		paddingVertical: 18,
 		paddingHorizontal: 24,
+		gap: 4,
+	},
+	upperTitleContainer: {
+		flexDirection: 'row',
 		alignItems: 'center',
 	},
 	titleContainer: {
@@ -61,6 +73,11 @@ const styles = StyleSheet.create({
 	titleText: {
 		fontSize: 24,
 		color: '#222222',
+	},
+	subTitleText: {
+		fontSize: 16,
+		lineHeight: 24,
+		color: '#707174',
 	},
 	contentContainer: {
 		borderTopWidth: StyleSheet.hairlineWidth,
