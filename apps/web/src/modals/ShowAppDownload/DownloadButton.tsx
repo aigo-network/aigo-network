@@ -4,8 +4,6 @@ import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
 import type { DownloadOption } from './shared';
 
-import { interTight } from '@/utils/style';
-
 interface Props {
 	style?: StyleProp<ViewStyle>;
 	item: DownloadOption;
@@ -44,7 +42,6 @@ const styles = StyleSheet.create({
 		backgroundColor: '#81ddfb',
 	},
 	buttonText: {
-		fontFamily: interTight.style.fontFamily,
 		fontSize: 16,
 	},
 });

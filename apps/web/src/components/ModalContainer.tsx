@@ -4,8 +4,6 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import CloseIcon from '@aigo/components/icon/CloseIcon';
 
-import { interTight } from '@/utils/style';
-
 interface Props {
 	style?: StyleProp<ViewStyle>;
 	contentContainerStyle?: StyleProp<ViewStyle>;
@@ -62,7 +60,6 @@ const styles = StyleSheet.create({
 	},
 	titleText: {
 		fontSize: 24,
-		fontFamily: interTight.style.fontFamily,
 		color: '#222222',
 	},
 	contentContainer: {
