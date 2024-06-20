@@ -6,11 +6,7 @@ import ModalContainer from '@/components/ModalContainer';
 
 export const showAppDownload = () => {
 	const { cleanModal } = showModal(
-		<ModalContainer
-			title="Download AiGO"
-			style={{ width: 420 }}
-			onClose={() => cleanModal()}
-		>
+		<ModalContainer title="Download AiGO" onClose={() => cleanModal()}>
 			<ModalInner />
 		</ModalContainer>,
 		{

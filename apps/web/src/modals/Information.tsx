@@ -5,11 +5,7 @@ import ModalContainer from '@/components/ModalContainer';
 
 export const showInformation = (title: string, information: string) => {
 	const { cleanModal } = showModal(
-		<ModalContainer
-			title={title}
-			style={{ width: 420 }}
-			onClose={() => cleanModal()}
-		>
+		<ModalContainer title={title} onClose={() => cleanModal()}>
 			<Text style={{ color: '#000', fontSize: 18, lineHeight: 26 }}>
 				{information}
 			</Text>
