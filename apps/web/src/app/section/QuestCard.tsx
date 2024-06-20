@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Image from 'next/image';
 
 import Button from '@/components/Button';
+import { ensureFarmingProfile } from '@/utils/helper';
 
 interface Props {
 	order: number;
@@ -34,7 +35,10 @@ const QuestCard: FC<Props> = ({
 			</View>
 			<Text style={styles.questDescription}>{description}</Text>
 			<View style={styles.btnGroup}>
-				<Button style={styles.btnLeft} onPress={onCheckPress}>
+				<Button
+					style={styles.btnLeft}
+					onPress={() => ensureFarmingProfile(onActionPress)}
+				>
 					<Image
 						src="/left-angle-ic.svg"
 						alt="left angle icon"
@@ -43,7 +47,10 @@ const QuestCard: FC<Props> = ({
 						style={{ alignSelf: 'center' }}
 					/>
 				</Button>
-				<Button style={styles.btnRight} onPress={onActionPress}>
+				<Button
+					style={styles.btnRight}
+					onPress={() => ensureFarmingProfile(onCheckPress)}
+				>
 					<Text style={styles.textRight}>Check</Text>
 				</Button>
 			</View>

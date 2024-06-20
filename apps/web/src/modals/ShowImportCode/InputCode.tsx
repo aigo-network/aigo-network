@@ -1,15 +1,24 @@
 import type { FC } from 'react';
 import { useState } from 'react';
 import { Platform, StyleSheet, Text, TextInput, View } from 'react-native';
+import { graphqlClient } from '@aigo/api/graphql';
 
 import Button from '@/components/Button';
+import { appState } from '@/state/app';
 
 const InputCode: FC = () => {
 	const [code, setCode] = useState('');
 	const [error, setError] = useState('');
-	const onContinuePress = () => {
-		console.log('code >>>', code);
-		setError('Invalid code. Please try again.');
+	const onContinuePress = async () => {
+		try {
+			const { web3FarmingInitProfile } =
+				await graphqlClient.web3FarmingInitProfile({ referralCode: code });
+			if (web3FarmingInitProfile?.id) {
+				appState.web3FarmingProfile = web3FarmingInitProfile;
+			}
+		} catch (err) {
+			setError(err?.message);
+		}
 	};
 
 	return (

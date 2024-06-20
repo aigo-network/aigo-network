@@ -1,3 +1,6 @@
+import { showImportCode } from '@/modals/ShowImportCode';
+import { appState } from '@/state/app';
+
 export const isMobileBrowser = () => {
 	const userAgent = navigator.userAgent;
 	return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -21,4 +24,12 @@ export const getMobileOperatingSystem = (): OperatingSystem => {
 	}
 
 	return 'Unknown';
+};
+
+export const ensureFarmingProfile = (callback?: () => void) => {
+	if (appState.web3FarmingProfile?.id) {
+		callback?.();
+	} else {
+		showImportCode();
+	}
 };
