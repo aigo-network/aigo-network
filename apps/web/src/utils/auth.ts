@@ -27,7 +27,9 @@ const twitterProvider = new TwitterAuthProvider();
 export const auth = getAuth();
 
 export const signInWithGoogle = async () => {
+	appState.isAuthLoading = true;
 	await signInWithRedirect(auth, googleProvider);
+	appState.isAuthLoading = false;
 };
 
 export const signInWithTwitter = async () => {
@@ -64,5 +66,3 @@ auth.onIdTokenChanged(async (authUser) => {
 
 	appState.isAuthLoading = false;
 });
-
-global.logOut = logOut;

@@ -1,4 +1,5 @@
-import { type FC, Fragment, useState } from 'react';
+import type { FC } from 'react';
+import { Fragment, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Avatar from '@aigo/components/Avatar';
 import ChevronDown from '@aigo/components/icon/ChevronDown';
@@ -19,11 +20,18 @@ const DynamicLoading = dynamic(
 interface Props {
 	user?: FirebaseUser;
 	isAuthLoading?: boolean;
-	points?: number;
+	isMobile?: boolean;
+	points?: number | undefined;
 }
 
-export const SignInBundle: FC<Props> = ({ user, isAuthLoading, points }) => {
+export const SignInBundle: FC<Props> = ({
+	user,
+	isAuthLoading,
+	isMobile,
+	points = 0,
+}) => {
 	const [showDropdown, setShowDropdown] = useState(false);
+
 	const handlePress = () => {
 		if (user) {
 			return;
@@ -46,7 +54,7 @@ export const SignInBundle: FC<Props> = ({ user, isAuthLoading, points }) => {
 			) : (
 				<BlurBackground style={styles.container}>
 					<Avatar
-						withName
+						withName={!isMobile}
 						imageUrl={user.photoURL}
 						displayTextStyle={styles.lightText}
 						displayText={user.displayName || user.email}
@@ -88,7 +96,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'row',
 		borderRadius: 12,
-		paddingHorizontal: 20,
+		paddingHorizontal: 16,
 		gap: 12,
 	},
 	buttonContainer: {

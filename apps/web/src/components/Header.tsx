@@ -1,4 +1,4 @@
-import { type FC } from 'react';
+import type { FC } from 'react';
 import type { ViewStyle } from 'react-native';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import AppIcon from '@aigo/components/icon/AppIcon';
@@ -10,6 +10,7 @@ import BlurBackground from './BlurBackground';
 import Button from './Button';
 import SignInBundle from './SignInBundle';
 
+import { useIsMobile } from '@/hooks/responsive';
 import { appState } from '@/state/app';
 
 interface Props {
@@ -17,6 +18,7 @@ interface Props {
 }
 
 const Header: FC<Props> = ({ style }) => {
+	const isMobile = useIsMobile();
 	const { firebaseUser, isAuthLoading, user } = useSnapshot(appState);
 
 	return (
@@ -24,10 +26,12 @@ const Header: FC<Props> = ({ style }) => {
 			<Link href="https:\\aigo.network" target="_blank">
 				<TouchableOpacity style={styles.logo}>
 					<AppIcon width={52} color="#acc5ff" />
-					<Text style={styles.logoTxt}>AiGO</Text>
+					{!isMobile && <Text style={styles.logoTxt}>AiGO</Text>}
 				</TouchableOpacity>
 			</Link>
-			<View style={styles.rightContainer}>
+			<View
+				style={[styles.rightContainer, isMobile && styles.rightContainerMobile]}
+			>
 				<Link href="">
 					<Button>
 						<BlurBackground style={styles.socialIcon}>
@@ -61,6 +65,7 @@ const Header: FC<Props> = ({ style }) => {
 				<SignInBundle
 					user={firebaseUser as never}
 					isAuthLoading={isAuthLoading}
+					isMobile={isMobile}
 					points={user?.GOPoints || 0}
 				/>
 			</View>
@@ -100,6 +105,9 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		gap: 12,
 	},
+	rightContainerMobile: {
+		gap: 8,
+	},
 	socialIcon: {
 		flex: 1,
 		width: 48,
@@ -119,13 +127,5 @@ const styles = StyleSheet.create({
 		borderLeftWidth: 1.5,
 		borderLeftColor: '#fff',
 		marginVertical: 10,
-	},
-	signInBtn: {
-		paddingHorizontal: 48,
-		paddingVertical: 12,
-		borderRadius: 12,
-		alignItems: 'center',
-		justifyContent: 'center',
-		backgroundColor: '#fff',
 	},
 });

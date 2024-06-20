@@ -5,7 +5,7 @@ import { ActivityIndicator, StyleSheet, TouchableOpacity } from 'react-native';
 interface Props extends TouchableOpacityProps {
 	children: ReactNode;
 	loading?: boolean;
-	style?: StyleProp<ViewStyle>;
+	style?: StyleProp<ViewStyle> | StyleProp<ViewStyle>[];
 }
 
 const Button: FC<Props> = ({ children, loading = false, style, ...props }) => {

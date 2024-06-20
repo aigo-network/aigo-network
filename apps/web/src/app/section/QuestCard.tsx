@@ -17,6 +17,7 @@ interface Props {
 	type?: Web3FarmingQuestType | null;
 	questId?: string;
 	isVerified?: boolean | null;
+	isMobile?: boolean;
 	onActionPress?: () => void;
 	onCheckPress?: CompleteQuestFunction;
 }
@@ -28,6 +29,7 @@ const QuestCard: FC<Props> = ({
 	type,
 	questId,
 	isVerified = false,
+	isMobile,
 	onActionPress,
 	onCheckPress,
 }) => {
@@ -47,7 +49,7 @@ const QuestCard: FC<Props> = ({
 	};
 
 	return (
-		<View style={styles.container}>
+		<View style={[styles.container, isMobile && styles.mobileContainer]}>
 			<Text style={styles.questOrder}>{String(order).padStart(2, '0')}</Text>
 			<View style={styles.pointContainer}>
 				<Image
@@ -59,7 +61,9 @@ const QuestCard: FC<Props> = ({
 				/>
 				<Text style={styles.point}>{`+${point} GO`}</Text>
 			</View>
-			<Text style={styles.questDescription}>{description}</Text>
+			<Text numberOfLines={2} style={styles.questDescription}>
+				{description}
+			</Text>
 			{verified ? (
 				<Button style={styles.doneBtn}>
 					<Image src="/tick-ic.svg" alt="Tick icon" width={15} height={10} />
@@ -99,7 +103,11 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 		borderColor: '#262626',
 		backgroundColor: '#1b1b1b',
-		width: 274,
+		width: 320,
+	},
+	mobileContainer: {
+		flex: 1,
+		minWidth: 320,
 	},
 	questOrder: {
 		width: 40,
@@ -138,13 +146,14 @@ const styles = StyleSheet.create({
 		color: '#6EBCD5',
 	},
 	questDescription: {
+		flex: 1,
+		minHeight: 60,
 		fontSize: 20,
 		fontWeight: '500',
 		lineHeight: 28,
 		color: '#e3e4e6',
 		paddingHorizontal: 12,
 		marginTop: 36,
-		flex: 1,
 	},
 	btnGroup: {
 		margin: 12,

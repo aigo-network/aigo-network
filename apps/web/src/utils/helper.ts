@@ -1,3 +1,6 @@
+import { createContext } from 'react';
+import type { userAgent } from 'next/server';
+
 import { showImportCode } from '@/modals/ShowImportCode';
 import { appState } from '@/state/app';
 
@@ -7,6 +10,9 @@ export const isMobileBrowser = () => {
 		userAgent,
 	);
 };
+
+export type UserAgent = ReturnType<typeof userAgent>;
+export const UserAgentContext = createContext<UserAgent | undefined>(undefined);
 
 export type OperatingSystem = 'iOS' | 'Android' | 'Unknown';
 
