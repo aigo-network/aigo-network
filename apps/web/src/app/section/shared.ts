@@ -7,7 +7,7 @@ import { appState } from '@/state/app';
 
 const likeTwitter = () => {
 	window.open(
-		'https://x.com/AIGO_Network/status/1803645035797524930',
+		'https://x.com/AIGO_Network/status/1803367451469685146',
 		'_blank',
 	);
 	appState.likeXCompleted = true;
@@ -15,7 +15,7 @@ const likeTwitter = () => {
 
 const retweetTwitter = () => {
 	window.open(
-		'https://x.com/AIGO_Network/status/1803645035797524930',
+		'https://x.com/intent/retweet?tweet_id=1793333095456035257',
 		'_blank',
 	);
 	appState.reTweetCompleted = true;
