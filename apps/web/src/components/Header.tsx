@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { type FC } from 'react';
 import type { ViewStyle } from 'react-native';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import AppIcon from '@aigo/components/icon/AppIcon';
@@ -17,7 +17,7 @@ interface Props {
 }
 
 const Header: FC<Props> = ({ style }) => {
-	const { firebaseUser, isAuthLoading } = useSnapshot(appState);
+	const { firebaseUser, isAuthLoading, user } = useSnapshot(appState);
 
 	return (
 		<View style={[styles.container, style]}>
@@ -61,6 +61,7 @@ const Header: FC<Props> = ({ style }) => {
 				<SignInBundle
 					user={firebaseUser as never}
 					isAuthLoading={isAuthLoading}
+					points={user?.GOPoints || 0}
 				/>
 			</View>
 		</View>
@@ -74,6 +75,14 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
+	},
+	pointsText: {
+		fontSize: 20,
+		fontWeight: '500',
+	},
+	pointsContainer: {
+		paddingHorizontal: 20,
+		borderRadius: 12,
 	},
 	logo: {
 		flexDirection: 'row',
@@ -89,10 +98,10 @@ const styles = StyleSheet.create({
 	},
 	rightContainer: {
 		flexDirection: 'row',
-		alignItems: 'center',
 		gap: 12,
 	},
 	socialIcon: {
+		flex: 1,
 		width: 48,
 		borderRadius: 12,
 	},
@@ -107,9 +116,9 @@ const styles = StyleSheet.create({
 		lineHeight: 24,
 	},
 	separateLine: {
-		borderLeftWidth: 1,
+		borderLeftWidth: 1.5,
 		borderLeftColor: '#fff',
-		height: 24,
+		marginVertical: 10,
 	},
 	signInBtn: {
 		paddingHorizontal: 48,
