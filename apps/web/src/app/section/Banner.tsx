@@ -9,7 +9,11 @@ import rightGrid from '../right-grid.svg';
 import BlurBackground from '@/components/BlurBackground';
 import Header from '@/components/Header';
 
-const Banner: FC = () => {
+interface Props {
+	isMobile?: boolean;
+}
+
+const Banner: FC<Props> = ({ isMobile }) => {
 	return (
 		<View style={styles.container}>
 			<Svg style={styles.bannerBackground} width="100%" height="auto">
@@ -29,7 +33,7 @@ const Banner: FC = () => {
 						DECENTRALIZED MOBILITY DATA NETWORK
 					</Text>
 				</BlurBackground>
-				<Text style={styles.title}>
+				<Text style={[styles.title, isMobile && styles.mobileTitle]}>
 					Transform Your Mobility{'\n'}To Incentives
 				</Text>
 			</View>
@@ -95,5 +99,9 @@ const styles = StyleSheet.create({
 		lineHeight: 64,
 		color: '#d4e0ff',
 		paddingBottom: 75,
+	},
+	mobileTitle: {
+		fontSize: 32,
+		lineHeight: 38,
 	},
 });
