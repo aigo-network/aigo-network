@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { Web3FarmingQuestType } from '@aigo/api/sdk';
 import Image from 'next/image';
 import { useSnapshot } from 'valtio';
 
@@ -10,7 +11,6 @@ import { questMetadataMap } from './shared';
 
 import { showAppDownload } from '@/modals/ShowAppDownload';
 import { appState } from '@/state/app';
-import { Web3FarmingQuestType } from '@aigo/api/sdk';
 
 const QuestBoard: FC = () => {
 	const { web3FarmingProfile } = useSnapshot(appState);
@@ -56,9 +56,9 @@ const QuestBoard: FC = () => {
 										type={quest?.type}
 										description={description || ''}
 										isVerified={quest?.completed}
-										questId={quest?.id}
+										questId={quest?.id as string}
 										onActionPress={action as never}
-										onCheckPress={check}
+										onCheckPress={check as never}
 									/>
 								);
 							})}

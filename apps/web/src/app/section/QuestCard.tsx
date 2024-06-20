@@ -1,11 +1,10 @@
 import type { FC } from 'react';
 import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import type {
-	Web3FarmingQuestType,
-	Web3FarmingVerifyQuestAndClaimPointsMutation,
-} from '@aigo/api/sdk';
+import type { Web3FarmingQuestType } from '@aigo/api/sdk';
 import Image from 'next/image';
+
+import type { CompleteQuestFunction } from './shared';
 
 import Button from '@/components/Button';
 import { appActions } from '@/state/app';
@@ -19,9 +18,7 @@ interface Props {
 	questId?: string;
 	isVerified?: boolean | null;
 	onActionPress?: () => void;
-	onCheckPress?: (
-		questId: string,
-	) => Promise<Web3FarmingVerifyQuestAndClaimPointsMutation>;
+	onCheckPress?: CompleteQuestFunction;
 }
 
 const QuestCard: FC<Props> = ({
@@ -40,9 +37,8 @@ const QuestCard: FC<Props> = ({
 	);
 	const overrideCheck = async () => {
 		if (completed) {
-			const { web3FarmingVerifyQuestAndClaimPoints } =
-				(await onCheckPress?.(questId || '')) || {};
-			setVerified(web3FarmingVerifyQuestAndClaimPoints?.completed || false);
+			const result = (await onCheckPress?.(questId || '')) || {};
+			setVerified(result?.completed || false);
 			appActions.queryAndUpdateGOPoints();
 		} else {
 			onActionPress?.();

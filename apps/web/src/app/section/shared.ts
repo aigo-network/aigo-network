@@ -1,8 +1,5 @@
 import { graphqlClient } from '@aigo/api/graphql';
-import type {
-	Web3FarmingQuestType,
-	Web3FarmingVerifyQuestAndClaimPoints,
-} from '@aigo/api/sdk';
+import type { Web3FarmingQuest, Web3FarmingQuestType } from '@aigo/api/sdk';
 
 import { showAppDownload } from '@/modals/ShowAppDownload';
 import { appState } from '@/state/app';
@@ -28,11 +25,18 @@ const downloadApp = () => {
 	appState.downloadAppCompleted = true;
 };
 
-const verifyQuest = async (questId: string) => {
+export type CompleteQuestFunction = (
+	questId: string,
+) => Promise<Web3FarmingQuest | null | undefined>;
+
+const verifyQuest: CompleteQuestFunction = async (questId: string) => {
 	try {
-		return await graphqlClient.web3FarmingVerifyQuestAndClaimPoints({
-			questId,
-		});
+		const { web3FarmingVerifyQuestAndClaimPoints } =
+			await graphqlClient.web3FarmingVerifyQuestAndClaimPoints({
+				questId,
+			});
+
+		return web3FarmingVerifyQuestAndClaimPoints;
 	} catch (error) {
 		console.log(JSON.stringify(error, null, 2));
 	}
@@ -44,7 +48,7 @@ export const questMetadataMap: Record<
 		description: string;
 		hide?: boolean;
 		action?: () => void;
-		check?: (questId: string) => Web3FarmingVerifyQuestAndClaimPoints;
+		check?: CompleteQuestFunction;
 	}
 > = {
 	LikeTwitterPost: {
