@@ -57,18 +57,18 @@ export const questMetadataMap: Record<
 		description: 'Like our Post on X',
 		action: likeTwitter,
 		check: verifyQuest,
-		order: 1,
+		order: 2,
 	},
 	RetweetTwitterPost: {
 		description: 'Retweet our Post on X',
 		action: retweetTwitter,
 		check: verifyQuest,
-		order: 2,
+		order: 3,
 	},
 	DownloadApp: {
 		description: 'Download AiGO on iOS or Android',
 		action: downloadApp,
-		order: 3,
+		order: 1,
 		// check: verifyQuest,
 		check: (() => {
 			showInformation(
