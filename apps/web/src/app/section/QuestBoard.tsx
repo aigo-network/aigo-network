@@ -28,6 +28,9 @@ const QuestBoard: FC = () => {
 				{web3FarmingProfile && (web3FarmingProfile.quests?.length || 0) > 0 ? (
 					<View style={styles.questContainer}>
 						{web3FarmingProfile.quests?.map((quest, index) => {
+							const hide = quest?.type && questMetadataMap[quest?.type].hide;
+							if (hide) return null;
+
 							const description =
 								quest?.type && questMetadataMap[quest?.type].description;
 							const action =
@@ -54,14 +57,14 @@ const QuestBoard: FC = () => {
 						<QuestCard
 							order={3}
 							point={128}
-							description={`Download AiGO on iOS\nor Android`}
+							description={`Download AiGO on iOS or Android`}
 							onActionPress={showAppDownload}
 						/>
-						<QuestCard
+						{/* <QuestCard
 							order={4}
 							point={128}
 							description="Connect with X or Google"
-						/>
+						/> */}
 					</View>
 				)}
 				<View style={styles.belowContainer}>

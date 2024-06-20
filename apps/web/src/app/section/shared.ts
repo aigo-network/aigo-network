@@ -6,6 +6,7 @@ export const questMetadataMap: Record<
 	Web3FarmingQuestType,
 	{
 		description: string;
+		hide?: boolean;
 		action?: () => void;
 	}
 > = {
@@ -21,5 +22,6 @@ export const questMetadataMap: Record<
 	},
 	ConnectTwitter: {
 		description: 'Connect with email',
+		hide: true,
 	},
 };
