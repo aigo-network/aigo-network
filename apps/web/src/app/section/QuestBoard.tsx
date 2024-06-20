@@ -1,14 +1,19 @@
 import type { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Image from 'next/image';
+import { useSnapshot } from 'valtio';
 
 import QuestCard from './QuestCard';
 import ReferralCode from './ReferralCode';
 import ReferralHistory from './ReferralHistory';
+import { questMetadataMap } from './shared';
 
 import { showAppDownload } from '@/modals/ShowAppDownload';
+import { appState } from '@/state/app';
 
 const QuestBoard: FC = () => {
+	const { web3FarmingProfile } = useSnapshot(appState);
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.bgLayer}>
@@ -20,25 +25,45 @@ const QuestBoard: FC = () => {
 				/>
 			</View>
 			<View style={styles.innerContainer}>
-				<View style={styles.questContainer}>
-					<QuestCard order={1} point={128} description="Like our Post on X" />
-					<QuestCard
-						order={2}
-						point={128}
-						description="Retweet our Post on X"
-					/>
-					<QuestCard
-						order={3}
-						point={128}
-						description={`Download AiGO on iOS\nor Android`}
-						onActionPress={showAppDownload}
-					/>
-					<QuestCard
-						order={4}
-						point={128}
-						description="Connect with X or Google"
-					/>
-				</View>
+				{web3FarmingProfile && (web3FarmingProfile.quests?.length || 0) > 0 ? (
+					<View style={styles.questContainer}>
+						{web3FarmingProfile.quests?.map((quest, index) => {
+							const description =
+								quest?.type && questMetadataMap[quest?.type].description;
+							const action =
+								quest?.type && questMetadataMap[quest?.type].action;
+							return (
+								<QuestCard
+									order={index}
+									key={quest?.id}
+									point={quest?.GOPoints || 0}
+									description={description || ''}
+									onActionPress={action as never}
+								/>
+							);
+						})}
+					</View>
+				) : (
+					<View style={styles.questContainer}>
+						<QuestCard order={1} point={128} description="Like our Post on X" />
+						<QuestCard
+							order={2}
+							point={128}
+							description="Retweet our Post on X"
+						/>
+						<QuestCard
+							order={3}
+							point={128}
+							description={`Download AiGO on iOS\nor Android`}
+							onActionPress={showAppDownload}
+						/>
+						<QuestCard
+							order={4}
+							point={128}
+							description="Connect with X or Google"
+						/>
+					</View>
+				)}
 				<View style={styles.belowContainer}>
 					<ReferralCode />
 					<ReferralHistory />
