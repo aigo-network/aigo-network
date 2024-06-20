@@ -100,3 +100,26 @@ export const verifyNyamNyamUser = gql`
 		}
 	}
 `;
+
+export const web3FarmingInitProfile = gql`
+	mutation web3FarmingInitProfile($referralCode: String) {
+		web3FarmingInitProfile(referralCode: $referralCode) {
+			id
+			createdAt
+			invitedBy
+			quests {
+				id
+				GOPoints
+				completed
+				type
+			}
+			referralCodes {
+				id
+				GOPoints
+				code
+				invitedId
+				invitedDate
+			}
+		}
+	}
+`;

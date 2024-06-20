@@ -68,3 +68,26 @@ export const userProfileQuery = gql`
 		}
 	}
 `;
+
+export const web3FarmingProfile = gql`
+	query web3FarmingProfile {
+		web3FarmingProfile {
+			id
+			createdAt
+			invitedBy
+			quests {
+				id
+				GOPoints
+				completed
+				type
+			}
+			referralCodes {
+				id
+				GOPoints
+				code
+				invitedId
+				invitedDate
+			}
+		}
+	}
+`;

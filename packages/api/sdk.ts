@@ -77,6 +77,8 @@ export type RootMutation = {
    * 		
    */
   verifyPhoneNumber?: Maybe<PhoneNumberVerification>;
+  web3FarmingInitProfile?: Maybe<Web3FarmingProfile>;
+  web3FarmingVerifyQuestAndClaimPoints?: Maybe<Web3FarmingProfile>;
 };
 
 
@@ -94,10 +96,21 @@ export type RootMutationVerifyNyamNyamUserArgs = {
   NNID?: InputMaybe<Scalars['String']['input']>;
 };
 
+
+export type RootMutationWeb3FarmingInitProfileArgs = {
+  referralCode?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type RootMutationWeb3FarmingVerifyQuestAndClaimPointsArgs = {
+  questId?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type RootQuery = {
   __typename?: 'RootQuery';
   ping?: Maybe<Scalars['String']['output']>;
   user?: Maybe<User>;
+  web3FarmingProfile?: Maybe<Web3FarmingProfile>;
 };
 
 export type User = {
@@ -137,6 +150,45 @@ export type UserProfile = {
   imageUrl?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   phoneNumber?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Web3FarmingProfile = {
+  __typename?: 'Web3FarmingProfile';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  invitedBy?: Maybe<Scalars['String']['output']>;
+  quests?: Maybe<Array<Maybe<Web3FarmingQuest>>>;
+  referralCodes?: Maybe<Array<Maybe<Web3FarmingReferralCode>>>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type Web3FarmingQuest = {
+  __typename?: 'Web3FarmingQuest';
+  GOPoints?: Maybe<Scalars['Int']['output']>;
+  completed?: Maybe<Scalars['Boolean']['output']>;
+  completedAt?: Maybe<Scalars['DateTime']['output']>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  type?: Maybe<Web3FarmingQuestType>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export enum Web3FarmingQuestType {
+  ConnectTwitter = 'ConnectTwitter',
+  DownloadApp = 'DownloadApp',
+  LikeTwitterPost = 'LikeTwitterPost',
+  RetweetTwitterPost = 'RetweetTwitterPost'
+}
+
+export type Web3FarmingReferralCode = {
+  __typename?: 'Web3FarmingReferralCode';
+  GOPoints?: Maybe<Scalars['Int']['output']>;
+  code?: Maybe<Scalars['String']['output']>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  invitedDate?: Maybe<Scalars['DateTime']['output']>;
+  invitedId?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
 export type UpdateProfileMutationVariables = Exact<{
@@ -179,6 +231,13 @@ export type VerifyNyamNyamUserMutationVariables = Exact<{
 
 
 export type VerifyNyamNyamUserMutation = { __typename?: 'RootMutation', verifyNyamNyamUser?: { __typename?: 'NyamNyamUserProfile', NNID?: string | null, createdAt?: any | null, extKey?: string | null, id?: string | null, name?: string | null, nick?: string | null, registrationNumber?: string | null, updatedAt?: any | null, verifiedAt?: any | null } | null };
+
+export type Web3FarmingInitProfileMutationVariables = Exact<{
+  referralCode?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type Web3FarmingInitProfileMutation = { __typename?: 'RootMutation', web3FarmingInitProfile?: { __typename?: 'Web3FarmingProfile', id?: string | null, createdAt?: any | null, invitedBy?: string | null, quests?: Array<{ __typename?: 'Web3FarmingQuest', id?: string | null, GOPoints?: number | null, completed?: boolean | null, type?: Web3FarmingQuestType | null } | null> | null, referralCodes?: Array<{ __typename?: 'Web3FarmingReferralCode', id?: string | null, GOPoints?: number | null, code?: string | null, invitedDate?: any | null } | null> | null } | null };
 
 export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -285,6 +344,27 @@ export const VerifyNyamNyamUserDocument = gql`
   }
 }
     `;
+export const Web3FarmingInitProfileDocument = gql`
+    mutation web3FarmingInitProfile($referralCode: String) {
+  web3FarmingInitProfile(referralCode: $referralCode) {
+    id
+    createdAt
+    invitedBy
+    quests {
+      id
+      GOPoints
+      completed
+      type
+    }
+    referralCodes {
+      id
+      GOPoints
+      code
+      invitedDate
+    }
+  }
+}
+    `;
 export const GetUserDocument = gql`
     query getUser {
   user {
@@ -380,6 +460,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     verifyNyamNyamUser(variables?: VerifyNyamNyamUserMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<VerifyNyamNyamUserMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<VerifyNyamNyamUserMutation>(VerifyNyamNyamUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'verifyNyamNyamUser', 'mutation', variables);
+    },
+    web3FarmingInitProfile(variables?: Web3FarmingInitProfileMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Web3FarmingInitProfileMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Web3FarmingInitProfileMutation>(Web3FarmingInitProfileDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'web3FarmingInitProfile', 'mutation', variables);
     },
     getUser(variables?: GetUserQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetUserQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetUserQuery>(GetUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUser', 'query', variables);

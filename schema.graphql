@@ -104,6 +104,12 @@ type RootMutation {
 
   "Phone number must be added to user profile. \n\t\tIf user signed-in by Phone number, it will check if Auth Phone number and Phone number in profile is matched or not.\n\t\tElse using OTP SMS to verify new phone number.\n\t\t"
   verifyPhoneNumber: PhoneNumberVerification
+
+  """"""
+  web3FarmingInitProfile(referralCode: String): Web3FarmingProfile
+
+  """"""
+  web3FarmingVerifyQuestAndClaimPoints(questId: String): Web3FarmingProfile
 }
 
 """"""
@@ -113,6 +119,9 @@ type RootQuery {
 
   """"""
   user: User
+
+  """"""
+  web3FarmingProfile: Web3FarmingProfile
 }
 
 """"""
@@ -209,4 +218,88 @@ input UserProfile {
 
   """"""
   phoneNumber: String
+}
+
+""""""
+type Web3FarmingProfile {
+  """"""
+  createdAt: DateTime
+
+  """"""
+  id: String
+
+  """"""
+  invitedBy: String
+
+  """"""
+  quests: [Web3FarmingQuest]
+
+  """"""
+  referralCodes: [Web3FarmingReferralCode]
+
+  """"""
+  updatedAt: DateTime
+}
+
+""""""
+type Web3FarmingQuest {
+  """"""
+  GOPoints: Int
+
+  """"""
+  completed: Boolean
+
+  """"""
+  completedAt: DateTime
+
+  """"""
+  createdAt: DateTime
+
+  """"""
+  id: String
+
+  """"""
+  type: Web3FarmingQuestType
+
+  """"""
+  updatedAt: DateTime
+}
+
+""""""
+enum Web3FarmingQuestType {
+  """"""
+  ConnectTwitter
+
+  """"""
+  DownloadApp
+
+  """"""
+  LikeTwitterPost
+
+  """"""
+  RetweetTwitterPost
+}
+
+""""""
+type Web3FarmingReferralCode {
+  """"""
+  GOPoints: Int
+
+  """"""
+  code: String
+
+  """"""
+  createdAt: DateTime
+
+  """"""
+  id: String
+
+  """"""
+  invitedDate: DateTime
+
+  """"""
+  invitedId: String
+
+  """"""
+  updatedAt: DateTime
 }
