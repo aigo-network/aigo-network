@@ -8,6 +8,7 @@ import {
 	TwitterAuthProvider,
 } from 'firebase/auth';
 
+import { showImportCode } from '@/modals/ShowImportCode';
 import { appState } from '@/state/app';
 
 const firebaseConfig = {
@@ -49,6 +50,13 @@ auth.onIdTokenChanged(async (authUser) => {
 			const { user } = await graphqlClient.getUserProfile();
 			appState.firebaseUser = authUser;
 			appState.user = user as never;
+			const { web3FarmingProfile } =
+				await graphqlClient.getWeb3FarmingProfile();
+			if (web3FarmingProfile?.id) {
+				appState.web3FarmingProfile = web3FarmingProfile;
+			} else {
+				showImportCode();
+			}
 		} catch (err) {
 			console.log('auth error', err);
 		}

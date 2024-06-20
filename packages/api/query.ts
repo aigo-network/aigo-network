@@ -69,8 +69,8 @@ export const userProfileQuery = gql`
 	}
 `;
 
-export const web3FarmingProfile = gql`
-	query web3FarmingProfile {
+export const getWeb3FarmingProfile = gql`
+	query getWeb3FarmingProfile {
 		web3FarmingProfile {
 			id
 			createdAt
