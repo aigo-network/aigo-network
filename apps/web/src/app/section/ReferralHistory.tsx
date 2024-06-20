@@ -1,5 +1,6 @@
 import { type FC, Fragment } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import type { Web3FarmingReferralCode } from '@aigo/api/sdk';
 import { useSnapshot } from 'valtio';
 
 import { appState } from '@/state/app';
