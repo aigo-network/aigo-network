@@ -61,7 +61,10 @@ const QuestCard: FC<Props> = ({
 				/>
 				<Text style={styles.point}>{`+${point} GO`}</Text>
 			</View>
-			<Text numberOfLines={2} style={styles.questDescription}>
+			<Text
+				numberOfLines={2}
+				style={[styles.questDescription, isMobile && styles.mobileDescription]}
+			>
 				{description}
 			</Text>
 			{verified ? (
@@ -154,6 +157,9 @@ const styles = StyleSheet.create({
 		color: '#e3e4e6',
 		paddingHorizontal: 12,
 		marginTop: 36,
+	},
+	mobileDescription: {
+		textAlign: 'center',
 	},
 	btnGroup: {
 		margin: 12,
