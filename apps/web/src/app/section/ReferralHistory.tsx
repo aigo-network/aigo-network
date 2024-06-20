@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
 		gap: 30,
 		paddingVertical: 12,
 		paddingHorizontal: 20,
+		justifyContent: 'space-between',
 	},
 	titleText: {
 		color: '#5e6063',
