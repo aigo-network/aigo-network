@@ -5,13 +5,14 @@ import Avatar from '@aigo/components/Avatar';
 import ChevronDown from '@aigo/components/icon/ChevronDown';
 import ChevronUp from '@aigo/components/icon/ChevronUp';
 import Power from '@aigo/components/icon/Power';
-import type { User as FirebaseUser } from 'firebase/auth';
 import dynamic from 'next/dynamic';
 
 import BlurBackground from './BlurBackground';
 
 import Button from '@/components/Button';
 import type { AuthUser } from '@/state/app';
+import { appActions } from '@/state/app';
+import { logOut, signInWithTwitter } from '@/utils/auth';
 
 const DynamicLoading = dynamic(
 	() => import('@aigo/components/LoadingContainer'),
@@ -38,6 +39,12 @@ export const SignInBundle: FC<Props> = ({
 		} else {
 			signInWithTwitter();
 		}
+	};
+
+	const handlePressDisconnect = async () => {
+		await logOut();
+		appActions.reset();
+		setShowDropdown(false);
 	};
 
 	return (
@@ -76,7 +83,10 @@ export const SignInBundle: FC<Props> = ({
 					{showDropdown && (
 						<View style={styles.dropdownContainer}>
 							<View style={styles.innerContainer}>
-								<TouchableOpacity style={styles.disconnectButton}>
+								<TouchableOpacity
+									style={styles.disconnectButton}
+									onPress={handlePressDisconnect}
+								>
 									<Power width={24} strokeWidth="2.5" color={'#E15050'} />
 									<Text style={styles.disconnectText}>Disconnect</Text>
 								</TouchableOpacity>

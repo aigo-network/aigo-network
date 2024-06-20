@@ -1,7 +1,15 @@
 import { graphqlClient } from '@aigo/api/graphql';
 import { Web3FarmingQuestType } from '@aigo/api/sdk';
 
-import { appState } from './shared';
+import type { AppState } from './shared';
+import { appState, initialState } from './shared';
+
+const reset = () => {
+	for (const key in initialState) {
+		const k = key as keyof AppState;
+		appState[k] = initialState[k as never] as never;
+	}
+};
 
 const queryAndUpdateGOPoints = async () => {
 	try {
@@ -36,6 +44,7 @@ const getStateByQuestType = (type?: Web3FarmingQuestType) => {
 };
 
 export const appActions = {
+	reset,
 	queryAndUpdateGOPoints,
 	getStateByQuestType,
 };

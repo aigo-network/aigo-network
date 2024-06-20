@@ -19,7 +19,7 @@ interface Props {
 
 const Header: FC<Props> = ({ style }) => {
 	const isMobile = useIsMobile();
-	const { firebaseUser, isAuthLoading, user } = useSnapshot(appState);
+	const { authUser, isAuthLoading, user } = useSnapshot(appState);
 
 	return (
 		<View style={[styles.container, style]}>
@@ -63,7 +63,7 @@ const Header: FC<Props> = ({ style }) => {
 				{/* </Button> */}
 				<View style={styles.separateLine} />
 				<SignInBundle
-					user={firebaseUser as never}
+					user={authUser}
 					isAuthLoading={isAuthLoading}
 					isMobile={isMobile}
 					points={user?.GOPoints || 0}
