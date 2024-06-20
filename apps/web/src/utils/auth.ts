@@ -26,6 +26,8 @@ const googleProvider = new GoogleAuthProvider();
 const twitterProvider = new TwitterAuthProvider();
 export const auth = getAuth();
 
+appState.isAuthLoading = true;
+
 export const signInWithGoogle = async () => {
 	appState.isAuthLoading = true;
 	await signInWithRedirect(auth, googleProvider);
@@ -50,7 +52,11 @@ auth.onIdTokenChanged(async (authUser) => {
 	if (authUser) {
 		try {
 			const { user } = await graphqlClient.getUserProfile();
-			appState.firebaseUser = authUser;
+			appState.authUser = {
+				uid: authUser.uid,
+				name: authUser.displayName || authUser.email || 'Unknown',
+				imageUrl: authUser.photoURL || '',
+			};
 			appState.user = user as never;
 			const { web3FarmingProfile } =
 				await graphqlClient.getWeb3FarmingProfile();

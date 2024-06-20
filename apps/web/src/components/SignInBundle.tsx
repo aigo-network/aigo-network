@@ -11,14 +11,14 @@ import dynamic from 'next/dynamic';
 import BlurBackground from './BlurBackground';
 
 import Button from '@/components/Button';
-import { signInWithTwitter } from '@/utils/auth';
+import type { AuthUser } from '@/state/app';
 
 const DynamicLoading = dynamic(
 	() => import('@aigo/components/LoadingContainer'),
 );
 
 interface Props {
-	user?: FirebaseUser;
+	user?: AuthUser;
 	isAuthLoading?: boolean;
 	isMobile?: boolean;
 	points?: number | undefined;
@@ -55,9 +55,9 @@ export const SignInBundle: FC<Props> = ({
 				<BlurBackground style={styles.container}>
 					<Avatar
 						withName={!isMobile}
-						imageUrl={user.photoURL}
+						imageUrl={user.imageUrl}
 						displayTextStyle={styles.lightText}
-						displayText={user.displayName || user.email}
+						displayText={user.name}
 					/>
 					<View style={styles.separateLine} />
 					<View>
@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 		backgroundColor: '#fff',
+		paddingHorizontal: 32,
 	},
 	separateLine: {
 		height: 14,

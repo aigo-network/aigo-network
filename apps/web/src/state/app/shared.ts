@@ -1,11 +1,16 @@
 import type { User as AppUser, Web3FarmingProfile } from '@aigo/api/sdk';
 import { Web3FarmingQuestType } from '@aigo/api/sdk';
-import type { User as FirebaseUser } from '@firebase/auth';
 import { proxy } from 'valtio';
+
+export type AuthUser = {
+	uid: string;
+	name: string;
+	imageUrl: string;
+};
 
 export interface AppState {
 	user?: AppUser;
-	firebaseUser?: FirebaseUser;
+	authUser?: AuthUser;
 	web3FarmingProfile?: Web3FarmingProfile;
 	isAuthLoading: boolean;
 	likeXCompleted: boolean;
@@ -15,9 +20,9 @@ export interface AppState {
 	verifyEmailCompleted: boolean;
 }
 
-export const appState = proxy<AppState>({
+export const initialState: AppState = {
 	user: undefined,
-	firebaseUser: undefined,
+	authUser: undefined,
 	web3FarmingProfile: {
 		quests: [
 			{ id: '1', type: Web3FarmingQuestType.DownloadApp },
@@ -25,10 +30,12 @@ export const appState = proxy<AppState>({
 			{ id: '3', type: Web3FarmingQuestType.RetweetTwitterPost },
 		],
 	},
-	isAuthLoading: true,
+	isAuthLoading: false,
 	likeXCompleted: false,
 	followXCompleted: false,
 	reTweetCompleted: false,
 	downloadAppCompleted: false,
 	verifyEmailCompleted: false,
-});
+};
+
+export const appState = proxy<AppState>(initialState);
