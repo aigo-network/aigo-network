@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import ReactNativeRegistry from './registry';
+
 import './globals.css';
 
 import { interTight } from '@/utils/style';
@@ -16,7 +18,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={interTight.className}>{children}</body>
+			<body className={interTight.className}>
+				<ReactNativeRegistry>{children}</ReactNativeRegistry>
+			</body>
 		</html>
 	);
 }
