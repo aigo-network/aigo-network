@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { ModalProvider } from 'empty-modal';
 
-import '../utils/auth';
+import '@/utils/auth';
+import '@/utils/global';
 
 import Banner from './section/Banner';
 import QuestBoard from './section/QuestBoard';

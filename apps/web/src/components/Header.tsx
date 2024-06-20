@@ -3,10 +3,13 @@ import type { ViewStyle } from 'react-native';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSnapshot } from 'valtio';
 
 import BlurBackground from './BlurBackground';
 import Button from './Button';
+import SignInBundle from './SignInBundle';
 
+import { appState } from '@/state/app';
 import { signInWithTwitter } from '@/utils/auth';
 
 interface Props {
@@ -14,6 +17,8 @@ interface Props {
 }
 
 const Header: FC<Props> = ({ style }) => {
+	const { firebaseUser, isAuthLoading } = useSnapshot(appState);
+
 	return (
 		<View style={[styles.container, style]}>
 			<Link href="https:\\aigo.network" target="_blank">
@@ -52,9 +57,10 @@ const Header: FC<Props> = ({ style }) => {
 				{/* 	</BlurBackground> */}
 				{/* </Button> */}
 				<View style={styles.separateLine} />
-				<Button style={styles.signInBtn} onPress={signInWithTwitter}>
-					<Text style={[styles.downloadText, { color: '#000' }]}>Sign In</Text>
-				</Button>
+				<SignInBundle
+					user={firebaseUser as never}
+					isAuthLoading={isAuthLoading}
+				/>
 			</View>
 		</View>
 	);

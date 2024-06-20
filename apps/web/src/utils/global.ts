@@ -1,15 +1,17 @@
 import { Text, TextInput } from 'react-native';
 import { setDefaultProps } from '@aigo/config';
 
+import { interTight } from './style';
+
 setDefaultProps(Text, {
 	style: {
-		fontFamily: 'Gabarito',
+		fontFamily: interTight.style.fontFamily,
 		color: '#fff',
 	},
 });
 setDefaultProps(TextInput, {
 	style: {
-		fontFamily: 'Gabarito',
+		fontFamily: interTight.style.fontFamily,
 		color: '#fff',
 	},
 });

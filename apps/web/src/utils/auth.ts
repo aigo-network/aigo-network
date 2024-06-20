@@ -30,7 +30,9 @@ export const signInWithGoogle = async () => {
 };
 
 export const signInWithTwitter = async () => {
+	appState.isAuthLoading = true;
 	await signInWithRedirect(auth, twitterProvider);
+	appState.isAuthLoading = false;
 };
 
 export const logOut = async () => {
@@ -42,13 +44,17 @@ injectGetJWTFunc(async () => {
 });
 
 auth.onIdTokenChanged(async (authUser) => {
-	console.log('auth user', authUser);
 	if (authUser) {
 		try {
 			const { user } = await graphqlClient.getUserProfile();
-			appState.user = user;
+			appState.firebaseUser = authUser;
+			appState.user = user as never;
 		} catch (err) {
 			console.log('auth error', err);
 		}
 	}
+
+	appState.isAuthLoading = false;
 });
+
+global.logOut = logOut;
