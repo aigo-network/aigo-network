@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import type { ViewStyle } from 'react-native';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import AppIcon from '@aigo/components/icon/AppIcon';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSnapshot } from 'valtio';
@@ -10,7 +11,6 @@ import Button from './Button';
 import SignInBundle from './SignInBundle';
 
 import { appState } from '@/state/app';
-import { signInWithTwitter } from '@/utils/auth';
 
 interface Props {
 	style?: ViewStyle;
@@ -22,8 +22,9 @@ const Header: FC<Props> = ({ style }) => {
 	return (
 		<View style={[styles.container, style]}>
 			<Link href="https:\\aigo.network" target="_blank">
-				<TouchableOpacity>
-					<Text style={styles.logo}>AiGO</Text>
+				<TouchableOpacity style={styles.logo}>
+					<AppIcon width={52} color="#acc5ff" />
+					<Text style={styles.logoTxt}>AiGO</Text>
 				</TouchableOpacity>
 			</Link>
 			<View style={styles.rightContainer}>
@@ -75,6 +76,11 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	logo: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		gap: 10,
+	},
+	logoTxt: {
 		paddingHorizontal: 8,
 		paddingVertical: 2,
 		fontWeight: '500',
