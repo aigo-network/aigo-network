@@ -20,7 +20,7 @@ export const questMetadataMap: Record<
 		description: 'Download AiGO on iOS or Android',
 		action: showAppDownload,
 	},
-	ConnectTwitter: {
+	ConnectEmail: {
 		description: 'Connect with email',
 		hide: true,
 	},
