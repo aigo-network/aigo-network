@@ -3,7 +3,7 @@ import type { CodegenConfig } from '@graphql-codegen/cli';
 const config: CodegenConfig = {
 	overwrite: true,
 	schema: 'https://dev.api.aigo.network/graphql',
-	documents: ['src/**/*.ts'],
+	documents: ['packages/api/**/*.ts'],
 	generates: {
 		'./schema.graphql': {
 			plugins: ['schema-ast'],

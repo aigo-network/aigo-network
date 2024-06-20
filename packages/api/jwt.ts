@@ -1,5 +1,9 @@
 export let JWT: string;
 
-export const setJWT = (newJWT: string) => {
-	JWT = newJWT;
+export type GetJWTFunc = () => Promise<string | undefined>;
+
+export let getJWT: GetJWTFunc;
+
+export const injectGetJWTFunc = (func: GetJWTFunc) => {
+	getJWT = func;
 };

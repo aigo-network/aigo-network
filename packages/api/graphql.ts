@@ -1,14 +1,20 @@
 import { config } from '@aigo/config';
 import { GraphQLClient } from 'graphql-request';
 
-import { JWT } from './jwt';
+import { getJWT } from './jwt';
+import type { Sdk } from './sdk';
 import { getSdk } from './sdk';
 
-export const graphqlClient = getSdk(
+export const graphqlClient: Sdk = getSdk(
 	new GraphQLClient(config.GRAPHQL_API_ENDPOINT, {
-		headers: () => {
+		requestMiddleware: async (request) => {
+			const jwt = await getJWT();
 			return {
-				authorization: `Bearer ${JWT}`,
+				...request,
+				headers: {
+					...request.headers,
+					authorization: jwt ? `Bearer ${jwt}` : '',
+				},
 			};
 		},
 	}),
