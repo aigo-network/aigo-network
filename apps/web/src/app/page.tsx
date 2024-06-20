@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { ModalProvider } from 'empty-modal';
 
 import '../utils/auth';
 
@@ -16,10 +17,12 @@ export default function Home() {
 	}, []);
 
 	return (
-		<View style={styles.container}>
-			<Banner />
-			<QuestBoard />
-		</View>
+		<ModalProvider>
+			<View style={styles.container}>
+				<Banner />
+				<QuestBoard />
+			</View>
+		</ModalProvider>
 	);
 }
 
