@@ -29,9 +29,9 @@ export const initialState: AppState = {
 	authUser: undefined,
 	web3FarmingProfile: {
 		quests: [
-			{ id: '1', type: Web3FarmingQuestType.DownloadApp },
-			{ id: '2', type: Web3FarmingQuestType.LikeTwitterPost },
-			{ id: '3', type: Web3FarmingQuestType.RetweetTwitterPost },
+			{ id: '1', type: Web3FarmingQuestType.DownloadApp, GOPoints: 600 },
+			{ id: '2', type: Web3FarmingQuestType.LikeTwitterPost, GOPoints: 60 },
+			{ id: '3', type: Web3FarmingQuestType.RetweetTwitterPost, GOPoints: 60 },
 		],
 	},
 	isAuthLoading: false,
