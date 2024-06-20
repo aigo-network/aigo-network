@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
 	btnText: {
 		color: '#9c9d9f',
 		fontSize: 16,
+		fontWeight: '500',
 	},
 	activeBtnText: {
 		color: '#232529',
