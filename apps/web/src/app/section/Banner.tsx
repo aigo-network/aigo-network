@@ -16,7 +16,7 @@ interface Props {
 const Banner: FC<Props> = ({ isMobile }) => {
 	return (
 		<View style={styles.container}>
-			<Svg style={styles.bannerBackground} width="100%" height="auto">
+			<Svg style={styles.bannerBackground} width="100%" height="344">
 				<Defs>
 					<LinearGradient id="background-banner" x1={0} y1={0} x2={1} y2={0}>
 						<Stop offset={0} stopColor="#625bf6" stopOpacity={1} />

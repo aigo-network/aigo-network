@@ -23,51 +23,56 @@ const Header: FC<Props> = ({ style }) => {
 
 	return (
 		<View style={[styles.container, style]}>
-			<Link href="https://aigo.network" target="_blank">
-				<TouchableOpacity style={styles.logo}>
-					<AppIcon width={52} color="#acc5ff" />
-					{!isMobile && <Text style={styles.logoTxt}>AiGO</Text>}
-				</TouchableOpacity>
-			</Link>
-			<View
-				style={[styles.rightContainer, isMobile && styles.rightContainerMobile]}
-			>
-				<Link href="https://x.com/AIGO_network" target="_blank">
-					<Button>
-						<BlurBackground style={styles.socialIcon}>
-							<Image
-								src="/twitter-ic.svg"
-								alt="Twitter or X icon"
-								width={22}
-								height={20}
-							/>
-						</BlurBackground>
-					</Button>
+			<View style={styles.innerContainer}>
+				<Link href="https://aigo.network" target="_blank">
+					<TouchableOpacity style={styles.logo}>
+						<AppIcon width={52} color="#acc5ff" />
+						{!isMobile && <Text style={styles.logoTxt}>AiGO</Text>}
+					</TouchableOpacity>
 				</Link>
-				<Link href="https://t.me/aigocommunity" target={'_blank'}>
-					<Button>
-						<BlurBackground style={styles.socialIcon}>
-							<Image
-								src="/telegram-ic.svg"
-								alt="Telegram icon"
-								width={22}
-								height={19}
-							/>
-						</BlurBackground>
-					</Button>
-				</Link>
-				{/* <Button> */}
-				{/* 	<BlurBackground style={styles.downloadBtn}> */}
-				{/* 		<Text style={styles.downloadText}>Download AiGO</Text> */}
-				{/* 	</BlurBackground> */}
-				{/* </Button> */}
-				{!isMobile && <View style={styles.separateLine} />}
-				<SignInBundle
-					user={authUser}
-					isAuthLoading={isAuthLoading}
-					isMobile={isMobile}
-					points={user?.GOPoints || 0}
-				/>
+				<View
+					style={[
+						styles.rightContainer,
+						isMobile && styles.rightContainerMobile,
+					]}
+				>
+					<Link href="https://x.com/AIGO_network" target="_blank">
+						<Button>
+							<BlurBackground style={styles.socialIcon}>
+								<Image
+									src="/twitter-ic.svg"
+									alt="Twitter or X icon"
+									width={22}
+									height={20}
+								/>
+							</BlurBackground>
+						</Button>
+					</Link>
+					<Link href="https://t.me/aigocommunity" target={'_blank'}>
+						<Button>
+							<BlurBackground style={styles.socialIcon}>
+								<Image
+									src="/telegram-ic.svg"
+									alt="Telegram icon"
+									width={22}
+									height={19}
+								/>
+							</BlurBackground>
+						</Button>
+					</Link>
+					{/* <Button> */}
+					{/* 	<BlurBackground style={styles.downloadBtn}> */}
+					{/* 		<Text style={styles.downloadText}>Download AiGO</Text> */}
+					{/* 	</BlurBackground> */}
+					{/* </Button> */}
+					{!isMobile && <View style={styles.separateLine} />}
+					<SignInBundle
+						user={authUser}
+						isAuthLoading={isAuthLoading}
+						isMobile={isMobile}
+						points={user?.GOPoints || 0}
+					/>
+				</View>
 			</View>
 		</View>
 	);
@@ -76,7 +81,11 @@ const Header: FC<Props> = ({ style }) => {
 export default Header;
 
 const styles = StyleSheet.create({
-	container: {
+	container: {},
+	innerContainer: {
+		width: '100%',
+		maxWidth: 1248,
+		marginHorizontal: 'auto',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
