@@ -41,6 +41,14 @@ export const userQuery = gql`
 	}
 `;
 
+export const GOPointQuery = gql`
+	query getUserGOPoints {
+		user {
+			GOPoints
+		}
+	}
+`;
+
 export const userProfileQuery = gql`
 	query getUserProfile {
 		user {
