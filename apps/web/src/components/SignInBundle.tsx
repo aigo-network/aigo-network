@@ -126,7 +126,6 @@ const styles = StyleSheet.create({
 		color: '#fff',
 		fontSize: 17,
 		lineHeight: 24,
-		marginRight: -12,
 	},
 	dropdownContainer: {
 		position: 'absolute',
