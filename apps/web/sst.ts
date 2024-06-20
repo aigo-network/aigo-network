@@ -4,9 +4,9 @@ import { NextjsSite } from 'sst/constructs';
 import { getDomainNameByStage, hostedZone } from '../../tools/stacks/shared';
 
 const webAppAlias = {
-	production: 'app.',
-	staging: 'staging.app.',
-	development: 'dev.app.',
+	production: 'quests.',
+	staging: 'staging.quests.',
+	development: 'dev.quests.',
 };
 
 export const webApp = ({ stack, app }: StackContext) => {
