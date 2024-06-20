@@ -46,11 +46,11 @@ const Header: FC<Props> = ({ style }) => {
 						</BlurBackground>
 					</Button>
 				</Link>
-				<Button>
-					<BlurBackground style={styles.downloadBtn}>
-						<Text style={styles.downloadText}>Download AiGO</Text>
-					</BlurBackground>
-				</Button>
+				{/* <Button> */}
+				{/* 	<BlurBackground style={styles.downloadBtn}> */}
+				{/* 		<Text style={styles.downloadText}>Download AiGO</Text> */}
+				{/* 	</BlurBackground> */}
+				{/* </Button> */}
 				<View style={styles.separateLine} />
 				<Button style={styles.signInBtn} onPress={signInWithTwitter}>
 					<Text style={[styles.downloadText, { color: '#000' }]}>Sign In</Text>

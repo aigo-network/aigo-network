@@ -19,6 +19,8 @@ const nextConfig = {
 		'react-dom',
 		'react-native',
 		'react-native-reanimated',
+		'react-native-qrcode-svg',
+		'empty-modal',
 	],
 	webpack: (config, { dev }) => {
 		const envFilename = dev ? '.env.development' : '.env.production';
