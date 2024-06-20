@@ -23,7 +23,7 @@ const Header: FC<Props> = ({ style }) => {
 
 	return (
 		<View style={[styles.container, style]}>
-			<Link href="https:\\aigo.network" target="_blank">
+			<Link href="https://aigo.network" target="_blank">
 				<TouchableOpacity style={styles.logo}>
 					<AppIcon width={52} color="#acc5ff" />
 					{!isMobile && <Text style={styles.logoTxt}>AiGO</Text>}
@@ -32,7 +32,7 @@ const Header: FC<Props> = ({ style }) => {
 			<View
 				style={[styles.rightContainer, isMobile && styles.rightContainerMobile]}
 			>
-				<Link href="">
+				<Link href="https://x.com/AIGO_network" target="_blank">
 					<Button>
 						<BlurBackground style={styles.socialIcon}>
 							<Image
@@ -44,7 +44,7 @@ const Header: FC<Props> = ({ style }) => {
 						</BlurBackground>
 					</Button>
 				</Link>
-				<Link href="">
+				<Link href="https://t.me/aigocommunity" target={'_blank'}>
 					<Button>
 						<BlurBackground style={styles.socialIcon}>
 							<Image
