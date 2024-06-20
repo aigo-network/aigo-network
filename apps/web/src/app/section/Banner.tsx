@@ -23,7 +23,6 @@ const Banner: FC = () => {
 			</Svg>
 			<Image src={leftGrid} alt="left grid image" style={styles.leftGrid} />
 			<Image src={rightGrid} alt="right grid image" style={styles.rightGrid} />
-			<Header style={styles.headerContainer} />
 			<View style={styles.bannerTitleContainer}>
 				<BlurBackground style={styles.subTitle}>
 					<Text style={styles.subTitleText}>
@@ -34,6 +33,8 @@ const Banner: FC = () => {
 					Transform Your Mobility{'\n'}To Incentives
 				</Text>
 			</View>
+
+			<Header style={styles.headerContainer} />
 		</View>
 	);
 };
@@ -60,11 +61,18 @@ const styles = StyleSheet.create({
 		right: 0,
 	},
 	headerContainer: {
+		position: 'absolute',
 		marginHorizontal: 48,
 		paddingVertical: 12,
+		top: 0,
+		left: 0,
+		right: 0,
 	},
 	bannerTitleContainer: {
+		marginTop: 100,
+		zIndex: 0,
 		gap: 16,
+		alignSelf: 'center',
 	},
 	subTitle: {
 		alignSelf: 'center',

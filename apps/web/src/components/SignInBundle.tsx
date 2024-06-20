@@ -1,6 +1,9 @@
-import { type FC, Fragment } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { type FC, Fragment, useState } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Avatar from '@aigo/components/Avatar';
+import ChevronDown from '@aigo/components/icon/ChevronDown';
+import ChevronUp from '@aigo/components/icon/ChevronUp';
+import Power from '@aigo/components/icon/Power';
 import type { User as FirebaseUser } from 'firebase/auth';
 import dynamic from 'next/dynamic';
 
@@ -20,6 +23,7 @@ interface Props {
 }
 
 export const SignInBundle: FC<Props> = ({ user, isAuthLoading, points }) => {
+	const [showDropdown, setShowDropdown] = useState(false);
 	const handlePress = () => {
 		if (user) {
 			return;
@@ -51,6 +55,26 @@ export const SignInBundle: FC<Props> = ({ user, isAuthLoading, points }) => {
 					<View>
 						<Text style={styles.lightText}>{points || 0} GO</Text>
 					</View>
+					<TouchableOpacity
+						hitSlop={34}
+						onPress={() => setShowDropdown((l) => !l)}
+					>
+						{showDropdown ? (
+							<ChevronUp width={24} color={'#fff'} />
+						) : (
+							<ChevronDown width={24} color={'#fff'} />
+						)}
+					</TouchableOpacity>
+					{showDropdown && (
+						<View style={styles.dropdownContainer}>
+							<View style={styles.innerContainer}>
+								<TouchableOpacity style={styles.disconnectButton}>
+									<Power width={24} strokeWidth="2.5" color={'#E15050'} />
+									<Text style={styles.disconnectText}>Disconnect</Text>
+								</TouchableOpacity>
+							</View>
+						</View>
+					)}
 				</BlurBackground>
 			)}
 		</Fragment>
@@ -85,5 +109,34 @@ const styles = StyleSheet.create({
 		color: '#fff',
 		fontSize: 17,
 		lineHeight: 24,
+	},
+	dropdownContainer: {
+		position: 'absolute',
+		top: 52,
+		right: 0,
+		width: 200,
+		height: 80,
+		borderRadius: 16,
+		padding: 2,
+		backgroundColor: '#FFFFFF29',
+		borderWidth: 2,
+		borderColor: '#FFFFFF33',
+	},
+	innerContainer: {
+		flex: 1,
+		borderRadius: 14,
+		borderWidth: 2,
+		backgroundColor: '#FFFFFF29',
+		borderColor: '#FFFFFF33',
+		justifyContent: 'center',
+	},
+	disconnectButton: {
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	disconnectText: {
+		fontSize: 16,
+		fontWeight: '500',
+		color: '#E15050',
 	},
 });
