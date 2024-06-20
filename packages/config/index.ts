@@ -34,3 +34,5 @@ type ActivityConfig = {
 		points: number;
 	};
 };
+
+export * from './style';
