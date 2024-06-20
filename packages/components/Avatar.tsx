@@ -6,6 +6,7 @@ interface Props {
 	style?: StyleProp<ViewStyle>;
 	imageStyle?: StyleProp<ImageStyle>;
 	thumbTextStyle?: StyleProp<TextStyle>;
+	displayTextStyle?: StyleProp<TextStyle>;
 	size?: number;
 	imageUrl?: string | null;
 	displayText?: string | null;
@@ -16,6 +17,7 @@ export const Avatar: FC<Props> = ({
 	style,
 	imageStyle,
 	thumbTextStyle,
+	displayTextStyle,
 	size = 32,
 	imageUrl,
 	displayText = '?',
@@ -43,7 +45,7 @@ export const Avatar: FC<Props> = ({
 				</View>
 			)}
 			{withName && (
-				<Text numberOfLines={1} style={styles.displayText}>
+				<Text numberOfLines={1} style={[styles.displayText, displayTextStyle]}>
 					{displayText}
 				</Text>
 			)}
