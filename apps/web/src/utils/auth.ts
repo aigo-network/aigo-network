@@ -4,7 +4,7 @@ import { initializeApp } from 'firebase/app';
 import {
 	getAuth,
 	GoogleAuthProvider,
-	signInWithRedirect,
+	signInWithPopup,
 	TwitterAuthProvider,
 } from 'firebase/auth';
 
@@ -30,13 +30,13 @@ appState.isAuthLoading = true;
 
 export const signInWithGoogle = async () => {
 	appState.isAuthLoading = true;
-	await signInWithRedirect(auth, googleProvider);
+	await signInWithPopup(auth, googleProvider);
 	appState.isAuthLoading = false;
 };
 
 export const signInWithTwitter = async () => {
 	appState.isAuthLoading = true;
-	await signInWithRedirect(auth, twitterProvider);
+	await signInWithPopup(auth, twitterProvider);
 	appState.isAuthLoading = false;
 };
 

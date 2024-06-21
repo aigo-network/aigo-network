@@ -24,12 +24,14 @@ const ReferralHistory: FC<Props> = ({ isMobile }) => {
 			</Text>
 			<View style={styles.innerContainer}>
 				<View style={[styles.itemContainer]}>
-					<Text
-						style={[styles.firstColumn, styles.contentText, styles.titleText]}
-						numberOfLines={1}
-					>
-						User ID
-					</Text>
+					{!isMobile && (
+						<Text
+							style={[styles.firstColumn, styles.contentText, styles.titleText]}
+							numberOfLines={1}
+						>
+							User ID
+						</Text>
+					)}
 					<Text
 						style={[styles.dateColumn, styles.contentText, styles.titleText]}
 					>
@@ -51,12 +53,14 @@ const ReferralHistory: FC<Props> = ({ isMobile }) => {
 						return (
 							<Fragment key={code?.id}>
 								<View style={styles.itemContainer} key={code?.id}>
-									<Text
-										numberOfLines={1}
-										style={[styles.firstColumn, styles.contentText]}
-									>
-										{code?.invitedId}
-									</Text>
+									{!isMobile && (
+										<Text
+											numberOfLines={1}
+											style={[styles.firstColumn, styles.contentText]}
+										>
+											{code?.invitedId}
+										</Text>
+									)}
 									<Text
 										numberOfLines={1}
 										style={[styles.dateColumn, styles.contentText]}
