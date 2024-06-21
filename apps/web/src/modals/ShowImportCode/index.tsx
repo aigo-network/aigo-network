@@ -9,7 +9,7 @@ import ModalContainer from '@/components/ModalContainer';
 export const showImportCode = () => {
 	const { cleanModal } = showModal(
 		<ModalContainer
-			title="Import Code"
+			title="Import Referral Code"
 			subTitle={
 				<Text style={styles.subTitleText}>
 					You need a code to participate. If you don&apos;t have one,{'\n'}can
