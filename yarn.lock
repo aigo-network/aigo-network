@@ -57,7 +57,7 @@ __metadata:
     "@types/react-test-renderer": "npm:^18.0.0"
     babel-jest: "npm:^29.6.3"
     babel-plugin-module-resolver: "npm:^5.0.2"
-    empty-modal: "npm:^0.0.5"
+    empty-modal: "npm:^0.0.7"
     eslint: "npm:^8.19.0"
     graphql: "npm:^16.8.1"
     graphql-request: "npm:6.1.0"
@@ -10299,19 +10299,6 @@ __metadata:
   version: 9.2.2
   resolution: "emoji-regex@npm:9.2.2"
   checksum: 10/915acf859cea7131dac1b2b5c9c8e35c4849e325a1d114c30adb8cd615970f6dca0e27f64f3a4949d7d6ed86ecd79a1c5c63f02e697513cddd7b5835c90948b8
-  languageName: node
-  linkType: hard
-
-"empty-modal@npm:^0.0.5":
-  version: 0.0.5
-  resolution: "empty-modal@npm:0.0.5"
-  dependencies:
-    valtio: "npm:^1.13.2"
-  peerDependencies:
-    "@types/react": ^18.2.0
-    react: ^18.2.0
-    react-native: ^0.72.0 || ^0.73.0
-  checksum: 10/324b5d09ac7487ab08aeb94f517e1ee8a285cc1794acae6db85d6682bb325857c94abea45a466900aa9e0ec639073a6a26d432274ae61859039be8b41b6c464b
   languageName: node
   linkType: hard
 
