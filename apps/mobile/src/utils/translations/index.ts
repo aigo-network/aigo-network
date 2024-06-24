@@ -18,8 +18,7 @@ export type Content = {
 			title: string;
 			description: string;
 			referral: string;
-			messagePrefix: string;
-			messageSuffix: string;
+			message: string;
 			codeTitle: string;
 			shareButton: string;
 		};
