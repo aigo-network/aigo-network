@@ -11,6 +11,7 @@ import HomeScreen from 'screens/Home';
 import LoginScreen from 'screens/Login';
 import OtpLoginScreen from 'screens/Login/OTPLogin';
 import PhoneLoginScreen from 'screens/Login/PhoneLogin';
+import MapScreen from 'screens/Map';
 import CityName from 'screens/Onboard/CityName';
 import ProfileName from 'screens/Onboard/ProfileName';
 import UserDescription from 'screens/Onboard/UserDescription';
@@ -75,6 +76,7 @@ export const AppContainer: FC = () => {
 						<Stack.Group screenOptions={{ headerShown: false }}>
 							<Stack.Screen name="Home" component={HomeScreen} />
 							<Stack.Screen name="Profile" component={ProfileScreen} />
+							<Stack.Screen name="Map" component={MapScreen} />
 							<Stack.Screen name="VerifyNNID" component={VerifyNNIDScreen} />
 							<Stack.Screen
 								name="VerifyPhoneNumber"

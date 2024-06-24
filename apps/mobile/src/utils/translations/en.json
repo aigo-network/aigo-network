@@ -106,6 +106,10 @@
       },
       "dailyMissionSection": {
         "title": "Daily Missions"
+      },
+      "mapSection": {
+        "title": "AiGO Map",
+        "openButton": "Open Map"
       }
     },
     "profile": {

@@ -10,6 +10,7 @@ import { appActions } from 'state/app';
 import DailyCheckIn from './DailyCheckIn';
 import Header from './Header';
 import Invite from './Invite';
+import Map from './Map';
 import Social from './Social';
 
 export const HomeScreen = () => {
@@ -47,6 +48,7 @@ export const HomeScreen = () => {
 				<Invite />
 				<DailyCheckIn />
 				{/* <DailyMissions /> */}
+				<Map />
 			</ScrollView>
 		</View>
 	);
