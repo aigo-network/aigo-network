@@ -24,6 +24,7 @@
     "@react-native-google-signin/google-signin": "^11.0.1",
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/stack": "^6.3.29",
+    "@rnmapbox/maps": "^10.1.27",
     "empty-modal": "^0.0.7",
     "graphql": "^16.8.1",
     "graphql-request": "6.1.0",

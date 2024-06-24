@@ -24,6 +24,7 @@ import type { RootStackParamList } from 'utils/navigation';
 
 import 'utils/global';
 import 'utils/auth';
+import 'utils/mapbox';
 
 const Stack = createStackNavigator<RootStackParamList>();
 

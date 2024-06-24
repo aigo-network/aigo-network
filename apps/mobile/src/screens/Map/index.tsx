@@ -1,9 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { MapView } from '@rnmapbox/maps';
 
 export const MapScreen = () => {
 	return (
 		<View style={styles.container}>
-			<Text>Map</Text>
+			<MapView style={styles.map} />
 		</View>
 	);
 };
@@ -11,5 +12,10 @@ export const MapScreen = () => {
 export default MapScreen;
 
 const styles = StyleSheet.create({
-	container: {},
+	container: {
+		flex: 1,
+	},
+	map: {
+		flex: 1,
+	},
 });
