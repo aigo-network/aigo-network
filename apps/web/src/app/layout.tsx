@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { headers } from 'next/headers';
 import { userAgent } from 'next/server';
 
+import AnalyticsProvider from './section/AnalyticsProvider';
 import LayoutClient from './layoutClient';
 import ReactNativeRegistry from './registry';
 
@@ -29,7 +30,9 @@ export default async function RootLayout({
 		<html lang="en">
 			<body className={interTight.className}>
 				<ReactNativeRegistry>
-					<LayoutClient reqUserAgent={reqUserAgent}>{children}</LayoutClient>
+					<AnalyticsProvider>
+						<LayoutClient reqUserAgent={reqUserAgent}>{children}</LayoutClient>
+					</AnalyticsProvider>
 				</ReactNativeRegistry>
 			</body>
 		</html>
