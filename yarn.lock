@@ -45,6 +45,7 @@ __metadata:
     "@metacraft/tsconfig": "npm:^0.0.2"
     "@react-native-async-storage/async-storage": "npm:^1.23.1"
     "@react-native-clipboard/clipboard": "npm:^1.14.1"
+    "@react-native-community/geolocation": "npm:^3.2.1"
     "@react-native-firebase/app": "npm:^19.2.2"
     "@react-native-firebase/auth": "npm:^19.2.2"
     "@react-native-google-signin/google-signin": "npm:^11.0.1"
@@ -5839,6 +5840,16 @@ __metadata:
   bin:
     rnc-cli: build/bin.js
   checksum: 10/48366e3ea2b0920e6d4bf8f359c683c330ba27e3cab043296b4cf0d0de9d9cb4a6d5a339957a419ce7e407808172504f6bdbcf6e9335a94c645876b73ab289d3
+  languageName: node
+  linkType: hard
+
+"@react-native-community/geolocation@npm:^3.2.1":
+  version: 3.2.1
+  resolution: "@react-native-community/geolocation@npm:3.2.1"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10/644294f0e70219b154bb9d68b762096ef53bc11c4f3263262dd6772b077b5d1bb328ebfea1a447dc192b9692c5672438f209b1a8d45e54af4fd52dff9424cd14
   languageName: node
   linkType: hard
 
