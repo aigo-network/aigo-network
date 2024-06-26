@@ -4,6 +4,7 @@ import type React from 'react';
 import { useState } from 'react';
 import { AppRegistry } from 'react-native';
 import { useServerInsertedHTML } from 'next/navigation';
+import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
 
 export default function ReactNativeRegistry({
 	children,
@@ -15,10 +16,23 @@ export default function ReactNativeRegistry({
 		// eslint-disable-next-line
 		return (AppRegistry as any).getApplication('Main');
 	});
+	const [styledComponentsStyleSheet] = useState(() => new ServerStyleSheet());
 
 	useServerInsertedHTML(() => {
-		return reactNativeApp.getStyleElement();
+		const styledComponentsStyles = styledComponentsStyleSheet.getStyleElement();
+		styledComponentsStyleSheet.instance.clearTag();
+		const reactNativeStyle = reactNativeApp.getStyleElement();
+		return (
+			<>
+				{styledComponentsStyles}
+				{reactNativeStyle}
+			</>
+		);
 	});
 
-	return children;
+	return (
+		<StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
+			{children}
+		</StyleSheetManager>
+	);
 }

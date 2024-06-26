@@ -1,17 +1,17 @@
 import { Text, TextInput } from 'react-native';
 import { setDefaultProps } from '@aigo/config';
 
-import { interTight } from './style';
+import { dmSans } from './style';
 
 setDefaultProps(Text, {
 	style: {
-		fontFamily: interTight.style.fontFamily,
+		fontFamily: dmSans.style.fontFamily,
 		color: '#fff',
 	},
 });
 setDefaultProps(TextInput, {
 	style: {
-		fontFamily: interTight.style.fontFamily,
+		fontFamily: dmSans.style.fontFamily,
 		color: '#fff',
 	},
 });

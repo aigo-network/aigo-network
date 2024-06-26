@@ -20,6 +20,7 @@ const nextConfig = {
 		'react-native',
 		'react-native-reanimated',
 		'react-native-qrcode-svg',
+		'react-native-linear-gradient',
 		'empty-modal',
 	],
 	webpack: (config, { dev }) => {
@@ -29,6 +30,7 @@ const nextConfig = {
 		config.resolve.alias = {
 			...(config.resolve.alias || {}),
 			'react-native$': 'react-native-web',
+			'react-native-linear-gradient': 'react-native-web-linear-gradient',
 		};
 
 		config.resolve.extensions = [
@@ -60,6 +62,9 @@ const nextConfig = {
 		);
 
 		return config;
+	},
+	compiler: {
+		styledComponents: true,
 	},
 };
 

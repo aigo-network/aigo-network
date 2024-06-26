@@ -19,14 +19,14 @@ interface Props {
 
 const Header: FC<Props> = ({ style }) => {
 	const isMobile = useIsMobile();
-	const { authUser, isAuthLoading, user } = useSnapshot(appState);
+	const { authUser, isAuthLoading } = useSnapshot(appState);
 
 	return (
 		<View style={[styles.container, style]}>
 			<View style={styles.innerContainer}>
 				<Link href="https://aigo.network" target="_blank">
 					<TouchableOpacity style={styles.logo}>
-						<AppIcon width={52} color="#acc5ff" />
+						<AppIcon width={52} />
 						{!isMobile && <Text style={styles.logoTxt}>AiGO</Text>}
 					</TouchableOpacity>
 				</Link>
@@ -70,7 +70,6 @@ const Header: FC<Props> = ({ style }) => {
 						user={authUser}
 						isAuthLoading={isAuthLoading}
 						isMobile={isMobile}
-						points={user?.GOPoints || 0}
 					/>
 				</View>
 			</View>
@@ -84,7 +83,7 @@ const styles = StyleSheet.create({
 	container: {},
 	innerContainer: {
 		width: '100%',
-		maxWidth: 1248,
+		maxWidth: 1400,
 		marginHorizontal: 'auto',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
@@ -108,7 +107,6 @@ const styles = StyleSheet.create({
 		paddingVertical: 2,
 		fontWeight: '500',
 		fontSize: 36,
-		color: '#d4e0ff',
 	},
 	rightContainer: {
 		flexDirection: 'row',
