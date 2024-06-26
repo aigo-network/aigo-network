@@ -24,6 +24,7 @@
     "react-native-svg": "^15.3.0",
     "react-native-web": "^0.19.12",
     "react-native-web-linear-gradient": "^1.1.2",
+    "styled-components": "^6.1.11",
     "valtio": "^1.13.2"
   },
   "devDependencies": {
