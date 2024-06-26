@@ -6,6 +6,7 @@ import ChevronDown from '@aigo/components/icon/ChevronDown';
 import ChevronUp from '@aigo/components/icon/ChevronUp';
 import Power from '@aigo/components/icon/Power';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 
 import BlurBackground from './BlurBackground';
 
@@ -44,14 +45,15 @@ export const SignInBundle: FC<Props> = ({ user, isAuthLoading, isMobile }) => {
 	return (
 		<Fragment>
 			{!user?.uid ? (
-				<Button
-					style={[styles.container, styles.buttonContainer]}
-					onPress={handlePress}
-				>
+				<Button style={styles.buttonContainer} onPress={handlePress}>
 					<DynamicLoading isLoading={isAuthLoading}>
-						<Text style={[styles.buttonText, { color: '#000' }]}>
-							Sign In with X
-						</Text>
+						<Text style={styles.buttonText}>Sign In with</Text>
+						<Image
+							src="/x-icon-dark.png"
+							alt="Twitter or X icon"
+							width={18}
+							height={16}
+						/>
 					</DynamicLoading>
 				</Button>
 			) : (
@@ -102,10 +104,12 @@ const styles = StyleSheet.create({
 		gap: 12,
 	},
 	buttonContainer: {
+		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#81ddfb',
-		paddingHorizontal: 32,
+		backgroundColor: '#FFFFFF',
+		paddingHorizontal: 24,
+		gap: 8,
 	},
 	separateLine: {
 		height: 14,
@@ -114,7 +118,9 @@ const styles = StyleSheet.create({
 	},
 	buttonText: {
 		fontSize: 16,
+		fontWeight: '500',
 		lineHeight: 24,
+		color: '#000000',
 	},
 	lightText: {
 		fontSize: 17,

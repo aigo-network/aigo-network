@@ -24,14 +24,8 @@ export default function Home() {
 
 	return (
 		<ModalProvider>
-			<ImageBackground source={{ uri: '/background-img.png' }}>
-				<LinearGradient
-					colors={[
-						'rgba(0, 0, 0, 0.65)',
-						'rgba(0, 0, 0, 0.85)',
-						'rgba(0, 0, 0, 1.0)',
-					]}
-				>
+			<ImageBackground source={backgroundImgSrc}>
+				<LinearGradient colors={backgroundGradients}>
 					<ScrollView style={styles.container}>
 						<Banner isMobile={isMobile} />
 						{/* <QuestBoard isMobile={isMobile} /> */}
@@ -44,10 +38,16 @@ export default function Home() {
 	);
 }
 
+const backgroundImgSrc = { uri: '/background-img.png' };
+const backgroundGradients = [
+	'rgba(0, 0, 0, 0.65)',
+	'rgba(0, 0, 0, 0.85)',
+	'rgba(0, 0, 0, 1.0)',
+];
+
 const styles = StyleSheet.create({
 	container: {
 		height: '100vh' as never,
-		// backgroundColor: '#121212',
 	},
 	background: {
 		position: 'absolute',

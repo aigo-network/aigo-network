@@ -40,7 +40,7 @@ const Header: FC<Props> = ({ style }) => {
 						<Button>
 							<BlurBackground style={styles.socialIcon}>
 								<Image
-									src="/twitter-ic.svg"
+									src="/x-icon.png"
 									alt="Twitter or X icon"
 									width={22}
 									height={20}
@@ -65,7 +65,6 @@ const Header: FC<Props> = ({ style }) => {
 					{/* 		<Text style={styles.downloadText}>Download AiGO</Text> */}
 					{/* 	</BlurBackground> */}
 					{/* </Button> */}
-					{!isMobile && <View style={styles.separateLine} />}
 					<SignInBundle
 						user={authUser}
 						isAuthLoading={isAuthLoading}
