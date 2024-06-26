@@ -3,11 +3,16 @@ import type { ColorValue } from 'react-native';
 import { Path, Svg } from 'react-native-svg';
 
 type Props = {
-	width: number;
-	color: ColorValue;
+	width?: number;
+	color?: ColorValue;
+	fill?: boolean;
 };
 
-export const Copy: FC<Props> = ({ color, width = 10 }) => {
+export const Copy: FC<Props> = ({
+	color = 'white',
+	width = 10,
+	fill = false,
+}) => {
 	const height = width;
 
 	return (
@@ -17,6 +22,7 @@ export const Copy: FC<Props> = ({ color, width = 10 }) => {
 				stroke={color}
 				strokeLinecap="round"
 				strokeLinejoin="round"
+				fill={fill ? color : 'transparent'}
 			/>
 			<Path
 				d="M1.17467 9.658C0.97 9.54172 0.799766 9.37332 0.681267 9.16993C0.562767 8.96653 0.500226 8.73539 0.5 8.5V1.83333C0.5 1.1 1.1 0.5 1.83333 0.5H8.5C9 0.5 9.272 0.756667 9.5 1.16667"

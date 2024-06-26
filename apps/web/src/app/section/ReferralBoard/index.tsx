@@ -52,7 +52,7 @@ const ReferralBoard: FC = () => {
 					/>
 				</View>
 				<LinearGradient
-					colors={['rgba(129, 221, 251, 0.1)', 'rgba(98, 91, 246, 0.1)']}
+					colors={['rgba(129, 221, 251, 0.25)', 'rgba(98, 91, 246, 0.25)']}
 					start={{ x: 0, y: 0 }}
 					end={{ x: 1, y: 0 }}
 					style={styles.descriptionContainer}
@@ -62,7 +62,7 @@ const ReferralBoard: FC = () => {
 					</Text>
 				</LinearGradient>
 				<View>
-					<ReferralTag referralCode="AiGO92835e" />
+					<ReferralTag referralCode="AiGO92835e" invited />
 				</View>
 			</View>
 		</BoardLayout>
