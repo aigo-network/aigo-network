@@ -9,7 +9,7 @@ import '@/utils/global';
 
 import Banner from './section/Banner';
 import Footer from './section/Footer';
-import QuestBoard from './section/QuestBoard';
+import ReferralBoard from './section/ReferralBoard';
 
 import { useIsMobile } from '@/hooks/responsive';
 
@@ -34,7 +34,8 @@ export default function Home() {
 				>
 					<ScrollView style={styles.container}>
 						<Banner isMobile={isMobile} />
-						<QuestBoard isMobile={isMobile} />
+						{/* <QuestBoard isMobile={isMobile} /> */}
+						<ReferralBoard />
 						<Footer />
 					</ScrollView>
 				</LinearGradient>
