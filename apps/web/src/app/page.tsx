@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
+import { ImageBackground, ScrollView, StyleSheet } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import { ModalProvider } from 'empty-modal';
 
 import '@/utils/auth';
@@ -23,11 +24,21 @@ export default function Home() {
 
 	return (
 		<ModalProvider>
-			<ScrollView style={styles.container}>
-				<Banner isMobile={isMobile} />
-				<QuestBoard isMobile={isMobile} />
-				<Footer />
-			</ScrollView>
+			<ImageBackground source={{ uri: '/background-img.png' }}>
+				<LinearGradient
+					colors={[
+						'rgba(0, 0, 0, 0.65)',
+						'rgba(0, 0, 0, 0.85)',
+						'rgba(0, 0, 0, 1.0)',
+					]}
+				>
+					<ScrollView style={styles.container}>
+						<Banner isMobile={isMobile} />
+						<QuestBoard isMobile={isMobile} />
+						<Footer />
+					</ScrollView>
+				</LinearGradient>
+			</ImageBackground>
 		</ModalProvider>
 	);
 }
@@ -35,5 +46,14 @@ export default function Home() {
 const styles = StyleSheet.create({
 	container: {
 		height: '100vh' as never,
+		// backgroundColor: '#121212',
+	},
+	background: {
+		position: 'absolute',
+		width: '100%',
+		height: 'auto',
+	},
+	contentContainer: {
+		height: '100%',
 	},
 });
