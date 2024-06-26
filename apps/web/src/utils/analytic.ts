@@ -1,8 +1,15 @@
-import { getAnalytics, logEvent } from 'firebase/analytics';
+import { getAnalytics, isSupported, logEvent } from 'firebase/analytics';
 
 import { app } from './auth';
 
-export const analytics = app ? getAnalytics(app) : null;
+/* eslint-disable-next-line */
+let analytics: any;
+
+isSupported().then((supported) => {
+	if (supported) {
+		analytics = app ? getAnalytics(app) : null;
+	}
+});
 
 export const tracker = {
 	logEvents: (name: string, params: Record<string, unknown>) => {
