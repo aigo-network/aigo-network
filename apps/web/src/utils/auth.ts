@@ -21,7 +21,7 @@ const firebaseConfig = {
 	messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
 };
 
-initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 const googleProvider = new GoogleAuthProvider();
 const twitterProvider = new TwitterAuthProvider();
 export const auth = getAuth();

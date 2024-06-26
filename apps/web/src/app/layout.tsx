@@ -9,6 +9,7 @@ import ReactNativeRegistry from './registry';
 
 import './globals.css';
 
+import { useScreenAnalytic } from '@/hooks/analytic';
 import { interTight } from '@/utils/style';
 
 export const generateMetadata = async (): Promise<Metadata> => {
@@ -24,6 +25,8 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }>) {
 	const reqUserAgent = userAgent({ headers: headers() });
+
+	useScreenAnalytic();
 
 	return (
 		<html lang="en">

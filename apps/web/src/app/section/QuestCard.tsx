@@ -8,6 +8,7 @@ import type { CompleteQuestFunction } from './shared';
 
 import Button from '@/components/Button';
 import { appActions } from '@/state/app';
+import { tracker } from '@/utils/analytic';
 import { ensureFarmingProfile } from '@/utils/helper';
 
 interface Props {
@@ -42,6 +43,10 @@ const QuestCard: FC<Props> = ({
 			const result = (await onCheckPress?.(questId || '')) || {};
 			setVerified(result?.completed || false);
 			appActions.queryAndUpdateGOPoints();
+			tracker.logEvents('verify_quest', {
+				questId,
+				questType: type,
+			});
 		} else {
 			onActionPress?.();
 			setCompleted(type ? appActions.getStateByQuestType(type) : true);
