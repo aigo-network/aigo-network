@@ -13,7 +13,7 @@ import { appState } from '@/state/app';
 import { righteous } from '@/utils/style';
 
 const ReferralBoard: FC = () => {
-	const { user } = useSnapshot(appState);
+	const { user, web3FarmingProfile } = useSnapshot(appState);
 
 	return (
 		<BoardLayout
@@ -61,8 +61,22 @@ const ReferralBoard: FC = () => {
 						<Text style={{ color: '#81ddfb' }}>+150</Text> GO POINTS / REFERRAL
 					</Text>
 				</LinearGradient>
-				<View>
-					<ReferralTag referralCode="AiGO92835e" invited />
+				<View style={styles.referralCodeContainer}>
+					{web3FarmingProfile?.referralCodes?.map((referral) => (
+						<ReferralTag
+							key={referral?.code}
+							referralCode={referral?.code || ''}
+							invited={!!referral?.invitedId}
+						/>
+					))}
+
+					{/* Mock component to help styled-component detect css style */}
+					{!web3FarmingProfile?.referralCodes?.[0] && (
+						<ReferralTag referralCode="AiGO-J3KL52" />
+					)}
+					<Text style={styles.explain}>
+						New codes will be available once all codes are used!
+					</Text>
 				</View>
 			</View>
 		</BoardLayout>
@@ -114,5 +128,15 @@ const styles = StyleSheet.create({
 		fontSize: 18,
 		fontWeight: '600',
 		lineHeight: 24,
+	},
+	referralCodeContainer: {
+		gap: 16,
+	},
+	explain: {
+		paddingVertical: 22,
+		textAlign: 'center',
+		lineHeight: 20,
+		fontWeight: '500',
+		color: '#444649',
 	},
 });

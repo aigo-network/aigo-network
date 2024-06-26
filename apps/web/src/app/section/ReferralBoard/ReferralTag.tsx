@@ -1,5 +1,5 @@
 import { type FC, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Copy from '@aigo/components/icon/Copy';
 
 import Tag from '@/components/Tag';
@@ -14,28 +14,29 @@ const ReferralTag: FC<Props> = ({ referralCode, invited }) => {
 	const onHover = (hovered: boolean) => {
 		setIsHovered(hovered);
 	};
+	const onPress = () => {
+		navigator.clipboard.writeText(referralCode);
+	};
 
 	return (
-		<TouchableOpacity onPress={() => {}}>
-			<Tag onHover={onHover}>
-				<View style={styles.container} pointerEvents="none">
-					<Text style={[styles.code, invited && { color: '#444649' }]}>
-						{referralCode}
-					</Text>
-					<View style={styles.suffixContainer}>
-						{invited ? (
-							<Text style={styles.used}>Used</Text>
-						) : (
-							<Copy
-								width={17}
-								color={isHovered ? '#81ddfb' : '#707174'}
-								fill={isHovered}
-							/>
-						)}
-					</View>
+		<Tag onHover={onHover} onPress={onPress} disabled={invited}>
+			<View style={styles.container}>
+				<Text style={[styles.code, invited && { color: '#444649' }]}>
+					{referralCode}
+				</Text>
+				<View style={styles.suffixContainer}>
+					{invited ? (
+						<Text style={styles.used}>Used</Text>
+					) : (
+						<Copy
+							width={17}
+							color={isHovered ? '#81ddfb' : '#707174'}
+							fill={isHovered}
+						/>
+					)}
 				</View>
-			</Tag>
-		</TouchableOpacity>
+			</View>
+		</Tag>
 	);
 };
 
@@ -49,6 +50,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		gap: 24,
 		width: '100%',
+		pointerEvents: 'none',
 	},
 	code: {
 		paddingLeft: 8,
