@@ -22,15 +22,9 @@ interface Props {
 	user?: AuthUser;
 	isAuthLoading?: boolean;
 	isMobile?: boolean;
-	points?: number | undefined;
 }
 
-export const SignInBundle: FC<Props> = ({
-	user,
-	isAuthLoading,
-	isMobile,
-	points = 0,
-}) => {
+export const SignInBundle: FC<Props> = ({ user, isAuthLoading, isMobile }) => {
 	const [showDropdown, setShowDropdown] = useState(false);
 
 	const handlePress = () => {
@@ -55,7 +49,9 @@ export const SignInBundle: FC<Props> = ({
 					onPress={handlePress}
 				>
 					<DynamicLoading isLoading={isAuthLoading}>
-						<Text style={[styles.buttonText, { color: '#000' }]}>Sign In</Text>
+						<Text style={[styles.buttonText, { color: '#000' }]}>
+							Sign In with X
+						</Text>
 					</DynamicLoading>
 				</Button>
 			) : (
@@ -66,8 +62,6 @@ export const SignInBundle: FC<Props> = ({
 						displayTextStyle={styles.lightText}
 						displayText={user.name}
 					/>
-					{!isMobile && <View style={styles.separateLine} />}
-					<Text style={styles.lightText}>{points || 0} GO</Text>
 					<TouchableOpacity
 						hitSlop={34}
 						onPress={() => setShowDropdown((l) => !l)}
@@ -110,7 +104,7 @@ const styles = StyleSheet.create({
 	buttonContainer: {
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: '#fff',
+		backgroundColor: '#81ddfb',
 		paddingHorizontal: 32,
 	},
 	separateLine: {
@@ -123,7 +117,6 @@ const styles = StyleSheet.create({
 		lineHeight: 24,
 	},
 	lightText: {
-		color: '#fff',
 		fontSize: 17,
 		lineHeight: 24,
 	},
