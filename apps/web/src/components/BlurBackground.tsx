@@ -22,9 +22,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 		borderWidth: 1,
-		borderColor: 'rgba(255, 255, 255, 0.2)',
+		borderColor: 'rgba(255, 255, 255, 0.08)',
 		backgroundColor: 'rgba(255, 255, 255, 0.16)',
-		// width: '100%',
-		// height: '100%',
 	},
 });
