@@ -16113,6 +16113,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-linear-gradient@npm:^2.8.3":
+  version: 2.8.3
+  resolution: "react-native-linear-gradient@npm:2.8.3"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10/db18c7ae4b68afe8b6f12c67defeeccda7a3cff4ee14a0b2d92ff2581d53bd2e65bf29837cf2828abb3d8d1f3cef3f808e8cc1c5d4c8da5dd6f1d09e2b9c2c55
+  languageName: node
+  linkType: hard
+
 "react-native-localize@npm:^3.1.0":
   version: 3.2.0
   resolution: "react-native-localize@npm:3.2.0"
@@ -16229,6 +16239,15 @@ __metadata:
   version: 2.0.2
   resolution: "react-native-uuid@npm:2.0.2"
   checksum: 10/f9abcd2ae5d35e037dd26d5abfc684c0bfba6494b92a835b89f90fb9fe932d96d94c3ea9ec23fa79b46d5246e7a8689db88e174ba6044f3724ea3476e3348ccc
+  languageName: node
+  linkType: hard
+
+"react-native-web-linear-gradient@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "react-native-web-linear-gradient@npm:1.1.2"
+  peerDependencies:
+    react-native-web: "*"
+  checksum: 10/1a9f76f32bcd3c4bd27513cd7fbd25ad807754457cd304eafd5957bf33fe37d85c377fe48edd189eacc861d274a61eac389842a448154f4b45709aa918c81e16
   languageName: node
   linkType: hard
 
@@ -18563,10 +18582,12 @@ __metadata:
     react: "npm:18.2.0"
     react-dom: "npm:18.2.0"
     react-native: "npm:0.74.1"
+    react-native-linear-gradient: "npm:^2.8.3"
     react-native-qrcode-svg: "npm:^6.3.1"
     react-native-reanimated: "npm:3.11.0"
     react-native-svg: "npm:^15.3.0"
     react-native-web: "npm:^0.19.12"
+    react-native-web-linear-gradient: "npm:^1.1.2"
     sst: "npm:^2.43.2"
     typescript: "npm:5.4.5"
     valtio: "npm:^1.13.2"
