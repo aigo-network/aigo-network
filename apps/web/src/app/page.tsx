@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { ImageBackground, ScrollView, StyleSheet } from 'react-native';
+import { ImageBackground, ScrollView, StyleSheet, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { ModalProvider } from 'empty-modal';
 
@@ -9,6 +9,7 @@ import '@/utils/global';
 
 import Banner from './section/Banner';
 import Footer from './section/Footer';
+import MissionBoard from './section/MissionBoard';
 import ReferralBoard from './section/ReferralBoard';
 
 import { useIsMobile } from '@/hooks/responsive';
@@ -29,7 +30,10 @@ export default function Home() {
 					<ScrollView style={styles.container}>
 						<Banner isMobile={isMobile} />
 						{/* <QuestBoard isMobile={isMobile} /> */}
-						<ReferralBoard />
+						<View style={styles.groupBoard}>
+							<ReferralBoard />
+							<MissionBoard />
+						</View>
 						<Footer />
 					</ScrollView>
 				</LinearGradient>
@@ -56,5 +60,15 @@ const styles = StyleSheet.create({
 	},
 	contentContainer: {
 		height: '100%',
+	},
+	groupBoard: {
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		alignSelf: 'center',
+		justifyContent: 'center',
+		gap: 24,
+		maxWidth: 1250,
+		paddingHorizontal: 25,
+		width: '100%',
 	},
 });

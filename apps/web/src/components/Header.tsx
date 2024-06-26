@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
 	container: {},
 	innerContainer: {
 		width: '100%',
-		maxWidth: 1400,
+		maxWidth: 1200,
 		marginHorizontal: 'auto',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
