@@ -5,13 +5,20 @@ import MissionTag from './MissionTag';
 
 import BoardLayout from '@/components/BoardLayout';
 
-const MissionBoard: FC = () => {
+type Props = {
+	isMobile?: boolean;
+};
+
+const MissionBoard: FC<Props> = ({ isMobile }) => {
 	return (
 		<BoardLayout
 			style={styles.container}
-			contentContainerStyle={styles.contentContainer}
+			contentContainerStyle={[
+				styles.contentContainer,
+				isMobile && styles.mobileContainer,
+			]}
 			title="Quests"
-			subTitle={'Complete all the tasks below to gain more go points'.toUpperCase()}
+			subTitle="COMPLETE ALL THE TASKS BELOW TO GAIN MORE GO POINTS"
 		>
 			<View style={styles.missionGroup}>
 				<MissionTag />
@@ -24,15 +31,19 @@ export default MissionBoard;
 
 const styles = StyleSheet.create({
 	container: {
-		minWidth: 450,
-		flex: 1,
+		flex: 2,
+		minWidth: 320,
+	},
+	mobileContainer: {
+		minWidth: 0,
 	},
 	contentContainer: {
-		height: '100%',
+		flex: 1,
+		paddingHorizontal: 24,
+		paddingBottom: 24,
 	},
 	missionGroup: {
 		gap: 16,
 		marginTop: 32,
-		paddingHorizontal: 24,
 	},
 });

@@ -30,7 +30,7 @@ export default function Home() {
 					<ScrollView style={styles.container}>
 						<Banner isMobile={isMobile} />
 						{/* <QuestBoard isMobile={isMobile} /> */}
-						<View style={styles.groupBoard}>
+						<View style={[styles.groupBoard, isMobile && styles.mobileBoard]}>
 							<ReferralBoard />
 							<MissionBoard />
 						</View>
@@ -62,13 +62,17 @@ const styles = StyleSheet.create({
 		height: '100%',
 	},
 	groupBoard: {
+		width: '100%',
+		maxWidth: 1280,
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 		alignSelf: 'center',
 		justifyContent: 'center',
-		gap: 24,
-		maxWidth: 1250,
-		paddingHorizontal: 25,
-		width: '100%',
+		paddingHorizontal: 18,
+		gap: 18,
+	},
+	mobileBoard: {
+		paddingHorizontal: 12,
+		gap: 12,
 	},
 });

@@ -14,7 +14,7 @@ const MissionTag = () => {
 					<Text style={styles.point}>+300 GO</Text>
 				</View>
 				<View style={styles.icon}>
-					<ChevronUp width={20} color="White" />
+					<ChevronUp width={20} color="#999999" />
 				</View>
 			</View>
 		</Tag>
@@ -28,12 +28,12 @@ const styles = StyleSheet.create({
 		width: '100%',
 		flexDirection: 'row',
 		alignItems: 'center',
-		gap: 24,
-		paddingHorizontal: 24,
+		paddingHorizontal: 18,
 		paddingVertical: 16,
 	},
 	descriptionContainer: {
 		flex: 1,
+		paddingHorizontal: 12,
 	},
 	description: {
 		fontSize: 20,

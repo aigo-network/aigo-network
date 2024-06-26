@@ -10,20 +10,19 @@ import BlurBackground from './BlurBackground';
 import Button from './Button';
 import SignInBundle from './SignInBundle';
 
-import { useIsMobile } from '@/hooks/responsive';
 import { appState } from '@/state/app';
 
-interface Props {
+type Props = {
+	isMobile?: boolean;
 	style?: StyleProp<ViewStyle> | StyleProp<ViewStyle>[];
-}
+};
 
-const Header: FC<Props> = ({ style }) => {
-	const isMobile = useIsMobile();
+const Header: FC<Props> = ({ style, isMobile }) => {
 	const { authUser, isAuthLoading } = useSnapshot(appState);
 
 	return (
 		<View style={[styles.container, style]}>
-			<View style={styles.innerContainer}>
+			<View style={[styles.innerContainer, isMobile && styles.mobileInner]}>
 				<Link href="https://aigo.network" target="_blank">
 					<TouchableOpacity style={styles.logo}>
 						<AppIcon width={52} />
@@ -82,11 +81,15 @@ const styles = StyleSheet.create({
 	container: {},
 	innerContainer: {
 		width: '100%',
-		maxWidth: 1200,
+		maxWidth: 1280,
 		marginHorizontal: 'auto',
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
+		paddingHorizontal: 18,
+	},
+	mobileInner: {
+		paddingHorizontal: 12,
 	},
 	pointsText: {
 		fontSize: 20,

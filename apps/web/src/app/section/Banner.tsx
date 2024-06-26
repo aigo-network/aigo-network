@@ -20,7 +20,7 @@ const Banner: FC<Props> = ({ isMobile }) => {
 				<CountDown style={styles.countDown} date={new Date('07-01-2024')} />
 			</View>
 
-			<Header style={[styles.headerContainer, styles.mobileHeaderContainer]} />
+			<Header isMobile={isMobile} style={styles.headerContainer} />
 		</View>
 	);
 };
@@ -33,15 +33,12 @@ const styles = StyleSheet.create({
 		gap: 20,
 	},
 	headerContainer: {
+		zIndex: 99,
 		position: 'absolute',
-		marginHorizontal: 48,
 		paddingVertical: 24,
 		top: 0,
 		left: 0,
 		right: 0,
-	},
-	mobileHeaderContainer: {
-		marginHorizontal: 24,
 	},
 	bannerTitleContainer: {
 		marginTop: 130,
@@ -50,6 +47,7 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
 	},
 	title: {
+		paddingHorizontal: 24,
 		textAlign: 'center',
 		fontSize: 56,
 		fontWeight: '400',

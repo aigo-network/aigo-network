@@ -11,71 +11,80 @@ import BoardLayout from '@/components/BoardLayout';
 import { appState } from '@/state/app';
 import { righteous } from '@/utils/style';
 
-const ReferralBoard: FC = () => {
+type Props = {
+	isMobile?: boolean;
+};
+
+const ReferralBoard: FC<Props> = ({ isMobile }) => {
 	const { user, web3FarmingProfile } = useSnapshot(appState);
 
 	return (
 		<BoardLayout
 			style={styles.container}
-			contentContainerStyle={styles.contentContainer}
+			contentContainerStyle={[
+				styles.contentContainer,
+				isMobile && styles.mobileContainer,
+			]}
 			title="REFERRAL"
 			subTitle="MORE FRIENDS, MORE FUN, MORE GO POINTS!"
 		>
-			<View style={styles.staticGroup}>
-				<StaticCard
-					style={styles.staticCard}
-					value={user?.GOPoints || 0}
-					parameter="# OF GO POINT"
-					icon={
-						<Image
-							src="/diamond-img.png"
-							alt="diamond image"
-							width={32}
-							height={32}
-						/>
-					}
-				/>
-				<View style={styles.separateLine} />
-				<StaticCard
-					style={styles.staticCard}
-					value={12}
-					parameter="SUCCESSFUL REF"
-					icon={
-						<Image
-							src="/shake-hand-img.png"
-							alt="shake hand image"
-							width={32}
-							height={32}
-						/>
-					}
-				/>
-			</View>
-			<LinearGradient
-				colors={['rgba(129, 221, 251, 0.25)', 'rgba(98, 91, 246, 0.25)']}
-				start={{ x: 0, y: 0 }}
-				end={{ x: 1, y: 0 }}
-				style={styles.descriptionContainer}
-			>
-				<Text style={styles.description}>
-					<Text style={{ color: '#81ddfb' }}>+150</Text> GO POINTS / REFERRAL
-				</Text>
-			</LinearGradient>
-			<View style={styles.referralCodeContainer}>
-				{web3FarmingProfile?.referralCodes?.map((referral) => (
-					<ReferralTag
-						key={referral?.code}
-						referralCode={referral?.code || ''}
-						invited={!!referral?.invitedId}
+			<View style={styles.innerContainer}>
+				<View style={styles.staticGroup}>
+					<StaticCard
+						style={styles.staticCard}
+						value={user?.GOPoints || 0}
+						parameter="# OF GO POINT"
+						icon={
+							<Image
+								src="/diamond-img.png"
+								alt="diamond image"
+								width={32}
+								height={32}
+							/>
+						}
 					/>
-				))}
+					<View style={styles.separateLine} />
+					<StaticCard
+						style={styles.staticCard}
+						value={12}
+						parameter="SUCCESSFUL REF"
+						icon={
+							<Image
+								src="/shake-hand-img.png"
+								alt="shake hand image"
+								width={32}
+								height={32}
+							/>
+						}
+					/>
+				</View>
+				<LinearGradient
+					colors={bannerGradients}
+					start={{ x: 0, y: 0 }}
+					end={{ x: 1, y: 0 }}
+					style={styles.descriptionContainer}
+				>
+					<Text style={styles.description}>
+						<Text style={{ color: '#81ddfb' }}>+150</Text> GO POINTS / REFERRAL
+					</Text>
+				</LinearGradient>
+				<View style={styles.referralCodeContainer}>
+					{web3FarmingProfile?.referralCodes?.map((referral) => (
+						<ReferralTag
+							key={referral?.code}
+							referralCode={referral?.code || ''}
+							invited={!!referral?.invitedId}
+						/>
+					))}
 
-				{/* Mock component to help styled-component detect css style */}
-				{!web3FarmingProfile?.referralCodes?.[0] && (
-					<ReferralTag referralCode="AiGO-J3KL52" />
-				)}
-				<Text style={styles.explain}>
-					New codes will be available once all codes are used!
-				</Text>
+					{/* Mock component to help styled-component detect css style */}
+					{!web3FarmingProfile?.referralCodes?.[0] && (
+						<ReferralTag referralCode="AiGO-J3KL52" />
+					)}
+					<Text style={styles.explain}>
+						New codes will be available once all codes are used!
+					</Text>
+				</View>
 			</View>
 		</BoardLayout>
 	);
@@ -83,15 +92,26 @@ const ReferralBoard: FC = () => {
 
 export default ReferralBoard;
 
+const bannerGradients = [
+	'rgba(129, 221, 251, 0.25)',
+	'rgba(98, 91, 246, 0.25)',
+];
+
 const styles = StyleSheet.create({
 	container: {
-		maxWidth: 450,
+		flex: 1,
+		minWidth: 320,
 	},
 	contentContainer: {
+		paddingHorizontal: 24,
+		paddingBottom: 32,
+	},
+	innerContainer: {
 		paddingTop: 32,
-		paddingHorizontal: 25,
-		paddingBottom: 80,
 		gap: 32,
+	},
+	mobileContainer: {
+		minWidth: 0,
 	},
 	staticGroup: {
 		flexDirection: 'row',
