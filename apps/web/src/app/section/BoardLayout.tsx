@@ -1,6 +1,7 @@
 import type { FC, ReactNode } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 import { righteous } from '@/utils/style';
 
@@ -18,11 +19,14 @@ const BoardLayout: FC<Props> = ({
 	style,
 }) => {
 	return (
-		<View style={[styles.container, style]}>
+		<LinearGradient
+			colors={['#1e2124', '#060a0d']}
+			style={[styles.container, style]}
+		>
 			<Text style={styles.title}>{title}</Text>
 			{subTitle && <Text style={styles.subTitle}>{subTitle}</Text>}
 			{children}
-		</View>
+		</LinearGradient>
 	);
 };
 
@@ -30,12 +34,9 @@ export default BoardLayout;
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: '#0a0a0a',
+		borderRadius: 20,
 		borderWidth: 1,
-		borderColor: '#363636',
-		shadowColor: 'rgba(82, 199, 238, 0.3)',
-		shadowRadius: 15,
-		elevation: 6,
+		borderColor: 'rgba(255, 255, 255, 0.1)',
 	},
 	title: {
 		marginTop: 32,
@@ -43,15 +44,17 @@ const styles = StyleSheet.create({
 		color: '#fbfbfb',
 		fontFamily: righteous.style.fontFamily,
 		fontSize: 30,
-		lineHeight: 28,
+		lineHeight: 40,
 		textAlign: 'center',
 	},
 	subTitle: {
 		marginTop: 8,
 		alignSelf: 'center',
-		fontSize: 18,
-		lineHeight: 28,
-		color: 'rgba(251, 251, 251, 0.5)',
+		fontSize: 12,
+		fontWeight: '700',
+		lineHeight: 18,
+		letterSpacing: 12 * 0.06,
+		color: '#707174',
 		textAlign: 'center',
 	},
 });

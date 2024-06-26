@@ -20,9 +20,16 @@ export default ReferralTag;
 const styles = StyleSheet.create({
 	container: {
 		shadowColor: 'rgba(82, 199, 238, 0.2)',
-		shadowRadius: 8,
+		shadowRadius: 12,
 		elevation: 6,
 		borderWidth: 0.5,
 		borderColor: '#858585',
+		borderRadius: 5,
+		flexDirection: 'row',
+		alignItems: 'center',
+	},
+	code: {
+		lineHeight: 28,
+		marginLeft: 16,
 	},
 });
