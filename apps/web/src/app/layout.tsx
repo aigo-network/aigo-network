@@ -4,12 +4,12 @@ import type { Metadata } from 'next';
 import { headers } from 'next/headers';
 import { userAgent } from 'next/server';
 
-import AnalyticsProvider from './section/AnalyticsProvider';
 import LayoutClient from './layoutClient';
 import ReactNativeRegistry from './registry';
 
 import './globals.css';
 
+import { useScreenAnalytic } from '@/hooks/analytic';
 import { interTight } from '@/utils/style';
 
 export const generateMetadata = async (): Promise<Metadata> => {
@@ -26,13 +26,13 @@ export default async function RootLayout({
 }>) {
 	const reqUserAgent = userAgent({ headers: headers() });
 
+	useScreenAnalytic();
+
 	return (
 		<html lang="en">
 			<body className={interTight.className}>
 				<ReactNativeRegistry>
-					<AnalyticsProvider>
-						<LayoutClient reqUserAgent={reqUserAgent}>{children}</LayoutClient>
-					</AnalyticsProvider>
+					<LayoutClient reqUserAgent={reqUserAgent}>{children}</LayoutClient>
 				</ReactNativeRegistry>
 			</body>
 		</html>
