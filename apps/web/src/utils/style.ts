@@ -1,4 +1,4 @@
-import { Inter_Tight, Poppins, Righteous } from 'next/font/google';
+import { DM_Sans, Inter_Tight, Poppins, Righteous } from 'next/font/google';
 
 export const interTight = Inter_Tight({ subsets: ['latin'] });
 export const poppins = Poppins({
@@ -6,3 +6,4 @@ export const poppins = Poppins({
 	weight: ['400', '500', '600', '700'],
 });
 export const righteous = Righteous({ subsets: ['latin'], weight: ['400'] });
+export const dmSans = DM_Sans({ subsets: ['latin'] });
