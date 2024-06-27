@@ -123,10 +123,15 @@ export const getWeb3FarmingProfile = gql`
 			invitedBy
 			quests {
 				id
+				title
+				description
 				GOPoints
+				type
+				URL
+				androidDownloadLink
+				appleDownloadLink
 				completed
 				createdAt
-				type
 			}
 			referralCodes {
 				id

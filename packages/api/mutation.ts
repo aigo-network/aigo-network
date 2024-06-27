@@ -109,9 +109,14 @@ export const web3FarmingInitProfile = gql`
 			invitedBy
 			quests {
 				id
+				type
+				title
+				description
+				URL
+				androidDownloadLink
+				appleDownloadLink
 				GOPoints
 				completed
-				type
 			}
 			referralCodes {
 				id
@@ -129,11 +134,14 @@ export const web3FarmingVerifyQuestAndClaimPoints = gql`
 	mutation web3FarmingVerifyQuestAndClaimPoints($questId: String) {
 		web3FarmingVerifyQuestAndClaimPoints(questId: $questId) {
 			id
+			type
+			title
+			description
+			URL
+			androidDownloadLink
+			appleDownloadLink
 			GOPoints
 			completed
-			completedAt
-			createdAt
-			type
 		}
 	}
 `;

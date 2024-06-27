@@ -246,14 +246,14 @@ export type Web3FarmingInitProfileMutationVariables = Exact<{
 }>;
 
 
-export type Web3FarmingInitProfileMutation = { __typename?: 'RootMutation', web3FarmingInitProfile?: { __typename?: 'Web3FarmingProfile', id?: string | null, createdAt?: any | null, invitedBy?: string | null, quests?: Array<{ __typename?: 'Web3FarmingQuest', id?: string | null, GOPoints?: number | null, completed?: boolean | null, type?: Web3FarmingQuestType | null } | null> | null, referralCodes?: Array<{ __typename?: 'Web3FarmingReferralCode', id?: string | null, code?: string | null, invitedId?: string | null, invitedDate?: any | null, invitedGOPoints?: number | null, referrerGOPoints?: number | null } | null> | null } | null };
+export type Web3FarmingInitProfileMutation = { __typename?: 'RootMutation', web3FarmingInitProfile?: { __typename?: 'Web3FarmingProfile', id?: string | null, createdAt?: any | null, invitedBy?: string | null, quests?: Array<{ __typename?: 'Web3FarmingQuest', id?: string | null, type?: Web3FarmingQuestType | null, title?: string | null, description?: string | null, URL?: string | null, androidDownloadLink?: string | null, appleDownloadLink?: string | null, GOPoints?: number | null, completed?: boolean | null } | null> | null, referralCodes?: Array<{ __typename?: 'Web3FarmingReferralCode', id?: string | null, code?: string | null, invitedId?: string | null, invitedDate?: any | null, invitedGOPoints?: number | null, referrerGOPoints?: number | null } | null> | null } | null };
 
 export type Web3FarmingVerifyQuestAndClaimPointsMutationVariables = Exact<{
   questId?: InputMaybe<Scalars['String']['input']>;
 }>;
 
 
-export type Web3FarmingVerifyQuestAndClaimPointsMutation = { __typename?: 'RootMutation', web3FarmingVerifyQuestAndClaimPoints?: { __typename?: 'Web3FarmingQuest', id?: string | null, GOPoints?: number | null, completed?: boolean | null, completedAt?: any | null, createdAt?: any | null, type?: Web3FarmingQuestType | null } | null };
+export type Web3FarmingVerifyQuestAndClaimPointsMutation = { __typename?: 'RootMutation', web3FarmingVerifyQuestAndClaimPoints?: { __typename?: 'Web3FarmingQuest', id?: string | null, type?: Web3FarmingQuestType | null, title?: string | null, description?: string | null, URL?: string | null, androidDownloadLink?: string | null, appleDownloadLink?: string | null, GOPoints?: number | null, completed?: boolean | null } | null };
 
 export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -278,7 +278,7 @@ export type GetUserWithWeb3FarmingProfileQuery = { __typename?: 'RootQuery', use
 export type GetWeb3FarmingProfileQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetWeb3FarmingProfileQuery = { __typename?: 'RootQuery', web3FarmingProfile?: { __typename?: 'Web3FarmingProfile', id?: string | null, createdAt?: any | null, invitedBy?: string | null, quests?: Array<{ __typename?: 'Web3FarmingQuest', id?: string | null, GOPoints?: number | null, completed?: boolean | null, createdAt?: any | null, type?: Web3FarmingQuestType | null } | null> | null, referralCodes?: Array<{ __typename?: 'Web3FarmingReferralCode', id?: string | null, code?: string | null, invitedId?: string | null, invitedDate?: any | null, invitedGOPoints?: number | null, referrerGOPoints?: number | null } | null> | null } | null };
+export type GetWeb3FarmingProfileQuery = { __typename?: 'RootQuery', web3FarmingProfile?: { __typename?: 'Web3FarmingProfile', id?: string | null, createdAt?: any | null, invitedBy?: string | null, quests?: Array<{ __typename?: 'Web3FarmingQuest', id?: string | null, title?: string | null, description?: string | null, GOPoints?: number | null, type?: Web3FarmingQuestType | null, URL?: string | null, androidDownloadLink?: string | null, appleDownloadLink?: string | null, completed?: boolean | null, createdAt?: any | null } | null> | null, referralCodes?: Array<{ __typename?: 'Web3FarmingReferralCode', id?: string | null, code?: string | null, invitedId?: string | null, invitedDate?: any | null, invitedGOPoints?: number | null, referrerGOPoints?: number | null } | null> | null } | null };
 
 
 export const UpdateProfileDocument = gql`
@@ -383,9 +383,14 @@ export const Web3FarmingInitProfileDocument = gql`
     invitedBy
     quests {
       id
+      type
+      title
+      description
+      URL
+      androidDownloadLink
+      appleDownloadLink
       GOPoints
       completed
-      type
     }
     referralCodes {
       id
@@ -402,11 +407,14 @@ export const Web3FarmingVerifyQuestAndClaimPointsDocument = gql`
     mutation web3FarmingVerifyQuestAndClaimPoints($questId: String) {
   web3FarmingVerifyQuestAndClaimPoints(questId: $questId) {
     id
+    type
+    title
+    description
+    URL
+    androidDownloadLink
+    appleDownloadLink
     GOPoints
     completed
-    completedAt
-    createdAt
-    type
   }
 }
     `;
@@ -529,10 +537,15 @@ export const GetWeb3FarmingProfileDocument = gql`
     invitedBy
     quests {
       id
+      title
+      description
       GOPoints
+      type
+      URL
+      androidDownloadLink
+      appleDownloadLink
       completed
       createdAt
-      type
     }
     referralCodes {
       id
