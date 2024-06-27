@@ -1,5 +1,11 @@
-import { type FC, useState } from 'react';
+import type { FC } from 'react';
+import { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Animated, {
+	useAnimatedStyle,
+	useSharedValue,
+	withTiming,
+} from 'react-native-reanimated';
 import Copy from '@aigo/components/icon/Copy';
 import Tick from '@aigo/components/icon/Tick';
 
@@ -10,14 +16,26 @@ interface Props {
 	invited?: boolean;
 }
 
+const AnimatedText = Animated.createAnimatedComponent(Text);
+
 const ReferralTag: FC<Props> = ({ referralCode, invited }) => {
+	const opacity = useSharedValue(0);
 	const [isHovered, setIsHovered] = useState(false);
 	const onHover = (hovered: boolean) => {
 		setIsHovered(hovered);
 	};
 	const onPress = () => {
+		opacity.value = 1;
 		navigator.clipboard.writeText(referralCode);
+		setTimeout(() => {
+			opacity.value = 0;
+		}, 3000);
 	};
+	const copiedAnimatedStyle = useAnimatedStyle(() => {
+		return {
+			opacity: withTiming(opacity.value),
+		};
+	}, [opacity]);
 
 	return (
 		<View style={{ opacity: invited ? 0.25 : 1 }}>
@@ -27,6 +45,9 @@ const ReferralTag: FC<Props> = ({ referralCode, invited }) => {
 						{referralCode}
 					</Text>
 					<View style={styles.suffixContainer}>
+						<AnimatedText style={[styles.copiedText, copiedAnimatedStyle]}>
+							Copied
+						</AnimatedText>
 						{invited ? (
 							<View style={styles.tickBackground}>
 								<Tick width={12} color="#000000" />
@@ -66,6 +87,9 @@ const styles = StyleSheet.create({
 	},
 	suffixContainer: {
 		paddingHorizontal: 16,
+		flexDirection: 'row',
+		alignItems: 'center',
+		gap: 12,
 	},
 	used: {
 		fontWeight: '700',
@@ -79,5 +103,9 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 		backgroundColor: '#82ddfb',
+	},
+	copiedText: {
+		color: '#707174',
+		fontSize: 16,
 	},
 });

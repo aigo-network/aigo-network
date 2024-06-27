@@ -33,7 +33,7 @@ const ReferralBoard: FC<Props> = ({ isMobile }) => {
 					<StaticCard
 						style={styles.staticCard}
 						value={user?.GOPoints || 0}
-						parameter="# OF GO POINT"
+						parameter="GO POINT"
 						icon={
 							<Image
 								src="/diamond-img.png"
