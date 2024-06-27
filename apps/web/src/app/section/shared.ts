@@ -108,7 +108,7 @@ export const getIcon: (type: Web3FarmingQuestType) => {
 		case Web3FarmingQuestType.JoinDiscord:
 			return { Component: Discord, props: { width: 30 } };
 		case Web3FarmingQuestType.JoinTelegram:
-			return { Component: Telegram, props: { width: 30 } };
+			return { Component: Telegram, props: { width: 30, color: '#ffffff' } };
 		default:
 			return { Component: AigoLogo, props: { width: 30, color: '#ffffff' } };
 	}

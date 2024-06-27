@@ -33,7 +33,7 @@ const MissionBoard: FC<Props> = ({ isMobile }) => {
 					web3FarmingProfile?.quests
 						?.filter((quest) => !quest?.completed)
 						?.map((quest) => {
-							const { id, type, description, GOPoints } = quest || {};
+							const { id, type, description, title, GOPoints } = quest || {};
 							const onPress = quest ? getAction(quest) : undefined;
 							const { Component, props } = (type && getIcon(type)) || {};
 							return (
@@ -41,7 +41,7 @@ const MissionBoard: FC<Props> = ({ isMobile }) => {
 									key={id}
 									id={id || ''}
 									type={type as Web3FarmingQuestType}
-									description={description || ''}
+									description={description || title || ''}
 									point={GOPoints || 0}
 									prefix={Component && <Component {...props} />}
 									onPress={onPress}

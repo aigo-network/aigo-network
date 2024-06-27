@@ -131,6 +131,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 16,
 		paddingVertical: 6,
 		backgroundColor: '#81ddfb',
+		pointerEvents: 'box-only',
 	},
 	checkText: {
 		fontFamily: clashDisplay.style.fontFamily,
