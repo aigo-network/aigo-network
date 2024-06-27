@@ -1,21 +1,24 @@
-import { type FC, useMemo } from 'react';
-import { useSnapshot } from 'valtio';
+import type { FC } from 'react';
+import { useMemo } from 'react';
 
 import DesktopInner from './DesktopInner';
 import MobileInner from './MobileInner';
-import { getDownloadLinks } from './shared';
+import { getStore } from './shared';
 
-import { appState } from '@/state/app';
 import { isMobileBrowser } from '@/utils/helper';
 
-export const ShowAppDownloadModal: FC = () => {
-	const { user } = useSnapshot(appState);
-	const downloadLinks = useMemo(() => getDownloadLinks(user as never), [user]);
+interface Props {
+	playStore: string;
+	appStore: string;
+}
+
+export const ShowAppDownloadModal: FC<Props> = ({ playStore, appStore }) => {
+	const stores = useMemo(() => getStore(), []);
 
 	return isMobileBrowser() ? (
-		<MobileInner links={downloadLinks} />
+		<MobileInner stores={stores} appStore={appStore} playStore={playStore} />
 	) : (
-		<DesktopInner user={user as never} links={downloadLinks} />
+		<DesktopInner stores={stores} appStore={appStore} playStore={playStore} />
 	);
 };
 

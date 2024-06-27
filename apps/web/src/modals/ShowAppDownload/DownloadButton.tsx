@@ -4,13 +4,13 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import ChevronUp from '@aigo/components/icon/ChevronUp';
 import Image from 'next/image';
 
-import type { DownloadOption } from './shared';
+import type { StoreOption } from './shared';
 
 interface Props {
 	style?: StyleProp<ViewStyle>;
-	item: DownloadOption;
+	item: StoreOption;
 	isActive?: boolean;
-	onPress?: (item: DownloadOption) => void;
+	onPress?: (item: StoreOption) => void;
 }
 
 export const DownloadButton: FC<Props> = ({ style, item, onPress }) => {
