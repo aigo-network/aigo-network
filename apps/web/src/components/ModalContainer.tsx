@@ -6,7 +6,7 @@ import Animated, { FadeInDown } from 'react-native-reanimated';
 import CloseIcon from '@aigo/components/icon/CloseIcon';
 
 import { useIsMobile } from '@/hooks/responsive';
-import { righteous } from '@/utils/style';
+import { clashDisplay } from '@/utils/style';
 
 interface Props {
 	style?: StyleProp<ViewStyle>;
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
 	titleText: {
 		fontSize: 24,
 		fontWeight: '500',
-		fontFamily: righteous.style.fontFamily,
+		fontFamily: clashDisplay.style.fontFamily,
 		color: '#ffffff',
 	},
 	subTitleText: {

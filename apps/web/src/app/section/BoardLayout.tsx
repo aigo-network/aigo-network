@@ -3,7 +3,7 @@ import type { StyleProp, ViewStyle } from 'react-native';
 import { StyleSheet, Text } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
-import { righteous } from '@/utils/style';
+import { clashDisplay } from '@/utils/style';
 
 interface Props {
 	children: ReactNode;
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
 		marginTop: 32,
 		alignSelf: 'center',
 		color: '#fbfbfb',
-		fontFamily: righteous.style.fontFamily,
+		fontFamily: clashDisplay.style.fontFamily,
 		fontSize: 30,
 		lineHeight: 40,
 		textAlign: 'center',

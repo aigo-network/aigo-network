@@ -9,7 +9,7 @@ import StaticCard from './StaticCard';
 
 import BoardLayout from '@/components/BoardLayout';
 import { appState } from '@/state/app';
-import { righteous } from '@/utils/style';
+import { clashDisplay } from '@/utils/style';
 
 type Props = {
 	isMobile?: boolean;
@@ -25,7 +25,7 @@ const ReferralBoard: FC<Props> = ({ isMobile }) => {
 				styles.contentContainer,
 				isMobile && styles.mobileContainer,
 			]}
-			title="REFERRAL"
+			title="Referrals"
 			subTitle="MORE FRIENDS, MORE FUN, MORE GO POINTS!"
 		>
 			<View style={styles.innerContainer}>
@@ -79,7 +79,10 @@ const ReferralBoard: FC<Props> = ({ isMobile }) => {
 
 					{/* Mock component to help styled-component detect css style */}
 					{!web3FarmingProfile?.referralCodes?.[0] && (
-						<ReferralTag referralCode="AiGO-J3KL52" />
+						<>
+							<ReferralTag referralCode="AiGO-J3KL52" />
+							<ReferralTag referralCode="AiGO-J3KL52" invited />
+						</>
 					)}
 					<Text style={styles.explain}>
 						New codes will be available once all codes are used!
@@ -138,7 +141,7 @@ const styles = StyleSheet.create({
 	},
 	description: {
 		textAlign: 'center',
-		fontFamily: righteous.style.fontFamily,
+		fontFamily: clashDisplay.style.fontFamily,
 		fontSize: 18,
 		fontWeight: '600',
 		lineHeight: 24,

@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import CountDown from './CountDown';
 
 import Header from '@/components/Header';
-import { righteous } from '@/utils/style';
+import { clashDisplay } from '@/utils/style';
 
 interface Props {
 	isMobile?: boolean;
@@ -50,9 +50,9 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 24,
 		textAlign: 'center',
 		fontSize: 56,
-		fontWeight: '400',
+		fontWeight: '600',
 		lineHeight: 64,
-		fontFamily: righteous.style.fontFamily,
+		fontFamily: clashDisplay.style.fontFamily,
 	},
 	mobileTitle: {
 		fontSize: 32,

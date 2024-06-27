@@ -2,7 +2,7 @@ import type { FC, ReactNode } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { righteous } from '@/utils/style';
+import { clashDisplay } from '@/utils/style';
 
 interface Props {
 	value: number;
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
 	},
 	value: {
 		marginTop: 12,
-		fontFamily: righteous.style.fontFamily,
+		fontFamily: clashDisplay.style.fontFamily,
 		fontSize: 32,
 		fontWeight: '500',
 		lineHeight: 40,
