@@ -12,8 +12,8 @@ export const showImportCode = () => {
 			title="Import Referral Code"
 			subTitle={
 				<Text style={styles.subTitleText}>
-					You need a code to participate. If you don&apos;t have one,{'\n'}can
-					find a code on{' '}
+					You need a code to participate. If you don&apos;t have one, can find a
+					code on{' '}
 					<Link
 						style={styles.linkText}
 						href="https://x.com/AIGO_Network"
@@ -42,6 +42,6 @@ const styles = StyleSheet.create({
 		color: '#707174',
 	},
 	linkText: {
-		color: '#625bf6',
+		color: '#81ddfb',
 	},
 });
