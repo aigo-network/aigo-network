@@ -57,37 +57,38 @@ export const SignInBundle: FC<Props> = ({ user, isAuthLoading, isMobile }) => {
 					</DynamicLoading>
 				</Button>
 			) : (
-				<BlurBackground style={styles.container}>
-					<Avatar
-						withName={!isMobile}
-						imageUrl={user.imageUrl}
-						displayTextStyle={styles.lightText}
-						displayText={user.name}
-					/>
-					<TouchableOpacity
-						hitSlop={34}
-						onPress={() => setShowDropdown((l) => !l)}
-					>
+				<TouchableOpacity
+					hitSlop={34}
+					activeOpacity={0.6}
+					onPress={() => setShowDropdown((l) => !l)}
+				>
+					<BlurBackground style={styles.container}>
+						<Avatar
+							withName={!isMobile}
+							imageUrl={user.imageUrl}
+							displayTextStyle={styles.lightText}
+							displayText={user.name}
+						/>
 						{showDropdown ? (
 							<ChevronUp width={24} color={'#fff'} />
 						) : (
 							<ChevronDown width={24} color={'#fff'} />
 						)}
-					</TouchableOpacity>
-					{showDropdown && (
-						<View style={styles.dropdownContainer}>
-							<View style={styles.innerContainer}>
-								<TouchableOpacity
-									style={styles.disconnectButton}
-									onPress={handlePressDisconnect}
-								>
-									<Power width={24} strokeWidth="2.5" color={'#E15050'} />
-									<Text style={styles.disconnectText}>Disconnect</Text>
-								</TouchableOpacity>
+						{showDropdown && (
+							<View style={styles.dropdownContainer}>
+								<View style={styles.innerContainer}>
+									<TouchableOpacity
+										style={styles.disconnectButton}
+										onPress={handlePressDisconnect}
+									>
+										<Power width={24} strokeWidth="2.5" color={'#E15050'} />
+										<Text style={styles.disconnectText}>Disconnect</Text>
+									</TouchableOpacity>
+								</View>
 							</View>
-						</View>
-					)}
-				</BlurBackground>
+						)}
+					</BlurBackground>
+				</TouchableOpacity>
 			)}
 		</Fragment>
 	);
