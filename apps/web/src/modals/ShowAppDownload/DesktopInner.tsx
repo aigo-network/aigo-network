@@ -1,5 +1,11 @@
 import { type FC, useMemo, useState } from 'react';
-import { Linking, StyleSheet, TouchableOpacity, View } from 'react-native';
+import {
+	Linking,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+} from 'react-native';
 import QrCode from 'react-native-qrcode-svg';
 import type { User } from '@aigo/api/sdk';
 
@@ -27,6 +33,7 @@ export const DesktopInner: FC<Props> = ({ user, links }) => {
 					<QrCode value={activeLink.storeUrl} size={200} />
 				</View>
 			</TouchableOpacity>
+			<Text style={styles.middleTxt}>OR</Text>
 			<View style={styles.buttonsContainer}>
 				{downloadLinks.map((item, i) => {
 					const isActive = item.title === activeLink.title;
@@ -51,6 +58,7 @@ export default DesktopInner;
 const styles = StyleSheet.create({
 	container: {
 		paddingTop: 8,
+		gap: 24,
 	},
 	qrContainer: {
 		alignSelf: 'center',
@@ -62,10 +70,16 @@ const styles = StyleSheet.create({
 		borderRadius: 8,
 		overflow: 'hidden',
 	},
+	middleTxt: {
+		fontWeight: '700',
+		fontSize: 16,
+		lineHeight: 24,
+		color: '#707174',
+		letterSpacing: 16 * 0.02,
+		textAlign: 'center',
+	},
 	buttonsContainer: {
-		marginTop: 24,
-		flexDirection: 'row',
-		gap: 18,
+		gap: 12,
 	},
 	buttonContainer: {
 		flex: 1,
