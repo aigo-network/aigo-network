@@ -1,5 +1,4 @@
 import type { User as AppUser, Web3FarmingProfile } from '@aigo/api/sdk';
-import { Web3FarmingQuestType } from '@aigo/api/sdk';
 import { proxy } from 'valtio';
 
 import packageJson from '../../../package.json';
@@ -28,11 +27,7 @@ export const initialState: AppState = {
 	user: undefined,
 	authUser: undefined,
 	web3FarmingProfile: {
-		quests: [
-			{ id: '1', type: Web3FarmingQuestType.DownloadApp, GOPoints: 600 },
-			{ id: '2', type: Web3FarmingQuestType.LikeTwitterPost, GOPoints: 60 },
-			{ id: '3', type: Web3FarmingQuestType.RetweetTwitterPost, GOPoints: 60 },
-		],
+		quests: [],
 	},
 	isAuthLoading: false,
 	likeXCompleted: false,

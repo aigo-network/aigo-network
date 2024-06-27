@@ -1,9 +1,15 @@
+import type { FC } from 'react';
+import type { ColorValue } from 'react-native';
 import { graphqlClient } from '@aigo/api/graphql';
-import type { Web3FarmingQuest, Web3FarmingQuestType } from '@aigo/api/sdk';
+import type { Web3FarmingQuest } from '@aigo/api/sdk';
+import { Web3FarmingQuestType } from '@aigo/api/sdk';
+import AigoLogo from '@aigo/components/icon/AigoLogo';
+import Discord from '@aigo/components/icon/Discord';
+import Telegram from '@aigo/components/icon/Telegram';
+import Twitter from '@aigo/components/icon/Twitter';
 
 import { showInformation } from '@/modals/Information';
 import { showAppDownload } from '@/modals/ShowAppDownload';
-// import { appState } from '@/state/app';
 
 const likeTwitter = () => {
 	window.open(
@@ -22,7 +28,7 @@ const retweetTwitter = () => {
 };
 
 const downloadApp = () => {
-	showAppDownload();
+	// showAppDownload();
 	// appState.downloadAppCompleted = true;
 };
 
@@ -44,7 +50,7 @@ const verifyQuest: CompleteQuestFunction = async (questId: string) => {
 };
 
 export const questMetadataMap: Record<
-	Web3FarmingQuestType,
+	string,
 	{
 		order: number;
 		description: string;
@@ -77,14 +83,55 @@ export const questMetadataMap: Record<
 			);
 		}) as never,
 	},
-	ConnectEmail: {
-		description: 'Connect with email',
-		hide: true,
-		order: 4,
-	},
 };
 
 export const getQuestOrder = (quest: Web3FarmingQuest) => {
 	if (!quest.type) return -1;
 	return questMetadataMap[quest.type].order;
+};
+
+interface VisualProps {
+	width?: number;
+	color?: ColorValue;
+	fillColor?: ColorValue;
+}
+
+export const getIcon: (type: Web3FarmingQuestType) => {
+	Component: FC<VisualProps>;
+	props: VisualProps;
+} = (type) => {
+	switch (type) {
+		case Web3FarmingQuestType.LikeTwitterPost:
+		case Web3FarmingQuestType.RetweetTwitterPost:
+		case Web3FarmingQuestType.FollowTwitter:
+			return { Component: Twitter, props: { width: 30, color: '#ffffff' } };
+		case Web3FarmingQuestType.JoinDiscord:
+			return { Component: Discord, props: { width: 30 } };
+		case Web3FarmingQuestType.JoinTelegram:
+			return { Component: Telegram, props: { width: 30 } };
+		default:
+			return { Component: AigoLogo, props: { width: 30, color: '#ffffff' } };
+	}
+};
+
+export const getAction: (
+	quest: Web3FarmingQuest,
+) => (() => void) | undefined = (quest) => {
+	const { type, URL, androidDownloadLink, appleDownloadLink } = quest;
+	switch (type) {
+		case Web3FarmingQuestType.LikeTwitterPost:
+		case Web3FarmingQuestType.RetweetTwitterPost:
+		case Web3FarmingQuestType.FollowTwitter:
+		case Web3FarmingQuestType.JoinTelegram:
+		case Web3FarmingQuestType.JoinDiscord:
+			return () => window.open(URL || '');
+		case Web3FarmingQuestType.DownloadApp:
+			return () =>
+				showAppDownload({
+					appStore: appleDownloadLink || '',
+					playStore: androidDownloadLink || '',
+				});
+		default:
+			return;
+	}
 };
