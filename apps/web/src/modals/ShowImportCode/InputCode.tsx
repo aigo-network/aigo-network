@@ -5,7 +5,7 @@ import { graphqlClient } from '@aigo/api/graphql';
 
 import Button from '@/components/Button';
 import { appState } from '@/state/app';
-import { righteous } from '@/utils/style';
+import { clashDisplay } from '@/utils/style';
 
 interface Props {
 	handleClose: () => void;
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 		lineHeight: 24,
 		fontWeight: '600',
-		fontFamily: righteous.style.fontFamily,
+		fontFamily: clashDisplay.style.fontFamily,
 	},
 	activeBtnText: {
 		color: '#232529',

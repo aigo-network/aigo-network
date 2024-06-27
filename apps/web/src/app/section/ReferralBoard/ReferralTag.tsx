@@ -1,6 +1,7 @@
 import { type FC, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Copy from '@aigo/components/icon/Copy';
+import Tick from '@aigo/components/icon/Tick';
 
 import Tag from '@/components/Tag';
 
@@ -19,24 +20,28 @@ const ReferralTag: FC<Props> = ({ referralCode, invited }) => {
 	};
 
 	return (
-		<Tag onHover={onHover} onPress={onPress} disabled={invited}>
-			<View style={styles.container}>
-				<Text style={[styles.code, invited && { color: '#444649' }]}>
-					{referralCode}
-				</Text>
-				<View style={styles.suffixContainer}>
-					{invited ? (
-						<Text style={styles.used}>Used</Text>
-					) : (
-						<Copy
-							width={17}
-							color={isHovered ? '#81ddfb' : '#707174'}
-							fill={isHovered}
-						/>
-					)}
+		<View style={{ opacity: invited ? 0.25 : 1 }}>
+			<Tag onHover={onHover} onPress={onPress} disabled={invited}>
+				<View style={styles.container}>
+					<Text style={[styles.code, invited && { color: '#444649' }]}>
+						{referralCode}
+					</Text>
+					<View style={styles.suffixContainer}>
+						{invited ? (
+							<View style={styles.tickBackground}>
+								<Tick width={12} color="#000000" />
+							</View>
+						) : (
+							<Copy
+								width={17}
+								color={isHovered ? '#81ddfb' : '#707174'}
+								fill={isHovered}
+							/>
+						)}
+					</View>
 				</View>
-			</View>
-		</Tag>
+			</Tag>
+		</View>
 	);
 };
 
@@ -66,5 +71,13 @@ const styles = StyleSheet.create({
 		fontWeight: '700',
 		color: '#444649',
 		lineHeight: 24,
+	},
+	tickBackground: {
+		borderRadius: 10,
+		width: 20,
+		height: 20,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#82ddfb',
 	},
 });
