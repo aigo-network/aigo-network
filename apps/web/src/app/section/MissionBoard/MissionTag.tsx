@@ -1,23 +1,60 @@
-import { StyleSheet, Text, View } from 'react-native';
+import type { FC } from 'react';
+import { useState } from 'react';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import ChevronUp from '@aigo/components/icon/ChevronUp';
+import Tick from '@aigo/components/icon/Tick';
 import Twitter from '@aigo/components/icon/Twitter';
 
 import Tag from '@/components/Tag';
 
-const MissionTag = () => {
+interface Props {
+	id: string;
+	description: string;
+	point: number;
+	completed?: boolean;
+	onPress?: () => void;
+}
+
+const MissionTag: FC<Props> = ({
+	id,
+	description,
+	point,
+	completed = false,
+	onPress,
+}) => {
+	const [hovered, setHovered] = useState(false);
+	const [loading, setLoading] = useState(false);
+	const onHover = (isHovered: boolean) => {
+		if (completed) return;
+
+		setHovered(isHovered);
+	};
+	const handlePress = () => {
+		setLoading(true);
+		onPress?.();
+	};
+
 	return (
-		<Tag>
-			<View style={styles.container}>
-				<Twitter width={30} color="#fff" />
-				<View style={styles.descriptionContainer}>
-					<Text style={styles.description}>Like AiGO post on Twitter</Text>
-					<Text style={styles.point}>+300 GO</Text>
+		<View style={{ opacity: completed ? 0.4 : 1 }}>
+			<Tag disabled={completed} onHover={onHover} onPress={handlePress}>
+				<View style={[styles.container, completed && { opacity: 0.25 }]}>
+					<Twitter width={30} color="#fff" />
+					<View style={styles.descriptionContainer}>
+						<Text style={styles.description}>{description}</Text>
+						<Text style={styles.point}>{`+${point} GO`}</Text>
+					</View>
+					{completed ? (
+						<Tick width={20} color="#ffffff" />
+					) : loading ? (
+						<ActivityIndicator color="#ffffff" />
+					) : (
+						<View style={styles.icon}>
+							<ChevronUp width={24} color={hovered ? '#ffffff' : '#999999'} />
+						</View>
+					)}
 				</View>
-				<View style={styles.icon}>
-					<ChevronUp width={20} color="#999999" />
-				</View>
-			</View>
-		</Tag>
+			</Tag>
+		</View>
 	);
 };
 
@@ -30,6 +67,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		paddingHorizontal: 18,
 		paddingVertical: 16,
+		pointerEvents: 'none',
 	},
 	descriptionContainer: {
 		flex: 1,

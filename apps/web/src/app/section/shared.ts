@@ -3,14 +3,14 @@ import type { Web3FarmingQuest, Web3FarmingQuestType } from '@aigo/api/sdk';
 
 import { showInformation } from '@/modals/Information';
 import { showAppDownload } from '@/modals/ShowAppDownload';
-import { appState } from '@/state/app';
+// import { appState } from '@/state/app';
 
 const likeTwitter = () => {
 	window.open(
 		'https://x.com/AIGO_Network/status/1803367451469685146',
 		'_blank',
 	);
-	appState.likeXCompleted = true;
+	// appState.likeXCompleted = true;
 };
 
 const retweetTwitter = () => {
@@ -18,12 +18,12 @@ const retweetTwitter = () => {
 		'https://x.com/intent/retweet?tweet_id=1793333095456035257',
 		'_blank',
 	);
-	appState.reTweetCompleted = true;
+	// appState.reTweetCompleted = true;
 };
 
 const downloadApp = () => {
 	showAppDownload();
-	appState.downloadAppCompleted = true;
+	// appState.downloadAppCompleted = true;
 };
 
 export type CompleteQuestFunction = (
