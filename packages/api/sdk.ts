@@ -166,17 +166,24 @@ export type Web3FarmingProfile = {
 export type Web3FarmingQuest = {
   __typename?: 'Web3FarmingQuest';
   GOPoints?: Maybe<Scalars['Int']['output']>;
+  URL?: Maybe<Scalars['String']['output']>;
+  androidDownloadLink?: Maybe<Scalars['String']['output']>;
+  appleDownloadLink?: Maybe<Scalars['String']['output']>;
   completed?: Maybe<Scalars['Boolean']['output']>;
   completedAt?: Maybe<Scalars['DateTime']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
   type?: Maybe<Web3FarmingQuestType>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
 export enum Web3FarmingQuestType {
-  ConnectEmail = 'ConnectEmail',
   DownloadApp = 'DownloadApp',
+  FollowTwitter = 'FollowTwitter',
+  JoinDiscord = 'JoinDiscord',
+  JoinTelegram = 'JoinTelegram',
   LikeTwitterPost = 'LikeTwitterPost',
   RetweetTwitterPost = 'RetweetTwitterPost'
 }
@@ -266,7 +273,7 @@ export type GetUserProfileQuery = { __typename?: 'RootQuery', user?: { __typenam
 export type GetUserWithWeb3FarmingProfileQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserWithWeb3FarmingProfileQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, GOPoints?: number | null } | null, web3FarmingProfile?: { __typename?: 'Web3FarmingProfile', id?: string | null, createdAt?: any | null, invitedBy?: string | null, quests?: Array<{ __typename?: 'Web3FarmingQuest', id?: string | null, GOPoints?: number | null, completed?: boolean | null, createdAt?: any | null, type?: Web3FarmingQuestType | null } | null> | null, referralCodes?: Array<{ __typename?: 'Web3FarmingReferralCode', id?: string | null, code?: string | null, invitedId?: string | null, invitedDate?: any | null, invitedGOPoints?: number | null, referrerGOPoints?: number | null } | null> | null } | null };
+export type GetUserWithWeb3FarmingProfileQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, GOPoints?: number | null } | null, web3FarmingProfile?: { __typename?: 'Web3FarmingProfile', id?: string | null, createdAt?: any | null, invitedBy?: string | null, quests?: Array<{ __typename?: 'Web3FarmingQuest', id?: string | null, title?: string | null, description?: string | null, GOPoints?: number | null, type?: Web3FarmingQuestType | null, URL?: string | null, androidDownloadLink?: string | null, appleDownloadLink?: string | null, completed?: boolean | null, createdAt?: any | null } | null> | null, referralCodes?: Array<{ __typename?: 'Web3FarmingReferralCode', id?: string | null, code?: string | null, invitedId?: string | null, invitedDate?: any | null, invitedGOPoints?: number | null, referrerGOPoints?: number | null } | null> | null } | null };
 
 export type GetWeb3FarmingProfileQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -493,10 +500,15 @@ export const GetUserWithWeb3FarmingProfileDocument = gql`
     invitedBy
     quests {
       id
+      title
+      description
       GOPoints
+      type
+      URL
+      androidDownloadLink
+      appleDownloadLink
       completed
       createdAt
-      type
     }
     referralCodes {
       id
