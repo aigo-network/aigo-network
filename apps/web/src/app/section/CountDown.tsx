@@ -1,6 +1,12 @@
 import { type FC, useEffect, useState } from 'react';
 import type { StyleProp, TextStyle } from 'react-native';
 import { StyleSheet, Text } from 'react-native';
+import {
+	differenceInDays,
+	differenceInHours,
+	differenceInMinutes,
+	differenceInSeconds,
+} from 'date-fns';
 
 interface Props {
 	date: Date;
@@ -14,21 +20,16 @@ const CountDown: FC<Props> = ({ date, style }) => {
 		minute: 0,
 		second: 0,
 	});
-	const getTimeLeft = (date: Date) => {
-		const timeLeft = date.getTime() - Date.now();
-		const totalSeconds = Math.floor(timeLeft / 1000);
-		const second = totalSeconds % 60;
-		const totalMinutes = Math.floor(totalSeconds / 60);
-		const minute = totalMinutes % 60;
-		const totalHours = Math.floor(totalMinutes / 60);
-		const hour = totalHours % 60;
-		const day = Math.floor(totalHours / 24);
-		return { day, hour, minute, second };
-	};
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			setTimeLeft(getTimeLeft(date));
+			const now = new Date();
+			setTimeLeft({
+				day: differenceInDays(date, now),
+				hour: differenceInHours(date, now) % 24,
+				minute: differenceInMinutes(date, now) % 60,
+				second: differenceInSeconds(date, now) % 60,
+			});
 		}, 1000);
 
 		return () => clearInterval(interval);
