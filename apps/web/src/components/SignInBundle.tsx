@@ -12,7 +12,6 @@ import BlurBackground from './BlurBackground';
 
 import Button from '@/components/Button';
 import type { AuthUser } from '@/state/app';
-import { appActions } from '@/state/app';
 import { logOut, signInWithTwitter } from '@/utils/auth';
 
 const DynamicLoading = dynamic(
@@ -38,7 +37,6 @@ export const SignInBundle: FC<Props> = ({ user, isAuthLoading, isMobile }) => {
 
 	const handlePressDisconnect = async () => {
 		await logOut();
-		appActions.reset();
 		setShowDropdown(false);
 	};
 

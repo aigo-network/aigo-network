@@ -1,4 +1,8 @@
-import type { User as AppUser, Web3FarmingProfile } from '@aigo/api/sdk';
+import {
+	type User as AppUser,
+	type Web3FarmingProfile,
+	Web3FarmingQuestType,
+} from '@aigo/api/sdk';
 import { proxy } from 'valtio';
 
 import packageJson from '../../../package.json';
@@ -27,7 +31,36 @@ export const initialState: AppState = {
 	user: undefined,
 	authUser: undefined,
 	web3FarmingProfile: {
-		quests: [],
+		referralCodes: [
+			{
+				id: 'mock-01',
+				code: 'AiGO-F2XLSF',
+				invitedGOPoints: 100,
+				referrerGOPoints: 100,
+			},
+			{
+				id: 'mock-01',
+				code: 'AiGO-FKG8NL',
+				invitedGOPoints: 100,
+				referrerGOPoints: 100,
+				invitedId: 'mock-id',
+			},
+		],
+		quests: [
+			{
+				id: 'mock-01',
+				type: Web3FarmingQuestType.RetweetTwitterPost,
+				title: 'Retweet',
+				GOPoints: 60,
+			},
+			{
+				id: 'mock-02',
+				type: Web3FarmingQuestType.RetweetTwitterPost,
+				title: 'Like this tweet',
+				GOPoints: 60,
+				completed: true,
+			},
+		],
 	},
 	isAuthLoading: false,
 	likeXCompleted: false,

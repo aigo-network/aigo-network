@@ -1,48 +1,49 @@
 import type { FC, ReactNode } from 'react';
 import { useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import type { Web3FarmingQuest } from '@aigo/api/graphql';
 import { Web3FarmingQuestType } from '@aigo/api/graphql';
 import { graphqlClient } from '@aigo/api/graphql';
+import type { User, Web3FarmingProfile } from '@aigo/api/sdk';
 import ChevronUp from '@aigo/components/icon/ChevronUp';
 import Tick from '@aigo/components/icon/Tick';
 
 import Button from '@/components/Button';
 import Tag from '@/components/Tag';
 import { showInformation } from '@/modals/Information';
+import { showImportCode } from '@/modals/ShowImportCode';
 import { appActions } from '@/state/app';
 import { tracker } from '@/utils/analytic';
+import { signInWithTwitter } from '@/utils/auth';
 import { clashDisplay } from '@/utils/style';
 
 interface Props {
-	id: string;
-	description: string;
-	point: number;
-	type?: Web3FarmingQuestType;
+	user?: User;
+	farmingProfile?: Web3FarmingProfile;
+	item: Web3FarmingQuest;
 	prefix?: ReactNode;
-	verified?: boolean;
 	onPress?: () => void;
 }
 
 const MissionTag: FC<Props> = ({
-	id,
-	type,
-	description,
-	point,
+	user,
+	farmingProfile,
+	item,
 	prefix,
-	verified = false,
 	onPress,
 }) => {
 	const [hovered, setHovered] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [completed, setCompleted] = useState(false);
-	const [innerVerified, setInnerVerified] = useState(verified);
+	const [innerVerified, setInnerVerified] = useState(item.completed || false);
+
 	const onHover = (isHovered: boolean) => {
 		if (innerVerified) return;
-
 		setHovered(isHovered);
 	};
+
 	const onVerify = async () => {
-		switch (type) {
+		switch (item.type) {
 			case Web3FarmingQuestType.DownloadApp:
 				showInformation(
 					'Verify download AiGO',
@@ -54,12 +55,12 @@ const MissionTag: FC<Props> = ({
 				try {
 					const { web3FarmingVerifyQuestAndClaimPoints } =
 						await graphqlClient.web3FarmingVerifyQuestAndClaimPoints({
-							questId: id,
+							questId: item.id,
 						});
 					appActions.queryAndUpdateGOPoints();
 					tracker.logEvents('verify_quest', {
-						questId: id,
-						questType: type,
+						questId: item.id,
+						questType: item.type,
 					});
 
 					setInnerVerified(
@@ -72,18 +73,24 @@ const MissionTag: FC<Props> = ({
 		}
 	};
 	const handlePress = () => {
-		onPress?.();
-		setCompleted(true);
+		if (farmingProfile?.id) {
+			onPress?.();
+			setCompleted(true);
+		} else if (user?.id) {
+			showImportCode();
+		} else {
+			signInWithTwitter();
+		}
 	};
 
 	return (
 		<View style={{ opacity: innerVerified ? 0.4 : 1 }}>
-			<Tag disabled={verified} onHover={onHover} onPress={handlePress}>
-				<View style={[styles.container, verified && { opacity: 0.25 }]}>
+			<Tag disabled={innerVerified} onHover={onHover} onPress={handlePress}>
+				<View style={[styles.container, innerVerified && { opacity: 0.25 }]}>
 					{prefix}
 					<View style={styles.descriptionContainer}>
-						<Text style={styles.description}>{description}</Text>
-						<Text style={styles.point}>{`+${point} GO`}</Text>
+						<Text style={styles.description}>{item.title}</Text>
+						<Text style={styles.point}>{`+${item.GOPoints} GO`}</Text>
 					</View>
 					{innerVerified ? (
 						<View style={styles.tickBackground}>

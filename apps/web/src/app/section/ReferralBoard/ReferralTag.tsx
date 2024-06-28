@@ -1,36 +1,56 @@
 import type { FC } from 'react';
 import { useState } from 'react';
+import type { ViewStyle } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, {
 	useAnimatedStyle,
 	useSharedValue,
 	withTiming,
 } from 'react-native-reanimated';
+import type {
+	User,
+	Web3FarmingProfile,
+	Web3FarmingReferralCode,
+} from '@aigo/api/sdk';
 import Copy from '@aigo/components/icon/Copy';
 import Tick from '@aigo/components/icon/Tick';
 
 import Tag from '@/components/Tag';
 
 interface Props {
-	referralCode: string;
-	invited?: boolean;
+	user?: User;
+	farmingProfile?: Web3FarmingProfile;
+	item: Web3FarmingReferralCode | null;
 }
 
 const AnimatedText = Animated.createAnimatedComponent(Text);
 
-const ReferralTag: FC<Props> = ({ referralCode, invited }) => {
+const ReferralTag: FC<Props> = ({ user, farmingProfile, item }) => {
 	const opacity = useSharedValue(0);
 	const [isHovered, setIsHovered] = useState(false);
+	const disabled = !user?.id || !!item?.invitedId;
+	const containerStyle = {
+		opacity: item?.invitedId ? 0.25 : 1,
+		display: farmingProfile?.id ? 'flex' : 'none',
+	} as ViewStyle;
+
 	const onHover = (hovered: boolean) => {
-		setIsHovered(hovered);
+		if (user?.id) {
+			setIsHovered(hovered);
+		}
 	};
+
 	const onPress = () => {
-		opacity.value = 1;
-		navigator.clipboard.writeText(referralCode);
-		setTimeout(() => {
-			opacity.value = 0;
-		}, 3000);
+		if (user?.id && item?.code) {
+			navigator.clipboard.writeText(item.code);
+
+			opacity.value = 1;
+			setTimeout(() => {
+				opacity.value = 0;
+			}, 3000);
+		}
 	};
+
 	const copiedAnimatedStyle = useAnimatedStyle(() => {
 		return {
 			opacity: withTiming(opacity.value),
@@ -38,17 +58,15 @@ const ReferralTag: FC<Props> = ({ referralCode, invited }) => {
 	}, [opacity]);
 
 	return (
-		<View style={{ opacity: invited ? 0.25 : 1 }}>
-			<Tag onHover={onHover} onPress={onPress} disabled={invited}>
+		<View style={containerStyle}>
+			<Tag onHover={onHover} onPress={onPress} disabled={disabled}>
 				<View style={styles.container}>
-					<Text style={[styles.code, invited && { color: '#444649' }]}>
-						{referralCode}
-					</Text>
+					<Text style={styles.code}>{item?.code}</Text>
 					<View style={styles.suffixContainer}>
 						<AnimatedText style={[styles.copiedText, copiedAnimatedStyle]}>
 							Copied
 						</AnimatedText>
-						{invited ? (
+						{item?.invitedId ? (
 							<View style={styles.tickBackground}>
 								<Tick width={12} color="#000000" />
 							</View>

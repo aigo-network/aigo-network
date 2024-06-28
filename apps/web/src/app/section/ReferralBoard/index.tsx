@@ -72,18 +72,12 @@ const ReferralBoard: FC<Props> = ({ isMobile }) => {
 					{web3FarmingProfile?.referralCodes?.map((referral) => (
 						<ReferralTag
 							key={referral?.code}
-							referralCode={referral?.code || ''}
-							invited={!!referral?.invitedId}
+							user={user as never}
+							farmingProfile={web3FarmingProfile as never}
+							item={referral}
 						/>
 					))}
 
-					{/* Mock component to help styled-component detect css style */}
-					{!web3FarmingProfile?.referralCodes?.[0] && (
-						<>
-							<ReferralTag referralCode="AiGO-J3KL52" />
-							<ReferralTag referralCode="AiGO-J3KL52" invited />
-						</>
-					)}
 					<Text style={styles.explain}>
 						New codes will be available once all codes are used!
 					</Text>

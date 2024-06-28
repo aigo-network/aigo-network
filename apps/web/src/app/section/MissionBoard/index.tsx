@@ -1,7 +1,7 @@
 import type { FC } from 'react';
-import { Fragment } from 'react';
+import { Fragment, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
-import type { Web3FarmingQuestType } from '@aigo/api/sdk';
+import type { Web3FarmingQuest } from '@aigo/api/sdk';
 import { useSnapshot } from 'valtio';
 
 import { getAction, getIcon } from '../shared';
@@ -17,6 +17,20 @@ type Props = {
 
 const MissionBoard: FC<Props> = ({ isMobile }) => {
 	const { user, web3FarmingProfile } = useSnapshot(appState);
+	const questLists = useMemo(() => {
+		const completes = [];
+		const incompletes = [];
+
+		for (const quest of web3FarmingProfile?.quests || []) {
+			if (quest?.completed) {
+				completes.push(quest);
+			} else {
+				incompletes.push(quest);
+			}
+		}
+
+		return [incompletes, completes];
+	}, [web3FarmingProfile?.quests]);
 
 	return (
 		<BoardLayout
@@ -29,59 +43,26 @@ const MissionBoard: FC<Props> = ({ isMobile }) => {
 			subTitle="COMPLETE ALL THE TASKS BELOW TO GAIN MORE GO POINTS"
 		>
 			<View style={styles.missionGroup}>
-				{user &&
-					web3FarmingProfile?.quests
-						?.filter((quest) => !quest?.completed)
-						?.map((quest) => {
-							const { id, type, description, title, GOPoints } = quest || {};
-							const onPress = quest ? getAction(quest) : undefined;
-							const { Component, props } = (type && getIcon(type)) || {};
-							return (
-								<MissionTag
-									key={id}
-									id={id || ''}
-									type={type as Web3FarmingQuestType}
-									description={description || title || ''}
-									point={GOPoints || 0}
-									prefix={Component && <Component {...props} />}
-									onPress={onPress}
-								/>
-							);
-						})}
-				{user &&
-					web3FarmingProfile?.quests
-						?.filter((quest) => quest?.completed)
-						?.map((quest) => {
-							const { id, type, description } = quest || {};
-							const { Component, props } = (type && getIcon(type)) || {};
-							return (
-								<MissionTag
-									key={id}
-									type={type as Web3FarmingQuestType}
-									id={id || ''}
-									description={description || ''}
-									point={quest?.GOPoints || 0}
-									prefix={Component && <Component {...props} />}
-									verified
-								/>
-							);
-						})}
+				{questLists.map((list, i) => {
+					return (
+						<Fragment key={i}>
+							{list.map((quest) => {
+								const { Component, props } = getIcon(quest?.type);
 
-				{!user && (
-					<Fragment>
-						<MissionTag
-							id=""
-							description="Like AiGO post on Twitter"
-							point={60}
-						/>
-						<MissionTag
-							id=""
-							description="Like AiGO post on Twitter"
-							point={60}
-							verified
-						/>
-					</Fragment>
-				)}
+								return (
+									<MissionTag
+										key={quest?.id}
+										item={quest as Web3FarmingQuest}
+										user={user as never}
+										farmingProfile={web3FarmingProfile as never}
+										prefix={Component && <Component {...props} />}
+										onPress={getAction(quest)}
+									/>
+								);
+							})}
+						</Fragment>
+					);
+				})}
 			</View>
 		</BoardLayout>
 	);

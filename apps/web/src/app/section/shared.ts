@@ -96,7 +96,7 @@ interface VisualProps {
 	fillColor?: ColorValue;
 }
 
-export const getIcon: (type: Web3FarmingQuestType) => {
+export const getIcon: (type?: Web3FarmingQuestType | null) => {
 	Component: FC<VisualProps>;
 	props: VisualProps;
 } = (type) => {
@@ -115,21 +115,20 @@ export const getIcon: (type: Web3FarmingQuestType) => {
 };
 
 export const getAction: (
-	quest: Web3FarmingQuest,
+	quest?: Web3FarmingQuest | null,
 ) => (() => void) | undefined = (quest) => {
-	const { type, URL, androidDownloadLink, appleDownloadLink } = quest;
-	switch (type) {
+	switch (quest?.type) {
 		case Web3FarmingQuestType.LikeTwitterPost:
 		case Web3FarmingQuestType.RetweetTwitterPost:
 		case Web3FarmingQuestType.FollowTwitter:
 		case Web3FarmingQuestType.JoinTelegram:
 		case Web3FarmingQuestType.JoinDiscord:
-			return () => window.open(URL || '');
+			return () => window.open(quest?.URL || '');
 		case Web3FarmingQuestType.DownloadApp:
 			return () =>
 				showAppDownload({
-					appStore: appleDownloadLink || '',
-					playStore: androidDownloadLink || '',
+					appStore: quest?.appleDownloadLink || '',
+					playStore: quest?.androidDownloadLink || '',
 				});
 		default:
 			return;
