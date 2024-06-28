@@ -18,6 +18,7 @@ import { signInWithTwitter } from '@/utils/auth';
 import { clashDisplay } from '@/utils/style';
 
 interface Props {
+	isMobile?: boolean;
 	user?: User;
 	farmingProfile?: Web3FarmingProfile;
 	item: Web3FarmingQuest;
@@ -26,6 +27,7 @@ interface Props {
 }
 
 const MissionTag: FC<Props> = ({
+	isMobile,
 	user,
 	farmingProfile,
 	item,
@@ -89,7 +91,9 @@ const MissionTag: FC<Props> = ({
 				<View style={[styles.container, innerVerified && { opacity: 0.25 }]}>
 					{prefix}
 					<View style={styles.descriptionContainer}>
-						<Text style={styles.description}>{item.title}</Text>
+						<Text style={[styles.description, isMobile && styles.mobileDesc]}>
+							{item.title}
+						</Text>
 						<Text style={styles.point}>{`+${item.GOPoints} GO`}</Text>
 					</View>
 					{innerVerified ? (
@@ -134,6 +138,9 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 		lineHeight: 28,
 		fontWeight: '500',
+	},
+	mobileDesc: {
+		fontSize: 18,
 	},
 	point: {
 		fontWeight: '500',

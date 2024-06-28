@@ -58,6 +58,7 @@ const MissionBoard: FC<Props> = ({ isMobile }) => {
 									return (
 										<MissionTag
 											key={quest?.id}
+											isMobile={isMobile}
 											item={quest as Web3FarmingQuest}
 											user={user as never}
 											farmingProfile={web3FarmingProfile as never}
