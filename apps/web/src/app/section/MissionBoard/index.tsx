@@ -46,20 +46,26 @@ const MissionBoard: FC<Props> = ({ isMobile }) => {
 				{questLists.map((list, i) => {
 					return (
 						<Fragment key={i}>
-							{list.map((quest) => {
-								const { Component, props } = getIcon(quest?.type);
+							{list
+								.toSorted(
+									(quest01, quest02) =>
+										new Date(quest01?.createdAt).getTime() -
+										new Date(quest02?.createdAt).getTime(),
+								)
+								.map((quest) => {
+									const { Component, props } = getIcon(quest?.type);
 
-								return (
-									<MissionTag
-										key={quest?.id}
-										item={quest as Web3FarmingQuest}
-										user={user as never}
-										farmingProfile={web3FarmingProfile as never}
-										prefix={Component && <Component {...props} />}
-										onPress={getAction(quest)}
-									/>
-								);
-							})}
+									return (
+										<MissionTag
+											key={quest?.id}
+											item={quest as Web3FarmingQuest}
+											user={user as never}
+											farmingProfile={web3FarmingProfile as never}
+											prefix={Component && <Component {...props} />}
+											onPress={getAction(quest)}
+										/>
+									);
+								})}
 						</Fragment>
 					);
 				})}
