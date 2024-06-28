@@ -4,6 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Image from 'next/image';
 import { useSnapshot } from 'valtio';
 
+import CopyAll from './CopyAll';
 import ReferralTag from './ReferralTag';
 import StaticCard from './StaticCard';
 
@@ -79,6 +80,8 @@ const ReferralBoard: FC<Props> = ({ isMobile }) => {
 							item={referral}
 						/>
 					))}
+
+					{user?.id && <CopyAll farmingProfile={web3FarmingProfile as never} />}
 
 					<Text style={styles.explain}>
 						New codes will be available once all codes are used!
