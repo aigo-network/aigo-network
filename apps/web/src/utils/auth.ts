@@ -9,7 +9,7 @@ import {
 } from 'firebase/auth';
 
 import { showImportCode } from '@/modals/ShowImportCode';
-import { appActions, appState, initialCodes } from '@/state/app';
+import { appActions, appState } from '@/state/app';
 
 const firebaseConfig = {
 	appId: FIREBASE_APP_ID,

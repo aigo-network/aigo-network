@@ -29,7 +29,6 @@ export default function Home() {
 				<LinearGradient colors={backgroundGradients}>
 					<ScrollView style={styles.container}>
 						<Banner isMobile={isMobile} />
-						{/* <QuestBoard isMobile={isMobile} /> */}
 						<View style={[styles.groupBoard, isMobile && styles.mobileBoard]}>
 							<ReferralBoard />
 							<MissionBoard />
