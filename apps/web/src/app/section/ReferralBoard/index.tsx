@@ -8,6 +8,7 @@ import ReferralTag from './ReferralTag';
 import StaticCard from './StaticCard';
 
 import BoardLayout from '@/components/BoardLayout';
+import { useInvitedReferral } from '@/hooks/referral';
 import { appState } from '@/state/app';
 import { clashDisplay } from '@/utils/style';
 
@@ -17,6 +18,7 @@ type Props = {
 
 const ReferralBoard: FC<Props> = ({ isMobile }) => {
 	const { user, web3FarmingProfile } = useSnapshot(appState);
+	const { count } = useInvitedReferral();
 
 	return (
 		<BoardLayout
@@ -46,7 +48,7 @@ const ReferralBoard: FC<Props> = ({ isMobile }) => {
 					<View style={styles.separateLine} />
 					<StaticCard
 						style={styles.staticCard}
-						value={12}
+						value={count || 0}
 						parameter="SUCCESSFUL REF"
 						icon={
 							<Image
