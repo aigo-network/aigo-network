@@ -1,5 +1,5 @@
 import { type FC, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import type { Web3FarmingProfile } from '@aigo/api/sdk';
 import Copy from '@aigo/components/icon/Copy';
 
@@ -32,12 +32,14 @@ export const CopyAll: FC<Props> = ({ farmingProfile }) => {
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseOut={() => setIsHovered(false)}
 		>
-			<Copy width={17} color={'#232529'} strokeWidth="1.5" />
-			{copied ? (
-				<Text style={styles.title}>Copied</Text>
-			) : (
-				<Text style={styles.title}>Copy All</Text>
-			)}
+			<View style={styles.innerContainer}>
+				<Copy width={17} color={'#232529'} strokeWidth="1.5" />
+				{copied ? (
+					<Text style={styles.title}>Copied</Text>
+				) : (
+					<Text style={styles.title}>Copy All</Text>
+				)}
+			</View>
 		</TouchableOpacity>
 	);
 };
@@ -46,13 +48,15 @@ export default CopyAll;
 
 const styles = StyleSheet.create({
 	container: {
-		width: '100%',
-		flexDirection: 'row',
 		backgroundColor: '#81DDFB',
 		borderRadius: 12,
 		paddingHorizontal: 16,
 		paddingVertical: 16,
+	},
+	innerContainer: {
+		pointerEvents: 'none',
 		justifyContent: 'center',
+		flexDirection: 'row',
 		gap: 8,
 	},
 	hover: {
