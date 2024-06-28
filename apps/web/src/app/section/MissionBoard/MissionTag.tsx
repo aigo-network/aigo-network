@@ -1,13 +1,14 @@
 import type { FC, ReactNode } from 'react';
 import { useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
-import type { Web3FarmingQuestType } from '@aigo/api/graphql';
+import { Web3FarmingQuestType } from '@aigo/api/graphql';
 import { graphqlClient } from '@aigo/api/graphql';
 import ChevronUp from '@aigo/components/icon/ChevronUp';
 import Tick from '@aigo/components/icon/Tick';
 
 import Button from '@/components/Button';
 import Tag from '@/components/Tag';
+import { showInformation } from '@/modals/Information';
 import { appActions } from '@/state/app';
 import { tracker } from '@/utils/analytic';
 import { clashDisplay } from '@/utils/style';
@@ -36,30 +37,39 @@ const MissionTag: FC<Props> = ({
 	const [completed, setCompleted] = useState(false);
 	const [innerVerified, setInnerVerified] = useState(verified);
 	const onHover = (isHovered: boolean) => {
-		if (verified) return;
+		if (innerVerified) return;
 
 		setHovered(isHovered);
 	};
 	const onVerify = async () => {
-		setLoading(true);
-		try {
-			const { web3FarmingVerifyQuestAndClaimPoints } =
-				await graphqlClient.web3FarmingVerifyQuestAndClaimPoints({
-					questId: id,
-				});
-			appActions.queryAndUpdateGOPoints();
-			tracker.logEvents('verify_quest', {
-				questId: id,
-				questType: type,
-			});
+		switch (type) {
+			case Web3FarmingQuestType.DownloadApp:
+				showInformation(
+					'Verify download AiGO',
+					'Nice! You are now an AiGO member, your quest is verifying and your points will be distribute when it’s complete!',
+				);
+				break;
+			default:
+				setLoading(true);
+				try {
+					const { web3FarmingVerifyQuestAndClaimPoints } =
+						await graphqlClient.web3FarmingVerifyQuestAndClaimPoints({
+							questId: id,
+						});
+					appActions.queryAndUpdateGOPoints();
+					tracker.logEvents('verify_quest', {
+						questId: id,
+						questType: type,
+					});
 
-			setInnerVerified(
-				web3FarmingVerifyQuestAndClaimPoints?.completed || false,
-			);
-		} catch (error) {
-			console.log(JSON.stringify(error, null, 2));
+					setInnerVerified(
+						web3FarmingVerifyQuestAndClaimPoints?.completed || false,
+					);
+				} catch (error) {
+					console.log(JSON.stringify(error, null, 2));
+				}
+				setLoading(false);
 		}
-		setLoading(false);
 	};
 	const handlePress = () => {
 		onPress?.();
@@ -67,7 +77,7 @@ const MissionTag: FC<Props> = ({
 	};
 
 	return (
-		<View style={{ opacity: verified ? 0.4 : 1 }}>
+		<View style={{ opacity: innerVerified ? 0.4 : 1 }}>
 			<Tag disabled={verified} onHover={onHover} onPress={handlePress}>
 				<View style={[styles.container, verified && { opacity: 0.25 }]}>
 					{prefix}
