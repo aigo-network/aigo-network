@@ -47,7 +47,7 @@ const MissionBoard: FC<Props> = ({ isMobile }) => {
 					return (
 						<Fragment key={i}>
 							{list
-								.toSorted(
+								.sort(
 									(quest01, quest02) =>
 										new Date(quest01?.createdAt).getTime() -
 										new Date(quest02?.createdAt).getTime(),
