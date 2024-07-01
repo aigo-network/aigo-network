@@ -1,6 +1,6 @@
 import type { SSTConfig } from 'sst';
 
-import webApp from './apps/web/sst';
+import webApp from './apps/quest/sst';
 
 export default {
 	config() {

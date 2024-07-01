@@ -9981,6 +9981,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"date-fns@npm:^3.6.0":
+  version: 3.6.0
+  resolution: "date-fns@npm:3.6.0"
+  checksum: 10/cac35c58926a3b5d577082ff2b253612ec1c79eb6754fddef46b6a8e826501ea2cb346ecbd211205f1ba382ddd1f9d8c3f00bf433ad63cc3063454d294e3a6b8
+  languageName: node
+  linkType: hard
+
 "dayjs@npm:^1.8.15":
   version: 1.11.11
   resolution: "dayjs@npm:1.11.11"
@@ -16021,6 +16028,36 @@ __metadata:
   languageName: node
   linkType: hard
 
+"quest@workspace:apps/quest":
+  version: 0.0.0-use.local
+  resolution: "quest@workspace:apps/quest"
+  dependencies:
+    "@types/react": "npm:^18.2.6"
+    "@types/react-dom": "npm:^18.2.6"
+    "@types/react-native": "npm:^0.73.0"
+    aws-cdk-lib: "npm:2.142.1"
+    constructs: "npm:10.3.0"
+    date-fns: "npm:^3.6.0"
+    dotenv: "npm:^16.4.5"
+    empty-modal: "npm:^0.0.7"
+    firebase: "npm:^10.12.2"
+    next: "npm:14.2.4"
+    react: "npm:18.2.0"
+    react-dom: "npm:18.2.0"
+    react-native: "npm:0.74.1"
+    react-native-linear-gradient: "npm:^2.8.3"
+    react-native-qrcode-svg: "npm:^6.3.1"
+    react-native-reanimated: "npm:3.11.0"
+    react-native-svg: "npm:^15.3.0"
+    react-native-web: "npm:^0.19.12"
+    react-native-web-linear-gradient: "npm:^1.1.2"
+    sst: "npm:^2.43.2"
+    styled-components: "npm:^6.1.11"
+    typescript: "npm:5.4.5"
+    valtio: "npm:^1.13.2"
+  languageName: unknown
+  linkType: soft
+
 "queue-microtask@npm:^1.2.2":
   version: 1.2.3
   resolution: "queue-microtask@npm:1.2.3"
@@ -18672,35 +18709,6 @@ __metadata:
   checksum: 10/8e7e13501b3834094a50abe7c0b6456155a55d7571312b89570012ef47ec2a46d766934768c50aabad10a9c30dd764a407623e8bfcc74fcb58495c29130edea9
   languageName: node
   linkType: hard
-
-"web@workspace:apps/web":
-  version: 0.0.0-use.local
-  resolution: "web@workspace:apps/web"
-  dependencies:
-    "@types/react": "npm:^18.2.6"
-    "@types/react-dom": "npm:^18.2.6"
-    "@types/react-native": "npm:^0.73.0"
-    aws-cdk-lib: "npm:2.142.1"
-    constructs: "npm:10.3.0"
-    dotenv: "npm:^16.4.5"
-    empty-modal: "npm:^0.0.7"
-    firebase: "npm:^10.12.2"
-    next: "npm:14.2.4"
-    react: "npm:18.2.0"
-    react-dom: "npm:18.2.0"
-    react-native: "npm:0.74.1"
-    react-native-linear-gradient: "npm:^2.8.3"
-    react-native-qrcode-svg: "npm:^6.3.1"
-    react-native-reanimated: "npm:3.11.0"
-    react-native-svg: "npm:^15.3.0"
-    react-native-web: "npm:^0.19.12"
-    react-native-web-linear-gradient: "npm:^1.1.2"
-    sst: "npm:^2.43.2"
-    styled-components: "npm:^6.1.11"
-    typescript: "npm:5.4.5"
-    valtio: "npm:^1.13.2"
-  languageName: unknown
-  linkType: soft
 
 "webcrypto-core@npm:^1.8.0":
   version: 1.8.0

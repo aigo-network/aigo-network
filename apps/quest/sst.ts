@@ -14,7 +14,7 @@ export const webApp = ({ stack, app }: StackContext) => {
 		webAppAlias[app.stage as keyof typeof webAppAlias],
 	);
 	const site = new NextjsSite(stack, 'web-app', {
-		path: 'apps/web',
+		path: 'apps/quest',
 		edge: true,
 		timeout: '5 seconds',
 		customDomain: {
