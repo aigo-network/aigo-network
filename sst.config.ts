@@ -1,6 +1,7 @@
 import type { SSTConfig } from 'sst';
 
 import webApp from './apps/quest/sst';
+import ride from './apps/ride/sst';
 
 export default {
 	config() {
@@ -11,5 +12,6 @@ export default {
 	},
 	stacks(app) {
 		app.stack(webApp);
+		app.stack(ride);
 	},
 } satisfies SSTConfig;
