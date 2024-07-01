@@ -1,6 +1,6 @@
 import type { FC, ReactNode } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
 import { clashDisplay } from '@/utils/style';
@@ -10,6 +10,7 @@ interface Props {
 	title?: string;
 	subTitle?: string;
 	style?: StyleProp<ViewStyle>;
+	contentContainerStyle?: StyleProp<ViewStyle>;
 }
 
 const BoardLayout: FC<Props> = ({
@@ -17,16 +18,19 @@ const BoardLayout: FC<Props> = ({
 	title = 'Title',
 	subTitle,
 	style,
+	contentContainerStyle,
 }) => {
 	return (
-		<LinearGradient
-			colors={['#1e2124', '#060a0d']}
-			style={[styles.container, style]}
-		>
-			<Text style={styles.title}>{title}</Text>
-			{subTitle && <Text style={styles.subTitle}>{subTitle}</Text>}
-			{children}
-		</LinearGradient>
+		<View style={[styles.container, style]}>
+			<LinearGradient
+				style={[styles.innerContainer, contentContainerStyle]}
+				colors={['#1e2124', '#060a0d']}
+			>
+				<Text style={styles.title}>{title}</Text>
+				{subTitle && <Text style={styles.subTitle}>{subTitle}</Text>}
+				{children}
+			</LinearGradient>
+		</View>
 	);
 };
 
@@ -37,6 +41,10 @@ const styles = StyleSheet.create({
 		borderRadius: 20,
 		borderWidth: 1,
 		borderColor: 'rgba(255, 255, 255, 0.1)',
+		overflow: 'hidden',
+	},
+	innerContainer: {
+		width: '100%',
 	},
 	title: {
 		marginTop: 32,
@@ -44,6 +52,7 @@ const styles = StyleSheet.create({
 		color: '#fbfbfb',
 		fontFamily: clashDisplay.style.fontFamily,
 		fontSize: 30,
+		fontWeight: '500',
 		lineHeight: 40,
 		textAlign: 'center',
 	},

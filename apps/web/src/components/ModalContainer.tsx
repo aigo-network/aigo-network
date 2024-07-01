@@ -1,10 +1,12 @@
 import type { FC, ReactNode } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import CloseIcon from '@aigo/components/icon/CloseIcon';
 
 import { useIsMobile } from '@/hooks/responsive';
+import { clashDisplay } from '@/utils/style';
 
 interface Props {
 	style?: StyleProp<ViewStyle>;
@@ -30,26 +32,32 @@ export const ModalContainer: FC<Props> = ({
 			style={[styles.container, isMobile && styles.mobileContainer, style]}
 			entering={FadeInDown}
 		>
-			<View style={styles.headerContainer}>
-				<View style={styles.upperTitleContainer}>
-					<View style={styles.titleContainer}>
-						<Text style={styles.titleText}>{title}</Text>
+			<LinearGradient colors={['#1e2124', '#060a0d']}>
+				<View style={styles.headerContainer}>
+					<View style={styles.upperTitleContainer}>
+						<View style={styles.titleContainer}>
+							<Text style={styles.titleText}>{title}</Text>
+						</View>
+						<View style={styles.commandContainer}>
+							<TouchableOpacity onPress={onClose}>
+								<CloseIcon
+									color="#9C9D9F"
+									fillColor="rgba(255, 255, 255, 0.1)"
+									width={30}
+								/>
+							</TouchableOpacity>
+						</View>
 					</View>
-					<View style={styles.commandContainer}>
-						<TouchableOpacity onPress={onClose}>
-							<CloseIcon color={'#9C9D9F'} width={30} />
-						</TouchableOpacity>
-					</View>
+					{subTitle && typeof subTitle === 'string' ? (
+						<Text style={styles.subTitleText}>{subTitle}</Text>
+					) : (
+						subTitle
+					)}
 				</View>
-				{subTitle && typeof subTitle === 'string' ? (
-					<Text style={styles.subTitleText}>{subTitle}</Text>
-				) : (
-					subTitle
-				)}
-			</View>
-			<View style={[styles.contentContainer, contentContainerStyle]}>
-				{children}
-			</View>
+				<View style={[styles.contentContainer, contentContainerStyle]}>
+					{children}
+				</View>
+			</LinearGradient>
 		</Animated.View>
 	);
 };
@@ -60,7 +68,7 @@ const styles = StyleSheet.create({
 	container: {
 		borderRadius: 24,
 		width: 420,
-		backgroundColor: '#FFFFFF',
+		overflow: 'hidden',
 	},
 	mobileContainer: {
 		width: 340,
@@ -82,7 +90,9 @@ const styles = StyleSheet.create({
 	},
 	titleText: {
 		fontSize: 24,
-		color: '#222222',
+		fontWeight: '500',
+		fontFamily: clashDisplay.style.fontFamily,
+		color: '#ffffff',
 	},
 	subTitleText: {
 		fontSize: 16,
@@ -91,7 +101,7 @@ const styles = StyleSheet.create({
 	},
 	contentContainer: {
 		borderTopWidth: StyleSheet.hairlineWidth,
-		borderColor: '#EFEFEF',
+		borderColor: 'rgba(255, 255, 255, 0.1)',
 		padding: 24,
 		paddingTop: 16,
 	},

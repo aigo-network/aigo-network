@@ -5,6 +5,7 @@ import { graphqlClient } from '@aigo/api/graphql';
 
 import Button from '@/components/Button';
 import { appState } from '@/state/app';
+import { clashDisplay } from '@/utils/style';
 
 interface Props {
 	handleClose: () => void;
@@ -50,7 +51,7 @@ const InputCode: FC<Props> = ({ handleClose }) => {
 				onPress={onContinuePress}
 			>
 				<Text style={[styles.btnText, !!code && styles.activeBtnText]}>
-					Continue
+					CONFIRM
 				</Text>
 			</Button>
 		</View>
@@ -67,16 +68,16 @@ const styles = StyleSheet.create({
 		fontSize: 32,
 		fontWeight: '500',
 		lineHeight: 40,
-		color: '#232529',
+		color: '#ffffff',
 		textAlign: 'center',
-		backgroundColor: '#f2f2f2',
+		backgroundColor: 'rgba(255, 255, 255, 0.1)',
 		paddingVertical: 40,
 		borderRadius: 10,
 	},
 	errorInput: {
 		borderWidth: 1,
 		borderColor: '#e15050',
-		backgroundColor: '#ffeaee',
+		backgroundColor: 'rgba(255, 80, 80, 0.1)',
 	},
 	errorText: {
 		fontSize: 16,
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
 		color: '#e15050',
 	},
 	btn: {
-		backgroundColor: '#f2f2f2',
+		backgroundColor: '#4a7e8f',
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
@@ -93,9 +94,11 @@ const styles = StyleSheet.create({
 		backgroundColor: '#81ddfb',
 	},
 	btnText: {
-		color: '#9c9d9f',
+		color: '#232529',
 		fontSize: 16,
-		fontWeight: '500',
+		lineHeight: 24,
+		fontWeight: '600',
+		fontFamily: clashDisplay.style.fontFamily,
 	},
 	activeBtnText: {
 		color: '#232529',

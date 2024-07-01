@@ -9,7 +9,7 @@ import {
 } from 'firebase/auth';
 
 import { showImportCode } from '@/modals/ShowImportCode';
-import { appState } from '@/state/app';
+import { appActions, appState } from '@/state/app';
 
 const firebaseConfig = {
 	appId: FIREBASE_APP_ID,
@@ -42,6 +42,7 @@ export const signInWithTwitter = async () => {
 
 export const logOut = async () => {
 	await auth.signOut();
+	appActions.reset();
 };
 
 injectGetJWTFunc(async () => {
@@ -52,12 +53,13 @@ auth.onIdTokenChanged(async (authUser) => {
 	if (authUser) {
 		try {
 			const { user } = await graphqlClient.getUserProfile();
+			appState.user = user as never;
 			appState.authUser = {
 				uid: authUser.uid,
 				name: authUser.displayName || authUser.email || 'Unknown',
 				imageUrl: authUser.photoURL || '',
 			};
-			appState.user = user as never;
+
 			const { web3FarmingProfile } =
 				await graphqlClient.getWeb3FarmingProfile();
 			if (web3FarmingProfile?.id) {

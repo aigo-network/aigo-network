@@ -250,6 +250,15 @@ type Web3FarmingQuest {
   GOPoints: Int
 
   """"""
+  URL: String
+
+  """"""
+  androidDownloadLink: String
+
+  """"""
+  appleDownloadLink: String
+
+  """"""
   completed: Boolean
 
   """"""
@@ -259,7 +268,13 @@ type Web3FarmingQuest {
   createdAt: DateTime
 
   """"""
+  description: String
+
+  """"""
   id: String
+
+  """"""
+  title: String
 
   """"""
   type: Web3FarmingQuestType
@@ -271,10 +286,16 @@ type Web3FarmingQuest {
 """"""
 enum Web3FarmingQuestType {
   """"""
-  ConnectEmail
+  DownloadApp
 
   """"""
-  DownloadApp
+  FollowTwitter
+
+  """"""
+  JoinDiscord
+
+  """"""
+  JoinTelegram
 
   """"""
   LikeTwitterPost

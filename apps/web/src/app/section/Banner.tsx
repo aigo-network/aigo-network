@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import CountDown from './CountDown';
 
 import Header from '@/components/Header';
-import { righteous } from '@/utils/style';
+import { clashDisplay } from '@/utils/style';
 
 interface Props {
 	isMobile?: boolean;
@@ -17,10 +17,13 @@ const Banner: FC<Props> = ({ isMobile }) => {
 				<Text style={[styles.title, isMobile && styles.mobileTitle]}>
 					AiGO Quest Season 1
 				</Text>
-				<CountDown style={styles.countDown} date={new Date('07-01-2024')} />
+				<CountDown
+					style={styles.countDown}
+					date={new Date('2024-07-15T00:00:00.000Z')}
+				/>
 			</View>
 
-			<Header style={[styles.headerContainer, styles.mobileHeaderContainer]} />
+			<Header isMobile={isMobile} style={styles.headerContainer} />
 		</View>
 	);
 };
@@ -33,15 +36,12 @@ const styles = StyleSheet.create({
 		gap: 20,
 	},
 	headerContainer: {
+		zIndex: 99,
 		position: 'absolute',
-		marginHorizontal: 48,
 		paddingVertical: 24,
 		top: 0,
 		left: 0,
 		right: 0,
-	},
-	mobileHeaderContainer: {
-		marginHorizontal: 24,
 	},
 	bannerTitleContainer: {
 		marginTop: 130,
@@ -50,11 +50,12 @@ const styles = StyleSheet.create({
 		alignSelf: 'center',
 	},
 	title: {
+		paddingHorizontal: 24,
 		textAlign: 'center',
 		fontSize: 56,
-		fontWeight: '400',
+		fontWeight: '600',
 		lineHeight: 64,
-		fontFamily: righteous.style.fontFamily,
+		fontFamily: clashDisplay.style.fontFamily,
 	},
 	mobileTitle: {
 		fontSize: 32,

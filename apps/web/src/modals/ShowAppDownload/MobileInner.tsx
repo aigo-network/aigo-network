@@ -2,20 +2,22 @@ import { type FC } from 'react';
 import { Linking, StyleSheet, View } from 'react-native';
 
 import DownloadButton from './DownloadButton';
-import type { DownloadOption } from './shared';
+import type { StoreOption } from './shared';
 
 interface Props {
-	links: DownloadOption[];
+	stores: StoreOption[];
+	playStore: string;
+	appStore: string;
 }
 
-export const MobileInner: FC<Props> = ({ links }) => {
-	const onDownloadPress = (item: DownloadOption) => {
-		Linking.openURL(item.storeUrl);
+export const MobileInner: FC<Props> = ({ stores, playStore, appStore }) => {
+	const onDownloadPress = (item: StoreOption) => {
+		Linking.openURL(item.type === 'Android' ? playStore : appStore);
 	};
 
 	return (
 		<View style={styles.container}>
-			{links.map((item) => {
+			{stores.map((item) => {
 				return (
 					<DownloadButton
 						isActive

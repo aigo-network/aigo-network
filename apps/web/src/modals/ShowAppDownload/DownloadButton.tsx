@@ -1,31 +1,35 @@
 import type { FC } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import ChevronUp from '@aigo/components/icon/ChevronUp';
+import Image from 'next/image';
 
-import type { DownloadOption } from './shared';
+import type { StoreOption } from './shared';
 
 interface Props {
 	style?: StyleProp<ViewStyle>;
-	item: DownloadOption;
+	item: StoreOption;
 	isActive?: boolean;
-	onPress?: (item: DownloadOption) => void;
+	onPress?: (item: StoreOption) => void;
 }
 
-export const DownloadButton: FC<Props> = ({
-	style,
-	item,
-	onPress,
-	isActive,
-}) => {
+export const DownloadButton: FC<Props> = ({ style, item, onPress }) => {
 	return (
 		<TouchableOpacity
 			key={item.title}
-			style={[styles.container, isActive && styles.activeContainer, style]}
+			style={[styles.container, style]}
 			onPress={() => onPress?.(item)}
 		>
-			<Text style={[styles.buttonText, !isActive && styles.inactiveText]}>
-				{item.title}
-			</Text>
+			<Image
+				src={item.icon}
+				alt="Store icon"
+				width={item.size.width}
+				height={item.size.height}
+			/>
+			<Text style={[styles.buttonText]}>{item.title}</Text>
+			<View style={styles.icon}>
+				<ChevronUp width={20} color="#999999" />
+			</View>
 		</TouchableOpacity>
 	);
 };
@@ -34,23 +38,21 @@ export default DownloadButton;
 
 const styles = StyleSheet.create({
 	container: {
-		height: 48,
-		borderRadius: 12,
-		backgroundColor: '#f2f2f2',
+		borderRadius: 16,
 		alignItems: 'center',
 		flexDirection: 'row',
-		paddingHorizontal: 14,
-	},
-	activeContainer: {
-		backgroundColor: '#81ddfb',
+		gap: 16,
+		paddingHorizontal: 24,
+		paddingVertical: 16,
+		borderWidth: 1,
+		borderColor: 'rgba(255, 255, 255, 0.1)',
 	},
 	buttonText: {
 		flex: 1,
 		fontSize: 16,
-		textAlign: 'center',
 		fontWeight: '500',
 	},
-	inactiveText: {
-		color: '#000',
+	icon: {
+		transform: [{ rotate: '90deg' }],
 	},
 });

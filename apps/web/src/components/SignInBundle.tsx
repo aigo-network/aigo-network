@@ -12,7 +12,6 @@ import BlurBackground from './BlurBackground';
 
 import Button from '@/components/Button';
 import type { AuthUser } from '@/state/app';
-import { appActions } from '@/state/app';
 import { logOut, signInWithTwitter } from '@/utils/auth';
 
 const DynamicLoading = dynamic(
@@ -38,7 +37,6 @@ export const SignInBundle: FC<Props> = ({ user, isAuthLoading, isMobile }) => {
 
 	const handlePressDisconnect = async () => {
 		await logOut();
-		appActions.reset();
 		setShowDropdown(false);
 	};
 
@@ -57,37 +55,38 @@ export const SignInBundle: FC<Props> = ({ user, isAuthLoading, isMobile }) => {
 					</DynamicLoading>
 				</Button>
 			) : (
-				<BlurBackground style={styles.container}>
-					<Avatar
-						withName={!isMobile}
-						imageUrl={user.imageUrl}
-						displayTextStyle={styles.lightText}
-						displayText={user.name}
-					/>
-					<TouchableOpacity
-						hitSlop={34}
-						onPress={() => setShowDropdown((l) => !l)}
-					>
+				<TouchableOpacity
+					hitSlop={34}
+					activeOpacity={0.6}
+					onPress={() => setShowDropdown((l) => !l)}
+				>
+					<BlurBackground style={styles.container}>
+						<Avatar
+							withName={!isMobile}
+							imageUrl={user.imageUrl}
+							displayTextStyle={styles.lightText}
+							displayText={user.name}
+						/>
 						{showDropdown ? (
 							<ChevronUp width={24} color={'#fff'} />
 						) : (
 							<ChevronDown width={24} color={'#fff'} />
 						)}
-					</TouchableOpacity>
-					{showDropdown && (
-						<View style={styles.dropdownContainer}>
-							<View style={styles.innerContainer}>
-								<TouchableOpacity
-									style={styles.disconnectButton}
-									onPress={handlePressDisconnect}
-								>
-									<Power width={24} strokeWidth="2.5" color={'#E15050'} />
-									<Text style={styles.disconnectText}>Disconnect</Text>
-								</TouchableOpacity>
+						{showDropdown && (
+							<View style={styles.dropdownContainer}>
+								<View style={styles.innerContainer}>
+									<TouchableOpacity
+										style={styles.disconnectButton}
+										onPress={handlePressDisconnect}
+									>
+										<Power width={24} strokeWidth="2.5" color={'#E15050'} />
+										<Text style={styles.disconnectText}>Disconnect</Text>
+									</TouchableOpacity>
+								</View>
 							</View>
-						</View>
-					)}
-				</BlurBackground>
+						)}
+					</BlurBackground>
+				</TouchableOpacity>
 			)}
 		</Fragment>
 	);
@@ -130,8 +129,8 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		top: 52,
 		right: 0,
-		width: 200,
-		height: 80,
+		width: 100,
+		height: 70,
 		borderRadius: 16,
 		padding: 2,
 		backgroundColor: '#FFFFFF29',
@@ -151,7 +150,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	disconnectText: {
-		fontSize: 16,
+		fontSize: 14,
 		fontWeight: '500',
 		color: '#E15050',
 	},

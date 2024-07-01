@@ -1,17 +1,30 @@
-import type { User } from '@aigo/api/sdk';
-
-export interface DownloadOption {
+export interface StoreOption {
 	title: string;
-	storeUrl: string;
+	icon: string;
+	type: 'Android' | 'iOS';
+	size: {
+		width: number;
+		height: number;
+	};
 }
 
-export const getDownloadLinks = (user: User): DownloadOption[] => [
+export const getStore = (): StoreOption[] => [
 	{
-		title: 'iOS',
-		storeUrl: `https://apps.apple.com/app/aigo/id6502833475?referrer=${user?.id}`,
+		title: 'Download for iOS',
+		icon: '/app-store-ic.png',
+		type: 'iOS',
+		size: {
+			width: 32,
+			height: 32,
+		},
 	},
 	{
-		title: 'Android',
-		storeUrl: `https://play.google.com/store/apps/details?id=network.aigo.app&referrer=${user?.id}`,
+		title: 'Download for Android',
+		icon: '/play-store-ic.png',
+		type: 'Android',
+		size: {
+			width: 32,
+			height: 35,
+		},
 	},
 ];
