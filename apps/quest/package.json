@@ -8,8 +8,7 @@
     "dev:sst": "sst bind next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint --fix",
-    "deploy:development": "sst deploy --stage development"
+    "lint": "next lint --fix"
   },
   "dependencies": {
     "date-fns": "^3.6.0",

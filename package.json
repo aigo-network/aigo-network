@@ -13,7 +13,8 @@
     "test": "jest",
     "deploy:prod": "sst deploy --stage production",
     "deploy:staging": "sst deploy --stage staging",
-    "deploy:dev": "sst deploy --stage development"
+    "deploy:dev": "sst deploy --stage development",
+    "deploy": "sst deploy"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
