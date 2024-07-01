@@ -19,7 +19,8 @@ import SplashScreen from 'screens/Splash';
 import VerifyNNIDScreen from 'screens/VerifyNNID';
 import VerifyOTPScreen from 'screens/VerifyOTP';
 import VerifyPhoneNumberScreen from 'screens/VerifyPhoneNumber';
-import type { RootStackParamList } from 'utils/navigation';
+import { type RootStackParamList } from 'utils/navigation';
+import { linking } from 'utils/navigation';
 
 import 'utils/global';
 import 'utils/auth';
@@ -37,7 +38,7 @@ export const AppContainer: FC = () => {
 	return (
 		<SafeAreaProvider>
 			<ModalProvider>
-				<NavigationContainer>
+				<NavigationContainer linking={linking}>
 					<Stack.Navigator
 						screenOptions={{
 							headerShown: false,
