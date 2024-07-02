@@ -6,6 +6,7 @@ export const linking: LinkingOptions<RootStackParamList> = {
 	config: {
 		screens: {
 			Profile: 'profile',
+			Open: 'open',
 		},
 	},
 	getInitialURL: async () => {
@@ -30,6 +31,7 @@ export const linking: LinkingOptions<RootStackParamList> = {
 
 export type RootStackParamList = {
 	Splash: undefined;
+	Open: undefined;
 	Login: undefined;
 	PhoneLogin: undefined;
 	OtpInput: undefined;
