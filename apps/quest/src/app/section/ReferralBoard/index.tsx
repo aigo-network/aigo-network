@@ -1,7 +1,9 @@
-import { type FC, useEffect } from 'react';
+import type { FC } from 'react';
+import { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Slide, toast } from 'react-toastify';
+import type { Web3FarmingReferralCode } from '@aigo/api/graphql';
 import { graphqlClient } from '@aigo/api/graphql';
 import Image from 'next/image';
 import { useSnapshot } from 'valtio';
@@ -27,7 +29,7 @@ const ReferralBoard: FC<Props> = ({ isMobile }) => {
 		const { web3FarmingRefreshReferrals } =
 			await graphqlClient.web3FarmingRefreshReferrals();
 		const codes = web3FarmingRefreshReferrals?.filter((c) => c !== null) || [];
-		appActions.updateReferralCodes(codes);
+		appActions.updateReferralCodes(codes as Web3FarmingReferralCode[]); // temp fix type-check did not know about null filter
 	};
 
 	useEffect(() => {
