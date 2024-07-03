@@ -29,4 +29,5 @@ body {
 body {
 	color: var(--primary-color);
 	font-family: var(--primary-font);
+	background: #181717;
 }
