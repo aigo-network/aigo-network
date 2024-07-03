@@ -13839,6 +13839,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"landing@workspace:apps/landing":
+  version: 0.0.0-use.local
+  resolution: "landing@workspace:apps/landing"
+  dependencies:
+    "@types/react": "npm:^18.2.6"
+    "@types/react-dom": "npm:^18.2.6"
+    next: "npm:14.2.4"
+    react: "npm:18.2.0"
+    react-dom: "npm:18.2.0"
+    typescript: "npm:5.4.5"
+  languageName: unknown
+  linkType: soft
+
 "lazystream@npm:^1.0.0":
   version: 1.0.1
   resolution: "lazystream@npm:1.0.1"
