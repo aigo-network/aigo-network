@@ -109,7 +109,7 @@ type RootMutation {
   web3FarmingInitProfile(referralCode: String): Web3FarmingProfile
 
   """"""
-  web3FarmingRefreshReferrals: [Web3FarmingQuest]
+  web3FarmingRefreshReferrals: [Web3FarmingReferralCode]
 
   """"""
   web3FarmingVerifyQuestAndClaimPoints(questId: String): Web3FarmingQuest
@@ -225,6 +225,9 @@ input UserProfile {
 
 """"""
 type Web3FarmingProfile {
+  """"""
+  countSuccessReferrals: Int
+
   """"""
   createdAt: DateTime
 

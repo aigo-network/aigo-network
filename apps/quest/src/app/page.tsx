@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { ImageBackground, ScrollView, StyleSheet, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { ToastContainer } from 'react-toastify';
 import { ModalProvider } from 'empty-modal';
 
 import '@/utils/auth';
@@ -11,6 +12,8 @@ import Banner from './section/Banner';
 import Footer from './section/Footer';
 import MissionBoard from './section/MissionBoard';
 import ReferralBoard from './section/ReferralBoard';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 import { useIsMobile } from '@/hooks/responsive';
 
@@ -37,6 +40,7 @@ export default function Home() {
 					</ScrollView>
 				</LinearGradient>
 			</ImageBackground>
+			<ToastContainer />
 		</ModalProvider>
 	);
 }

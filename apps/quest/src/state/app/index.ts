@@ -1,4 +1,5 @@
 import { graphqlClient } from '@aigo/api/graphql';
+import type { Web3FarmingReferralCode } from '@aigo/api/sdk';
 import { Web3FarmingQuestType } from '@aigo/api/sdk';
 
 import type { AppState } from './shared';
@@ -26,6 +27,11 @@ const queryAndUpdateGOPoints = async () => {
 	}
 };
 
+const updateReferralCodes = async (codes: Web3FarmingReferralCode[]) => {
+	if (appState.web3FarmingProfile)
+		appState.web3FarmingProfile.referralCodes = codes;
+};
+
 const getStateByQuestType = (type?: Web3FarmingQuestType) => {
 	switch (type) {
 		case Web3FarmingQuestType.LikeTwitterPost: {
@@ -46,6 +52,7 @@ const getStateByQuestType = (type?: Web3FarmingQuestType) => {
 export const appActions = {
 	reset,
 	queryAndUpdateGOPoints,
+	updateReferralCodes,
 	getStateByQuestType,
 };
 
