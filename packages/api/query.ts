@@ -103,6 +103,7 @@ export const getUserWithWeb3FarmingProfile = gql`
 				completed
 				createdAt
 			}
+			countSuccessReferrals
 			referralCodes {
 				id
 				code
@@ -133,6 +134,7 @@ export const getWeb3FarmingProfile = gql`
 				completed
 				createdAt
 			}
+			countSuccessReferrals
 			referralCodes {
 				id
 				code

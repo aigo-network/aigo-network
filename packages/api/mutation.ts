@@ -145,3 +145,18 @@ export const web3FarmingVerifyQuestAndClaimPoints = gql`
 		}
 	}
 `;
+
+export const web3FarmingRefreshReferrals = gql`
+	mutation web3FarmingRefreshReferrals {
+		web3FarmingRefreshReferrals {
+			id
+			code
+			invitedDate
+			invitedId
+			invitedGOPoints
+			referrerGOPoints
+			createdAt
+			updatedAt
+		}
+	}
+`;
