@@ -3,16 +3,15 @@ import styled from 'styled-components';
 
 import AiGOLogo from '@/components/icon/AiGOLogo';
 import AiGOText from '@/components/icon/AiGOText';
-import useDimension from '@/utils/hook/useDimension';
 
 const Header: FC = () => {
-	useDimension();
-
 	return (
 		<Container>
 			<LogoGroup>
 				<AiGOLogo size={50} />
-				<AiGOText size={95} />
+				<LogoText>
+					<AiGOText size={95} />
+				</LogoText>
 			</LogoGroup>
 			<NavBar>
 				<NavLink href="#">AiGO Ride App</NavLink>
@@ -39,6 +38,7 @@ const Container = styled.header`
 	width: 100%;
 	padding: 15px 25px;
 	margin: 0 auto;
+	z-index: 1;
 
 	@media (min-width: 576px) {
 		max-width: 540px;
@@ -59,6 +59,14 @@ const LogoGroup = styled.a`
 	display: flex;
 	align-items: center;
 	gap: 8px;
+`;
+
+const LogoText = styled.div`
+	display: none;
+
+	@media (min-width: 768px) {
+		display: block;
+	}
 `;
 
 const NavBar = styled.nav`
