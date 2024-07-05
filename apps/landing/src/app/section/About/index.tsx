@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { Fragment, useMemo, useRef } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import useScroll from '@/utils/hook/useScroll';
@@ -10,16 +10,29 @@ interface Props {
 
 const About: FC<Props> = ({ data }) => {
 	const elementRef = useRef<HTMLDivElement>(null);
+	const [effectBound, setEffectBound] = useState({
+		topBound: 0,
+		bottomBound: 0,
+		rangeBound: 0,
+	});
 	const scrollY = useScroll();
 	const wordList = data.split(' ');
-	const { topBound, rangeBound } = useMemo(() => {
-		const { offsetTop = 0, offsetHeight = 0 } = elementRef.current || {};
-		const topBound = offsetTop - window.innerHeight / 2;
-		const bottomBound = offsetTop + offsetHeight - window.innerHeight;
-		const rangeBound = bottomBound - topBound;
 
-		return { topBound, bottomBound, rangeBound };
-	}, [window.innerHeight]);
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			const bound = () => {
+				const { offsetTop = 0, offsetHeight = 0 } = elementRef.current || {};
+				const { innerHeight = 0 } = window || {};
+				const topBound = offsetTop - 0.1 * innerHeight;
+				const bottomBound = offsetTop + offsetHeight * 0.9 - innerHeight;
+				const rangeBound = bottomBound - topBound;
+
+				return { topBound, bottomBound, rangeBound };
+			};
+
+			setEffectBound(bound);
+		}
+	}, [typeof window !== 'undefined' ? window.innerHeight : 0]);
 
 	return (
 		<Container ref={elementRef}>
@@ -29,7 +42,10 @@ const About: FC<Props> = ({ data }) => {
 						{wordList.map((word, idx) => {
 							const percent = (idx + 1) / wordList.length;
 							const opacity =
-								scrollY >= percent * rangeBound + topBound ? 1 : 0;
+								scrollY >=
+								percent * effectBound.rangeBound + effectBound.topBound
+									? 1
+									: 0;
 
 							return (
 								<Fragment key={idx}>
@@ -72,7 +88,7 @@ const TextRevealWrapper = styled.div`
 	position: relative;
 
 	& > p {
-		margin: 40px 25px;
+		margin: 0 25px;
 		font-family: var(--secondary-font);
 		font-size: 45px;
 		font-weight: 600;
