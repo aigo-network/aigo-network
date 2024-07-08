@@ -17,8 +17,8 @@ const Backers = () => {
 					<img src="/img/backers/skyvision-img.png" />
 					<img src="/img/backers/caf-img.png" />
 					<img src="/img/backers/airfoil-img.png" />
-					<img src="/img/backers/p-img.png" />
-					<img src="/img/backers/tada-img.png" />
+					{/* <img src="/img/backers/p-img.png" />
+					<img src="/img/backers/tada-img.png" /> */}
 				</LogoLine>
 				<MobileLogo>
 					<img src="/img/backers/ticker-img.png" />
@@ -29,8 +29,8 @@ const Backers = () => {
 					<img src="/img/backers/skyvision-img.png" />
 					<img src="/img/backers/caf-img.png" />
 					<img src="/img/backers/airfoil-img.png" />
-					<img src="/img/backers/p-img.png" />
-					<img src="/img/backers/tada-img.png" />
+					{/* <img src="/img/backers/p-img.png" />
+					<img src="/img/backers/tada-img.png" /> */}
 				</MobileLogo>
 			</ContentContainer>
 		</SectionLayout>
