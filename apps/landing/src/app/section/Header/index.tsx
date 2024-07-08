@@ -7,21 +7,23 @@ import AiGOText from '@/components/icon/AiGOText';
 const Header: FC = () => {
 	return (
 		<Container>
-			<LogoGroup>
-				<AiGOLogo size={50} />
-				<LogoText>
-					<AiGOText size={95} />
-				</LogoText>
-			</LogoGroup>
-			<NavBar>
-				<NavLink href="#">AiGO Ride App</NavLink>
-				<NavLink href="#">Docs</NavLink>
-			</NavBar>
-			<BurgerMenu>
-				<span></span>
-				<span></span>
-				<span></span>
-			</BurgerMenu>
+			<InnerContainer>
+				<LogoGroup>
+					<AiGOLogo size={50} />
+					<LogoText>
+						<AiGOText size={95} />
+					</LogoText>
+				</LogoGroup>
+				<NavBar>
+					<NavLink href="#">AiGO Ride App</NavLink>
+					<NavLink href="#">Docs</NavLink>
+				</NavBar>
+				<BurgerMenu>
+					<span></span>
+					<span></span>
+					<span></span>
+				</BurgerMenu>
+			</InnerContainer>
 		</Container>
 	);
 };
@@ -32,13 +34,30 @@ const Container = styled.header`
 	position: fixed;
 	left: 0;
 	right: 0;
+	z-index: 1;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.3);
+
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: rgba(0, 0, 0, 0.5);
+	}
+`;
+
+const InnerContainer = styled.div`
+	position: relative;
+	z-index: 2;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
 	padding: 15px 25px;
 	margin: 0 auto;
-	z-index: 1;
 
 	@media (min-width: 576px) {
 		max-width: var(--max-width-mobile-horizontal);
