@@ -1,21 +1,17 @@
 import { type FC, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import type { Web3FarmingProfile } from '@aigo/api/sdk';
 import Copy from '@aigo/components/icon/Copy';
 
+import { useReferralCodes } from '@/hooks/referral';
 import { clashDisplay } from '@/utils/style';
 
-type Props = {
-	farmingProfile: Web3FarmingProfile;
-};
-
-export const CopyAll: FC<Props> = ({ farmingProfile }) => {
+export const CopyAll: FC = () => {
 	const [copied, setCopied] = useState(false);
 	const [isHovered, setIsHovered] = useState(false);
+	const { unInvitedList } = useReferralCodes();
 
 	const onPress = () => {
-		const codes =
-			farmingProfile.referralCodes?.map((c) => c?.code).join('\n') || '';
+		const codes = unInvitedList?.map((c) => c?.code).join('\n') || '';
 		navigator.clipboard.writeText(codes);
 
 		setCopied(true);

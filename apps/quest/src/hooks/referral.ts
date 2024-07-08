@@ -11,9 +11,18 @@ export const useReferralCodes = () => {
 		const invited = web3FarmingProfile?.referralCodes?.filter(
 			(referral) => referral?.invitedId,
 		);
+		const unInvited = web3FarmingProfile?.referralCodes?.filter(
+			(referral) => !referral?.invitedId,
+		);
 		const invitedCount = invited?.length || 0;
 		const unusedCount = total - invitedCount;
 
-		return { total, invitedCount, unusedCount, invitedList: invited };
+		return {
+			total,
+			invitedCount,
+			unusedCount,
+			invitedList: invited,
+			unInvitedList: unInvited,
+		};
 	}, [web3FarmingProfile?.referralCodes]);
 };
