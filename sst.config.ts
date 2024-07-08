@@ -1,3 +1,4 @@
+import landing from 'apps/landing/sst';
 import type { SSTConfig } from 'sst';
 
 import webApp from './apps/quest/sst';
@@ -13,5 +14,6 @@ export default {
 	stacks(app) {
 		app.stack(webApp);
 		app.stack(ride);
+		app.stack(landing);
 	},
 } satisfies SSTConfig;

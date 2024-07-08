@@ -1,0 +1,33 @@
+:root {
+	--media-mobile-horizontal: 576px;
+	--max-width-mobile-horizontal: 540px;
+	--media-tablet: 768px;
+	--max-width-tablet: 720px;
+	--media-laptop: 992px;
+	--max-width-laptop: 960px;
+	--media-desktop: 1200px;
+	--max-width-desktop: 1140px;
+
+	--border-radius: 12px;
+
+	--primary-color: #fdfdfd;
+	--secondary-color: #34c3f4;
+}
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+html,
+body {
+	max-width: 100vw;
+	/* overflow-x: hidden; */
+}
+
+body {
+	color: var(--primary-color);
+	font-family: var(--primary-font);
+	background: #181717;
+}

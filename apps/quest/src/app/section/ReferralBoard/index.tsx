@@ -1,6 +1,10 @@
 import type { FC } from 'react';
+import { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { Slide, toast } from 'react-toastify';
+import type { Web3FarmingReferralCode } from '@aigo/api/graphql';
+import { graphqlClient } from '@aigo/api/graphql';
 import Image from 'next/image';
 import { useSnapshot } from 'valtio';
 
@@ -9,8 +13,8 @@ import ReferralTag from './ReferralTag';
 import StaticCard from './StaticCard';
 
 import BoardLayout from '@/components/BoardLayout';
-import { useInvitedReferral } from '@/hooks/referral';
-import { appState } from '@/state/app';
+import { useReferralCodes } from '@/hooks/referral';
+import { appActions, appState } from '@/state/app';
 import { clashDisplay } from '@/utils/style';
 
 type Props = {
@@ -19,7 +23,36 @@ type Props = {
 
 const ReferralBoard: FC<Props> = ({ isMobile }) => {
 	const { user, web3FarmingProfile } = useSnapshot(appState);
-	const { count } = useInvitedReferral();
+	const { total, invitedCount } = useReferralCodes();
+
+	const handleRefreshReferrals = async () => {
+		const { web3FarmingRefreshReferrals } =
+			await graphqlClient.web3FarmingRefreshReferrals();
+		const codes = web3FarmingRefreshReferrals?.filter((c) => c !== null) || [];
+		appActions.updateReferralCodes(codes as Web3FarmingReferralCode[]); // temp fix type-check did not know about null filter
+	};
+
+	useEffect(() => {
+		if (total > 0 && total === invitedCount) {
+			// refresh
+			toast.promise(
+				handleRefreshReferrals,
+				{
+					pending: 'Refreshing referral codes',
+					success: 'Yo! Invite and get more GO points',
+					error: 'Can not refresh referral codes',
+				},
+				{
+					position: 'bottom-right',
+					autoClose: 5000,
+					pauseOnHover: true,
+					hideProgressBar: true,
+					transition: Slide,
+					theme: 'dark',
+				},
+			);
+		}
+	}, [total]);
 
 	return (
 		<BoardLayout
@@ -49,7 +82,7 @@ const ReferralBoard: FC<Props> = ({ isMobile }) => {
 					<View style={styles.separateLine} />
 					<StaticCard
 						style={styles.staticCard}
-						value={count || 0}
+						value={web3FarmingProfile?.countSuccessReferrals || 0}
 						parameter="SUCCESSFUL REF"
 						icon={
 							<Image
@@ -81,7 +114,7 @@ const ReferralBoard: FC<Props> = ({ isMobile }) => {
 						/>
 					))}
 
-					{user?.id && <CopyAll farmingProfile={web3FarmingProfile as never} />}
+					{user?.id && <CopyAll />}
 
 					<Text style={styles.explain}>
 						New codes will be available once all codes are used!

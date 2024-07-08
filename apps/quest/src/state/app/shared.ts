@@ -49,14 +49,14 @@ export const initialState: AppState = {
 		quests: [
 			{
 				id: 'mock-01',
-				type: Web3FarmingQuestType.RetweetTwitterPost,
-				title: 'Retweet',
-				GOPoints: 60,
+				type: Web3FarmingQuestType.DownloadApp,
+				title: 'Download AiGO App',
+				GOPoints: 600,
 			},
 			{
 				id: 'mock-02',
 				type: Web3FarmingQuestType.RetweetTwitterPost,
-				title: 'Like this tweet',
+				title: 'Retweet',
 				GOPoints: 60,
 				completed: true,
 			},

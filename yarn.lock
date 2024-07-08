@@ -7471,6 +7471,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/lodash@npm:^4":
+  version: 4.17.6
+  resolution: "@types/lodash@npm:4.17.6"
+  checksum: 10/6d3a68b3e795381f4aaf946855134d24eeb348ad5d66e9a44461d30026da82b215d55b92b70486d811ca45d54d4ab956aa2dced37fd04e19d49afe160ae3da2e
+  languageName: node
+  linkType: hard
+
 "@types/mustache@npm:^4":
   version: 4.2.5
   resolution: "@types/mustache@npm:4.2.5"
@@ -9459,6 +9466,13 @@ __metadata:
   version: 1.0.4
   resolution: "clone@npm:1.0.4"
   checksum: 10/d06418b7335897209e77bdd430d04f882189582e67bd1f75a04565f3f07f5b3f119a9d670c943b6697d0afb100f03b866b3b8a1f91d4d02d72c4ecf2bb64b5dd
+  languageName: node
+  linkType: hard
+
+"clsx@npm:^2.1.0":
+  version: 2.1.1
+  resolution: "clsx@npm:2.1.1"
+  checksum: 10/cdfb57fa6c7649bbff98d9028c2f0de2f91c86f551179541cf784b1cfdc1562dcb951955f46d54d930a3879931a980e32a46b598acaea274728dbe068deca919
   languageName: node
   linkType: hard
 
@@ -13839,6 +13853,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"landing@workspace:apps/landing":
+  version: 0.0.0-use.local
+  resolution: "landing@workspace:apps/landing"
+  dependencies:
+    "@types/lodash": "npm:^4"
+    "@types/react": "npm:^18.2.6"
+    "@types/react-dom": "npm:^18.2.6"
+    lodash: "npm:^4.17.21"
+    next: "npm:14.2.4"
+    react: "npm:18.2.0"
+    react-dom: "npm:18.2.0"
+    sst: "npm:^2.43.2"
+    styled-components: "npm:^6.1.11"
+    typescript: "npm:5.4.5"
+  languageName: unknown
+  linkType: soft
+
 "lazystream@npm:^1.0.0":
   version: 1.0.1
   resolution: "lazystream@npm:1.0.1"
@@ -16034,6 +16065,7 @@ __metadata:
     react-native-svg: "npm:^15.3.0"
     react-native-web: "npm:^0.19.12"
     react-native-web-linear-gradient: "npm:^1.1.2"
+    react-toastify: "npm:^10.0.5"
     sst: "npm:^2.43.2"
     styled-components: "npm:^6.1.11"
     typescript: "npm:5.4.5"
@@ -16502,6 +16534,18 @@ __metadata:
   peerDependencies:
     react: ^18.2.0
   checksum: 10/39473e43f64eec92da35db9d4411f3887b368038670787d49dd23172eb3a29953eb13767d1bfa34cbe2665b6e25632cad146e362e8910ce33755d343537763ae
+  languageName: node
+  linkType: hard
+
+"react-toastify@npm:^10.0.5":
+  version: 10.0.5
+  resolution: "react-toastify@npm:10.0.5"
+  dependencies:
+    clsx: "npm:^2.1.0"
+  peerDependencies:
+    react: ">=18"
+    react-dom: ">=18"
+  checksum: 10/6630f4b6d6902d827efd5e66c09df693c7ab8abeeb6ef24d880080f47b636614ef9cc251dd5e6564d49fe2f6f25f720ce0f7ef72cd4b0cd58a65b7c4b8052fac
   languageName: node
   linkType: hard
 
