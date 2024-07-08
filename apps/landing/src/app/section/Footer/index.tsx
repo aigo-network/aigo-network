@@ -77,26 +77,26 @@ const FooterContent = styled.div`
 
 	@media (min-width: 576px) {
 		& > div {
-			max-width: 540px;
+			max-width: var(--max-width-mobile-horizontal);
 		}
 	}
 
 	@media (min-width: 768px) {
 		& > div {
 			// padding-top: 20vh;
-			max-width: 720px;
+			max-width: var(--max-width-tablet);
 		}
 	}
 
 	@media (min-width: 992px) {
 		& > div {
-			max-width: 960px;
+			max-width: var(--max-width-laptop);
 		}
 	}
 
 	@media (min-width: 1200px) {
 		& > div {
-			max-width: 1140px;
+			max-width: var(--max-width-desktop);
 		}
 	}
 `;

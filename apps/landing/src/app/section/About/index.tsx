@@ -99,7 +99,7 @@ const TextRevealWrapper = styled.div`
 	}
 
 	@media (min-width: 768px) {
-		max-width: 720px;
+		max-width: var(--max-width-tablet);
 
 		& > p {
 			font-size: 45px;
@@ -109,10 +109,10 @@ const TextRevealWrapper = styled.div`
 	}
 
 	@media (min-width: 992px) {
-		max-width: 960px;
+		max-width: var(--max-width-laptop);
 	}
 
 	@media (min-width: 1200px) {
-		max-width: 1140px;
+		max-width: var(--max-width-desktop);
 	}
 `;

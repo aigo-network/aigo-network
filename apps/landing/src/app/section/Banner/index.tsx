@@ -102,7 +102,7 @@ const SubTitle = styled.p`
 	}
 
 	@media (min-width: 576px) {
-		max-width: 540px;
+		max-width: var(--max-width-mobile-horizontal);
 	}
 
 	@media (min-width: 992px) {
