@@ -114,7 +114,7 @@ const ReferralBoard: FC<Props> = ({ isMobile }) => {
 						/>
 					))}
 
-					{user?.id && <CopyAll farmingProfile={web3FarmingProfile as never} />}
+					{user?.id && <CopyAll />}
 
 					<Text style={styles.explain}>
 						New codes will be available once all codes are used!
