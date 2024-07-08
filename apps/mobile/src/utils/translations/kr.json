@@ -110,7 +110,7 @@
     "profile": {
       "title": "프로필",
       "unknownUsername": "익명의 사용자",
-      "totalBalanceTitle": "총 밸런",
+      "totalBalanceTitle": "총 밸런스",
       "viewHistoryButton": "이전 내역 보기",
       "infoTitle": {
         "account": "계정 정보",
@@ -130,7 +130,7 @@
       "partnerSection": {
         "partner": "냠냠 파트너 프로그램",
         "partnerName": "냠냠박스",
-        "descriptionPrefix": "냠냠박스 유저 인증 시",
+        "descriptionPrefix": "냠냠박스 유저 인증시,",
         "reward": "GO",
         "descriptionSuffix": "포인트 획득 가능",
         "phoneNumberVerified": "전화번호 인증 완료",
@@ -144,8 +144,8 @@
       },
       "referralSection": {
         "title": "추천 코드",
-        "descriptionPrefix": "추가 보상 받기",
-        "descriptionSuffix": "친구의 추천 코드를 입력하면",
+        "descriptionPrefix": "친구의 추천 코드를 입력하고",
+        "descriptionSuffix": "추가 보상 받기",
         "enterCodePlaceholder": "초대 코드를 입력해주세요",
         "invalidCodeError": "입력하신 코드가 맞지 않습니다, 다시 시도해주세요",
         "verifyButton": "인증하기"
