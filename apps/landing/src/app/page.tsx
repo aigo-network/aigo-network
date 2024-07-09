@@ -8,6 +8,7 @@ import Banner from './section/Banner';
 import Footer from './section/Footer';
 import Header from './section/Header';
 import StrategicPartner from './section/Strategic';
+import HowItWork from './section/Work';
 
 export default function Home() {
 	return (
@@ -19,6 +20,7 @@ export default function Home() {
 					data="AiGO Network is the first Web3-native platform specifically designed to aggregate & monetize mobility data from two-wheeler
 towards a smarter, safe and efficient cities"
 				/>
+				<HowItWork />
 				<StrategicPartner />
 				<Backers />
 			</main>
