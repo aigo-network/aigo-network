@@ -5,6 +5,7 @@ import { Fragment } from 'react';
 import About from './section/About';
 import Backers from './section/Backers';
 import Banner from './section/Banner';
+import Ecosystem from './section/Ecosystem';
 import Footer from './section/Footer';
 import Header from './section/Header';
 import StrategicPartner from './section/Strategic';
@@ -21,6 +22,7 @@ export default function Home() {
 towards a smarter, safe and efficient cities"
 				/>
 				<HowItWork />
+				<Ecosystem />
 				<StrategicPartner />
 				<Backers />
 			</main>
