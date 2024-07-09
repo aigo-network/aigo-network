@@ -4,7 +4,7 @@ import SectionLayout from '@/components/SectionLayout';
 
 const Backers = () => {
 	return (
-		<SectionLayout title="Backers & Partners">
+		<SectionLayout subTitle="Supporting Partners" title="Wide-range of support">
 			<ContentContainer>
 				<LogoLine>
 					<img src="/img/backers/ticker-img.png" />
@@ -43,12 +43,18 @@ const ContentContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
+	padding-bottom: 200px;
 `;
 
 const LogoLine = styled.div`
 	display: none;
 
-	@media (min-width: 992px) {
+	img {
+		width: 200px;
+		height: auto;
+	}
+
+	@media (min-width: 768px) {
 		display: flex;
 		justify-content: center;
 		align-items: center;

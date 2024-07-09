@@ -34,7 +34,7 @@ const Container = styled.header`
 	position: fixed;
 	left: 0;
 	right: 0;
-	z-index: 1;
+	z-index: 10;
 	width: 100%;
 	background: rgba(0, 0, 0, 0.5);
 	backdrop-filter: blur(5px);
@@ -42,7 +42,7 @@ const Container = styled.header`
 
 const InnerContainer = styled.div`
 	position: relative;
-	z-index: 2;
+	z-index: 11;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;

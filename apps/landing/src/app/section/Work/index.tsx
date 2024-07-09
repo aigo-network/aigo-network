@@ -4,7 +4,7 @@ import SectionLayout from '@/components/SectionLayout';
 
 export const HowItWork = () => {
 	return (
-		<SectionLayout title="How it works">
+		<SectionLayout subTitle="Flow" title="How it works">
 			<Description>
 				AiGO Network is a robust mobility data ecosystem where data providers
 				and validators can be incentivized for their contribution and developers

@@ -4,7 +4,10 @@ import SectionLayout from '@/components/SectionLayout';
 
 const StrategicPartner = () => {
 	return (
-		<SectionLayout title="Strategic Partnership">
+		<SectionLayout
+			subTitle="Strategic Partnership"
+			title="APAC market growth & expansion"
+		>
 			<StrategicCard />
 		</SectionLayout>
 	);
