@@ -8,7 +8,7 @@ const associatedAppleAppSite = {
 			{
 				appIDs: [APPLE_APP_ID],
 				components: [
-					{ '/open': '/open', '?': { from: '????' }, comment: 'Open App' },
+					{ '/': '/open', comment: 'Open Ride App' },
 				],
 			},
 		],
