@@ -193,4 +193,5 @@ const DetailTitle = styled.span`
 const DetailText = styled.p`
 	font-size: 20px;
 	color: rgba(253, 253, 253, 0.5);
+	max-width: 500px;
 `;

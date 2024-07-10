@@ -1,7 +1,7 @@
 import type { FC } from 'react';
 import styled from 'styled-components';
 
-import GradientButton from '@/components/GradientButton';
+import BasicButton from '@/components/BasicButton';
 
 const Banner: FC = () => {
 	return (
@@ -15,7 +15,10 @@ const Banner: FC = () => {
 						<span>two-wheelers</span>
 					</SubTitle>
 					<BtnGroup>
-						<GradientButton title="Get Started" />
+						<BasicButton title="Share your move & Earn now" />
+						<LinkBtn href="https://quest.aigo.network/" target="_blank">
+							Quests
+						</LinkBtn>
 					</BtnGroup>
 				</div>
 			</ContentContainer>
@@ -114,6 +117,13 @@ const SubTitle = styled.p`
 
 const BtnGroup = styled.div`
 	display: flex;
-	gap: 20px;
+	gap: 40px;
 	align-items: center;
+`;
+
+const LinkBtn = styled.a`
+	font-size: 18px;
+	font-weight: 500;
+	text-decoration: none;
+	color: rgba(255, 255, 255, 0.5);
 `;
