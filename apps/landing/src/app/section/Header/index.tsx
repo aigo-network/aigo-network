@@ -1,10 +1,13 @@
 import type { FC } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 import AiGOLogo from '@/components/icon/AiGOLogo';
 import AiGOText from '@/components/icon/AiGOText';
 
 const Header: FC = () => {
+	const [showSideMenu, setShowSideMenu] = useState(false);
+
 	return (
 		<Container>
 			<InnerContainer>
@@ -15,15 +18,32 @@ const Header: FC = () => {
 					</LogoText>
 				</LogoGroup>
 				<NavBar>
-					<NavLink href="#">AiGO Ride App</NavLink>
-					<NavLink href="#">Docs</NavLink>
+					<NavLink href="https://ride.aigo.network/" target="_blank">
+						AiGO Ride App
+					</NavLink>
+					{/* <NavLink href="#">Docs</NavLink> */}
 				</NavBar>
-				<BurgerMenu>
+				<BurgerMenu
+					$isClosedBtn={showSideMenu}
+					onClick={() => setShowSideMenu(!showSideMenu)}
+				>
 					<span></span>
 					<span></span>
 					<span></span>
 				</BurgerMenu>
 			</InnerContainer>
+			<SideMenuBackground $active={showSideMenu}>
+				<CloseButton onClick={() => setShowSideMenu(false)}>
+					<span />
+					<span />
+				</CloseButton>
+				<Menu>
+					<NavLink href="https://ride.aigo.network/" target="_blank">
+						AiGO Ride App
+					</NavLink>
+					{/* <NavLink href="#">Docs</NavLink> */}
+				</Menu>
+			</SideMenuBackground>
 		</Container>
 	);
 };
@@ -94,7 +114,7 @@ const NavLink = styled.a`
 	color: var(--primary-color);
 `;
 
-const BurgerMenu = styled.div`
+const BurgerMenu = styled.div<{ $isClosedBtn: boolean }>`
 	cursor: pointer;
 	align-self: center;
 
@@ -106,9 +126,78 @@ const BurgerMenu = styled.div`
 		transition-duration: 0.3s;
 		width: 30px;
 		background: var(--primary-color);
+		position: relative;
+
+		${({ $isClosedBtn }) =>
+			$isClosedBtn
+				? `
+			&:first-child {
+				transform: rotate(45deg);
+				top: 8px;
+			}
+
+			&:nth-child(2) {
+				opacity: 0;
+			}
+
+			&:last-child {
+				transform: rotate(-45deg);
+				top: -8px;
+			}
+		`
+				: ``}
 	}
 
 	@media (min-width: 992px) {
 		display: none;
 	}
+`;
+
+const SideMenuBackground = styled.div<{ $active: boolean }>`
+	position: absolute;
+	z-index: 13;
+	top: 0;
+	left: ${({ $active }) => ($active ? '0' : '-300px')};
+	width: 300px;
+	height: 100vh;
+	background: #1b1b1b;
+	transition: ease-out 0.3s;
+`;
+
+const CloseButton = styled.div`
+	position: relative;
+	width: 26px;
+	height: 26px;
+	cursor: pointer;
+	margin: 25px 25px 25px auto;
+
+	span {
+		position: absolute;
+		display: block;
+		width: 100%;
+		height: 2px;
+		border-radius: 6px;
+		background: #ffffff;
+
+		&:first-child {
+			top: 12px;
+			left: 0;
+			transform: rotate(45deg);
+		}
+
+		&:last-child {
+			bottom: 12px;
+			left: 0;
+			transform: rotate(-45deg);
+		}
+	}
+`;
+
+const Menu = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	max-width: 50%;
+	gap: 10px;
+	margin: 0 auto;
 `;
