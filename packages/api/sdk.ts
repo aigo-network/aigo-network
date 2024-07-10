@@ -30,6 +30,25 @@ export type DailyMissions = {
   latest7DaysCheckIn?: Maybe<Array<Maybe<DailyCheckIn>>>;
 };
 
+export type Device = {
+  __typename?: 'Device';
+  appVersion?: Maybe<Scalars['String']['output']>;
+  brand?: Maybe<Scalars['String']['output']>;
+  carrier?: Maybe<Scalars['String']['output']>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  deviceId?: Maybe<Scalars['String']['output']>;
+  deviceName?: Maybe<Scalars['String']['output']>;
+  deviceType?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  lastUpdateTime?: Maybe<Scalars['String']['output']>;
+  manufacturer?: Maybe<Scalars['String']['output']>;
+  notificationToken?: Maybe<Scalars['String']['output']>;
+  platform?: Maybe<Scalars['String']['output']>;
+  systemVersion?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  userIdentifier?: Maybe<Scalars['String']['output']>;
+};
+
 export type Invitation = {
   __typename?: 'Invitation';
   invitedBy?: Maybe<Scalars['String']['output']>;
@@ -58,12 +77,26 @@ export enum PhoneNumberVerification {
   Verified = 'VERIFIED'
 }
 
+export type RegisterDeviceInput = {
+  appVersion?: InputMaybe<Scalars['String']['input']>;
+  brand?: InputMaybe<Scalars['String']['input']>;
+  carrier?: InputMaybe<Scalars['String']['input']>;
+  deviceId: Scalars['String']['input'];
+  deviceName?: InputMaybe<Scalars['String']['input']>;
+  deviceType?: InputMaybe<Scalars['String']['input']>;
+  manufacturer?: InputMaybe<Scalars['String']['input']>;
+  notificationToken?: InputMaybe<Scalars['String']['input']>;
+  platform?: InputMaybe<Scalars['String']['input']>;
+  systemVersion?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type RootMutation = {
   __typename?: 'RootMutation';
   checkIn?: Maybe<DailyCheckIn>;
   completeOnboarding?: Maybe<User>;
   deleteUser?: Maybe<User>;
   inputInvitationCode?: Maybe<Invitation>;
+  registerDevice?: Maybe<Device>;
   updateProfile?: Maybe<User>;
   /**
    * Verify Nyam Nyam Identity by calling NN API, needed NNID and Phone number.
@@ -85,6 +118,11 @@ export type RootMutation = {
 
 export type RootMutationInputInvitationCodeArgs = {
   code?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type RootMutationRegisterDeviceArgs = {
+  input: RegisterDeviceInput;
 };
 
 
@@ -201,22 +239,22 @@ export type Web3FarmingReferralCode = {
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
-export type UpdateProfileMutationVariables = Exact<{
-  profile?: InputMaybe<UserProfile>;
-}>;
+export type CheckInMutationVariables = Exact<{ [key: string]: never; }>;
 
 
-export type UpdateProfileMutation = { __typename?: 'RootMutation', updateProfile?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, descriptions?: Array<UserDescription | null> | null, city?: string | null, imageUrl?: string | null, phoneNumber?: string | null } | null };
+export type CheckInMutation = { __typename?: 'RootMutation', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null };
 
 export type CompleteOnboardingMutationVariables = Exact<{ [key: string]: never; }>;
 
 
 export type CompleteOnboardingMutation = { __typename?: 'RootMutation', completeOnboarding?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, imageUrl?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, phoneNumber?: string | null, GOPoints?: number | null, invitationCode?: string | null, createdAt?: any | null, updatedAt?: any | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null } | null } | null };
 
-export type CheckInMutationVariables = Exact<{ [key: string]: never; }>;
+export type RegisterDeviceMutationVariables = Exact<{
+  input: RegisterDeviceInput;
+}>;
 
 
-export type CheckInMutation = { __typename?: 'RootMutation', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null };
+export type RegisterDeviceMutation = { __typename?: 'RootMutation', registerDevice?: { __typename?: 'Device', id?: string | null, deviceId?: string | null, brand?: string | null, platform?: string | null, carrier?: string | null, deviceName?: string | null, deviceType?: string | null, appVersion?: string | null, systemVersion?: string | null, createdAt?: any | null, updatedAt?: any | null } | null };
 
 export type InputInvitationCodeMutationVariables = Exact<{
   code?: InputMaybe<Scalars['String']['input']>;
@@ -224,23 +262,6 @@ export type InputInvitationCodeMutationVariables = Exact<{
 
 
 export type InputInvitationCodeMutation = { __typename?: 'RootMutation', inputInvitationCode?: { __typename?: 'Invitation', invitedBy?: string | null, invitedId?: string | null } | null };
-
-export type DeleteUserMutationVariables = Exact<{ [key: string]: never; }>;
-
-
-export type DeleteUserMutation = { __typename?: 'RootMutation', deleteUser?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, imageUrl?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, GOPoints?: number | null, invitationCode?: string | null, createdAt?: any | null, updatedAt?: any | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null } | null } | null };
-
-export type VerifyPhoneNumberMutationVariables = Exact<{ [key: string]: never; }>;
-
-
-export type VerifyPhoneNumberMutation = { __typename?: 'RootMutation', verifyPhoneNumber?: PhoneNumberVerification | null };
-
-export type VerifyNyamNyamUserMutationVariables = Exact<{
-  nnid?: InputMaybe<Scalars['String']['input']>;
-}>;
-
-
-export type VerifyNyamNyamUserMutation = { __typename?: 'RootMutation', verifyNyamNyamUser?: { __typename?: 'NyamNyamUserProfile', NNID?: string | null, createdAt?: any | null, extKey?: string | null, id?: string | null, name?: string | null, nick?: string | null, registrationNumber?: string | null, updatedAt?: any | null, verifiedAt?: any | null } | null };
 
 export type Web3FarmingInitProfileMutationVariables = Exact<{
   referralCode?: InputMaybe<Scalars['String']['input']>;
@@ -261,20 +282,27 @@ export type Web3FarmingRefreshReferralsMutationVariables = Exact<{ [key: string]
 
 export type Web3FarmingRefreshReferralsMutation = { __typename?: 'RootMutation', web3FarmingRefreshReferrals?: Array<{ __typename?: 'Web3FarmingReferralCode', id?: string | null, code?: string | null, invitedDate?: any | null, invitedId?: string | null, invitedGOPoints?: number | null, referrerGOPoints?: number | null, createdAt?: any | null, updatedAt?: any | null } | null> | null };
 
-export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
+export type DeleteUserMutationVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, phoneNumber?: string | null, phoneNumberVerified?: boolean | null, phoneNumberVerifiedAt?: any | null, imageUrl?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, GOPoints?: number | null, invitationCode?: string | null, createdAt?: any | null, updatedAt?: any | null, NyamNyamUserProfile?: { __typename?: 'NyamNyamUserProfile', NNID?: string | null, createdAt?: any | null, extKey?: string | null, id?: string | null, name?: string | null, nick?: string | null, registrationNumber?: string | null, updatedAt?: any | null, verifiedAt?: any | null } | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null, latest7DaysCheckIn?: Array<{ __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null> | null } | null } | null };
+export type DeleteUserMutation = { __typename?: 'RootMutation', deleteUser?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, imageUrl?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, GOPoints?: number | null, invitationCode?: string | null, createdAt?: any | null, updatedAt?: any | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null } | null } | null };
+
+export type VerifyPhoneNumberMutationVariables = Exact<{ [key: string]: never; }>;
+
+
+export type VerifyPhoneNumberMutation = { __typename?: 'RootMutation', verifyPhoneNumber?: PhoneNumberVerification | null };
+
+export type VerifyNyamNyamUserMutationVariables = Exact<{
+  nnid?: InputMaybe<Scalars['String']['input']>;
+}>;
+
+
+export type VerifyNyamNyamUserMutation = { __typename?: 'RootMutation', verifyNyamNyamUser?: { __typename?: 'NyamNyamUserProfile', NNID?: string | null, createdAt?: any | null, extKey?: string | null, id?: string | null, name?: string | null, nick?: string | null, registrationNumber?: string | null, updatedAt?: any | null, verifiedAt?: any | null } | null };
 
 export type GetUserGoPointsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetUserGoPointsQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', GOPoints?: number | null } | null };
-
-export type GetUserProfileQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetUserProfileQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, phoneNumber?: string | null, phoneNumberVerified?: boolean | null, phoneNumberVerifiedAt?: any | null, GOPoints?: number | null, completeOnboarding?: boolean | null, NyamNyamUserProfile?: { __typename?: 'NyamNyamUserProfile', NNID?: string | null, createdAt?: any | null, extKey?: string | null, id?: string | null, name?: string | null, nick?: string | null, registrationNumber?: string | null, updatedAt?: any | null, verifiedAt?: any | null } | null } | null };
 
 export type GetUserWithWeb3FarmingProfileQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -286,17 +314,22 @@ export type GetWeb3FarmingProfileQueryVariables = Exact<{ [key: string]: never; 
 
 export type GetWeb3FarmingProfileQuery = { __typename?: 'RootQuery', web3FarmingProfile?: { __typename?: 'Web3FarmingProfile', id?: string | null, createdAt?: any | null, invitedBy?: string | null, countSuccessReferrals?: number | null, quests?: Array<{ __typename?: 'Web3FarmingQuest', id?: string | null, title?: string | null, description?: string | null, GOPoints?: number | null, type?: Web3FarmingQuestType | null, URL?: string | null, androidDownloadLink?: string | null, appleDownloadLink?: string | null, completed?: boolean | null, createdAt?: any | null } | null> | null, referralCodes?: Array<{ __typename?: 'Web3FarmingReferralCode', id?: string | null, code?: string | null, invitedId?: string | null, invitedDate?: any | null, invitedGOPoints?: number | null, referrerGOPoints?: number | null } | null> | null } | null };
 
+export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
 
-export const UpdateProfileDocument = gql`
-    mutation updateProfile($profile: UserProfile) {
-  updateProfile(profile: $profile) {
-    id
-    name
-    email
-    descriptions
-    city
-    imageUrl
-    phoneNumber
+
+export type GetUserQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, phoneNumber?: string | null, phoneNumberVerified?: boolean | null, phoneNumberVerifiedAt?: any | null, imageUrl?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, GOPoints?: number | null, invitationCode?: string | null, createdAt?: any | null, updatedAt?: any | null, NyamNyamUserProfile?: { __typename?: 'NyamNyamUserProfile', NNID?: string | null, createdAt?: any | null, extKey?: string | null, id?: string | null, name?: string | null, nick?: string | null, registrationNumber?: string | null, updatedAt?: any | null, verifiedAt?: any | null } | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null, latest7DaysCheckIn?: Array<{ __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null> | null } | null } | null };
+
+export type GetUserProfileQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetUserProfileQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, phoneNumber?: string | null, phoneNumberVerified?: boolean | null, phoneNumberVerifiedAt?: any | null, GOPoints?: number | null, completeOnboarding?: boolean | null, NyamNyamUserProfile?: { __typename?: 'NyamNyamUserProfile', NNID?: string | null, createdAt?: any | null, extKey?: string | null, id?: string | null, name?: string | null, nick?: string | null, registrationNumber?: string | null, updatedAt?: any | null, verifiedAt?: any | null } | null } | null };
+
+
+export const CheckInDocument = gql`
+    mutation checkIn {
+  checkIn {
+    date
+    completed
   }
 }
     `;
@@ -323,11 +356,20 @@ export const CompleteOnboardingDocument = gql`
   }
 }
     `;
-export const CheckInDocument = gql`
-    mutation checkIn {
-  checkIn {
-    date
-    completed
+export const RegisterDeviceDocument = gql`
+    mutation registerDevice($input: RegisterDeviceInput!) {
+  registerDevice(input: $input) {
+    id
+    deviceId
+    brand
+    platform
+    carrier
+    deviceName
+    deviceType
+    appVersion
+    systemVersion
+    createdAt
+    updatedAt
   }
 }
     `;
@@ -336,48 +378,6 @@ export const InputInvitationCodeDocument = gql`
   inputInvitationCode(code: $code) {
     invitedBy
     invitedId
-  }
-}
-    `;
-export const DeleteUserDocument = gql`
-    mutation deleteUser {
-  deleteUser {
-    id
-    name
-    email
-    imageUrl
-    city
-    descriptions
-    GOPoints
-    dailyMissions {
-      checkIn {
-        date
-        completed
-      }
-    }
-    invitationCode
-    createdAt
-    updatedAt
-  }
-}
-    `;
-export const VerifyPhoneNumberDocument = gql`
-    mutation verifyPhoneNumber {
-  verifyPhoneNumber
-}
-    `;
-export const VerifyNyamNyamUserDocument = gql`
-    mutation verifyNyamNyamUser($nnid: String) {
-  verifyNyamNyamUser(NNID: $nnid) {
-    NNID
-    createdAt
-    extKey
-    id
-    name
-    nick
-    registrationNumber
-    updatedAt
-    verifiedAt
   }
 }
     `;
@@ -438,36 +438,18 @@ export const Web3FarmingRefreshReferralsDocument = gql`
   }
 }
     `;
-export const GetUserDocument = gql`
-    query getUser {
-  user {
+export const DeleteUserDocument = gql`
+    mutation deleteUser {
+  deleteUser {
     id
     name
     email
-    phoneNumber
-    phoneNumberVerified
-    phoneNumberVerifiedAt
     imageUrl
     city
     descriptions
-    NyamNyamUserProfile {
-      NNID
-      createdAt
-      extKey
-      id
-      name
-      nick
-      registrationNumber
-      updatedAt
-      verifiedAt
-    }
     GOPoints
     dailyMissions {
       checkIn {
-        date
-        completed
-      }
-      latest7DaysCheckIn {
         date
         completed
       }
@@ -478,37 +460,30 @@ export const GetUserDocument = gql`
   }
 }
     `;
+export const VerifyPhoneNumberDocument = gql`
+    mutation verifyPhoneNumber {
+  verifyPhoneNumber
+}
+    `;
+export const VerifyNyamNyamUserDocument = gql`
+    mutation verifyNyamNyamUser($nnid: String) {
+  verifyNyamNyamUser(NNID: $nnid) {
+    NNID
+    createdAt
+    extKey
+    id
+    name
+    nick
+    registrationNumber
+    updatedAt
+    verifiedAt
+  }
+}
+    `;
 export const GetUserGoPointsDocument = gql`
     query getUserGOPoints {
   user {
     GOPoints
-  }
-}
-    `;
-export const GetUserProfileDocument = gql`
-    query getUserProfile {
-  user {
-    id
-    name
-    email
-    city
-    descriptions
-    NyamNyamUserProfile {
-      NNID
-      createdAt
-      extKey
-      id
-      name
-      nick
-      registrationNumber
-      updatedAt
-      verifiedAt
-    }
-    phoneNumber
-    phoneNumberVerified
-    phoneNumberVerifiedAt
-    GOPoints
-    completeOnboarding
   }
 }
     `;
@@ -580,6 +555,73 @@ export const GetWeb3FarmingProfileDocument = gql`
   }
 }
     `;
+export const GetUserDocument = gql`
+    query getUser {
+  user {
+    id
+    name
+    email
+    phoneNumber
+    phoneNumberVerified
+    phoneNumberVerifiedAt
+    imageUrl
+    city
+    descriptions
+    NyamNyamUserProfile {
+      NNID
+      createdAt
+      extKey
+      id
+      name
+      nick
+      registrationNumber
+      updatedAt
+      verifiedAt
+    }
+    GOPoints
+    dailyMissions {
+      checkIn {
+        date
+        completed
+      }
+      latest7DaysCheckIn {
+        date
+        completed
+      }
+    }
+    invitationCode
+    createdAt
+    updatedAt
+  }
+}
+    `;
+export const GetUserProfileDocument = gql`
+    query getUserProfile {
+  user {
+    id
+    name
+    email
+    city
+    descriptions
+    NyamNyamUserProfile {
+      NNID
+      createdAt
+      extKey
+      id
+      name
+      nick
+      registrationNumber
+      updatedAt
+      verifiedAt
+    }
+    phoneNumber
+    phoneNumberVerified
+    phoneNumberVerifiedAt
+    GOPoints
+    completeOnboarding
+  }
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
@@ -588,26 +630,17 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    updateProfile(variables?: UpdateProfileMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<UpdateProfileMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<UpdateProfileMutation>(UpdateProfileDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'updateProfile', 'mutation', variables);
+    checkIn(variables?: CheckInMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CheckInMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<CheckInMutation>(CheckInDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'checkIn', 'mutation', variables);
     },
     completeOnboarding(variables?: CompleteOnboardingMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CompleteOnboardingMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<CompleteOnboardingMutation>(CompleteOnboardingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'completeOnboarding', 'mutation', variables);
     },
-    checkIn(variables?: CheckInMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CheckInMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<CheckInMutation>(CheckInDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'checkIn', 'mutation', variables);
+    registerDevice(variables: RegisterDeviceMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<RegisterDeviceMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<RegisterDeviceMutation>(RegisterDeviceDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'registerDevice', 'mutation', variables);
     },
     inputInvitationCode(variables?: InputInvitationCodeMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<InputInvitationCodeMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<InputInvitationCodeMutation>(InputInvitationCodeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'inputInvitationCode', 'mutation', variables);
-    },
-    deleteUser(variables?: DeleteUserMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<DeleteUserMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<DeleteUserMutation>(DeleteUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'deleteUser', 'mutation', variables);
-    },
-    verifyPhoneNumber(variables?: VerifyPhoneNumberMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<VerifyPhoneNumberMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<VerifyPhoneNumberMutation>(VerifyPhoneNumberDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'verifyPhoneNumber', 'mutation', variables);
-    },
-    verifyNyamNyamUser(variables?: VerifyNyamNyamUserMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<VerifyNyamNyamUserMutation> {
-      return withWrapper((wrappedRequestHeaders) => client.request<VerifyNyamNyamUserMutation>(VerifyNyamNyamUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'verifyNyamNyamUser', 'mutation', variables);
     },
     web3FarmingInitProfile(variables?: Web3FarmingInitProfileMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Web3FarmingInitProfileMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<Web3FarmingInitProfileMutation>(Web3FarmingInitProfileDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'web3FarmingInitProfile', 'mutation', variables);
@@ -618,20 +651,29 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     web3FarmingRefreshReferrals(variables?: Web3FarmingRefreshReferralsMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Web3FarmingRefreshReferralsMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<Web3FarmingRefreshReferralsMutation>(Web3FarmingRefreshReferralsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'web3FarmingRefreshReferrals', 'mutation', variables);
     },
-    getUser(variables?: GetUserQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetUserQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetUserQuery>(GetUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUser', 'query', variables);
+    deleteUser(variables?: DeleteUserMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<DeleteUserMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<DeleteUserMutation>(DeleteUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'deleteUser', 'mutation', variables);
+    },
+    verifyPhoneNumber(variables?: VerifyPhoneNumberMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<VerifyPhoneNumberMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<VerifyPhoneNumberMutation>(VerifyPhoneNumberDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'verifyPhoneNumber', 'mutation', variables);
+    },
+    verifyNyamNyamUser(variables?: VerifyNyamNyamUserMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<VerifyNyamNyamUserMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<VerifyNyamNyamUserMutation>(VerifyNyamNyamUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'verifyNyamNyamUser', 'mutation', variables);
     },
     getUserGOPoints(variables?: GetUserGoPointsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetUserGoPointsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetUserGoPointsQuery>(GetUserGoPointsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUserGOPoints', 'query', variables);
-    },
-    getUserProfile(variables?: GetUserProfileQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetUserProfileQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetUserProfileQuery>(GetUserProfileDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUserProfile', 'query', variables);
     },
     getUserWithWeb3FarmingProfile(variables?: GetUserWithWeb3FarmingProfileQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetUserWithWeb3FarmingProfileQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetUserWithWeb3FarmingProfileQuery>(GetUserWithWeb3FarmingProfileDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUserWithWeb3FarmingProfile', 'query', variables);
     },
     getWeb3FarmingProfile(variables?: GetWeb3FarmingProfileQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetWeb3FarmingProfileQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetWeb3FarmingProfileQuery>(GetWeb3FarmingProfileDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getWeb3FarmingProfile', 'query', variables);
+    },
+    getUser(variables?: GetUserQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetUserQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetUserQuery>(GetUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUser', 'query', variables);
+    },
+    getUserProfile(variables?: GetUserProfileQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetUserProfileQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetUserProfileQuery>(GetUserProfileDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUserProfile', 'query', variables);
     }
   };
 }
