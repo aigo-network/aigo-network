@@ -2,7 +2,6 @@ import landing from 'apps/landing/sst';
 import type { SSTConfig } from 'sst';
 
 import webApp from './apps/quest/sst';
-import ride from './apps/ride/sst';
 
 export default {
 	config() {
@@ -13,7 +12,8 @@ export default {
 	},
 	stacks(app) {
 		app.stack(webApp);
-		app.stack(ride);
+		// currently use ride.aigo.network from https://github.com/aigo-network/ride-webflow
+		// app.stack(ride);
 		app.stack(landing);
 	},
 } satisfies SSTConfig;
