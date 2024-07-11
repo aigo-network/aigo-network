@@ -21,12 +21,16 @@ const Ecosystem = () => {
 							text: `The world's first DePIN network for two-wheelers to own and earn your everyday move.`,
 						}}
 						image="/img/ecosystem/app-img.png"
+						button={{
+							link: 'https://ride.aigo.network/',
+							title: 'Explore AiGO Ride now',
+						}}
 					/>
 					<EcosystemCard
 						title="AiGO Map"
 						tag="Web Application"
 						detail={{
-							title: `Real-time two-wheeler mobility data`,
+							title: `Real-time two-wheeler/mobility data`,
 							text: `A dynamic visualization tool that showcases aggregated mobility data and patterns from AiGO network.`,
 						}}
 						image="/img/ecosystem/map-img.png"
@@ -35,10 +39,10 @@ const Ecosystem = () => {
 						title="AiGO SDK"
 						tag="SDK Development"
 						detail={{
-							title: `Open Mobility Data Platform`,
+							title: `Open Mobility/Data Platform`,
 							text: `Empower developers to build the next generation of transportation solutions.`,
 						}}
-						image="/img/ecosystem/map-img.png"
+						image="/img/ecosystem/sdk-img.png"
 					/>
 				</div>
 			</InnerContainer>
