@@ -3,6 +3,7 @@ import { KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
 import SearchBox from '@aigo/components/SearchBox';
 import type { CitiesData } from '@aigo/components/SearchResult';
 import SearchResult, { cityToString } from '@aigo/components/SearchResult';
+import crashlytics from '@react-native-firebase/crashlytics';
 import { useNavigation } from '@react-navigation/native';
 import { appActions, appState } from 'state/app';
 import citiesList from 'utils/cities.json';
@@ -45,6 +46,7 @@ export const CityName = () => {
 			await completeOnboarding(searchText);
 			reset({ routes: [{ name: 'Home' }] });
 		} catch (error) {
+			crashlytics().recordError(error as Error);
 			console.log('Failed to complete onboarding: ', error);
 		}
 	};

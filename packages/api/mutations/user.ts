@@ -1,5 +1,19 @@
 import { gql } from 'graphql-request';
 
+export const updateProfile = gql`
+	mutation updateProfile($profile: UserProfile) {
+		updateProfile(profile: $profile) {
+			id
+			name
+			email
+			descriptions
+			city
+			imageUrl
+			phoneNumber
+		}
+	}
+`;
+
 export const deleteUserMutation = gql`
 	mutation deleteUser {
 		deleteUser {

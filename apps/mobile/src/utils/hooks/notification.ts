@@ -6,6 +6,7 @@ import {
 	RESULTS,
 } from 'react-native-permissions';
 import { graphqlClient } from '@aigo/api/graphql';
+import crashlytics from '@react-native-firebase/crashlytics';
 import getMessaging from '@react-native-firebase/messaging';
 
 const syncDeviceAndNotification = async (nextToken?: string) => {
@@ -81,6 +82,7 @@ export const useNotificationPermissionRequest = () => {
 			try {
 				syncDeviceAndNotification(await getMessaging().getToken());
 			} catch (e) {
+				crashlytics().recordError(e as Error);
 				console.log('Failed to get/sync Notification token from device');
 			}
 		});

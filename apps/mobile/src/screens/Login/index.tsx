@@ -4,6 +4,7 @@ import { graphqlClient } from '@aigo/api/graphql';
 import { Button } from '@aigo/components/Button';
 import AppIcon from '@aigo/components/icon/AppIcon';
 import SafeContainer from '@aigo/components/SafeContainer';
+import crashlytics from '@react-native-firebase/crashlytics';
 import { useNavigation } from '@react-navigation/native';
 import { showLanguageSelection } from 'modals/index';
 import { appState } from 'state/app';
@@ -36,6 +37,7 @@ export const LoginScreen = () => {
 				});
 			}
 		} catch (error) {
+			crashlytics().recordError(error as Error);
 			console.log(error);
 		}
 	};
