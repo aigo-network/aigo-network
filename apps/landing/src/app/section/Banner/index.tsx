@@ -20,7 +20,8 @@ const Banner: FC = () => {
 					<BtnGroup>
 						<BasicButton
 							title="Share your move"
-							onClick={() => window.open('https://ride.aigo.network/')}
+							href="https://ride.aigo.network/"
+							target="_blank"
 						/>
 						<LinkBtn href="https://quest.aigo.network/" target="_blank">
 							Quests
@@ -125,7 +126,13 @@ const BtnGroup = styled.div`
 `;
 
 const LinkBtn = styled.a`
-	font-size: 18px;
+	font-size: 16px;
+	font-weight: 500;
 	text-decoration: none;
-	color: rgba(255, 255, 255, 0.5);
+	color: #888888;
+	transition: ease-out 0.3s;
+
+	&:hover {
+		color: #fdfdfd;
+	}
 `;

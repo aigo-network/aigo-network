@@ -54,7 +54,8 @@ const EcosystemCard: FC<Props> = ({ title, tag, detail, image, button }) => {
 									style={{ alignSelf: 'flex-start' }}
 									outline
 									title={button.title}
-									onClick={() => window.open(button.link, '_blank')}
+									href={button.link}
+									target="_blank"
 								/>
 							)}
 						</DetailGroup>

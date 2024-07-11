@@ -1,57 +1,96 @@
-import type { ButtonHTMLAttributes, FC, ReactNode } from 'react';
+import type { AnchorHTMLAttributes, FC } from 'react';
 import styled from 'styled-components';
 
-type Props = ButtonHTMLAttributes<HTMLButtonElement> & {
-	prefix?: ReactNode;
-	suffix?: ReactNode;
+import LeftArrow from './icon/LeftArrow';
+
+type Props = AnchorHTMLAttributes<HTMLAnchorElement> & {
 	outline?: boolean;
+	options?: 1 | 2;
 };
 
 const BasicButton: FC<Props> = ({
-	prefix,
-	suffix,
 	title,
 	outline = false,
+	options = 1,
 	...props
 }) => {
 	return (
-		<Container $isOutline={outline} {...props}>
-			{prefix}
-			<Title>{title}</Title>
-			{suffix}
+		<Container $isOutline={outline} $options={options} {...props}>
+			<Title $options={options}>{title}</Title>
+			{options === 1 && (
+				<RightArrow>
+					<LeftArrow size={18} color="#34c3f4" />
+				</RightArrow>
+			)}
 		</Container>
 	);
 };
 
 export default BasicButton;
 
-const Container = styled.button<{ $isOutline: boolean }>`
-	padding: 15px 25px;
-	border-radius: 12px;
+const Container = styled.a<{ $isOutline: boolean; $options: 1 | 2 }>`
+	border-radius: 42px;
+	display: flex;
+	gap: 16px;
+	align-items: center;
+	transition: ease-out 0.3s;
+	text-decoration: none;
 
 	&:hover {
 		cursor: pointer;
 	}
 
-	${({ $isOutline }) =>
-		$isOutline
+	${({ $options }) =>
+		$options === 1
 			? `
-		background: #181717;
-		border: solid 1px #bababa;
-		`
+			background: #202122;
+			border: solid 1px #252d36;
+			box-shadow: 0 4px 20px 2px rgba(0, 0, 0, 0.25);
+			padding: 20px 8px;
+			
+			&:hover {
+				padding: 20px 24px;
+			}
+			`
 			: `
-		background: #141414;
-		border: solid 1px #252d36;
-		box-shadow: 0 4px 20px 2px rgba(0, 0, 0, 0.25);
+			background: #181717;
+			border: solid 1px #bababa;
+			box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
+			padding: 20px 24px;
 	`}
 `;
 
-const Title = styled.span`
+const Title = styled.span<{ $options: 1 | 2 }>`
 	font-size: 16px;
+	font-weight: 500;
 	line-height: 24px;
-	color: #fdfdfd;
+	transition: ease-out 0.3s;
 
-	@media (min-width: 992px) {
-		font-size: 18px;
+	${({ $options }) =>
+		$options === 1
+			? `
+		color: #34c3f4;
+		position: relative;
+		left: 16px;
+		${Container}:hover & {
+				left: 0;
+			}
+		`
+			: `
+		color: #fdfdfd;
+			
+		`}
+`;
+
+const RightArrow = styled.div`
+	transform: rotate(180deg);
+	position: relative;
+	left: -10px;
+	opacity: 0;
+	transition: ease-out 0.3s;
+
+	${Container}:hover & {
+		left: 0;
+		opacity: 1;
 	}
 `;

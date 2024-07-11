@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import BasicButton from '@/components/BasicButton';
 import LeftArrow from '@/components/icon/LeftArrow';
 
 const StrategicCard = () => {
@@ -19,10 +20,20 @@ const StrategicCard = () => {
 						their presence and business cooperation in the Vietnamese and
 						broader Southeast Asian markets.
 					</p>
-					<a href="#">
-						Coming soon <LeftArrow size={18} />
-					</a>
+					<BasicButton
+						style={{ alignSelf: 'flex-start' }}
+						title="Explore more"
+						options={2}
+					/>
 				</DetailWrapper>
+				<ButtonGroup>
+					<SlideButton>
+						<LeftArrow color="#171717" />
+					</SlideButton>
+					<SlideButton>
+						<LeftArrow color="#171717" />
+					</SlideButton>
+				</ButtonGroup>
 			</CardDetail>
 		</Container>
 	);
@@ -68,7 +79,6 @@ const CardDetail = styled.div`
 
 	@media (min-width: 992px) {
 		flex: 1;
-		gap: 120px;
 	}
 `;
 
@@ -88,28 +98,33 @@ const DetailWrapper = styled.div`
 	}
 
 	& > p {
-		font-size: 16px;
+		font-size: 18px;
 		line-height: 26px;
 		max-width: 550px;
-	}
-
-	& > a {
-		display: inline-flex;
-		align-items: center;
-		font-size: 16px;
-		color: var(--primary-color);
-		text-decoration: none;
-		opacity: 0.3;
-		gap: 10px;
-
-		svg {
-			transform: rotate(180deg);
-		}
 	}
 
 	@media (min-width: 992px) {
 		& > img {
 			width: 200px;
 		}
+	}
+`;
+
+const ButtonGroup = styled.div`
+	display: flex;
+	gap: 12px;
+`;
+
+const SlideButton = styled.div`
+	width: 56px;
+	height: 56px;
+	border-radius: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #fdfdfd;
+
+	&:last-child {
+		transform: rotate(180deg);
 	}
 `;
