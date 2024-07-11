@@ -22,7 +22,7 @@ export default HowItWork;
 
 const Description = styled.p`
 	text-align: center;
-	font-size: 20px;
+	font-size: 18px;
 	line-height: 30px;
 `;
 

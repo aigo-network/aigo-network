@@ -29,6 +29,10 @@ const Container = styled.button<{ $isOutline: boolean }>`
 	padding: 15px 25px;
 	border-radius: 12px;
 
+	&:hover {
+		cursor: pointer;
+	}
+
 	${({ $isOutline }) =>
 		$isOutline
 			? `
@@ -36,14 +40,14 @@ const Container = styled.button<{ $isOutline: boolean }>`
 		border: solid 1px #bababa;
 		`
 			: `
-		background: #2d3136;
-		border: none;
-		box-shadow: 0 2px 0 0 rgba(255, 255, 255, 0.05) inset;
+		background: #141414;
+		border: solid 1px #252d36;
+		box-shadow: 0 4px 20px 2px rgba(0, 0, 0, 0.25);
 	`}
 `;
 
 const Title = styled.span`
-	font-size: 18px;
+	font-size: 16px;
 	font-weight: 500;
 	line-height: 20px;
 	color: #fdfdfd;

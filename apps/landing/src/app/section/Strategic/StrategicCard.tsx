@@ -66,7 +66,8 @@ const CardDetail = styled.div`
 	gap: 30px;
 
 	@media (min-width: 992px) {
-		flex: 1.5;
+		flex: 1;
+		gap: 120px;
 	}
 `;
 
@@ -82,18 +83,19 @@ const DetailWrapper = styled.div`
 	}
 
 	& > span {
-		font-size: 20px;
+		font-size: 16px;
 	}
 
 	& > p {
-		font-size: 20px;
+		font-size: 16px;
+		line-height: 26px;
 		max-width: 550px;
 	}
 
 	& > a {
 		display: inline-flex;
 		align-items: center;
-		font-size: 20px;
+		font-size: 16px;
 		color: var(--primary-color);
 		text-decoration: none;
 		opacity: 0.3;

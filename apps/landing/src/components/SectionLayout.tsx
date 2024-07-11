@@ -61,8 +61,8 @@ const Container = styled.section<{ $fullWidth: boolean }>`
 
 const SubTitle = styled.h4`
 	font-family: var(--secondary-font);
-	font-weight: 600;
-	font-size: 20px;
+	font-weight: 400;
+	font-size: 18px;
 	text-align: center;
 	color: var(--secondary-color);
 	margin-bottom: 20px;
@@ -78,6 +78,6 @@ const Title = styled.h2`
 
 	@media (min-width: 992px) {
 		font-size: 45px;
-		margin-bottom: 30px;
+		margin-bottom: 50px;
 	}
 `;
