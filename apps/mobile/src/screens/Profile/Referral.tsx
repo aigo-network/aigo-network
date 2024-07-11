@@ -9,6 +9,7 @@ import {
 import { graphqlClient } from '@aigo/api/graphql';
 import { Button } from '@aigo/components/Button';
 import { config } from '@aigo/config';
+import analytics from '@react-native-firebase/analytics';
 import { appActions, appState } from 'state/app';
 import { useSnapshot } from 'valtio';
 
@@ -29,6 +30,7 @@ export const Referral = () => {
 			const { user } = await graphqlClient.getUser();
 			if (user) appActions.setAppUser(user);
 			showReferralPoint();
+			analytics().logEvent('verify_invitation_code');
 		} catch (error) {
 			setError(referralContent.invalidCodeError);
 		}

@@ -19,8 +19,10 @@ import VerifyNNIDScreen from 'screens/VerifyNNID';
 import VerifyOTPScreen from 'screens/VerifyOTP';
 import VerifyPhoneNumberScreen from 'screens/VerifyPhoneNumber';
 import { useAppConfigure } from 'utils/hooks/app';
+import { useNavigationConfig } from 'utils/hooks/navigation';
 import { useNotifications } from 'utils/hooks/notification';
 import type { RootStackParamList } from 'utils/navigation';
+import { navigationRef } from 'utils/navigation';
 
 import 'utils/global';
 import 'utils/auth';
@@ -28,13 +30,18 @@ import 'utils/auth';
 const Stack = createStackNavigator<RootStackParamList>();
 
 export const AppContainer: FC = () => {
+	const { onNavigationReady, onNavigationStateChange } = useNavigationConfig();
 	useAppConfigure();
 	useNotifications();
 
 	return (
 		<SafeAreaProvider>
 			<ModalProvider>
-				<NavigationContainer>
+				<NavigationContainer
+					ref={navigationRef}
+					onReady={onNavigationReady}
+					onStateChange={onNavigationStateChange}
+				>
 					<Stack.Navigator
 						screenOptions={{
 							headerShown: false,

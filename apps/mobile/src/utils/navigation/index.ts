@@ -1,3 +1,5 @@
+import { createNavigationContainerRef } from '@react-navigation/native';
+
 export type RootStackParamList = {
 	Splash: undefined;
 	Login: undefined;
@@ -19,3 +21,5 @@ declare global {
 		interface RootParamList extends RootStackParamList {}
 	}
 }
+
+export const navigationRef = createNavigationContainerRef<RootStackParamList>();
