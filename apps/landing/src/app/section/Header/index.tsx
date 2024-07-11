@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import AiGOLogo from '@/components/icon/AiGOLogo';
 import AiGOText from '@/components/icon/AiGOText';
+import { scrollTo, SectionId } from '@/utils/scrollTo';
 
 const Header: FC = () => {
 	const [showSideMenu, setShowSideMenu] = useState(false);
@@ -21,6 +22,11 @@ const Header: FC = () => {
 					<NavLink href="https://ride.aigo.network/" target="_blank">
 						AiGO Ride App
 					</NavLink>
+					<NavLink onClick={() => scrollTo(SectionId.About)}>About</NavLink>
+					<NavLink onClick={() => scrollTo(SectionId.Ecosystem)}>
+						Ecosystem
+					</NavLink>
+					<NavLink onClick={() => scrollTo(SectionId.Partner)}>Partner</NavLink>
 					{/* <NavLink href="#">Docs</NavLink> */}
 				</NavBar>
 				<BurgerMenu
@@ -112,6 +118,10 @@ const NavLink = styled.a`
 	text-decoration: none;
 	padding: 5px;
 	color: var(--primary-color);
+
+	&:hover {
+		cursor: pointer;
+	}
 `;
 
 const BurgerMenu = styled.div<{ $isClosedBtn: boolean }>`

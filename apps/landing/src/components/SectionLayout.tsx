@@ -1,4 +1,4 @@
-import type { FC, ReactNode } from 'react';
+import type { FC, LegacyRef, ReactNode } from 'react';
 import styled from 'styled-components';
 
 interface Props {
@@ -6,6 +6,7 @@ interface Props {
 	subTitle: string;
 	children: ReactNode;
 	fullWidth?: boolean;
+	innerRef?: LegacyRef<HTMLElement>;
 }
 
 const SectionLayout: FC<Props> = ({
@@ -13,9 +14,10 @@ const SectionLayout: FC<Props> = ({
 	subTitle,
 	children,
 	fullWidth = false,
+	innerRef,
 }) => {
 	return (
-		<Container $fullWidth={fullWidth}>
+		<Container $fullWidth={fullWidth} ref={innerRef}>
 			<SubTitle>{subTitle}</SubTitle>
 			<Title>{title}</Title>
 			<div>{children}</div>

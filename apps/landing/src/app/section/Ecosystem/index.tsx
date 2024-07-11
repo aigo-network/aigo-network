@@ -1,15 +1,26 @@
+import { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 import EcosystemCard from './EcosystemCard';
 
 import SectionLayout from '@/components/SectionLayout';
+import { scrollMap, SectionId } from '@/utils/scrollTo';
 
 const Ecosystem = () => {
+	const ref = useRef<HTMLElement>(null);
+
+	useEffect(() => {
+		if (ref.current) {
+			scrollMap[SectionId.Ecosystem] = ref;
+		}
+	}, [ref.current]);
+
 	return (
 		<SectionLayout
 			subTitle="Ecosystem"
 			title="A comprehensive mobility network"
 			fullWidth
+			innerRef={ref}
 		>
 			<InnerContainer>
 				<div>
