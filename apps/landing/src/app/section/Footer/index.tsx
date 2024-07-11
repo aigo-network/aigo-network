@@ -23,16 +23,32 @@ const Footer = () => {
 						Share your data on your terms, and be rewarded in the long term.
 					</Description>
 					<SocialGroup>
-						<a href="#">
+						<a
+							href="https://x.com/aigo_network"
+							target="_blank"
+							rel="noreferrer"
+						>
 							<TwitterIcon size={30} />
 						</a>
-						<a href="#">
+						<a
+							href="https://discord.gg/vrVFkMdMpH"
+							target="_blank"
+							rel="noreferrer"
+						>
 							<DiscordIcon size={40} />
 						</a>
-						<a href="#">
+						<a
+							href="https://t.me/aigocommunity"
+							target="_blank"
+							rel="noreferrer"
+						>
 							<TelegramIcon size={34} />
 						</a>
-						<a href="#">
+						<a
+							href="https://github.com/aigo-network"
+							target="_blank"
+							rel="noreferrer"
+						>
 							<GithubIcon size={34} />
 						</a>
 					</SocialGroup>
@@ -83,7 +99,6 @@ const FooterContent = styled.div`
 
 	@media (min-width: 768px) {
 		& > div {
-			// padding-top: 20vh;
 			max-width: var(--max-width-tablet);
 		}
 	}
@@ -110,10 +125,10 @@ const LogoGroup = styled.div`
 
 const Description = styled.p`
 	margin-top: 30px;
-	font-family: var(--secondary-font);
 	font-size: 20px;
 	text-align: center;
 	line-height: 30px;
+	max-width: 700px;
 `;
 
 const SocialGroup = styled.div`
@@ -131,5 +146,5 @@ const SocialGroup = styled.div`
 
 const Copyright = styled.p`
 	margin-top: 30px;
-	font-size: 18px;
+	font-size: 14px;
 `;
