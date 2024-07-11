@@ -9,13 +9,19 @@ const Banner: FC = () => {
 			<HeroImg />
 			<ContentContainer>
 				<div>
-					<Title>AiGO Network</Title>
+					<Title>
+						The first decentralized
+						<br />
+						AI-optimized mobility data network for <span>two-wheelers</span>
+					</Title>
 					<SubTitle>
-						The first decentralized AI-optimized mobility data network for{' '}
-						<span>two-wheelers</span>
+						Join the world&apos;s biggest motorcycle & e-bike network & earn
 					</SubTitle>
 					<BtnGroup>
-						<BasicButton title="Share your move & Earn now" />
+						<BasicButton
+							title="Share your move"
+							onClick={() => window.open('https://ride.aigo.network/')}
+						/>
 						<LinkBtn href="https://quest.aigo.network/" target="_blank">
 							Quests
 						</LinkBtn>
@@ -53,11 +59,6 @@ const ContentContainer = styled.div`
 	left: 0;
 	height: 100%;
 	width: 100%;
-	background-image: linear-gradient(
-		115deg,
-		rgba(17, 17, 17, 1),
-		rgba(24, 24, 23, 0.3)
-	);
 
 	& > div {
 		height: 100%;
@@ -66,14 +67,24 @@ const ContentContainer = styled.div`
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		align-items: center;
 		gap: 25px;
+	}
+
+	@media (min-width: 576px) {
+		& > div {
+			max-width: var(--max-width-mobile-horizontal);
+		}
+	}
+
+	@media (min-width: 768px) {
+		& > div {
+			max-width: var(--max-width-tablet);
+		}
 	}
 
 	@media (min-width: 992px) {
 		& > div {
 			max-width: var(--max-width-laptop);
-			align-items: flex-start;
 		}
 	}
 
@@ -87,43 +98,34 @@ const ContentContainer = styled.div`
 const Title = styled.p`
 	font-family: var(--secondary-font);
 	font-weight: 700;
-	font-size: 45px;
-
-	@media (min-width: 992px) {
-		font-size: 65px;
-	}
-`;
-
-const SubTitle = styled.p`
-	font-family: var(--secondary-font);
-	font-weight: 700;
-	font-size: 25px;
-	text-align: center;
+	font-size: 32px;
+	line-height: 40px;
 
 	span {
 		color: var(--secondary-color);
 	}
 
-	@media (min-width: 576px) {
-		max-width: var(--max-width-mobile-horizontal);
-	}
-
 	@media (min-width: 992px) {
-		max-width: 600px;
+		max-width: 700px;
 		font-size: 45px;
-		text-align: left;
+		line-height: 56px;
 	}
+`;
+
+const SubTitle = styled.p`
+	font-size: 18px;
+	line-height: 24px;
+	color: #b8b8b8;
 `;
 
 const BtnGroup = styled.div`
 	display: flex;
-	gap: 40px;
+	gap: 48px;
 	align-items: center;
 `;
 
 const LinkBtn = styled.a`
 	font-size: 18px;
-	font-weight: 500;
 	text-decoration: none;
 	color: rgba(255, 255, 255, 0.5);
 `;

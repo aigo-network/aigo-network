@@ -141,6 +141,10 @@ const BackgroundContainer = styled.div`
 	background-size: cover;
 	gap: 40px;
 
+	${Container}:first-child & {
+		flex-direction: column-reverse;
+	}
+
 	@media (min-width: 992px) {
 		${Container}:first-child & {
 			flex-direction: row-reverse;
@@ -151,6 +155,12 @@ const BackgroundContainer = styled.div`
 
 const CardImage = styled.div`
 	flex: 1;
+	display: flex;
+	align-items: flex-end;
+
+	${Container}:first-child & {
+		transform: translateY(38px);
+	}
 
 	img {
 		width: 100%;
@@ -158,8 +168,9 @@ const CardImage = styled.div`
 	}
 
 	@media (min-width: 992px) {
-		display: flex;
-		align-items: flex-end;
+		${Container}:first-child & {
+			transform: none;
+		}
 	}
 `;
 
@@ -207,8 +218,7 @@ const Tag = styled.div`
 
 	span {
 		color: var(--secondary-color);
-		font-size: 14px;
-		font-weight: 200;
+		font-size: 16px;
 	}
 
 	div {
@@ -227,7 +237,7 @@ const DetailTitle = styled.span`
 `;
 
 const DetailText = styled.p`
-	font-size: 16px;
+	font-size: 18px;
 	line-height: 24px;
 	color: rgba(253, 253, 253, 0.5);
 	max-width: 500px;

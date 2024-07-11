@@ -33,15 +33,16 @@ export default StrategicCard;
 const Container = styled.div`
 	display: flex;
 	flex-direction: column;
-	padding: 45px;
 	border-radius: 30px;
 	background: #1e1e1e;
-	gap: 35px;
+	gap: 80px;
+	padding: 40px 24px;
 
 	@media (min-width: 992px) {
 		flex-direction: row-reverse;
 		align-items: stretch;
 		gap: 50px;
+		padding: 45px;
 	}
 `;
 
@@ -63,7 +64,7 @@ const CardDetail = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	gap: 30px;
+	gap: 32px;
 
 	@media (min-width: 992px) {
 		flex: 1;
@@ -78,7 +79,7 @@ const DetailWrapper = styled.div`
 	gap: 20px;
 
 	& > img {
-		width: 200px;
+		width: 120px;
 		height: auto;
 	}
 
@@ -103,6 +104,12 @@ const DetailWrapper = styled.div`
 
 		svg {
 			transform: rotate(180deg);
+		}
+	}
+
+	@media (min-width: 992px) {
+		& > img {
+			width: 200px;
 		}
 	}
 `;

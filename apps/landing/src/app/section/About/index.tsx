@@ -84,9 +84,9 @@ const TextRevealWrapper = styled.div`
 	& > p {
 		margin: 0 25px;
 		font-family: var(--secondary-font);
-		font-size: 35px;
+		font-size: 30px;
 		font-weight: 600;
-		line-height: 50px;
+		line-height: 44px;
 
 		&:first-child {
 			position: absolute;

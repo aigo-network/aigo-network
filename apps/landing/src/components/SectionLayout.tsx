@@ -28,11 +28,20 @@ const SectionLayout: FC<Props> = ({
 export default SectionLayout;
 
 const Container = styled.section<{ $fullWidth: boolean }>`
-	padding: 200px 0;
+	padding: 60px 0;
 
 	& > div {
 		margin: 0 auto;
-		padding: 15px ${({ $fullWidth }) => ($fullWidth ? `0px` : `25px`)};
+		padding: 0 ${({ $fullWidth }) => ($fullWidth ? `0px` : `25px`)};
+	}
+
+	@media (min-width: 992px) {
+		padding: 120px 0;
+
+		& > div {
+			padding-top: 15px;
+			padding-bottom: 15px;
+		}
 	}
 
 	${({ $fullWidth }) => {
@@ -64,18 +73,24 @@ const Container = styled.section<{ $fullWidth: boolean }>`
 const SubTitle = styled.h4`
 	font-family: var(--secondary-font);
 	font-weight: 400;
-	font-size: 18px;
+	font-size: 20px;
+	line-height: 24px;
 	text-align: center;
 	color: var(--secondary-color);
-	margin-bottom: 20px;
+	margin-bottom: 8px;
+
+	@media (min-width: 992px) {
+		margin-bottom: 20px;
+	}
 `;
 
 const Title = styled.h2`
 	font-family: var(--secondary-font);
 	font-weight: 600;
-	font-size: 35px;
+	font-size: 32px;
+	line-height: 40px;
 	text-align: center;
-	margin-bottom: 15px;
+	margin-bottom: 24px;
 	padding: 0 15px;
 
 	@media (min-width: 992px) {

@@ -41,8 +41,11 @@ const ContentContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
-	padding-top: 50px;
-	padding-bottom: 200px;
+	padding-top: 60px;
+
+	@media (min-width: 992px) {
+		padding-bottom: 120px;
+	}
 `;
 
 const LogoLine = styled.div`

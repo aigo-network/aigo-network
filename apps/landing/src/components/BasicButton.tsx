@@ -48,7 +48,10 @@ const Container = styled.button<{ $isOutline: boolean }>`
 
 const Title = styled.span`
 	font-size: 16px;
-	font-weight: 500;
-	line-height: 20px;
+	line-height: 24px;
 	color: #fdfdfd;
+
+	@media (min-width: 992px) {
+		font-size: 18px;
+	}
 `;
