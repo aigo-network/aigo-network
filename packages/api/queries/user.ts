@@ -65,6 +65,7 @@ export const userProfileQuery = gql`
 			phoneNumberVerifiedAt
 			GOPoints
 			completeOnboarding
+			invitationCode
 		}
 	}
 `;
