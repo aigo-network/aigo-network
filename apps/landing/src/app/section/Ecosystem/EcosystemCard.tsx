@@ -1,6 +1,7 @@
 import type { FC } from 'react';
 import styled from 'styled-components';
 
+import BasicButton from '@/components/BasicButton';
 import { clashDisplay, poppins } from '@/utils/styles';
 
 interface Props {
@@ -11,9 +12,13 @@ interface Props {
 		text: string;
 	};
 	image: string;
+	button?: {
+		link: string;
+		title: string;
+	};
 }
 
-const EcosystemCard: FC<Props> = ({ title, tag, detail, image }) => {
+const EcosystemCard: FC<Props> = ({ title, tag, detail, image, button }) => {
 	const [prefixTitle, suffixTitle] = title.split(' ');
 	const [firstDetailTitle, secondDetailTitle] = detail.title.split('/');
 	const [firstDetailText, secondDetailText] = detail.text.split('/');
@@ -44,6 +49,14 @@ const EcosystemCard: FC<Props> = ({ title, tag, detail, image }) => {
 								{firstDetailText}
 								<br /> {secondDetailText}
 							</DetailText>
+							{button && (
+								<BasicButton
+									style={{ alignSelf: 'flex-start' }}
+									outline
+									title={button.title}
+									onClick={() => window.open(button.link, '_blank')}
+								/>
+							)}
 						</DetailGroup>
 					</CardContent>
 				</BackgroundContainer>
@@ -58,6 +71,33 @@ const Container = styled.div`
 	position: relative;
 	z-index: 1;
 	flex: 1;
+	transition: transform ease-out 0.3s;
+
+	&:before {
+		content: '';
+		position: absolute;
+		top: -3px;
+		right: 60%;
+		opacity: 0;
+		height: 200px;
+		width: 200px;
+		border-radius: 100px;
+		z-index: -1;
+		background: rgba(13, 114, 243, 0.8);
+		transition:
+			right ease-out 0.4s,
+			opacity ease-out 0.4s;
+
+		box-shadow: 0 -10px 20px 20px rgba(13, 114, 243, 0.1);
+	}
+
+	&:hover {
+		transform: scale(1.01);
+		&:before {
+			right: 10%;
+			opacity: 1;
+		}
+	}
 
 	@media (min-width: 576px) {
 		&:first-child {
@@ -89,11 +129,7 @@ const InnerContainer = styled.div`
 	height: 100%;
 	border: solid 1px rgba(255, 255, 255, 0.1);
 	border-radius: 20px;
-	background-image: linear-gradient(
-		to right,
-		rgba(24, 23, 23, 1),
-		rgba(24, 24, 24, 0.9)
-	);
+	background: #181717;
 `;
 
 const BackgroundContainer = styled.div`
@@ -128,7 +164,7 @@ const CardImage = styled.div`
 `;
 
 const CardContent = styled.div`
-	flex: 2;
+	flex: 1;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -164,15 +200,15 @@ const DetailGroup = styled.div`
 const Tag = styled.div`
 	display: flex;
 	align-self: flex-start;
-	gap: 18px;
+	gap: 16px;
 	padding: 8px 16px;
-	border: solid 2px rgba(52, 195, 244, 0.8);
+	border: solid 1px rgba(52, 195, 244, 0.8);
 	border-radius: 40px;
 
 	span {
 		color: var(--secondary-color);
-		font-size: 16px;
-		font-weight: 500;
+		font-size: 14px;
+		font-weight: 200;
 	}
 
 	div {
@@ -186,12 +222,13 @@ const Tag = styled.div`
 
 const DetailTitle = styled.span`
 	font-family: var(--secondary-font);
-	font-size: 40px;
-	font-weight: 600;
+	font-size: 30px;
+	font-weight: 500;
 `;
 
 const DetailText = styled.p`
-	font-size: 20px;
+	font-size: 16px;
+	line-height: 24px;
 	color: rgba(253, 253, 253, 0.5);
 	max-width: 500px;
 `;
