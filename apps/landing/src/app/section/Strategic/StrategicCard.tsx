@@ -1,39 +1,45 @@
+import type { FC } from 'react';
 import styled from 'styled-components';
 
-import BasicButton from '@/components/BasicButton';
-import LeftArrow from '@/components/icon/LeftArrow';
+// import BasicButton from '@/components/BasicButton';
 
-const StrategicCard = () => {
+interface Props {
+	image: {
+		desktopUrl: string;
+		mobileUrl: string;
+	};
+	logoUrl: string;
+	location: string;
+	description: string;
+	linkBtn?: string;
+}
+
+const StrategicCard: FC<Props> = ({
+	image,
+	logoUrl,
+	location,
+	description,
+	// linkBtn = '#',
+}) => {
 	return (
 		<Container>
-			<CardImage />
+			<CardImage $desktopUrl={image.desktopUrl} $mobileUrl={image.mobileUrl} />
 			<CardDetail>
 				<DetailWrapper>
-					<img src="/img/tada-logo-img.png" />
-					<span>Ho Chi Minh City, Vietnam🇻🇳</span>
+					<img src={logoUrl} />
+					<span>{location}</span>
 				</DetailWrapper>
 				<DetailWrapper>
-					<p>
-						AiGO Ride has formed a strategic partnership with TADA, the
-						blockchain-based ride-hailing service operated by MVL in Vietnam.
-						Through this collaboration, the two companies aim to strengthen
-						their presence and business cooperation in the Vietnamese and
-						broader Southeast Asian markets.
-					</p>
-					<BasicButton
+					<p>{description}</p>
+					{/* <BasicButton
 						style={{ alignSelf: 'flex-start' }}
 						title="Explore more"
 						options={2}
-					/>
+						href={linkBtn}
+						target="_blank"
+					/> */}
+					<ComingSoonText>Coming soon</ComingSoonText>
 				</DetailWrapper>
-				<ButtonGroup>
-					<SlideButton>
-						<LeftArrow color="#171717" />
-					</SlideButton>
-					<SlideButton>
-						<LeftArrow color="#171717" />
-					</SlideButton>
-				</ButtonGroup>
 			</CardDetail>
 		</Container>
 	);
@@ -42,12 +48,16 @@ const StrategicCard = () => {
 export default StrategicCard;
 
 const Container = styled.div`
+	border-radius: 40px;
+	background: #1e1e1e;
 	display: flex;
 	flex-direction: column;
-	border-radius: 30px;
-	background: #1e1e1e;
-	gap: 80px;
-	padding: 40px 24px;
+	gap: 40px;
+	padding: 30px 20px;
+	padding-bottom: 50px;
+	min-width: 100%;
+	min-height: 100%;
+	scroll-snap-align: center;
 
 	@media (min-width: 992px) {
 		flex-direction: row-reverse;
@@ -57,17 +67,19 @@ const Container = styled.div`
 	}
 `;
 
-const CardImage = styled.div`
+const CardImage = styled.div<{ $desktopUrl: string; $mobileUrl: string }>`
 	width: 100%;
 	aspect-ratio: 1;
 	margin: 0 auto;
-	border-radius: inherit;
+	border-radius: 25px;
 	overflow: hidden;
-	background: url(/img/tada-img.png) no-repeat center;
-	background-size: cover;
+	background: url(${({ $mobileUrl }) => $mobileUrl}) no-repeat center;
+	background-size: contain;
 
 	@media (min-width: 992px) {
 		flex: 1;
+		border-radius: 30px;
+		background-image: url(${({ $desktopUrl }) => $desktopUrl});
 	}
 `;
 
@@ -89,8 +101,10 @@ const DetailWrapper = styled.div`
 	gap: 20px;
 
 	& > img {
-		width: 120px;
-		height: auto;
+		max-height: 50px;
+		width: auto;
+		align-self: flex-start;
+		object-fit: contain;
 	}
 
 	& > span {
@@ -98,33 +112,29 @@ const DetailWrapper = styled.div`
 	}
 
 	& > p {
-		font-size: 18px;
-		line-height: 26px;
+		font-size: 16px;
+		line-height: 24px;
 		max-width: 550px;
+		color: #b8b8b8;
 	}
 
 	@media (min-width: 992px) {
 		& > img {
-			width: 200px;
+			max-height: 70px;
+			width: auto;
+		}
+
+		& > p {
+			margin-bottom: 12px;
+			max-width: 450px;
+			font-size: 18px;
+			line-height: 26px;
 		}
 	}
 `;
 
-const ButtonGroup = styled.div`
-	display: flex;
-	gap: 12px;
-`;
-
-const SlideButton = styled.div`
-	width: 56px;
-	height: 56px;
-	border-radius: 30px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background: #fdfdfd;
-
-	&:last-child {
-		transform: rotate(180deg);
-	}
+const ComingSoonText = styled.span`
+	color: rgba(253, 253, 253, 0.3);
+	font-size: 16px;
+	font-weight: 400;
 `;
