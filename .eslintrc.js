@@ -2,6 +2,7 @@ module.exports = {
 	root: true,
 	extends: ['@metacraft/eslint-config'],
 	ignorePatterns: ['node_modules', 'packages/api/sdk.ts'],
+	plugins: ['import'],
 	env: {
 		node: true,
 	},
@@ -16,5 +17,6 @@ module.exports = {
 			'error',
 			{ 'ts-ignore': 'allow-with-description' },
 		],
+		'import/consistent-type-specifier-style': ['error', 'prefer-top-level'],
 	},
 };
