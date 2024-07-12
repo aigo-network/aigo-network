@@ -60,8 +60,6 @@ export const AppContainer: FC = () => {
 							}}
 						/>
 
-						{/* <Stack.Screen name="Open" component={OpenScreen} /> */}
-
 						<Stack.Group>
 							<Stack.Screen
 								name="Login"

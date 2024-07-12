@@ -1,5 +1,6 @@
 import type { DailyCheckIn, User } from '@aigo/api/graphql';
 import { graphqlClient } from '@aigo/api/graphql';
+import crashlytics from '@react-native-firebase/crashlytics';
 import type { PhoneNumber } from 'libphonenumber-js';
 import type { LangKey } from 'utils/translations';
 import { translations } from 'utils/translations';
@@ -49,13 +50,12 @@ export const appActions = {
 			const { user } = await graphqlClient.getUserGOPoints();
 			const GOPoints = user?.GOPoints;
 			if (GOPoints !== 0 && !GOPoints) {
-				console.log('null GO Points');
 				return;
 			}
 
 			if (appState.appUser) appState.appUser.GOPoints = GOPoints;
 		} catch (error) {
-			console.log('can not query GO Points', error);
+			crashlytics().recordError(error as Error, 'queryAndUpdateGOPoints');
 		}
 	},
 };

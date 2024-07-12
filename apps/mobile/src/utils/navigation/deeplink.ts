@@ -1,5 +1,6 @@
 import { graphqlClient } from '@aigo/api/graphql';
 import { AppStage as AppStageFromAPI } from '@aigo/api/graphql';
+import crashlytics from '@react-native-firebase/crashlytics';
 import { getStateFromPath } from '@react-navigation/native';
 import { appState } from 'state/app';
 import { AppStage, getCurrentAppStage } from 'state/app/system';
@@ -37,9 +38,9 @@ export const handleDeepLink = async (deeplink: string) => {
 			url: deeplink,
 			appStage: appStageMap[stage],
 		});
-		console.log('Tracked app open event with linking');
+		console.debug('Tracked app open event with linking');
 	} catch (error) {
-		console.error('Can not track app open with deep link', error);
+		crashlytics().recordError(error as Error, 'trackAppOpenWithLinking');
 	}
 
 	try {
@@ -56,6 +57,6 @@ export const handleDeepLink = async (deeplink: string) => {
 			if (inviteCode) appState.pendingInviteCode = inviteCode;
 		}
 	} catch (error) {
-		console.error('Can not handle deep link', error);
+		crashlytics().recordError(error as Error, 'handleDeepLink');
 	}
 };

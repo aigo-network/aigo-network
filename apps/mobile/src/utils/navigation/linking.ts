@@ -2,6 +2,7 @@ import { Linking } from 'react-native';
 import type { LinkingOptions } from '@react-navigation/native';
 
 import { handleDeepLink } from './deeplink';
+import type { RootStackParamList } from './types';
 
 export const linking: LinkingOptions<RootStackParamList> = {
 	prefixes: [
@@ -15,10 +16,9 @@ export const linking: LinkingOptions<RootStackParamList> = {
 		},
 	},
 	getInitialURL: async () => {
-		// Check if app was opened from a deep link
 		const url = await Linking.getInitialURL();
 		if (url) {
-			console.log('Open by initial URL', url);
+			console.debug('Open by initial URL', url);
 			await handleDeepLink(url);
 		}
 
@@ -26,39 +26,10 @@ export const linking: LinkingOptions<RootStackParamList> = {
 	},
 	subscribe: (listener) => {
 		Linking.addEventListener('url', ({ url }) => {
-			console.log('Open when app opened with URL', url);
+			console.debug('Open when app opened with URL', url);
 			listener(url);
 		});
 
 		return () => Linking.removeAllListeners('url');
 	},
 };
-
-export type RootStackParamList = {
-	Splash: undefined;
-	Open: {
-		from?: string;
-		/** use with `from === "quest-site"` */
-		questProfileId?: string;
-
-		inviteCode?: string;
-	};
-	Login: undefined;
-	PhoneLogin: undefined;
-	OtpInput: undefined;
-	OnboardName: undefined;
-	OnboardDescription: undefined;
-	OnboardCity: undefined;
-	Home: undefined;
-	Profile: undefined;
-	VerifyNNID: undefined;
-	VerifyPhoneNumber: undefined;
-	VerifyOTP: undefined;
-};
-
-declare global {
-	// eslint-disable-next-line @typescript-eslint/no-namespace
-	namespace ReactNavigation {
-		interface RootParamList extends RootStackParamList {}
-	}
-}

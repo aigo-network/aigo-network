@@ -30,8 +30,8 @@ auth().onIdTokenChanged(async (authUser) => {
 			}
 		} catch (err) {
 			await logOut();
-			crashlytics().recordError(err as Error);
-			console.log('Failed to resolve client from API:', err);
+			crashlytics().recordError(err as Error, 'resolveUser');
+			console.debug('Failed to resolve client from API:', err);
 		}
 	} else {
 		resolveInitAuthPromise(undefined);
