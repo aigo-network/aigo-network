@@ -128,6 +128,7 @@ const CarouselViewport = styled.div`
 	display: flex;
 	gap: 24px;
 	overflow-x: scroll;
+	border-radius: 40px;
 	scroll-snap-type: x mandatory;
 	scroll-behavior: smooth;
 	-ms-overflow-style: none;
