@@ -1,3 +1,4 @@
+import analytics from '@react-native-firebase/analytics';
 import auth from '@react-native-firebase/auth';
 import crashlytics from '@react-native-firebase/crashlytics';
 import { useNavigation } from '@react-navigation/native';
@@ -19,8 +20,10 @@ const PhoneLoginScreen = () => {
 				phoneNumber.number,
 			);
 			if (confirmation) setConfirmation(confirmation);
+
 			appActions.updatePhoneSignIn(phoneNumber);
 			navigation.navigate('OtpInput');
+			analytics().logLogin({ method: 'Phone' });
 		} catch (error) {
 			crashlytics().recordError(error as Error);
 			console.log('Error phone sign in:', error);

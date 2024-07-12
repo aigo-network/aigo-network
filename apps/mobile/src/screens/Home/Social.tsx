@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { Image, Linking, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import analytics from '@react-native-firebase/analytics';
 import { appState } from 'state/app';
 import { useSnapshot } from 'valtio';
 
@@ -19,10 +20,12 @@ export const Social = () => {
 
 	const handlePressFollowTwitter = () => {
 		Linking.openURL('https://x.com/AIGO_Network');
+		analytics().logEvent('channel_interaction', { channel: 'twitter' });
 	};
 
 	const handlePressJoinTelegram = () => {
 		Linking.openURL('https://t.me/aigo_network');
+		analytics().logEvent('channel_interaction', { channel: 'telegram' });
 	};
 
 	return (

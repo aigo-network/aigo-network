@@ -11,6 +11,8 @@ import type { DailyCheckIn as DailyCheckInType } from '@aigo/api/graphql';
 import { graphqlClient } from '@aigo/api/graphql';
 import CheckIn from '@aigo/components/CheckIn';
 import { config } from '@aigo/config';
+import analytics from '@react-native-firebase/analytics';
+import crashlytics from '@react-native-firebase/crashlytics';
 import { appActions, appState } from 'state/app';
 import { useSnapshot } from 'valtio';
 
@@ -57,15 +59,19 @@ export const DailyCheckIn = () => {
 	}, [appUser]);
 
 	const handleCheckIn = async () => {
-		setLoading(true);
-		const { checkIn } = await graphqlClient.checkIn();
-		const { user } = await graphqlClient.getUser();
-		if (user) appActions.setAppUser(user);
-		if (checkIn) appActions.updateCheckIn(checkIn);
-		if (checkIn?.completed) {
-			showCheckInPoint();
+		try {
+			setLoading(true);
+			const { checkIn } = await graphqlClient.checkIn();
+			const { user } = await graphqlClient.getUser();
+			if (user) appActions.setAppUser(user);
+			if (checkIn) appActions.updateCheckIn(checkIn);
+			if (checkIn?.completed) showCheckInPoint();
+			analytics().logEvent('daily_check_in');
+		} catch (error) {
+			crashlytics().recordError(error as Error);
+		} finally {
+			setLoading(false);
 		}
-		setLoading(false);
 	};
 
 	return (
