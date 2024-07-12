@@ -2,7 +2,11 @@ import { Linking } from 'react-native';
 import type { LinkingOptions } from '@react-navigation/native';
 
 export const linking: LinkingOptions<RootStackParamList> = {
-	prefixes: ['network.aigo.app://'],
+	prefixes: [
+		'network.aigo.app://',
+		'https://ride.aigo.network',
+		'https://*.ride.aigo.network',
+	],
 	config: {
 		screens: {
 			Profile: 'profile',
