@@ -62,7 +62,7 @@ export const DailyCheckIn = () => {
 		try {
 			setLoading(true);
 			const { checkIn } = await graphqlClient.checkIn();
-			const { user } = await graphqlClient.getUser();
+			const { user } = await graphqlClient.getUserWitDailyMissions();
 			if (user) appActions.setAppUser(user);
 			if (checkIn) appActions.updateCheckIn(checkIn);
 			if (checkIn?.completed) showCheckInPoint();
