@@ -1,7 +1,11 @@
-import type { StackContext } from 'sst/constructs';
+import type { StackContext, StaticSiteDomainProps } from 'sst/constructs';
 import { NextjsSite } from 'sst/constructs';
 
-import { getDomainNameByStage, hostedZone } from '../../tools/stacks/shared';
+import {
+	baseDomainName,
+	getDomainNameByStage,
+	hostedZone,
+} from '../../tools/stacks/shared';
 
 const landingAlias = {
 	production: ' ',
@@ -10,20 +14,25 @@ const landingAlias = {
 };
 
 export const landing = ({ stack, app }: StackContext) => {
-	const domainName = getDomainNameByStage(landingAlias[app.stage as never]);
+	const customDomain: StaticSiteDomainProps = {
+		domainName: getDomainNameByStage(landingAlias[app.stage as never]),
+		hostedZone,
+	};
+
+	if (app.stage === 'production') {
+		customDomain.domainAlias = `www.${baseDomainName}`;
+	}
+
 	const site = new NextjsSite(stack, 'landing', {
 		path: 'apps/landing',
 		edge: true,
 		timeout: '5 seconds',
-		customDomain: {
-			domainName,
-			hostedZone,
-		},
+		customDomain,
 	});
 
 	stack.addOutputs({
 		url: site.url,
-		domainName,
+		domainName: site.customDomainUrl,
 	});
 };
 
