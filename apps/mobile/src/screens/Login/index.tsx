@@ -13,7 +13,7 @@ import { useSnapshot } from 'valtio';
 
 export const LoginScreen = () => {
 	const { navigate, reset } = useNavigation();
-	const { version, buildNumber, content } = useSnapshot(appState);
+	const { version, buildNumber, content, remoteConfig } = useSnapshot(appState);
 	const logInContent = content.screens.logIn;
 	const backgroundSrc = require('assets/img/login/background-logo.png');
 	const googleIconSrc = require('assets/img/login/google-logo.png');
@@ -83,7 +83,11 @@ export const LoginScreen = () => {
 							prefix={
 								<Image style={styles.phoneNumberIcon} source={phoneNumberSrc} />
 							}
-							suffix={<Image style={styles.nnIcon} source={nyamNyamSrc} />}
+							suffix={
+								remoteConfig.nyamNyamCampaignActivated && (
+									<Image style={styles.nnIcon} source={nyamNyamSrc} />
+								)
+							}
 							style={styles.btn}
 							onPress={handlePhoneSignIn}
 						>
