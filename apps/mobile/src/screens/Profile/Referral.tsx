@@ -27,8 +27,7 @@ export const Referral = () => {
 		setLoading(true);
 		try {
 			await graphqlClient.inputInvitationCode({ code });
-			const { user } = await graphqlClient.getUserWitDailyMissions();
-			if (user) appActions.setAppUser(user);
+			appActions.queryAndUpdateGOPoints();
 			showReferralPoint();
 			analytics().logEvent('verify_invitation_code');
 		} catch (error) {

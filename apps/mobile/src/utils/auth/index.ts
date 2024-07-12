@@ -12,7 +12,6 @@ injectGetJWTFunc(async () => {
 
 auth().onIdTokenChanged(async (authUser) => {
 	if (authUser) {
-		if (initAuthResolved) return;
 		crashlytics().setUserId(authUser.uid);
 
 		try {
@@ -31,25 +30,23 @@ auth().onIdTokenChanged(async (authUser) => {
 			}
 		} catch (err) {
 			await logOut();
-			crashlytics().recordError(err as Error);
-			console.log('Failed to resolve client from API:', err);
+			crashlytics().recordError(err as Error, 'resolveUser');
+			console.debug('Failed to resolve client from API:', err);
 		}
 	} else {
 		resolveInitAuthPromise(undefined);
 	}
 });
 
-let initAuthResolved = false;
 let resolveInitAuthPromise: (user: User | undefined) => void;
+
 export let initAuthPromise = new Promise<User | undefined>((resolve) => {
 	resolveInitAuthPromise = (user) => {
 		resolve(user);
-		initAuthResolved = true;
 	};
 });
 
 export const logOut = async () => {
-	initAuthResolved = false;
 	initAuthPromise = new Promise<User | undefined>((resolve) => {
 		resolveInitAuthPromise = (user) => {
 			resolve(user);

@@ -16,7 +16,13 @@ interface AppState {
 	phoneSignIn: {
 		phoneNumber?: PhoneNumber;
 	};
+
 	remoteConfig: RemoteConfig;
+
+	/**
+	 * coming from deeplink
+	 */
+	pendingInviteCode?: string;
 }
 
 export const defaultRemoteConfig: RemoteConfig = {

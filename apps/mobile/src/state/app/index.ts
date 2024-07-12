@@ -1,4 +1,6 @@
 import type { DailyCheckIn, User } from '@aigo/api/graphql';
+import { graphqlClient } from '@aigo/api/graphql';
+import crashlytics from '@react-native-firebase/crashlytics';
 import type { PhoneNumber } from 'libphonenumber-js';
 import type { LangKey } from 'utils/translations';
 import { translations } from 'utils/translations';
@@ -41,6 +43,19 @@ export const appActions = {
 		if (appState.appUser) {
 			appState.appUser.phoneNumber = phoneNumber;
 			appState.appUser.phoneNumberVerified = verified;
+		}
+	},
+	queryAndUpdateGOPoints: async () => {
+		try {
+			const { user } = await graphqlClient.getUserGOPoints();
+			const GOPoints = user?.GOPoints;
+			if (GOPoints !== 0 && !GOPoints) {
+				return;
+			}
+
+			if (appState.appUser) appState.appUser.GOPoints = GOPoints;
+		} catch (error) {
+			crashlytics().recordError(error as Error, 'queryAndUpdateGOPoints');
 		}
 	},
 };
