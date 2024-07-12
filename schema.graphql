@@ -27,6 +27,54 @@ The `DateTime` scalar type represents a DateTime. The DateTime is serialized as 
 scalar DateTime
 
 """"""
+type Device {
+  """"""
+  appVersion: String
+
+  """"""
+  brand: String
+
+  """"""
+  carrier: String
+
+  """"""
+  createdAt: DateTime
+
+  """"""
+  deviceId: String
+
+  """"""
+  deviceName: String
+
+  """"""
+  deviceType: String
+
+  """"""
+  id: String
+
+  """"""
+  lastUpdateTime: String
+
+  """"""
+  manufacturer: String
+
+  """"""
+  notificationToken: String
+
+  """"""
+  platform: String
+
+  """"""
+  systemVersion: String
+
+  """"""
+  updatedAt: DateTime
+
+  """"""
+  userIdentifier: String
+}
+
+""""""
 type Invitation {
   """"""
   invitedBy: String
@@ -80,6 +128,39 @@ enum PhoneNumberVerification {
 }
 
 """"""
+input RegisterDeviceInput {
+  """"""
+  appVersion: String
+
+  """"""
+  brand: String
+
+  """"""
+  carrier: String
+
+  """"""
+  deviceId: String!
+
+  """"""
+  deviceName: String
+
+  """"""
+  deviceType: String
+
+  """"""
+  manufacturer: String
+
+  """"""
+  notificationToken: String
+
+  """"""
+  platform: String
+
+  """"""
+  systemVersion: String
+}
+
+""""""
 type RootMutation {
   """"""
   checkIn: DailyCheckIn
@@ -92,6 +173,9 @@ type RootMutation {
 
   """"""
   inputInvitationCode(code: String): Invitation
+
+  """"""
+  registerDevice(input: RegisterDeviceInput!): Device
 
   """"""
   updateProfile(profile: UserProfile): User
