@@ -88,6 +88,7 @@ __metadata:
     react-native-uuid: "npm:^2.0.2"
     react-test-renderer: "npm:18.2.0"
     typescript: "npm:5.4.5"
+    use-debounce: "npm:^10.0.1"
     valtio: "npm:^1.13.2"
     wildcard-match: "npm:^5.1.3"
   languageName: unknown
@@ -18672,6 +18673,15 @@ __metadata:
   version: 8.0.2
   resolution: "urlpattern-polyfill@npm:8.0.2"
   checksum: 10/fd86b5c55473f3abbf9ed317b953c9cbb4fa6b3f75f681a1d982fe9c17bbc8d9bcf988f4cf3bda35e2e5875984086c97e177f97f076bb80dfa2beb85d1dd7b23
+  languageName: node
+  linkType: hard
+
+"use-debounce@npm:^10.0.1":
+  version: 10.0.1
+  resolution: "use-debounce@npm:10.0.1"
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: 10/e6e9f2cfd698faf5d581eb57d17901e804b731ad5206c1b3b709d43f2180a67105d3b679645aa3e9c61c7ceb76bb70a4d0923fcf5c3528802a4e9bc9a685d423
   languageName: node
   linkType: hard
 

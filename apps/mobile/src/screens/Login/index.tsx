@@ -4,6 +4,7 @@ import { graphqlClient } from '@aigo/api/graphql';
 import { Button } from '@aigo/components/Button';
 import AppIcon from '@aigo/components/icon/AppIcon';
 import SafeContainer from '@aigo/components/SafeContainer';
+import crashlytics from '@react-native-firebase/crashlytics';
 import { useNavigation } from '@react-navigation/native';
 import { showLanguageSelection } from 'modals/index';
 import { appState } from 'state/app';
@@ -13,7 +14,7 @@ import { useSnapshot } from 'valtio';
 
 export const LoginScreen = () => {
 	const { navigate, reset } = useNavigation();
-	const { version, buildNumber, content } = useSnapshot(appState);
+	const { version, buildNumber, content, remoteConfig } = useSnapshot(appState);
 	const logInContent = content.screens.logIn;
 	const backgroundSrc = require('assets/img/login/background-logo.png');
 	const googleIconSrc = require('assets/img/login/google-logo.png');
@@ -36,6 +37,7 @@ export const LoginScreen = () => {
 				});
 			}
 		} catch (error) {
+			crashlytics().recordError(error as Error);
 			console.log(error);
 		}
 	};
@@ -83,7 +85,11 @@ export const LoginScreen = () => {
 							prefix={
 								<Image style={styles.phoneNumberIcon} source={phoneNumberSrc} />
 							}
-							suffix={<Image style={styles.nnIcon} source={nyamNyamSrc} />}
+							suffix={
+								remoteConfig.nyamNyamCampaignActivated && (
+									<Image style={styles.nnIcon} source={nyamNyamSrc} />
+								)
+							}
 							style={styles.btn}
 							onPress={handlePhoneSignIn}
 						>

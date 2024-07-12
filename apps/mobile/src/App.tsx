@@ -20,9 +20,11 @@ import VerifyNNIDScreen from 'screens/VerifyNNID';
 import VerifyOTPScreen from 'screens/VerifyOTP';
 import VerifyPhoneNumberScreen from 'screens/VerifyPhoneNumber';
 import { useAppConfigure } from 'utils/hooks/app';
+import { useNavigationConfig } from 'utils/hooks/navigation';
 import { useNotifications } from 'utils/hooks/notification';
 import type { RootStackParamList } from 'utils/navigation';
 import { linking } from 'utils/navigation';
+import { navigationRef } from 'utils/navigation';
 import { useDeferredDeepLinkHandler } from 'utils/navigation/deeplink';
 
 import 'utils/global';
@@ -31,6 +33,7 @@ import 'utils/auth';
 const Stack = createStackNavigator<RootStackParamList>();
 
 export const AppContainer: FC = () => {
+	const { onNavigationReady, onNavigationStateChange } = useNavigationConfig();
 	useAppConfigure();
 	useNotifications();
 	useDeferredDeepLinkHandler();
@@ -38,7 +41,12 @@ export const AppContainer: FC = () => {
 	return (
 		<SafeAreaProvider>
 			<ModalProvider>
-				<NavigationContainer linking={linking}>
+				<NavigationContainer
+					linking={linking}
+					ref={navigationRef}
+					onReady={onNavigationReady}
+					onStateChange={onNavigationStateChange}
+				>
 					<Stack.Navigator
 						screenOptions={{
 							headerShown: false,

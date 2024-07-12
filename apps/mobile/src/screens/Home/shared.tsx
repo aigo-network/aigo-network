@@ -33,12 +33,15 @@ export const sharedStyles = StyleSheet.create({
 export const showInvitationCode = () => {
 	const code = appState.appUser?.invitationCode;
 	if (!code) return;
+
+	const { invitationUrl } = appState.remoteConfig;
+	const shareUrl = `${invitationUrl}?inviteCode=${code}`;
 	const points = config.activity.InviteFriend.points;
 	const { title, description, message, referral, codeTitle, shareButton } =
 		appState.content.modal.invite;
 
 	const shareMessage = mustache.render(message, {
-		url: `https://app.aigo.network/download?inviteCode=${code}`,
+		url: shareUrl,
 		points: 100,
 		code,
 	});
