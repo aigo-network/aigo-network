@@ -4,17 +4,29 @@ import { AppStage as AppStageFromAPI } from '@aigo/api/graphql';
 import { getStateFromPath } from '@react-navigation/native';
 import { appState } from 'state/app';
 import { AppStage, getCurrentAppStage } from 'state/app/system';
+import { useSnapshot } from 'valtio';
 
+import { resolvePendingInvitationCode } from './handlers';
 import { linking } from './linking';
 import { checkPrefixFromURL } from './utils';
 
 /**
- * Background hook wrapper of `startDeferredDeepLinkHandler`
+ * Background hook for handle deeplink (both deferred deep link and pending handling)
  */
-export const useDeferredDeepLinkHandler = () => {
+export const useDeepLinkHandler = () => {
+	const { appUser, pendingInviteCode } = useSnapshot(appState);
+
 	useEffect(() => {
 		startDeferredDeepLinkHandler();
 	}, []);
+
+	// handle pending invitation code from deeplink
+	useEffect(() => {
+		if (appUser?.id && pendingInviteCode) {
+			resolvePendingInvitationCode(pendingInviteCode);
+			appState.pendingInviteCode = '';
+		}
+	}, [appUser, pendingInviteCode]);
 };
 
 /**

@@ -13,7 +13,6 @@ import PhoneLoginScreen from 'screens/Login/PhoneLogin';
 import CityName from 'screens/Onboard/CityName';
 import ProfileName from 'screens/Onboard/ProfileName';
 import UserDescription from 'screens/Onboard/UserDescription';
-import OpenScreen from 'screens/Open';
 import ProfileScreen from 'screens/Profile';
 import SplashScreen from 'screens/Splash';
 import VerifyNNIDScreen from 'screens/VerifyNNID';
@@ -25,7 +24,7 @@ import { useNotifications } from 'utils/hooks/notification';
 import type { RootStackParamList } from 'utils/navigation';
 import { linking } from 'utils/navigation';
 import { navigationRef } from 'utils/navigation';
-import { useDeferredDeepLinkHandler } from 'utils/navigation/deeplink';
+import { useDeepLinkHandler } from 'utils/navigation/deeplink';
 
 import 'utils/global';
 import 'utils/auth';
@@ -36,7 +35,7 @@ export const AppContainer: FC = () => {
 	const { onNavigationReady, onNavigationStateChange } = useNavigationConfig();
 	useAppConfigure();
 	useNotifications();
-	useDeferredDeepLinkHandler();
+	useDeepLinkHandler();
 
 	return (
 		<SafeAreaProvider>
@@ -61,7 +60,7 @@ export const AppContainer: FC = () => {
 							}}
 						/>
 
-						<Stack.Screen name="Open" component={OpenScreen} />
+						{/* <Stack.Screen name="Open" component={OpenScreen} /> */}
 
 						<Stack.Group>
 							<Stack.Screen
