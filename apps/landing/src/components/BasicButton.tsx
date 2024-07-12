@@ -45,18 +45,18 @@ const Container = styled.a<{ $isOutline: boolean; $options: 1 | 2 }>`
 			? `
 			background: #202122;
 			border: solid 1px #252d36;
-			box-shadow: 0 4px 20px 2px rgba(0, 0, 0, 0.25);
-			padding: 20px 8px;
+			box-shadow: 0 1px 1px rgba(255, 255, 255, 0.05) inset, 0 4px 20px 2px rgba(0, 0, 0, 0.25);
+			padding: 12px 8px;
 			
 			&:hover {
-				padding: 20px 24px;
+				padding: 12px 24px;
 			}
 			`
 			: `
-			background: #181717;
-			border: solid 1px #bababa;
-			box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
-			padding: 20px 24px;
+			background: #202122;
+			border: solid 1px #252d36;
+			box-shadow: 0 1px 1px rgba(255, 255, 255, 0.05) inset, 0 4px 20px 2px rgba(0, 0, 0, 0.25);
+			padding: 12px 24px;
 	`}
 `;
 

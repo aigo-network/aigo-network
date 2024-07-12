@@ -16,6 +16,7 @@ const Banner: FC = () => {
 					</Title>
 					<SubTitle>
 						Join the world&apos;s biggest motorcycle & e-bike network & earn
+						today
 					</SubTitle>
 					<BtnGroup>
 						<BasicButton
@@ -24,7 +25,7 @@ const Banner: FC = () => {
 							target="_blank"
 						/>
 						<LinkBtn href="https://quest.aigo.network/" target="_blank">
-							Quests
+							AiGO Quest SS1
 						</LinkBtn>
 					</BtnGroup>
 				</div>

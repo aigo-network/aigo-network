@@ -73,13 +73,15 @@ const Container = styled.section<{ $fullWidth: boolean }>`
 const SubTitle = styled.h4`
 	font-family: var(--secondary-font);
 	font-weight: 400;
-	font-size: 20px;
-	line-height: 24px;
+	font-size: 14px;
+	line-height: 16px;
 	text-align: center;
 	color: var(--secondary-color);
 	margin-bottom: 8px;
 
 	@media (min-width: 992px) {
+		font-size: 20px;
+		line-height: 24px;
 		margin-bottom: 20px;
 	}
 `;
@@ -87,7 +89,7 @@ const SubTitle = styled.h4`
 const Title = styled.h2`
 	font-family: var(--secondary-font);
 	font-weight: 600;
-	font-size: 32px;
+	font-size: 28px;
 	line-height: 40px;
 	text-align: center;
 	margin-bottom: 24px;

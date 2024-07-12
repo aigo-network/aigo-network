@@ -16,9 +16,17 @@ interface Props {
 		link: string;
 		title: string;
 	};
+	comingSoon?: boolean;
 }
 
-const EcosystemCard: FC<Props> = ({ title, tag, detail, image, button }) => {
+const EcosystemCard: FC<Props> = ({
+	title,
+	tag,
+	detail,
+	image,
+	button,
+	comingSoon = false,
+}) => {
 	const [prefixTitle, suffixTitle] = title.split(' ');
 	const [firstDetailTitle, secondDetailTitle] = detail.title.split('/');
 	const [firstDetailText, secondDetailText] = detail.text.split('/');
@@ -36,10 +44,13 @@ const EcosystemCard: FC<Props> = ({ title, tag, detail, image, button }) => {
 							<span>{suffixTitle}</span>
 						</Title>
 						<DetailGroup>
-							<Tag>
-								<span>{tag}</span>
-								<div />
-							</Tag>
+							<TagContainer>
+								<Tag>
+									<span>{tag}</span>
+									<div />
+								</Tag>
+								{comingSoon && <span>Coming soon</span>}
+							</TagContainer>
 							<DetailTitle>
 								{firstDetailTitle}
 								<br />
@@ -137,16 +148,18 @@ const BackgroundContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
-	padding: 38px;
+	padding: 25px 20px;
 	background: url(/img/ecosystem-card-bg-img.png) no-repeat top left;
 	background-size: cover;
-	gap: 40px;
+	gap: 25px;
 
 	${Container}:first-child & {
 		flex-direction: column-reverse;
 	}
 
 	@media (min-width: 992px) {
+		padding: 38px;
+		gap: 40px;
 		${Container}:first-child & {
 			flex-direction: row-reverse;
 			padding: 0 60px;
@@ -160,7 +173,8 @@ const CardImage = styled.div`
 	align-items: flex-end;
 
 	${Container}:first-child & {
-		transform: translateY(38px);
+		margin-top: -25px;
+		transform: translateY(25px);
 	}
 
 	img {
@@ -181,9 +195,10 @@ const CardContent = styled.div`
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: space-between;
-	gap: 60px;
+	gap: 35px;
 
 	@media (min-width: 992px) {
+		gap: 60px;
 		${Container} & {
 			padding: 50px 0;
 			justify-content: space-evenly;
@@ -193,7 +208,7 @@ const CardContent = styled.div`
 
 const Title = styled.p`
 	font-family: ${poppins.style.fontFamily};
-	font-size: 38px;
+	font-size: 28px;
 	font-weight: 600;
 
 	span {
@@ -201,12 +216,29 @@ const Title = styled.p`
 		font-weight: 200;
 		color: rgba(253, 253, 253, 0.8);
 	}
+
+	@media (min-width: 992px) {
+		font-size: 38px;
+	}
 `;
 
 const DetailGroup = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+`;
+
+const TagContainer = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 16px;
+
+	& > span {
+		font-size: 14px;
+		font-weight: 500;
+		color: rgba(223, 223, 223, 0.2);
+		font-style: italic;
+	}
 `;
 
 const Tag = styled.div`
@@ -219,7 +251,8 @@ const Tag = styled.div`
 
 	span {
 		color: var(--secondary-color);
-		font-size: 16px;
+		font-size: 12px;
+		font-weight: 400;
 	}
 
 	div {
@@ -229,17 +262,32 @@ const Tag = styled.div`
 		background: var(--secondary-color);
 		align-self: center;
 	}
+
+	@media (min-width: 992px) {
+		span {
+			font-size: 16px;
+		}
+	}
 `;
 
 const DetailTitle = styled.span`
 	font-family: var(--secondary-font);
-	font-size: 30px;
+	font-size: 24px;
 	font-weight: 500;
+
+	@media (min-width: 992px) {
+		font-size: 30px;
+	}
 `;
 
 const DetailText = styled.p`
-	font-size: 18px;
-	line-height: 24px;
-	color: rgba(253, 253, 253, 0.5);
+	font-size: 14px;
+	line-height: 18px;
+	color: #b8b8b8;
 	max-width: 500px;
+
+	@media (min-width: 992px) {
+		font-size: 18px;
+		line-height: 24px;
+	}
 `;

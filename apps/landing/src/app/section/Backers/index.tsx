@@ -4,7 +4,10 @@ import SectionLayout from '@/components/SectionLayout';
 
 const Backers = () => {
 	return (
-		<SectionLayout subTitle="Supporting Partners" title="Wide-range of support">
+		<SectionLayout
+			subTitle="Trusted Partnerships"
+			title="Expanding the AiGO Horizon"
+		>
 			<ContentContainer>
 				<LogoLine>
 					<img src="/img/backers/gmnetwork-img.png" />

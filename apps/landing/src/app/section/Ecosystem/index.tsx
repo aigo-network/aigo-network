@@ -18,7 +18,7 @@ const Ecosystem = () => {
 	return (
 		<SectionLayout
 			subTitle="Ecosystem"
-			title="A comprehensive mobility network"
+			title="Comprehensive Mobility Solutions"
 			fullWidth
 			innerRef={ref}
 		>
@@ -34,7 +34,7 @@ const Ecosystem = () => {
 						image="/img/ecosystem/app-img.png"
 						button={{
 							link: 'https://ride.aigo.network/',
-							title: 'Explore AiGO Ride now',
+							title: 'Download & earn now',
 						}}
 					/>
 					<EcosystemCard
@@ -45,6 +45,7 @@ const Ecosystem = () => {
 							text: `A dynamic visualization tool that showcases aggregated mobility data and patterns from AiGO network.`,
 						}}
 						image="/img/ecosystem/map-img.png"
+						comingSoon
 					/>
 					<EcosystemCard
 						title="AiGO SDK"
@@ -54,6 +55,7 @@ const Ecosystem = () => {
 							text: `Empower developers to build the next generation of transportation solutions.`,
 						}}
 						image="/img/ecosystem/sdk-img.png"
+						comingSoon
 					/>
 				</div>
 			</InnerContainer>
@@ -73,18 +75,6 @@ const InnerContainer = styled.div`
 		gap: 20px;
 		padding: 0 25px;
 		margin: 0 auto;
-	}
-
-	&:before {
-		content: '';
-		position: absolute;
-		left: 0;
-		width: 100%;
-		height: 90%;
-		top: 50%;
-		transform: translateY(-50%);
-		background: #1c1b1b;
-		z-index: 1;
 	}
 
 	@media (min-width: 576px) {

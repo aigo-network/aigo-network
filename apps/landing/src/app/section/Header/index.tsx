@@ -2,51 +2,80 @@ import type { FC } from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 
+import BasicButton from '@/components/BasicButton';
 import AiGOLogo from '@/components/icon/AiGOLogo';
 import AiGOText from '@/components/icon/AiGOText';
+import DiscordIcon from '@/components/icon/Discord';
+import TelegramIcon from '@/components/icon/Telegram';
+import TwitterIcon from '@/components/icon/Twitter';
+import useScroll from '@/utils/hook/useScroll';
 import { scrollTo, SectionId } from '@/utils/scrollTo';
 
 const Header: FC = () => {
 	const [showSideMenu, setShowSideMenu] = useState(false);
+	const scrollY = useScroll();
 
 	return (
-		<Container>
+		<Container $bgActive={scrollY > 0}>
 			<InnerContainer>
-				<LogoGroup>
-					<AiGOLogo size={50} />
-					<LogoText>
-						<AiGOText size={95} />
-					</LogoText>
-				</LogoGroup>
-				<NavBar>
-					<NavLink href="https://ride.aigo.network/" target="_blank">
-						AiGO Ride App
-					</NavLink>
-					<NavLink onClick={() => scrollTo(SectionId.About)}>About</NavLink>
-					<NavLink onClick={() => scrollTo(SectionId.Ecosystem)}>
-						Ecosystem
-					</NavLink>
-					<NavLink onClick={() => scrollTo(SectionId.Partner)}>Partner</NavLink>
-					{/* <NavLink href="#">Docs</NavLink> */}
-				</NavBar>
-				<BurgerMenu
-					$isClosedBtn={showSideMenu}
-					onClick={() => setShowSideMenu(!showSideMenu)}
-				>
-					<span></span>
-					<span></span>
-					<span></span>
-				</BurgerMenu>
+				<LeftContainer>
+					<LogoGroup>
+						<AiGOLogo size={50} />
+						<AiGOText size={83} />
+					</LogoGroup>
+					<LogoGroup>
+						<AiGOLogo size={45} />
+						<AiGOText size={70} />
+					</LogoGroup>
+					<NavBar>
+						<NavLink onClick={() => scrollTo(SectionId.About)}>About</NavLink>
+						<NavLink onClick={() => scrollTo(SectionId.Ecosystem)}>
+							Ecosystem
+						</NavLink>
+						<NavLink onClick={() => scrollTo(SectionId.Partner)}>
+							Partner
+						</NavLink>
+						{/* <NavLink href="#">Docs</NavLink> */}
+					</NavBar>
+				</LeftContainer>
+
+				<RightContainer>
+					<SocialGroup>
+						<SocialWrapper href="https://x.com/aigo_network" target="_blank">
+							<TwitterIcon size={12} color="#171717" />
+						</SocialWrapper>
+						<SocialWrapper href="https://t.me/aigocommunity" target="_blank">
+							<TelegramIcon size={20} color="#fdfdfd" />
+						</SocialWrapper>
+						<SocialWrapper href="https://discord.gg/vrVFkMdMpH" target="_blank">
+							<DiscordIcon size={14} color="#171717" />
+						</SocialWrapper>
+					</SocialGroup>
+
+					<ExploreButton
+						options={2}
+						title="Explore AiGO Ride"
+						href="https://ride.aigo.network/"
+					/>
+
+					<BurgerMenu
+						$isClosedBtn={showSideMenu}
+						onClick={() => setShowSideMenu(!showSideMenu)}
+					>
+						<span></span>
+						<span></span>
+						<span></span>
+					</BurgerMenu>
+				</RightContainer>
 			</InnerContainer>
 			<SideMenuBackground $active={showSideMenu}>
-				<CloseButton onClick={() => setShowSideMenu(false)}>
-					<span />
-					<span />
-				</CloseButton>
 				<Menu>
-					<NavLink href="https://ride.aigo.network/" target="_blank">
-						AiGO Ride App
-					</NavLink>
+					<MenuHead>Menu</MenuHead>
+					<SideNav onClick={() => scrollTo(SectionId.About)}>About</SideNav>
+					<SideNav onClick={() => scrollTo(SectionId.Ecosystem)}>
+						Ecosystem
+					</SideNav>
+					<SideNav onClick={() => scrollTo(SectionId.Partner)}>Partner</SideNav>
 					{/* <NavLink href="#">Docs</NavLink> */}
 				</Menu>
 			</SideMenuBackground>
@@ -56,14 +85,34 @@ const Header: FC = () => {
 
 export default Header;
 
-const Container = styled.header`
+const Container = styled.header<{ $bgActive: boolean }>`
 	position: fixed;
 	left: 0;
 	right: 0;
 	z-index: 10;
 	width: 100%;
-	background: rgba(0, 0, 0, 0.5);
-	backdrop-filter: blur(5px);
+	background: rgba(23, 23, 23, 0.2);
+	display: flex;
+	align-items: flex-end;
+	transition: ease-out 0.3s;
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+
+	@media (min-width: 992px) {
+		${({ $bgActive }) =>
+			$bgActive
+				? `
+			background: rgba(23, 23, 23, 0.8);
+			backdrop-filter: blur(20px);
+			-webkit-backdrop-filter: blur(20px);
+		`
+				: `
+			background: transparent;
+			backdrop-filter: none;
+			-webkit-backdrop-filter: none;
+		`}
+		height: auto;
+	}
 `;
 
 const InnerContainer = styled.div`
@@ -73,7 +122,7 @@ const InnerContainer = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	padding: 15px 25px;
+	padding: 18px 25px;
 	margin: 0 auto;
 
 	@media (min-width: 576px) {
@@ -91,17 +140,32 @@ const InnerContainer = styled.div`
 	}
 `;
 
-const LogoGroup = styled.a`
+const LeftContainer = styled.div`
 	display: flex;
 	align-items: center;
-	gap: 8px;
+	gap: 40px;
 `;
 
-const LogoText = styled.div`
-	display: none;
+const LogoGroup = styled.a`
+	align-items: center;
+	gap: 8px;
 
-	@media (min-width: 768px) {
-		display: block;
+	&:first-child {
+		display: none;
+	}
+
+	&:nth-child(2) {
+		display: flex;
+	}
+
+	@media (min-width: 992px) {
+		&:first-child {
+			display: flex;
+		}
+
+		&:nth-child(2) {
+			display: none;
+		}
 	}
 `;
 
@@ -118,9 +182,51 @@ const NavLink = styled.a`
 	text-decoration: none;
 	padding: 5px;
 	color: var(--primary-color);
+	font-size: 18px;
 
 	&:hover {
 		cursor: pointer;
+	}
+`;
+
+const RightContainer = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 18px;
+`;
+
+const SocialGroup = styled.div`
+	display: none;
+	align-items: center;
+	gap: 12px;
+
+	@media (min-width: 992px) {
+		display: flex;
+	}
+`;
+
+const SocialWrapper = styled.a`
+	width: 20px;
+	height: 20px;
+	border-radius: 16px;
+	background: #fdfdfd;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	&:nth-child(2) {
+		width: 22px;
+		height: 22px;
+		background: #171717;
+	}
+`;
+
+const ExploreButton = styled(BasicButton)`
+	display: none;
+
+	@media (min-width: 992px) {
+		display: flex;
 	}
 `;
 
@@ -135,8 +241,17 @@ const BurgerMenu = styled.div<{ $isClosedBtn: boolean }>`
 		margin-top: 5px;
 		transition-duration: 0.3s;
 		width: 30px;
-		background: var(--primary-color);
+		background: #b8b8b8;
 		position: relative;
+		margin-left: auto;
+
+		&:first-child {
+			width: 24px;
+		}
+
+		&:last-child {
+			width: 16px;
+		}
 
 		${({ $isClosedBtn }) =>
 			$isClosedBtn
@@ -144,6 +259,7 @@ const BurgerMenu = styled.div<{ $isClosedBtn: boolean }>`
 			&:first-child {
 				transform: rotate(45deg);
 				top: 8px;
+				width: 30px;
 			}
 
 			&:nth-child(2) {
@@ -153,6 +269,7 @@ const BurgerMenu = styled.div<{ $isClosedBtn: boolean }>`
 			&:last-child {
 				transform: rotate(-45deg);
 				top: -8px;
+				width: 30px;
 			}
 		`
 				: ``}
@@ -167,47 +284,34 @@ const SideMenuBackground = styled.div<{ $active: boolean }>`
 	position: absolute;
 	z-index: 13;
 	top: 0;
-	left: ${({ $active }) => ($active ? '0' : '-300px')};
-	width: 300px;
+	left: ${({ $active }) => ($active ? '0' : '-80vw')};
+	width: 80vw;
 	height: 100vh;
 	background: #1b1b1b;
 	transition: ease-out 0.3s;
-`;
-
-const CloseButton = styled.div`
-	position: relative;
-	width: 26px;
-	height: 26px;
-	cursor: pointer;
-	margin: 25px 25px 25px auto;
-
-	span {
-		position: absolute;
-		display: block;
-		width: 100%;
-		height: 2px;
-		border-radius: 6px;
-		background: #ffffff;
-
-		&:first-child {
-			top: 12px;
-			left: 0;
-			transform: rotate(45deg);
-		}
-
-		&:last-child {
-			bottom: 12px;
-			left: 0;
-			transform: rotate(-45deg);
-		}
-	}
+	padding: 43px 32px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
 `;
 
 const Menu = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
-	max-width: 50%;
-	gap: 10px;
+	gap: 40px;
 	margin: 0 auto;
+	width: 100%;
+`;
+
+const MenuHead = styled.span`
+	font-size: 18px;
+	line-height: 32px;
+	color: #b8b8b8;
+`;
+
+const SideNav = styled(NavLink)`
+	font-size: 32px;
+	font-weight: 500;
 `;

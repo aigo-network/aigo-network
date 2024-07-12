@@ -4,7 +4,10 @@ import SectionLayout from '@/components/SectionLayout';
 
 export const HowItWork = () => {
 	return (
-		<SectionLayout subTitle="Flow" title="How it works">
+		<SectionLayout
+			subTitle="AiGO Network"
+			title="Powering the Future of Mobility"
+		>
 			<Description>
 				AiGO Network is a robust mobility data ecosystem where data providers
 				and validators can be incentivized for their contribution and developers
@@ -22,8 +25,14 @@ export default HowItWork;
 
 const Description = styled.p`
 	text-align: center;
-	font-size: 18px;
-	line-height: 30px;
+	font-size: 16px;
+	line-height: 24px;
+	color: #b8b8b8;
+
+	@media (min-width: 992px) {
+		font-size: 18px;
+		line-height: 30px;
+	}
 `;
 
 const Diagram = styled.div`
