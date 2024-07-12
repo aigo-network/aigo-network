@@ -88,7 +88,7 @@ const VerifyNNIDScreen = () => {
 		try {
 			const nyamNyamUser = await graphqlClient.verifyNyamNyamUser({ nnid });
 			if (nyamNyamUser) {
-				const { user } = await graphqlClient.getUser();
+				const { user } = await graphqlClient.getUserWitDailyMissions();
 				user && appActions.setAppUser(user);
 				showCompleteNyamNyamVerification();
 				goBack();
