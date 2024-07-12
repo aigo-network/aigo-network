@@ -4,15 +4,13 @@ import { NextjsSite } from 'sst/constructs';
 import { getDomainNameByStage, hostedZone } from '../../tools/stacks/shared';
 
 const landingAlias = {
-	production: 'landing.',
-	staging: 'staging.landing.',
-	development: 'dev.landing.',
+	production: ' ',
+	staging: 'staging.',
+	development: 'dev.',
 };
 
 export const landing = ({ stack, app }: StackContext) => {
-	const domainName = getDomainNameByStage(
-		landingAlias[app.stage as keyof typeof landingAlias],
-	);
+	const domainName = getDomainNameByStage(landingAlias[app.stage as never]);
 	const site = new NextjsSite(stack, 'landing', {
 		path: 'apps/landing',
 		edge: true,
