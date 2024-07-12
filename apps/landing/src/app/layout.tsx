@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 		title: TITLE,
 		description: DESCRIPTION,
 		url: DOMAIN_URL,
-		images: '../../public/img/hero-img.png',
+		images: 'https://aigo.network/img/hero-img.png',
 		siteName: TITLE,
 	},
 	twitter: {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 		description: DESCRIPTION,
 		site: DOMAIN_URL,
 		creator: PROFILES.twitter.username,
-		images: '../../public/img/hero-img.png',
+		images: 'https://aigo.network/img/hero-img.png',
 	},
 };
 
