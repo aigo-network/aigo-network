@@ -1,42 +1,11 @@
 import { gql } from 'graphql-request';
 
-export const userQuery = gql`
-	query getUser {
+export const userWithDailyMissionsQuery = gql`
+	query getUserWitDailyMissions {
 		user {
-			id
-			name
-			email
-			phoneNumber
-			phoneNumberVerified
-			phoneNumberVerifiedAt
-			imageUrl
-			city
-			descriptions
-			NyamNyamUserProfile {
-				NNID
-				createdAt
-				extKey
-				id
-				name
-				nick
-				registrationNumber
-				updatedAt
-				verifiedAt
-			}
-			GOPoints
-			dailyMissions {
-				checkIn {
-					date
-					completed
-				}
-				latest7DaysCheckIn {
-					date
-					completed
-				}
-			}
-			invitationCode
-			createdAt
-			updatedAt
+			...ProfilePart
+			...NyamNyamProfilePart
+			...DailyMissionPart
 		}
 	}
 `;
@@ -44,28 +13,61 @@ export const userQuery = gql`
 export const userProfileQuery = gql`
 	query getUserProfile {
 		user {
+			...ProfilePart
+			...NyamNyamProfilePart
+		}
+	}
+`;
+
+export const UserProfileFragment = gql`
+	fragment ProfilePart on User {
+		id
+		name
+		email
+		city
+		imageUrl
+		descriptions
+		invitationCode
+		GOPoints
+
+		completeOnboarding
+
+		phoneNumber
+		phoneNumberVerified
+		phoneNumberVerifiedAt
+
+		createdAt
+		updatedAt
+	}
+`;
+
+export const NyamNyamProfileFragment = gql`
+	fragment NyamNyamProfilePart on User {
+		NyamNyamUserProfile {
+			NNID
+			createdAt
+			extKey
 			id
 			name
-			email
-			city
-			descriptions
-			NyamNyamUserProfile {
-				NNID
-				createdAt
-				extKey
-				id
-				name
-				nick
-				registrationNumber
-				updatedAt
-				verifiedAt
+			nick
+			registrationNumber
+			updatedAt
+			verifiedAt
+		}
+	}
+`;
+
+export const UserDailyMissionFragment = gql`
+	fragment DailyMissionPart on User {
+		dailyMissions {
+			checkIn {
+				date
+				completed
 			}
-			phoneNumber
-			phoneNumberVerified
-			phoneNumberVerifiedAt
-			GOPoints
-			completeOnboarding
-			invitationCode
+			latest7DaysCheckIn {
+				date
+				completed
+			}
 		}
 	}
 `;

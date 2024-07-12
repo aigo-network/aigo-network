@@ -22,7 +22,7 @@ export const useUserProfile = (forceUpdate?: boolean) => {
 
 	useEffect(() => {
 		const loadUser = async () => {
-			const { user } = await graphqlClient.getUser();
+			const { user } = await graphqlClient.getUserWitDailyMissions();
 			if (user) appActions.setAppUser(user);
 		};
 

@@ -320,17 +320,69 @@ export type GetWeb3FarmingProfileQueryVariables = Exact<{ [key: string]: never; 
 
 export type GetWeb3FarmingProfileQuery = { __typename?: 'RootQuery', web3FarmingProfile?: { __typename?: 'Web3FarmingProfile', id?: string | null, createdAt?: any | null, invitedBy?: string | null, countSuccessReferrals?: number | null, quests?: Array<{ __typename?: 'Web3FarmingQuest', id?: string | null, title?: string | null, description?: string | null, GOPoints?: number | null, type?: Web3FarmingQuestType | null, URL?: string | null, androidDownloadLink?: string | null, appleDownloadLink?: string | null, completed?: boolean | null, createdAt?: any | null } | null> | null, referralCodes?: Array<{ __typename?: 'Web3FarmingReferralCode', id?: string | null, code?: string | null, invitedId?: string | null, invitedDate?: any | null, invitedGOPoints?: number | null, referrerGOPoints?: number | null } | null> | null } | null };
 
-export type GetUserQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetUserWitDailyMissionsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, phoneNumber?: string | null, phoneNumberVerified?: boolean | null, phoneNumberVerifiedAt?: any | null, imageUrl?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, GOPoints?: number | null, invitationCode?: string | null, createdAt?: any | null, updatedAt?: any | null, NyamNyamUserProfile?: { __typename?: 'NyamNyamUserProfile', NNID?: string | null, createdAt?: any | null, extKey?: string | null, id?: string | null, name?: string | null, nick?: string | null, registrationNumber?: string | null, updatedAt?: any | null, verifiedAt?: any | null } | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null, latest7DaysCheckIn?: Array<{ __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null> | null } | null } | null };
+export type GetUserWitDailyMissionsQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, city?: string | null, imageUrl?: string | null, descriptions?: Array<UserDescription | null> | null, invitationCode?: string | null, GOPoints?: number | null, completeOnboarding?: boolean | null, phoneNumber?: string | null, phoneNumberVerified?: boolean | null, phoneNumberVerifiedAt?: any | null, createdAt?: any | null, updatedAt?: any | null, NyamNyamUserProfile?: { __typename?: 'NyamNyamUserProfile', NNID?: string | null, createdAt?: any | null, extKey?: string | null, id?: string | null, name?: string | null, nick?: string | null, registrationNumber?: string | null, updatedAt?: any | null, verifiedAt?: any | null } | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null, latest7DaysCheckIn?: Array<{ __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null> | null } | null } | null };
 
 export type GetUserProfileQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserProfileQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, phoneNumber?: string | null, phoneNumberVerified?: boolean | null, phoneNumberVerifiedAt?: any | null, GOPoints?: number | null, completeOnboarding?: boolean | null, invitationCode?: string | null, NyamNyamUserProfile?: { __typename?: 'NyamNyamUserProfile', NNID?: string | null, createdAt?: any | null, extKey?: string | null, id?: string | null, name?: string | null, nick?: string | null, registrationNumber?: string | null, updatedAt?: any | null, verifiedAt?: any | null } | null } | null };
+export type GetUserProfileQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, city?: string | null, imageUrl?: string | null, descriptions?: Array<UserDescription | null> | null, invitationCode?: string | null, GOPoints?: number | null, completeOnboarding?: boolean | null, phoneNumber?: string | null, phoneNumberVerified?: boolean | null, phoneNumberVerifiedAt?: any | null, createdAt?: any | null, updatedAt?: any | null, NyamNyamUserProfile?: { __typename?: 'NyamNyamUserProfile', NNID?: string | null, createdAt?: any | null, extKey?: string | null, id?: string | null, name?: string | null, nick?: string | null, registrationNumber?: string | null, updatedAt?: any | null, verifiedAt?: any | null } | null } | null };
 
+export type ProfilePartFragment = { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, city?: string | null, imageUrl?: string | null, descriptions?: Array<UserDescription | null> | null, invitationCode?: string | null, GOPoints?: number | null, completeOnboarding?: boolean | null, phoneNumber?: string | null, phoneNumberVerified?: boolean | null, phoneNumberVerifiedAt?: any | null, createdAt?: any | null, updatedAt?: any | null };
 
+export type NyamNyamProfilePartFragment = { __typename?: 'User', NyamNyamUserProfile?: { __typename?: 'NyamNyamUserProfile', NNID?: string | null, createdAt?: any | null, extKey?: string | null, id?: string | null, name?: string | null, nick?: string | null, registrationNumber?: string | null, updatedAt?: any | null, verifiedAt?: any | null } | null };
+
+export type DailyMissionPartFragment = { __typename?: 'User', dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null, latest7DaysCheckIn?: Array<{ __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null> | null } | null };
+
+export const ProfilePartFragmentDoc = gql`
+    fragment ProfilePart on User {
+  id
+  name
+  email
+  city
+  imageUrl
+  descriptions
+  invitationCode
+  GOPoints
+  completeOnboarding
+  phoneNumber
+  phoneNumberVerified
+  phoneNumberVerifiedAt
+  createdAt
+  updatedAt
+}
+    `;
+export const NyamNyamProfilePartFragmentDoc = gql`
+    fragment NyamNyamProfilePart on User {
+  NyamNyamUserProfile {
+    NNID
+    createdAt
+    extKey
+    id
+    name
+    nick
+    registrationNumber
+    updatedAt
+    verifiedAt
+  }
+}
+    `;
+export const DailyMissionPartFragmentDoc = gql`
+    fragment DailyMissionPart on User {
+  dailyMissions {
+    checkIn {
+      date
+      completed
+    }
+    latest7DaysCheckIn {
+      date
+      completed
+    }
+  }
+}
+    `;
 export const CheckInDocument = gql`
     mutation checkIn {
   checkIn {
@@ -574,74 +626,26 @@ export const GetWeb3FarmingProfileDocument = gql`
   }
 }
     `;
-export const GetUserDocument = gql`
-    query getUser {
+export const GetUserWitDailyMissionsDocument = gql`
+    query getUserWitDailyMissions {
   user {
-    id
-    name
-    email
-    phoneNumber
-    phoneNumberVerified
-    phoneNumberVerifiedAt
-    imageUrl
-    city
-    descriptions
-    NyamNyamUserProfile {
-      NNID
-      createdAt
-      extKey
-      id
-      name
-      nick
-      registrationNumber
-      updatedAt
-      verifiedAt
-    }
-    GOPoints
-    dailyMissions {
-      checkIn {
-        date
-        completed
-      }
-      latest7DaysCheckIn {
-        date
-        completed
-      }
-    }
-    invitationCode
-    createdAt
-    updatedAt
+    ...ProfilePart
+    ...NyamNyamProfilePart
+    ...DailyMissionPart
   }
 }
-    `;
+    ${ProfilePartFragmentDoc}
+${NyamNyamProfilePartFragmentDoc}
+${DailyMissionPartFragmentDoc}`;
 export const GetUserProfileDocument = gql`
     query getUserProfile {
   user {
-    id
-    name
-    email
-    city
-    descriptions
-    NyamNyamUserProfile {
-      NNID
-      createdAt
-      extKey
-      id
-      name
-      nick
-      registrationNumber
-      updatedAt
-      verifiedAt
-    }
-    phoneNumber
-    phoneNumberVerified
-    phoneNumberVerifiedAt
-    GOPoints
-    completeOnboarding
-    invitationCode
+    ...ProfilePart
+    ...NyamNyamProfilePart
   }
 }
-    `;
+    ${ProfilePartFragmentDoc}
+${NyamNyamProfilePartFragmentDoc}`;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
@@ -692,8 +696,8 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     getWeb3FarmingProfile(variables?: GetWeb3FarmingProfileQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetWeb3FarmingProfileQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetWeb3FarmingProfileQuery>(GetWeb3FarmingProfileDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getWeb3FarmingProfile', 'query', variables);
     },
-    getUser(variables?: GetUserQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetUserQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetUserQuery>(GetUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUser', 'query', variables);
+    getUserWitDailyMissions(variables?: GetUserWitDailyMissionsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetUserWitDailyMissionsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetUserWitDailyMissionsQuery>(GetUserWitDailyMissionsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUserWitDailyMissions', 'query', variables);
     },
     getUserProfile(variables?: GetUserProfileQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetUserProfileQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetUserProfileQuery>(GetUserProfileDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUserProfile', 'query', variables);

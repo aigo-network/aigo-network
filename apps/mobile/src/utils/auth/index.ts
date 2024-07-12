@@ -16,7 +16,7 @@ auth().onIdTokenChanged(async (authUser) => {
 		crashlytics().setUserId(authUser.uid);
 
 		try {
-			const { user } = await graphqlClient.getUserProfile();
+			const { user } = await graphqlClient.getUserWitDailyMissions();
 			if (user) {
 				crashlytics().setAttributes({
 					email: authUser.email || 'unknown@aigo.network',
