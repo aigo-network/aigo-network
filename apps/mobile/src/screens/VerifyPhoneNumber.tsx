@@ -1,4 +1,5 @@
 import auth from '@react-native-firebase/auth';
+import crashlytics from '@react-native-firebase/crashlytics';
 import { useNavigation } from '@react-navigation/native';
 import type { PhoneNumber } from 'libphonenumber-js';
 import { appState } from 'state/app';
@@ -18,6 +19,7 @@ export const VerifyPhoneNumberScreen = () => {
 			setPhoneAuthConfirmation(confirmation);
 			navigation.navigate('VerifyOTP');
 		} catch (error) {
+			crashlytics().recordError(error as Error);
 			console.log('Error phone sign in:', error);
 		}
 	};

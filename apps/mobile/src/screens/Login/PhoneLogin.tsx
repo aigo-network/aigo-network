@@ -1,4 +1,5 @@
 import auth from '@react-native-firebase/auth';
+import crashlytics from '@react-native-firebase/crashlytics';
 import { useNavigation } from '@react-navigation/native';
 import type { PhoneNumber } from 'libphonenumber-js';
 import { appActions, appState } from 'state/app';
@@ -21,6 +22,7 @@ const PhoneLoginScreen = () => {
 			appActions.updatePhoneSignIn(phoneNumber);
 			navigation.navigate('OtpInput');
 		} catch (error) {
+			crashlytics().recordError(error as Error);
 			console.log('Error phone sign in:', error);
 		}
 	};

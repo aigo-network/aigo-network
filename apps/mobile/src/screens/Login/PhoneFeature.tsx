@@ -16,6 +16,7 @@ import { Button } from '@aigo/components/Button';
 import LeftArrowIcon from '@aigo/components/icon/LeftArrowIcon';
 import KeyboardView from '@aigo/components/KeyboardView';
 import SafeContainer from '@aigo/components/SafeContainer';
+import crashlytics from '@react-native-firebase/crashlytics';
 import { useNavigation } from '@react-navigation/native';
 import type { CountryCode, PhoneNumber } from 'libphonenumber-js';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
@@ -69,7 +70,7 @@ const PhoneLoginFeature: FC<Props> = ({
 	const signIn = async () => {
 		setLoading(true);
 		if (parsedPhoneNumber) await signInWithPhoneNumber(parsedPhoneNumber);
-		else console.log('parsed phone number empty, something went wrong');
+		else crashlytics().log('parsed phone number empty, something went wrong');
 		setLoading(false);
 	};
 

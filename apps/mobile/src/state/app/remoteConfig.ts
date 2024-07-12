@@ -28,7 +28,7 @@ export const initRemoteConfigModule = async () => {
 			syncRemoteConfig();
 		});
 
-	return remoteConfig().onConfigUpdated((event, error) => {
+	return remoteConfig().onConfigUpdated((_, error) => {
 		if (error !== undefined) {
 			console.log('something went wrong with remote config', error);
 		} else {
