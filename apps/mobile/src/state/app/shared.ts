@@ -15,6 +15,11 @@ interface AppState {
 	phoneSignIn: {
 		phoneNumber?: PhoneNumber;
 	};
+
+	/**
+	 * coming from deeplink
+	 */
+	pendingInviteCode?: string;
 }
 
 export const initAppState: AppState = {

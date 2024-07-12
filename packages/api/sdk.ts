@@ -18,6 +18,11 @@ export type Scalars = {
   DateTime: { input: any; output: any; }
 };
 
+export enum AppStage {
+  FirstTimeOpen = 'FirstTimeOpen',
+  Normal = 'Normal'
+}
+
 export type DailyCheckIn = {
   __typename?: 'DailyCheckIn';
   completed?: Maybe<Scalars['Boolean']['output']>;
@@ -30,6 +35,15 @@ export type DailyMissions = {
   latest7DaysCheckIn?: Maybe<Array<Maybe<DailyCheckIn>>>;
 };
 
+export type DeferredLinking = {
+  __typename?: 'DeferredLinking';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  ipAddress?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  url?: Maybe<Scalars['String']['output']>;
+};
+
 export type Device = {
   __typename?: 'Device';
   appVersion?: Maybe<Scalars['String']['output']>;
@@ -40,7 +54,6 @@ export type Device = {
   deviceName?: Maybe<Scalars['String']['output']>;
   deviceType?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['String']['output']>;
-  lastUpdateTime?: Maybe<Scalars['String']['output']>;
   manufacturer?: Maybe<Scalars['String']['output']>;
   notificationToken?: Maybe<Scalars['String']['output']>;
   platform?: Maybe<Scalars['String']['output']>;
@@ -94,9 +107,11 @@ export type RootMutation = {
   __typename?: 'RootMutation';
   checkIn?: Maybe<DailyCheckIn>;
   completeOnboarding?: Maybe<User>;
+  createDeferredLinking?: Maybe<DeferredLinking>;
   deleteUser?: Maybe<User>;
   inputInvitationCode?: Maybe<Invitation>;
   registerDevice?: Maybe<Device>;
+  trackAppOpenWithLinkingEvent?: Maybe<Scalars['String']['output']>;
   updateProfile?: Maybe<User>;
   /**
    * Verify Nyam Nyam Identity by calling NN API, needed NNID and Phone number.
@@ -116,6 +131,11 @@ export type RootMutation = {
 };
 
 
+export type RootMutationCreateDeferredLinkingArgs = {
+  url: Scalars['String']['input'];
+};
+
+
 export type RootMutationInputInvitationCodeArgs = {
   code?: InputMaybe<Scalars['String']['input']>;
 };
@@ -123,6 +143,12 @@ export type RootMutationInputInvitationCodeArgs = {
 
 export type RootMutationRegisterDeviceArgs = {
   input: RegisterDeviceInput;
+};
+
+
+export type RootMutationTrackAppOpenWithLinkingEventArgs = {
+  appStage: AppStage;
+  url: Scalars['String']['input'];
 };
 
 
@@ -147,6 +173,8 @@ export type RootMutationWeb3FarmingVerifyQuestAndClaimPointsArgs = {
 
 export type RootQuery = {
   __typename?: 'RootQuery';
+  deferredLinking?: Maybe<DeferredLinking>;
+  linking?: Maybe<Scalars['String']['output']>;
   ping?: Maybe<Scalars['String']['output']>;
   user?: Maybe<User>;
   web3FarmingProfile?: Maybe<Web3FarmingProfile>;
@@ -263,6 +291,14 @@ export type InputInvitationCodeMutationVariables = Exact<{
 
 export type InputInvitationCodeMutation = { __typename?: 'RootMutation', inputInvitationCode?: { __typename?: 'Invitation', invitedBy?: string | null, invitedId?: string | null } | null };
 
+export type TrackAppOpenWithLinkingEventMutationVariables = Exact<{
+  url: Scalars['String']['input'];
+  appStage: AppStage;
+}>;
+
+
+export type TrackAppOpenWithLinkingEventMutation = { __typename?: 'RootMutation', trackAppOpenWithLinkingEvent?: string | null };
+
 export type Web3FarmingInitProfileMutationVariables = Exact<{
   referralCode?: InputMaybe<Scalars['String']['input']>;
 }>;
@@ -303,6 +339,11 @@ export type GetUserGoPointsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetUserGoPointsQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', GOPoints?: number | null } | null };
+
+export type RetrieveDeferredLinkingQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type RetrieveDeferredLinkingQuery = { __typename?: 'RootQuery', deferredLinking?: { __typename?: 'DeferredLinking', id?: string | null, ipAddress?: string | null, url?: string | null } | null };
 
 export type GetUserWithWeb3FarmingProfileQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -379,6 +420,11 @@ export const InputInvitationCodeDocument = gql`
     invitedBy
     invitedId
   }
+}
+    `;
+export const TrackAppOpenWithLinkingEventDocument = gql`
+    mutation trackAppOpenWithLinkingEvent($url: String!, $appStage: AppStage!) {
+  trackAppOpenWithLinkingEvent(url: $url, appStage: $appStage)
 }
     `;
 export const Web3FarmingInitProfileDocument = gql`
@@ -484,6 +530,15 @@ export const GetUserGoPointsDocument = gql`
     query getUserGOPoints {
   user {
     GOPoints
+  }
+}
+    `;
+export const RetrieveDeferredLinkingDocument = gql`
+    query retrieveDeferredLinking {
+  deferredLinking {
+    id
+    ipAddress
+    url
   }
 }
     `;
@@ -642,6 +697,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     inputInvitationCode(variables?: InputInvitationCodeMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<InputInvitationCodeMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<InputInvitationCodeMutation>(InputInvitationCodeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'inputInvitationCode', 'mutation', variables);
     },
+    trackAppOpenWithLinkingEvent(variables: TrackAppOpenWithLinkingEventMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<TrackAppOpenWithLinkingEventMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<TrackAppOpenWithLinkingEventMutation>(TrackAppOpenWithLinkingEventDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'trackAppOpenWithLinkingEvent', 'mutation', variables);
+    },
     web3FarmingInitProfile(variables?: Web3FarmingInitProfileMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Web3FarmingInitProfileMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<Web3FarmingInitProfileMutation>(Web3FarmingInitProfileDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'web3FarmingInitProfile', 'mutation', variables);
     },
@@ -662,6 +720,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     getUserGOPoints(variables?: GetUserGoPointsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetUserGoPointsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetUserGoPointsQuery>(GetUserGoPointsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUserGOPoints', 'query', variables);
+    },
+    retrieveDeferredLinking(variables?: RetrieveDeferredLinkingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<RetrieveDeferredLinkingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<RetrieveDeferredLinkingQuery>(RetrieveDeferredLinkingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'retrieveDeferredLinking', 'query', variables);
     },
     getUserWithWeb3FarmingProfile(variables?: GetUserWithWeb3FarmingProfileQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetUserWithWeb3FarmingProfileQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetUserWithWeb3FarmingProfileQuery>(GetUserWithWeb3FarmingProfileDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUserWithWeb3FarmingProfile', 'query', variables);

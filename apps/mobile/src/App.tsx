@@ -23,6 +23,7 @@ import { useAppConfigure } from 'utils/hooks/app';
 import { useNotifications } from 'utils/hooks/notification';
 import type { RootStackParamList } from 'utils/navigation';
 import { linking } from 'utils/navigation';
+import { useDeferredDeepLinkHandler } from 'utils/navigation/deeplink';
 
 import 'utils/global';
 import 'utils/auth';
@@ -32,6 +33,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 export const AppContainer: FC = () => {
 	useAppConfigure();
 	useNotifications();
+	useDeferredDeepLinkHandler();
 
 	return (
 		<SafeAreaProvider>

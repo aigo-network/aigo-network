@@ -4,6 +4,15 @@ schema {
 }
 
 """"""
+enum AppStage {
+  """"""
+  FirstTimeOpen
+
+  """"""
+  Normal
+}
+
+""""""
 type DailyCheckIn {
   """"""
   completed: Boolean
@@ -25,6 +34,24 @@ type DailyMissions {
 The `DateTime` scalar type represents a DateTime. The DateTime is serialized as an RFC 3339 quoted string
 """
 scalar DateTime
+
+""""""
+type DeferredLinking {
+  """"""
+  createdAt: DateTime
+
+  """"""
+  id: String
+
+  """"""
+  ipAddress: String
+
+  """"""
+  updatedAt: DateTime
+
+  """"""
+  url: String
+}
 
 """"""
 type Device {
@@ -51,9 +78,6 @@ type Device {
 
   """"""
   id: String
-
-  """"""
-  lastUpdateTime: String
 
   """"""
   manufacturer: String
@@ -169,6 +193,9 @@ type RootMutation {
   completeOnboarding: User
 
   """"""
+  createDeferredLinking(url: String!): DeferredLinking
+
+  """"""
   deleteUser: User
 
   """"""
@@ -176,6 +203,9 @@ type RootMutation {
 
   """"""
   registerDevice(input: RegisterDeviceInput!): Device
+
+  """"""
+  trackAppOpenWithLinkingEvent(appStage: AppStage!, url: String!): String
 
   """"""
   updateProfile(profile: UserProfile): User
@@ -201,6 +231,12 @@ type RootMutation {
 
 """"""
 type RootQuery {
+  """"""
+  deferredLinking: DeferredLinking
+
+  """"""
+  linking: String
+
   """"""
   ping: String
 
