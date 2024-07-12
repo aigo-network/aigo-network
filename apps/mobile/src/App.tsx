@@ -19,12 +19,12 @@ import VerifyNNIDScreen from 'screens/VerifyNNID';
 import VerifyOTPScreen from 'screens/VerifyOTP';
 import VerifyPhoneNumberScreen from 'screens/VerifyPhoneNumber';
 import { useAppConfigure } from 'utils/hooks/app';
+import { useDeepLinkHandler } from 'utils/hooks/deeplink';
 import { useNavigationConfig } from 'utils/hooks/navigation';
 import { useNotifications } from 'utils/hooks/notification';
 import type { RootStackParamList } from 'utils/navigation';
 import { linking } from 'utils/navigation';
 import { navigationRef } from 'utils/navigation';
-import { useDeepLinkHandler } from 'utils/navigation/deeplink';
 
 import 'utils/global';
 import 'utils/auth';

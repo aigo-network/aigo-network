@@ -1,5 +1,5 @@
 import { Linking } from 'react-native';
-import { type LinkingOptions } from '@react-navigation/native';
+import type { LinkingOptions } from '@react-navigation/native';
 
 import { handleDeepLink } from './deeplink';
 
