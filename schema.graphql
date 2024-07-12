@@ -53,9 +53,6 @@ type Device {
   id: String
 
   """"""
-  lastUpdateTime: String
-
-  """"""
   manufacturer: String
 
   """"""

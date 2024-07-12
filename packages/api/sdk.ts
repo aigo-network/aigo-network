@@ -40,7 +40,6 @@ export type Device = {
   deviceName?: Maybe<Scalars['String']['output']>;
   deviceType?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['String']['output']>;
-  lastUpdateTime?: Maybe<Scalars['String']['output']>;
   manufacturer?: Maybe<Scalars['String']['output']>;
   notificationToken?: Maybe<Scalars['String']['output']>;
   platform?: Maybe<Scalars['String']['output']>;
@@ -322,7 +321,7 @@ export type GetUserQuery = { __typename?: 'RootQuery', user?: { __typename?: 'Us
 export type GetUserProfileQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserProfileQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, phoneNumber?: string | null, phoneNumberVerified?: boolean | null, phoneNumberVerifiedAt?: any | null, GOPoints?: number | null, completeOnboarding?: boolean | null, NyamNyamUserProfile?: { __typename?: 'NyamNyamUserProfile', NNID?: string | null, createdAt?: any | null, extKey?: string | null, id?: string | null, name?: string | null, nick?: string | null, registrationNumber?: string | null, updatedAt?: any | null, verifiedAt?: any | null } | null } | null };
+export type GetUserProfileQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, phoneNumber?: string | null, phoneNumberVerified?: boolean | null, phoneNumberVerifiedAt?: any | null, GOPoints?: number | null, completeOnboarding?: boolean | null, invitationCode?: string | null, NyamNyamUserProfile?: { __typename?: 'NyamNyamUserProfile', NNID?: string | null, createdAt?: any | null, extKey?: string | null, id?: string | null, name?: string | null, nick?: string | null, registrationNumber?: string | null, updatedAt?: any | null, verifiedAt?: any | null } | null } | null };
 
 
 export const CheckInDocument = gql`
@@ -619,6 +618,7 @@ export const GetUserProfileDocument = gql`
     phoneNumberVerifiedAt
     GOPoints
     completeOnboarding
+    invitationCode
   }
 }
     `;
