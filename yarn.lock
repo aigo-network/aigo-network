@@ -45,8 +45,12 @@ __metadata:
     "@metacraft/tsconfig": "npm:^0.0.2"
     "@react-native-async-storage/async-storage": "npm:^1.23.1"
     "@react-native-clipboard/clipboard": "npm:^1.14.1"
-    "@react-native-firebase/app": "npm:^19.2.2"
-    "@react-native-firebase/auth": "npm:^19.2.2"
+    "@react-native-firebase/analytics": "npm:^20.1.0"
+    "@react-native-firebase/app": "npm:^20.1.0"
+    "@react-native-firebase/auth": "npm:^20.1.0"
+    "@react-native-firebase/crashlytics": "npm:^20.1.0"
+    "@react-native-firebase/messaging": "npm:^20.1.0"
+    "@react-native-firebase/remote-config": "npm:^20.1.0"
     "@react-native-google-signin/google-signin": "npm:^11.0.1"
     "@react-native/babel-preset": "npm:0.74.83"
     "@react-native/metro-config": "npm:0.74.83"
@@ -73,6 +77,7 @@ __metadata:
     react-native-gesture-handler: "npm:^2.16.2"
     react-native-haptic-feedback: "npm:^2.2.0"
     react-native-localize: "npm:^3.1.0"
+    react-native-permissions: "npm:^4.1.5"
     react-native-reanimated: "npm:3.11.0"
     react-native-safe-area-context: "npm:^4.10.1"
     react-native-screens: "npm:^3.31.1"
@@ -5865,9 +5870,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-firebase/app@npm:^19.2.2":
-  version: 19.3.0
-  resolution: "@react-native-firebase/app@npm:19.3.0"
+"@react-native-firebase/analytics@npm:^20.1.0":
+  version: 20.1.0
+  resolution: "@react-native-firebase/analytics@npm:20.1.0"
+  peerDependencies:
+    "@react-native-firebase/app": 20.1.0
+  checksum: 10/fae8b85c244167018bde169554000ada17ab6205996f7712d46592cbed2807a9102a77caaaa4f49e8db0cb19bd63da438190c9c1b97414e42805b7a69e7cc5d2
+  languageName: node
+  linkType: hard
+
+"@react-native-firebase/app@npm:^20.1.0":
+  version: 20.1.0
+  resolution: "@react-native-firebase/app@npm:20.1.0"
   dependencies:
     opencollective-postinstall: "npm:^2.0.3"
     superstruct: "npm:^0.6.2"
@@ -5878,22 +5892,60 @@ __metadata:
   peerDependenciesMeta:
     expo:
       optional: true
-  checksum: 10/fc1c8044d201474649ae8cba1ce1efb8077c0ea0f56d3d8fc9a024a9ea27dac9cfa8eef6399335cf21789165689be36ff51f528e56b5f6b482f7330736e2f822
+  checksum: 10/5a06d1f60fb813f1e114066a03c57e46efd58f753fc7d00cadcd47399a8b9f88f221e2ccb31b5d095b00b06d4921fa3b5be720b67450d69315ea730f7499716e
   languageName: node
   linkType: hard
 
-"@react-native-firebase/auth@npm:^19.2.2":
-  version: 19.3.0
-  resolution: "@react-native-firebase/auth@npm:19.3.0"
+"@react-native-firebase/auth@npm:^20.1.0":
+  version: 20.1.0
+  resolution: "@react-native-firebase/auth@npm:20.1.0"
   dependencies:
     plist: "npm:^3.1.0"
   peerDependencies:
-    "@react-native-firebase/app": 19.3.0
+    "@react-native-firebase/app": 20.1.0
     expo: ">=47.0.0"
   peerDependenciesMeta:
     expo:
       optional: true
-  checksum: 10/08336736237de9f6ca6e259ba6638f57dc627a0b823ebca10b850bbd1f55c92b229a368b801bce1180633882974f456894162c5bf5868081f92cdfb04fce80fe
+  checksum: 10/e2bcfc6e8771e5b739909ab2f4ffa116832c868618d5ad2475302598357129654504fd5d78d2900c01e5a0a1d8e9444aff2ab548e2a98e487ed6d77da5b6777f
+  languageName: node
+  linkType: hard
+
+"@react-native-firebase/crashlytics@npm:^20.1.0":
+  version: 20.1.0
+  resolution: "@react-native-firebase/crashlytics@npm:20.1.0"
+  dependencies:
+    stacktrace-js: "npm:^2.0.2"
+  peerDependencies:
+    "@react-native-firebase/app": 20.1.0
+    expo: ">=47.0.0"
+  peerDependenciesMeta:
+    expo:
+      optional: true
+  checksum: 10/4ede3fe278bcec17f06e39054e44fbabdb2cf426e2efd988fef4423a564ae1fb81e7124527e67d8af2bddd78407c273af8cebefd413de77327c9e2403bcff881
+  languageName: node
+  linkType: hard
+
+"@react-native-firebase/messaging@npm:^20.1.0":
+  version: 20.1.0
+  resolution: "@react-native-firebase/messaging@npm:20.1.0"
+  peerDependencies:
+    "@react-native-firebase/app": 20.1.0
+    expo: ">=47.0.0"
+  peerDependenciesMeta:
+    expo:
+      optional: true
+  checksum: 10/8948f45373b58f128c5460fc5786b413b29d07158081f9c381c94fc29e208b1f5f77381eb1c621e161a1ce82a3130287d56db260c7bed3f06e3b07446eb054ec
+  languageName: node
+  linkType: hard
+
+"@react-native-firebase/remote-config@npm:^20.1.0":
+  version: 20.1.0
+  resolution: "@react-native-firebase/remote-config@npm:20.1.0"
+  peerDependencies:
+    "@react-native-firebase/analytics": 20.1.0
+    "@react-native-firebase/app": 20.1.0
+  checksum: 10/62e1347e74e94800bbcba3f10082a3ef3ff379001a2b3737dc923e79d8a8c50a3690ce250fe3cc0fffd3f4340f0cafc598e78c2101514060e6713c0afbb7c067
   languageName: node
   linkType: hard
 
@@ -16254,6 +16306,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-permissions@npm:^4.1.5":
+  version: 4.1.5
+  resolution: "react-native-permissions@npm:4.1.5"
+  peerDependencies:
+    react: ">=18.1.0"
+    react-native: ">=0.70.0"
+    react-native-windows: ">=0.70.0"
+  peerDependenciesMeta:
+    react-native-windows:
+      optional: true
+  checksum: 10/2b1eaa879e4b0c3455488c3dfa1d8b203bdbf2cd550b8ee5691d26e03c086d33f9bc495a70f8e1e85d0c16131374e11d12f7927168179e339f158eea9fb04830
+  languageName: node
+  linkType: hard
+
 "react-native-qrcode-svg@npm:^6.3.1":
   version: 6.3.1
   resolution: "react-native-qrcode-svg@npm:6.3.1"
@@ -17459,6 +17525,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"source-map@npm:0.5.6":
+  version: 0.5.6
+  resolution: "source-map@npm:0.5.6"
+  checksum: 10/c62fe98e106c762307eea3a982242c1a76a31bc762da10fe2dda12252d423c163e0cd45d313330c8bd040cc5121702511138252308f72b8a9273825e81e4db30
+  languageName: node
+  linkType: hard
+
 "source-map@npm:^0.5.6":
   version: 0.5.7
   resolution: "source-map@npm:0.5.7"
@@ -17629,6 +17702,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"stack-generator@npm:^2.0.5":
+  version: 2.0.10
+  resolution: "stack-generator@npm:2.0.10"
+  dependencies:
+    stackframe: "npm:^1.3.4"
+  checksum: 10/4fc3978a934424218a0aa9f398034e1f78153d5ff4f4ff9c62478c672debb47dd58de05b09fc3900530cbb526d72c93a6e6c9353bacc698e3b1c00ca3dda0c47
+  languageName: node
+  linkType: hard
+
 "stack-utils@npm:^2.0.3, stack-utils@npm:^2.0.6":
   version: 2.0.6
   resolution: "stack-utils@npm:2.0.6"
@@ -17642,6 +17724,27 @@ __metadata:
   version: 1.3.4
   resolution: "stackframe@npm:1.3.4"
   checksum: 10/29ca71c1fd17974c1c178df0236b1407bc65f6ea389cc43dec000def6e42ff548d4453de9a85b76469e2ae2b2abdd802c6b6f3db947c05794efbd740d1cf4121
+  languageName: node
+  linkType: hard
+
+"stacktrace-gps@npm:^3.0.4":
+  version: 3.1.2
+  resolution: "stacktrace-gps@npm:3.1.2"
+  dependencies:
+    source-map: "npm:0.5.6"
+    stackframe: "npm:^1.3.4"
+  checksum: 10/21cb60ce0990f7a661e964cf4bdef1e70dda2286fb628fbd0fd1e69e8925138433d08ed84969de2d396b3b91515e15336a502f777c26587db89f3933d6f63f9b
+  languageName: node
+  linkType: hard
+
+"stacktrace-js@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "stacktrace-js@npm:2.0.2"
+  dependencies:
+    error-stack-parser: "npm:^2.0.6"
+    stack-generator: "npm:^2.0.5"
+    stacktrace-gps: "npm:^3.0.4"
+  checksum: 10/e5f60a09852687e4a9206927fe1078e24d63e00a71a2dcddd67940e9504a54931a3454439d5b4e3e0e62aeb979be810573e8d3332fbef0dbfa335a8781b4b57c
   languageName: node
   linkType: hard
 
