@@ -17,7 +17,7 @@ const cards = [
 		logoUrl: '/img/partnership/nyam-nyam-logo-img.png',
 		location: 'South Korea 🇰🇷',
 		description:
-			'AiGO Ride has formed a strategic partnership with TADA, the blockchain-based ride-hailing service operated by MVL in Vietnam. Through this collaboration, the two companies aim to strengthen their presence and business cooperation in the Vietnamese and broader Southeast Asian markets.',
+			'AiGO Ride has partnered with Nyam Nyam Box, a leading food delivery platform, to onboard over 80,000 delivery drivers in South Korea and enhance the delivery experience through gamified incentives for sustainable transportation.',
 	},
 	{
 		image: {
