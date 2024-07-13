@@ -1,8 +1,5 @@
-import {
-	type User as AppUser,
-	type Web3FarmingProfile,
-	Web3FarmingQuestType,
-} from '@aigo/api/sdk';
+import type { User as AppUser, Web3FarmingProfile } from '@aigo/api/sdk';
+import { Web3FarmingQuestType } from '@aigo/api/sdk';
 import { proxy } from 'valtio';
 
 import packageJson from '../../../package.json';
