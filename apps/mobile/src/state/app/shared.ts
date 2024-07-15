@@ -2,7 +2,8 @@ import DeviceInfo from 'react-native-device-info';
 import type { User } from '@aigo/api/graphql';
 import { UserDescription } from '@aigo/api/graphql';
 import type { PhoneNumber } from 'libphonenumber-js';
-import { type Content, translations } from 'utils/translations';
+import type { Content } from 'utils/translations';
+import { translations } from 'utils/translations';
 import { proxy } from 'valtio';
 
 import type { Onboarding, RemoteConfig } from './types';
@@ -26,7 +27,7 @@ interface AppState {
 }
 
 export const defaultRemoteConfig: RemoteConfig = {
-	nyamNyamCampaignActivated: true,
+	nyamNyamCampaignActivated: false,
 	invitationUrl: 'https://ride.aigo.network/open',
 	deepAnalyticsEnabled: true,
 	minimalVersion: '1.0.0',
