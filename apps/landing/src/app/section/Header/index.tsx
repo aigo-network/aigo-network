@@ -56,6 +56,7 @@ const Header: FC = () => {
 						options={2}
 						title="Explore AiGO Ride"
 						href="https://ride.aigo.network/"
+						target="_blank"
 					/>
 
 					<BurgerMenu
@@ -78,6 +79,26 @@ const Header: FC = () => {
 					<SideNav onClick={() => scrollTo(SectionId.Partner)}>Partner</SideNav>
 					{/* <NavLink href="#">Docs</NavLink> */}
 				</Menu>
+				<SideMenuBottom>
+					<SideSocialGroup>
+						<SideSocial href="https://x.com/aigo_network" target="_blank">
+							<TwitterIcon size={18} color="#171717" />
+						</SideSocial>
+						<SideSocial href="https://t.me/aigocommunity" target="_blank">
+							<TelegramIcon size={33} color="#fdfdfd" />
+						</SideSocial>
+						<SideSocial href="https://discord.gg/vrVFkMdMpH" target="_blank">
+							<DiscordIcon size={20} color="#171717" />
+						</SideSocial>
+					</SideSocialGroup>
+					<BasicButton
+						style={{ justifyContent: 'center' }}
+						options={2}
+						title="Explore AiGO Ride"
+						href="https://ride.aigo.network/"
+						target="_blank"
+					/>
+				</SideMenuBottom>
 			</SideMenuBackground>
 		</Container>
 	);
@@ -314,4 +335,27 @@ const MenuHead = styled.span`
 const SideNav = styled(NavLink)`
 	font-size: 32px;
 	font-weight: 500;
+`;
+
+const SideMenuBottom = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	width: 100%;
+	gap: 12px;
+`;
+
+const SideSocialGroup = styled(SocialGroup)`
+	display: flex;
+	gap: 15px;
+`;
+
+const SideSocial = styled(SocialWrapper)`
+	width: 32px;
+	height: 32px;
+
+	&:nth-child(2) {
+		width: 34px;
+		height: 34px;
+	}
 `;
