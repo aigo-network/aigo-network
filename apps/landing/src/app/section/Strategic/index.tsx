@@ -37,11 +37,35 @@ const StrategicPartner = () => {
 	const activeIndex = useRef(0);
 	const scrollY = useScroll();
 
+	const slidePrev = () => {
+		const nextIndex =
+			activeIndex.current === cards.length - 1 ? 0 : activeIndex.current + 1;
+		activeIndex.current = nextIndex;
+		const offsetX = carouselRef.current?.clientWidth || 0 + 24;
+		carouselRef.current?.scrollTo(nextIndex * offsetX, scrollY);
+	};
+
+	const slideNext = () => {
+		const nextIndex =
+			activeIndex.current === cards.length - 1 ? 0 : activeIndex.current + 1;
+		activeIndex.current = nextIndex;
+		const offsetX = carouselRef.current?.clientWidth || 0 + 24;
+		carouselRef.current?.scrollTo(nextIndex * offsetX, scrollY);
+	};
+
 	useEffect(() => {
 		if (ref.current) {
 			scrollMap[SectionId.Partner] = ref;
 		}
 	}, [ref.current]);
+
+	useEffect(() => {
+		const interval = setInterval(() => slideNext(), 5000);
+
+		return () => {
+			clearInterval(interval);
+		};
+	}, [scrollY, carouselRef.current]);
 
 	return (
 		<SectionLayout
@@ -63,30 +87,10 @@ const StrategicPartner = () => {
 				</CarouselViewport>
 
 				<ButtonGroup>
-					<SlideButton
-						onClick={() => {
-							const prevIndex =
-								activeIndex.current === 0
-									? cards.length - 1
-									: activeIndex.current - 1;
-							activeIndex.current = prevIndex;
-							const offsetX = carouselRef.current?.clientWidth || 0 + 24;
-							carouselRef.current?.scrollTo(prevIndex * offsetX, scrollY);
-						}}
-					>
+					<SlideButton onClick={slidePrev}>
 						<LeftArrow color="#171717" />
 					</SlideButton>
-					<SlideButton
-						onClick={() => {
-							const nextIndex =
-								activeIndex.current === cards.length - 1
-									? 0
-									: activeIndex.current + 1;
-							activeIndex.current = nextIndex;
-							const offsetX = carouselRef.current?.clientWidth || 0 + 24;
-							carouselRef.current?.scrollTo(nextIndex * offsetX, scrollY);
-						}}
-					>
+					<SlideButton onClick={slideNext}>
 						<LeftArrow color="#171717" />
 					</SlideButton>
 				</ButtonGroup>

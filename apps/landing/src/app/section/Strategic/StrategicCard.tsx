@@ -63,7 +63,7 @@ const Container = styled.div`
 		flex-direction: row-reverse;
 		align-items: stretch;
 		gap: 50px;
-		padding: 45px;
+		padding: 45px 55px;
 	}
 `;
 
@@ -91,6 +91,7 @@ const CardDetail = styled.div`
 
 	@media (min-width: 992px) {
 		flex: 1;
+		justify-content: space-evenly;
 	}
 `;
 
@@ -126,7 +127,7 @@ const DetailWrapper = styled.div`
 
 		& > p {
 			margin-bottom: 12px;
-			max-width: 450px;
+			max-width: 400px;
 			font-size: 18px;
 			line-height: 26px;
 		}
