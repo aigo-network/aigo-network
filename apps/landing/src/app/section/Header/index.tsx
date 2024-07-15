@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
 
 import BasicButton from '@/components/BasicButton';
@@ -11,16 +12,21 @@ import TwitterIcon from '@/components/icon/Twitter';
 import useScroll from '@/utils/hook/useScroll';
 import { scrollTo, SectionId } from '@/utils/scrollTo';
 
-const Header: FC = () => {
+type Props = {
+	light?: boolean;
+};
+
+const Header: FC<Props> = ({ light }) => {
 	const [showSideMenu, setShowSideMenu] = useState(false);
-	const scrollY = useScroll();
+	const router = useRouter();
+	const scrollY = useScroll(light ? 1 : 0);
 
 	return (
 		<Container $bgActive={scrollY > 0}>
 			<InnerContainer>
 				<LeftContainer>
-					<LogoGroup>
-						<AiGOLogo size={50} />
+					<LogoGroup onClick={() => router.push('/')}>
+						<AiGOLogo size={40} />
 						<AiGOText size={83} />
 					</LogoGroup>
 					<LogoGroup>
@@ -34,6 +40,9 @@ const Header: FC = () => {
 						</NavLink>
 						<NavLink onClick={() => scrollTo(SectionId.Partner)}>
 							Partner
+						</NavLink>
+						<NavLink onClick={() => router.push('/privacy-policy')}>
+							Pravacy Policy
 						</NavLink>
 						{/* <NavLink href="#">Docs</NavLink> */}
 					</NavBar>
@@ -169,6 +178,7 @@ const LeftContainer = styled.div`
 
 const LogoGroup = styled.a`
 	align-items: center;
+	cursor: pointer;
 	gap: 8px;
 
 	&:first-child {
