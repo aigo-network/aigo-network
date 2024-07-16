@@ -65,7 +65,7 @@ const StrategicPartner = () => {
 		return () => {
 			clearInterval(interval);
 		};
-	}, [scrollY, carouselRef.current]);
+	}, []);
 
 	return (
 		<SectionLayout
