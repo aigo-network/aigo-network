@@ -2,6 +2,8 @@
 .sst
 .sst.config.*
 
+.next
+.open-next
 
 # cdk
 cdk.out

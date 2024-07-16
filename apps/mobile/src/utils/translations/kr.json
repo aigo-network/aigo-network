@@ -11,8 +11,7 @@
       "title": "친구 초대 하기!",
       "description": "친구를 초대하고 보상을 받으려면 복사 또는 공유 버튼을 클릭하세요",
       "referral": "초대",
-      "messagePrefix": "AiGO 앱을 다운로드하세요",
-      "messageSuffix": " 자신의 초대 코드를 사용하고 100 GO 포인트를 받으세요",
+      "message": "AiGO 앱을 다운로드하세요 {{{url}}}\n자신의 초대 코드를 사용하고 {{points}} GO 포인트를 받으세요: {{code}}",
       "codeTitle": "초대 코드",
       "shareButton": "친구에게 공유하기"
     },
@@ -32,7 +31,7 @@
     },
     "logIn": {
       "welcome": "AiGO에 오신 것을 환영합니다.",
-      "slogan": "당신의 일상적인 행동을 보상으로 전달합니다.",
+      "slogan": "당신의 일상적인 행동을\n보상으로 전달합니다.",
       "phoneNumberButton": "핸드폰 번호",
       "googleButton": "Google 계정으로 로그인",
       "appleButton": "Apple 계정으로 로그인",
@@ -46,9 +45,9 @@
         "enterCode": "코드를 입력하세요",
         "subText": "6자리 인증코드를 핸드폰으로 발송하였습니다",
         "verifyButton": "인증하기",
-        "wrongCodeError": "Wrong code, please try again",
-        "getCredentialsError": "Failed to get user credential",
-        "getProfileError": "Failed get profile, something went wrong"
+        "wrongCodeError": "잘못된 코드입니다, 다시 시도해주세요",
+        "getCredentialsError": "사용자 증명에 실패했습니다",
+        "getProfileError": "문제가 발생하여 프로필을 생성할 수 없습니다"
       }
     },
     "onboard": {
@@ -56,14 +55,14 @@
         "title": "프로필 이름 설정",
         "description": "닉네임 선택하기",
         "continueButton": "좋아요 :)",
-        "inputPlaceholder": "Your name"
+        "inputPlaceholder": "사용자 이름"
       },
       "city": {
         "title": "거주하는 도시 이름을 입력해주세요",
         "description": "주변 지인들과 연결을 위해 거주하는 도시에서 자신을 표시하세요.",
         "searchPlaceholder": "도시 검색하기",
         "emptySearchTitle": "찾을 수 없습니다",
-        "emptySearchMessage": "검색 결과를 찾을 수 없습니다. 다른 도시를 검색하거나 입력한 지역을 다시 확인해주세요.",
+        "emptySearchMessage": "검색 결과를 찾을 수 없습니다.\n다른 도시를 검색하거나 입력한 지역을 다시 확인해주세요.",
         "continueButton": "계속하기"
       },
       "userDescriptions": {
@@ -115,7 +114,7 @@
     "profile": {
       "title": "프로필",
       "unknownUsername": "익명의 사용자",
-      "totalBalanceTitle": "총 밸런",
+      "totalBalanceTitle": "총 밸런스",
       "viewHistoryButton": "이전 내역 보기",
       "infoTitle": {
         "account": "계정 정보",
@@ -133,15 +132,15 @@
         "phoneNumber": ""
       },
       "partnerSection": {
-        "partner": "Partner Program",
-        "partnerName": "Nyam Nyam Box",
-        "descriptionPrefix": "Verify if you are a Nyam Nyam Box user to receive",
+        "partner": "냠냠 파트너 프로그램",
+        "partnerName": "냠냠박스",
+        "descriptionPrefix": "냠냠박스 유저 인증시,",
         "reward": "GO",
-        "descriptionSuffix": "points",
-        "phoneNumberVerified": "Phone number verified",
-        "phoneNumberUnverified": "Phone number not verified",
-        "NyamNyamIdVerified": "Nyam Nyam ID verified",
-        "NyamNyamIdUnverified": "Nyam Nyam ID not verified"
+        "descriptionSuffix": "포인트 획득 가능",
+        "phoneNumberVerified": "전화번호 인증 완료",
+        "phoneNumberUnverified": "전화번호 미인증",
+        "NyamNyamIdVerified": "냠냠 ID 인증 완료",
+        "NyamNyamIdUnverified": "냠냠 ID 미인증"
       },
       "settingSection": {
         "setting": "설정",
@@ -149,8 +148,8 @@
       },
       "referralSection": {
         "title": "추천 코드",
-        "descriptionPrefix": "추가 보상 받기",
-        "descriptionSuffix": "친구의 추천 코드를 입력하면",
+        "descriptionPrefix": "친구의 추천 코드를 입력하고",
+        "descriptionSuffix": "추가 보상 받기",
         "enterCodePlaceholder": "초대 코드를 입력해주세요",
         "invalidCodeError": "입력하신 코드가 맞지 않습니다, 다시 시도해주세요",
         "verifyButton": "인증하기"
@@ -163,25 +162,25 @@
       }
     },
     "nnidVerify": {
-      "title": "Nyam Nyam Box Verification",
-      "enterNNID": "Enter Nyam Nyam ID",
-      "subText": "Enter your user ID in Nyam Nyam Box App. Go to setting .... to find your ... ID number below",
-      "errorMessage": "ID not matched, try again.",
-      "inputPlaceholder": "Your ID",
-      "continueButton": "Continue"
+      "title": "냠냠박스 인증하기",
+      "enterNNID": "냠냠 ID를 입력해주세요",
+      "subText": "냠냠박스 앱에서 사용자 ID를 입력해주세요\n[ 설정에서 본인 ID 확인 가능 ]",
+      "errorMessage": "ID가 일치하지 않습니다. 다시 입력해주세요",
+      "inputPlaceholder": "사용자 ID",
+      "continueButton": "계속하기"
     },
     "phoneNumberVerify": {
-      "title": "Verify Phone number",
-      "subText": "Please confirm your country code and enter your phone number.",
-      "continueButton": "Continue",
+      "title": "전화번호 인증하기",
+      "subText": "본인의 나라와 전화번호를 확인해주세요",
+      "continueButton": "계속하기",
       "OTP": {
-        "title": "Enter code",
-        "subText": "We've sent as SMS with a 6-digit activation code to your phone",
-        "verifyButton": "Verify",
-        "wrongCodeError": "Wrong code, please try again",
-        "linkAccountError": "Failed to link account, something went wrong",
-        "updateAccountError": "Failed to get updated account, something went wrong",
-        "updateVerificationError": "Failed to update verification, something went wrong"
+        "title": "코드를 입력하세요",
+        "subText": "6자리 인증코드를 핸드폰으로 발송하였습니다",
+        "verifyButton": "인증하기",
+        "wrongCodeError": "잘못된 코드입니다, 다시 시도해주세요",
+        "linkAccountError": "계정 연동에 실패했습니다",
+        "updateAccountError": "계정 업데이트에 실패했습니다",
+        "updateVerificationError": "인증 업데이트에 실패했습니다"
       }
     }
   }

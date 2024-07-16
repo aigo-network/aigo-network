@@ -9,10 +9,9 @@
     "confirmDeleteAccountMessage": "Do you want to delete your account?",
     "invite": {
       "title": "Invite your friends !",
-      "description": "Click copy or Share button to \n invite friends and receive",
+      "description": "Click copy or Share button to\ninvite friends and receive",
       "referral": "referral",
-      "messagePrefix": "Hey! Let's download AiGO App at",
-      "messageSuffix": "Use my invitation code for 100 GO points",
+      "message": "Hey! Let's download AiGO App at {{{url}}}\nUse my invitation code for {{points}} GO points: {{code}}",
       "codeTitle": "Invitation code",
       "shareButton": "Share with friends"
     },

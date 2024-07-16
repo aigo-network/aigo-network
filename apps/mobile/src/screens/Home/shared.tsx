@@ -4,6 +4,7 @@ import { InviteCode } from '@aigo/components/InviteCode';
 import PointPopup from '@aigo/components/PointPopup';
 import { config } from '@aigo/config';
 import { Align, showModal } from 'empty-modal';
+import mustache from 'mustache';
 import { appState } from 'state/app';
 
 export const sharedStyles = StyleSheet.create({
@@ -32,16 +33,18 @@ export const sharedStyles = StyleSheet.create({
 export const showInvitationCode = () => {
 	const code = appState.appUser?.invitationCode;
 	if (!code) return;
+
+	const { invitationUrl } = appState.remoteConfig;
+	const shareUrl = `${invitationUrl}?inviteCode=${code}`;
 	const points = config.activity.InviteFriend.points;
-	const {
-		title,
-		description,
-		messagePrefix,
-		messageSuffix,
-		referral,
-		codeTitle,
-		shareButton,
-	} = appState.content.modal.invite;
+	const { title, description, message, referral, codeTitle, shareButton } =
+		appState.content.modal.invite;
+
+	const shareMessage = mustache.render(message, {
+		url: shareUrl,
+		points: 100,
+		code,
+	});
 
 	const { cleanModal } = showModal(
 		<Animated.View entering={FadeInDown.duration(500)}>
@@ -52,7 +55,7 @@ export const showInvitationCode = () => {
 				code={code}
 				points={points}
 				referralText={referral}
-				shareMessage={`${messagePrefix} https://app.aigo.network/download?inviteCode=${code} ${messageSuffix}: ${code}`}
+				shareMessage={shareMessage}
 				shareButtonText={shareButton}
 				onPressClose={() => cleanModal()}
 			/>

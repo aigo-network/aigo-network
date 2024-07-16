@@ -1,15 +1,19 @@
 import type { DailyCheckIn, User } from '@aigo/api/graphql';
+import { graphqlClient } from '@aigo/api/graphql';
+import crashlytics from '@react-native-firebase/crashlytics';
 import type { PhoneNumber } from 'libphonenumber-js';
 import type { LangKey } from 'utils/translations';
 import { translations } from 'utils/translations';
 
 import { initTranslationModule, setAppLanguage } from './language';
+import { initRemoteConfigModule } from './remoteConfig';
 import { appState } from './shared';
 import type { Onboarding } from './types';
 
 export const appActions = {
 	setAppLanguage,
 	initTranslationModule,
+	initRemoteConfigModule,
 	setAppUser: (user: User) => {
 		appState.appUser = user;
 	},
@@ -41,6 +45,19 @@ export const appActions = {
 			appState.appUser.phoneNumberVerified = verified;
 		}
 	},
+	queryAndUpdateGOPoints: async () => {
+		try {
+			const { user } = await graphqlClient.getUserGOPoints();
+			const GOPoints = user?.GOPoints;
+			if (GOPoints !== 0 && !GOPoints) {
+				return;
+			}
+
+			if (appState.appUser) appState.appUser.GOPoints = GOPoints;
+		} catch (error) {
+			crashlytics().recordError(error as Error, 'queryAndUpdateGOPoints');
+		}
+	},
 };
 
-export { appState } from './shared';
+export { appState, userDescriptions } from './shared';

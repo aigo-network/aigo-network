@@ -1,0 +1,76 @@
+import { graphqlClient } from '@aigo/api/graphql';
+import { injectGetJWTFunc } from '@aigo/api/jwt';
+import { initializeApp } from 'firebase/app';
+import {
+	getAuth,
+	GoogleAuthProvider,
+	signInWithPopup,
+	TwitterAuthProvider,
+} from 'firebase/auth';
+
+import { showImportCode } from '@/modals/ShowImportCode';
+import { appActions, appState } from '@/state/app';
+
+const firebaseConfig = {
+	appId: FIREBASE_APP_ID,
+	apiKey: FIREBASE_API_KEY,
+	projectId: FIREBASE_PROJECT_ID,
+	authDomain: FIREBASE_AUTH_DOMAIN,
+	storageBucket: FIREBASE_STORAGE_BUCKET,
+	measurementId: FIREBASE_MEASUREMENT_ID,
+	messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
+};
+
+export const app = initializeApp(firebaseConfig);
+const googleProvider = new GoogleAuthProvider();
+const twitterProvider = new TwitterAuthProvider();
+export const auth = getAuth();
+
+appState.isAuthLoading = true;
+
+export const signInWithGoogle = async () => {
+	appState.isAuthLoading = true;
+	await signInWithPopup(auth, googleProvider);
+	appState.isAuthLoading = false;
+};
+
+export const signInWithTwitter = async () => {
+	appState.isAuthLoading = true;
+	await signInWithPopup(auth, twitterProvider);
+	appState.isAuthLoading = false;
+};
+
+export const logOut = async () => {
+	await auth.signOut();
+	appActions.reset();
+};
+
+injectGetJWTFunc(async () => {
+	return auth.currentUser?.getIdToken();
+});
+
+auth.onIdTokenChanged(async (authUser) => {
+	if (authUser) {
+		try {
+			const { user } = await graphqlClient.getUserProfile();
+			appState.user = user as never;
+			appState.authUser = {
+				uid: authUser.uid,
+				name: authUser.displayName || authUser.email || 'Unknown',
+				imageUrl: authUser.photoURL || '',
+			};
+
+			const { web3FarmingProfile } =
+				await graphqlClient.getWeb3FarmingProfile();
+			if (web3FarmingProfile?.id) {
+				appState.web3FarmingProfile = web3FarmingProfile;
+			} else {
+				showImportCode();
+			}
+		} catch (err) {
+			console.log('auth error', err);
+		}
+	}
+
+	appState.isAuthLoading = false;
+});

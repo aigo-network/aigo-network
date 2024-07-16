@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { graphqlClient } from '@aigo/api/graphql';
 import auth from '@react-native-firebase/auth';
+import crashlytics from '@react-native-firebase/crashlytics';
 import { useNavigation } from '@react-navigation/native';
 import { appActions, appState } from 'state/app';
 import { useSnapshot } from 'valtio';
@@ -34,6 +35,7 @@ const OTPLoginScreen = () => {
 				navigation.reset({ routes: [{ name: 'OnboardName' }] });
 			}
 		} catch (error) {
+			crashlytics().recordError(error as Error);
 			console.log('error', error);
 			throw Error(getProfileError);
 		}
@@ -44,6 +46,7 @@ const OTPLoginScreen = () => {
 			const credential = await confirmation.confirm(code);
 			if (!credential) throw new Error(getCredentialsError);
 		} catch (error) {
+			crashlytics().recordError(error as Error);
 			console.log('error', error);
 			throw Error(wrongCodeError);
 		}

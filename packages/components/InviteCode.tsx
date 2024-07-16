@@ -2,6 +2,7 @@ import { type FC, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Share from 'react-native-share';
 import Clipboard from '@react-native-clipboard/clipboard';
+import analytics from '@react-native-firebase/analytics';
 
 import Copy from './icon/Copy';
 import Tick from './icon/Tick';
@@ -36,6 +37,7 @@ export const InviteCode: FC<Props> = ({
 	const handleSharePress = async () => {
 		try {
 			await Share.open({ message: shareMessage });
+			analytics().logEvent('share_invitation_code');
 		} catch (err) {
 			console.log('Share exception', err);
 		}
@@ -44,6 +46,7 @@ export const InviteCode: FC<Props> = ({
 	const handleCopyPress = () => {
 		Clipboard.setString(code);
 		setCopied(true);
+		analytics().logEvent('copy_invitation_code');
 	};
 
 	return (
