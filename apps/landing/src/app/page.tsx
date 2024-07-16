@@ -8,6 +8,7 @@ import Banner from './section/Banner';
 import Ecosystem from './section/Ecosystem';
 import Footer from './section/Footer';
 import Header from './section/Header';
+import News from './section/News';
 import StrategicPartner from './section/Strategic';
 import HowItWork from './section/Work';
 
@@ -24,6 +25,7 @@ towards a smarter, safe and efficient cities"
 				<HowItWork />
 				<Ecosystem />
 				<StrategicPartner />
+				<News />
 				<Backers />
 			</main>
 			<Footer />
