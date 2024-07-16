@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-const useScroll = () => {
-	const { scrollY: windowScrollY = 0 } =
+const useScroll = (initialValue = 0) => {
+	const { scrollY: windowScrollY = initialValue } =
 		typeof window !== 'undefined' ? window : {};
 	const [scrollY, setScrollY] = useState(windowScrollY);
 
