@@ -1,12 +1,21 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ActivityIndicator, Platform, StyleSheet, View } from 'react-native';
+import {
+	ActivityIndicator,
+	Platform,
+	StyleSheet,
+	Text,
+	View,
+} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AppButton } from '@aigo/components/AppButton';
+import type { GeocodeFeature } from '@mapbox/mapbox-sdk/services/geocoding';
 import { useNavigation } from '@react-navigation/native';
 import { Camera, MapView, ShapeSource } from '@rnmapbox/maps';
 import { LineLayer } from '@rnmapbox/maps';
 import { mapActions, useMapState } from 'state/map';
+import { useDebouncedCallback } from 'use-debounce';
 import { requestGeolocationPermission, watchLocation } from 'utils/geolocation';
+import { queryReverseGeocode } from 'utils/mapbox';
 
 import UserMarker from './UserMarker';
 
@@ -17,6 +26,7 @@ export const MapScreen = () => {
 	const { currentLocation, currentRoute } = useMapState();
 
 	const [loading, setLoading] = useState(false);
+	const [geocodeFeature, setGeocodeFeature] = useState<GeocodeFeature>();
 
 	const scaleBarPosition = useMemo(() => {
 		const top = Platform.OS === 'ios' ? 0 : Math.max(insets.top, 20);
@@ -31,6 +41,30 @@ export const MapScreen = () => {
 
 		return [longitude, latitude];
 	}, [currentLocation]);
+
+	const locationInfo = useMemo(() => {
+		if (!geocodeFeature) return { road: 'Unknown', place: '' };
+
+		const [road, ...placeParts] = geocodeFeature.place_name.split(',');
+		const place = placeParts.join(',').trim();
+
+		return { road, place };
+	}, [geocodeFeature]);
+
+	const debouncedUpdateReverseGeocode = useDebouncedCallback(async () => {
+		if (currentLocation) {
+			const { longitude, latitude } = currentLocation.coords;
+			try {
+				const reversedGeocodeRes = await queryReverseGeocode(
+					longitude,
+					latitude,
+				);
+				setGeocodeFeature(reversedGeocodeRes.body.features[0]);
+			} catch (error) {
+				console.log('failed to query reverse geocode', error);
+			}
+		}
+	}, 2000);
 
 	const handlePressStart = async () => {
 		setLoading(true);
@@ -58,6 +92,10 @@ export const MapScreen = () => {
 		});
 	}, []);
 
+	useEffect(() => {
+		debouncedUpdateReverseGeocode();
+	}, [currentLocation]);
+
 	return (
 		<MapView style={styles.map} scaleBarPosition={scaleBarPosition}>
 			<Camera
@@ -81,6 +119,18 @@ export const MapScreen = () => {
 				</ShapeSource>
 			)}
 
+			<View style={[styles.infoContainer, { top: insets.top }]}>
+				<View style={styles.locationInfoContainer}>
+					<View style={styles.activeCircleOuter}>
+						<View style={styles.activeCircle} />
+					</View>
+					<View style={styles.locationTextInfoContainer}>
+						<Text style={styles.roadText}>{locationInfo.road}</Text>
+						<Text style={styles.placeText}>{locationInfo.place}</Text>
+					</View>
+				</View>
+			</View>
+
 			<View style={[styles.buttonContainer, { bottom: insets.bottom }]}>
 				{loading ? (
 					<ActivityIndicator size={'large'} />
@@ -99,6 +149,42 @@ export default MapScreen;
 const styles = StyleSheet.create({
 	map: {
 		flex: 1,
+	},
+	infoContainer: {
+		position: 'absolute',
+		top: 0,
+		left: 20,
+		width: 220,
+		backgroundColor: '#ffffff',
+		padding: 14,
+		borderRadius: 14,
+	},
+	locationInfoContainer: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		gap: 14,
+	},
+	activeCircleOuter: {
+		padding: 8,
+		borderRadius: 30,
+		backgroundColor: '#E8F9EE',
+	},
+	activeCircle: {
+		width: 12,
+		height: 12,
+		borderRadius: 10,
+		backgroundColor: '#0EBC93',
+	},
+	locationTextInfoContainer: {
+		flex: 1,
+	},
+	roadText: {
+		fontWeight: '600',
+		color: '#232323',
+	},
+	placeText: {
+		fontSize: 12,
+		color: '#B0B0B0',
 	},
 	buttonContainer: {
 		position: 'absolute',
