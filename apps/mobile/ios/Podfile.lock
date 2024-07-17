@@ -1458,13 +1458,13 @@ PODS:
     - React-Core
   - RNLocalize (3.2.0):
     - React-Core
-  - rnmapbox-maps (10.1.27):
+  - rnmapbox-maps (10.1.28):
     - MapboxMaps (~> 10.18.2)
     - React
     - React-Core
-    - rnmapbox-maps/DynamicLibrary (= 10.1.27)
+    - rnmapbox-maps/DynamicLibrary (= 10.1.28)
     - Turf
-  - rnmapbox-maps/DynamicLibrary (10.1.27):
+  - rnmapbox-maps/DynamicLibrary (10.1.28):
     - MapboxMaps (~> 10.18.2)
     - React
     - React-Core
@@ -1911,7 +1911,7 @@ SPEC CHECKSUMS:
   RNGestureHandler: 20a4307fd21cbff339abfcfa68192f3f0a6a518b
   RNGoogleSignin: 24d3b3261f78b0fae0aa013f8ab6f8d25e369b0c
   RNLocalize: b77875884750cb6a58cd6865863fe2ba2729b72b
-  rnmapbox-maps: b030a8ec6ad7826df82b51c1e40f23dc34eccdf1
+  rnmapbox-maps: 3c63db78c8ed97ac62d7949ee72f5156423e8e72
   RNPermissions: 9537c0f99863b1f01f0f9095156ce669a91b7a5d
   RNReactNativeHapticFeedback: ec56a5f81c3941206fd85625fa669ffc7b4545f9
   RNReanimated: cfb6ad43b578d07b93a1f5a382b5d1ed3823fb05

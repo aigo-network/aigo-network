@@ -58,7 +58,7 @@ __metadata:
     "@react-native/typescript-config": "npm:0.74.83"
     "@react-navigation/native": "npm:^6.1.17"
     "@react-navigation/stack": "npm:^6.3.29"
-    "@rnmapbox/maps": "npm:^10.1.27"
+    "@rnmapbox/maps": "npm:^10.1.28"
     "@types/react": "npm:^18.2.6"
     "@types/react-test-renderer": "npm:^18.0.0"
     babel-jest: "npm:^29.6.3"
@@ -6568,9 +6568,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rnmapbox/maps@npm:^10.1.27":
-  version: 10.1.27
-  resolution: "@rnmapbox/maps@npm:10.1.27"
+"@rnmapbox/maps@npm:^10.1.28":
+  version: 10.1.28
+  resolution: "@rnmapbox/maps@npm:10.1.28"
   dependencies:
     "@turf/along": "npm:6.5.0"
     "@turf/distance": "npm:6.5.0"
@@ -6592,7 +6592,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10/8e155d9ab43d043eb1342466e39b0d67717cfca91c93f3a6167c38d57b353659dd101ca07af1c30434f6d051d12218eef2cff8d27ed40bae07ea50130e650d91
+  checksum: 10/3dcec655cf56370039955efa0cf7c1d3a0ff0d2f5f96f78cd92ce80002a809ba9b109b09fc13863093e18fd2659ca5a3532b6cadda05186d221176962e6c69a5
   languageName: node
   linkType: hard
 
