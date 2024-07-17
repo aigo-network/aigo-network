@@ -1,9 +1,15 @@
+/**
+ * Configure Geolocation and expose geolocation util wrapper
+ */
+
 import type {
 	GeolocationConfiguration,
 	GeolocationError,
 	GeolocationResponse,
 } from '@react-native-community/geolocation';
 import Geolocation from '@react-native-community/geolocation';
+
+import type { RequestPermissionConfig } from './types';
 
 const config: GeolocationConfiguration = {
 	skipPermissionRequests: false,
@@ -13,30 +19,17 @@ const config: GeolocationConfiguration = {
 
 Geolocation.setRNConfiguration(config);
 
-export type GeolocationPermissionError = {
-	code: number;
-	message: string;
-	PERMISSION_DENIED: number;
-	POSITION_UNAVAILABLE: number;
-	TIMEOUT: number;
-};
-
-export type RequestPermissionConfig = {
-	onSuccess?: () => void;
-	onDenied?: () => void;
-	onUnavailable?: () => void;
-};
-
-export const handleRequestGeolocationPermission = (
+export const requestGeolocationPermission = (
 	config: RequestPermissionConfig,
 ) => {
 	Geolocation.requestAuthorization(
-		() => {
+		async () => {
 			config.onSuccess?.();
 		},
 		(error: GeolocationError) => {
 			if (error.code === error.TIMEOUT) {
-				handleRequestGeolocationPermission(config);
+				// retry request location
+				requestGeolocationPermission(config);
 			} else if (error.code === error.PERMISSION_DENIED) {
 				config.onDenied?.();
 			} else if (error.code === error.POSITION_UNAVAILABLE) {
@@ -46,21 +39,46 @@ export const handleRequestGeolocationPermission = (
 	);
 };
 
-export const getCurrentPosition = (): Promise<GeolocationResponse> => {
+export const watchLocation = (
+	onUpdate: (position: GeolocationResponse) => void,
+) => {
+	Geolocation.watchPosition(
+		async (position: GeolocationResponse) => {
+			onUpdate(position);
+		},
+		(error) => {
+			console.log('error watching position', error);
+		},
+		{
+			// important: to get GPS instead of Wifi location
+			enableHighAccuracy: true,
+		},
+	);
+};
+
+/**
+ * promise wrapper of `Geolocation.getCurrentPosition`.
+ *
+ * Note: it does not work with called watchLocation
+ */
+export const getCurrentLocation = (
+	timeout: number = 2000,
+): Promise<GeolocationResponse> => {
 	return new Promise<GeolocationResponse>((resolve, reject) => {
 		Geolocation.getCurrentPosition(
 			(res: GeolocationResponse) => {
-				console.log(res);
 				resolve(res);
 			},
 			(error: GeolocationError) => {
-				console.log(error);
 				reject(error);
 			},
 			{
 				// important: to get GPS instead of Wifi location
 				enableHighAccuracy: true,
+				timeout,
 			},
 		);
 	});
 };
+
+export * from './types';

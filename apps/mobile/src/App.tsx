@@ -31,6 +31,7 @@ import 'utils/global';
 import 'utils/auth';
 import 'utils/mapbox';
 import 'utils/geolocation';
+import 'utils/errors';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
