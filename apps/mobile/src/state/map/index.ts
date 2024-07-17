@@ -1,7 +1,6 @@
 import type { GeolocationResponse } from '@react-native-community/geolocation';
 import { proxy, useSnapshot } from 'valtio';
 
-import { mockRouteCoordinates } from './mock';
 import type { MapState } from './types';
 
 const initialMapState = {};
@@ -35,10 +34,13 @@ export const mapActions = {
 
 		mapState.currentRoute = {
 			type: 'LineString',
-			coordinates: await mockRouteCoordinates(
-				mapState.currentLocation as never,
-			),
+			coordinates: [],
 		};
+
+		if (mapState.currentLocation) {
+			const { longitude, latitude } = mapState.currentLocation.coords;
+			mapState.currentRoute.coordinates.push([longitude, latitude]);
+		}
 	},
 	endCurrentRoute: async () => {
 		const isCurrentRouteExisted = !!mapState.currentRoute;

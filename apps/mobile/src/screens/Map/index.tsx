@@ -71,8 +71,12 @@ export const MapScreen = () => {
 			{currentRoute && (
 				<ShapeSource id="user-route" shape={currentRoute}>
 					<LineLayer
+						id="user-route-layer-outer"
+						style={{ lineColor: '#BEB2EB80', lineWidth: 18 }}
+					/>
+					<LineLayer
 						id="user-route-layer"
-						style={{ lineColor: 'red', lineWidth: 12 }}
+						style={{ lineColor: '#5932EA', lineWidth: 6 }}
 					/>
 				</ShapeSource>
 			)}
