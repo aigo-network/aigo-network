@@ -1,17 +1,17 @@
-import { createRef, useEffect, useRef } from 'react';
+import { createRef, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import NewsCard from './NewsCard';
 
-import useScroll from '@/utils/hook/useScroll';
+const padding = 24;
 
 const NewsGroup = () => {
+	const [offsetX, setOffsetX] = useState(0);
 	const containerRef = useRef<HTMLDivElement>(null);
 	const viewportRef = useRef<HTMLDivElement>(null);
 	const activeViewRef = useRef({
 		activeView: 0,
 	});
-	const scrollY = useScroll();
 
 	useEffect(() => {
 		if (typeof window === 'object') {
@@ -27,11 +27,10 @@ const NewsGroup = () => {
 					activeViewRef.current.activeView += 1;
 				}
 
-				viewportRef.current?.scrollTo?.(
+				const newOffsetX =
 					activeViewRef.current.activeView *
-						(viewportRef.current.offsetWidth || 0),
-					scrollY,
-				);
+					((viewportRef.current?.offsetWidth || 0) - 2 * padding);
+				setOffsetX(newOffsetX);
 			}, 5000);
 
 			return () => {
@@ -43,12 +42,14 @@ const NewsGroup = () => {
 	return (
 		<Container ref={containerRef}>
 			<ViewportContainer ref={viewportRef}>
-				{Array.from({ length: 8 })
-					.fill(() => 0)
-					.map((_card, idx) => {
-						const ref = createRef<HTMLDivElement>();
-						return <NewsCard key={idx} innerRef={ref} />;
-					})}
+				<InnerContainer $offsetX={offsetX}>
+					{Array.from({ length: 8 })
+						.fill(() => 0)
+						.map((_card, idx) => {
+							const ref = createRef<HTMLDivElement>();
+							return <NewsCard key={idx} innerRef={ref} />;
+						})}
+				</InnerContainer>
 			</ViewportContainer>
 		</Container>
 	);
@@ -68,14 +69,14 @@ const ViewportContainer = styled.div`
 	left: 0px;
 	right: 0;
 	display: flex;
-	overflow-x: scroll;
-	scroll-snap-type: x mandatory;
-	scroll-behavior: smooth;
-	padding: 24px;
-	-ms-overflow-style: none;
-	scrollbar-width: none;
+	padding: ${padding}px;
+	overflow: hidden;
+`;
 
-	&:-webkit-scrollbar {
-		display: none;
-	}
+const InnerContainer = styled.div<{ $offsetX: number }>`
+	display: flex;
+	width: 100%;
+	height: 100%;
+	transform: translateX(-${({ $offsetX }) => $offsetX}px);
+	transition: ease-out 0.5s;
 `;

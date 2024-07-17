@@ -1,11 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import StrategicCard from './StrategicCard';
 
 import LeftArrow from '@/components/icon/LeftArrow';
 import SectionLayout from '@/components/SectionLayout';
-import useScroll from '@/utils/hook/useScroll';
 import { scrollMap, SectionId } from '@/utils/scrollTo';
 
 const cards = [
@@ -30,27 +29,28 @@ const cards = [
 			'AiGO Ride has formed a strategic partnership with TADA, the blockchain-based ride-hailing service operated by MVL in Vietnam. Through this collaboration, the two companies aim to strengthen their presence and business cooperation in the Vietnamese and broader Southeast Asian markets.',
 	},
 ];
+const gap = 24;
 
 const StrategicPartner = () => {
+	const [offsetX, setOffsetX] = useState(0);
 	const ref = useRef<HTMLElement>(null);
 	const carouselRef = useRef<HTMLDivElement>(null);
 	const activeIndex = useRef(0);
-	const scrollY = useScroll();
 
 	const slidePrev = () => {
 		const nextIndex =
 			activeIndex.current === cards.length - 1 ? 0 : activeIndex.current + 1;
 		activeIndex.current = nextIndex;
-		const offsetX = carouselRef.current?.clientWidth || 0 + 24;
-		carouselRef.current?.scrollTo(nextIndex * offsetX, scrollY);
+		const newOffsetX = (carouselRef.current?.clientWidth || 0) + gap;
+		setOffsetX(nextIndex * newOffsetX);
 	};
 
 	const slideNext = () => {
 		const nextIndex =
 			activeIndex.current === cards.length - 1 ? 0 : activeIndex.current + 1;
 		activeIndex.current = nextIndex;
-		const offsetX = carouselRef.current?.clientWidth || 0 + 24;
-		carouselRef.current?.scrollTo(nextIndex * offsetX, scrollY);
+		const newOffsetX = (carouselRef.current?.clientWidth || 0) + gap;
+		setOffsetX(nextIndex * newOffsetX);
 	};
 
 	useEffect(() => {
@@ -76,15 +76,17 @@ const StrategicPartner = () => {
 		>
 			<Carousel>
 				<CarouselViewport ref={carouselRef}>
-					{cards.map((card, index) => (
-						<StrategicCard
-							key={index}
-							image={card.image}
-							logoUrl={card.logoUrl}
-							location={card.location}
-							description={card.description}
-						/>
-					))}
+					<CarouselInner $offsetX={offsetX}>
+						{cards.map((card, index) => (
+							<StrategicCard
+								key={index}
+								image={card.image}
+								logoUrl={card.logoUrl}
+								location={card.location}
+								description={card.description}
+							/>
+						))}
+					</CarouselInner>
 				</CarouselViewport>
 
 				<ButtonGroup>
@@ -130,18 +132,17 @@ const CarouselViewport = styled.div`
 	bottom: 0;
 	left: 0;
 	right: 0;
-	display: flex;
-	gap: 24px;
-	overflow-x: scroll;
 	border-radius: 40px;
-	scroll-snap-type: x mandatory;
-	scroll-behavior: smooth;
-	-ms-overflow-style: none;
-	scrollbar-width: none;
+	overflow: hidden;
+`;
 
-	&::-webkit-scrollbar {
-		display: none;
-	}
+const CarouselInner = styled.div<{ $offsetX: number }>`
+	display: flex;
+	gap: ${gap}px;
+	transform: translateX(-${({ $offsetX }) => $offsetX}px);
+	transition: ease-out 0.5s;
+	width: 100%;
+	height: 100%;
 `;
 
 const ButtonGroup = styled.div`
