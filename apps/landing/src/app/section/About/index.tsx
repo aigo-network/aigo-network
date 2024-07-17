@@ -31,7 +31,7 @@ const About: FC<Props> = ({ data }) => {
 	}, [elementRef.current]);
 
 	return (
-		<Container ref={elementRef}>
+		<Container ref={elementRef} id={SectionId.About}>
 			<div>
 				<TextRevealWrapper>
 					<p>

@@ -1,7 +1,10 @@
 import type { FC } from 'react';
 import { useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import styled from 'styled-components';
+
+import { navLinkArray } from './shared';
 
 import BasicButton from '@/components/BasicButton';
 import AiGOLogo from '@/components/icon/AiGOLogo';
@@ -10,7 +13,6 @@ import DiscordIcon from '@/components/icon/Discord';
 import TelegramIcon from '@/components/icon/Telegram';
 import TwitterIcon from '@/components/icon/Twitter';
 import useScroll from '@/utils/hook/useScroll';
-import { scrollTo, SectionId } from '@/utils/scrollTo';
 
 type Props = {
 	light?: boolean;
@@ -34,17 +36,11 @@ const Header: FC<Props> = ({ light }) => {
 						<AiGOText size={70} />
 					</LogoGroup>
 					<NavBar>
-						<NavLink onClick={() => scrollTo(SectionId.About)}>About</NavLink>
-						<NavLink onClick={() => scrollTo(SectionId.Ecosystem)}>
-							Ecosystem
-						</NavLink>
-						<NavLink onClick={() => scrollTo(SectionId.Partner)}>
-							Partner
-						</NavLink>
-						<NavLink onClick={() => router.push('/privacy-policy')}>
-							Pravacy Policy
-						</NavLink>
-						{/* <NavLink href="#">Docs</NavLink> */}
+						{navLinkArray.map((navLink) => (
+							<NavLink key={navLink.title} href={navLink.href || '#'}>
+								{navLink.title}
+							</NavLink>
+						))}
 					</NavBar>
 				</LeftContainer>
 
@@ -81,12 +77,11 @@ const Header: FC<Props> = ({ light }) => {
 			<SideMenuBackground $active={showSideMenu}>
 				<Menu>
 					<MenuHead>Menu</MenuHead>
-					<SideNav onClick={() => scrollTo(SectionId.About)}>About</SideNav>
-					<SideNav onClick={() => scrollTo(SectionId.Ecosystem)}>
-						Ecosystem
-					</SideNav>
-					<SideNav onClick={() => scrollTo(SectionId.Partner)}>Partner</SideNav>
-					{/* <NavLink href="#">Docs</NavLink> */}
+					{navLinkArray.map((navLink) => (
+						<SideNav key={navLink.title} href={navLink.href || '#'}>
+							{navLink.title}
+						</SideNav>
+					))}
 				</Menu>
 				<SideMenuBottom>
 					<SideSocialGroup>
@@ -209,7 +204,7 @@ const NavBar = styled.nav`
 	}
 `;
 
-const NavLink = styled.a`
+const NavLink = styled(Link)`
 	text-decoration: none;
 	padding: 5px;
 	color: var(--primary-color);
@@ -247,9 +242,13 @@ const SocialWrapper = styled.a`
 	justify-content: center;
 
 	&:nth-child(2) {
-		width: 22px;
-		height: 22px;
+		width: 18px;
+		height: 18px;
 		background: #171717;
+
+		& > svg {
+			margin: -1px;
+		}
 	}
 `;
 

@@ -21,6 +21,7 @@ const Ecosystem = () => {
 			title="Comprehensive Mobility Solutions"
 			fullWidth
 			innerRef={ref}
+			id={SectionId.Ecosystem}
 		>
 			<InnerContainer>
 				<div>

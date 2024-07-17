@@ -7,6 +7,7 @@ interface Props {
 	children: ReactNode;
 	fullWidth?: boolean;
 	innerRef?: LegacyRef<HTMLElement>;
+	id?: string;
 }
 
 const SectionLayout: FC<Props> = ({
@@ -15,9 +16,10 @@ const SectionLayout: FC<Props> = ({
 	children,
 	fullWidth = false,
 	innerRef,
+	id,
 }) => {
 	return (
-		<Container $fullWidth={fullWidth} ref={innerRef}>
+		<Container $fullWidth={fullWidth} ref={innerRef} id={id}>
 			<SubTitle>{subTitle}</SubTitle>
 			<Title>{title}</Title>
 			<div>{children}</div>

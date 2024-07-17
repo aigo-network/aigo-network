@@ -72,6 +72,7 @@ const StrategicPartner = () => {
 			innerRef={ref}
 			subTitle="Strategic Partnership"
 			title="Expanding our reach in APAC"
+			id={SectionId.Partner}
 		>
 			<Carousel>
 				<CarouselViewport ref={carouselRef}>
