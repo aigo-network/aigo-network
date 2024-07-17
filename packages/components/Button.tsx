@@ -1,8 +1,9 @@
-import { type FC, Fragment, type ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
+import { Fragment } from 'react';
 import type { TouchableWithoutFeedbackProps } from 'react-native';
 import { ActivityIndicator, StyleSheet, TouchableOpacity } from 'react-native';
 
-interface Props extends TouchableWithoutFeedbackProps {
+export interface Props extends TouchableWithoutFeedbackProps {
 	prefix?: ReactNode;
 	suffix?: ReactNode;
 	loading?: boolean;
