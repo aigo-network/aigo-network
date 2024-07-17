@@ -3,11 +3,13 @@ import styled from 'styled-components';
 
 // interface Props extends ButtonHTMLAttributes<HTMLButtonElement>
 
-const GradientButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({children, title, ...props}) => {
+const GradientButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
+	children,
+	title,
+	...props
+}) => {
 	return (
-		<Container {...props}>
-			{title ? <span>{title}</span> : children}
-		</Container>
+		<Container {...props}>{title ? <span>{title}</span> : children}</Container>
 	);
 };
 

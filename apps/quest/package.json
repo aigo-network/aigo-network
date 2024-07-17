@@ -1,5 +1,5 @@
 {
-  "name": "quest",
+  "name": "@aigo/quest",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -8,7 +8,9 @@
     "dev:sst": "sst bind next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint --fix"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "date-fns": "^3.6.0",
