@@ -49,19 +49,15 @@ const Container = styled.div`
 		opacity: 0;
 	}
 
-	// &:nth-child(even) {
-	// 	background: blue;
-	// }
-
-	// &:nth-child(odd) {
-	// 	background: green;
-	// }
-
 	&:hover {
 		&:before {
 			transform: scale(1.05);
 			opacity: 1;
 		}
+	}
+
+	@media (min-width: 768px) {
+		min-width: 50%;
 	}
 
 	@media (min-width: 992px) {

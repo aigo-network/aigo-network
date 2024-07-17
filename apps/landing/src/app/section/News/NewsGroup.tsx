@@ -78,27 +78,4 @@ const ViewportContainer = styled.div`
 	&:-webkit-scrollbar {
 		display: none;
 	}
-
-	// div {
-	// 	min-height: 100%;
-	// 	min-width: 33.33%;
-	// 	margin: 0 12px;
-	// 	scroll-snap-align: center;
-
-	// 	&:first-child {
-	// 		margin-left: 0;
-	// 	}
-
-	// 	&:last-child {
-	// 		margin-right: 0;
-	// 	}
-
-	// 	&:nth-child(even) {
-	// 		background: blue;
-	// 	}
-
-	// 	&:nth-child(odd) {
-	// 		background: green;
-	// 	}
-	// }
 `;
