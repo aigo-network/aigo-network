@@ -7,7 +7,8 @@ import {
 } from '@invertase/react-native-apple-authentication';
 import analytics from '@react-native-firebase/analytics';
 import auth from '@react-native-firebase/auth';
-import { setDefaultUserInfo, type UserInfo } from 'state/app/userInfo';
+import type { UserInfo } from 'state/app/userInfo';
+import { setDefaultUserInfo } from 'state/app/userInfo';
 
 import type { SignInFunction } from './types';
 

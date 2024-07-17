@@ -11,6 +11,7 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "type-check": "tsc --noEmit",
     "start": "react-native start",
     "codegen": "graphql-codegen --config tools/codegen.ts",
     "test": "jest"
