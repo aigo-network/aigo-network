@@ -17,6 +17,7 @@ import { useDebouncedCallback } from 'use-debounce';
 import { requestGeolocationPermission, watchLocation } from 'utils/geolocation';
 import { queryReverseGeocode } from 'utils/mapbox';
 
+import { emptyRoute } from './shared';
 import UserMarker from './UserMarker';
 
 export const MapScreen = () => {
@@ -113,18 +114,16 @@ export const MapScreen = () => {
 
 				{currentCoordinate && <UserMarker coordinate={currentCoordinate} />}
 
-				{currentRoute && (
-					<ShapeSource id="user-route" shape={currentRoute}>
-						<LineLayer
-							id="user-route-layer-outer"
-							style={{ lineColor: '#BEB2EB80', lineWidth: 18 }}
-						/>
-						<LineLayer
-							id="user-route-layer"
-							style={{ lineColor: '#5932EA', lineWidth: 6 }}
-						/>
-					</ShapeSource>
-				)}
+				<ShapeSource id="user-route" shape={currentRoute || emptyRoute}>
+					<LineLayer
+						id="user-route-layer-outer"
+						style={{ lineColor: '#BEB2EB80', lineWidth: 18 }}
+					/>
+					<LineLayer
+						id="user-route-layer"
+						style={{ lineColor: '#5932EA', lineWidth: 6 }}
+					/>
+				</ShapeSource>
 			</MapView>
 
 			<View style={[styles.infoContainer, { top: bouncedInsets.top + 30 }]}>
