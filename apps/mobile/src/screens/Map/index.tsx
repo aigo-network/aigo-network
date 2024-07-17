@@ -82,13 +82,12 @@ export const MapScreen = () => {
 		requestGeolocationPermission({
 			onSuccess: async () => {
 				console.log('successfully request geolocation permission');
+				watchLocation(async (position) => {
+					await mapActions.setCurrentLocation(position);
+				});
 			},
 			onDenied: () => goBack(),
 			onUnavailable: () => goBack(),
-		});
-
-		watchLocation(async (position) => {
-			await mapActions.setCurrentLocation(position);
 		});
 	}, []);
 
