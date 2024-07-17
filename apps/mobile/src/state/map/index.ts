@@ -32,15 +32,17 @@ export const mapActions = {
 			throw new MapError('need to end current route before starting new one');
 		}
 
+		if (!mapState.currentLocation?.coords) return;
+
+		const { longitude, latitude } = mapState.currentLocation.coords;
 		mapState.currentRoute = {
 			type: 'LineString',
-			coordinates: [],
+			// important: must initialize with two init points to prevent unknown breaking on Android
+			coordinates: [
+				[longitude, latitude],
+				[longitude, latitude],
+			],
 		};
-
-		if (mapState.currentLocation) {
-			const { longitude, latitude } = mapState.currentLocation.coords;
-			mapState.currentRoute.coordinates.push([longitude, latitude]);
-		}
 	},
 	endCurrentRoute: async () => {
 		const isCurrentRouteExisted = !!mapState.currentRoute;
