@@ -28,6 +28,13 @@ export const MapScreen = () => {
 	const [loading, setLoading] = useState(false);
 	const [geocodeFeature, setGeocodeFeature] = useState<GeocodeFeature>();
 
+	const bouncedInsets = useMemo(() => {
+		const top = Math.max(insets.top, 20);
+		const bottom = Math.max(insets.top, 20);
+
+		return { ...insets, top, bottom };
+	}, [insets]);
+
 	const scaleBarPosition = useMemo(() => {
 		const top = Platform.OS === 'ios' ? 0 : Math.max(insets.top, 20);
 		const left = Math.max(insets.left, 20);
@@ -43,12 +50,12 @@ export const MapScreen = () => {
 	}, [currentLocation]);
 
 	const locationInfo = useMemo(() => {
-		if (!geocodeFeature) return { road: 'Unknown', place: '' };
+		if (!geocodeFeature) return { mainPlace: 'Unknown', place: '' };
 
-		const [road, ...placeParts] = geocodeFeature.place_name.split(',');
+		const [mainPlace, ...placeParts] = geocodeFeature.place_name.split(',');
 		const place = placeParts.join(',').trim();
 
-		return { road, place };
+		return { mainPlace, place };
 	}, [geocodeFeature]);
 
 	const debouncedUpdateReverseGeocode = useDebouncedCallback(async () => {
@@ -96,41 +103,43 @@ export const MapScreen = () => {
 	}, [currentLocation]);
 
 	return (
-		<MapView style={styles.map} scaleBarPosition={scaleBarPosition}>
-			<Camera
-				centerCoordinate={currentCoordinate}
-				zoomLevel={14}
-				animationMode="moveTo"
-			/>
+		<View style={styles.container}>
+			<MapView style={styles.mapContainer} scaleBarPosition={scaleBarPosition}>
+				<Camera
+					centerCoordinate={currentCoordinate}
+					zoomLevel={14}
+					animationMode="moveTo"
+				/>
 
-			{currentCoordinate && <UserMarker coordinate={currentCoordinate} />}
+				{currentCoordinate && <UserMarker coordinate={currentCoordinate} />}
 
-			{currentRoute && (
-				<ShapeSource id="user-route" shape={currentRoute}>
-					<LineLayer
-						id="user-route-layer-outer"
-						style={{ lineColor: '#BEB2EB80', lineWidth: 18 }}
-					/>
-					<LineLayer
-						id="user-route-layer"
-						style={{ lineColor: '#5932EA', lineWidth: 6 }}
-					/>
-				</ShapeSource>
-			)}
+				{currentRoute && (
+					<ShapeSource id="user-route" shape={currentRoute}>
+						<LineLayer
+							id="user-route-layer-outer"
+							style={{ lineColor: '#BEB2EB80', lineWidth: 18 }}
+						/>
+						<LineLayer
+							id="user-route-layer"
+							style={{ lineColor: '#5932EA', lineWidth: 6 }}
+						/>
+					</ShapeSource>
+				)}
+			</MapView>
 
-			<View style={[styles.infoContainer, { top: insets.top }]}>
+			<View style={[styles.infoContainer, { top: bouncedInsets.top + 30 }]}>
 				<View style={styles.locationInfoContainer}>
 					<View style={styles.activeCircleOuter}>
 						<View style={styles.activeCircle} />
 					</View>
 					<View style={styles.locationTextInfoContainer}>
-						<Text style={styles.roadText}>{locationInfo.road}</Text>
+						<Text style={styles.roadText}>{locationInfo.mainPlace}</Text>
 						<Text style={styles.placeText}>{locationInfo.place}</Text>
 					</View>
 				</View>
 			</View>
 
-			<View style={[styles.buttonContainer, { bottom: insets.bottom }]}>
+			<View style={[styles.buttonContainer, { bottom: bouncedInsets.bottom }]}>
 				{loading ? (
 					<ActivityIndicator size={'large'} />
 				) : !currentRoute ? (
@@ -139,34 +148,38 @@ export const MapScreen = () => {
 					<AppButton title="End your journey" onPress={handlePressEnd} />
 				)}
 			</View>
-		</MapView>
+		</View>
 	);
 };
 
 export default MapScreen;
 
 const styles = StyleSheet.create({
-	map: {
+	container: {
+		flex: 1,
+	},
+	mapContainer: {
 		flex: 1,
 	},
 	infoContainer: {
 		position: 'absolute',
 		top: 0,
 		left: 20,
-		width: 220,
-		backgroundColor: '#ffffff',
-		padding: 14,
-		borderRadius: 14,
+		minWidth: 240,
+		maxWidth: 300,
 	},
 	locationInfoContainer: {
 		flexDirection: 'row',
-		alignItems: 'center',
 		gap: 14,
+		padding: 14,
+		borderRadius: 14,
+		backgroundColor: '#ffffff',
 	},
 	activeCircleOuter: {
 		padding: 8,
 		borderRadius: 30,
 		backgroundColor: '#E8F9EE',
+		alignSelf: 'center',
 	},
 	activeCircle: {
 		width: 12,
