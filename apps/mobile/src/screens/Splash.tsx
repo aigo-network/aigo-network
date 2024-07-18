@@ -23,6 +23,7 @@ export const SplashScreen = () => {
 		const resolveAppInit = async () => {
 			const [user] = await Promise.all([
 				initAuthPromise,
+				appActions.initRemoteConfigModule(),
 				appActions.initTranslationModule(),
 				animationRef.current,
 			]);

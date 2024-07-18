@@ -1,21 +1,9 @@
-export type RootStackParamList = {
-	Splash: undefined;
-	Login: undefined;
-	PhoneLogin: undefined;
-	OtpInput: undefined;
-	OnboardName: undefined;
-	OnboardDescription: undefined;
-	OnboardCity: undefined;
-	Home: undefined;
-	Profile: undefined;
-	VerifyNNID: undefined;
-	VerifyPhoneNumber: undefined;
-	VerifyOTP: undefined;
-};
+import { createNavigationContainerRef } from '@react-navigation/native';
 
-declare global {
-	// eslint-disable-next-line @typescript-eslint/no-namespace
-	namespace ReactNavigation {
-		interface RootParamList extends RootStackParamList {}
-	}
-}
+import type { RootStackParamList } from './types';
+
+export const navigationRef = createNavigationContainerRef<RootStackParamList>();
+
+export * from './deeplink';
+export * from './linking';
+export * from './types';

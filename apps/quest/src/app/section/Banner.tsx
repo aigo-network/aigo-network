@@ -19,7 +19,7 @@ const Banner: FC<Props> = ({ isMobile }) => {
 				</Text>
 				<CountDown
 					style={styles.countDown}
-					date={new Date('2024-07-15T00:00:00.000Z')}
+					date={new Date('2024-07-22T00:00:00.000Z')}
 				/>
 			</View>
 

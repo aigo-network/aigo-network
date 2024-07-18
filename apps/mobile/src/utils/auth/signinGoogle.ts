@@ -1,4 +1,5 @@
 import { config } from '@aigo/config';
+import analytics from '@react-native-firebase/analytics';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
@@ -19,6 +20,8 @@ export const signInWithGoogle: SignInFunction = async () => {
 
 	const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 	const { user } = await auth().signInWithCredential(googleCredential);
+
+	analytics().logLogin({ method: 'Google' });
 
 	return user;
 };

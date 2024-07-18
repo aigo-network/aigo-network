@@ -4,9 +4,16 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import Tick from './icon/Tick';
 import X from './icon/X';
 
+export type CheckInStatus =
+	| 'checkedIn'
+	| 'missed'
+	| 'today'
+	| 'todayCheckedIn'
+	| 'next';
+
 type Props = {
 	width: number;
-	status: 'checkedIn' | 'missed' | 'today' | 'todayCheckedIn' | 'next';
+	status: CheckInStatus;
 	dayNumber: number;
 	points: number;
 };
@@ -18,13 +25,13 @@ export const CheckIn: FC<Props> = ({ width, status, points, dayNumber }) => {
 				style={[
 					styles.boxContainer,
 					{ backgroundColor: colorMap[status].bg },
-					status.includes('today') && styles.highlight,
+					status === 'today' && styles.highlight,
 				]}
 			>
 				<Text style={[styles.checkInReward, { color: colorMap[status].text }]}>
 					{points} GO
 				</Text>
-				{status === 'checkedIn' ? (
+				{status === 'checkedIn' || status === 'todayCheckedIn' ? (
 					<View
 						style={[{ backgroundColor: colorMap[status].iconBg }, styles.icon]}
 					>

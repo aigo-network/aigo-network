@@ -20,6 +20,7 @@ export const ride = ({ stack, app }: StackContext) => {
 		customDomain: {
 			domainName,
 			hostedZone,
+			domainAlias: `www.${domainName}`,
 		},
 	});
 

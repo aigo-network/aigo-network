@@ -4,6 +4,15 @@ schema {
 }
 
 """"""
+enum AppStage {
+  """"""
+  FirstTimeOpen
+
+  """"""
+  Normal
+}
+
+""""""
 type DailyCheckIn {
   """"""
   completed: Boolean
@@ -25,6 +34,69 @@ type DailyMissions {
 The `DateTime` scalar type represents a DateTime. The DateTime is serialized as an RFC 3339 quoted string
 """
 scalar DateTime
+
+""""""
+type DeferredLinking {
+  """"""
+  createdAt: DateTime
+
+  """"""
+  id: String
+
+  """"""
+  ipAddress: String
+
+  """"""
+  updatedAt: DateTime
+
+  """"""
+  url: String
+}
+
+""""""
+type Device {
+  """"""
+  appVersion: String
+
+  """"""
+  brand: String
+
+  """"""
+  carrier: String
+
+  """"""
+  createdAt: DateTime
+
+  """"""
+  deviceId: String
+
+  """"""
+  deviceName: String
+
+  """"""
+  deviceType: String
+
+  """"""
+  id: String
+
+  """"""
+  manufacturer: String
+
+  """"""
+  notificationToken: String
+
+  """"""
+  platform: String
+
+  """"""
+  systemVersion: String
+
+  """"""
+  updatedAt: DateTime
+
+  """"""
+  userIdentifier: String
+}
 
 """"""
 type Invitation {
@@ -80,6 +152,39 @@ enum PhoneNumberVerification {
 }
 
 """"""
+input RegisterDeviceInput {
+  """"""
+  appVersion: String
+
+  """"""
+  brand: String
+
+  """"""
+  carrier: String
+
+  """"""
+  deviceId: String!
+
+  """"""
+  deviceName: String
+
+  """"""
+  deviceType: String
+
+  """"""
+  manufacturer: String
+
+  """"""
+  notificationToken: String
+
+  """"""
+  platform: String
+
+  """"""
+  systemVersion: String
+}
+
+""""""
 type RootMutation {
   """"""
   checkIn: DailyCheckIn
@@ -88,10 +193,19 @@ type RootMutation {
   completeOnboarding: User
 
   """"""
+  createDeferredLinking(url: String!): DeferredLinking
+
+  """"""
   deleteUser: User
 
   """"""
   inputInvitationCode(code: String): Invitation
+
+  """"""
+  registerDevice(input: RegisterDeviceInput!): Device
+
+  """"""
+  trackAppOpenWithLinkingEvent(appStage: AppStage!, url: String!): String
 
   """"""
   updateProfile(profile: UserProfile): User
@@ -109,7 +223,7 @@ type RootMutation {
   web3FarmingInitProfile(referralCode: String): Web3FarmingProfile
 
   """"""
-  web3FarmingRefreshReferrals: [Web3FarmingQuest]
+  web3FarmingRefreshReferrals: [Web3FarmingReferralCode]
 
   """"""
   web3FarmingVerifyQuestAndClaimPoints(questId: String): Web3FarmingQuest
@@ -117,6 +231,12 @@ type RootMutation {
 
 """"""
 type RootQuery {
+  """"""
+  deferredLinking: DeferredLinking
+
+  """"""
+  linking: String
+
   """"""
   ping: String
 
@@ -225,6 +345,9 @@ input UserProfile {
 
 """"""
 type Web3FarmingProfile {
+  """"""
+  countSuccessReferrals: Int
+
   """"""
   createdAt: DateTime
 

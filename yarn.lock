@@ -9,8 +9,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@aigo/api@workspace:packages/api"
   dependencies:
+    eslint: "npm:^8.19.0"
     graphql: "npm:^16.8.1"
     graphql-request: "npm:6.1.0"
+    typescript: "npm:5.4.5"
   languageName: unknown
   linkType: soft
 
@@ -19,6 +21,8 @@ __metadata:
   resolution: "@aigo/components@workspace:packages/components"
   dependencies:
     "@types/react": "npm:^18.2.6"
+    eslint: "npm:^8.19.0"
+    typescript: "npm:5.4.5"
   peerDependencies:
     lottie-react-native: ^6.7.2
     react: 18.2.0
@@ -30,6 +34,23 @@ __metadata:
 "@aigo/config@workspace:packages/config":
   version: 0.0.0-use.local
   resolution: "@aigo/config@workspace:packages/config"
+  languageName: unknown
+  linkType: soft
+
+"@aigo/landing@workspace:apps/landing":
+  version: 0.0.0-use.local
+  resolution: "@aigo/landing@workspace:apps/landing"
+  dependencies:
+    "@types/lodash": "npm:^4"
+    "@types/react": "npm:^18.2.6"
+    "@types/react-dom": "npm:^18.2.6"
+    lodash: "npm:^4.17.21"
+    next: "npm:14.2.4"
+    react: "npm:18.2.0"
+    react-dom: "npm:18.2.0"
+    sst: "npm:^2.43.2"
+    styled-components: "npm:^6.1.11"
+    typescript: "npm:5.4.5"
   languageName: unknown
   linkType: soft
 
@@ -45,8 +66,12 @@ __metadata:
     "@metacraft/tsconfig": "npm:^0.0.2"
     "@react-native-async-storage/async-storage": "npm:^1.23.1"
     "@react-native-clipboard/clipboard": "npm:^1.14.1"
-    "@react-native-firebase/app": "npm:^19.2.2"
-    "@react-native-firebase/auth": "npm:^19.2.2"
+    "@react-native-firebase/analytics": "npm:^20.1.0"
+    "@react-native-firebase/app": "npm:^20.1.0"
+    "@react-native-firebase/auth": "npm:^20.1.0"
+    "@react-native-firebase/crashlytics": "npm:^20.1.0"
+    "@react-native-firebase/messaging": "npm:^20.1.0"
+    "@react-native-firebase/remote-config": "npm:^20.1.0"
     "@react-native-google-signin/google-signin": "npm:^11.0.1"
     "@react-native/babel-preset": "npm:0.74.83"
     "@react-native/metro-config": "npm:0.74.83"
@@ -73,6 +98,7 @@ __metadata:
     react-native-gesture-handler: "npm:^2.16.2"
     react-native-haptic-feedback: "npm:^2.2.0"
     react-native-localize: "npm:^3.1.0"
+    react-native-permissions: "npm:^4.1.5"
     react-native-reanimated: "npm:3.11.0"
     react-native-safe-area-context: "npm:^4.10.1"
     react-native-screens: "npm:^3.31.1"
@@ -83,7 +109,56 @@ __metadata:
     react-native-uuid: "npm:^2.0.2"
     react-test-renderer: "npm:18.2.0"
     typescript: "npm:5.4.5"
+    use-debounce: "npm:^10.0.1"
     valtio: "npm:^1.13.2"
+    wildcard-match: "npm:^5.1.3"
+  languageName: unknown
+  linkType: soft
+
+"@aigo/quest@workspace:apps/quest":
+  version: 0.0.0-use.local
+  resolution: "@aigo/quest@workspace:apps/quest"
+  dependencies:
+    "@types/react": "npm:^18.2.6"
+    "@types/react-dom": "npm:^18.2.6"
+    "@types/react-native": "npm:^0.73.0"
+    aws-cdk-lib: "npm:2.142.1"
+    constructs: "npm:10.3.0"
+    date-fns: "npm:^3.6.0"
+    dotenv: "npm:^16.4.5"
+    empty-modal: "npm:^0.0.7"
+    firebase: "npm:^10.12.2"
+    next: "npm:14.2.4"
+    react: "npm:18.2.0"
+    react-dom: "npm:18.2.0"
+    react-native: "npm:0.74.1"
+    react-native-linear-gradient: "npm:^2.8.3"
+    react-native-qrcode-svg: "npm:^6.3.1"
+    react-native-reanimated: "npm:3.11.0"
+    react-native-svg: "npm:^15.3.0"
+    react-native-web: "npm:^0.19.12"
+    react-native-web-linear-gradient: "npm:^1.1.2"
+    react-toastify: "npm:^10.0.5"
+    sst: "npm:^2.43.2"
+    styled-components: "npm:^6.1.11"
+    typescript: "npm:5.4.5"
+    valtio: "npm:^1.13.2"
+  languageName: unknown
+  linkType: soft
+
+"@aigo/ride@workspace:apps/ride":
+  version: 0.0.0-use.local
+  resolution: "@aigo/ride@workspace:apps/ride"
+  dependencies:
+    "@types/react": "npm:^18.2.6"
+    "@types/react-dom": "npm:^18.2.6"
+    aws-cdk-lib: "npm:2.142.1"
+    constructs: "npm:10.3.0"
+    next: "npm:14.2.4"
+    react: "npm:18.2.0"
+    react-dom: "npm:18.2.0"
+    sst: "npm:^2.43.2"
+    typescript: "npm:5.4.5"
   languageName: unknown
   linkType: soft
 
@@ -5865,9 +5940,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-native-firebase/app@npm:^19.2.2":
-  version: 19.3.0
-  resolution: "@react-native-firebase/app@npm:19.3.0"
+"@react-native-firebase/analytics@npm:^20.1.0":
+  version: 20.1.0
+  resolution: "@react-native-firebase/analytics@npm:20.1.0"
+  peerDependencies:
+    "@react-native-firebase/app": 20.1.0
+  checksum: 10/fae8b85c244167018bde169554000ada17ab6205996f7712d46592cbed2807a9102a77caaaa4f49e8db0cb19bd63da438190c9c1b97414e42805b7a69e7cc5d2
+  languageName: node
+  linkType: hard
+
+"@react-native-firebase/app@npm:^20.1.0":
+  version: 20.1.0
+  resolution: "@react-native-firebase/app@npm:20.1.0"
   dependencies:
     opencollective-postinstall: "npm:^2.0.3"
     superstruct: "npm:^0.6.2"
@@ -5878,22 +5962,60 @@ __metadata:
   peerDependenciesMeta:
     expo:
       optional: true
-  checksum: 10/fc1c8044d201474649ae8cba1ce1efb8077c0ea0f56d3d8fc9a024a9ea27dac9cfa8eef6399335cf21789165689be36ff51f528e56b5f6b482f7330736e2f822
+  checksum: 10/5a06d1f60fb813f1e114066a03c57e46efd58f753fc7d00cadcd47399a8b9f88f221e2ccb31b5d095b00b06d4921fa3b5be720b67450d69315ea730f7499716e
   languageName: node
   linkType: hard
 
-"@react-native-firebase/auth@npm:^19.2.2":
-  version: 19.3.0
-  resolution: "@react-native-firebase/auth@npm:19.3.0"
+"@react-native-firebase/auth@npm:^20.1.0":
+  version: 20.1.0
+  resolution: "@react-native-firebase/auth@npm:20.1.0"
   dependencies:
     plist: "npm:^3.1.0"
   peerDependencies:
-    "@react-native-firebase/app": 19.3.0
+    "@react-native-firebase/app": 20.1.0
     expo: ">=47.0.0"
   peerDependenciesMeta:
     expo:
       optional: true
-  checksum: 10/08336736237de9f6ca6e259ba6638f57dc627a0b823ebca10b850bbd1f55c92b229a368b801bce1180633882974f456894162c5bf5868081f92cdfb04fce80fe
+  checksum: 10/e2bcfc6e8771e5b739909ab2f4ffa116832c868618d5ad2475302598357129654504fd5d78d2900c01e5a0a1d8e9444aff2ab548e2a98e487ed6d77da5b6777f
+  languageName: node
+  linkType: hard
+
+"@react-native-firebase/crashlytics@npm:^20.1.0":
+  version: 20.1.0
+  resolution: "@react-native-firebase/crashlytics@npm:20.1.0"
+  dependencies:
+    stacktrace-js: "npm:^2.0.2"
+  peerDependencies:
+    "@react-native-firebase/app": 20.1.0
+    expo: ">=47.0.0"
+  peerDependenciesMeta:
+    expo:
+      optional: true
+  checksum: 10/4ede3fe278bcec17f06e39054e44fbabdb2cf426e2efd988fef4423a564ae1fb81e7124527e67d8af2bddd78407c273af8cebefd413de77327c9e2403bcff881
+  languageName: node
+  linkType: hard
+
+"@react-native-firebase/messaging@npm:^20.1.0":
+  version: 20.1.0
+  resolution: "@react-native-firebase/messaging@npm:20.1.0"
+  peerDependencies:
+    "@react-native-firebase/app": 20.1.0
+    expo: ">=47.0.0"
+  peerDependenciesMeta:
+    expo:
+      optional: true
+  checksum: 10/8948f45373b58f128c5460fc5786b413b29d07158081f9c381c94fc29e208b1f5f77381eb1c621e161a1ce82a3130287d56db260c7bed3f06e3b07446eb054ec
+  languageName: node
+  linkType: hard
+
+"@react-native-firebase/remote-config@npm:^20.1.0":
+  version: 20.1.0
+  resolution: "@react-native-firebase/remote-config@npm:20.1.0"
+  peerDependencies:
+    "@react-native-firebase/analytics": 20.1.0
+    "@react-native-firebase/app": 20.1.0
+  checksum: 10/62e1347e74e94800bbcba3f10082a3ef3ff379001a2b3737dc923e79d8a8c50a3690ce250fe3cc0fffd3f4340f0cafc598e78c2101514060e6713c0afbb7c067
   languageName: node
   linkType: hard
 
@@ -8079,6 +8201,7 @@ __metadata:
     jest: "npm:^29.6.3"
     mustache: "npm:^4.2.0"
     sst: "npm:^2.43.2"
+    turbo: "npm:^2.0.7"
     typescript: "npm:5.4.5"
     webpack: "npm:^5.92.0"
   languageName: unknown
@@ -9466,6 +9589,13 @@ __metadata:
   version: 1.0.4
   resolution: "clone@npm:1.0.4"
   checksum: 10/d06418b7335897209e77bdd430d04f882189582e67bd1f75a04565f3f07f5b3f119a9d670c943b6697d0afb100f03b866b3b8a1f91d4d02d72c4ecf2bb64b5dd
+  languageName: node
+  linkType: hard
+
+"clsx@npm:^2.1.0":
+  version: 2.1.1
+  resolution: "clsx@npm:2.1.1"
+  checksum: 10/cdfb57fa6c7649bbff98d9028c2f0de2f91c86f551179541cf784b1cfdc1562dcb951955f46d54d930a3879931a980e32a46b598acaea274728dbe068deca919
   languageName: node
   linkType: hard
 
@@ -13846,23 +13976,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"landing@workspace:apps/landing":
-  version: 0.0.0-use.local
-  resolution: "landing@workspace:apps/landing"
-  dependencies:
-    "@types/lodash": "npm:^4"
-    "@types/react": "npm:^18.2.6"
-    "@types/react-dom": "npm:^18.2.6"
-    lodash: "npm:^4.17.21"
-    next: "npm:14.2.4"
-    react: "npm:18.2.0"
-    react-dom: "npm:18.2.0"
-    sst: "npm:^2.43.2"
-    styled-components: "npm:^6.1.11"
-    typescript: "npm:5.4.5"
-  languageName: unknown
-  linkType: soft
-
 "lazystream@npm:^1.0.0":
   version: 1.0.1
   resolution: "lazystream@npm:1.0.1"
@@ -16035,36 +16148,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"quest@workspace:apps/quest":
-  version: 0.0.0-use.local
-  resolution: "quest@workspace:apps/quest"
-  dependencies:
-    "@types/react": "npm:^18.2.6"
-    "@types/react-dom": "npm:^18.2.6"
-    "@types/react-native": "npm:^0.73.0"
-    aws-cdk-lib: "npm:2.142.1"
-    constructs: "npm:10.3.0"
-    date-fns: "npm:^3.6.0"
-    dotenv: "npm:^16.4.5"
-    empty-modal: "npm:^0.0.7"
-    firebase: "npm:^10.12.2"
-    next: "npm:14.2.4"
-    react: "npm:18.2.0"
-    react-dom: "npm:18.2.0"
-    react-native: "npm:0.74.1"
-    react-native-linear-gradient: "npm:^2.8.3"
-    react-native-qrcode-svg: "npm:^6.3.1"
-    react-native-reanimated: "npm:3.11.0"
-    react-native-svg: "npm:^15.3.0"
-    react-native-web: "npm:^0.19.12"
-    react-native-web-linear-gradient: "npm:^1.1.2"
-    sst: "npm:^2.43.2"
-    styled-components: "npm:^6.1.11"
-    typescript: "npm:5.4.5"
-    valtio: "npm:^1.13.2"
-  languageName: unknown
-  linkType: soft
-
 "queue-microtask@npm:^1.2.2":
   version: 1.2.3
   resolution: "queue-microtask@npm:1.2.3"
@@ -16243,6 +16326,20 @@ __metadata:
     react-native-macos:
       optional: true
   checksum: 10/a3d56bc97e80317ef01fd72fd39ddcac7a0cc48ea16f5039850a41e4d12ec9123e7d5afd3c6b5612fc1cc6205e17841830ceec8d4a8a5e1ffb81f0890c331980
+  languageName: node
+  linkType: hard
+
+"react-native-permissions@npm:^4.1.5":
+  version: 4.1.5
+  resolution: "react-native-permissions@npm:4.1.5"
+  peerDependencies:
+    react: ">=18.1.0"
+    react-native: ">=0.70.0"
+    react-native-windows: ">=0.70.0"
+  peerDependenciesMeta:
+    react-native-windows:
+      optional: true
+  checksum: 10/2b1eaa879e4b0c3455488c3dfa1d8b203bdbf2cd550b8ee5691d26e03c086d33f9bc495a70f8e1e85d0c16131374e11d12f7927168179e339f158eea9fb04830
   languageName: node
   linkType: hard
 
@@ -16526,6 +16623,18 @@ __metadata:
   peerDependencies:
     react: ^18.2.0
   checksum: 10/39473e43f64eec92da35db9d4411f3887b368038670787d49dd23172eb3a29953eb13767d1bfa34cbe2665b6e25632cad146e362e8910ce33755d343537763ae
+  languageName: node
+  linkType: hard
+
+"react-toastify@npm:^10.0.5":
+  version: 10.0.5
+  resolution: "react-toastify@npm:10.0.5"
+  dependencies:
+    clsx: "npm:^2.1.0"
+  peerDependencies:
+    react: ">=18"
+    react-dom: ">=18"
+  checksum: 10/6630f4b6d6902d827efd5e66c09df693c7ab8abeeb6ef24d880080f47b636614ef9cc251dd5e6564d49fe2f6f25f720ce0f7ef72cd4b0cd58a65b7c4b8052fac
   languageName: node
   linkType: hard
 
@@ -16913,22 +17022,6 @@ __metadata:
   checksum: 10/2f3d11d3d8929b4bfeefc9acb03aae90f971401de0add5ae6c5e38fec14f0405e6a4aad8fdb76344bfdd20c5193110e3750cbbd28ba86d73729d222b6cf4a729
   languageName: node
   linkType: hard
-
-"ride@workspace:apps/ride":
-  version: 0.0.0-use.local
-  resolution: "ride@workspace:apps/ride"
-  dependencies:
-    "@types/react": "npm:^18.2.6"
-    "@types/react-dom": "npm:^18.2.6"
-    aws-cdk-lib: "npm:2.142.1"
-    constructs: "npm:10.3.0"
-    next: "npm:14.2.4"
-    react: "npm:18.2.0"
-    react-dom: "npm:18.2.0"
-    sst: "npm:^2.43.2"
-    typescript: "npm:5.4.5"
-  languageName: unknown
-  linkType: soft
 
 "rimraf@npm:^3.0.2":
   version: 3.0.2
@@ -17439,6 +17532,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"source-map@npm:0.5.6":
+  version: 0.5.6
+  resolution: "source-map@npm:0.5.6"
+  checksum: 10/c62fe98e106c762307eea3a982242c1a76a31bc762da10fe2dda12252d423c163e0cd45d313330c8bd040cc5121702511138252308f72b8a9273825e81e4db30
+  languageName: node
+  linkType: hard
+
 "source-map@npm:^0.5.6":
   version: 0.5.7
   resolution: "source-map@npm:0.5.7"
@@ -17609,6 +17709,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"stack-generator@npm:^2.0.5":
+  version: 2.0.10
+  resolution: "stack-generator@npm:2.0.10"
+  dependencies:
+    stackframe: "npm:^1.3.4"
+  checksum: 10/4fc3978a934424218a0aa9f398034e1f78153d5ff4f4ff9c62478c672debb47dd58de05b09fc3900530cbb526d72c93a6e6c9353bacc698e3b1c00ca3dda0c47
+  languageName: node
+  linkType: hard
+
 "stack-utils@npm:^2.0.3, stack-utils@npm:^2.0.6":
   version: 2.0.6
   resolution: "stack-utils@npm:2.0.6"
@@ -17622,6 +17731,27 @@ __metadata:
   version: 1.3.4
   resolution: "stackframe@npm:1.3.4"
   checksum: 10/29ca71c1fd17974c1c178df0236b1407bc65f6ea389cc43dec000def6e42ff548d4453de9a85b76469e2ae2b2abdd802c6b6f3db947c05794efbd740d1cf4121
+  languageName: node
+  linkType: hard
+
+"stacktrace-gps@npm:^3.0.4":
+  version: 3.1.2
+  resolution: "stacktrace-gps@npm:3.1.2"
+  dependencies:
+    source-map: "npm:0.5.6"
+    stackframe: "npm:^1.3.4"
+  checksum: 10/21cb60ce0990f7a661e964cf4bdef1e70dda2286fb628fbd0fd1e69e8925138433d08ed84969de2d396b3b91515e15336a502f777c26587db89f3933d6f63f9b
+  languageName: node
+  linkType: hard
+
+"stacktrace-js@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "stacktrace-js@npm:2.0.2"
+  dependencies:
+    error-stack-parser: "npm:^2.0.6"
+    stack-generator: "npm:^2.0.5"
+    stacktrace-gps: "npm:^3.0.4"
+  checksum: 10/e5f60a09852687e4a9206927fe1078e24d63e00a71a2dcddd67940e9504a54931a3454439d5b4e3e0e62aeb979be810573e8d3332fbef0dbfa335a8781b4b57c
   languageName: node
   linkType: hard
 
@@ -18225,6 +18355,77 @@ __metadata:
   languageName: node
   linkType: hard
 
+"turbo-darwin-64@npm:2.0.7":
+  version: 2.0.7
+  resolution: "turbo-darwin-64@npm:2.0.7"
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
+"turbo-darwin-arm64@npm:2.0.7":
+  version: 2.0.7
+  resolution: "turbo-darwin-arm64@npm:2.0.7"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"turbo-linux-64@npm:2.0.7":
+  version: 2.0.7
+  resolution: "turbo-linux-64@npm:2.0.7"
+  conditions: os=linux & cpu=x64
+  languageName: node
+  linkType: hard
+
+"turbo-linux-arm64@npm:2.0.7":
+  version: 2.0.7
+  resolution: "turbo-linux-arm64@npm:2.0.7"
+  conditions: os=linux & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"turbo-windows-64@npm:2.0.7":
+  version: 2.0.7
+  resolution: "turbo-windows-64@npm:2.0.7"
+  conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
+"turbo-windows-arm64@npm:2.0.7":
+  version: 2.0.7
+  resolution: "turbo-windows-arm64@npm:2.0.7"
+  conditions: os=win32 & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"turbo@npm:^2.0.7":
+  version: 2.0.7
+  resolution: "turbo@npm:2.0.7"
+  dependencies:
+    turbo-darwin-64: "npm:2.0.7"
+    turbo-darwin-arm64: "npm:2.0.7"
+    turbo-linux-64: "npm:2.0.7"
+    turbo-linux-arm64: "npm:2.0.7"
+    turbo-windows-64: "npm:2.0.7"
+    turbo-windows-arm64: "npm:2.0.7"
+  dependenciesMeta:
+    turbo-darwin-64:
+      optional: true
+    turbo-darwin-arm64:
+      optional: true
+    turbo-linux-64:
+      optional: true
+    turbo-linux-arm64:
+      optional: true
+    turbo-windows-64:
+      optional: true
+    turbo-windows-arm64:
+      optional: true
+  bin:
+    turbo: bin/turbo
+  checksum: 10/7c5af598c461235accb5ebbc598a7bcab85db7a2e9372a36371070f3b8c7e60f6cc3ce2dc4642ce6db7d7db5c3e6246d199dc43106eb297b8da04c89c3c84c0e
+  languageName: node
+  linkType: hard
+
 "type-check@npm:^0.4.0, type-check@npm:~0.4.0":
   version: 0.4.0
   resolution: "type-check@npm:0.4.0"
@@ -18548,6 +18749,15 @@ __metadata:
   version: 8.0.2
   resolution: "urlpattern-polyfill@npm:8.0.2"
   checksum: 10/fd86b5c55473f3abbf9ed317b953c9cbb4fa6b3f75f681a1d982fe9c17bbc8d9bcf988f4cf3bda35e2e5875984086c97e177f97f076bb80dfa2beb85d1dd7b23
+  languageName: node
+  linkType: hard
+
+"use-debounce@npm:^10.0.1":
+  version: 10.0.1
+  resolution: "use-debounce@npm:10.0.1"
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: 10/e6e9f2cfd698faf5d581eb57d17901e804b731ad5206c1b3b709d43f2180a67105d3b679645aa3e9c61c7ceb76bb70a4d0923fcf5c3528802a4e9bc9a685d423
   languageName: node
   linkType: hard
 
@@ -18947,6 +19157,13 @@ __metadata:
   dependencies:
     string-width: "npm:^5.0.1"
   checksum: 10/64c48cf27171221be5f86fc54b94dd29879165bdff1a7aa92dde723d9a8c99fb108312768a5d62c8c2b80b701fa27bbd36a1ddc58367585cd45c0db7920a0cba
+  languageName: node
+  linkType: hard
+
+"wildcard-match@npm:^5.1.3":
+  version: 5.1.3
+  resolution: "wildcard-match@npm:5.1.3"
+  checksum: 10/06a1252baac74a550fd41fe54719128cd2c74674bf4f3cfd2bdfb3cb3d0d5505628f3e21cfe2b64581c725478c98867a5d540ffbd3ed0e05c1b9dc8afc4ce2f6
   languageName: node
   linkType: hard
 

@@ -40,8 +40,7 @@ export const completeOnboarding = async (cityFallback?: string) => {
 	if (user) appActions.setAppUser(user);
 
 	if (phoneNumber) {
-		const status = await graphqlClient.verifyPhoneNumber();
-		console.log(status);
+		await graphqlClient.verifyPhoneNumber();
 	}
 
 	setTimeout(() => {

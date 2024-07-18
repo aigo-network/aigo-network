@@ -8,5 +8,12 @@
 	<array>
 		<string>Default</string>
 	</array>
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applinks:ride.aigo.network</string>
+		<string>applinks:*.ride.aigo.network</string>
+		<string>webcredentials:ride.aigo.network</string>
+		<string>webcredentials:*.ride.aigo.network</string>
+	</array>
 </dict>
 </plist>

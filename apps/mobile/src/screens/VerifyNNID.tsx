@@ -19,6 +19,7 @@ import KeyboardView from '@aigo/components/KeyboardView';
 import PointPopup from '@aigo/components/PointPopup';
 import SafeContainer from '@aigo/components/SafeContainer';
 import { config } from '@aigo/config';
+import crashlytics from '@react-native-firebase/crashlytics';
 import { useNavigation } from '@react-navigation/native';
 import { Align, showModal } from 'empty-modal';
 import { appActions, appState } from 'state/app';
@@ -87,12 +88,13 @@ const VerifyNNIDScreen = () => {
 		try {
 			const nyamNyamUser = await graphqlClient.verifyNyamNyamUser({ nnid });
 			if (nyamNyamUser) {
-				const { user } = await graphqlClient.getUser();
+				const { user } = await graphqlClient.getUserWitDailyMissions();
 				user && appActions.setAppUser(user);
 				showCompleteNyamNyamVerification();
 				goBack();
 			}
 		} catch (error) {
+			crashlytics().recordError(error as Error);
 			console.log(error);
 			setError(true);
 		}

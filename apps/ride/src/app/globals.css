@@ -17,3 +17,14 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.button {
+  margin-top: 20px;
+  padding: 10px 30px;
+  background-color: rgba(129, 221, 251, 1);
+  color: rgba(35, 37, 41, 1);
+  border-radius: 10px;
+  font-size: large;
+  font-weight: 500;
+  text-decoration: none;
+}

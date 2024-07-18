@@ -1,4 +1,4 @@
-import { type FC } from 'react';
+import type { FC } from 'react';
 import { Linking, StyleSheet, View } from 'react-native';
 
 import DownloadButton from './DownloadButton';

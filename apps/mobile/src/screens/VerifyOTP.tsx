@@ -1,6 +1,7 @@
 import { graphqlClient } from '@aigo/api/graphql';
 import type { FirebaseAuthTypes } from '@react-native-firebase/auth';
 import auth from '@react-native-firebase/auth';
+import crashlytics from '@react-native-firebase/crashlytics';
 import { useNavigation } from '@react-navigation/native';
 import { appActions, appState } from 'state/app';
 import { useSnapshot } from 'valtio';
@@ -30,6 +31,7 @@ export const VerifyOTPScreen = () => {
 			);
 			userCredential = await auth().currentUser?.linkWithCredential(credential);
 		} catch (error) {
+			crashlytics().recordError(error as Error);
 			const err = error as FirebaseAuthTypes.PhoneAuthError;
 			if (err.code == 'auth/invalid-verification-code') {
 				throw Error(wrongCodeError);
@@ -48,6 +50,7 @@ export const VerifyOTPScreen = () => {
 			await graphqlClient.verifyPhoneNumber();
 			appActions.updatePhoneNumber(phoneNumber, true);
 		} catch (error) {
+			crashlytics().recordError(error as Error);
 			console.log('error', error);
 			throw Error(updateVerificationError);
 		}

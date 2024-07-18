@@ -2,8 +2,7 @@ import type { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
 import DescriptionCard from '@aigo/components/DescriptionCard';
 import type { StackScreenProps } from '@react-navigation/stack';
-import { appActions, appState } from 'state/app';
-import { userDescriptions } from 'state/app/types';
+import { appActions, appState, userDescriptions } from 'state/app';
 import type { RootStackParamList } from 'utils/navigation';
 import { useSnapshot } from 'valtio';
 

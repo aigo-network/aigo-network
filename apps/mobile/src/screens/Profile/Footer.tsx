@@ -9,6 +9,7 @@ import { graphqlClient } from '@aigo/api/graphql';
 import LogOut from '@aigo/components/icon/LogOut';
 import Telegram from '@aigo/components/icon/Telegram';
 import Twitter from '@aigo/components/icon/Twitter';
+import analytics from '@react-native-firebase/analytics';
 import { useNavigation } from '@react-navigation/native';
 import { appState } from 'state/app';
 import { logOut } from 'utils/auth';
@@ -23,10 +24,12 @@ export const Footer = () => {
 
 	const handlePressFollowTwitter = () => {
 		Linking.openURL('https://x.com/AIGO_Network');
+		analytics().logEvent('channel_interaction', { channel: 'twitter' });
 	};
 
 	const handlePressJoinTelegram = () => {
 		Linking.openURL('https://t.me/aigo_network');
+		analytics().logEvent('channel_interaction', { channel: 'telegram' });
 	};
 
 	const logOutAndResetRoute = () => {
