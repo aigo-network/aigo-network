@@ -13,6 +13,7 @@ const Backers = () => {
 					<img src="/img/backers/gmnetwork-img.png" />
 					<img src="/img/backers/iotex-img.png" />
 					<img src="/img/backers/app-works-img.png" />
+					<img src="/img/backers/tada-img.png" />
 					<img src="/img/backers/mvl-img.png" />
 				</LogoLine>
 				<LogoLine>
@@ -26,6 +27,7 @@ const Backers = () => {
 					<img src="/img/backers/gmnetwork-img.png" />
 					<img src="/img/backers/iotex-img.png" />
 					<img src="/img/backers/app-works-img.png" />
+					<img src="/img/backers/tada-img.png" />
 					<img src="/img/backers/mvl-img.png" />
 					<img src="/img/backers/powerpod-img.png" />
 					<img src="/img/backers/skyvision-img.png" />

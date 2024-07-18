@@ -19,7 +19,6 @@ const Footer = () => {
 						<AiGOText size={70} />
 					</LogoGroup>
 					<Description>
-						The two-wheeler’s network that’s powering the future of mobility.
 						Share your data on your terms, and be rewarded in the long term.
 					</Description>
 					<SocialGroup>
