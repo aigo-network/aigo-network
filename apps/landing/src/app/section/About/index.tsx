@@ -1,9 +1,10 @@
 import type { FC } from 'react';
-import { Fragment, useMemo, useRef } from 'react';
+import { Fragment, useEffect, useMemo, useRef } from 'react';
 import styled from 'styled-components';
 
 import useDimension from '@/utils/hook/useDimension';
 import useScroll from '@/utils/hook/useScroll';
+import { scrollMap, SectionId } from '@/utils/scrollTo';
 
 interface Props {
 	data: string;
@@ -23,8 +24,14 @@ const About: FC<Props> = ({ data }) => {
 	}, [windowHeight, elementRef.current]);
 	const wordList = data.split(' ');
 
+	useEffect(() => {
+		if (elementRef.current) {
+			scrollMap[SectionId.About] = elementRef;
+		}
+	}, [elementRef.current]);
+
 	return (
-		<Container ref={elementRef}>
+		<Container ref={elementRef} id={SectionId.About}>
 			<div>
 				<TextRevealWrapper>
 					<p>
@@ -77,9 +84,9 @@ const TextRevealWrapper = styled.div`
 	& > p {
 		margin: 0 25px;
 		font-family: var(--secondary-font);
-		font-size: 35px;
+		font-size: 30px;
 		font-weight: 600;
-		line-height: 50px;
+		line-height: 44px;
 
 		&:first-child {
 			position: absolute;
