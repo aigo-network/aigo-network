@@ -92,10 +92,10 @@
       },
       "inviteSection": {
         "title": "친구 초대하기",
-        "referral": "초대",
+        "referral": "받기",
         "referralCountSuffix": "초대",
-        "descriptionPrefix": "받기",
-        "descriptionSuffix": "& 초대하신 분들의 보상에서 10%를 추가로 받아보세요",
+        "descriptionPrefix": "초대하고",
+        "descriptionSuffix": "",
         "inviteButton": "초대하기"
       },
       "dailyCheckInSection": {
