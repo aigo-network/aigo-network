@@ -7,6 +7,7 @@ export default {
 	config() {
 		return {
 			name: 'aigo',
+			profile: 'aigo',
 			region: 'ap-south-1',
 		};
 	},
