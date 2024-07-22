@@ -6,9 +6,19 @@ const minimumFetchIntervalMillis = __DEV__
 	? 10000 // 10 seconds for development
 	: 3600000; // 1 hour for prod
 
-export const syncRemoteConfig = () => {
-	remoteConfig().activate();
-	remoteConfig().fetch(); // fetch for next launch
+export const syncRemoteConfig = async () => {
+	const startFetch = new Date();
+	const fetchedRemotely = await remoteConfig().fetchAndActivate();
+	const endFetch = new Date();
+
+	const fetchingDuration = endFetch.valueOf() - startFetch.valueOf();
+	console.debug(`Fetching remote config took: ${fetchingDuration} ms`);
+
+	if (fetchedRemotely) {
+		console.debug('New configs were retrieved from the backend and activated.');
+	} else {
+		console.debug('No new remote configs, use activated local configs');
+	}
 
 	const conf = remoteConfig().getAll();
 
@@ -20,19 +30,18 @@ export const syncRemoteConfig = () => {
 	};
 };
 
+/**
+ * Wait for remote config init/setup, async fetching
+ */
 export const initRemoteConfigModule = async () => {
-	remoteConfig()
-		.setDefaults(defaultRemoteConfig)
-		.then(async () => {
+	await remoteConfig().setDefaults(defaultRemoteConfig as never);
 			await remoteConfig().setConfigSettings({ minimumFetchIntervalMillis });
-			syncRemoteConfig();
-		});
 
-	return remoteConfig().onConfigUpdated((_, error) => {
-		if (error !== undefined) {
-			console.log('something went wrong with remote config', error);
-		} else {
+	// We currently don't need realtime update (has its cost) by using `onConfigUpdated`.
+
+	/**
+	 * Not wait for syncRemoteConfig as it takes 700ms in dev (low traffic),
+	 * and could much longer in production.
+	 */
 			syncRemoteConfig();
-		}
-	});
 };
