@@ -8,6 +8,7 @@ import type {
 	GeolocationResponse,
 } from '@react-native-community/geolocation';
 import Geolocation from '@react-native-community/geolocation';
+import { appState } from 'state/app';
 
 import type { RequestPermissionConfig } from './types';
 
@@ -49,10 +50,7 @@ export const watchLocation = (
 		(error) => {
 			console.log('error watching position', error);
 		},
-		{
-			// important: to get GPS instead of Wifi location
-			enableHighAccuracy: true,
-		},
+		appState.remoteConfig.watchPositionOptions,
 	);
 };
 

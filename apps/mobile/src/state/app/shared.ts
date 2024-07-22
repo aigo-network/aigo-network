@@ -31,6 +31,13 @@ export const defaultRemoteConfig: RemoteConfig = {
 	invitationUrl: 'https://ride.aigo.network/open',
 	deepAnalyticsEnabled: true,
 	minimalVersion: '1.0.0',
+
+	// ref: https://github.com/michalchudziak/react-native-geolocation?tab=readme-ov-file#watchposition
+	watchPositionOptions: {
+		enableHighAccuracy: true,
+		distanceFilter: 1,
+		maximumAge: 0,
+	},
 };
 
 export const initAppState: AppState = {

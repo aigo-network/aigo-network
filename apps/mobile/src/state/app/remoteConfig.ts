@@ -1,3 +1,4 @@
+import type { GeolocationOptions } from '@react-native-community/geolocation';
 import remoteConfig from '@react-native-firebase/remote-config';
 
 import { appState, defaultRemoteConfig } from './shared';
@@ -27,6 +28,7 @@ export const syncRemoteConfig = async () => {
 		invitationUrl: conf.invitationUrl?.asString(),
 		deepAnalyticsEnabled: conf.deepAnalyticsEnabled?.asBoolean(),
 		minimalVersion: conf.minimalVersion?.asString() || '1.0.0',
+		watchPositionOptions: conf.watchPositionOptions as GeolocationOptions,
 	};
 };
 
@@ -35,7 +37,7 @@ export const syncRemoteConfig = async () => {
  */
 export const initRemoteConfigModule = async () => {
 	await remoteConfig().setDefaults(defaultRemoteConfig as never);
-			await remoteConfig().setConfigSettings({ minimumFetchIntervalMillis });
+	await remoteConfig().setConfigSettings({ minimumFetchIntervalMillis });
 
 	// We currently don't need realtime update (has its cost) by using `onConfigUpdated`.
 
@@ -43,5 +45,5 @@ export const initRemoteConfigModule = async () => {
 	 * Not wait for syncRemoteConfig as it takes 700ms in dev (low traffic),
 	 * and could much longer in production.
 	 */
-			syncRemoteConfig();
+	syncRemoteConfig();
 };
