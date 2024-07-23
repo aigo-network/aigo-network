@@ -1,4 +1,4 @@
-import type { GeolocationOptions } from '@react-native-community/geolocation';
+import { Platform } from 'react-native';
 import remoteConfig from '@react-native-firebase/remote-config';
 
 import { appState, defaultRemoteConfig } from './shared';
@@ -23,12 +23,20 @@ export const syncRemoteConfig = async () => {
 
 	const conf = remoteConfig().getAll();
 
+	// TODO: Consider to define a convention for platform-specific remote config
+	const rawWatchPositionOptions =
+		Platform.OS === 'android'
+			? conf.androidWatchPositionOptions
+			: Platform.OS === 'ios'
+				? conf.iosWatchPositionOptions
+				: conf.watchPositionOptions;
+
 	appState.remoteConfig = {
 		nyamNyamCampaignActivated: conf.nyamNyamCampaignActivated?.asBoolean(),
 		invitationUrl: conf.invitationUrl?.asString(),
 		deepAnalyticsEnabled: conf.deepAnalyticsEnabled?.asBoolean(),
 		minimalVersion: conf.minimalVersion?.asString() || '1.0.0',
-		watchPositionOptions: conf.watchPositionOptions as GeolocationOptions,
+		watchPositionOptions: parseRemoteJSON(rawWatchPositionOptions),
 	};
 };
 
@@ -36,6 +44,7 @@ export const syncRemoteConfig = async () => {
  * Wait for remote config init/setup, async fetching
  */
 export const initRemoteConfigModule = async () => {
+	// NOTE: remote config type didn't support JSON object
 	await remoteConfig().setDefaults(defaultRemoteConfig as never);
 	await remoteConfig().setConfigSettings({ minimumFetchIntervalMillis });
 
@@ -46,4 +55,14 @@ export const initRemoteConfigModule = async () => {
 	 * and could much longer in production.
 	 */
 	syncRemoteConfig();
+};
+
+type RemoteJSONValue = {
+	_source: 'remote' | 'default';
+	_value: string;
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const parseRemoteJSON = (value: RemoteJSONValue | any) => {
+	return JSON.parse(value._value);
 };
