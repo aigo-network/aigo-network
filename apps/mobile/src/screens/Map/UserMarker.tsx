@@ -1,16 +1,16 @@
-import type { FC } from 'react';
 import { Image, StyleSheet } from 'react-native';
 import { MarkerView } from '@rnmapbox/maps';
 import { appState } from 'state/app';
 import { defaultAvatar } from 'utils/misc';
 import { useSnapshot } from 'valtio';
 
-type Props = {
-	coordinate: GeoJSON.Position;
-};
+import { useCurrentCoordinate } from './shared';
 
-export const UserMarker: FC<Props> = ({ coordinate }) => {
+export const UserMarker = () => {
 	const { appUser } = useSnapshot(appState);
+	const { coordinate } = useCurrentCoordinate();
+
+	if (!coordinate) return null;
 
 	return (
 		<MarkerView coordinate={coordinate}>
