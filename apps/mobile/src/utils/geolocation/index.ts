@@ -21,7 +21,7 @@ const config: GeolocationConfiguration = {
 	 * This config forces Android device to only use PlayServices location which is more accurate.
 	 * Also the maximumAge is required to be > 0 (alias to durationMilies)
 	 */
-	locationProvider: 'playServices',
+	// locationProvider: 'playServices',
 };
 
 Geolocation.setRNConfiguration(config);
@@ -50,7 +50,7 @@ export const watchLocation = (
 	onUpdate: (position: GeolocationResponse) => void,
 ) => {
 	Geolocation.watchPosition(
-		async (position: GeolocationResponse) => {
+		(position) => {
 			onUpdate(position);
 		},
 		(error) => {
@@ -65,9 +65,7 @@ export const watchLocation = (
  *
  * Note: it does not work with called watchLocation
  */
-export const getCurrentLocation = (
-	timeout: number = 2000,
-): Promise<GeolocationResponse> => {
+export const getCurrentLocation = (): Promise<GeolocationResponse> => {
 	return new Promise<GeolocationResponse>((resolve, reject) => {
 		Geolocation.getCurrentPosition(
 			(res: GeolocationResponse) => {
@@ -76,11 +74,7 @@ export const getCurrentLocation = (
 			(error: GeolocationError) => {
 				reject(error);
 			},
-			{
-				// important: to get GPS instead of Wifi location
-				enableHighAccuracy: true,
-				timeout,
-			},
+			appState.remoteConfig.watchPositionOptions,
 		);
 	});
 };
