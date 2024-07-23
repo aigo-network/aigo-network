@@ -11,6 +11,11 @@ export const useMapState = (): MapState => {
 	return useSnapshot(mapState) as MapState;
 };
 
+export const getMapState = () => {
+	// clone state to prevent unexpected mutation
+	return { ...mapState };
+};
+
 export const mapActions = {
 	/**
 	 * Update currentLocation and add new position to currentRoute.

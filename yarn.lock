@@ -96,6 +96,7 @@ __metadata:
     path-scurry: "npm:^1.11.1"
     react: "npm:18.2.0"
     react-native: "npm:0.74.1"
+    react-native-background-actions: "npm:^4.0.1"
     react-native-config: "npm:^1.5.1"
     react-native-device-info: "npm:^10.13.2"
     react-native-fs: "npm:^2.20.0"
@@ -11820,6 +11821,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eventemitter3@npm:^4.0.7":
+  version: 4.0.7
+  resolution: "eventemitter3@npm:4.0.7"
+  checksum: 10/8030029382404942c01d0037079f1b1bc8fed524b5849c237b80549b01e2fc49709e1d0c557fa65ca4498fc9e24cff1475ef7b855121fcc15f9d61f93e282346
+  languageName: node
+  linkType: hard
+
 "events@npm:1.1.1":
   version: 1.1.1
   resolution: "events@npm:1.1.1"
@@ -17187,6 +17195,17 @@ __metadata:
   version: 17.0.2
   resolution: "react-is@npm:17.0.2"
   checksum: 10/73b36281e58eeb27c9cc6031301b6ae19ecdc9f18ae2d518bdb39b0ac564e65c5779405d623f1df9abf378a13858b79442480244bd579968afc1faf9a2ce5e05
+  languageName: node
+  linkType: hard
+
+"react-native-background-actions@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "react-native-background-actions@npm:4.0.1"
+  dependencies:
+    eventemitter3: "npm:^4.0.7"
+  peerDependencies:
+    react-native: ">=0.47.0"
+  checksum: 10/7d543451ed460af8070ac3add536a8126ec42c1c7855443309b164b976932fb34e9977dd708b93ffe782a7bf01baccb08704a2e817c7326bb025fc77955fbe3c
   languageName: node
   linkType: hard
 
