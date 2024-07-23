@@ -16,6 +16,12 @@ const config: GeolocationConfiguration = {
 	skipPermissionRequests: false,
 	enableBackgroundLocationUpdates: true, // iOS-only
 	authorizationLevel: 'whenInUse', // iOS-only
+
+	/**
+	 * This config forces Android device to only use PlayServices location which is more accurate.
+	 * Also the maximumAge is required to be > 0 (alias to durationMilies)
+	 */
+	locationProvider: 'playServices',
 };
 
 Geolocation.setRNConfiguration(config);
