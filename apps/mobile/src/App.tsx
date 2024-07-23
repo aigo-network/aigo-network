@@ -33,6 +33,10 @@ import 'utils/mapbox';
 import 'utils/geolocation';
 import 'utils/errors';
 
+if (__DEV__) {
+	require('../ReactotronConfig');
+}
+
 const Stack = createStackNavigator<RootStackParamList>();
 
 export const AppContainer: FC = () => {
