@@ -29,7 +29,7 @@ export const mapActions = {
 
 			await graphqlClient.insertTripPoint({
 				tripId: mapState.currentTrip.id,
-				geolocation: { ...coords, timestamp },
+				geolocation: { ...coords, timestamp: new Date(timestamp) },
 			});
 
 			const { longitude, latitude } = coords;
@@ -52,7 +52,7 @@ export const mapActions = {
 			const { coords, timestamp } = mapState.currentLocation;
 
 			const { startTrip: trip } = await graphqlClient.startTrip({
-				geolocation: { ...coords, timestamp },
+				geolocation: { ...coords, timestamp: new Date(timestamp) },
 			});
 
 			if (!trip || !trip.id) {
