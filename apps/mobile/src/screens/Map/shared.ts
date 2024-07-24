@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import * as turf from '@turf/turf';
 import { getMapState, useMapState } from 'state/map';
 
 export const emptyRoute: GeoJSON.LineString = {
@@ -33,7 +34,10 @@ export const useCurrentTrip = () => {
 	const distance = useMemo(() => {
 		if (!currentTrip) return 0;
 
-		return 10;
+		const line = turf.lineString(currentTrip.coordinates);
+		const length = turf.length(line, { units: 'kilometers' });
+
+		return length.toPrecision(2);
 	}, [currentTrip]);
 
 	useEffect(() => {

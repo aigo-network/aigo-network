@@ -20,11 +20,11 @@ export const getMapState = () => {
 
 export const mapActions = {
 	setCurrentLocation: async (location: GeolocationResponse) => {
-		mapState.currentLocation = location;
-
-		if (!mapState.currentTrip) return;
-
 		try {
+			mapState.currentLocation = location;
+
+			if (!mapState.currentTrip) return;
+
 			const { coords, timestamp } = location;
 
 			await graphqlClient.insertTripPoint({
@@ -41,14 +41,16 @@ export const mapActions = {
 		}
 	},
 	startNewTrip: async () => {
-		const isCurrentRouteActive = !!mapState.currentTrip;
-		if (isCurrentRouteActive) {
-			throw new MapError('Need to complete current trip to start new trip');
-		} else if (!mapState.currentLocation) {
-			throw new MapError('Can not retrieve current location to start new trip');
-		}
-
 		try {
+			const isCurrentRouteActive = !!mapState.currentTrip;
+			if (isCurrentRouteActive) {
+				throw new MapError('Need to complete current trip to start new trip');
+			} else if (!mapState.currentLocation) {
+				throw new MapError(
+					'Can not retrieve current location to start new trip',
+				);
+			}
+
 			const { coords, timestamp } = mapState.currentLocation;
 
 			const { startTrip: trip } = await graphqlClient.startTrip({
@@ -77,11 +79,11 @@ export const mapActions = {
 		}
 	},
 	endCurrentTrip: async () => {
-		if (!mapState.currentTrip) {
-			throw new MapError('current trip not found, invalid end action');
-		}
-
 		try {
+			if (!mapState.currentTrip) {
+				throw new MapError('current trip not found, invalid end action');
+			}
+
 			const { completeTrip: success } = await graphqlClient.completeTrip({
 				tripId: mapState.currentTrip.id,
 			});
