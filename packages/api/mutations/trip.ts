@@ -12,6 +12,12 @@ export const StartTripMutation = gql`
 	}
 `;
 
+export const CompleteTripMutation = gql`
+	mutation completeTrip($tripId: String!) {
+		completeTrip(tripID: $tripId)
+	}
+`;
+
 export const InsertTripPointMutation = gql`
 	mutation insertTripPoint($tripId: String!, $geolocation: GeolocationInput!) {
 		insertTripPoint(tripID: $tripId, geolocation: $geolocation) {

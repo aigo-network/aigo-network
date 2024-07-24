@@ -4,18 +4,18 @@ import AppButton from '@aigo/components/AppButton';
 import { mapActions, useMapState } from 'state/map';
 
 export const MapActions = () => {
-	const { currentRoute } = useMapState();
+	const { currentTrip: currentRoute } = useMapState();
 	const [loading, setLoading] = useState(false);
 
 	const handlePressStart = async () => {
 		setLoading(true);
-		await mapActions.startNewRoute();
+		await mapActions.startNewTrip();
 		setLoading(false);
 	};
 
 	const handlePressEnd = async () => {
 		setLoading(true);
-		await mapActions.endCurrentRoute();
+		await mapActions.endCurrentTrip();
 		setLoading(false);
 	};
 

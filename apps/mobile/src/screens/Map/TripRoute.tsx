@@ -3,18 +3,18 @@ import { useMapState } from 'state/map';
 
 import { emptyRoute } from './shared';
 
-export const Route = () => {
-	const { currentRoute } = useMapState();
+export const TripRoute = () => {
+	const { currentTrip } = useMapState();
 
 	return (
-		<ShapeSource id="user-route" shape={currentRoute || emptyRoute}>
+		<ShapeSource id="user-route" shape={currentTrip || emptyRoute}>
 			<LineLayer id="user-route-layer-outer" style={routeStyles.outer} />
 			<LineLayer id="user-route-layer" style={routeStyles.inner} />
 		</ShapeSource>
 	);
 };
 
-export default Route;
+export default TripRoute;
 
 export const routeStyles = {
 	outer: {

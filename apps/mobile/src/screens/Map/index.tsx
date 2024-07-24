@@ -8,8 +8,8 @@ import { requestGeolocationPermission, watchLocation } from 'utils/geolocation';
 import Camera from './Camera';
 import MapActions from './MapActions';
 import MapRouteInfo from './MapRouteInfo';
-import Route from './Route';
 import { useBouncedMapInsets } from './shared';
+import TripRoute from './TripRoute';
 import UserMarker from './UserMarker';
 
 export const MapScreen = () => {
@@ -37,7 +37,7 @@ export const MapScreen = () => {
 			<MapView style={styles.mapContainer} scaleBarPosition={scaleBarPosition}>
 				<Camera />
 				<UserMarker />
-				<Route />
+				<TripRoute />
 			</MapView>
 
 			<View style={[styles.infoContainer, { top: top + 30 }]}>

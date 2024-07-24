@@ -9,7 +9,7 @@ let backgroundLocationListenerId: number;
 
 const watchLocationInBackground = async () => {
 	await new Promise<void>((resolve) => {
-		const tripRunning = !!getMapState().currentRoute;
+		const tripRunning = !!getMapState().currentTrip;
 		if (tripRunning) {
 			console.debug(
 				'[Background] found pending route, continue to watch location',
