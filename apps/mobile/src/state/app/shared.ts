@@ -27,7 +27,7 @@ interface AppState {
 }
 
 export const defaultRemoteConfig: RemoteConfig = {
-	nyamNyamCampaignActivated: true,
+	nyamNyamCampaignActivated: false,
 	invitationUrl: 'https://ride.aigo.network/open',
 	deepAnalyticsEnabled: true,
 	minimalVersion: '1.0.0',

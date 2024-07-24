@@ -92,10 +92,10 @@
       },
       "inviteSection": {
         "title": "Invite your friends",
-        "referral": "referral",
+        "referral": "/referral",
         "referralCountSuffix": "Referrals",
         "descriptionPrefix": "Receive",
-        "descriptionSuffix": "& earn 10% from their earning",
+        "descriptionSuffix": "",
         "inviteButton": "Invite"
       },
       "dailyCheckInSection": {

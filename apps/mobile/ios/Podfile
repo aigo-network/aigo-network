@@ -16,9 +16,9 @@ prepare_react_native_project!
 
 setup_permissions([
   'AppTrackingTransparency',
-  'LocationAccuracy',
-  'LocationAlways',
-  'LocationWhenInUse',
+  # 'LocationAccuracy',
+  # 'LocationAlways',
+  # 'LocationWhenInUse',
   'Notifications',
 ])
 

@@ -19,7 +19,7 @@ export const Invite = () => {
 					{homeContent.inviteSection.descriptionPrefix}
 					<Text style={styles.pointText}>
 						{' '}
-						{config.activity.InviteFriend.points} GO/
+						{config.activity.InviteFriend.points} GO
 						{homeContent.inviteSection.referral}
 					</Text>{' '}
 					{homeContent.inviteSection.descriptionSuffix}
