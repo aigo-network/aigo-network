@@ -54,7 +54,7 @@ export const watchLocation = (
 			onUpdate(position);
 		},
 		(error) => {
-			console.log('error watching position', error);
+			console.debug('Error watching position', error);
 		},
 		appState.remoteConfig.watchPositionOptions,
 	);

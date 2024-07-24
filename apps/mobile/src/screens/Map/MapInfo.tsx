@@ -28,7 +28,7 @@ export const MapInfo = () => {
 				);
 				setGeocodeFeature(reversedGeocodeRes.body.features[0]);
 			} catch (error) {
-				console.log('failed to query reverse geocode', error);
+				console.debug('Failed to query reverse geocode', error);
 			}
 		}
 	}, 2000);

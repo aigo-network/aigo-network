@@ -22,7 +22,7 @@ export const MapScreen = () => {
 	useEffect(() => {
 		requestGeolocationPermission({
 			onSuccess: async () => {
-				console.log('successfully request geolocation permission');
+				console.debug('Successfully request geolocation permission');
 				watchLocation(async (position) => {
 					await mapActions.setCurrentLocation(position);
 				});
