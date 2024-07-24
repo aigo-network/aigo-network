@@ -48,11 +48,7 @@ export const ModalContainer: FC<Props> = ({
 							</TouchableOpacity>
 						</View>
 					</View>
-					{subTitle && typeof subTitle === 'string' ? (
-						<Text style={styles.subTitleText}>{subTitle}</Text>
-					) : (
-						subTitle
-					)}
+					<Text style={styles.subTitleText}>{subTitle}</Text>
 				</View>
 				<View style={[styles.contentContainer, contentContainerStyle]}>
 					{children}
