@@ -5,13 +5,20 @@ import { useMapState } from 'state/map';
 import { useDebouncedCallback } from 'use-debounce';
 import { queryReverseGeocode } from 'utils/mapbox';
 
-import { useBouncedMapInsets } from './shared';
+import { useBouncedMapInsets, useCurrentTrip } from './shared';
 
 export const MapInfo = () => {
 	const { safeInsets } = useBouncedMapInsets();
 	const { top } = safeInsets;
-	const { currentLocation } = useMapState();
+	const { currentLocation, currentTrip } = useMapState();
+	const { distance, time } = useCurrentTrip();
 	const [geocodeFeature, setGeocodeFeature] = useState<GeocodeFeature>();
+
+	const containerStyle = [
+		styles.container,
+		{ top: top + 30 },
+		currentTrip && styles.fullWidthContainer,
+	];
 
 	const locationInfo = useMemo(() => {
 		if (!geocodeFeature) return { mainPlace: 'Unknown', place: '' };
@@ -42,15 +49,27 @@ export const MapInfo = () => {
 	}, [currentLocation]);
 
 	return (
-		<View style={[styles.container, { top: top + 30 }]}>
-			<View style={styles.locationContainer}>
-				<View style={styles.activeCircleOuter}>
-					<View style={styles.activeCircle} />
+		<View style={containerStyle}>
+			<View style={styles.innerContainer}>
+				<View style={styles.locationContainer}>
+					<View style={styles.activeCircleOuter}>
+						<View style={styles.activeCircle} />
+					</View>
+					<View style={styles.locationTextContainer}>
+						<Text style={styles.roadText}>{locationInfo.mainPlace}</Text>
+						<Text style={styles.placeText}>{locationInfo.place}</Text>
+					</View>
 				</View>
-				<View style={styles.locationTextContainer}>
-					<Text style={styles.roadText}>{locationInfo.mainPlace}</Text>
-					<Text style={styles.placeText}>{locationInfo.place}</Text>
-				</View>
+
+				{currentTrip && (
+					<View style={styles.tripContainer}>
+						<Text style={styles.tripTitle}>Current journey</Text>
+						<View>
+							<Text style={styles.tripText}>{`Distance: ${distance} km`}</Text>
+							<Text style={styles.tripText}>{`Time: ${time} minutes`}</Text>
+						</View>
+					</View>
+				)}
 			</View>
 		</View>
 	);
@@ -60,16 +79,36 @@ export default MapInfo;
 
 const styles = StyleSheet.create({
 	container: {
-		padding: 14,
-		borderRadius: 14,
-		backgroundColor: '#ffffff',
-		position: 'absolute',
-		top: 0,
 		left: 20,
+		position: 'absolute',
 		minWidth: 240,
 		maxWidth: 300,
 	},
+	fullWidthContainer: {
+		left: 20,
+		right: 20,
+		maxWidth: undefined,
+	},
+	innerContainer: {
+		padding: 14,
+		borderRadius: 14,
+		backgroundColor: '#ffffff',
+		flexDirection: 'row',
+		gap: 20,
+	},
+	tripContainer: {
+		minWidth: 130,
+	},
+	tripTitle: {
+		fontSize: 14,
+		fontWeight: '600',
+		color: '#000000',
+	},
+	tripText: {
+		color: '#232323',
+	},
 	locationContainer: {
+		flex: 1,
 		flexDirection: 'row',
 		gap: 14,
 	},

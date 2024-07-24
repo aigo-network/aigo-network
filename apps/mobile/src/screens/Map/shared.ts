@@ -1,7 +1,7 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useMapState } from 'state/map';
+import { getMapState, useMapState } from 'state/map';
 
 export const emptyRoute: GeoJSON.LineString = {
 	type: 'LineString',
@@ -22,6 +22,33 @@ export const useCurrentCoordinate = () => {
 	}, [currentLocation]);
 
 	return { coordinate };
+};
+
+const MS_PER_MINUTE = 1000 * 60;
+
+export const useCurrentTrip = () => {
+	const { currentTrip } = useMapState();
+	const [time, setTime] = useState(0);
+
+	const distance = useMemo(() => {
+		if (!currentTrip) return 0;
+
+		return 10;
+	}, [currentTrip]);
+
+	useEffect(() => {
+		const timer = setInterval(() => {
+			const trip = getMapState().currentTrip;
+			if (!trip) return;
+
+			const timeInMs = new Date().valueOf() - trip.startedAt.valueOf();
+			setTime(Math.round(timeInMs / MS_PER_MINUTE));
+		}, MS_PER_MINUTE);
+
+		return () => clearInterval(timer);
+	}, []);
+
+	return { distance, time };
 };
 
 export const useBouncedMapInsets = () => {

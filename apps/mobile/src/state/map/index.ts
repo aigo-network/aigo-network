@@ -63,6 +63,7 @@ export const mapActions = {
 
 			mapState.currentTrip = {
 				id: trip.id,
+				startedAt: trip.createdAt ? new Date(trip.createdAt) : new Date(),
 				type: 'LineString',
 				// important: must initialize with two init points to prevent unknown breaking on Android
 				coordinates: [
