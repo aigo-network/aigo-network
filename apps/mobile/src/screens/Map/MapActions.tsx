@@ -3,7 +3,11 @@ import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import AppButton from '@aigo/components/AppButton';
 import { mapActions, useMapState } from 'state/map';
 
+import { useBouncedMapInsets } from './shared';
+
 export const MapActions = () => {
+	const { safeInsets } = useBouncedMapInsets();
+	const { bottom } = safeInsets;
 	const { currentTrip: currentRoute } = useMapState();
 	const [loading, setLoading] = useState(false);
 
@@ -20,7 +24,7 @@ export const MapActions = () => {
 	};
 
 	return (
-		<View style={styles.container}>
+		<View style={[styles.container, { bottom }]}>
 			{loading ? (
 				<ActivityIndicator size={'large'} />
 			) : !currentRoute ? (
@@ -35,5 +39,11 @@ export const MapActions = () => {
 export default MapActions;
 
 const styles = StyleSheet.create({
-	container: {},
+	container: {
+		position: 'absolute',
+		bottom: 0,
+		left: 0,
+		right: 0,
+		paddingHorizontal: 20,
+	},
 });

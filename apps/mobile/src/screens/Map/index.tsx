@@ -7,12 +7,9 @@ import { requestGeolocationPermission, watchLocation } from 'utils/geolocation';
 import MapActions from './MapActions';
 import MapInfo from './MapInfo';
 import MapView from './MapView';
-import { useBouncedMapInsets } from './shared';
 
 export const MapScreen = () => {
 	const { goBack } = useNavigation();
-	const { safeInsets } = useBouncedMapInsets();
-	const { top, bottom } = safeInsets;
 	const [mapReady, setMapReady] = useState(false);
 	const [permissionReady, setPermissionReady] = useState(false);
 
@@ -37,18 +34,9 @@ export const MapScreen = () => {
 
 	return (
 		<View style={styles.container}>
-			<MapView
-				style={styles.mapContainer}
-				onDidFinishLoadingMap={handleFinishLoadingMap}
-			/>
-
-			<View style={[styles.infoContainer, { top: top + 30 }]}>
-				<MapInfo />
-			</View>
-
-			<View style={[styles.buttonContainer, { bottom }]}>
-				{mapReady && permissionReady && <MapActions />}
-			</View>
+			<MapView onDidFinishLoadingMap={handleFinishLoadingMap} />
+			<MapInfo />
+			{mapReady && permissionReady && <MapActions />}
 		</View>
 	);
 };
@@ -58,22 +46,5 @@ export default MapScreen;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-	},
-	mapContainer: {
-		flex: 1,
-	},
-	infoContainer: {
-		position: 'absolute',
-		top: 0,
-		left: 20,
-		minWidth: 240,
-		maxWidth: 300,
-	},
-	buttonContainer: {
-		position: 'absolute',
-		bottom: 0,
-		left: 0,
-		right: 0,
-		paddingHorizontal: 20,
 	},
 });

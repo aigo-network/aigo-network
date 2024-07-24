@@ -5,7 +5,11 @@ import { useMapState } from 'state/map';
 import { useDebouncedCallback } from 'use-debounce';
 import { queryReverseGeocode } from 'utils/mapbox';
 
+import { useBouncedMapInsets } from './shared';
+
 export const MapInfo = () => {
+	const { safeInsets } = useBouncedMapInsets();
+	const { top } = safeInsets;
 	const { currentLocation } = useMapState();
 	const [geocodeFeature, setGeocodeFeature] = useState<GeocodeFeature>();
 
@@ -38,13 +42,15 @@ export const MapInfo = () => {
 	}, [currentLocation]);
 
 	return (
-		<View style={styles.locationInfoContainer}>
-			<View style={styles.activeCircleOuter}>
-				<View style={styles.activeCircle} />
-			</View>
-			<View style={styles.locationTextInfoContainer}>
-				<Text style={styles.roadText}>{locationInfo.mainPlace}</Text>
-				<Text style={styles.placeText}>{locationInfo.place}</Text>
+		<View style={[styles.container, { top: top + 30 }]}>
+			<View style={styles.locationContainer}>
+				<View style={styles.activeCircleOuter}>
+					<View style={styles.activeCircle} />
+				</View>
+				<View style={styles.locationTextContainer}>
+					<Text style={styles.roadText}>{locationInfo.mainPlace}</Text>
+					<Text style={styles.placeText}>{locationInfo.place}</Text>
+				</View>
 			</View>
 		</View>
 	);
@@ -53,12 +59,19 @@ export const MapInfo = () => {
 export default MapInfo;
 
 const styles = StyleSheet.create({
-	locationInfoContainer: {
-		flexDirection: 'row',
-		gap: 14,
+	container: {
 		padding: 14,
 		borderRadius: 14,
 		backgroundColor: '#ffffff',
+		position: 'absolute',
+		top: 0,
+		left: 20,
+		minWidth: 240,
+		maxWidth: 300,
+	},
+	locationContainer: {
+		flexDirection: 'row',
+		gap: 14,
 	},
 	activeCircleOuter: {
 		padding: 8,
@@ -72,7 +85,7 @@ const styles = StyleSheet.create({
 		borderRadius: 10,
 		backgroundColor: '#0EBC93',
 	},
-	locationTextInfoContainer: {
+	locationTextContainer: {
 		flex: 1,
 	},
 	roadText: {
