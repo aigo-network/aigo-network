@@ -5,7 +5,7 @@ import { useMapState } from 'state/map';
 import { useDebouncedCallback } from 'use-debounce';
 import { queryReverseGeocode } from 'utils/mapbox';
 
-export const MapRouteInfo = () => {
+export const MapInfo = () => {
 	const { currentLocation } = useMapState();
 	const [geocodeFeature, setGeocodeFeature] = useState<GeocodeFeature>();
 
@@ -50,7 +50,7 @@ export const MapRouteInfo = () => {
 	);
 };
 
-export default MapRouteInfo;
+export default MapInfo;
 
 const styles = StyleSheet.create({
 	locationInfoContainer: {

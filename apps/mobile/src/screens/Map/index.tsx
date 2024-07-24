@@ -7,7 +7,7 @@ import { requestGeolocationPermission, watchLocation } from 'utils/geolocation';
 
 import Camera from './Camera';
 import MapActions from './MapActions';
-import MapRouteInfo from './MapRouteInfo';
+import MapInfo from './MapInfo';
 import { useBouncedMapInsets } from './shared';
 import TripRoute from './TripRoute';
 import UserMarker from './UserMarker';
@@ -41,7 +41,7 @@ export const MapScreen = () => {
 			</MapView>
 
 			<View style={[styles.infoContainer, { top: top + 30 }]}>
-				<MapRouteInfo />
+				<MapInfo />
 			</View>
 
 			<View style={[styles.buttonContainer, { bottom }]}>
