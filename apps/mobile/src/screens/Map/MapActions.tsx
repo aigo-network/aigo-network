@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 import AppButton from '@aigo/components/AppButton';
+import { showConfirmModal } from 'modals/Confirm';
 import { mapActions, useMapState } from 'state/map';
 
 import { useBouncedMapInsets } from './shared';
@@ -13,14 +14,44 @@ export const MapActions = () => {
 
 	const handlePressStart = async () => {
 		setLoading(true);
-		await mapActions.startNewTrip();
-		setLoading(false);
+		showConfirmModal({
+			modalId: 'confirm-start-trip',
+			message: 'Ready? Go and get GO Points',
+			yesText: 'GO now',
+			noText: 'Close',
+			mainAction: 'yes',
+			onConfirm: async () => {
+				await mapActions.startNewTrip();
+				setLoading(false);
+			},
+			onClose: () => {
+				setLoading(false);
+			},
+			onReject: () => {
+				setLoading(false);
+			},
+		});
 	};
 
 	const handlePressEnd = async () => {
 		setLoading(true);
-		await mapActions.endCurrentTrip();
-		setLoading(false);
+		showConfirmModal({
+			modalId: 'confirm-end-trip',
+			message: 'Are you sure to end this trip?',
+			yesText: 'Confirm',
+			noText: 'Close',
+			mainAction: 'no',
+			onConfirm: async () => {
+				await mapActions.endCurrentTrip();
+				setLoading(false);
+			},
+			onClose: () => {
+				setLoading(false);
+			},
+			onReject: () => {
+				setLoading(false);
+			},
+		});
 	};
 
 	return (

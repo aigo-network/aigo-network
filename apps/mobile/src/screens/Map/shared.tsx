@@ -1,7 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Platform } from 'react-native';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import ConfirmPopup from '@aigo/components/ConfirmPopup';
 import * as turf from '@turf/turf';
+import { Align, showModal } from 'empty-modal';
+import { appState } from 'state/app';
 import { getMapState, useMapState } from 'state/map';
 
 export const emptyRoute: GeoJSON.LineString = {
@@ -73,4 +77,33 @@ export const useBouncedMapInsets = () => {
 	}, [insets]);
 
 	return { safeInsets, scaleBarPosition };
+};
+
+export const showConfirmEndTrip = ({ logout }: { logout: () => void }) => {
+	const { confirm, cancel, confirmLogOutMessage } = appState.content.modal;
+	const { cleanModal } = showModal(
+		<Animated.View entering={FadeInDown}>
+			<ConfirmPopup
+				yesText={confirm}
+				noText={cancel}
+				message={confirmLogOutMessage}
+				onClose={() => {
+					cleanModal();
+				}}
+				onConfirm={() => {
+					logout();
+					cleanModal();
+				}}
+				onReject={() => {
+					cleanModal();
+				}}
+			/>
+		</Animated.View>,
+		{
+			id: 'confirm-end-trip',
+			showBackdrop: true,
+			xOffset: 16,
+			align: Align.FullCenter,
+		},
+	);
 };
