@@ -62,6 +62,15 @@ export type Device = {
   userIdentifier?: Maybe<Scalars['String']['output']>;
 };
 
+export type GeolocationInput = {
+  accuracy: Scalars['Float']['input'];
+  heading?: InputMaybe<Scalars['Float']['input']>;
+  latitude: Scalars['Float']['input'];
+  longitude: Scalars['Float']['input'];
+  speed?: InputMaybe<Scalars['Float']['input']>;
+  timestamp: Scalars['DateTime']['input'];
+};
+
 export type Invitation = {
   __typename?: 'Invitation';
   invitedBy?: Maybe<Scalars['String']['output']>;
@@ -107,10 +116,14 @@ export type RootMutation = {
   __typename?: 'RootMutation';
   checkIn?: Maybe<DailyCheckIn>;
   completeOnboarding?: Maybe<User>;
+  completeTrip?: Maybe<Scalars['Boolean']['output']>;
   createDeferredLinking?: Maybe<DeferredLinking>;
   deleteUser?: Maybe<User>;
   inputInvitationCode?: Maybe<Invitation>;
+  insertBatchTripPoints?: Maybe<Trip>;
+  insertTripPoint?: Maybe<Trip>;
   registerDevice?: Maybe<Device>;
+  startTrip?: Maybe<Trip>;
   trackAppOpenWithLinkingEvent?: Maybe<Scalars['String']['output']>;
   updateProfile?: Maybe<User>;
   /**
@@ -131,6 +144,11 @@ export type RootMutation = {
 };
 
 
+export type RootMutationCompleteTripArgs = {
+  tripID: Scalars['String']['input'];
+};
+
+
 export type RootMutationCreateDeferredLinkingArgs = {
   url: Scalars['String']['input'];
 };
@@ -141,8 +159,25 @@ export type RootMutationInputInvitationCodeArgs = {
 };
 
 
+export type RootMutationInsertBatchTripPointsArgs = {
+  geolocations: Array<GeolocationInput>;
+  tripID: Scalars['String']['input'];
+};
+
+
+export type RootMutationInsertTripPointArgs = {
+  geolocation: GeolocationInput;
+  tripID: Scalars['String']['input'];
+};
+
+
 export type RootMutationRegisterDeviceArgs = {
   input: RegisterDeviceInput;
+};
+
+
+export type RootMutationStartTripArgs = {
+  geolocation: GeolocationInput;
 };
 
 
@@ -176,8 +211,23 @@ export type RootQuery = {
   deferredLinking?: Maybe<DeferredLinking>;
   linking?: Maybe<Scalars['String']['output']>;
   ping?: Maybe<Scalars['String']['output']>;
+  trip?: Maybe<Trip>;
   user?: Maybe<User>;
   web3FarmingProfile?: Maybe<Web3FarmingProfile>;
+};
+
+
+export type RootQueryTripArgs = {
+  tripID: Scalars['String']['input'];
+};
+
+export type Trip = {
+  __typename?: 'Trip';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  route?: Maybe<Scalars['String']['output']>;
+  status?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
 export type User = {
@@ -318,6 +368,29 @@ export type Web3FarmingRefreshReferralsMutationVariables = Exact<{ [key: string]
 
 export type Web3FarmingRefreshReferralsMutation = { __typename?: 'RootMutation', web3FarmingRefreshReferrals?: Array<{ __typename?: 'Web3FarmingReferralCode', id?: string | null, code?: string | null, invitedDate?: any | null, invitedId?: string | null, invitedGOPoints?: number | null, referrerGOPoints?: number | null, createdAt?: any | null, updatedAt?: any | null } | null> | null };
 
+export type StartTripMutationVariables = Exact<{
+  geolocation: GeolocationInput;
+}>;
+
+
+export type StartTripMutation = { __typename?: 'RootMutation', startTrip?: { __typename?: 'Trip', id?: string | null, route?: string | null, status?: string | null, createdAt?: any | null, updatedAt?: any | null } | null };
+
+export type InsertTripPointMutationVariables = Exact<{
+  tripId: Scalars['String']['input'];
+  geolocation: GeolocationInput;
+}>;
+
+
+export type InsertTripPointMutation = { __typename?: 'RootMutation', insertTripPoint?: { __typename?: 'Trip', id?: string | null, route?: string | null, status?: string | null, createdAt?: any | null, updatedAt?: any | null } | null };
+
+export type InsertBatchTripPointsMutationVariables = Exact<{
+  tripId: Scalars['String']['input'];
+  geolocations: Array<GeolocationInput> | GeolocationInput;
+}>;
+
+
+export type InsertBatchTripPointsMutation = { __typename?: 'RootMutation', insertBatchTripPoints?: { __typename?: 'Trip', id?: string | null, route?: string | null, status?: string | null, createdAt?: any | null, updatedAt?: any | null } | null };
+
 export type UpdateProfileMutationVariables = Exact<{
   profile?: InputMaybe<UserProfile>;
 }>;
@@ -361,6 +434,13 @@ export type GetWeb3FarmingProfileQueryVariables = Exact<{ [key: string]: never; 
 
 
 export type GetWeb3FarmingProfileQuery = { __typename?: 'RootQuery', web3FarmingProfile?: { __typename?: 'Web3FarmingProfile', id?: string | null, createdAt?: any | null, invitedBy?: string | null, countSuccessReferrals?: number | null, quests?: Array<{ __typename?: 'Web3FarmingQuest', id?: string | null, title?: string | null, description?: string | null, GOPoints?: number | null, type?: Web3FarmingQuestType | null, URL?: string | null, androidDownloadLink?: string | null, appleDownloadLink?: string | null, completed?: boolean | null, createdAt?: any | null } | null> | null, referralCodes?: Array<{ __typename?: 'Web3FarmingReferralCode', id?: string | null, code?: string | null, invitedId?: string | null, invitedDate?: any | null, invitedGOPoints?: number | null, referrerGOPoints?: number | null } | null> | null } | null };
+
+export type GetTripQueryVariables = Exact<{
+  tripId: Scalars['String']['input'];
+}>;
+
+
+export type GetTripQuery = { __typename?: 'RootQuery', trip?: { __typename?: 'Trip', id?: string | null, route?: string | null, status?: string | null, createdAt?: any | null, updatedAt?: any | null } | null };
 
 export type GetUserWitDailyMissionsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -543,6 +623,39 @@ export const Web3FarmingRefreshReferralsDocument = gql`
   }
 }
     `;
+export const StartTripDocument = gql`
+    mutation startTrip($geolocation: GeolocationInput!) {
+  startTrip(geolocation: $geolocation) {
+    id
+    route
+    status
+    createdAt
+    updatedAt
+  }
+}
+    `;
+export const InsertTripPointDocument = gql`
+    mutation insertTripPoint($tripId: String!, $geolocation: GeolocationInput!) {
+  insertTripPoint(tripID: $tripId, geolocation: $geolocation) {
+    id
+    route
+    status
+    createdAt
+    updatedAt
+  }
+}
+    `;
+export const InsertBatchTripPointsDocument = gql`
+    mutation insertBatchTripPoints($tripId: String!, $geolocations: [GeolocationInput!]!) {
+  insertBatchTripPoints(tripID: $tripId, geolocations: $geolocations) {
+    id
+    route
+    status
+    createdAt
+    updatedAt
+  }
+}
+    `;
 export const UpdateProfileDocument = gql`
     mutation updateProfile($profile: UserProfile) {
   updateProfile(profile: $profile) {
@@ -682,6 +795,17 @@ export const GetWeb3FarmingProfileDocument = gql`
   }
 }
     `;
+export const GetTripDocument = gql`
+    query getTrip($tripId: String!) {
+  trip(tripID: $tripId) {
+    id
+    route
+    status
+    createdAt
+    updatedAt
+  }
+}
+    `;
 export const GetUserWitDailyMissionsDocument = gql`
     query getUserWitDailyMissions {
   user {
@@ -734,6 +858,15 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     web3FarmingRefreshReferrals(variables?: Web3FarmingRefreshReferralsMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Web3FarmingRefreshReferralsMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<Web3FarmingRefreshReferralsMutation>(Web3FarmingRefreshReferralsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'web3FarmingRefreshReferrals', 'mutation', variables);
     },
+    startTrip(variables: StartTripMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<StartTripMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<StartTripMutation>(StartTripDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'startTrip', 'mutation', variables);
+    },
+    insertTripPoint(variables: InsertTripPointMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<InsertTripPointMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<InsertTripPointMutation>(InsertTripPointDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'insertTripPoint', 'mutation', variables);
+    },
+    insertBatchTripPoints(variables: InsertBatchTripPointsMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<InsertBatchTripPointsMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<InsertBatchTripPointsMutation>(InsertBatchTripPointsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'insertBatchTripPoints', 'mutation', variables);
+    },
     updateProfile(variables?: UpdateProfileMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<UpdateProfileMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<UpdateProfileMutation>(UpdateProfileDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'updateProfile', 'mutation', variables);
     },
@@ -757,6 +890,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     getWeb3FarmingProfile(variables?: GetWeb3FarmingProfileQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetWeb3FarmingProfileQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetWeb3FarmingProfileQuery>(GetWeb3FarmingProfileDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getWeb3FarmingProfile', 'query', variables);
+    },
+    getTrip(variables: GetTripQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetTripQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetTripQuery>(GetTripDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getTrip', 'query', variables);
     },
     getUserWitDailyMissions(variables?: GetUserWitDailyMissionsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetUserWitDailyMissionsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetUserWitDailyMissionsQuery>(GetUserWitDailyMissionsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUserWitDailyMissions', 'query', variables);

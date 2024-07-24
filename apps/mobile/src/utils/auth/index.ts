@@ -25,17 +25,18 @@ auth().onIdTokenChanged(async (authUser) => {
 
 				appActions.setAppUser(user);
 				resolveInitAuthPromise(user);
-			} else {
-				resolveInitAuthPromise(undefined);
+				return;
 			}
 		} catch (err) {
 			await logOut();
 			crashlytics().recordError(err as Error, 'resolveUser');
 			console.debug('Failed to resolve client from API:', err);
 		}
-	} else {
-		resolveInitAuthPromise(undefined);
 	}
+
+	// attempt to resolve auth promise with undefined
+	// if having no resolved user or fetching error
+	resolveInitAuthPromise(undefined);
 });
 
 let resolveInitAuthPromise: (user: User | undefined) => void;
@@ -44,6 +45,17 @@ export let initAuthPromise = new Promise<User | undefined>((resolve) => {
 	resolveInitAuthPromise = (user) => {
 		resolve(user);
 	};
+
+	const authPromiseTimeout = 10000;
+
+	setTimeout(() => {
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		const resolved = (initAuthPromise as any)._j !== null;
+		if (!resolved) {
+			console.debug('Init auth timeout, resolved');
+			resolve(undefined);
+		}
+	}, authPromiseTimeout);
 });
 
 export const logOut = async () => {
