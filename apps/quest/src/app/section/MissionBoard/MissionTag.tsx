@@ -2,7 +2,6 @@ import type { FC, ReactNode } from 'react';
 import { useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import type { Web3FarmingQuest } from '@aigo/api/graphql';
-import { Web3FarmingQuestType } from '@aigo/api/graphql';
 import { graphqlClient } from '@aigo/api/graphql';
 import type { User, Web3FarmingProfile } from '@aigo/api/sdk';
 import ChevronUp from '@aigo/components/icon/ChevronUp';
@@ -45,34 +44,32 @@ const MissionTag: FC<Props> = ({
 	};
 
 	const onVerify = async () => {
-		switch (item.type) {
-			case Web3FarmingQuestType.DownloadApp:
-				showInformation(
-					'Verify download AiGO',
-					'Nice! You are now an AiGO member, your quest is verifying and your points will be distribute when it’s complete!',
-				);
-				break;
-			default:
-				setLoading(true);
-				try {
-					const { web3FarmingVerifyQuestAndClaimPoints } =
-						await graphqlClient.web3FarmingVerifyQuestAndClaimPoints({
-							questId: item.id,
-						});
-					appActions.queryAndUpdateGOPoints();
-					tracker.logEvents('verify_quest', {
-						questId: item.id,
-						questType: item.type,
-					});
+		setLoading(true);
+		try {
+			const { web3FarmingVerifyQuestAndClaimPoints } =
+				await graphqlClient.web3FarmingVerifyQuestAndClaimPoints({
+					questId: item.id,
+				});
+			appActions.queryAndUpdateGOPoints();
+			tracker.logEvents('verify_quest', {
+				questId: item.id,
+				questType: item.type,
+			});
 
-					setInnerVerified(
-						web3FarmingVerifyQuestAndClaimPoints?.completed || false,
-					);
-				} catch (error) {
-					console.log(JSON.stringify(error, null, 2));
-				}
-				setLoading(false);
+			setInnerVerified(
+				web3FarmingVerifyQuestAndClaimPoints?.completed || false,
+			);
+		} catch (error) {
+			const errorString = JSON.stringify(error, null, 2);
+			const isNotCompleted = errorString.indexOf('record not found');
+			if (isNotCompleted) {
+				showInformation(
+					'Quest verification status',
+					"Couldn't find proof that you've completed the Quest yet, please re-try the action and check again later.",
+				);
+			}
 		}
+		setLoading(false);
 	};
 	const handlePress = () => {
 		if (farmingProfile?.id) {
