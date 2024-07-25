@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	logo: {
-		width: 250,
+		width: 180,
 		objectFit: 'contain',
 	},
 	version: {

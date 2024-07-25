@@ -184,6 +184,6 @@ const styles = StyleSheet.create({
 		backgroundColor: defaultTheme.cta40,
 	},
 	buttonTitle: {
-		fontSize: 16,
+		fontSize: 13,
 	},
 });

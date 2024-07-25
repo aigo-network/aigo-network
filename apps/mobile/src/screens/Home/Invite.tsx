@@ -35,7 +35,9 @@ export const Invite = () => {
 					hitSlop={14}
 					onPress={showInvitationCode}
 				>
-					<Text>{homeContent.inviteSection.inviteButton}</Text>
+					<Text style={{ fontSize: 13 }}>
+						{homeContent.inviteSection.inviteButton}
+					</Text>
 				</TouchableOpacity>
 			</View>
 		</View>
