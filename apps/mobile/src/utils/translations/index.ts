@@ -110,6 +110,10 @@ export type Content = {
 				checkInButton: string;
 				checkInDay: string;
 			};
+			mapSection: {
+				title: string;
+				openButton: string;
+			};
 		};
 		profile: {
 			title: string;

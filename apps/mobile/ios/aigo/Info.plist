@@ -70,6 +70,12 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Allowing location access enables the app to track your routes and provide detailed tracking features while you are using the app.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Allowing location access enables the app to track your routes and provide detailed tracking features while you are using the app.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allowing location access enables the app to track your routes and provide detailed tracking features while you are using the app.</string>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>This requires your permission to track in order to personalize your experiences.</string>
 	<key>UIAppFonts</key>
@@ -80,6 +86,10 @@
 		<string>Gabarito-Medium.ttf</string>
 		<string>Gabarito-Regular.ttf</string>
 		<string>Gabarito-SemiBold.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

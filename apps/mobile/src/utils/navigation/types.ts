@@ -12,6 +12,7 @@ export type RootStackParamList = {
 	VerifyNNID: undefined;
 	VerifyPhoneNumber: undefined;
 	VerifyOTP: undefined;
+	Map: undefined;
 };
 
 declare global {
