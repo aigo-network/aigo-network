@@ -36,6 +36,7 @@ export const syncRemoteConfig = async () => {
 		invitationUrl: conf.invitationUrl?.asString(),
 		deepAnalyticsEnabled: conf.deepAnalyticsEnabled?.asBoolean(),
 		minimalVersion: conf.minimalVersion?.asString() || '1.0.0',
+		enableMapFeature: conf.enableMapFeature?.asBoolean(),
 		watchPositionOptions: parseRemoteJSON(rawWatchPositionOptions),
 	};
 };

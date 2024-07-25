@@ -1,6 +1,8 @@
 import { ScrollView, StyleSheet, View } from 'react-native';
+import { appState } from 'state/app';
 import { useTransparencyTracking, useUserProfile } from 'utils/hooks/app';
 import { useNotificationPermissionRequest } from 'utils/hooks/notification';
+import { useSnapshot } from 'valtio';
 
 import DailyCheckIn from './DailyCheckIn';
 import Header from './Header';
@@ -13,6 +15,8 @@ export const HomeScreen = () => {
 	useTransparencyTracking();
 	useNotificationPermissionRequest();
 
+	const { remoteConfig } = useSnapshot(appState);
+
 	return (
 		<View style={styles.container}>
 			<Header />
@@ -24,7 +28,7 @@ export const HomeScreen = () => {
 				<Invite />
 				<DailyCheckIn />
 				{/* <DailyMissions /> */}
-				<Map />
+				{remoteConfig.enableMapFeature && <Map />}
 			</ScrollView>
 		</View>
 	);

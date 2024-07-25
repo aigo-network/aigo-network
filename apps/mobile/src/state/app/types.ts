@@ -6,6 +6,7 @@ export type RemoteConfig = {
 	invitationUrl: string;
 	deepAnalyticsEnabled: boolean;
 	minimalVersion: string;
+	enableMapFeature: boolean;
 	watchPositionOptions: GeolocationOptions;
 };
 
