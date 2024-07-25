@@ -1,4 +1,11 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+	Image,
+	ImageBackground,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PlaceIcon from '@aigo/components/icon/PlaceIcon';
 import { useNavigation } from '@react-navigation/native';
@@ -34,26 +41,18 @@ export const Header = () => {
 				</TouchableOpacity>
 			</View>
 
-			<View style={styles.balanceContainer}>
-				<View style={styles.balanceBgContainer}>
-					<Image
-						style={[styles.iconBg, styles.balanceIconTop]}
-						source={require('assets/img/aigo-bg-icon.png')}
-					/>
-					<Image
-						style={[styles.iconBg, styles.balanceIconBottom]}
-						source={require('assets/img/aigo-bg-icon.png')}
-					/>
-				</View>
+			<ImageBackground
+				source={require('/assets/img/balance-bg.png')}
+				style={styles.balanceContainer}
+			>
 				<Text style={styles.balanceText}>
 					{homeContent.headerSection.balanceTitle}
 				</Text>
-				<View>
-					<Text
-						style={styles.balanceAmount}
-					>{`${appUser?.GOPoints || 0} GO`}</Text>
-				</View>
-			</View>
+
+				<Text
+					style={styles.balanceAmount}
+				>{`${appUser?.GOPoints || 0} GO`}</Text>
+			</ImageBackground>
 		</View>
 	);
 };
@@ -63,8 +62,7 @@ export default Header;
 const styles = StyleSheet.create({
 	container: {
 		paddingHorizontal: 16,
-		paddingBottom: 50,
-		marginBottom: 40,
+		gap: 24,
 	},
 	infoContainer: {
 		flexDirection: 'row',
@@ -94,17 +92,11 @@ const styles = StyleSheet.create({
 		borderRadius: 30,
 	},
 	balanceContainer: {
-		backgroundColor: '#6740ff',
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'space-between',
+		gap: 8,
 		paddingHorizontal: 16,
-		paddingVertical: 16,
-		position: 'absolute',
-		bottom: -30,
-		left: 16,
-		right: 16,
+		paddingVertical: 12,
 		borderRadius: 20,
+		overflow: 'hidden',
 		shadowColor: '#000000',
 		shadowOffset: {
 			width: 0,
@@ -113,35 +105,16 @@ const styles = StyleSheet.create({
 		shadowOpacity: 0.1,
 		shadowRadius: 1.5,
 		elevation: -2,
+		objectFit: 'cover',
 	},
 	balanceText: {
 		fontSize: 17,
-		color: '#A0FA82',
+		color: defaultTheme.textLight,
 	},
 	balanceAmount: {
+		fontFamily: 'DMSans',
 		fontSize: 26,
-	},
-	balanceBgContainer: {
-		position: 'absolute',
-		top: 0,
-		bottom: 0,
-		left: 0,
-		right: 0,
-		overflow: 'hidden',
-		borderRadius: 20,
-	},
-	balanceIconTop: {
-		position: 'absolute',
-		right: -70,
-		top: -70,
-	},
-	balanceIconBottom: {
-		position: 'absolute',
-		left: -40,
-		bottom: -120,
-	},
-	iconBg: {
-		width: 167,
-		height: 157,
+		fontWeight: '700',
+		color: defaultTheme.textLight,
 	},
 });
