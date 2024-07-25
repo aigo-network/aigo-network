@@ -31,6 +31,9 @@ export const showConfirmModal = (config: ConfirmConfig) => {
 			showBackdrop: true,
 			xOffset: 16,
 			align: Align.FullCenter,
+			onPressBackdrop: () => {
+				config.onClose?.();
+			},
 		},
 	);
 };
