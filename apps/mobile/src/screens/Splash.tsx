@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import Animated, { FadeInDown, runOnJS } from 'react-native-reanimated';
-import AppIcon from '@aigo/components/icon/AppIcon';
 import SafeContainer from '@aigo/components/SafeContainer';
 import { useNavigation } from '@react-navigation/native';
 import { appActions } from 'state/app';
@@ -44,7 +43,10 @@ export const SplashScreen = () => {
 		<View style={styles.container}>
 			<SafeContainer>
 				<Animated.View entering={IconFadeIn} style={styles.iconContainer}>
-					<AppIcon />
+					<Image
+						style={styles.logo}
+						source={require('/assets/img/aigo-ride-logo.png')}
+					/>
 				</Animated.View>
 			</SafeContainer>
 		</View>
@@ -62,6 +64,10 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
+	},
+	logo: {
+		width: 250,
+		objectFit: 'contain',
 	},
 	version: {
 		textAlign: 'center',
