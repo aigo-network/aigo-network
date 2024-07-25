@@ -1,6 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { config } from '@aigo/config';
 import { appState } from 'state/app';
+import { defaultTheme } from 'utils/global';
 import { useSnapshot } from 'valtio';
 
 import { sharedStyles, showInvitationCode } from './shared';
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
 		gap: 8,
 	},
 	inviteCountText: {
-		color: '#000',
+		color: defaultTheme.textDark80,
 		fontSize: 14,
 	},
 	inviteContainer: {
@@ -61,15 +62,15 @@ const styles = StyleSheet.create({
 	},
 	descriptionText: {
 		flex: 1,
-		color: '#A9A9A9',
+		color: defaultTheme.textDark80,
 	},
 	pointText: {
-		color: '#714CFE',
+		color: defaultTheme.cta100,
 	},
 	inviteButton: {
 		padding: 7,
 		paddingHorizontal: 26,
 		borderRadius: 20,
-		backgroundColor: '#6740FF',
+		backgroundColor: defaultTheme.cta100,
 	},
 });
