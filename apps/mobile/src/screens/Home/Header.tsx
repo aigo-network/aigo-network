@@ -3,6 +3,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PlaceIcon from '@aigo/components/icon/PlaceIcon';
 import { useNavigation } from '@react-navigation/native';
 import { appState } from 'state/app';
+import { defaultTheme } from 'utils/global';
 import { defaultAvatar } from 'utils/misc';
 import { useSnapshot } from 'valtio';
 
@@ -18,9 +19,9 @@ export const Header = () => {
 				<View style={styles.nameContainer}>
 					<Text
 						style={styles.name}
-					>{`${homeContent.headerSection.welcomePrefix} ${appUser?.name}👋`}</Text>
+					>{`${homeContent.headerSection.welcomePrefix}, ${appUser?.name}👋`}</Text>
 					<View style={styles.cityContainer}>
-						<PlaceIcon width={12} />
+						<PlaceIcon width={12} color={defaultTheme.textDark50} />
 						<Text style={styles.city}>{appUser?.city}</Text>
 					</View>
 				</View>
@@ -61,7 +62,6 @@ export default Header;
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: '#6740ff',
 		paddingHorizontal: 16,
 		paddingBottom: 50,
 		marginBottom: 40,
@@ -75,6 +75,8 @@ const styles = StyleSheet.create({
 	},
 	name: {
 		fontSize: 20,
+		color: defaultTheme.textDark80,
+		fontWeight: '600',
 	},
 	cityContainer: {
 		flexDirection: 'row',
@@ -83,6 +85,8 @@ const styles = StyleSheet.create({
 	},
 	city: {
 		fontSize: 12,
+		fontWeight: '500',
+		color: defaultTheme.textDark50,
 	},
 	avatar: {
 		width: 60,

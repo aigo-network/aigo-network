@@ -1,4 +1,5 @@
 import { ScrollView, StyleSheet, View } from 'react-native';
+import { defaultTheme } from 'utils/global';
 import { useTransparencyTracking, useUserProfile } from 'utils/hooks/app';
 import { useNotificationPermissionRequest } from 'utils/hooks/notification';
 
@@ -22,7 +23,6 @@ export const HomeScreen = () => {
 				<Social />
 				<Invite />
 				<DailyCheckIn />
-				{/* <DailyMissions /> */}
 			</ScrollView>
 		</View>
 	);
@@ -33,7 +33,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#F7F7F7',
+		backgroundColor: defaultTheme.bgLight,
 	},
 	mainContainer: {
 		flex: 1,
