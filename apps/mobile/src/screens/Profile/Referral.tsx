@@ -11,6 +11,7 @@ import { Button } from '@aigo/components/Button';
 import { config } from '@aigo/config';
 import analytics from '@react-native-firebase/analytics';
 import { appActions, appState } from 'state/app';
+import { defaultTheme } from 'utils/global';
 import { useSnapshot } from 'valtio';
 
 import { showReferralPoint } from './shared';
@@ -76,9 +77,7 @@ export const Referral = () => {
 					onPress={handleInputInvitationCode}
 					disabled={!code}
 				>
-					<Text
-						style={[styles.verifyButtonText, !code && styles.disableButtonText]}
-					>
+					<Text style={[styles.verifyButtonText]}>
 						{referralContent.verifyButton}
 					</Text>
 				</Button>
@@ -97,28 +96,28 @@ const styles = StyleSheet.create({
 	title: {
 		fontSize: 18,
 		fontWeight: '500',
-		color: '#000',
+		color: defaultTheme.textDark90,
 	},
 	descriptionText: {
-		color: '#6C6764',
+		color: defaultTheme.textDark70,
 		marginVertical: 8,
 	},
 	pointText: {
-		color: '#6740FF',
+		color: defaultTheme.cta100,
 		fontWeight: '600',
 	},
 	inputContainer: {
 		marginBottom: 14,
 	},
 	codeInput: {
-		backgroundColor: '#FFFFFF',
+		backgroundColor: defaultTheme.bgLight,
 		padding: 16,
 		borderRadius: 30,
 		textAlign: 'center',
-		color: '#000',
+		color: defaultTheme.textDark90,
 		fontSize: 18,
 		borderWidth: 1,
-		borderColor: '#eaeaea',
+		borderColor: defaultTheme.inputBorder,
 	},
 	errorContainer: {
 		position: 'absolute',
@@ -129,29 +128,26 @@ const styles = StyleSheet.create({
 	errorText: {
 		fontSize: 14,
 		textAlign: 'center',
-		color: '#D84A4A',
+		color: defaultTheme.red,
 	},
 	errorCodeInput: {
-		borderColor: '#D84A4A',
+		borderColor: defaultTheme.red,
 	},
 	loadingContainer: {
 		paddingTop: 16,
 		paddingBottom: 17,
 	},
 	verifyButton: {
-		backgroundColor: '#a0fa82',
+		backgroundColor: defaultTheme.textDark90,
 		paddingVertical: 15,
 		borderRadius: 50,
 	},
 	disableButton: {
-		backgroundColor: '#DDDDDD',
+		opacity: 0.1,
 	},
 	verifyButtonText: {
 		fontWeight: '500',
 		fontSize: 19,
-		color: '#6740FF',
-	},
-	disableButtonText: {
-		color: '#878787',
+		color: defaultTheme.textLight,
 	},
 });
