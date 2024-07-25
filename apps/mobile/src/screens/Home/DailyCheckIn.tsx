@@ -161,8 +161,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	loadingContainer: {
-		width: 50,
-		height: 33,
+		width: '100%',
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
