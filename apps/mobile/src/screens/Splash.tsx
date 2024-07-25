@@ -58,7 +58,7 @@ export default SplashScreen;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#6740ff',
+		backgroundColor: '#1b1b1b',
 	},
 	iconContainer: {
 		flex: 1,

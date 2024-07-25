@@ -6,26 +6,19 @@ import { config } from '@aigo/config';
 import { Align, showModal } from 'empty-modal';
 import mustache from 'mustache';
 import { appState } from 'state/app';
+import { defaultTheme } from 'utils/global';
 
 export const sharedStyles = StyleSheet.create({
 	container: {
-		backgroundColor: '#fff',
+		backgroundColor: defaultTheme.gray10,
 		padding: 16,
 		paddingTop: 18,
 		paddingBottom: 22,
 		borderRadius: 20,
-		shadowColor: '#000000',
-		shadowOffset: {
-			width: 0,
-			height: 1,
-		},
-		shadowOpacity: 0.1,
-		shadowRadius: 1.5,
-		elevation: 2,
 		gap: 14,
 	},
 	title: {
-		color: '#000',
+		color: defaultTheme.textDark90,
 		fontSize: 17,
 	},
 });
