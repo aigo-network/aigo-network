@@ -2,11 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { mapActions } from 'state/map';
-import {
-	getCurrentLocation,
-	requestGeolocationPermission,
-	watchLocation,
-} from 'utils/geolocation';
+import { requestGeolocationPermission, watchLocation } from 'utils/geolocation';
 
 import MapActions from './MapActions';
 import MapInfo from './MapInfo';
@@ -28,11 +24,9 @@ export const MapScreen = () => {
 		setPermissionReady(true);
 
 		watchLocation(async (position) => {
+			console.debug('Location change', new Date(position.timestamp));
 			await mapActions.throttledSetCurrentLocation(position);
 		});
-
-		const initPosition = await getCurrentLocation();
-		await mapActions.throttledSetCurrentLocation(initPosition);
 	}, []);
 
 	useEffect(() => {
