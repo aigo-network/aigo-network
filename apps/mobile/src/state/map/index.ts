@@ -25,6 +25,12 @@ const throttle = pThrottle({
 });
 
 export const mapActions = {
+	setMapReady(state: boolean) {
+		mapState.mapReady = state;
+	},
+	setPermissionReady(state: boolean) {
+		mapState.permissionReady = state;
+	},
 	throttledSetCurrentLocation: throttle(
 		async (location: GeolocationResponse) => {
 			try {

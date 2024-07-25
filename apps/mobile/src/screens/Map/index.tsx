@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { mapActions } from 'state/map';
+import { mapActions, useMapState } from 'state/map';
 import { requestGeolocationPermission, watchLocation } from 'utils/geolocation';
 
 import MapActions from './MapActions';
@@ -10,18 +10,17 @@ import MapView from './MapView';
 
 export const MapScreen = () => {
 	const { goBack } = useNavigation();
-	const [mapReady, setMapReady] = useState(false);
-	const [permissionReady, setPermissionReady] = useState(false);
+	const { mapReady, permissionReady } = useMapState();
 
 	const handleFinishLoadingMap = useCallback(() => {
 		console.debug('Finish loading map');
-		setMapReady(true);
+		mapActions.setMapReady(true);
 	}, []);
 
 	const handleSuccessRequestGeoPermission = useCallback(async () => {
 		console.debug('Successfully request geolocation permission');
 
-		setPermissionReady(true);
+		mapActions.setPermissionReady(true);
 
 		watchLocation(async (position) => {
 			console.debug('Location change', new Date(position.timestamp));

@@ -6,4 +6,6 @@ export type MapState = {
 		id: string;
 		startedAt: Date;
 	};
+	mapReady?: boolean;
+	permissionReady?: boolean;
 };
