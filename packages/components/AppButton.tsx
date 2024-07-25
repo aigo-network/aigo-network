@@ -8,9 +8,9 @@ type Props = OriginalButtonProps & {
 	title: string;
 };
 
-export const AppButton: FC<Props> = ({ title, ...props }) => {
+export const AppButton: FC<Props> = ({ title, style, ...props }) => {
 	return (
-		<Button style={styles.container} {...props}>
+		<Button style={[styles.container, style]} {...props}>
 			<Text style={styles.title}>{title}</Text>
 		</Button>
 	);

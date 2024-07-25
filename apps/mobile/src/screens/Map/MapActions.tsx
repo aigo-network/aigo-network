@@ -1,12 +1,16 @@
 import { useState } from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import AppButton from '@aigo/components/AppButton';
+import ChevronLeft from '@aigo/components/icon/ChevronLeft';
+import { useNavigation } from '@react-navigation/native';
 import { showConfirmModal } from 'modals/Confirm';
 import { mapActions, useMapState } from 'state/map';
 
 import { useBouncedMapInsets } from './shared';
 
 export const MapActions = () => {
+	const { goBack } = useNavigation();
 	const { safeInsets } = useBouncedMapInsets();
 	const { bottom } = safeInsets;
 	const { currentTrip: currentRoute } = useMapState();
@@ -56,12 +60,24 @@ export const MapActions = () => {
 
 	return (
 		<View style={[styles.container, { bottom }]}>
+			<TouchableOpacity hitSlop={14} onPress={goBack}>
+				<ChevronLeft width={28} color={'#6c6c6c'} strokeWidth="3" />
+			</TouchableOpacity>
+
 			{loading ? (
 				<ActivityIndicator size={'large'} />
 			) : !currentRoute ? (
-				<AppButton title="Start" onPress={handlePressStart} />
+				<AppButton
+					style={styles.button}
+					title="Start"
+					onPress={handlePressStart}
+				/>
 			) : (
-				<AppButton title="End your journey" onPress={handlePressEnd} />
+				<AppButton
+					style={styles.button}
+					title="End your journey"
+					onPress={handlePressEnd}
+				/>
 			)}
 		</View>
 	);
@@ -76,5 +92,11 @@ const styles = StyleSheet.create({
 		left: 0,
 		right: 0,
 		paddingHorizontal: 20,
+		flexDirection: 'row',
+		alignItems: 'center',
+		gap: 14,
+	},
+	button: {
+		flex: 1,
 	},
 });
