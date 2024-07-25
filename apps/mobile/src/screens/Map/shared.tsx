@@ -4,6 +4,8 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as turf from '@turf/turf';
 import { getMapState, useMapState } from 'state/map';
 
+export const HCMLocation = [106.6297, 10.8231];
+
 export const emptyRoute: GeoJSON.LineString = {
 	type: 'LineString',
 	coordinates: [

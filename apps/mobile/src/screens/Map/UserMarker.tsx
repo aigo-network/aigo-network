@@ -4,20 +4,20 @@ import { appState } from 'state/app';
 import { defaultAvatar } from 'utils/misc';
 import { useSnapshot } from 'valtio';
 
-import { useCurrentCoordinate } from './shared';
+import { HCMLocation, useCurrentCoordinate } from './shared';
 
 export const UserMarker = () => {
 	const { appUser } = useSnapshot(appState);
 	const { coordinate } = useCurrentCoordinate();
 
-	if (!coordinate) return null;
-
 	return (
-		<MarkerView coordinate={coordinate}>
-			<Image
-				style={styles.avatar}
-				source={{ uri: appUser?.imageUrl || defaultAvatar }}
-			/>
+		<MarkerView coordinate={coordinate || HCMLocation}>
+			{coordinate && (
+				<Image
+					style={styles.avatar}
+					source={{ uri: appUser?.imageUrl || defaultAvatar }}
+				/>
+			)}
 		</MarkerView>
 	);
 };

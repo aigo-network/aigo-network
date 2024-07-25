@@ -2,7 +2,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { mapActions } from 'state/map';
-import { requestGeolocationPermission, watchLocation } from 'utils/geolocation';
+import {
+	getCurrentLocation,
+	requestGeolocationPermission,
+	watchLocation,
+} from 'utils/geolocation';
 
 import MapActions from './MapActions';
 import MapInfo from './MapInfo';
@@ -18,15 +22,22 @@ export const MapScreen = () => {
 		setMapReady(true);
 	}, []);
 
+	const handleSuccessRequestGeoPermission = useCallback(async () => {
+		console.debug('Successfully request geolocation permission');
+
+		setPermissionReady(true);
+
+		watchLocation(async (position) => {
+			await mapActions.setCurrentLocation(position);
+		});
+
+		const initPosition = await getCurrentLocation();
+		await mapActions.setCurrentLocation(initPosition);
+	}, []);
+
 	useEffect(() => {
 		requestGeolocationPermission({
-			onSuccess: async () => {
-				console.debug('Successfully request geolocation permission');
-				setPermissionReady(true);
-				watchLocation(async (position) => {
-					await mapActions.setCurrentLocation(position);
-				});
-			},
+			onSuccess: () => handleSuccessRequestGeoPermission(),
 			onDenied: () => goBack(),
 			onUnavailable: () => goBack(),
 		});

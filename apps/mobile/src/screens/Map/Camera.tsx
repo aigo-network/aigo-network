@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Camera as MapboxCamera } from '@rnmapbox/maps';
 
-import { useCurrentCoordinate } from './shared';
+import { HCMLocation, useCurrentCoordinate } from './shared';
 
 export const Camera = () => {
 	const { coordinate } = useCurrentCoordinate();
@@ -9,14 +9,16 @@ export const Camera = () => {
 
 	useEffect(() => {
 		// only update camera coordinate by the first non-null value
-		if (!innerCoordinate) setInnerCoordinate(coordinate);
+		if (coordinate && !innerCoordinate) setInnerCoordinate(coordinate);
 	}, [coordinate]);
 
 	return (
 		<MapboxCamera
+			defaultSettings={{ centerCoordinate: HCMLocation }}
 			centerCoordinate={innerCoordinate}
 			zoomLevel={14}
 			animationMode="moveTo"
+			pitch={33}
 		/>
 	);
 };
