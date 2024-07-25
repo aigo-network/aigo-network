@@ -15,7 +15,7 @@ const watchLocationInBackground = async () => {
 				'[Background] found pending route, continue to watch location',
 			);
 			backgroundLocationListenerId = watchLocation(async (position) => {
-				await mapActions.setCurrentLocation(position);
+				await mapActions.throttledSetCurrentLocation(position);
 			});
 		} else {
 			console.debug('[Background] no route found, resolved');

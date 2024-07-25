@@ -28,11 +28,11 @@ export const MapScreen = () => {
 		setPermissionReady(true);
 
 		watchLocation(async (position) => {
-			await mapActions.setCurrentLocation(position);
+			await mapActions.throttledSetCurrentLocation(position);
 		});
 
 		const initPosition = await getCurrentLocation();
-		await mapActions.setCurrentLocation(initPosition);
+		await mapActions.throttledSetCurrentLocation(initPosition);
 	}, []);
 
 	useEffect(() => {

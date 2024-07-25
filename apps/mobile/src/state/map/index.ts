@@ -1,6 +1,7 @@
 import { graphqlClient } from '@aigo/api/graphql';
 import type { GeolocationResponse } from '@react-native-community/geolocation';
 import crashlytics from '@react-native-firebase/crashlytics';
+import pThrottle from 'p-throttle';
 import { proxy, useSnapshot } from 'valtio';
 
 import type { MapState } from './types';
@@ -18,28 +19,35 @@ export const getMapState = () => {
 	return { ...mapState };
 };
 
+const throttle = pThrottle({
+	limit: 4,
+	interval: 1000,
+});
+
 export const mapActions = {
-	setCurrentLocation: async (location: GeolocationResponse) => {
-		try {
-			mapState.currentLocation = location;
+	throttledSetCurrentLocation: throttle(
+		async (location: GeolocationResponse) => {
+			try {
+				mapState.currentLocation = location;
 
-			if (!mapState.currentTrip) return;
+				if (!mapState.currentTrip) return;
 
-			const { coords, timestamp } = location;
+				const { coords, timestamp } = location;
 
-			await graphqlClient.insertTripPoint({
-				tripId: mapState.currentTrip.id,
-				geolocation: { ...coords, timestamp: new Date(timestamp) },
-			});
+				await graphqlClient.insertTripPoint({
+					tripId: mapState.currentTrip.id,
+					geolocation: { ...coords, timestamp: new Date(timestamp) },
+				});
 
-			const { longitude, latitude } = coords;
+				const { longitude, latitude } = coords;
 
-			mapState.currentTrip.coordinates.push([longitude, latitude]);
-		} catch (error) {
-			crashlytics().recordError(error as Error, 'insertTripPoint');
-			console.debug('Failed to insert trip point:', error);
-		}
-	},
+				mapState.currentTrip.coordinates.push([longitude, latitude]);
+			} catch (error) {
+				crashlytics().recordError(error as Error, 'insertTripPoint');
+				console.debug('Failed to insert trip point:', error);
+			}
+		},
+	),
 	startNewTrip: async () => {
 		try {
 			const isCurrentRouteActive = !!mapState.currentTrip;

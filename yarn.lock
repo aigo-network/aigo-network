@@ -94,6 +94,7 @@ __metadata:
     jest: "npm:^29.6.3"
     libphonenumber-js: "npm:^1.11.2"
     lottie-react-native: "npm:^6.7.2"
+    p-throttle: "npm:^6.1.0"
     path-scurry: "npm:^1.11.1"
     react: "npm:18.2.0"
     react-native: "npm:0.74.1"
@@ -18082,6 +18083,13 @@ __metadata:
   dependencies:
     aggregate-error: "npm:^3.0.0"
   checksum: 10/7ba4a2b1e24c05e1fc14bbaea0fc6d85cf005ae7e9c9425d4575550f37e2e584b1af97bcde78eacd7559208f20995988d52881334db16cf77bc1bcf68e48ed7c
+  languageName: node
+  linkType: hard
+
+"p-throttle@npm:^6.1.0":
+  version: 6.1.0
+  resolution: "p-throttle@npm:6.1.0"
+  checksum: 10/19524a116a536e1b0503df2c881fb54234337b8587751b5faac953690a660e5f647a20b33b2aad444ac7b3eba7b2c9233ab530a36a196745f93f1eba69e21c03
   languageName: node
   linkType: hard
 
