@@ -108,7 +108,8 @@ const styles = StyleSheet.create({
 		paddingVertical: 12,
 		borderRadius: 20,
 		overflow: 'hidden',
-		shadowColor: '#000000',
+		backgroundColor: defaultTheme.textDark100,
+		shadowColor: defaultTheme.textDark100,
 		shadowOffset: {
 			width: 0,
 			height: -1,
