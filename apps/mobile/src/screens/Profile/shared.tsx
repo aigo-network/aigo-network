@@ -1,8 +1,8 @@
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import PointPopup from '@aigo/components/PointPopup';
 import { config } from '@aigo/config';
 import { Align, showModal } from 'empty-modal';
 import ConfirmPopup from 'modals/ConfirmPopup';
+import PointPopup from 'modals/PointPopup';
 import { appState } from 'state/app';
 
 export const showReferralPoint = () => {

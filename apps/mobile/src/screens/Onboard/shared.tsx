@@ -1,9 +1,9 @@
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { graphqlClient } from '@aigo/api/graphql';
-import PointPopup from '@aigo/components/PointPopup';
 import { config } from '@aigo/config';
 import auth from '@react-native-firebase/auth';
 import { Align, showModal } from 'empty-modal';
+import PointPopup from 'modals/PointPopup';
 import { appActions, appState } from 'state/app';
 import { getDefaultUserInfo } from 'state/app/userInfo';
 import { defaultAvatar, defaultEmail } from 'utils/misc';
