@@ -99,6 +99,33 @@ type Device {
 }
 
 """"""
+input GeolocationInput {
+  """"""
+  accuracy: Float!
+
+  """"""
+  altitude: Float
+
+  """"""
+  altitudeAccuracy: Float
+
+  """"""
+  heading: Float
+
+  """"""
+  latitude: Float!
+
+  """"""
+  longitude: Float!
+
+  """"""
+  speed: Float
+
+  """"""
+  timestamp: DateTime!
+}
+
+""""""
 type Invitation {
   """"""
   invitedBy: String
@@ -193,6 +220,9 @@ type RootMutation {
   completeOnboarding: User
 
   """"""
+  completeTrip(tripID: String!): Boolean
+
+  """"""
   createDeferredLinking(url: String!): DeferredLinking
 
   """"""
@@ -202,7 +232,16 @@ type RootMutation {
   inputInvitationCode(code: String): Invitation
 
   """"""
+  insertBatchTripPoints(geolocations: [GeolocationInput!]!, tripID: String!): Trip
+
+  """"""
+  insertTripPoint(geolocation: GeolocationInput!, tripID: String!): Trip
+
+  """"""
   registerDevice(input: RegisterDeviceInput!): Device
+
+  """"""
+  startTrip(geolocation: GeolocationInput!): Trip
 
   """"""
   trackAppOpenWithLinkingEvent(appStage: AppStage!, url: String!): String
@@ -241,10 +280,31 @@ type RootQuery {
   ping: String
 
   """"""
+  trip(tripID: String!): Trip
+
+  """"""
   user: User
 
   """"""
   web3FarmingProfile: Web3FarmingProfile
+}
+
+""""""
+type Trip {
+  """"""
+  createdAt: DateTime
+
+  """"""
+  id: String
+
+  """"""
+  route: String
+
+  """"""
+  status: String
+
+  """"""
+  updatedAt: DateTime
 }
 
 """"""

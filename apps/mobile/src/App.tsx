@@ -10,6 +10,7 @@ import HomeScreen from 'screens/Home';
 import LoginScreen from 'screens/Login';
 import OtpLoginScreen from 'screens/Login/OTPLogin';
 import PhoneLoginScreen from 'screens/Login/PhoneLogin';
+import MapScreen from 'screens/Map';
 import CityName from 'screens/Onboard/CityName';
 import ProfileName from 'screens/Onboard/ProfileName';
 import UserDescription from 'screens/Onboard/UserDescription';
@@ -18,7 +19,9 @@ import SplashScreen from 'screens/Splash';
 import VerifyNNIDScreen from 'screens/VerifyNNID';
 import VerifyOTPScreen from 'screens/VerifyOTP';
 import VerifyPhoneNumberScreen from 'screens/VerifyPhoneNumber';
+import { handleAppStateChangeForBackgroundGPS } from 'utils/geolocation/background';
 import { useAppConfigure } from 'utils/hooks/app';
+import { useAppState } from 'utils/hooks/appState';
 import { useDeepLinkHandler } from 'utils/hooks/deeplink';
 import { useNavigationConfig } from 'utils/hooks/navigation';
 import { useNotifications } from 'utils/hooks/notification';
@@ -28,6 +31,13 @@ import { navigationRef } from 'utils/navigation';
 
 import 'utils/global';
 import 'utils/auth';
+import 'utils/mapbox';
+import 'utils/geolocation';
+import 'utils/errors';
+
+if (__DEV__) {
+	require('../ReactotronConfig');
+}
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -36,6 +46,7 @@ export const AppContainer: FC = () => {
 	useAppConfigure();
 	useNotifications();
 	useDeepLinkHandler();
+	useAppState(handleAppStateChangeForBackgroundGPS);
 
 	return (
 		<SafeAreaProvider>
@@ -85,6 +96,7 @@ export const AppContainer: FC = () => {
 						<Stack.Group screenOptions={{ headerShown: false }}>
 							<Stack.Screen name="Home" component={HomeScreen} />
 							<Stack.Screen name="Profile" component={ProfileScreen} />
+							<Stack.Screen name="Map" component={MapScreen} />
 							<Stack.Screen name="VerifyNNID" component={VerifyNNIDScreen} />
 							<Stack.Screen
 								name="VerifyPhoneNumber"

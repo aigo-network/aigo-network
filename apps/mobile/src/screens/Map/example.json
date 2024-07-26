@@ -1,0 +1,64 @@
+{
+    "address": "501",
+    "center": [
+        -122.402129,
+        37.763399
+    ],
+    "context": [
+        {
+            "id": "neighborhood.514272492",
+            "mapbox_id": "dXJuOm1ieHBsYzpIcWNzN0E",
+            "text": "Potrero Hill",
+            "wikidata": "Q3400108"
+        },
+        {
+            "id": "postcode.4434141127666770",
+            "text": "94107"
+        },
+        {
+            "id": "place.292358380",
+            "mapbox_id": "dXJuOm1ieHBsYzpFVzBJN0E",
+            "text": "San Francisco",
+            "wikidata": "Q62"
+        },
+        {
+            "id": "district.20547308",
+            "mapbox_id": "dXJuOm1ieHBsYzpBVG1HN0E",
+            "text": "San Francisco County",
+            "wikidata": "Q62"
+        },
+        {
+            "id": "region.419052",
+            "mapbox_id": "dXJuOm1ieHBsYzpCbVRz",
+            "short_code": "US-CA",
+            "text": "California",
+            "wikidata": "Q99"
+        },
+        {
+            "id": "country.8940",
+            "mapbox_id": "dXJuOm1ieHBsYzpJdXc",
+            "short_code": "us",
+            "text": "United States",
+            "wikidata": "Q30"
+        }
+    ],
+    "geometry": {
+        "coordinates": [
+            -122.402129,
+            37.763399
+        ],
+        "type": "Point"
+    },
+    "id": "address.4434141127666770",
+    "place_name": "501 Rhode Island Street, San Francisco, California 94107, United States",
+    "place_type": [
+        "address"
+    ],
+    "properties": {
+        "accuracy": "rooftop",
+        "mapbox_id": "dXJuOm1ieGFkcjpkYjM0YTNhNS1jZDdkLTQ0ZTUtYTBlYS1jNWRiN2Q5NGY2OGE"
+    },
+    "relevance": 1,
+    "text": "Rhode Island Street",
+    "type": "Feature"
+}

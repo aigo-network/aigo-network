@@ -31,6 +31,18 @@ export const defaultRemoteConfig: RemoteConfig = {
 	invitationUrl: 'https://ride.aigo.network/open',
 	deepAnalyticsEnabled: true,
 	minimalVersion: '1.0.0',
+	enableMapFeature: true,
+	// ref: https://github.com/michalchudziak/react-native-geolocation?tab=readme-ov-file#watchposition
+	watchPositionOptions: { distanceFilter: 5, maximumAge: 1000, interval: 5000 },
+	//  {
+	// 	timeout: 60000, // 1 minute timeout to refetch location
+	// 	maximumAge: 1000, // in ms
+	// 	enableHighAccuracy: true,
+	// 	distanceFilter: 10, // in meter
+	// 	useSignificantChanges: false,
+	// 	interval: 4000, // in ms
+	// 	fastestInterval: 1000, // in ms
+	// },
 };
 
 export const initAppState: AppState = {

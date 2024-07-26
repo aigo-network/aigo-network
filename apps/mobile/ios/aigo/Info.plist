@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>AiGO</string>
+	<string>AiGO Ride</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -70,6 +70,12 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Allowing location access enables the app to track your routes and provide detailed tracking features while you are using the app.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Allowing location access enables the app to track your routes and provide detailed tracking features while you are using the app.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allowing location access enables the app to track your routes and provide detailed tracking features while you are using the app.</string>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>This requires your permission to track in order to personalize your experiences.</string>
 	<key>UIAppFonts</key>
@@ -94,6 +100,10 @@
 		<string>Lato-Thin.ttf</string>
 		<string>ClashDisplay-Variable.ttf</string>
 		<string>Poppins-SemiBold.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

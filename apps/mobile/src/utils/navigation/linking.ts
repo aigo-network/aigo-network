@@ -12,7 +12,7 @@ export const linking: LinkingOptions<RootStackParamList> = {
 	],
 	config: {
 		screens: {
-			Open: 'open',
+			Map: '/map',
 		},
 	},
 	getInitialURL: async () => {

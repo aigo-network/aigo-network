@@ -125,11 +125,7 @@ export const getAction: (
 		case Web3FarmingQuestType.JoinDiscord:
 			return () => window.open(quest?.URL || '');
 		case Web3FarmingQuestType.DownloadApp:
-			return () =>
-				showAppDownload({
-					appStore: quest?.appleDownloadLink || '',
-					playStore: quest?.androidDownloadLink || '',
-				});
+			return () => showAppDownload();
 		default:
 			return;
 	}

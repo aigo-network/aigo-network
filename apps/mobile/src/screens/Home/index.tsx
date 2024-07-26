@@ -18,6 +18,7 @@ import { useSnapshot } from 'valtio';
 import DailyCheckIn from './DailyCheckIn';
 import Header from './Header';
 import Invite from './Invite';
+import Map from './Map';
 
 export const HomeScreen = () => {
 	useUserProfile();
@@ -26,6 +27,8 @@ export const HomeScreen = () => {
 	const { bottom } = useSafeAreaInsets();
 	const { appUser, content } = useSnapshot(appState);
 	const homeContent = content.screens.home;
+
+	const { remoteConfig } = useSnapshot(appState);
 
 	return (
 		<View
@@ -59,6 +62,8 @@ export const HomeScreen = () => {
 				/>
 				<DailyCheckIn />
 				<Invite />
+				{/* <DailyMissions /> */}
+				{remoteConfig.enableMapFeature && <Map />}
 			</ScrollView>
 			<Button
 				style={styles.button}

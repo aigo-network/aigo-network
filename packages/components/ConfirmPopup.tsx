@@ -4,13 +4,14 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import X from './icon/X';
 import { Button } from './Button';
 
-interface Props {
+export interface Props {
 	message: string;
-	onClose: () => void;
+	onClose?: () => void;
 	onConfirm?: () => void;
 	onReject?: () => void;
 	yesText?: string;
 	noText?: string;
+	mainAction?: 'yes' | 'no';
 }
 
 export const ConfirmPopup: FC<Props> = ({
@@ -20,6 +21,7 @@ export const ConfirmPopup: FC<Props> = ({
 	onReject,
 	yesText,
 	noText,
+	mainAction = 'no',
 }) => {
 	return (
 		<View style={styles.container}>
@@ -33,11 +35,25 @@ export const ConfirmPopup: FC<Props> = ({
 			<Text style={styles.message}>{message}</Text>
 
 			<View style={styles.buttonGr}>
-				<Button style={styles.btn} onPress={onConfirm}>
-					<Text style={styles.btnText}>{yesText}</Text>
+				<Button
+					style={[styles.btn, mainAction === 'yes' && styles.mainBtn]}
+					onPress={onConfirm}
+				>
+					<Text
+						style={[styles.btnText, mainAction === 'yes' && styles.mainBtnText]}
+					>
+						{yesText}
+					</Text>
 				</Button>
-				<Button style={[styles.btn, styles.defaultBtn]} onPress={onReject}>
-					<Text style={[styles.btnText, styles.defaultBtnText]}>{noText}</Text>
+				<Button
+					style={[styles.btn, mainAction === 'no' && styles.mainBtn]}
+					onPress={onReject}
+				>
+					<Text
+						style={[styles.btnText, mainAction === 'no' && styles.mainBtnText]}
+					>
+						{noText}
+					</Text>
 				</Button>
 			</View>
 		</View>
@@ -81,7 +97,7 @@ const styles = StyleSheet.create({
 		borderRadius: 50,
 		flex: 1,
 	},
-	defaultBtn: {
+	mainBtn: {
 		backgroundColor: '#a0fa82',
 	},
 	btnText: {
@@ -89,7 +105,7 @@ const styles = StyleSheet.create({
 		fontSize: 19,
 		color: '#4D4D4D',
 	},
-	defaultBtnText: {
+	mainBtnText: {
 		color: '#6740FF',
 	},
 });
