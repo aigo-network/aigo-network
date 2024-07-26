@@ -1,11 +1,4 @@
-import {
-	Image,
-	ImageBackground,
-	StyleSheet,
-	Text,
-	TouchableOpacity,
-	View,
-} from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PlaceIcon from '@aigo/components/icon/PlaceIcon';
 import { useNavigation } from '@react-navigation/native';
@@ -40,19 +33,6 @@ export const Header = () => {
 					/>
 				</TouchableOpacity>
 			</View>
-
-			<ImageBackground
-				source={require('/assets/img/balance-bg.png')}
-				style={styles.balanceContainer}
-			>
-				<Text style={styles.balanceText}>
-					{homeContent.headerSection.balanceTitle}
-				</Text>
-
-				<Text
-					style={styles.balanceAmount}
-				>{`${appUser?.GOPoints || 0} GO`}</Text>
-			</ImageBackground>
 		</View>
 	);
 };
@@ -87,8 +67,8 @@ const styles = StyleSheet.create({
 		color: defaultTheme.textDark50,
 	},
 	avatar: {
-		width: 60,
-		height: 60,
+		width: 43,
+		height: 43,
 		borderRadius: 30,
 	},
 	balanceContainer: {

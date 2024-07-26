@@ -1,5 +1,6 @@
 import {
 	Image,
+	ImageBackground,
 	Platform,
 	ScrollView,
 	StyleSheet,
@@ -8,9 +9,11 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Button from 'components/Button';
+import { appState } from 'state/app';
 import { defaultTheme } from 'utils/global';
 import { useTransparencyTracking, useUserProfile } from 'utils/hooks/app';
 import { useNotificationPermissionRequest } from 'utils/hooks/notification';
+import { useSnapshot } from 'valtio';
 
 import DailyCheckIn from './DailyCheckIn';
 import Header from './Header';
@@ -21,6 +24,8 @@ export const HomeScreen = () => {
 	useTransparencyTracking();
 	useNotificationPermissionRequest();
 	const { bottom } = useSafeAreaInsets();
+	const { appUser, content } = useSnapshot(appState);
+	const homeContent = content.screens.home;
 
 	return (
 		<View
@@ -35,6 +40,18 @@ export const HomeScreen = () => {
 				contentContainerStyle={styles.mainContentContainer}
 			>
 				{/* <Social /> */}
+				<ImageBackground
+					source={require('/assets/img/balance-bg.png')}
+					style={styles.balanceContainer}
+				>
+					<Text style={styles.balanceText}>
+						{homeContent.headerSection.balanceTitle}
+					</Text>
+
+					<Text
+						style={styles.balanceAmount}
+					>{`${appUser?.GOPoints || 0} GO`}</Text>
+				</ImageBackground>
 				<Image
 					style={styles.banner}
 					source={require('assets/img/tada-banner.png')}
@@ -65,6 +82,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: defaultTheme.bgLight,
 		gap: 16,
+		position: 'relative',
 	},
 	mainContainer: {
 		flex: 1,
@@ -72,6 +90,7 @@ const styles = StyleSheet.create({
 	mainContentContainer: {
 		flexGrow: 1,
 		paddingHorizontal: 16,
+		paddingBottom: 100,
 		gap: 16,
 	},
 	banner: {
@@ -80,12 +99,42 @@ const styles = StyleSheet.create({
 		borderRadius: 20,
 		overflow: 'hidden',
 	},
+	balanceContainer: {
+		gap: 8,
+		paddingHorizontal: 16,
+		paddingVertical: 12,
+		borderRadius: 20,
+		overflow: 'hidden',
+		shadowColor: '#000000',
+		shadowOffset: {
+			width: 0,
+			height: -1,
+		},
+		shadowOpacity: 0.1,
+		shadowRadius: 1.5,
+		elevation: -2,
+		objectFit: 'cover',
+	},
+	balanceText: {
+		fontSize: 17,
+		color: defaultTheme.textLight,
+	},
+	balanceAmount: {
+		fontFamily: 'DMSans',
+		fontSize: 26,
+		fontWeight: '700',
+		color: defaultTheme.textLight,
+	},
 	button: {
 		backgroundColor: defaultTheme.textDark90,
 		marginHorizontal: 16,
 		paddingVertical: 16,
 		borderRadius: 50,
 		gap: 10,
+		position: 'absolute',
+		bottom: 30,
+		left: 0,
+		right: 0,
 	},
 	prefix: {
 		width: 24,
