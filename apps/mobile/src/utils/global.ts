@@ -9,6 +9,7 @@ export const defaultTheme = {
 	textDark90: '#171717',
 	textDark80: '#464646',
 	textDark70: '#5e5e5e',
+	textDark60: '#757575',
 	textDark50: '#8c8c8c',
 	textDark30: '#bbbbbb',
 	textDark20: '#d3d3d3',
