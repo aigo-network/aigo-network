@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Button from '@aigo/components/Button';
+import { useNavigation } from '@react-navigation/native';
 import { appState } from 'state/app';
 import { defaultTheme } from 'utils/global';
 import { useTransparencyTracking, useUserProfile } from 'utils/hooks/app';
@@ -19,17 +20,21 @@ import ActiveBanners from './ActiveBanners';
 import DailyCheckIn from './DailyCheckIn';
 import Header from './Header';
 import Invite from './Invite';
-import Map from './Map';
 
 export const HomeScreen = () => {
 	useUserProfile();
 	useTransparencyTracking();
 	useNotificationPermissionRequest();
 	const { bottom } = useSafeAreaInsets();
+	const { navigate } = useNavigation();
 	const { appUser, content } = useSnapshot(appState);
 	const homeContent = content.screens.home;
 
 	const { remoteConfig } = useSnapshot(appState);
+
+	const handleOpenMap = () => {
+		navigate('Map');
+	};
 
 	return (
 		<View
@@ -60,19 +65,21 @@ export const HomeScreen = () => {
 				<DailyCheckIn />
 				<Invite />
 				{/* <DailyMissions /> */}
-				{remoteConfig.enableMapFeature && <Map />}
 			</ScrollView>
-			<Button
-				style={styles.button}
-				prefix={
-					<Image
-						source={require('assets/img/bike-ic.png')}
-						style={styles.prefix}
-					/>
-				}
-			>
-				<Text style={styles.title}>Start your trip now</Text>
-			</Button>
+			{remoteConfig.enableMapFeature && (
+				<Button
+					style={styles.button}
+					prefix={
+						<Image
+							source={require('assets/img/bike-ic.png')}
+							style={styles.prefix}
+						/>
+					}
+					onPress={handleOpenMap}
+				>
+					<Text style={styles.title}>Start your trip now</Text>
+				</Button>
+			)}
 		</View>
 	);
 };
