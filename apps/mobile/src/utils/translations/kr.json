@@ -106,9 +106,8 @@
       "dailyMissionSection": {
         "title": "일일 미션"
       },
-      "mapSection": {
-        "title": "AiGO Map",
-        "openButton": "Open Map"
+      "startTrip": {
+        "openButton": "Start your trip now"
       }
     },
     "profile": {

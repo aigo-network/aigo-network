@@ -110,8 +110,7 @@ export type Content = {
 				checkInButton: string;
 				checkInDay: string;
 			};
-			mapSection: {
-				title: string;
+			startTrip: {
 				openButton: string;
 			};
 		};

@@ -7,8 +7,8 @@ import { useSnapshot } from 'valtio';
 import DailyCheckIn from './DailyCheckIn';
 import Header from './Header';
 import Invite from './Invite';
-import Map from './Map';
 import Social from './Social';
+import StartTrip from './StartTrip';
 
 export const HomeScreen = () => {
 	useUserProfile();
@@ -28,8 +28,9 @@ export const HomeScreen = () => {
 				<Invite />
 				<DailyCheckIn />
 				{/* <DailyMissions /> */}
-				{remoteConfig.enableMapFeature && <Map />}
 			</ScrollView>
+
+			{remoteConfig.enableMapFeature && <StartTrip />}
 		</View>
 	);
 };
