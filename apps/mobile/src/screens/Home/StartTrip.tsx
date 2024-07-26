@@ -2,6 +2,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Motorbike from '@aigo/components/icon/Motorbike';
 import { useNavigation } from '@react-navigation/native';
+import { showStartTripBottomSheet } from 'modals/StartTrip';
 import { appState } from 'state/app';
 import { useSnapshot } from 'valtio';
 
@@ -13,6 +14,7 @@ export const StartTrip = () => {
 
 	const handleOpenMap = () => {
 		navigate('Map');
+		showStartTripBottomSheet();
 	};
 
 	const containerStyle = [styles.container, { bottom }];
