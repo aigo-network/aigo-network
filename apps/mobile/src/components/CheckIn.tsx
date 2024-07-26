@@ -88,10 +88,10 @@ const styles = StyleSheet.create({
 const colorMap = {
 	checkedIn: {
 		bg: defaultTheme.cta10,
-		iconBg: defaultTheme.cta10,
+		iconBg: defaultTheme.cta30,
 		icon: defaultTheme.textLight,
 		text: defaultTheme.cta30,
-		dayText: defaultTheme.cta100,
+		dayText: defaultTheme.cta40,
 	},
 	missed: {
 		bg: defaultTheme.gray20,

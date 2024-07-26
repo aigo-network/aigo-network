@@ -5,7 +5,9 @@
     "no": "아니요",
     "cancel": "취소",
     "confirm": "확인",
+	"confirmLogOutTitle": "Log out",
     "confirmLogOutMessage": "로그아웃하시겠습니까??",
+	"confirmDeleteAccountTitle": "Delete account",
     "confirmDeleteAccountMessage": "계정을 삭제하시겠습니까??",
     "invite": {
       "title": "친구 초대 하기!",

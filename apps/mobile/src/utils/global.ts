@@ -20,6 +20,7 @@ export const defaultTheme = {
 	gray20: '#f1f2f3',
 	gray10: '#f8fafb',
 	red: '#d84a4a',
+	inputBorder: '#cbd5e1',
 };
 
 setDefaultProps(Text, {
