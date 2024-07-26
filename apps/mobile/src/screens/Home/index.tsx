@@ -15,11 +15,11 @@ import { useTransparencyTracking, useUserProfile } from 'utils/hooks/app';
 import { useNotificationPermissionRequest } from 'utils/hooks/notification';
 import { useSnapshot } from 'valtio';
 
+import ActiveBanners from './ActiveBanners';
 import DailyCheckIn from './DailyCheckIn';
 import Header from './Header';
 import Invite from './Invite';
 import Map from './Map';
-import ActiveBanners from './ActiveBanners';
 
 export const HomeScreen = () => {
 	useUserProfile();
