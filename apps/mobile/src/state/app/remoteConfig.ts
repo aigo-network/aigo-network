@@ -38,6 +38,7 @@ export const syncRemoteConfig = async () => {
 		minimalVersion: conf.minimalVersion?.asString() || '1.0.0',
 		enableMapFeature: conf.enableMapFeature?.asBoolean(),
 		watchPositionOptions: parseRemoteJSON(rawWatchPositionOptions),
+		activeBanners: parseRemoteJSON(conf.activeBanners),
 	};
 };
 

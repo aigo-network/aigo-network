@@ -1,3 +1,4 @@
+import type { ImageSourcePropType } from 'react-native';
 import { StyleSheet } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { InviteCode } from '@aigo/components/InviteCode';
@@ -80,4 +81,8 @@ export const showCheckInPoint = () => {
 			align: Align.FullCenter,
 		},
 	);
+};
+
+export const bannerMap: Record<string, ImageSourcePropType> = {
+	tada: require('assets/img/banner/tada-banner.png'),
 };
