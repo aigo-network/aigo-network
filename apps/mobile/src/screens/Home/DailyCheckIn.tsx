@@ -9,12 +9,13 @@ import {
 } from 'react-native';
 import type { DailyCheckIn as DailyCheckInType } from '@aigo/api/graphql';
 import { graphqlClient } from '@aigo/api/graphql';
-import type { CheckInStatus } from '@aigo/components/CheckIn';
-import CheckIn from '@aigo/components/CheckIn';
 import { config } from '@aigo/config';
 import analytics from '@react-native-firebase/analytics';
 import crashlytics from '@react-native-firebase/crashlytics';
+import type { CheckInStatus } from 'components/CheckIn';
+import CheckIn from 'components/CheckIn';
 import { appActions, appState } from 'state/app';
+import { defaultTheme } from 'utils/global';
 import { useSnapshot } from 'valtio';
 
 import { sharedStyles, showCheckInPoint } from './shared';
@@ -91,23 +92,6 @@ export const DailyCheckIn = () => {
 				<Text style={sharedStyles.title}>
 					{homeContent.dailyCheckInSection.title}
 				</Text>
-				{loading ? (
-					<View style={styles.loadingContainer}>
-						<ActivityIndicator />
-					</View>
-				) : (
-					<TouchableOpacity
-						style={[
-							styles.checkInButton,
-							todayCheckIn?.completed && styles.disableCheckInButton,
-						]}
-						onPress={handleCheckIn}
-						disabled={!!todayCheckIn?.completed}
-						hitSlop={14}
-					>
-						<Text>{homeContent.dailyCheckInSection.checkInButton}</Text>
-					</TouchableOpacity>
-				)}
 			</View>
 			<ScrollView
 				ref={scrollViewRef}
@@ -141,6 +125,25 @@ export const DailyCheckIn = () => {
 					);
 				})}
 			</ScrollView>
+			{loading ? (
+				<View style={styles.loadingContainer}>
+					<ActivityIndicator />
+				</View>
+			) : (
+				<TouchableOpacity
+					style={[
+						styles.checkInButton,
+						todayCheckIn?.completed && styles.disableCheckInButton,
+					]}
+					onPress={handleCheckIn}
+					disabled={!!todayCheckIn?.completed}
+					hitSlop={14}
+				>
+					<Text style={styles.buttonTitle}>
+						{homeContent.dailyCheckInSection.checkInButton}
+					</Text>
+				</TouchableOpacity>
+			)}
 		</View>
 	);
 };
@@ -158,8 +161,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	loadingContainer: {
-		width: 50,
-		height: 33,
+		width: '100%',
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
@@ -175,9 +177,13 @@ const styles = StyleSheet.create({
 		padding: 8,
 		paddingHorizontal: 18,
 		borderRadius: 20,
-		backgroundColor: '#6740FF',
+		backgroundColor: defaultTheme.cta100,
+		alignItems: 'center',
 	},
 	disableCheckInButton: {
-		backgroundColor: '#BEB2EB80',
+		backgroundColor: defaultTheme.cta40,
+	},
+	buttonTitle: {
+		fontSize: 13,
 	},
 });

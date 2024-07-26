@@ -2,6 +2,42 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "assets/fonts/ClashDisplay-Variable.ttf",
+      "sha1": "63e020df60007f8077f7d2b86a5cc2573fb26022"
+    },
+    {
+      "path": "assets/fonts/DMSans-Bold.ttf",
+      "sha1": "e2465f11006633e4e4ac7652b543adfa6f0c26cd"
+    },
+    {
+      "path": "assets/fonts/DMSans-ExtraBold.ttf",
+      "sha1": "0fbdb613f00b0075941c4abd7b77db4373846bd4"
+    },
+    {
+      "path": "assets/fonts/DMSans-ExtraLight.ttf",
+      "sha1": "2f604aa72c070e3eb047604e6af5156581697b33"
+    },
+    {
+      "path": "assets/fonts/DMSans-Light.ttf",
+      "sha1": "cb88a02cd4f884780e8935485739a16ad46f10ad"
+    },
+    {
+      "path": "assets/fonts/DMSans-Medium.ttf",
+      "sha1": "65cb79753017741ff95b1ecd1689d56e96e2edbd"
+    },
+    {
+      "path": "assets/fonts/DMSans-Regular.ttf",
+      "sha1": "8599ebf95f6cd0694dfc3af43522b535fcbfba6d"
+    },
+    {
+      "path": "assets/fonts/DMSans-SemiBold.ttf",
+      "sha1": "fa1443d6c5de4532886f152c24840b1d1588a8bc"
+    },
+    {
+      "path": "assets/fonts/DMSans-Thin.ttf",
+      "sha1": "5ace7c5ddad95820a7d9de5c04cd0f70783f38bc"
+    },
+    {
       "path": "assets/fonts/Gabarito-Black.ttf",
       "sha1": "2be150441c179d0dbc1516f4e6081a0c073f8528"
     },
@@ -24,6 +60,26 @@
     {
       "path": "assets/fonts/Gabarito-SemiBold.ttf",
       "sha1": "fcd5a3c5eade349bfcb9d8c5d5e4a2066d1ef296"
+    },
+    {
+      "path": "assets/fonts/Lato-Bold.ttf",
+      "sha1": "542498221d97bee5bdbccf86ee8890bf8e8005c9"
+    },
+    {
+      "path": "assets/fonts/Lato-Light.ttf",
+      "sha1": "ad0d178564445a535b15d417f5b18019923d3bab"
+    },
+    {
+      "path": "assets/fonts/Lato-Regular.ttf",
+      "sha1": "e923c72eda5e50a87e18ff5c71e9ef4b3b6455a3"
+    },
+    {
+      "path": "assets/fonts/Lato-Thin.ttf",
+      "sha1": "07290446bee3f81ce501a3c3dbfde6097c70ca15"
+    },
+    {
+      "path": "assets/fonts/Poppins-SemiBold.ttf",
+      "sha1": "8a4ace9392d06bcb7f8ea2f5169b07e4c383a90d"
     }
   ]
 }

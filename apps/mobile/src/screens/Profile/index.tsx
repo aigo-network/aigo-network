@@ -1,5 +1,4 @@
 import {
-	Image,
 	ScrollView,
 	StyleSheet,
 	Text,
@@ -10,6 +9,7 @@ import LeftArrowIcon from '@aigo/components/icon/LeftArrowIcon';
 import SafeContainer from '@aigo/components/SafeContainer';
 import { useNavigation } from '@react-navigation/native';
 import { appState } from 'state/app';
+import { defaultTheme } from 'utils/global';
 import { useSnapshot } from 'valtio';
 
 import Footer from './Footer';
@@ -26,18 +26,6 @@ export const ProfileScreen = () => {
 
 	return (
 		<View style={styles.container}>
-			<Image
-				style={styles.backgroundImageLeft}
-				source={require('assets/img/background-logo.png')}
-			/>
-			<Image
-				style={styles.backgroundImageRight}
-				source={require('assets/img/background-logo.png')}
-			/>
-			<Image
-				style={styles.backgroundImageBottom}
-				source={require('assets/img/background-logo.png')}
-			/>
 			<SafeContainer>
 				<View style={styles.titleContainer}>
 					<TouchableOpacity
@@ -45,7 +33,7 @@ export const ProfileScreen = () => {
 						hitSlop={14}
 						onPress={goBack}
 					>
-						<LeftArrowIcon color={'#000'} width={16} />
+						<LeftArrowIcon color={defaultTheme.textDark90} width={16} />
 					</TouchableOpacity>
 					<Text style={styles.title}>{profileContent.title}</Text>
 				</View>
@@ -73,7 +61,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		paddingHorizontal: 16,
-		backgroundColor: '#F7F7F7',
+		backgroundColor: defaultTheme.bgLight,
 	},
 	scrollContainer: {
 		flex: 1,
@@ -107,7 +95,7 @@ const styles = StyleSheet.create({
 	title: {
 		fontSize: 18,
 		fontWeight: '500',
-		color: '#000',
+		color: defaultTheme.textDark90,
 	},
 	backButton: {
 		padding: 10,

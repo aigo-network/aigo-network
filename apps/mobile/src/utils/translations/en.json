@@ -1,11 +1,13 @@
 {
-  "language": "English",
+  "language": "🇬🇧 English",
   "modal": {
     "yes": "Yes",
     "no": "No",
     "cancel": "Cancel",
     "confirm": "Confirm",
+	"confirmLogOutTitle": "Log out",
     "confirmLogOutMessage": "Are you sure to logout?",
+	"confirmDeleteAccountTitle": "Delete account",
     "confirmDeleteAccountMessage": "Do you want to delete your account?",
     "invite": {
       "title": "Invite your friends !",
@@ -100,7 +102,7 @@
       },
       "dailyCheckInSection": {
         "title": "Daily Check-in",
-        "checkInButton": "Check-in",
+        "checkInButton": "Collect 10 GO",
         "checkInDay": "Day"
       },
       "dailyMissionSection": {

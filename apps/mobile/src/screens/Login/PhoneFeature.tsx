@@ -23,6 +23,7 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import type { CountryItem } from 'modals/CountrySelection/SelectionItem';
 import { showCountrySelection } from 'modals/index';
 import dialCode from 'utils/dialCode.json';
+import { defaultTheme } from 'utils/global';
 
 const AnimatedView = Animated.createAnimatedComponent(View);
 
@@ -94,12 +95,9 @@ const PhoneLoginFeature: FC<Props> = ({
 								onPress={signIn}
 								disabled={!isPhoneValid}
 								loading={loading}
+								loadingColor={defaultTheme.textDark90}
 							>
-								<Text
-									style={[styles.btnText, isPhoneValid && styles.activeBtnText]}
-								>
-									{continueButton}
-								</Text>
+								<Text style={styles.btnText}>{continueButton}</Text>
 							</Button>
 						</AnimatedView>
 					}
@@ -110,7 +108,7 @@ const PhoneLoginFeature: FC<Props> = ({
 								hitSlop={10}
 								onPress={() => navigation.goBack()}
 							>
-								<LeftArrowIcon width={24} />
+								<LeftArrowIcon width={24} color={defaultTheme.textDark90} />
 							</TouchableOpacity>
 						</View>
 						<View style={styles.content}>
@@ -122,7 +120,11 @@ const PhoneLoginFeature: FC<Props> = ({
 									onPress={() => showCountrySelection(handleChangeCountry)}
 								>
 									<Text style={{ fontSize: 24 }}>{countryInfo.emoji}</Text>
-									<Text style={{ fontSize: 17 }}>{countryInfo.name}</Text>
+									<Text
+										style={{ fontSize: 17, color: defaultTheme.textDark90 }}
+									>
+										{countryInfo.name}
+									</Text>
 								</TouchableOpacity>
 							</View>
 							<View style={styles.phoneNumber}>
@@ -132,7 +134,7 @@ const PhoneLoginFeature: FC<Props> = ({
 								<TextInput
 									style={styles.phoneInput}
 									placeholder="0 00 00 00 00"
-									placeholderTextColor={'rgba(255, 255, 255, 0.5)'}
+									placeholderTextColor={defaultTheme.textDark30}
 									inputMode="tel"
 									keyboardType="number-pad"
 									autoFocus
@@ -153,7 +155,7 @@ export default PhoneLoginFeature;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#6740ff',
+		backgroundColor: defaultTheme.bgLight,
 	},
 	contentContainer: {
 		flex: 1,
@@ -176,17 +178,19 @@ const styles = StyleSheet.create({
 	title: {
 		fontSize: 30,
 		fontWeight: '700',
+		color: defaultTheme.textDark90,
 	},
 	subText: {
 		marginTop: 15,
 		fontSize: 16,
+		color: defaultTheme.textDark70,
 	},
 	countryContainer: {
 		marginTop: 50,
 		borderTopWidth: 1,
-		borderTopColor: '#afb2ff',
+		borderTopColor: defaultTheme.textDark30,
 		borderBottomWidth: 1,
-		borderBottomColor: '#afb2ff',
+		borderBottomColor: defaultTheme.textDark30,
 	},
 	countryBtn: {
 		flexDirection: 'row',
@@ -197,18 +201,19 @@ const styles = StyleSheet.create({
 	phoneNumber: {
 		height: 60,
 		borderBottomWidth: 1,
-		borderBottomColor: '#afb2ff',
+		borderBottomColor: defaultTheme.textDark30,
 		flexDirection: 'row',
 	},
 	dialCodeBorder: {
 		borderRightWidth: 1,
-		borderRightColor: '#fff',
+		borderRightColor: defaultTheme.textDark30,
 		marginVertical: 10,
 		justifyContent: 'center',
 	},
 	dialCode: {
 		marginRight: 15,
 		fontSize: 17,
+		color: defaultTheme.textDark90,
 	},
 	phoneInput: {
 		marginLeft: 15,
@@ -227,20 +232,18 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-end',
 	},
 	btn: {
-		backgroundColor: '#ebf7e6',
+		backgroundColor: defaultTheme.textDark90,
 		paddingVertical: 15,
 		borderRadius: 50,
+		opacity: 0.1,
 	},
 	activeBtn: {
-		backgroundColor: '#a0fa82',
+		opacity: 1,
 	},
 	btnText: {
-		fontFamily: 'Gabarito',
 		fontWeight: '500',
-		fontSize: 19,
-		color: '#b1c2ab',
-	},
-	activeBtnText: {
-		color: '#6740ff',
+		fontSize: 16,
+		lineHeight: 24,
+		color: defaultTheme.textLight,
 	},
 });

@@ -20,7 +20,7 @@
 
   if (success) {
     RCTRootView *rootView = (RCTRootView *)self.window.rootViewController.view;
-    rootView.backgroundColor = [[UIColor alloc] initWithRed:0.4039 green:0.2510 blue:1 alpha:1];
+    rootView.backgroundColor = [[UIColor alloc] initWithRed:0.11 green:0.11 blue:0.11 alpha:1];
   }
 
   return success;

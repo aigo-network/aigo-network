@@ -3,6 +3,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PlaceIcon from '@aigo/components/icon/PlaceIcon';
 import { useNavigation } from '@react-navigation/native';
 import { appState } from 'state/app';
+import { defaultTheme } from 'utils/global';
 import { defaultAvatar } from 'utils/misc';
 import { useSnapshot } from 'valtio';
 
@@ -18,9 +19,9 @@ export const Header = () => {
 				<View style={styles.nameContainer}>
 					<Text
 						style={styles.name}
-					>{`${homeContent.headerSection.welcomePrefix} ${appUser?.name}👋`}</Text>
+					>{`${homeContent.headerSection.welcomePrefix}, ${appUser?.name}👋`}</Text>
 					<View style={styles.cityContainer}>
-						<PlaceIcon width={12} />
+						<PlaceIcon width={12} color={defaultTheme.textDark50} />
 						<Text style={styles.city}>{appUser?.city}</Text>
 					</View>
 				</View>
@@ -32,27 +33,6 @@ export const Header = () => {
 					/>
 				</TouchableOpacity>
 			</View>
-
-			<View style={styles.balanceContainer}>
-				<View style={styles.balanceBgContainer}>
-					<Image
-						style={[styles.iconBg, styles.balanceIconTop]}
-						source={require('assets/img/aigo-bg-icon.png')}
-					/>
-					<Image
-						style={[styles.iconBg, styles.balanceIconBottom]}
-						source={require('assets/img/aigo-bg-icon.png')}
-					/>
-				</View>
-				<Text style={styles.balanceText}>
-					{homeContent.headerSection.balanceTitle}
-				</Text>
-				<View>
-					<Text
-						style={styles.balanceAmount}
-					>{`${appUser?.GOPoints || 0} GO`}</Text>
-				</View>
-			</View>
 		</View>
 	);
 };
@@ -61,10 +41,8 @@ export default Header;
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: '#6740ff',
 		paddingHorizontal: 16,
-		paddingBottom: 50,
-		marginBottom: 40,
+		gap: 24,
 	},
 	infoContainer: {
 		flexDirection: 'row',
@@ -75,6 +53,8 @@ const styles = StyleSheet.create({
 	},
 	name: {
 		fontSize: 20,
+		color: defaultTheme.textDark80,
+		fontWeight: '600',
 	},
 	cityContainer: {
 		flexDirection: 'row',
@@ -83,24 +63,20 @@ const styles = StyleSheet.create({
 	},
 	city: {
 		fontSize: 12,
+		fontWeight: '500',
+		color: defaultTheme.textDark50,
 	},
 	avatar: {
-		width: 60,
-		height: 60,
+		width: 43,
+		height: 43,
 		borderRadius: 30,
 	},
 	balanceContainer: {
-		backgroundColor: '#6740ff',
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'space-between',
+		gap: 8,
 		paddingHorizontal: 16,
-		paddingVertical: 16,
-		position: 'absolute',
-		bottom: -30,
-		left: 16,
-		right: 16,
+		paddingVertical: 12,
 		borderRadius: 20,
+		overflow: 'hidden',
 		shadowColor: '#000000',
 		shadowOffset: {
 			width: 0,
@@ -109,35 +85,16 @@ const styles = StyleSheet.create({
 		shadowOpacity: 0.1,
 		shadowRadius: 1.5,
 		elevation: -2,
+		objectFit: 'cover',
 	},
 	balanceText: {
 		fontSize: 17,
-		color: '#A0FA82',
+		color: defaultTheme.textLight,
 	},
 	balanceAmount: {
+		fontFamily: 'DMSans',
 		fontSize: 26,
-	},
-	balanceBgContainer: {
-		position: 'absolute',
-		top: 0,
-		bottom: 0,
-		left: 0,
-		right: 0,
-		overflow: 'hidden',
-		borderRadius: 20,
-	},
-	balanceIconTop: {
-		position: 'absolute',
-		right: -70,
-		top: -70,
-	},
-	balanceIconBottom: {
-		position: 'absolute',
-		left: -40,
-		bottom: -120,
-	},
-	iconBg: {
-		width: 167,
-		height: 157,
+		fontWeight: '700',
+		color: defaultTheme.textLight,
 	},
 });

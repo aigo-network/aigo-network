@@ -15,9 +15,10 @@ import Animated, {
 } from 'react-native-reanimated';
 import { Button } from '@aigo/components/Button';
 import LeftArrowIcon from '@aigo/components/icon/LeftArrowIcon';
-import Indicator from '@aigo/components/Indicator';
 import SafeContainer from '@aigo/components/SafeContainer';
 import { useNavigation } from '@react-navigation/native';
+import Indicator from 'components/Indicator';
+import { defaultTheme } from 'utils/global';
 
 interface Props {
 	disabled: boolean;
@@ -44,10 +45,6 @@ export const OnboardLayout: FC<Props> = ({
 	const [loading, setLoading] = useState(false);
 	const [keyboardShown, setKeyboardShown] = useState(Keyboard.isVisible());
 	const paddingBot = useSharedValue(40);
-	const btnBackgroundColor = {
-		backgroundColor: disabled ? '#ebf7e6' : '#a0fa82',
-	};
-	const btnTextColor = { color: disabled ? '#b1c2ab' : '#6740ff' };
 	const btnPaddingBottom = useAnimatedStyle(
 		() => ({ paddingBottom: paddingBot.value }),
 		[paddingBot],
@@ -109,12 +106,12 @@ export const OnboardLayout: FC<Props> = ({
 
 				<AnimatedView style={[styles.btnContainer, btnPaddingBottom]}>
 					<Button
-						style={[styles.btn, btnBackgroundColor]}
+						style={[styles.btn, disabled && styles.disabledBtn]}
 						onPress={handlePressContinue}
 						disabled={disabled}
 						loading={loading}
 					>
-						<Text style={[styles.btnText, btnTextColor]}>{mainBtnText}</Text>
+						<Text style={styles.btnText}>{mainBtnText}</Text>
 					</Button>
 				</AnimatedView>
 			</SafeContainer>
@@ -127,7 +124,7 @@ export default OnboardLayout;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#6740ff',
+		backgroundColor: defaultTheme.bgLight,
 	},
 	contentContainer: {
 		flex: 1,
@@ -141,18 +138,19 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 	},
 	text: {
-		fontFamily: 'Gabarito',
 		textAlign: 'center',
 	},
 	title: {
 		fontSize: 30,
 		fontWeight: '500',
 		marginHorizontal: 25,
+		color: defaultTheme.textDark90,
 	},
 	subTitle: {
 		marginTop: 10,
 		fontSize: 16,
 		marginHorizontal: 25,
+		color: defaultTheme.textDark70,
 	},
 	keyboardLayer: {
 		position: 'absolute',
@@ -166,13 +164,17 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-end',
 	},
 	btn: {
-		backgroundColor: '#a0fa82',
+		backgroundColor: defaultTheme.textDark90,
 		paddingVertical: 15,
 		borderRadius: 50,
 	},
+	disabledBtn: {
+		opacity: 0.1,
+	},
 	btnText: {
-		fontFamily: 'Gabarito',
 		fontWeight: '500',
-		fontSize: 19,
+		fontSize: 16,
+		lineHeight: 24,
+		color: defaultTheme.textLight,
 	},
 });

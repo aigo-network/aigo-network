@@ -12,7 +12,9 @@ export type Content = {
 		no: string;
 		cancel: string;
 		confirm: string;
+		confirmLogOutTitle: string;
 		confirmLogOutMessage: string;
+		confirmDeleteAccountTitle: string;
 		confirmDeleteAccountMessage: string;
 		invite: {
 			title: string;

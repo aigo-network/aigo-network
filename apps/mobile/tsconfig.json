@@ -14,7 +14,8 @@
       "stacks/*": ["./src/stacks/*"],
       "screens/*": ["./src/screens/*"],
       "modals/*": ["./src/modals/*"],
-      "api/*": ["./src/api/*"]
+      "api/*": ["./src/api/*"],
+	  "components/*": ["./src/components/*"],
     }
   }
 }

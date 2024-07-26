@@ -13,6 +13,7 @@ import auth from '@react-native-firebase/auth';
 import type { StackScreenProps } from '@react-navigation/stack';
 import { appActions, appState } from 'state/app';
 import { getDefaultUserInfo } from 'state/app/userInfo';
+import { defaultTheme } from 'utils/global';
 import type { RootStackParamList } from 'utils/navigation';
 import { useSnapshot } from 'valtio';
 
@@ -56,7 +57,7 @@ export const ProfileName: FC<
 					<TextInput
 						style={styles.input}
 						placeholder={inputPlaceholder}
-						placeholderTextColor="#afb2ff"
+						placeholderTextColor={defaultTheme.textDark30}
 						value={name}
 						onChangeText={setName}
 						autoFocus
@@ -82,7 +83,6 @@ const styles = StyleSheet.create({
 	},
 	input: {
 		textAlign: 'center',
-		fontSize: 30,
-		fontWeight: '500',
+		fontSize: 24,
 	},
 });

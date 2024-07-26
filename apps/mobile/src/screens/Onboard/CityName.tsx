@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
-import SearchBox from '@aigo/components/SearchBox';
-import type { CitiesData } from '@aigo/components/SearchResult';
-import SearchResult, { cityToString } from '@aigo/components/SearchResult';
 import crashlytics from '@react-native-firebase/crashlytics';
 import { useNavigation } from '@react-navigation/native';
+import SearchBox from 'components/SearchBox';
+import type { CitiesData } from 'components/SearchResult';
+import SearchResult, { cityToString } from 'components/SearchResult';
 import { appActions, appState } from 'state/app';
 import citiesList from 'utils/cities.json';
+import { defaultTheme } from 'utils/global';
 import { useSnapshot } from 'valtio';
 
 import OnboardLayout from './OnboardLayout';
@@ -89,7 +90,8 @@ export const CityName = () => {
 						onChangeText={onSearchChange}
 						textSearch={searchText}
 						placeholder={searchPlaceholder}
-						placeholderTextColor="f4f4f4"
+						placeholderTextColor={defaultTheme.textDark30}
+						iconColor={defaultTheme.textDark30}
 						autoFocus
 					/>
 					<KeyboardAvoidingView

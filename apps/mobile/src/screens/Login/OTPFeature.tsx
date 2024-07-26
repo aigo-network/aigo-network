@@ -8,10 +8,11 @@ import Animated, {
 import Button from '@aigo/components/Button';
 import LeftArrowIcon from '@aigo/components/icon/LeftArrowIcon';
 import KeyboardView from '@aigo/components/KeyboardView';
-import OtpInput from '@aigo/components/OtpInput';
 import SafeContainer from '@aigo/components/SafeContainer';
 import { useNavigation } from '@react-navigation/native';
+import OtpInput from 'components/OtpInput';
 import { appState } from 'state/app';
+import { defaultTheme } from 'utils/global';
 import { useSnapshot } from 'valtio';
 
 const otpLength = 6;
@@ -78,12 +79,9 @@ const OTPFeature: FC<Props> = ({
 								onPress={wrappedConfirmOTP}
 								disabled={disabled}
 								loading={loading}
+								loadingColor={defaultTheme.textDark90}
 							>
-								<Text
-									style={[styles.btnText, !disabled && styles.activeBtnText]}
-								>
-									{verifyButton}
-								</Text>
+								<Text style={styles.btnText}>{verifyButton}</Text>
 							</Button>
 						</AnimatedView>
 					}
@@ -94,7 +92,7 @@ const OTPFeature: FC<Props> = ({
 								hitSlop={10}
 								onPress={() => navigation.goBack()}
 							>
-								<LeftArrowIcon width={24} />
+								<LeftArrowIcon width={24} color={defaultTheme.textDark90} />
 							</TouchableOpacity>
 						</View>
 						<View style={styles.content}>
@@ -125,7 +123,7 @@ export default OTPFeature;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#6740ff',
+		backgroundColor: defaultTheme.bgLight,
 	},
 	contentContainer: {
 		flex: 1,
@@ -148,13 +146,16 @@ const styles = StyleSheet.create({
 	title: {
 		fontSize: 30,
 		fontWeight: '700',
+		color: defaultTheme.textDark90,
 	},
 	subText: {
 		marginTop: 15,
 		fontSize: 16,
+		color: defaultTheme.textDark70,
 	},
 	highlightPhoneNumber: {
 		fontWeight: '600',
+		color: defaultTheme.textDark70,
 	},
 	otpContainer: {
 		marginHorizontal: 25,
@@ -171,20 +172,18 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-end',
 	},
 	btn: {
-		backgroundColor: '#ebf7e6',
+		backgroundColor: defaultTheme.textDark90,
 		paddingVertical: 15,
 		borderRadius: 50,
+		opacity: 0.1,
 	},
 	activeBtn: {
-		backgroundColor: '#a0fa82',
+		opacity: 1,
 	},
 	btnText: {
-		fontFamily: 'Gabarito',
 		fontWeight: '500',
-		fontSize: 19,
-		color: '#b1c2ab',
-	},
-	activeBtnText: {
-		color: '#6740ff',
+		fontSize: 16,
+		lineHeight: 24,
+		color: defaultTheme.textLight,
 	},
 });
