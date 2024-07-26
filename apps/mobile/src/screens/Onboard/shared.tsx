@@ -44,13 +44,15 @@ export const completeOnboarding = async (cityFallback?: string) => {
 	}
 
 	setTimeout(() => {
-		const { completedOnboardingMessage, messagePrefix } =
+		const { title, completedOnboardingMessage, messagePrefix, messageSuffix } =
 			appState.content.modal.earnPoints;
 		const { cleanModal } = showModal(
 			<Animated.View entering={FadeInDown}>
 				<PointPopup
 					point={config.activity.CompleteOnboarding.points}
+					title={title}
 					messagePrefix={messagePrefix}
+					messageSuffix={messageSuffix}
 					description={completedOnboardingMessage}
 					onPressClose={() => {
 						cleanModal();

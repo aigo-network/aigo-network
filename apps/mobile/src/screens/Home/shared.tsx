@@ -64,13 +64,16 @@ export const showInvitationCode = () => {
 };
 
 export const showCheckInPoint = () => {
-	const { messagePrefix } = appState.content.modal.earnPoints;
+	const { title, messagePrefix, messageSuffix } =
+		appState.content.modal.earnPoints;
 
 	const { cleanModal } = showModal(
 		<Animated.View entering={FadeInDown}>
 			<PointPopup
 				point={config.activity.DailyCheckIn.points}
+				title={title}
 				messagePrefix={messagePrefix}
+				messageSuffix={messageSuffix}
 				onPressClose={() => cleanModal()}
 			/>
 		</Animated.View>,
