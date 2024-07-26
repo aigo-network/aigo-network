@@ -1,5 +1,6 @@
 import type { FC } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import AppIcon from '@aigo/components/icon/AppIcon';
 import Tick from '@aigo/components/icon/Tick';
 import X from '@aigo/components/icon/X';
 import { defaultTheme } from 'utils/global';
@@ -44,10 +45,11 @@ export const CheckIn: FC<Props> = ({ width, status, points, dayNumber }) => {
 						<X width={20} color={colorMap[status].icon} />
 					</View>
 				) : (
-					<Image
-						style={styles.icon}
-						source={require('assets/img/aigo-checkin.png')}
-					/>
+					<View
+						style={[styles.icon, { backgroundColor: colorMap[status].iconBg }]}
+					>
+						<AppIcon color={defaultTheme.textLight} width={20} />
+					</View>
 				)}
 			</View>
 			<Text style={{ textAlign: 'center', color: colorMap[status].dayText }}>
@@ -78,7 +80,7 @@ const styles = StyleSheet.create({
 	},
 	highlight: {
 		borderWidth: 0.5,
-		borderColor: defaultTheme.cta12,
+		borderColor: defaultTheme.cta100,
 	},
 	checkInReward: {
 		textAlign: 'center',
