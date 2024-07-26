@@ -8,7 +8,7 @@ import {
 	View,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import Button from 'components/Button';
+import Button from '@aigo/components/Button';
 import { appState } from 'state/app';
 import { defaultTheme } from 'utils/global';
 import { useTransparencyTracking, useUserProfile } from 'utils/hooks/app';
@@ -135,6 +135,10 @@ const styles = StyleSheet.create({
 		bottom: 30,
 		left: 0,
 		right: 0,
+		shadowColor: '#000000',
+		shadowOpacity: 0.32,
+		shadowRadius: 12,
+		elevation: 8,
 	},
 	prefix: {
 		width: 24,
