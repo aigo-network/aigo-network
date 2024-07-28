@@ -3,7 +3,6 @@ import { setDefaultProps } from '@aigo/config';
 
 export const defaultTheme = {
 	bgLight: '#ffffff',
-	// bgGray: '#f4f5f6',
 	textLight: '#fdfdfd',
 	textDark100: '#000000',
 	textDark90: '#171717',

@@ -5,9 +5,9 @@
     "no": "No",
     "cancel": "Cancel",
     "confirm": "Confirm",
-	"confirmLogOutTitle": "Log out",
+    "confirmLogOutTitle": "Log out",
     "confirmLogOutMessage": "Are you sure to logout?",
-	"confirmDeleteAccountTitle": "Delete account",
+    "confirmDeleteAccountTitle": "Delete account",
     "confirmDeleteAccountMessage": "Do you want to delete your account?",
     "invite": {
       "title": "Invite your friends !",
