@@ -4,7 +4,7 @@ import X from '@aigo/components/icon/X';
 import { Button } from 'components/Button';
 import { defaultTheme } from 'utils/global';
 
-interface Props {
+export interface Props {
 	title: string;
 	message?: string;
 	onClose: () => void;
@@ -12,6 +12,7 @@ interface Props {
 	onReject?: () => void;
 	confirmText?: string;
 	cancelText?: string;
+	mainAction?: 'confirm' | 'cancel';
 }
 
 export const ConfirmPopup: FC<Props> = ({
@@ -20,8 +21,9 @@ export const ConfirmPopup: FC<Props> = ({
 	onClose,
 	onConfirm,
 	onReject,
-	confirmText: confirmText,
-	cancelText: noText,
+	confirmText,
+	cancelText,
+	mainAction = 'cancel',
 }) => {
 	return (
 		<View style={styles.container}>
@@ -38,11 +40,31 @@ export const ConfirmPopup: FC<Props> = ({
 			</View>
 
 			<View style={styles.buttonGr}>
-				<Button style={styles.btn} onPress={onConfirm}>
-					<Text style={styles.btnText}>{confirmText}</Text>
+				<Button
+					style={[styles.btn, mainAction === 'confirm' && styles.defaultBtn]}
+					onPress={onConfirm}
+				>
+					<Text
+						style={[
+							styles.btnText,
+							mainAction === 'confirm' && styles.defaultBtnText,
+						]}
+					>
+						{confirmText}
+					</Text>
 				</Button>
-				<Button style={[styles.btn, styles.defaultBtn]} onPress={onReject}>
-					<Text style={[styles.btnText, styles.defaultBtnText]}>{noText}</Text>
+				<Button
+					style={[styles.btn, mainAction === 'cancel' && styles.defaultBtn]}
+					onPress={onReject}
+				>
+					<Text
+						style={[
+							styles.btnText,
+							mainAction === 'cancel' && styles.defaultBtnText,
+						]}
+					>
+						{cancelText}
+					</Text>
 				</Button>
 			</View>
 		</View>

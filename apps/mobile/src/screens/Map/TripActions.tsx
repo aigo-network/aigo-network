@@ -22,10 +22,10 @@ export const TripActions = () => {
 		setLoading(true);
 		showConfirmModal({
 			modalId: 'confirm-start-trip',
-			message: 'Ready? Go and get GO Points',
-			yesText: 'GO now',
-			noText: 'Close',
-			mainAction: 'yes',
+			title: 'Ready? Go and get GO Points',
+			confirmText: 'GO now',
+			cancelText: 'Close',
+			mainAction: 'confirm',
 			onConfirm: async () => {
 				await mapActions.startNewTrip();
 				setLoading(false);
@@ -43,10 +43,10 @@ export const TripActions = () => {
 		setLoading(true);
 		showConfirmModal({
 			modalId: 'confirm-end-trip',
-			message: 'Are you sure to end this trip?',
-			yesText: 'Confirm',
-			noText: 'Close',
-			mainAction: 'no',
+			title: 'Are you sure to end this trip?',
+			confirmText: 'Confirm',
+			cancelText: 'Close',
+			mainAction: 'cancel',
 			onConfirm: async () => {
 				await mapActions.endCurrentTrip();
 				setLoading(false);
