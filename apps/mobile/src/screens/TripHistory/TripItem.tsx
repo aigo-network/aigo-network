@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
 		paddingLeft: 16,
 		paddingRight: 24,
 		paddingTop: 18,
-		paddingBottom: 22,
+		paddingBottom: 18,
 		borderRadius: 20,
 		gap: 14,
 	},
@@ -122,6 +122,7 @@ const styles = StyleSheet.create({
 	summaryContainer: {
 		flexDirection: 'row',
 		justifyContent: 'space-between',
+		marginTop: 2,
 	},
 	summaryItemContainer: {
 		minWidth: 68,
