@@ -20,7 +20,7 @@ export const useTrips = (): UseTripsReturn => {
 			try {
 				const { trips } = await graphqlClient.getTrips();
 				const tripNodes = trips?.edges.map((e) => e?.node).filter((e) => !!e);
-				if (tripNodes) mapActions.setTrips(tripNodes);
+				if (tripNodes) mapActions.setTrips(tripNodes as Trip[]);
 			} catch (error) {
 				crashlytics().recordError(error as Error, 'getTrips');
 			}
