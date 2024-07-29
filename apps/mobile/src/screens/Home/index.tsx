@@ -1,11 +1,4 @@
-import {
-	ImageBackground,
-	Platform,
-	ScrollView,
-	StyleSheet,
-	Text,
-	View,
-} from 'react-native';
+import { Platform, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { appState } from 'state/app';
 import { defaultTheme } from 'utils/global';
@@ -14,6 +7,7 @@ import { useNotificationPermissionRequest } from 'utils/hooks/notification';
 import { useSnapshot } from 'valtio';
 
 import ActiveBanners from './ActiveBanners';
+import Balance from './Balance';
 import DailyCheckIn from './DailyCheckIn';
 import Header from './Header';
 import Invite from './Invite';
@@ -24,8 +18,6 @@ export const HomeScreen = () => {
 	useTransparencyTracking();
 	useNotificationPermissionRequest();
 	const { bottom } = useSafeAreaInsets();
-	const { appUser, content } = useSnapshot(appState);
-	const homeContent = content.screens.home;
 
 	const { remoteConfig } = useSnapshot(appState);
 
@@ -42,18 +34,7 @@ export const HomeScreen = () => {
 				contentContainerStyle={styles.mainContentContainer}
 			>
 				{/* <Social /> */}
-				<ImageBackground
-					source={require('/assets/img/balance-bg.png')}
-					style={styles.balanceContainer}
-				>
-					<Text style={styles.balanceText}>
-						{homeContent.headerSection.balanceTitle}
-					</Text>
-
-					<Text
-						style={styles.balanceAmount}
-					>{`${appUser?.GOPoints || 0} GO`}</Text>
-				</ImageBackground>
+				<Balance />
 				<ActiveBanners />
 				<DailyCheckIn />
 				<Invite />
@@ -82,32 +63,5 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 16,
 		paddingBottom: 100,
 		gap: 16,
-	},
-	balanceContainer: {
-		gap: 8,
-		paddingHorizontal: 16,
-		paddingVertical: 12,
-		borderRadius: 20,
-		overflow: 'hidden',
-		backgroundColor: defaultTheme.textDark100,
-		shadowColor: defaultTheme.textDark100,
-		shadowOffset: {
-			width: 0,
-			height: -1,
-		},
-		shadowOpacity: 0.1,
-		shadowRadius: 1.5,
-		elevation: -2,
-		objectFit: 'cover',
-	},
-	balanceText: {
-		fontSize: 17,
-		color: defaultTheme.textLight,
-	},
-	balanceAmount: {
-		fontFamily: 'DMSans',
-		fontSize: 26,
-		fontWeight: '700',
-		color: defaultTheme.textLight,
 	},
 });
