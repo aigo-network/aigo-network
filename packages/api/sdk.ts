@@ -186,6 +186,7 @@ export type RootMutationRegisterDeviceArgs = {
 
 export type RootMutationStartTripArgs = {
   geolocation: GeolocationInput;
+  tripMetadata?: InputMaybe<TripMetaData>;
 };
 
 
@@ -239,10 +240,14 @@ export type RootQueryTripsArgs = {
 export type Trip = {
   __typename?: 'Trip';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
+  endTime?: Maybe<Scalars['DateTime']['output']>;
   id?: Maybe<Scalars['String']['output']>;
+  purpose?: Maybe<Scalars['String']['output']>;
   route: Scalars['String']['output'];
+  startTime?: Maybe<Scalars['DateTime']['output']>;
   status: Scalars['String']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  userType?: Maybe<Scalars['String']['output']>;
 };
 
 export type TripConnection = {
@@ -255,6 +260,11 @@ export type TripEdge = {
   __typename?: 'TripEdge';
   cursor: Scalars['String']['output'];
   node: Trip;
+};
+
+export type TripMetaData = {
+  purpose?: InputMaybe<Scalars['String']['input']>;
+  userType?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type User = {
@@ -474,7 +484,7 @@ export type GetTripQueryVariables = Exact<{
 }>;
 
 
-export type GetTripQuery = { __typename?: 'RootQuery', trip?: { __typename?: 'Trip', id?: string | null, route: string, status: string, createdAt?: any | null, updatedAt?: any | null } | null };
+export type GetTripQuery = { __typename?: 'RootQuery', trip?: { __typename?: 'Trip', id?: string | null, route: string, status: string, startTime?: any | null, endTime?: any | null, userType?: string | null, purpose?: string | null, createdAt?: any | null, updatedAt?: any | null } | null };
 
 export type GetTripsQueryVariables = Exact<{
   after?: InputMaybe<Scalars['String']['input']>;
@@ -482,7 +492,7 @@ export type GetTripsQueryVariables = Exact<{
 }>;
 
 
-export type GetTripsQuery = { __typename?: 'RootQuery', trips?: { __typename?: 'TripConnection', edges: Array<{ __typename?: 'TripEdge', cursor: string, node: { __typename?: 'Trip', id?: string | null, route: string, status: string, createdAt?: any | null, updatedAt?: any | null } } | null>, pageInfo: { __typename?: 'PageInfo', endCursor?: string | null, hasNextPage: boolean } } | null };
+export type GetTripsQuery = { __typename?: 'RootQuery', trips?: { __typename?: 'TripConnection', edges: Array<{ __typename?: 'TripEdge', cursor: string, node: { __typename?: 'Trip', id?: string | null, route: string, status: string, startTime?: any | null, endTime?: any | null, userType?: string | null, purpose?: string | null, createdAt?: any | null, updatedAt?: any | null } } | null>, pageInfo: { __typename?: 'PageInfo', endCursor?: string | null, hasNextPage: boolean } } | null };
 
 export type GetUserWitDailyMissionsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -848,6 +858,10 @@ export const GetTripDocument = gql`
     id
     route
     status
+    startTime
+    endTime
+    userType
+    purpose
     createdAt
     updatedAt
   }
@@ -861,6 +875,10 @@ export const GetTripsDocument = gql`
         id
         route
         status
+        startTime
+        endTime
+        userType
+        purpose
         createdAt
         updatedAt
       }

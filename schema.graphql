@@ -250,7 +250,7 @@ type RootMutation {
   registerDevice(input: RegisterDeviceInput!): Device
 
   """"""
-  startTrip(geolocation: GeolocationInput!): Trip
+  startTrip(geolocation: GeolocationInput!, tripMetadata: TripMetaData): Trip
 
   """"""
   trackAppOpenWithLinkingEvent(appStage: AppStage!, url: String!): String
@@ -307,16 +307,28 @@ type Trip {
   createdAt: DateTime
 
   """"""
+  endTime: DateTime
+
+  """"""
   id: String
 
   """"""
+  purpose: String
+
+  """"""
   route: String!
+
+  """"""
+  startTime: DateTime
 
   """"""
   status: String!
 
   """"""
   updatedAt: DateTime
+
+  """"""
+  userType: String
 }
 
 """"""
@@ -335,6 +347,15 @@ type TripEdge {
 
   """"""
   node: Trip!
+}
+
+""""""
+input TripMetaData {
+  """"""
+  purpose: String
+
+  """"""
+  userType: String
 }
 
 """"""

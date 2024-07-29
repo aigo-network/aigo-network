@@ -6,6 +6,10 @@ export const GetTripQuery = gql`
 			id
 			route
 			status
+			startTime
+			endTime
+			userType
+			purpose
 			createdAt
 			updatedAt
 		}
@@ -20,6 +24,10 @@ export const GetTripsQuery = gql`
 					id
 					route
 					status
+					startTime
+					endTime
+					userType
+					purpose
 					createdAt
 					updatedAt
 				}
