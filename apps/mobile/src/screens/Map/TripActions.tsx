@@ -1,19 +1,21 @@
 import { useState } from 'react';
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import AppButton from '@aigo/components/AppButton';
-import ChevronLeft from '@aigo/components/icon/ChevronLeft';
-import { useNavigation } from '@react-navigation/native';
+import {
+	ActivityIndicator,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+} from 'react-native';
 import { showConfirmModal } from 'modals/Confirm';
 import { mapActions, useMapState } from 'state/map';
+import { defaultTheme } from 'utils/global';
 
 import { useBouncedMapInsets } from './shared';
 
-export const MapActions = () => {
-	const { goBack } = useNavigation();
+export const TripActions = () => {
 	const { safeInsets } = useBouncedMapInsets();
 	const { bottom } = safeInsets;
-	const { currentTrip: currentRoute } = useMapState();
+	const { currentTrip } = useMapState();
 	const [loading, setLoading] = useState(false);
 
 	const handlePressStart = async () => {
@@ -60,30 +62,30 @@ export const MapActions = () => {
 
 	return (
 		<View style={[styles.container, { bottom }]}>
-			<TouchableOpacity hitSlop={14} onPress={goBack}>
-				<ChevronLeft width={28} color={'#6c6c6c'} strokeWidth="3" />
-			</TouchableOpacity>
-
 			{loading ? (
-				<ActivityIndicator size={'large'} />
-			) : !currentRoute ? (
-				<AppButton
-					style={styles.button}
-					title="Start"
+				<View style={styles.loadingContainer}>
+					<ActivityIndicator size={'large'} />
+				</View>
+			) : !currentTrip ? (
+				<TouchableOpacity
+					style={[styles.button, styles.startButton]}
 					onPress={handlePressStart}
-				/>
+				>
+					<Text style={styles.startButtonText}>START</Text>
+				</TouchableOpacity>
 			) : (
-				<AppButton
-					style={styles.button}
-					title="End your journey"
+				<TouchableOpacity
+					style={[styles.button, styles.endButton]}
 					onPress={handlePressEnd}
-				/>
+				>
+					<Text style={styles.endButtonText}>END</Text>
+				</TouchableOpacity>
 			)}
 		</View>
 	);
 };
 
-export default MapActions;
+export default TripActions;
 
 const styles = StyleSheet.create({
 	container: {
@@ -94,9 +96,46 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 20,
 		flexDirection: 'row',
 		alignItems: 'center',
+		justifyContent: 'center',
 		gap: 14,
 	},
+	loadingContainer: {
+		width: 80,
+		height: 80,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
 	button: {
-		flex: 1,
+		width: 80,
+		height: 80,
+		borderRadius: 40,
+		justifyContent: 'center',
+		alignItems: 'center',
+		shadowOffset: {
+			width: 0,
+			height: 0,
+		},
+		shadowOpacity: 0.8,
+		shadowRadius: 3,
+		elevation: -2,
+		objectFit: 'cover',
+	},
+	startButton: {
+		shadowColor: defaultTheme.cta100,
+		backgroundColor: defaultTheme.cta100,
+	},
+	startButtonText: {
+		fontSize: 16,
+		fontWeight: '600',
+		color: defaultTheme.textLight,
+	},
+	endButton: {
+		shadowColor: defaultTheme.textDark30,
+		backgroundColor: defaultTheme.textDark10,
+	},
+	endButtonText: {
+		fontSize: 16,
+		fontWeight: '600',
+		color: defaultTheme.textDark90,
 	},
 });

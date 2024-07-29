@@ -3,6 +3,7 @@ import { Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import * as turf from '@turf/turf';
 import { getMapState, useMapState } from 'state/map';
+import { formatMsToHMS } from 'utils/datetime';
 
 export const HCMLocation = [106.6297, 10.8231];
 
@@ -31,7 +32,7 @@ const MS_PER_MINUTE = 1000 * 60;
 
 export const useCurrentTrip = () => {
 	const { currentTrip } = useMapState();
-	const [time, setTime] = useState(0);
+	const [time, setTime] = useState('00:00');
 
 	const distance = useMemo(() => {
 		if (!currentTrip) return 0;
@@ -39,22 +40,39 @@ export const useCurrentTrip = () => {
 		const line = turf.lineString(currentTrip.coordinates);
 		const length = turf.length(line, { units: 'kilometers' });
 
-		return length.toPrecision(2);
+		return length;
 	}, [currentTrip]);
+
+	const avgSpeed = useMemo(() => {
+		const trip = getMapState().currentTrip;
+		if (!trip) return 0;
+
+		const timeInMs = new Date().valueOf() - trip.startedAt.valueOf();
+		const timeInHour = timeInMs / (60 * MS_PER_MINUTE);
+		return distance / timeInHour;
+	}, [distance, time]);
 
 	useEffect(() => {
 		const timer = setInterval(() => {
 			const trip = getMapState().currentTrip;
-			if (!trip) return;
+			if (!trip) {
+				setTime('00:00');
+				return;
+			}
 
 			const timeInMs = new Date().valueOf() - trip.startedAt.valueOf();
-			setTime(Math.round(timeInMs / MS_PER_MINUTE));
-		}, MS_PER_MINUTE);
+			const formattedTime = formatMsToHMS(timeInMs);
+			if (formattedTime.startsWith('00:')) {
+				setTime(formattedTime.replace('00:', ''));
+			} else {
+				setTime(formattedTime);
+			}
+		}, 1000);
 
 		return () => clearInterval(timer);
 	}, []);
 
-	return { distance, time };
+	return { distance, time, avgSpeed };
 };
 
 export const useBouncedMapInsets = () => {

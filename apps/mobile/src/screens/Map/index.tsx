@@ -5,9 +5,9 @@ import { showStartTripBottomSheet } from 'modals/StartTrip';
 import { mapActions, useMapState } from 'state/map';
 import { requestGeolocationPermission, watchLocation } from 'utils/geolocation';
 
-import MapActions from './MapActions';
-import MapInfo from './MapInfo';
 import MapView from './MapView';
+import TripActions from './TripActions';
+import TripInfo from './TripInfo';
 
 export const MapScreen = () => {
 	const { goBack } = useNavigation();
@@ -42,8 +42,8 @@ export const MapScreen = () => {
 	return (
 		<View style={styles.container}>
 			<MapView onDidFinishLoadingMap={handleFinishLoadingMap} />
-			<MapInfo />
-			{mapReady && permissionReady && <MapActions />}
+			<TripInfo />
+			{mapReady && permissionReady && <TripActions />}
 		</View>
 	);
 };

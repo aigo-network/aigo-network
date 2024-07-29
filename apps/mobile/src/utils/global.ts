@@ -12,6 +12,7 @@ export const defaultTheme = {
 	textDark50: '#8c8c8c',
 	textDark30: '#bbbbbb',
 	textDark20: '#d3d3d3',
+	textDark10: '#EAEAEA',
 	cta100: '#34c3f4',
 	cta40: '#aee7fb',
 	cta30: '#c2edfc',
