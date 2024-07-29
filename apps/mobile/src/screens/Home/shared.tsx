@@ -1,9 +1,9 @@
 import type { ImageSourcePropType } from 'react-native';
 import { StyleSheet } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { InviteCode } from '@aigo/components/InviteCode';
 import { config } from '@aigo/config';
 import { Align, showModal } from 'empty-modal';
+import { InviteCode } from 'modals/InviteCode';
 import PointPopup from 'modals/PointPopup';
 import mustache from 'mustache';
 import { appState } from 'state/app';
