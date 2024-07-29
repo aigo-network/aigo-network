@@ -39,6 +39,7 @@ export const TripHistoryScreen = () => {
 					contentContainerStyle={styles.scrollContentContainer}
 					indicatorStyle="black"
 					data={trips}
+					keyExtractor={(item) => item.id as string}
 					renderItem={({ item }) => <TripItem trip={item} />}
 					onRefresh={handleRefresh}
 					refreshing={refreshing}
@@ -67,5 +68,8 @@ const styles = StyleSheet.create({
 	scrollContentContainer: {
 		flexGrow: 1,
 		gap: 14,
+	},
+	pagingLoading: {
+		marginVertical: 16,
 	},
 });
