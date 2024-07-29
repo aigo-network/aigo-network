@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Motorbike from '@aigo/components/icon/Motorbike';
 import { useNavigation } from '@react-navigation/native';
@@ -9,7 +10,16 @@ import { sharedStyles } from './shared';
 export const TripSummary = () => {
 	const { navigate } = useNavigation();
 	const { trips } = useTrips();
-	const { totalDistance, totalTime, avgSpeed } = useInspectingTrips(trips);
+
+	const filteredTodayTrips = useMemo(() => {
+		const today = new Date().toLocaleDateString();
+		return trips.filter((trip) => {
+			return new Date(trip.createdAt).toLocaleDateString() === today;
+		});
+	}, [trips]);
+
+	const { totalDistance, totalTime, avgSpeed } =
+		useInspectingTrips(filteredTodayTrips);
 
 	const openTripHistory = () => {
 		navigate('TripHistory');
