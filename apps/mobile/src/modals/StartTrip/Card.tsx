@@ -6,11 +6,12 @@ type Props = {
 	title: string;
 	style?: StyleProp<ViewStyle>;
 	chosen?: boolean;
+	onPress?: () => void;
 };
 
-export const Card: FC<Props> = ({ title, style, chosen }) => {
+export const Card: FC<Props> = ({ title, style, chosen, onPress }) => {
 	return (
-		<TouchableWithoutFeedback>
+		<TouchableWithoutFeedback onPress={onPress}>
 			<View
 				style={[styles.container, chosen && styles.highlightedContainer, style]}
 			>

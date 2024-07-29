@@ -1,10 +1,12 @@
 import type { FC } from 'react';
+import { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import BottomSheetContainer from '@aigo/components/BottomSheetContainer';
 import { Align, showModal } from 'empty-modal/state';
 
-import Card from './Card';
+import type { CardInfo } from './RadioCards';
+import RadioCards from './RadioCards';
 
 export const showStartTripBottomSheet = () => {
 	const { cleanModal } = showModal(
@@ -25,6 +27,10 @@ type Props = {
 
 const StartTripBottomSheet: FC<Props> = ({ onClose }) => {
 	const { bottom } = useSafeAreaInsets();
+	const [job, setJob] = useState<CardInfo | null>(null);
+	const [purpose, setPurpose] = useState<CardInfo | null>(null);
+
+	const disableContinue = !job || !purpose;
 
 	return (
 		<BottomSheetContainer
@@ -43,26 +49,48 @@ const StartTripBottomSheet: FC<Props> = ({ onClose }) => {
 			<View style={styles.contentContainer}>
 				<View>
 					<Text style={styles.subtitle}>You are</Text>
-					<View style={styles.infoContainer}>
-						<Card style={styles.infoItem} title="Driver" />
-						<Card style={styles.infoItem} title="Rider" />
-					</View>
+					<RadioCards cards={jobs} selectedCard={job} onSelect={setJob} />
 				</View>
 				<View>
 					<Text style={styles.subtitle}>Your purpose is</Text>
-					<View style={styles.infoContainer}>
-						<Card style={styles.infoItem} title="Go to work" />
-						<Card style={styles.infoItem} title="Hang out" />
-					</View>
+					<RadioCards
+						cards={purposes}
+						selectedCard={purpose}
+						onSelect={setPurpose}
+					/>
 				</View>
 
-				<TouchableOpacity style={styles.continueButton}>
+				<TouchableOpacity
+					style={[
+						styles.continueButton,
+						disableContinue && styles.disableContinueButton,
+					]}
+					disabled={disableContinue}
+				>
 					<Text style={styles.continueButtonTitle}>Continue</Text>
 				</TouchableOpacity>
 			</View>
 		</BottomSheetContainer>
 	);
 };
+
+const jobs: CardInfo[] = [
+	{
+		title: 'Driver',
+	},
+	{
+		title: 'Rider',
+	},
+];
+
+const purposes: CardInfo[] = [
+	{
+		title: 'Go to work',
+	},
+	{
+		title: 'Hang out',
+	},
+];
 
 const styles = StyleSheet.create({
 	container: {
@@ -114,6 +142,9 @@ const styles = StyleSheet.create({
 		borderRadius: 46,
 		backgroundColor: '#171717',
 		marginTop: 32,
+	},
+	disableContinueButton: {
+		opacity: 0.4,
 	},
 	continueButtonTitle: {
 		fontSize: 16,
