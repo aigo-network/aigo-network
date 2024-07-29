@@ -7,6 +7,7 @@ export type MapState = {
 		id: string;
 		startedAt: Date;
 	};
+	startTripMetadata?: TripMetadata;
 	mapReady?: boolean;
 	permissionReady?: boolean;
 	trips?: Trip[];
@@ -16,4 +17,9 @@ export type MapState = {
 export type PagingParams = {
 	after: string;
 	first: number;
+};
+
+export type TripMetadata = {
+	userType: string;
+	purpose: string;
 };

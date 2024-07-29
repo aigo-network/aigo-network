@@ -407,6 +407,7 @@ export type Web3FarmingRefreshReferralsMutation = { __typename?: 'RootMutation',
 
 export type StartTripMutationVariables = Exact<{
   geolocation: GeolocationInput;
+  metadata?: InputMaybe<TripMetaData>;
 }>;
 
 
@@ -676,8 +677,8 @@ export const Web3FarmingRefreshReferralsDocument = gql`
 }
     `;
 export const StartTripDocument = gql`
-    mutation startTrip($geolocation: GeolocationInput!) {
-  startTrip(geolocation: $geolocation) {
+    mutation startTrip($geolocation: GeolocationInput!, $metadata: TripMetaData) {
+  startTrip(geolocation: $geolocation, tripMetadata: $metadata) {
     id
     route
     status

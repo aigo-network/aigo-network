@@ -5,7 +5,7 @@ import crashlytics from '@react-native-firebase/crashlytics';
 import pThrottle from 'p-throttle';
 import { proxy, useSnapshot } from 'valtio';
 
-import type { MapState, PagingParams } from './types';
+import type { MapState, PagingParams, TripMetadata } from './types';
 
 const initialMapState: MapState = {};
 
@@ -58,6 +58,9 @@ export const mapActions = {
 			}
 		},
 	),
+	setStartTripMetadata(metadata: TripMetadata) {
+		mapState.startTripMetadata = metadata;
+	},
 	startNewTrip: async () => {
 		try {
 			const isCurrentRouteActive = !!mapState.currentTrip;
@@ -73,6 +76,10 @@ export const mapActions = {
 
 			const { startTrip: trip } = await graphqlClient.startTrip({
 				geolocation: { ...coords, timestamp: new Date(timestamp) },
+				metadata: {
+					userType: mapState.startTripMetadata?.userType,
+					purpose: mapState.startTripMetadata?.purpose,
+				},
 			});
 
 			if (!trip || !trip.id) {
@@ -111,6 +118,7 @@ export const mapActions = {
 			}
 
 			mapState.currentTrip = undefined;
+			mapState.startTripMetadata = undefined;
 		} catch (error) {
 			crashlytics().recordError(error as Error, 'completeTrip');
 			console.debug('Failed to complete trip:', error);

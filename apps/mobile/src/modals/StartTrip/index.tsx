@@ -4,6 +4,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import BottomSheetContainer from '@aigo/components/BottomSheetContainer';
 import { Align, showModal } from 'empty-modal/state';
+import { mapActions } from 'state/map';
 
 import type { CardInfo } from './RadioCards';
 import RadioCards from './RadioCards';
@@ -27,10 +28,21 @@ type Props = {
 
 const StartTripBottomSheet: FC<Props> = ({ onClose }) => {
 	const { bottom } = useSafeAreaInsets();
-	const [job, setJob] = useState<CardInfo | null>(null);
+	const [userType, setUserType] = useState<CardInfo | null>(null);
 	const [purpose, setPurpose] = useState<CardInfo | null>(null);
 
-	const disableContinue = !job || !purpose;
+	const disableContinue = !userType || !purpose;
+
+	const handleContinue = () => {
+		if (disableContinue) return;
+
+		mapActions.setStartTripMetadata({
+			userType: userType.title,
+			purpose: purpose.title,
+		});
+
+		onClose?.();
+	};
 
 	return (
 		<BottomSheetContainer
@@ -49,7 +61,11 @@ const StartTripBottomSheet: FC<Props> = ({ onClose }) => {
 			<View style={styles.contentContainer}>
 				<View>
 					<Text style={styles.subtitle}>You are</Text>
-					<RadioCards cards={jobs} selectedCard={job} onSelect={setJob} />
+					<RadioCards
+						cards={userTypes}
+						selectedCard={userType}
+						onSelect={setUserType}
+					/>
 				</View>
 				<View>
 					<Text style={styles.subtitle}>Your purpose is</Text>
@@ -66,6 +82,7 @@ const StartTripBottomSheet: FC<Props> = ({ onClose }) => {
 						disableContinue && styles.disableContinueButton,
 					]}
 					disabled={disableContinue}
+					onPress={handleContinue}
 				>
 					<Text style={styles.continueButtonTitle}>Continue</Text>
 				</TouchableOpacity>
@@ -74,7 +91,7 @@ const StartTripBottomSheet: FC<Props> = ({ onClose }) => {
 	);
 };
 
-const jobs: CardInfo[] = [
+const userTypes: CardInfo[] = [
 	{
 		title: 'Driver',
 	},

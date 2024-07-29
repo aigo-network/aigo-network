@@ -3,14 +3,13 @@ import { StyleSheet, View } from 'react-native';
 
 import Card from './Card';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type CardInfo<T = any> = T & {
+export type CardInfo<T = unknown> = T & {
 	title: string;
 };
 
 type Props<T> = {
 	cards: CardInfo<T>[];
-	selectedCard?: CardInfo<T>;
+	selectedCard?: CardInfo<T> | null;
 	onSelect?: (card: T) => void;
 };
 

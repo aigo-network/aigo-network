@@ -1,8 +1,8 @@
 import { gql } from 'graphql-request';
 
 export const StartTripMutation = gql`
-	mutation startTrip($geolocation: GeolocationInput!) {
-		startTrip(geolocation: $geolocation) {
+	mutation startTrip($geolocation: GeolocationInput!, $metadata: TripMetaData) {
+		startTrip(geolocation: $geolocation, tripMetadata: $metadata) {
 			id
 			route
 			status

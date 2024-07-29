@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
 	ActivityIndicator,
 	StyleSheet,
@@ -7,6 +7,7 @@ import {
 	View,
 } from 'react-native';
 import { showConfirmModal } from 'modals/Confirm';
+import { showStartTripBottomSheet } from 'modals/StartTrip';
 import { mapActions, useMapState } from 'state/map';
 import { defaultTheme } from 'utils/global';
 
@@ -15,10 +16,15 @@ import { useBouncedMapInsets } from './shared';
 export const TripActions = () => {
 	const { safeInsets } = useBouncedMapInsets();
 	const { bottom } = safeInsets;
-	const { currentTrip } = useMapState();
+	const { currentTrip, startTripMetadata } = useMapState();
 	const [loading, setLoading] = useState(false);
 
 	const handlePressStart = async () => {
+		if (!startTripMetadata) {
+			showStartTripBottomSheet();
+			return;
+		}
+
 		setLoading(true);
 		showConfirmModal({
 			modalId: 'confirm-start-trip',
@@ -59,6 +65,10 @@ export const TripActions = () => {
 			},
 		});
 	};
+
+	useEffect(() => {
+		if (!currentTrip) showStartTripBottomSheet();
+	}, []);
 
 	return (
 		<View style={[styles.container, { bottom }]}>
