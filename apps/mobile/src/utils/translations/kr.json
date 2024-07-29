@@ -113,7 +113,8 @@
       "mapSection": {
         "title": "AiGO Map",
         "openButton": "Open Map"
-      }
+      },
+      "mainButton": "Start your trip now"
     },
     "profile": {
       "title": "프로필",
