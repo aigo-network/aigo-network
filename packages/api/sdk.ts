@@ -476,7 +476,10 @@ export type GetTripQueryVariables = Exact<{
 
 export type GetTripQuery = { __typename?: 'RootQuery', trip?: { __typename?: 'Trip', id?: string | null, route: string, status: string, createdAt?: any | null, updatedAt?: any | null } | null };
 
-export type GetTripsQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetTripsQueryVariables = Exact<{
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+}>;
 
 
 export type GetTripsQuery = { __typename?: 'RootQuery', trips?: { __typename?: 'TripConnection', edges: Array<{ __typename?: 'TripEdge', cursor: string, node: { __typename?: 'Trip', id?: string | null, route: string, status: string, createdAt?: any | null, updatedAt?: any | null } } | null>, pageInfo: { __typename?: 'PageInfo', endCursor?: string | null, hasNextPage: boolean } } | null };
@@ -851,8 +854,8 @@ export const GetTripDocument = gql`
 }
     `;
 export const GetTripsDocument = gql`
-    query getTrips {
-  trips {
+    query getTrips($after: String = "", $first: Int = 10) {
+  trips(after: $after, first: $first) {
     edges {
       node {
         id

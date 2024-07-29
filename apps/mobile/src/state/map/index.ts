@@ -1,11 +1,11 @@
 import { graphqlClient } from '@aigo/api/graphql';
-import type { Trip } from '@aigo/api/sdk';
+import type { Trip, TripConnection } from '@aigo/api/sdk';
 import type { GeolocationResponse } from '@react-native-community/geolocation';
 import crashlytics from '@react-native-firebase/crashlytics';
 import pThrottle from 'p-throttle';
 import { proxy, useSnapshot } from 'valtio';
 
-import type { MapState } from './types';
+import type { MapState, PagingParams } from './types';
 
 const initialMapState: MapState = {};
 
@@ -114,6 +114,25 @@ export const mapActions = {
 		} catch (error) {
 			crashlytics().recordError(error as Error, 'completeTrip');
 			console.debug('Failed to complete trip:', error);
+		}
+	},
+	queryAndUpdateTripsState: async (
+		params: PagingParams = { after: '', first: 10 },
+		append?: boolean,
+	) => {
+		try {
+			const { trips } = await graphqlClient.getTrips(params);
+			mapState.lastTripConnection = trips as TripConnection;
+			const tripNodes = trips?.edges.map((e) => e?.node).filter((e) => !!e);
+			if (tripNodes) {
+				if (!append || !mapState.trips) {
+					mapState.trips = tripNodes as Trip[];
+				} else {
+					mapState.trips.push(...(tripNodes as Trip[]));
+				}
+			}
+		} catch (error) {
+			crashlytics().recordError(error as Error, 'getTrips');
 		}
 	},
 };

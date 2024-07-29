@@ -1,7 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { graphqlClient } from '@aigo/api/graphql';
-import type { Trip } from '@aigo/api/sdk';
-import crashlytics from '@react-native-firebase/crashlytics';
+import type { Trip, TripConnection } from '@aigo/api/sdk';
 import * as turf from '@turf/turf';
 import { mapActions, useMapState } from 'state/map';
 import { formatMsToHMS, formatTimeDiffToHMS } from 'utils/datetime';
@@ -9,28 +7,18 @@ import { queryReverseGeocode } from 'utils/mapbox';
 
 type Trips = {
 	trips: Trip[];
+	lastTripConnection?: TripConnection;
 };
 
 export const useTrips = (): Trips => {
-	const { trips } = useMapState();
+	const { trips, lastTripConnection } = useMapState();
 
 	useEffect(() => {
 		if (trips) return;
-
-		const queryAndUpdateTripsState = async () => {
-			try {
-				const { trips } = await graphqlClient.getTrips();
-				const tripNodes = trips?.edges.map((e) => e?.node).filter((e) => !!e);
-				if (tripNodes) mapActions.setTrips(tripNodes as Trip[]);
-			} catch (error) {
-				crashlytics().recordError(error as Error, 'getTrips');
-			}
-		};
-
-		queryAndUpdateTripsState();
+		mapActions.queryAndUpdateTripsState();
 	}, []);
 
-	return { trips: trips || [] };
+	return { trips: trips || [], lastTripConnection };
 };
 
 type InspectedTrip = {
@@ -93,8 +81,8 @@ export const useInspectingTrip = (
 		const handleStartLocation = async () => {
 			const [longitude, latitude] = route.coordinates[0];
 			const reversedGeocodeRes = await queryReverseGeocode(longitude, latitude);
-			const { place_name } = reversedGeocodeRes.body.features[0];
-			setStartPosition(place_name || 'Unknown');
+			const mainFeature = reversedGeocodeRes.body.features[0];
+			setStartPosition(mainFeature?.place_name || 'Unknown');
 		};
 
 		handleStartLocation();

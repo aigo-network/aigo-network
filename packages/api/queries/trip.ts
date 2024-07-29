@@ -13,8 +13,8 @@ export const GetTripQuery = gql`
 `;
 
 export const GetTripsQuery = gql`
-	query getTrips {
-		trips {
+	query getTrips($after: String = "", $first: Int = 10) {
+		trips(after: $after, first: $first) {
 			edges {
 				node {
 					id
