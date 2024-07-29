@@ -110,9 +110,7 @@
       "dailyMissionSection": {
         "title": "일일 미션"
       },
-      "startTrip": {
-        "openButton": "Start your trip now"
-      }
+      "mainButton": "Start your trip now"
     },
     "profile": {
       "title": "프로필",

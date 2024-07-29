@@ -22,9 +22,7 @@ export const StartTrip = () => {
 		<View style={containerStyle}>
 			<TouchableOpacity style={styles.openButton} onPress={handleOpenMap}>
 				<Motorbike />
-				<Text style={styles.openButtonTitle}>
-					{homeContent.startTrip.openButton}
-				</Text>
+				<Text style={styles.openButtonTitle}>{homeContent.mainButton}</Text>
 			</TouchableOpacity>
 		</View>
 	);

@@ -1,9 +1,10 @@
 import en from './en.json';
 import kr from './kr.json';
+import vn from './vn.json';
 
-export const translations: Record<LangKey, Content> = { en, kr };
+export const translations: Record<LangKey, Content> = { en, kr, vn };
 
-export type LangKey = 'en' | 'kr';
+export type LangKey = 'en' | 'kr' | 'vn';
 
 export type Content = {
 	language: string;
@@ -114,9 +115,7 @@ export type Content = {
 				checkInButton: string;
 				checkInDay: string;
 			};
-			startTrip: {
-				openButton: string;
-			};
+			mainButton: string;
 		};
 		profile: {
 			title: string;

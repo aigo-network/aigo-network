@@ -1,0 +1,188 @@
+{
+  "language": "🇻🇳 Việt Nam",
+  "modal": {
+    "yes": "Có",
+    "no": "Không",
+    "cancel": "Hủy",
+    "confirm": "Xác nhận",
+    "confirmLogOutTitle": "Đăng xuất",
+    "confirmLogOutMessage": "Bạn thật sự muốn đăng xuất?",
+    "confirmDeleteAccountTitle": "Xóa tài khoản",
+    "confirmDeleteAccountMessage": "Bạn có chắc chắn muốn xóa tài khoản?",
+    "invite": {
+      "title": "Mời bạn bè cùng tham gia!",
+      "description": "Nhấn nút sao chép hoặc chia sẻ để mời bạn bè nhận phần thưởng ngay!",
+      "referral": "giới thiệu",
+      "message": "Tải ngay ứng dụng AiGO {{{url}}}\nNhập mã giới thiệu của bạn để nhận ngay {{points}} GO points: {{code}}",
+      "codeTitle": "Mã giới thiệu của bạn",
+      "shareButton": "Chia sẻ với bạn bè"
+    },
+    "earnPoints": {
+      "title": "Congratulation",
+      "messagePrefix": "Điểm thưởng đã được cộng!",
+      "messageSuffix": "points",
+      "completedOnboardingMessage": "Your account is ready to use. You will be redirected to the Home Page in a few seconds."
+    },
+    "citySelection": {
+      "title": "Mã vùng:",
+      "placeholder": "Tìm kiếm quốc gia",
+      "cancelButton": "Hủy"
+    }
+  },
+  "screens": {
+    "splash": {
+      "versionPrefix": "Phiên bản"
+    },
+    "logIn": {
+      "welcome": "Chào mừng bạn đến vớik\nAiGO",
+      "slogan": "Check-in mỗi ngày\nNhận quà liền tay",
+      "phoneNumberButton": "Số điện thoại",
+      "googleButton": "Tài khoản Google",
+      "appleButton": "Tài khoản Apple",
+      "versionPrefix": "Phiên bản",
+      "phoneNumberLogin": {
+        "login": "Đăng nhập",
+        "subText": "Vui lòng kiểm tra lại mã vùng và số điện thoại của bạn",
+        "continueButton": "Tiếp tục"
+      },
+      "otpConfirm": {
+        "enterCode": "Nhập mã xác nhận",
+        "subText": "Chúng tôi vừa gửi một tin nhắn SMS gồm mã xác minh 6 chữ số đến số điện thoại của bạn",
+        "verifyButton": "Xác nhận",
+        "wrongCodeError": "Mã xác nhận không đúng.Vui lòng thử lại",
+        "getCredentialsError": "Xác minh người dùng thất bại",
+        "getProfileError": "Rất tiếc đã xảy ra lỗi khi tạo hồ sơ. Vui lòng thử lại sau"
+      }
+    },
+    "onboard": {
+      "name": {
+        "title": "Thiết lập tên người dùng",
+        "description": "Vui lòng nhập tên bạn muốn hiển thị trên hồ sơ",
+        "continueButton": "Tuyệt vời :)",
+        "inputPlaceholder": "Tên người dùng"
+      },
+      "city": {
+        "title": "Bạn đang sống ở thành phố nào?",
+        "description": "Hãy cho chúng tôi biết bạn đang sống ở đâu để kết nối với bạn bè xung quanh",
+        "searchPlaceholder": "Tìm kiếm thành phố",
+        "emptySearchTitle": "Không tìm thấy kết quả",
+        "emptySearchMessage": "Không tìm thấy kết quả phù hợp.\nVui lòng thử tìm kiếm một thành phố khác hoặc kiểm tra laijkhu vực bạn đã nhập.",
+        "continueButton": "Tiếp tục"
+      },
+      "userDescriptions": {
+        "title": "Điều gì miêu tả đúng nhất về bạn?",
+        "description": "Bạn có thể chọn nhiều hơn một đáp án",
+        "continueButton": "Tiếp tục",
+        "descriptions": {
+          "NyamNyamDriver": "Tài xế của Nyam Nyam",
+          "CityExplorer": "Người thích khám phá thành phố",
+          "FitnessEnthusiast": "Người thích thể thao",
+          "Commuter": "Dân văn phòng",
+          "Traveler": "Người thích du lịch",
+          "CasualUser": "Người dùng thông thường"
+        }
+      },
+      "updateProfileError": "Rất tiếc, đã xảy ra lỗi khi cập nhật hồ sơ"
+    },
+    "home": {
+      "headerSection": {
+        "welcomePrefix": "Xin chào",
+        "balanceTitle": "Điểm của bạn"
+      },
+      "socialSection": {
+        "title": "Cập nhật thông tin mới nhất về chúng tôi",
+        "followTwitterButton": "Theo dõi Twitter",
+        "joinTelegramButton": "Tham gia Telegram"
+      },
+      "inviteSection": {
+        "title": "Mời bạn bè:",
+        "referral": "/giới thiệu",
+        "referralCountSuffix": "Giới thiệu",
+        "descriptionPrefix": "Nhận",
+        "descriptionSuffix": "",
+        "inviteButton": "Mời"
+      },
+      "dailyCheckInSection": {
+        "title": "Điểm danh hằng ngày",
+        "checkInButton": "Nhận 10 GO",
+        "checkInDay": "Ngày"
+      },
+      "dailyMissionSection": {
+        "title": "Nhiệm vụ hàng ngày"
+      },
+      "mainButton": "Bắt đầu hành trình của bạn ngay" 
+    },
+    "profile": {
+      "title": "Hồ sơ",
+      "unknownUsername": "Người dùng ẩn danh",
+      "totalBalanceTitle": "Tổng số dư",
+      "viewHistoryButton": "Xem lịch sử giao dịch",
+      "infoTitle": {
+        "account": "Thông tin tài khoản",
+        "name": "Tên",
+        "email": "Email",
+        "city": "Thành phố",
+        "descriptions": "Mô tả",
+        "phoneNumber": "Số điện thoại"
+      },
+      "defaultInfo": {
+        "name": "Người dùng ẩn danh",
+        "email": "anonymous@aigo.network",
+        "city": "AiGO city",
+        "description": "AiGO lover",
+        "phoneNumber": ""
+      },
+      "partnerSection": {
+        "partner": "Chương trình đối tác",
+        "partnerName": "Nyam Nyam Box",
+        "descriptionPrefix": "Xác thực người dùng Nyam Nyam Box để nhận",
+        "reward": "GO",
+        "descriptionSuffix": "points",
+        "phoneNumberVerified": "Xác thực số điện thoại",
+        "phoneNumberUnverified": "Số điện thoại chưa xác thực",
+        "NyamNyamIdVerified": "Xác thực ID Nyam Nyam",
+        "NyamNyamIdUnverified": "ID Nyam Nyam chưa xác thực"
+      },
+      "settingSection": {
+        "setting": "Cài đặt",
+        "language": "Ngôn ngữ"
+      },
+      "referralSection": {
+        "title": "Mã giới thiệu",
+        "descriptionPrefix": "Nhận thêm phần thưởng",
+        "descriptionSuffix": "Nhập mã giới thiệu của bạn bè để nhận thưởng",
+        "enterCodePlaceholder": "Vui lòng nhập mã giới thiệu",
+        "invalidCodeError": "Mã giới thiệu không đúng. Vui lòng thử lại",
+        "verifyButton": "Xác minh ngay"
+      },
+      "footerSection": {
+        "title": "Về AiGO Network",
+        "logOutButton": "Đăng xuất",
+        "deleteAccountButton": "Xóa tài khoản",
+        "versionPrefix": "Version"
+      }
+    },
+    "nnidVerify": {
+      "title": "Xác thực Nyam Nyam Box",
+      "enterNNID": "Vui lòng nhập ID Nyam Nyam của bạn",
+      "subText": "Enter your user ID in Nyam Nyam Box App. Go to setting .... to find your ... ID number below",
+      "errorMessage": "ID not matched, try again.",
+      "inputPlaceholder": "Your ID",
+      "continueButton": "Tiếp tục"
+    },
+    "phoneNumberVerify": {
+      "title": "Verify Phone number",
+      "subText": "Please confirm your country code and enter your phone number.",
+      "continueButton": "Continue",
+      "OTP": {
+        "title": "Nhập mã",
+        "subText": "Chúng tôi vừa gửi một tin nhắn SMS gồm mã xác minh 6 chữ số đến số điện thoại của bạn",
+        "verifyButton": "Xác minh",
+        "wrongCodeError": "Mã xác nhận không đúng.Vui lòng thử lại",
+        "linkAccountError": "Liên kết tài khoản thất bại",
+        "updateAccountError": "Cập nhật tài khoản thất bại",
+        "updateVerificationError": "Cập nhật xác thực thất bại"
+      }
+    }
+  }
+}
