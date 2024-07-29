@@ -1,4 +1,5 @@
 import { graphqlClient } from '@aigo/api/graphql';
+import type { Trip } from '@aigo/api/sdk';
 import type { GeolocationResponse } from '@react-native-community/geolocation';
 import crashlytics from '@react-native-firebase/crashlytics';
 import pThrottle from 'p-throttle';
@@ -36,6 +37,9 @@ export const mapActions = {
 	},
 	setPermissionReady(state: boolean) {
 		mapState.permissionReady = state;
+	},
+	setTrips(trips: Trip[]) {
+		mapState.trips = trips;
 	},
 	throttledSetCurrentLocation: throttle(
 		async (location: GeolocationResponse) => {

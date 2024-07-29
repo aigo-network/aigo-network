@@ -92,6 +92,12 @@ export type NyamNyamUserProfile = {
   verifiedAt?: Maybe<Scalars['DateTime']['output']>;
 };
 
+export type PageInfo = {
+  __typename?: 'PageInfo';
+  endCursor?: Maybe<Scalars['String']['output']>;
+  hasNextPage: Scalars['Boolean']['output'];
+};
+
 export enum PhoneNumberVerification {
   /** Signed in by Phone number but mismatch with Phone number from user's profile */
   Mismatch = 'MISMATCH',
@@ -214,6 +220,7 @@ export type RootQuery = {
   linking?: Maybe<Scalars['String']['output']>;
   ping?: Maybe<Scalars['String']['output']>;
   trip?: Maybe<Trip>;
+  trips?: Maybe<TripConnection>;
   user?: Maybe<User>;
   web3FarmingProfile?: Maybe<Web3FarmingProfile>;
 };
@@ -223,13 +230,31 @@ export type RootQueryTripArgs = {
   tripID: Scalars['String']['input'];
 };
 
+
+export type RootQueryTripsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+};
+
 export type Trip = {
   __typename?: 'Trip';
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   id?: Maybe<Scalars['String']['output']>;
-  route?: Maybe<Scalars['String']['output']>;
-  status?: Maybe<Scalars['String']['output']>;
+  route: Scalars['String']['output'];
+  status: Scalars['String']['output'];
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type TripConnection = {
+  __typename?: 'TripConnection';
+  edges: Array<Maybe<TripEdge>>;
+  pageInfo: PageInfo;
+};
+
+export type TripEdge = {
+  __typename?: 'TripEdge';
+  cursor: Scalars['String']['output'];
+  node: Trip;
 };
 
 export type User = {
@@ -375,7 +400,7 @@ export type StartTripMutationVariables = Exact<{
 }>;
 
 
-export type StartTripMutation = { __typename?: 'RootMutation', startTrip?: { __typename?: 'Trip', id?: string | null, route?: string | null, status?: string | null, createdAt?: any | null, updatedAt?: any | null } | null };
+export type StartTripMutation = { __typename?: 'RootMutation', startTrip?: { __typename?: 'Trip', id?: string | null, route: string, status: string, createdAt?: any | null, updatedAt?: any | null } | null };
 
 export type CompleteTripMutationVariables = Exact<{
   tripId: Scalars['String']['input'];
@@ -390,7 +415,7 @@ export type InsertTripPointMutationVariables = Exact<{
 }>;
 
 
-export type InsertTripPointMutation = { __typename?: 'RootMutation', insertTripPoint?: { __typename?: 'Trip', id?: string | null, route?: string | null, status?: string | null, createdAt?: any | null, updatedAt?: any | null } | null };
+export type InsertTripPointMutation = { __typename?: 'RootMutation', insertTripPoint?: { __typename?: 'Trip', id?: string | null, route: string, status: string, createdAt?: any | null, updatedAt?: any | null } | null };
 
 export type InsertBatchTripPointsMutationVariables = Exact<{
   tripId: Scalars['String']['input'];
@@ -398,7 +423,7 @@ export type InsertBatchTripPointsMutationVariables = Exact<{
 }>;
 
 
-export type InsertBatchTripPointsMutation = { __typename?: 'RootMutation', insertBatchTripPoints?: { __typename?: 'Trip', id?: string | null, route?: string | null, status?: string | null, createdAt?: any | null, updatedAt?: any | null } | null };
+export type InsertBatchTripPointsMutation = { __typename?: 'RootMutation', insertBatchTripPoints?: { __typename?: 'Trip', id?: string | null, route: string, status: string, createdAt?: any | null, updatedAt?: any | null } | null };
 
 export type UpdateProfileMutationVariables = Exact<{
   profile?: InputMaybe<UserProfile>;
@@ -449,7 +474,12 @@ export type GetTripQueryVariables = Exact<{
 }>;
 
 
-export type GetTripQuery = { __typename?: 'RootQuery', trip?: { __typename?: 'Trip', id?: string | null, route?: string | null, status?: string | null, createdAt?: any | null, updatedAt?: any | null } | null };
+export type GetTripQuery = { __typename?: 'RootQuery', trip?: { __typename?: 'Trip', id?: string | null, route: string, status: string, createdAt?: any | null, updatedAt?: any | null } | null };
+
+export type GetTripsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetTripsQuery = { __typename?: 'RootQuery', trips?: { __typename?: 'TripConnection', edges: Array<{ __typename?: 'TripEdge', cursor: string, node: { __typename?: 'Trip', id?: string | null, route: string, status: string, createdAt?: any | null, updatedAt?: any | null } } | null>, pageInfo: { __typename?: 'PageInfo', endCursor?: string | null, hasNextPage: boolean } } | null };
 
 export type GetUserWitDailyMissionsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -820,6 +850,26 @@ export const GetTripDocument = gql`
   }
 }
     `;
+export const GetTripsDocument = gql`
+    query getTrips {
+  trips {
+    edges {
+      node {
+        id
+        route
+        status
+        createdAt
+        updatedAt
+      }
+      cursor
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}
+    `;
 export const GetUserWitDailyMissionsDocument = gql`
     query getUserWitDailyMissions {
   user {
@@ -910,6 +960,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     getTrip(variables: GetTripQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetTripQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetTripQuery>(GetTripDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getTrip', 'query', variables);
+    },
+    getTrips(variables?: GetTripsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetTripsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetTripsQuery>(GetTripsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getTrips', 'query', variables);
     },
     getUserWitDailyMissions(variables?: GetUserWitDailyMissionsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetUserWitDailyMissionsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetUserWitDailyMissionsQuery>(GetUserWitDailyMissionsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUserWitDailyMissions', 'query', variables);

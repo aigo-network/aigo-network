@@ -165,6 +165,15 @@ type NyamNyamUserProfile {
 }
 
 """"""
+type PageInfo {
+  """"""
+  endCursor: String
+
+  """"""
+  hasNextPage: Boolean!
+}
+
+""""""
 enum PhoneNumberVerification {
   """
   Signed in by Phone number but mismatch with Phone number from user's profile
@@ -283,6 +292,9 @@ type RootQuery {
   trip(tripID: String!): Trip
 
   """"""
+  trips(after: String = "", first: Int = 10): TripConnection
+
+  """"""
   user: User
 
   """"""
@@ -298,13 +310,31 @@ type Trip {
   id: String
 
   """"""
-  route: String
+  route: String!
 
   """"""
-  status: String
+  status: String!
 
   """"""
   updatedAt: DateTime
+}
+
+""""""
+type TripConnection {
+  """"""
+  edges: [TripEdge]!
+
+  """"""
+  pageInfo: PageInfo!
+}
+
+""""""
+type TripEdge {
+  """"""
+  cursor: String!
+
+  """"""
+  node: Trip!
 }
 
 """"""

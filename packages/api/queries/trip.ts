@@ -11,3 +11,24 @@ export const GetTripQuery = gql`
 		}
 	}
 `;
+
+export const GetTripsQuery = gql`
+	query getTrips {
+		trips {
+			edges {
+				node {
+					id
+					route
+					status
+					createdAt
+					updatedAt
+				}
+				cursor
+			}
+			pageInfo {
+				endCursor
+				hasNextPage
+			}
+		}
+	}
+`;

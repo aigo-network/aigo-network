@@ -1,4 +1,11 @@
+import type { Trip } from '@aigo/api/sdk';
 import type { GeolocationResponse } from '@react-native-community/geolocation';
+
+export type TodaySummary = {
+	distance: number; // in km
+	time: number; // in h
+	avgSpeed: number; // in km/h
+};
 
 export type MapState = {
 	currentLocation?: GeolocationResponse;
@@ -8,9 +15,6 @@ export type MapState = {
 	};
 	mapReady?: boolean;
 	permissionReady?: boolean;
-	todaySummary: {
-		distance: number; // in km
-		time: number; // in h
-		avgSpeed: number; // in km/h
-	};
+	todaySummary: TodaySummary;
+	trips?: Trip[];
 };
