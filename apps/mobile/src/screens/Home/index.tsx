@@ -99,6 +99,7 @@ const styles = StyleSheet.create({
 		paddingVertical: 12,
 		borderRadius: 20,
 		overflow: 'hidden',
+		backgroundColor: defaultTheme.bgLight,
 		shadowColor: '#000000',
 		shadowOffset: {
 			width: 0,

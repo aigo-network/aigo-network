@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { showStartTripBottomSheet } from 'modals/StartTrip';
 import { mapActions, useMapState } from 'state/map';
 import { requestGeolocationPermission, watchLocation } from 'utils/geolocation';
 
@@ -29,6 +30,8 @@ export const MapScreen = () => {
 	}, []);
 
 	useEffect(() => {
+		showStartTripBottomSheet();
+
 		requestGeolocationPermission({
 			onSuccess: () => handleSuccessRequestGeoPermission(),
 			onDenied: () => goBack(),

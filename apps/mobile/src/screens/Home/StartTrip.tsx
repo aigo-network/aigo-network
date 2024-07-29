@@ -14,7 +14,6 @@ export const StartTrip = () => {
 
 	const handleOpenMap = () => {
 		navigate('Map');
-		showStartTripBottomSheet();
 	};
 
 	const containerStyle = [styles.container, { bottom }];
@@ -53,10 +52,10 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		gap: 14,
-		shadowColor: '#000000',
-		shadowOpacity: 0.32,
-		shadowRadius: 12,
-		elevation: 8,
+		// shadowColor: '#000000',
+		// shadowOpacity: 0.32,
+		// shadowRadius: 12,
+		// elevation: 8,
 	},
 	openButtonTitle: {
 		fontSize: 16,
