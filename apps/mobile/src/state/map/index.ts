@@ -7,13 +7,7 @@ import { proxy, useSnapshot } from 'valtio';
 
 import type { MapState } from './types';
 
-const initialMapState: MapState = {
-	todaySummary: {
-		distance: 0,
-		time: 0,
-		avgSpeed: 0,
-	},
-};
+const initialMapState: MapState = {};
 
 const mapState: MapState = proxy(initialMapState);
 

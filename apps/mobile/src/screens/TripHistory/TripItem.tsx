@@ -1,60 +1,17 @@
 import type { FC } from 'react';
-import { useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import type { Trip } from '@aigo/api/sdk';
 import Motorbike from '@aigo/components/icon/Motorbike';
-import * as turf from '@turf/turf';
-import { formatTimeDiffToHMS } from 'utils/datetime';
 import { defaultTheme } from 'utils/global';
-import { queryReverseGeocode } from 'utils/mapbox';
+import { useInspectingTrip } from 'utils/hooks/trips';
 
 type Props = {
 	trip: Trip;
 };
 
 export const TripItem: FC<Props> = ({ trip }) => {
-	const [startPosition, setStartPosition] = useState('Loading Location');
-	const startTime = new Date(trip.createdAt);
-	const endTime = new Date(trip.updatedAt);
-	const time = useMemo(() => {
-		const time = formatTimeDiffToHMS(endTime, startTime);
-		if (time.startsWith('00:')) return time.replace('00:', '');
-		return time;
-	}, []);
-
-	const route = useMemo(() => {
-		return JSON.parse(trip.route) as GeoJSON.LineString;
-	}, [trip.route]);
-
-	const distance = useMemo(() => {
-		if (!route) return 0;
-		if (route.coordinates.length < 2) return 0;
-
-		const line = turf.lineString(route.coordinates);
-		const length = turf.length(line, { units: 'kilometers' });
-
-		return length.toPrecision(2);
-	}, [route]);
-
-	const avgSpeed = useMemo(() => {
-		const ms = endTime.valueOf() - startTime.valueOf();
-		const h = ms / (60 * 60 * 1000);
-		if (h === 0) return 0;
-		return (Number(distance) / h).toPrecision(2);
-	}, [distance]);
-
-	useEffect(() => {
-		if (!route || route.coordinates.length < 1) return;
-		const handleStartLocation = async () => {
-			const [longitude, latitude] = route.coordinates[0];
-			const reversedGeocodeRes = await queryReverseGeocode(longitude, latitude);
-
-			setStartPosition(
-				reversedGeocodeRes.body.features[0].place_name || 'Unknown',
-			);
-		};
-		handleStartLocation();
-	}, [route]);
+	const { startPosition, distance, time, startTime, avgSpeed } =
+		useInspectingTrip(trip);
 
 	return (
 		<View style={styles.container}>
@@ -64,7 +21,7 @@ export const TripItem: FC<Props> = ({ trip }) => {
 
 			<View style={styles.contentContainer}>
 				<Text style={styles.startPositionText} numberOfLines={1}>
-					{startPosition}
+					{startPosition || 'Loading location'}
 				</Text>
 				<Text style={styles.startTimeText}>
 					{`${startTime.toLocaleDateString()} - ${startTime.toLocaleTimeString()}`}

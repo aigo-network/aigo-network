@@ -1,15 +1,15 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Motorbike from '@aigo/components/icon/Motorbike';
 import { useNavigation } from '@react-navigation/native';
-import { useMapState } from 'state/map';
 import { defaultTheme } from 'utils/global';
+import { useInspectingTrips, useTrips } from 'utils/hooks/trips';
 
 import { sharedStyles } from './shared';
 
 export const TripSummary = () => {
 	const { navigate } = useNavigation();
-	const { todaySummary } = useMapState();
-	const { distance, time, avgSpeed } = todaySummary;
+	const { trips } = useTrips();
+	const { totalDistance, totalTime, avgSpeed } = useInspectingTrips(trips);
 
 	const openTripHistory = () => {
 		navigate('TripHistory');
@@ -26,11 +26,11 @@ export const TripSummary = () => {
 					<Text style={styles.title}>How we move today</Text>
 					<View style={styles.summaryContainer}>
 						<View style={styles.summaryItemContainer}>
-							<Text style={styles.numberText}>{distance}</Text>
+							<Text style={styles.numberText}>{totalDistance}</Text>
 							<Text style={styles.unitText}>km</Text>
 						</View>
 						<View style={styles.summaryItemContainer}>
-							<Text style={styles.numberText}>{time}</Text>
+							<Text style={styles.numberText}>{totalTime}</Text>
 							<Text style={styles.unitText}>Time</Text>
 						</View>
 						<View style={styles.summaryItemContainer}>
