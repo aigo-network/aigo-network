@@ -12,6 +12,7 @@ import DailyCheckIn from './DailyCheckIn';
 import Header from './Header';
 import Invite from './Invite';
 import StartTrip from './StartTrip';
+import TripSummary from './TripSummary';
 
 export const HomeScreen = () => {
 	useUserProfile();
@@ -35,6 +36,7 @@ export const HomeScreen = () => {
 			>
 				{/* <Social /> */}
 				<Balance />
+				<TripSummary />
 				<ActiveBanners />
 				<DailyCheckIn />
 				<Invite />

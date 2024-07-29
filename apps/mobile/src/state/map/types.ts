@@ -8,4 +8,9 @@ export type MapState = {
 	};
 	mapReady?: boolean;
 	permissionReady?: boolean;
+	todaySummary: {
+		distance: number; // in km
+		time: number; // in h
+		avgSpeed: number; // in km/h
+	};
 };

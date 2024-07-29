@@ -17,6 +17,7 @@ import ProfileName from 'screens/Onboard/ProfileName';
 import UserDescription from 'screens/Onboard/UserDescription';
 import ProfileScreen from 'screens/Profile';
 import SplashScreen from 'screens/Splash';
+import TripHistoryScreen from 'screens/TripHistory';
 import VerifyNNIDScreen from 'screens/VerifyNNID';
 import VerifyOTPScreen from 'screens/VerifyOTP';
 import VerifyPhoneNumberScreen from 'screens/VerifyPhoneNumber';
@@ -99,13 +100,17 @@ export const AppContainer: FC = () => {
 							<Stack.Group screenOptions={{ headerShown: false }}>
 								<Stack.Screen name="Home" component={HomeScreen} />
 								<Stack.Screen name="Profile" component={ProfileScreen} />
-								<Stack.Screen name="Map" component={MapScreen} />
 								<Stack.Screen name="VerifyNNID" component={VerifyNNIDScreen} />
 								<Stack.Screen
 									name="VerifyPhoneNumber"
 									component={VerifyPhoneNumberScreen}
 								/>
 								<Stack.Screen name="VerifyOTP" component={VerifyOTPScreen} />
+								<Stack.Screen name="Map" component={MapScreen} />
+								<Stack.Screen
+									name="TripHistory"
+									component={TripHistoryScreen}
+								/>
 							</Stack.Group>
 						</Stack.Navigator>
 					</NavigationContainer>
