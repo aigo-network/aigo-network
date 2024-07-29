@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import type { Trip, TripConnection } from '@aigo/api/sdk';
 import * as turf from '@turf/turf';
+import { appState } from 'state/app';
 import { mapActions, useMapState } from 'state/map';
 import { formatMsToHMS, formatTimeDiffToHMS } from 'utils/datetime';
 import { queryReverseGeocode } from 'utils/mapbox';
@@ -82,7 +83,9 @@ export const useInspectingTrip = (
 			const [longitude, latitude] = route.coordinates[0];
 			const reversedGeocodeRes = await queryReverseGeocode(longitude, latitude);
 			const mainFeature = reversedGeocodeRes.body.features[0];
-			setStartPosition(mainFeature?.place_name || 'Unknown');
+			const unknownLocation =
+				appState.content.screens.tripHistory.unknownLocation;
+			setStartPosition(mainFeature?.place_name || unknownLocation);
 		};
 
 		handleStartLocation();

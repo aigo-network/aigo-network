@@ -36,6 +36,14 @@ export type Content = {
 			placeholder: string;
 			cancelButton: string;
 		};
+		startTripBottomSheet: {
+			title: string;
+			userTypeTitle: string;
+			userTypes: string[];
+			purposeTitle: string;
+			purposes: string[];
+			continueButton: string;
+		};
 	};
 	screens: {
 		splash: {
@@ -97,6 +105,14 @@ export type Content = {
 				welcomePrefix: string;
 				balanceTitle: string;
 			};
+			tripSummary: {
+				title: string;
+				infoUnit: {
+					km: string;
+					time: string;
+					avgSpeed: string;
+				};
+			};
 			socialSection: {
 				title: string;
 				followTwitterButton: string;
@@ -116,6 +132,35 @@ export type Content = {
 				checkInDay: string;
 			};
 			mainButton: string;
+		};
+		tripHistory: {
+			title: string;
+			loadingLocation: string;
+			unknownLocation: string;
+			infoUnit: {
+				km: string;
+				time: string;
+				avgSpeed: string;
+			};
+		};
+		map: {
+			tripUnit: {
+				distance: string;
+				time: string;
+				speed: string;
+			};
+			startButton: string;
+			endButton: string;
+			confirmStart: {
+				title: string;
+				confirm: string;
+				cancel: string;
+			};
+			confirmEnd: {
+				title: string;
+				confirm: string;
+				cancel: string;
+			};
 		};
 		profile: {
 			title: string;

@@ -1,10 +1,12 @@
 import type { FC } from 'react';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import BottomSheetContainer from '@aigo/components/BottomSheetContainer';
 import { Align, showModal } from 'empty-modal/state';
+import { appState } from 'state/app';
 import { mapActions } from 'state/map';
+import { useSnapshot } from 'valtio';
 
 import type { CardInfo } from './RadioCards';
 import RadioCards from './RadioCards';
@@ -28,10 +30,28 @@ type Props = {
 
 const StartTripBottomSheet: FC<Props> = ({ onClose }) => {
 	const { bottom } = useSafeAreaInsets();
+	const { content } = useSnapshot(appState);
 	const [userType, setUserType] = useState<CardInfo | null>(null);
 	const [purpose, setPurpose] = useState<CardInfo | null>(null);
 
 	const disableContinue = !userType || !purpose;
+
+	const {
+		title,
+		userTypeTitle,
+		userTypes,
+		purposeTitle,
+		purposes,
+		continueButton,
+	} = content.modal.startTripBottomSheet;
+
+	const mappedUserTypes = useMemo(() => {
+		return userTypes.map((t) => ({ title: t }));
+	}, [userTypes]);
+
+	const mappedPurposes = useMemo(() => {
+		return purposes.map((t) => ({ title: t }));
+	}, [purposes]);
 
 	const handleContinue = () => {
 		if (disableContinue) return;
@@ -53,24 +73,24 @@ const StartTripBottomSheet: FC<Props> = ({ onClose }) => {
 			<View style={styles.indicator} />
 
 			<View style={styles.titleContainer}>
-				<Text style={styles.title}>Just take you a second ...</Text>
+				<Text style={styles.title}>{title}</Text>
 			</View>
 
 			<View style={styles.separateLine} />
 
 			<View style={styles.contentContainer}>
 				<View>
-					<Text style={styles.subtitle}>You are</Text>
+					<Text style={styles.subtitle}>{userTypeTitle}</Text>
 					<RadioCards
-						cards={userTypes}
+						cards={mappedUserTypes}
 						selectedCard={userType}
 						onSelect={setUserType}
 					/>
 				</View>
 				<View>
-					<Text style={styles.subtitle}>Your purpose is</Text>
+					<Text style={styles.subtitle}>{purposeTitle}</Text>
 					<RadioCards
-						cards={purposes}
+						cards={mappedPurposes}
 						selectedCard={purpose}
 						onSelect={setPurpose}
 					/>
@@ -84,30 +104,12 @@ const StartTripBottomSheet: FC<Props> = ({ onClose }) => {
 					disabled={disableContinue}
 					onPress={handleContinue}
 				>
-					<Text style={styles.continueButtonTitle}>Continue</Text>
+					<Text style={styles.continueButtonTitle}>{continueButton}</Text>
 				</TouchableOpacity>
 			</View>
 		</BottomSheetContainer>
 	);
 };
-
-const userTypes: CardInfo[] = [
-	{
-		title: 'Driver',
-	},
-	{
-		title: 'Rider',
-	},
-];
-
-const purposes: CardInfo[] = [
-	{
-		title: 'Go to work',
-	},
-	{
-		title: 'Hang out',
-	},
-];
 
 const styles = StyleSheet.create({
 	container: {

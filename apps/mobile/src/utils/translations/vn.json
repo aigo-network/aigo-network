@@ -27,6 +27,14 @@
       "title": "Mã vùng:",
       "placeholder": "Tìm kiếm quốc gia",
       "cancelButton": "Hủy"
+    },
+    "startTripBottomSheet": {
+      "title": "Just take you a second ...",
+      "userTypeTitle": "You are",
+      "userTypes": ["Driver", "Rider"],
+      "purposeTitle": "Your purpose is",
+      "purposes": ["Go to work", "Hang out"],
+      "continueButton": "Continue"
     }
   },
   "screens": {
@@ -94,6 +102,14 @@
         "followTwitterButton": "Theo dõi Twitter",
         "joinTelegramButton": "Tham gia Telegram"
       },
+      "tripSummary": {
+        "title": "How we move today",
+        "infoUnit": {
+          "km": "km",
+          "time": "Time",
+          "avgSpeed": "Avg Speed (km/h)"
+        }
+      },
       "inviteSection": {
         "title": "Mời bạn bè:",
         "referral": "/giới thiệu",
@@ -111,6 +127,35 @@
         "title": "Nhiệm vụ hàng ngày"
       },
       "mainButton": "Bắt đầu hành trình của bạn ngay" 
+    },
+    "tripHistory": {
+      "title": "Trip History",
+      "loadingLocation": "Loading location",
+      "unknownLocation": "Unknown location",
+      "infoUnit": {
+        "km": "km",
+        "time": "Time",
+        "avgSpeed": "Avg Speed (km/h)"
+      }
+    },
+    "map": {
+      "tripUnit": {
+        "distance": "Distance (km)",
+        "time": "Time",
+        "speed": "Speed (km/h)"
+      },
+      "startButton": "START",
+      "endButton": "END",
+      "confirmStart": {
+        "title": "Ready? Go and get GO Points",
+        "confirm": "GO now",
+        "cancel": "Close"
+      },
+      "confirmEnd": {
+        "title": "Are you sure to end this trip?",
+        "confirm": "Confirm",
+        "cancel": "Close"
+      }
     },
     "profile": {
       "title": "Hồ sơ",

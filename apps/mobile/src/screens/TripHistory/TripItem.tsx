@@ -2,16 +2,20 @@ import type { FC } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import type { Trip } from '@aigo/api/sdk';
 import Motorbike from '@aigo/components/icon/Motorbike';
+import { appState } from 'state/app';
 import { defaultTheme } from 'utils/global';
 import { useInspectingTrip } from 'utils/hooks/trips';
+import { useSnapshot } from 'valtio';
 
 type Props = {
 	trip: Trip;
 };
 
 export const TripItem: FC<Props> = ({ trip }) => {
+	const { content } = useSnapshot(appState);
 	const { startPosition, distance, time, startTime, avgSpeed } =
 		useInspectingTrip(trip);
+	const { loadingLocation, infoUnit } = content.screens.tripHistory;
 
 	return (
 		<View style={styles.container}>
@@ -21,7 +25,7 @@ export const TripItem: FC<Props> = ({ trip }) => {
 
 			<View style={styles.contentContainer}>
 				<Text style={styles.startPositionText} numberOfLines={1}>
-					{startPosition || 'Loading location'}
+					{startPosition || loadingLocation}
 				</Text>
 				<Text style={styles.startTimeText}>
 					{`${startTime.toLocaleDateString()} - ${startTime.toLocaleTimeString()}`}
@@ -29,15 +33,15 @@ export const TripItem: FC<Props> = ({ trip }) => {
 				<View style={styles.summaryContainer}>
 					<View style={styles.summaryItemContainer}>
 						<Text style={styles.numberText}>{distance}</Text>
-						<Text style={styles.unitText}>km</Text>
+						<Text style={styles.unitText}>{infoUnit.km}</Text>
 					</View>
 					<View style={styles.summaryItemContainer}>
 						<Text style={styles.numberText}>{time}</Text>
-						<Text style={styles.unitText}>Time</Text>
+						<Text style={styles.unitText}>{infoUnit.time}</Text>
 					</View>
 					<View style={styles.summaryItemContainer}>
 						<Text style={styles.numberText}>{avgSpeed}</Text>
-						<Text style={styles.unitText}>Avg Speed (km/h)</Text>
+						<Text style={styles.unitText}>{infoUnit.avgSpeed}</Text>
 					</View>
 				</View>
 			</View>

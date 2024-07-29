@@ -8,16 +8,22 @@ import {
 } from 'react-native';
 import { showConfirmModal } from 'modals/Confirm';
 import { showStartTripBottomSheet } from 'modals/StartTrip';
+import { appState } from 'state/app';
 import { mapActions, useMapState } from 'state/map';
 import { defaultTheme } from 'utils/global';
+import { useSnapshot } from 'valtio';
 
 import { useBouncedMapInsets } from './shared';
 
 export const TripActions = () => {
 	const { safeInsets } = useBouncedMapInsets();
-	const { bottom } = safeInsets;
+	const { content } = useSnapshot(appState);
 	const { currentTrip, startTripMetadata } = useMapState();
 	const [loading, setLoading] = useState(false);
+
+	const { bottom } = safeInsets;
+	const { startButton, confirmStart, endButton, confirmEnd } =
+		content.screens.map;
 
 	const handlePressStart = async () => {
 		if (!startTripMetadata) {
@@ -26,11 +32,12 @@ export const TripActions = () => {
 		}
 
 		setLoading(true);
+		const { title, confirm, cancel } = confirmStart;
 		showConfirmModal({
 			modalId: 'confirm-start-trip',
-			title: 'Ready? Go and get GO Points',
-			confirmText: 'GO now',
-			cancelText: 'Close',
+			title: title,
+			confirmText: confirm,
+			cancelText: cancel,
 			mainAction: 'confirm',
 			onConfirm: async () => {
 				await mapActions.startNewTrip();
@@ -47,11 +54,12 @@ export const TripActions = () => {
 
 	const handlePressEnd = async () => {
 		setLoading(true);
+		const { title, confirm, cancel } = confirmEnd;
 		showConfirmModal({
 			modalId: 'confirm-end-trip',
-			title: 'Are you sure to end this trip?',
-			confirmText: 'Confirm',
-			cancelText: 'Close',
+			title: title,
+			confirmText: confirm,
+			cancelText: cancel,
 			mainAction: 'cancel',
 			onConfirm: async () => {
 				await mapActions.endCurrentTrip();
@@ -81,14 +89,14 @@ export const TripActions = () => {
 					style={[styles.button, styles.startButton]}
 					onPress={handlePressStart}
 				>
-					<Text style={styles.startButtonText}>START</Text>
+					<Text style={styles.startButtonText}>{startButton}</Text>
 				</TouchableOpacity>
 			) : (
 				<TouchableOpacity
 					style={[styles.button, styles.endButton]}
 					onPress={handlePressEnd}
 				>
-					<Text style={styles.endButtonText}>END</Text>
+					<Text style={styles.endButtonText}>{endButton}</Text>
 				</TouchableOpacity>
 			)}
 		</View>

@@ -2,14 +2,19 @@ import { useMemo } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Motorbike from '@aigo/components/icon/Motorbike';
 import { useNavigation } from '@react-navigation/native';
+import { appState } from 'state/app';
 import { defaultTheme } from 'utils/global';
 import { useInspectingTrips, useTrips } from 'utils/hooks/trips';
+import { useSnapshot } from 'valtio';
 
 import { sharedStyles } from './shared';
 
 export const TripSummary = () => {
 	const { navigate } = useNavigation();
+	const { content } = useSnapshot(appState);
 	const { trips } = useTrips();
+
+	const { title, infoUnit } = content.screens.home.tripSummary;
 
 	const filteredTodayTrips = useMemo(() => {
 		const today = new Date().toLocaleDateString();
@@ -33,19 +38,19 @@ export const TripSummary = () => {
 				</View>
 
 				<View style={styles.contentContainer}>
-					<Text style={styles.title}>How we move today</Text>
+					<Text style={styles.title}>{title}</Text>
 					<View style={styles.summaryContainer}>
 						<View style={styles.summaryItemContainer}>
 							<Text style={styles.numberText}>{totalDistance}</Text>
-							<Text style={styles.unitText}>km</Text>
+							<Text style={styles.unitText}>{infoUnit.km}</Text>
 						</View>
 						<View style={styles.summaryItemContainer}>
 							<Text style={styles.numberText}>{totalTime}</Text>
-							<Text style={styles.unitText}>Time</Text>
+							<Text style={styles.unitText}>{infoUnit.time}</Text>
 						</View>
 						<View style={styles.summaryItemContainer}>
 							<Text style={styles.numberText}>{avgSpeed}</Text>
-							<Text style={styles.unitText}>Avg Speed (km/h)</Text>
+							<Text style={styles.unitText}>{infoUnit.avgSpeed}</Text>
 						</View>
 					</View>
 				</View>
