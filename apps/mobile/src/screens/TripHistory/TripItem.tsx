@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import type { Trip } from '@aigo/api/sdk';
 import Motorbike from '@aigo/components/icon/Motorbike';
 import * as turf from '@turf/turf';
+import { formatTimeDiffToHMS } from 'utils/datetime';
 import { defaultTheme } from 'utils/global';
 import { queryReverseGeocode } from 'utils/mapbox';
 
@@ -14,8 +15,12 @@ type Props = {
 export const TripItem: FC<Props> = ({ trip }) => {
 	const [startPosition, setStartPosition] = useState('Loading Location');
 	const startTime = new Date(trip.createdAt);
-	const time = 0;
-	const avgSpeed = 0;
+	const endTime = new Date(trip.updatedAt);
+	const time = useMemo(() => {
+		const time = formatTimeDiffToHMS(endTime, startTime);
+		if (time.startsWith('00:')) return time.replace('00:', '');
+		return time;
+	}, []);
 
 	const route = useMemo(() => {
 		return JSON.parse(trip.route) as GeoJSON.LineString;
@@ -30,6 +35,13 @@ export const TripItem: FC<Props> = ({ trip }) => {
 
 		return length.toPrecision(2);
 	}, [route]);
+
+	const avgSpeed = useMemo(() => {
+		const ms = endTime.valueOf() - startTime.valueOf();
+		const h = ms / (60 * 60 * 1000);
+		if (h === 0) return 0;
+		return (Number(distance) / h).toPrecision(2);
+	}, [distance]);
 
 	useEffect(() => {
 		if (!route || route.coordinates.length < 1) return;
@@ -111,7 +123,9 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 	},
-	summaryItemContainer: {},
+	summaryItemContainer: {
+		minWidth: 68,
+	},
 	numberText: {
 		fontSize: 20,
 		fontWeight: '700',
