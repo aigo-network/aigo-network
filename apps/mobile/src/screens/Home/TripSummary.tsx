@@ -14,7 +14,7 @@ export const TripSummary = () => {
 	const filteredTodayTrips = useMemo(() => {
 		const today = new Date().toLocaleDateString();
 		return trips.filter((trip) => {
-			return new Date(trip.createdAt).toLocaleDateString() === today;
+			return new Date(trip.startTime).toLocaleDateString() === today;
 		});
 	}, [trips]);
 

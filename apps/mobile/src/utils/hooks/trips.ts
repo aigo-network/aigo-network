@@ -106,10 +106,13 @@ export const useInspectingTrips = (trips: Trip[]): InspectedTrips => {
 
 	const totalTimeInMs = useMemo(() => {
 		const timeInMs = trips.reduce((prev, curTrip) => {
-			const currentStart = new Date(curTrip.createdAt);
-			const currentEnd = new Date(curTrip.updatedAt);
+			const currentStart = new Date(curTrip.startTime);
+			const currentEnd = curTrip.endTime
+				? new Date(curTrip.endTime)
+				: new Date();
+			const addingMs = currentEnd.valueOf() - currentStart.valueOf();
 
-			return prev + currentEnd.valueOf() - currentStart.valueOf();
+			return prev + addingMs;
 		}, 0);
 
 		return timeInMs;
