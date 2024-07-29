@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
 	startPositionText: {
 		fontSize: 16,
 		lineHeight: 20,
-		color: defaultTheme.textDark70,
+		color: defaultTheme.textDark90,
 	},
 	startTimeText: {
 		fontSize: 12,
