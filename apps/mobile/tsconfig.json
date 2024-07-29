@@ -15,7 +15,7 @@
       "screens/*": ["./src/screens/*"],
       "modals/*": ["./src/modals/*"],
       "api/*": ["./src/api/*"],
-	  "components/*": ["./src/components/*"],
+      "components/*": ["./src/components/*"],
     }
   }
 }

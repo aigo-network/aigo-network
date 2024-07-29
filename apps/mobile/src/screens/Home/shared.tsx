@@ -1,3 +1,4 @@
+import type { ImageSourcePropType } from 'react-native';
 import { StyleSheet } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { InviteCode } from '@aigo/components/InviteCode';
@@ -63,13 +64,16 @@ export const showInvitationCode = () => {
 };
 
 export const showCheckInPoint = () => {
-	const { messagePrefix } = appState.content.modal.earnPoints;
+	const { title, messagePrefix, messageSuffix } =
+		appState.content.modal.earnPoints;
 
 	const { cleanModal } = showModal(
 		<Animated.View entering={FadeInDown}>
 			<PointPopup
 				point={config.activity.DailyCheckIn.points}
+				title={title}
 				messagePrefix={messagePrefix}
+				messageSuffix={messageSuffix}
 				onPressClose={() => cleanModal()}
 			/>
 		</Animated.View>,
@@ -80,4 +84,8 @@ export const showCheckInPoint = () => {
 			align: Align.FullCenter,
 		},
 	);
+};
+
+export const bannerMap: Record<string, ImageSourcePropType> = {
+	tada: require('assets/img/banner/tada-banner.png'),
 };

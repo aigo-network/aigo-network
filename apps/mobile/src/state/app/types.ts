@@ -7,6 +7,7 @@ export type RemoteConfig = {
 	deepAnalyticsEnabled: boolean;
 	minimalVersion: string;
 	enableMapFeature: boolean;
+	activeBanners: ActiveBanner[];
 	watchPositionOptions: GeolocationOptions;
 };
 
@@ -15,4 +16,10 @@ export type Onboarding = {
 	city: string;
 	descriptions: UserDescription[];
 	phoneNumber?: string;
+};
+
+export type ActiveBanner = {
+	id: string;
+	name: string;
+	url: string;
 };

@@ -25,7 +25,9 @@ export type Content = {
 			shareButton: string;
 		};
 		earnPoints: {
+			title: string;
 			messagePrefix: string;
+			messageSuffix: string;
 			completedOnboardingMessage: string;
 		};
 		citySelection: {

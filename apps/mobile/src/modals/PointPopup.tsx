@@ -6,14 +6,18 @@ import { defaultTheme } from 'utils/global';
 
 type Props = {
 	point: number;
+	title: string;
 	messagePrefix: string;
+	messageSuffix: string;
 	description?: string;
 	onPressClose?: () => void;
 };
 
 export const PointPopup: FC<Props> = ({
 	point,
+	title,
 	messagePrefix,
+	messageSuffix,
 	description,
 	onPressClose,
 }) => {
@@ -21,11 +25,15 @@ export const PointPopup: FC<Props> = ({
 		<View style={styles.container}>
 			<View style={styles.giftContainer}>
 				<LottieView
-					source={require('assets/gift-lottie.json')}
+					source={require('assets/confetti-lottie.json')}
 					style={styles.gift}
 					autoPlay
 					loop
 				/>
+				<View style={styles.rewardContainer}>
+					<Text style={styles.highlightPoint}>{point}</Text>
+					<Text style={styles.explainText}>GO {messageSuffix}</Text>
+				</View>
 			</View>
 
 			<TouchableOpacity
@@ -39,10 +47,12 @@ export const PointPopup: FC<Props> = ({
 				style={styles.pointTick}
 				source={require('assets/img/point-tick.png')}
 			/> */}
-			<View>
-				<Text style={styles.titleText}>
-					{`🎁 ${messagePrefix} `}
-					<Text style={styles.highlightText}>{`${point} GO!`}</Text>
+			<View style={{ gap: 8, alignItems: 'center' }}>
+				<Text style={styles.title}>{title}</Text>
+				<Text style={styles.messageText}>
+					{`${messagePrefix} `}
+					<Text style={styles.highlightText}>{`${point} GO`}</Text>
+					{` ${messageSuffix}.`}
 				</Text>
 			</View>
 			{description && <Text style={styles.descriptionText}>{description}</Text>}
@@ -73,26 +83,54 @@ const styles = StyleSheet.create({
 	giftContainer: {
 		width: 200,
 		height: 200,
+		position: 'relative',
 	},
 	gift: {
 		position: 'absolute',
 		left: -100,
-		top: -140,
+		top: -130,
 		width: 400,
 		height: 400,
+	},
+	rewardContainer: {
+		position: 'absolute',
+		top: 0,
+		bottom: 0,
+		left: 0,
+		right: 0,
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	highlightPoint: {
+		fontSize: 48,
+		lineHeight: 58,
+		fontWeight: '800',
+		color: defaultTheme.cta100,
+	},
+	explainText: {
+		fontSize: 16,
+		lineHeight: 20,
+		fontWeight: '500',
+		color: defaultTheme.textDark70,
 	},
 	descriptionText: {
 		fontSize: 16,
 		color: defaultTheme.textDark70,
 		textAlign: 'center',
 	},
-	titleText: {
-		fontSize: 22,
+	title: {
+		fontSize: 24,
+		lineHeight: 28,
+		fontWeight: '600',
+		color: defaultTheme.textDark90,
+	},
+	messageText: {
+		fontSize: 16,
 		color: defaultTheme.textDark90,
 		textAlign: 'center',
 	},
 	highlightText: {
-		fontSize: 22,
+		fontSize: 16,
 		color: defaultTheme.cta100,
 		fontWeight: '600',
 	},

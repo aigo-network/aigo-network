@@ -1,5 +1,4 @@
 import {
-	Image,
 	ImageBackground,
 	Platform,
 	ScrollView,
@@ -14,6 +13,7 @@ import { useTransparencyTracking, useUserProfile } from 'utils/hooks/app';
 import { useNotificationPermissionRequest } from 'utils/hooks/notification';
 import { useSnapshot } from 'valtio';
 
+import ActiveBanners from './ActiveBanners';
 import DailyCheckIn from './DailyCheckIn';
 import Header from './Header';
 import Invite from './Invite';
@@ -54,11 +54,7 @@ export const HomeScreen = () => {
 						style={styles.balanceAmount}
 					>{`${appUser?.GOPoints || 0} GO`}</Text>
 				</ImageBackground>
-				<Image
-					style={styles.banner}
-					source={require('assets/img/tada-banner.png')}
-					resizeMethod="resize"
-				/>
+				<ActiveBanners />
 				<DailyCheckIn />
 				<Invite />
 				{/* <DailyMissions /> */}
@@ -87,20 +83,14 @@ const styles = StyleSheet.create({
 		paddingBottom: 100,
 		gap: 16,
 	},
-	banner: {
-		maxWidth: '100%',
-		height: 140,
-		borderRadius: 20,
-		overflow: 'hidden',
-	},
 	balanceContainer: {
 		gap: 8,
 		paddingHorizontal: 16,
 		paddingVertical: 12,
 		borderRadius: 20,
 		overflow: 'hidden',
-		backgroundColor: defaultTheme.bgLight,
-		shadowColor: '#000000',
+		backgroundColor: defaultTheme.textDark100,
+		shadowColor: defaultTheme.textDark100,
 		shadowOffset: {
 			width: 0,
 			height: -1,

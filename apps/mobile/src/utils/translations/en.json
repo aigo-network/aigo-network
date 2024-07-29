@@ -5,9 +5,9 @@
     "no": "No",
     "cancel": "Cancel",
     "confirm": "Confirm",
-	"confirmLogOutTitle": "Log out",
+    "confirmLogOutTitle": "Log out",
     "confirmLogOutMessage": "Are you sure to logout?",
-	"confirmDeleteAccountTitle": "Delete account",
+    "confirmDeleteAccountTitle": "Delete account",
     "confirmDeleteAccountMessage": "Do you want to delete your account?",
     "invite": {
       "title": "Invite your friends !",
@@ -18,7 +18,9 @@
       "shareButton": "Share with friends"
     },
     "earnPoints": {
+      "title": "Congratulation",
       "messagePrefix": "You've Earned",
+      "messageSuffix": "points",
       "completedOnboardingMessage": "Your account is ready to use. You will be redirected to the Home Page in a few seconds."
     },
     "citySelection": {

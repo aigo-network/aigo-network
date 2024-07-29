@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	disableCheckInButton: {
-		backgroundColor: defaultTheme.cta40,
+		backgroundColor: defaultTheme.textDark20,
 	},
 	buttonTitle: {
 		fontSize: 13,

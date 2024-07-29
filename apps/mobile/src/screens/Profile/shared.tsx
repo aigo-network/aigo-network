@@ -6,14 +6,17 @@ import PointPopup from 'modals/PointPopup';
 import { appState } from 'state/app';
 
 export const showReferralPoint = () => {
-	const { messagePrefix } = appState.content.modal.earnPoints;
+	const { title, messagePrefix, messageSuffix } =
+		appState.content.modal.earnPoints;
 	const points = config.activity.InviteFriend.points;
 
 	const { cleanModal } = showModal(
 		<Animated.View entering={FadeInDown}>
 			<PointPopup
 				point={points}
+				title={title}
 				messagePrefix={messagePrefix}
+				messageSuffix={messageSuffix}
 				onPressClose={() => cleanModal()}
 			/>
 		</Animated.View>,
