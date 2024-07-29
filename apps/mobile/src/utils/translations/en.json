@@ -11,7 +11,7 @@
     "confirmDeleteAccountMessage": "Do you want to delete your account?",
     "invite": {
       "title": "Invite your friends !",
-      "description": "Click copy or Share button to\ninvite friends and receive",
+      "description": "Click copy or Share button to invite friends and receive",
       "referral": "referral",
       "message": "Hey! Let's download AiGO App at {{{url}}}\nUse my invitation code for {{points}} GO points: {{code}}",
       "codeTitle": "Invitation code",
@@ -113,7 +113,8 @@
       "mapSection": {
         "title": "AiGO Map",
         "openButton": "Open Map"
-      }
+      },
+      "mainButton": "Start your trip now"
     },
     "profile": {
       "title": "Profile",

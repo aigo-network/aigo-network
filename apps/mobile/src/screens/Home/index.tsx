@@ -77,7 +77,7 @@ export const HomeScreen = () => {
 					}
 					onPress={handleOpenMap}
 				>
-					<Text style={styles.title}>Start your trip now</Text>
+					<Text style={styles.title}>{content.screens.home.mainButton}</Text>
 				</Button>
 			)}
 		</View>
