@@ -1,11 +1,13 @@
 {
-  "language": "한국어",
+  "language": "🇰🇷 한국어",
   "modal": {
     "yes": "예",
     "no": "아니요",
     "cancel": "취소",
     "confirm": "확인",
+    "confirmLogOutTitle": "Log out",
     "confirmLogOutMessage": "로그아웃하시겠습니까??",
+    "confirmDeleteAccountTitle": "Delete account",
     "confirmDeleteAccountMessage": "계정을 삭제하시겠습니까??",
     "invite": {
       "title": "친구 초대 하기!",
@@ -16,7 +18,9 @@
       "shareButton": "친구에게 공유하기"
     },
     "earnPoints": {
+      "title": "Congratulation",
       "messagePrefix": "포인트가 누적되었습니다",
+      "messageSuffix": "포인트를",
       "completedOnboardingMessage": "계정을 사용할 준비가 되었습니다. 몇 초 안에 홈 페이지로 전환됩니다."
     },
     "citySelection": {

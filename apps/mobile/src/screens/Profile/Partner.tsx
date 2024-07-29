@@ -3,6 +3,7 @@ import StatusTag, { Status } from '@aigo/components/StatusTag';
 import { config } from '@aigo/config';
 import { useNavigation } from '@react-navigation/native';
 import { appState } from 'state/app';
+import { defaultTheme } from 'utils/global';
 import { useSnapshot } from 'valtio';
 
 const PartnerProgram = () => {
@@ -69,11 +70,11 @@ const styles = StyleSheet.create({
 	title: {
 		fontSize: 18,
 		fontWeight: '500',
-		color: '#000',
+		color: defaultTheme.textDark90,
 	},
 	box: {
 		borderRadius: 10,
-		backgroundColor: '#fff',
+		backgroundColor: defaultTheme.gray10,
 		elevation: 3,
 		shadowColor: '#cacaca',
 		shadowOffset: {
@@ -96,16 +97,16 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	boxTitle: {
-		color: '#1c1917',
+		color: defaultTheme.textDark90,
 		fontSize: 16,
 		fontWeight: '700',
 	},
 	boxDescription: {
-		color: 'rgba(108, 103, 100, .7)',
+		color: defaultTheme.textDark70,
 		paddingRight: 10,
 	},
 	descriptionHighlight: {
-		color: '#6740ff',
+		color: defaultTheme.cta100,
 	},
 	statusGroup: {
 		marginTop: 10,

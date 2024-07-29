@@ -1,5 +1,6 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
 import { appState } from 'state/app';
+import { defaultTheme } from 'utils/global';
 import { defaultAvatar } from 'utils/misc';
 import { useSnapshot } from 'valtio';
 
@@ -20,29 +21,18 @@ export const Header = () => {
 					{appUser?.name || profileContent.unknownUsername}
 				</Text>
 			</View>
-			<View style={styles.balanceContainer}>
-				<View style={styles.balanceBgContainer}>
-					<Image
-						style={[styles.iconBg, styles.balanceIconTop]}
-						source={require('assets/img/aigo-bg-icon.png')}
-					/>
-					<Image
-						style={[styles.iconBg, styles.balanceIconBottom]}
-						source={require('assets/img/aigo-bg-icon.png')}
-					/>
-				</View>
-				<View style={styles.balanceTextContainer}>
-					<Text style={styles.balanceTitleText}>
-						{profileContent.totalBalanceTitle}
-					</Text>
-					<Text style={styles.balanceAmountText}>
-						{appUser?.GOPoints || 0} GO
-					</Text>
-				</View>
-				{/* <TouchableOpacity style={styles.historyButton}>
-					<Text>{profileContent.viewHistory}</Text>
-				</TouchableOpacity> */}
-			</View>
+			<ImageBackground
+				source={require('/assets/img/balance-bg.png')}
+				style={styles.balanceContainer}
+			>
+				<Text style={styles.balanceText}>
+					{profileContent.totalBalanceTitle}
+				</Text>
+
+				<Text
+					style={styles.balanceAmount}
+				>{`${appUser?.GOPoints || 0} GO`}</Text>
+			</ImageBackground>
 		</View>
 	);
 };
@@ -70,58 +60,33 @@ const styles = StyleSheet.create({
 	},
 	nameText: {
 		fontSize: 24,
-		color: '#000',
+		color: defaultTheme.textDark90,
 	},
 	balanceContainer: {
-		backgroundColor: '#6740ff',
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'space-between',
-		paddingHorizontal: 20,
-		paddingTop: 18,
-		paddingBottom: 14,
-		borderRadius: 30,
-	},
-	balanceTextContainer: {
-		gap: 6,
-	},
-	balanceTitleText: {
-		fontSize: 16,
-		color: '#C8C8C8',
-	},
-	balanceAmountText: {
-		fontSize: 34,
-		fontWeight: '600',
-		color: '#FFFFFF',
-	},
-	historyButton: {
-		borderWidth: 1,
-		borderColor: '#fff',
-		paddingHorizontal: 14,
-		paddingVertical: 8,
+		gap: 8,
+		paddingHorizontal: 16,
+		paddingVertical: 12,
 		borderRadius: 20,
-	},
-	balanceBgContainer: {
-		position: 'absolute',
-		top: 0,
-		bottom: 0,
-		left: 0,
-		right: 0,
 		overflow: 'hidden',
-		borderRadius: 30,
+		backgroundColor: defaultTheme.textDark100,
+		shadowColor: defaultTheme.textDark100,
+		shadowOffset: {
+			width: 0,
+			height: -1,
+		},
+		shadowOpacity: 0.1,
+		shadowRadius: 1.5,
+		elevation: -2,
+		objectFit: 'cover',
 	},
-	balanceIconTop: {
-		position: 'absolute',
-		right: -70,
-		top: -70,
+	balanceText: {
+		fontSize: 17,
+		color: defaultTheme.textLight,
 	},
-	balanceIconBottom: {
-		position: 'absolute',
-		left: -40,
-		bottom: -140,
-	},
-	iconBg: {
-		width: 200,
-		height: 190,
+	balanceAmount: {
+		fontFamily: 'DMSans',
+		fontSize: 26,
+		fontWeight: '700',
+		color: defaultTheme.textLight,
 	},
 });

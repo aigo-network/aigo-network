@@ -13,6 +13,7 @@ import analytics from '@react-native-firebase/analytics';
 import { useNavigation } from '@react-navigation/native';
 import { appState } from 'state/app';
 import { logOut } from 'utils/auth';
+import { defaultTheme } from 'utils/global';
 import { useSnapshot } from 'valtio';
 
 import { showDeleteUserConfirm, showLogOutConfirm } from './shared';
@@ -114,7 +115,7 @@ const styles = StyleSheet.create({
 	title: {
 		fontSize: 18,
 		fontWeight: '500',
-		color: '#000',
+		color: defaultTheme.textDark90,
 	},
 	socialContainer: {
 		flexDirection: 'row',
@@ -141,15 +142,15 @@ const styles = StyleSheet.create({
 	},
 	logOutText: {
 		fontSize: 18,
-		color: '#D84A4A',
+		color: defaultTheme.red,
 	},
 	deleteAccountText: {
 		fontSize: 18,
-		color: '#CCCCCC',
+		color: defaultTheme.textDark30,
 		marginTop: 24,
 	},
 	version: {
 		textAlign: 'center',
-		color: '#4d4d4d',
+		color: defaultTheme.textDark70,
 	},
 });

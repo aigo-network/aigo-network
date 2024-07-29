@@ -1,31 +1,25 @@
+import type { ImageSourcePropType } from 'react-native';
 import { StyleSheet } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { InviteCode } from '@aigo/components/InviteCode';
-import PointPopup from '@aigo/components/PointPopup';
 import { config } from '@aigo/config';
 import { Align, showModal } from 'empty-modal';
+import PointPopup from 'modals/PointPopup';
 import mustache from 'mustache';
 import { appState } from 'state/app';
+import { defaultTheme } from 'utils/global';
 
 export const sharedStyles = StyleSheet.create({
 	container: {
-		backgroundColor: '#fff',
+		backgroundColor: defaultTheme.gray10,
 		padding: 16,
 		paddingTop: 18,
 		paddingBottom: 22,
 		borderRadius: 20,
-		shadowColor: '#000000',
-		shadowOffset: {
-			width: 0,
-			height: 1,
-		},
-		shadowOpacity: 0.1,
-		shadowRadius: 1.5,
-		elevation: 2,
 		gap: 14,
 	},
 	title: {
-		color: '#000',
+		color: defaultTheme.textDark90,
 		fontSize: 17,
 	},
 });
@@ -70,13 +64,16 @@ export const showInvitationCode = () => {
 };
 
 export const showCheckInPoint = () => {
-	const { messagePrefix } = appState.content.modal.earnPoints;
+	const { title, messagePrefix, messageSuffix } =
+		appState.content.modal.earnPoints;
 
 	const { cleanModal } = showModal(
 		<Animated.View entering={FadeInDown}>
 			<PointPopup
 				point={config.activity.DailyCheckIn.points}
+				title={title}
 				messagePrefix={messagePrefix}
+				messageSuffix={messageSuffix}
 				onPressClose={() => cleanModal()}
 			/>
 		</Animated.View>,
@@ -87,4 +84,8 @@ export const showCheckInPoint = () => {
 			align: Align.FullCenter,
 		},
 	);
+};
+
+export const bannerMap: Record<string, ImageSourcePropType> = {
+	tada: require('assets/img/banner/tada-banner.png'),
 };

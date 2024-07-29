@@ -1,6 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { showLanguageSelection } from 'modals/index';
 import { appState } from 'state/app';
+import { defaultTheme } from 'utils/global';
 import { useSnapshot } from 'valtio';
 
 export const Settings = () => {
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
 	title: {
 		fontSize: 18,
 		fontWeight: '500',
-		color: '#000',
+		color: defaultTheme.textDark90,
 	},
 	infoContainer: {
 		gap: 16,
@@ -44,12 +45,12 @@ const styles = StyleSheet.create({
 	},
 	fieldTitle: {
 		fontSize: 16,
-		color: '#000',
+		color: defaultTheme.textDark90,
 	},
 	fieldValue: {
 		flex: 1,
 		fontSize: 16,
-		color: '#6C6764',
+		color: defaultTheme.textDark70,
 		textAlign: 'right',
 	},
 });

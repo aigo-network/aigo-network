@@ -16,13 +16,14 @@ import { graphqlClient } from '@aigo/api/graphql';
 import Button from '@aigo/components/Button';
 import LeftArrowIcon from '@aigo/components/icon/LeftArrowIcon';
 import KeyboardView from '@aigo/components/KeyboardView';
-import PointPopup from '@aigo/components/PointPopup';
 import SafeContainer from '@aigo/components/SafeContainer';
 import { config } from '@aigo/config';
 import crashlytics from '@react-native-firebase/crashlytics';
 import { useNavigation } from '@react-navigation/native';
 import { Align, showModal } from 'empty-modal';
+import PointPopup from 'modals/PointPopup';
 import { appActions, appState } from 'state/app';
+import { defaultTheme } from 'utils/global';
 import { useSnapshot } from 'valtio';
 
 const AnimatedView = Animated.createAnimatedComponent(View);
@@ -62,13 +63,16 @@ const VerifyNNIDScreen = () => {
 	);
 
 	const showCompleteNyamNyamVerification = () => {
-		const { messagePrefix } = appState.content.modal.earnPoints;
+		const { title, messagePrefix, messageSuffix } =
+			appState.content.modal.earnPoints;
 		const points = config.activity.CompleteNyamNyamVerification.points;
 		const { cleanModal } = showModal(
 			<Animated.View entering={FadeInDown}>
 				<PointPopup
 					point={points}
+					title={title}
 					messagePrefix={messagePrefix}
+					messageSuffix={messageSuffix}
 					onPressClose={() => {
 						cleanModal();
 					}}
@@ -117,9 +121,7 @@ const VerifyNNIDScreen = () => {
 								disabled={!nnid}
 								loading={loading}
 							>
-								<Text style={[styles.btnText, !!nnid && styles.activeBtnText]}>
-									{continueButton}
-								</Text>
+								<Text style={styles.btnText}>{continueButton}</Text>
 							</Button>
 						</AnimatedView>
 					}
@@ -174,7 +176,7 @@ const styles = StyleSheet.create({
 	title: {
 		fontSize: 18,
 		fontWeight: '500',
-		color: '#000',
+		color: defaultTheme.textDark90,
 	},
 	backButton: {
 		paddingVertical: 10,
@@ -185,13 +187,13 @@ const styles = StyleSheet.create({
 		marginHorizontal: 25,
 	},
 	mainText: {
-		color: '#000',
+		color: defaultTheme.textDark90,
 		fontSize: 30,
 		fontWeight: '700',
 	},
 	subText: {
 		fontSize: 16,
-		color: 'rgba(0, 0, 0, .7)',
+		color: defaultTheme.textDark70,
 	},
 	inputContainer: {
 		marginHorizontal: 25,
@@ -200,32 +202,29 @@ const styles = StyleSheet.create({
 	input: {
 		fontSize: 25,
 		fontWeight: '700',
-		color: '#714cfe',
+		color: defaultTheme.textDark90,
 		textAlign: 'center',
 	},
 	errorMess: {
 		textAlign: 'center',
 		fontSize: 16,
-		color: '#ec0000',
+		color: defaultTheme.red,
 	},
 	btnContainer: {
 		marginHorizontal: 25,
 	},
 	btn: {
-		backgroundColor: '#ebf7e6',
+		backgroundColor: defaultTheme.textDark90,
+		opacity: 0.1,
 		paddingVertical: 15,
 		borderRadius: 50,
 	},
 	activeBtn: {
-		backgroundColor: '#a0fa82',
+		opacity: 1,
 	},
 	btnText: {
-		fontFamily: 'Gabarito',
 		fontWeight: '500',
 		fontSize: 19,
-		color: '#b1c2ab',
-	},
-	activeBtnText: {
-		color: '#6740ff',
+		color: defaultTheme.textLight,
 	},
 });

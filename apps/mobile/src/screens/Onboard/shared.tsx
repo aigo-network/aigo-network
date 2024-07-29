@@ -1,9 +1,9 @@
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { graphqlClient } from '@aigo/api/graphql';
-import PointPopup from '@aigo/components/PointPopup';
 import { config } from '@aigo/config';
 import auth from '@react-native-firebase/auth';
 import { Align, showModal } from 'empty-modal';
+import PointPopup from 'modals/PointPopup';
 import { appActions, appState } from 'state/app';
 import { getDefaultUserInfo } from 'state/app/userInfo';
 import { defaultAvatar, defaultEmail } from 'utils/misc';
@@ -44,13 +44,15 @@ export const completeOnboarding = async (cityFallback?: string) => {
 	}
 
 	setTimeout(() => {
-		const { completedOnboardingMessage, messagePrefix } =
+		const { title, completedOnboardingMessage, messagePrefix, messageSuffix } =
 			appState.content.modal.earnPoints;
 		const { cleanModal } = showModal(
 			<Animated.View entering={FadeInDown}>
 				<PointPopup
 					point={config.activity.CompleteOnboarding.points}
+					title={title}
 					messagePrefix={messagePrefix}
+					messageSuffix={messageSuffix}
 					description={completedOnboardingMessage}
 					onPressClose={() => {
 						cleanModal();

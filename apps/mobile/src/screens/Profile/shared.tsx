@@ -1,19 +1,22 @@
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import ConfirmPopup from '@aigo/components/ConfirmPopup';
-import PointPopup from '@aigo/components/PointPopup';
 import { config } from '@aigo/config';
 import { Align, showModal } from 'empty-modal';
+import ConfirmPopup from 'modals/ConfirmPopup';
+import PointPopup from 'modals/PointPopup';
 import { appState } from 'state/app';
 
 export const showReferralPoint = () => {
-	const { messagePrefix } = appState.content.modal.earnPoints;
+	const { title, messagePrefix, messageSuffix } =
+		appState.content.modal.earnPoints;
 	const points = config.activity.InviteFriend.points;
 
 	const { cleanModal } = showModal(
 		<Animated.View entering={FadeInDown}>
 			<PointPopup
 				point={points}
+				title={title}
 				messagePrefix={messagePrefix}
+				messageSuffix={messageSuffix}
 				onPressClose={() => cleanModal()}
 			/>
 		</Animated.View>,
@@ -27,12 +30,14 @@ export const showReferralPoint = () => {
 };
 
 export const showLogOutConfirm = ({ logout }: { logout: () => void }) => {
-	const { confirm, cancel, confirmLogOutMessage } = appState.content.modal;
+	const { confirm, cancel, confirmLogOutTitle, confirmLogOutMessage } =
+		appState.content.modal;
 	const { cleanModal } = showModal(
 		<Animated.View entering={FadeInDown}>
 			<ConfirmPopup
-				yesText={confirm}
-				noText={cancel}
+				confirmText={confirm}
+				cancelText={cancel}
+				title={confirmLogOutTitle}
 				message={confirmLogOutMessage}
 				onClose={() => {
 					cleanModal();
@@ -62,13 +67,15 @@ export const showDeleteUserConfirm = ({
 	deleteUser: () => void;
 	logout: () => void;
 }) => {
-	const { confirmDeleteAccountMessage, yes, no } = appState.content.modal;
+	const { confirmDeleteAccountTitle, confirmDeleteAccountMessage, yes, no } =
+		appState.content.modal;
 	const { cleanModal } = showModal(
 		<Animated.View entering={FadeInDown}>
 			<ConfirmPopup
+				title={confirmDeleteAccountTitle}
 				message={confirmDeleteAccountMessage}
-				yesText={yes}
-				noText={no}
+				confirmText={yes}
+				cancelText={no}
 				onClose={() => {
 					cleanModal();
 				}}

@@ -2,7 +2,6 @@ import { Image, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { graphqlClient } from '@aigo/api/graphql';
 import { Button } from '@aigo/components/Button';
-import AppIcon from '@aigo/components/icon/AppIcon';
 import SafeContainer from '@aigo/components/SafeContainer';
 import crashlytics from '@react-native-firebase/crashlytics';
 import { useNavigation } from '@react-navigation/native';
@@ -10,13 +9,14 @@ import { showLanguageSelection } from 'modals/index';
 import { appState } from 'state/app';
 import type { SignInFunction } from 'utils/auth';
 import { signInWithApple, signInWithGoogle } from 'utils/auth';
+import { defaultTheme } from 'utils/global';
 import { useSnapshot } from 'valtio';
 
 export const LoginScreen = () => {
 	const { navigate, reset } = useNavigation();
 	const { version, buildNumber, content, remoteConfig } = useSnapshot(appState);
 	const logInContent = content.screens.logIn;
-	const backgroundSrc = require('assets/img/login/background-logo.png');
+	const backgroundSrc = require('assets/img/login/aigo-ride-logo-light.png');
 	const googleIconSrc = require('assets/img/login/google-logo.png');
 	const appleIconSrc = require('assets/img/login/apple-logo.png');
 	const phoneNumberSrc = require('assets/img/login/phone-number.png');
@@ -48,18 +48,21 @@ export const LoginScreen = () => {
 
 	return (
 		<View style={styles.container}>
-			<Image source={backgroundSrc} style={styles.backgroundImage} />
 			<SafeContainer style={styles.safeContainer}>
 				<View style={styles.headingContainer}>
 					<TouchableOpacity onPress={() => showLanguageSelection()}>
-						<Text>{content.language}</Text>
+						<Text style={{ color: defaultTheme.textDark90 }}>
+							{content.language}
+						</Text>
 					</TouchableOpacity>
 				</View>
 				<View>
-					<View style={styles.logoImg}>
-						<AppIcon />
-					</View>
-					<Text style={styles.welcome}>{logInContent.welcome}</Text>
+					<Image
+						source={backgroundSrc}
+						style={styles.logoImage}
+						resizeMode="contain"
+					/>
+					{/* <Text style={styles.welcome}>{logInContent.welcome}</Text> */}
 					<Text style={styles.slogan}>{logInContent.slogan}</Text>
 				</View>
 
@@ -112,23 +115,20 @@ export default LoginScreen;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#6740ff',
-	},
-	backgroundImage: {
-		position: 'absolute',
-		bottom: 0,
-		left: 200,
+		backgroundColor: defaultTheme.bgLight,
 	},
 	safeContainer: {
 		justifyContent: 'space-between',
 	},
 	headingContainer: {
 		flexDirection: 'row',
-		justifyContent: 'center',
+		paddingHorizontal: 16,
+		justifyContent: 'flex-end',
 	},
-	logoImg: {
+	logoImage: {
 		alignSelf: 'center',
-		marginBottom: 24,
+		height: 165,
+		width: 200,
 	},
 	welcome: {
 		fontWeight: '600',
@@ -140,8 +140,8 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 24,
 		alignSelf: 'center',
 		marginTop: 14,
-		fontSize: 19,
-		color: '#a0fa82',
+		fontSize: 16,
+		color: defaultTheme.textDark80,
 	},
 	bottomGroup: {
 		gap: 20,
@@ -169,15 +169,16 @@ const styles = StyleSheet.create({
 	},
 	btn: {
 		paddingVertical: 15,
-		backgroundColor: '#ededed',
+		backgroundColor: defaultTheme.gray20,
 		borderRadius: 50,
 	},
 	btnText: {
 		textAlign: 'center',
 		fontSize: 20,
-		color: '#000',
+		color: defaultTheme.textDark90,
 	},
 	version: {
 		textAlign: 'center',
+		color: defaultTheme.textDark90,
 	},
 });
