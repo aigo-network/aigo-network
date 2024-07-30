@@ -43,14 +43,16 @@ export const useInspectingTrip = (
 	},
 ): InspectedTrip => {
 	const [startPosition, setStartPosition] = useState('');
-	const startTime = new Date(trip.createdAt);
-	const endTime = new Date(trip.updatedAt);
+	const startTime = new Date(trip.startTime);
+	const endTime = new Date(trip.endTime);
 
 	const route = useMemo(() => {
 		return JSON.parse(trip.route) as GeoJSON.LineString;
 	}, [trip.route]);
 
 	const time = useMemo(() => {
+		if (trip.status !== 'FINISHED' && trip.status !== 'CLAIMED') return '00:00';
+
 		const time = formatTimeDiffToHMS(endTime, startTime);
 		if (time.startsWith('00:')) return time.replace('00:', '');
 
