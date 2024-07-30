@@ -22,4 +22,5 @@ export type ActiveBanner = {
 	id: string;
 	name: string;
 	url: string;
+	imageUrl?: string;
 };
