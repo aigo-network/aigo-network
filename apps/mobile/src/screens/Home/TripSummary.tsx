@@ -19,7 +19,10 @@ export const TripSummary = () => {
 	const filteredTodayTrips = useMemo(() => {
 		const today = new Date().toLocaleDateString();
 		return trips.filter((trip) => {
-			return new Date(trip.startTime).toLocaleDateString() === today;
+			return (
+				new Date(trip.startTime).toLocaleDateString() === today &&
+				(trip.status === 'FINISHED' || trip.status === 'CLAIMED')
+			);
 		});
 	}, [trips]);
 
