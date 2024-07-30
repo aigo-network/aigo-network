@@ -17,7 +17,9 @@ const ActiveBanners: FC = () => {
 	return (
 		<View>
 			{remoteConfig.activeBanners.map((banner) => {
-				const imgUrl = bannerMap[banner.id];
+				const imgSource = banner.imageUrl
+					? { uri: banner.imageUrl }
+					: bannerMap[banner.id];
 
 				return (
 					<TouchableOpacity
@@ -26,7 +28,7 @@ const ActiveBanners: FC = () => {
 					>
 						<Image
 							style={styles.banner}
-							source={imgUrl}
+							source={imgSource}
 							resizeMethod="resize"
 						/>
 					</TouchableOpacity>
