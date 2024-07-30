@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import {
@@ -16,6 +17,7 @@ import ProfileName from 'screens/Onboard/ProfileName';
 import UserDescription from 'screens/Onboard/UserDescription';
 import ProfileScreen from 'screens/Profile';
 import SplashScreen from 'screens/Splash';
+import TripHistoryScreen from 'screens/TripHistory';
 import VerifyNNIDScreen from 'screens/VerifyNNID';
 import VerifyOTPScreen from 'screens/VerifyOTP';
 import VerifyPhoneNumberScreen from 'screens/VerifyPhoneNumber';
@@ -50,63 +52,70 @@ export const AppContainer: FC = () => {
 
 	return (
 		<SafeAreaProvider>
-			<ModalProvider>
-				<NavigationContainer
-					linking={linking}
-					ref={navigationRef}
-					onReady={onNavigationReady}
-					onStateChange={onNavigationStateChange}
-				>
-					<Stack.Navigator
-						screenOptions={{
-							headerShown: false,
-							animationEnabled: true,
-						}}
+			<GestureHandlerRootView>
+				<ModalProvider>
+					<NavigationContainer
+						linking={linking}
+						ref={navigationRef}
+						onReady={onNavigationReady}
+						onStateChange={onNavigationStateChange}
 					>
-						<Stack.Screen
-							name="Splash"
-							component={SplashScreen}
-							options={{
-								cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
+						<Stack.Navigator
+							screenOptions={{
+								headerShown: false,
+								animationEnabled: true,
 							}}
-						/>
-
-						<Stack.Group>
+						>
 							<Stack.Screen
-								name="Login"
-								component={LoginScreen}
+								name="Splash"
+								component={SplashScreen}
 								options={{
 									cardStyleInterpolator:
 										CardStyleInterpolators.forFadeFromCenter,
 								}}
 							/>
-							<Stack.Screen name="PhoneLogin" component={PhoneLoginScreen} />
-							<Stack.Screen name="OtpInput" component={OtpLoginScreen} />
-						</Stack.Group>
 
-						<Stack.Group screenOptions={{ headerShown: false }}>
-							<Stack.Screen name="OnboardName" component={ProfileName} />
-							<Stack.Screen
-								name="OnboardDescription"
-								component={UserDescription}
-							/>
-							<Stack.Screen name="OnboardCity" component={CityName} />
-						</Stack.Group>
+							<Stack.Group>
+								<Stack.Screen
+									name="Login"
+									component={LoginScreen}
+									options={{
+										cardStyleInterpolator:
+											CardStyleInterpolators.forFadeFromCenter,
+									}}
+								/>
+								<Stack.Screen name="PhoneLogin" component={PhoneLoginScreen} />
+								<Stack.Screen name="OtpInput" component={OtpLoginScreen} />
+							</Stack.Group>
 
-						<Stack.Group screenOptions={{ headerShown: false }}>
-							<Stack.Screen name="Home" component={HomeScreen} />
-							<Stack.Screen name="Profile" component={ProfileScreen} />
-							<Stack.Screen name="Map" component={MapScreen} />
-							<Stack.Screen name="VerifyNNID" component={VerifyNNIDScreen} />
-							<Stack.Screen
-								name="VerifyPhoneNumber"
-								component={VerifyPhoneNumberScreen}
-							/>
-							<Stack.Screen name="VerifyOTP" component={VerifyOTPScreen} />
-						</Stack.Group>
-					</Stack.Navigator>
-				</NavigationContainer>
-			</ModalProvider>
+							<Stack.Group screenOptions={{ headerShown: false }}>
+								<Stack.Screen name="OnboardName" component={ProfileName} />
+								<Stack.Screen
+									name="OnboardDescription"
+									component={UserDescription}
+								/>
+								<Stack.Screen name="OnboardCity" component={CityName} />
+							</Stack.Group>
+
+							<Stack.Group screenOptions={{ headerShown: false }}>
+								<Stack.Screen name="Home" component={HomeScreen} />
+								<Stack.Screen name="Profile" component={ProfileScreen} />
+								<Stack.Screen name="VerifyNNID" component={VerifyNNIDScreen} />
+								<Stack.Screen
+									name="VerifyPhoneNumber"
+									component={VerifyPhoneNumberScreen}
+								/>
+								<Stack.Screen name="VerifyOTP" component={VerifyOTPScreen} />
+								<Stack.Screen name="Map" component={MapScreen} />
+								<Stack.Screen
+									name="TripHistory"
+									component={TripHistoryScreen}
+								/>
+							</Stack.Group>
+						</Stack.Navigator>
+					</NavigationContainer>
+				</ModalProvider>
+			</GestureHandlerRootView>
 		</SafeAreaProvider>
 	);
 };

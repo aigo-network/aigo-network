@@ -27,6 +27,14 @@
       "title": "Country Code",
       "placeholder": "Search Countries",
       "cancelButton": "Cancel"
+    },
+    "startTripBottomSheet": {
+      "title": "Just take you a second ...",
+      "userTypeTitle": "You are",
+      "userTypes": ["Driver", "Rider"],
+      "purposeTitle": "Your purpose is",
+      "purposes": ["Go to work", "Hang out"],
+      "continueButton": "Continue"
     }
   },
   "screens": {
@@ -94,6 +102,14 @@
         "followTwitterButton": "트위터 팔로우",
         "joinTelegramButton": "텔레그램 입장"
       },
+      "tripSummary": {
+        "title": "How we move today",
+        "infoUnit": {
+          "km": "km",
+          "time": "Time",
+          "avgSpeed": "Avg Speed (km/h)"
+        }
+      },
       "inviteSection": {
         "title": "친구 초대하기",
         "referral": "받기",
@@ -110,11 +126,36 @@
       "dailyMissionSection": {
         "title": "일일 미션"
       },
-      "mapSection": {
-        "title": "AiGO Map",
-        "openButton": "Open Map"
-      },
       "mainButton": "Start your trip now"
+    },
+    "tripHistory": {
+      "title": "Trip History",
+      "loadingLocation": "Loading location",
+      "unknownLocation": "Unknown location",
+      "infoUnit": {
+        "km": "km",
+        "time": "Time",
+        "avgSpeed": "Avg Speed (km/h)"
+      }
+    },
+    "map": {
+      "tripUnit": {
+        "distance": "Distance (km)",
+        "time": "Time",
+        "speed": "Speed (km/h)"
+      },
+      "startButton": "START",
+      "endButton": "END",
+      "confirmStart": {
+        "title": "Ready? Go and get GO Points",
+        "confirm": "GO now",
+        "cancel": "Close"
+      },
+      "confirmEnd": {
+        "title": "Are you sure to end this trip?",
+        "confirm": "Confirm",
+        "cancel": "Close"
+      }
     },
     "profile": {
       "title": "프로필",

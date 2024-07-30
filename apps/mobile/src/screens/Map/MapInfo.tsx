@@ -66,7 +66,7 @@ export const MapInfo = () => {
 						<Text style={styles.tripTitle}>Current journey</Text>
 						<View>
 							<Text style={styles.tripText}>{`Distance: ${distance} km`}</Text>
-							<Text style={styles.tripText}>{`Time: ${time} minutes`}</Text>
+							<Text style={styles.tripText}>{`Time: ${time}`}</Text>
 						</View>
 					</View>
 				)}

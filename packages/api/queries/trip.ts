@@ -6,8 +6,37 @@ export const GetTripQuery = gql`
 			id
 			route
 			status
+			startTime
+			endTime
+			userType
+			purpose
 			createdAt
 			updatedAt
+		}
+	}
+`;
+
+export const GetTripsQuery = gql`
+	query getTrips($after: String = "", $first: Int = 10) {
+		trips(after: $after, first: $first) {
+			edges {
+				node {
+					id
+					route
+					status
+					startTime
+					endTime
+					userType
+					purpose
+					createdAt
+					updatedAt
+				}
+				cursor
+			}
+			pageInfo {
+				endCursor
+				hasNextPage
+			}
 		}
 	}
 `;

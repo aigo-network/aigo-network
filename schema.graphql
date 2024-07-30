@@ -165,6 +165,15 @@ type NyamNyamUserProfile {
 }
 
 """"""
+type PageInfo {
+  """"""
+  endCursor: String
+
+  """"""
+  hasNextPage: Boolean!
+}
+
+""""""
 enum PhoneNumberVerification {
   """
   Signed in by Phone number but mismatch with Phone number from user's profile
@@ -241,7 +250,7 @@ type RootMutation {
   registerDevice(input: RegisterDeviceInput!): Device
 
   """"""
-  startTrip(geolocation: GeolocationInput!): Trip
+  startTrip(geolocation: GeolocationInput!, tripMetadata: TripMetaData): Trip
 
   """"""
   trackAppOpenWithLinkingEvent(appStage: AppStage!, url: String!): String
@@ -283,6 +292,9 @@ type RootQuery {
   trip(tripID: String!): Trip
 
   """"""
+  trips(after: String = "", first: Int = 10): TripConnection
+
+  """"""
   user: User
 
   """"""
@@ -295,16 +307,55 @@ type Trip {
   createdAt: DateTime
 
   """"""
+  endTime: DateTime
+
+  """"""
   id: String
 
   """"""
-  route: String
+  purpose: String
 
   """"""
-  status: String
+  route: String!
+
+  """"""
+  startTime: DateTime
+
+  """"""
+  status: String!
 
   """"""
   updatedAt: DateTime
+
+  """"""
+  userType: String
+}
+
+""""""
+type TripConnection {
+  """"""
+  edges: [TripEdge]!
+
+  """"""
+  pageInfo: PageInfo!
+}
+
+""""""
+type TripEdge {
+  """"""
+  cursor: String!
+
+  """"""
+  node: Trip!
+}
+
+""""""
+input TripMetaData {
+  """"""
+  purpose: String
+
+  """"""
+  userType: String
 }
 
 """"""

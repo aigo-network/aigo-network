@@ -1,12 +1,13 @@
 import { graphqlClient } from '@aigo/api/graphql';
+import type { Trip, TripConnection } from '@aigo/api/sdk';
 import type { GeolocationResponse } from '@react-native-community/geolocation';
 import crashlytics from '@react-native-firebase/crashlytics';
 import pThrottle from 'p-throttle';
 import { proxy, useSnapshot } from 'valtio';
 
-import type { MapState } from './types';
+import type { MapState, PagingParams, TripMetadata } from './types';
 
-const initialMapState = {};
+const initialMapState: MapState = {};
 
 const mapState: MapState = proxy(initialMapState);
 
@@ -31,6 +32,9 @@ export const mapActions = {
 	setPermissionReady(state: boolean) {
 		mapState.permissionReady = state;
 	},
+	setTrips(trips: Trip[]) {
+		mapState.trips = trips;
+	},
 	throttledSetCurrentLocation: throttle(
 		async (location: GeolocationResponse) => {
 			try {
@@ -54,6 +58,9 @@ export const mapActions = {
 			}
 		},
 	),
+	setStartTripMetadata(metadata: TripMetadata) {
+		mapState.startTripMetadata = metadata;
+	},
 	startNewTrip: async () => {
 		try {
 			const isCurrentRouteActive = !!mapState.currentTrip;
@@ -69,6 +76,10 @@ export const mapActions = {
 
 			const { startTrip: trip } = await graphqlClient.startTrip({
 				geolocation: { ...coords, timestamp: new Date(timestamp) },
+				metadata: {
+					userType: mapState.startTripMetadata?.userType,
+					purpose: mapState.startTripMetadata?.purpose,
+				},
 			});
 
 			if (!trip || !trip.id) {
@@ -107,9 +118,29 @@ export const mapActions = {
 			}
 
 			mapState.currentTrip = undefined;
+			mapState.startTripMetadata = undefined;
 		} catch (error) {
 			crashlytics().recordError(error as Error, 'completeTrip');
 			console.debug('Failed to complete trip:', error);
+		}
+	},
+	queryAndUpdateTripsState: async (
+		params: PagingParams = { after: '', first: 10 },
+		append?: boolean,
+	) => {
+		try {
+			const { trips } = await graphqlClient.getTrips(params);
+			mapState.lastTripConnection = trips as TripConnection;
+			const tripNodes = trips?.edges.map((e) => e?.node).filter((e) => !!e);
+			if (tripNodes) {
+				if (!append || !mapState.trips) {
+					mapState.trips = tripNodes as Trip[];
+				} else {
+					mapState.trips.push(...(tripNodes as Trip[]));
+				}
+			}
+		} catch (error) {
+			crashlytics().recordError(error as Error, 'getTrips');
 		}
 	},
 };

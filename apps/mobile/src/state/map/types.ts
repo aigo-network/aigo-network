@@ -1,3 +1,4 @@
+import type { Trip, TripConnection } from '@aigo/api/sdk';
 import type { GeolocationResponse } from '@react-native-community/geolocation';
 
 export type MapState = {
@@ -6,6 +7,19 @@ export type MapState = {
 		id: string;
 		startedAt: Date;
 	};
+	startTripMetadata?: TripMetadata;
 	mapReady?: boolean;
 	permissionReady?: boolean;
+	trips?: Trip[];
+	lastTripConnection?: TripConnection;
+};
+
+export type PagingParams = {
+	after: string;
+	first: number;
+};
+
+export type TripMetadata = {
+	userType: string;
+	purpose: string;
 };

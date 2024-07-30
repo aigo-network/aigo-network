@@ -1,7 +1,8 @@
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import type { Props } from '@aigo/components/ConfirmPopup';
-import ConfirmPopup from '@aigo/components/ConfirmPopup';
 import { Align, showModal } from 'empty-modal';
+
+import type { Props } from './ConfirmPopup';
+import ConfirmPopup from './ConfirmPopup';
 
 export type ConfirmConfig = Props & {
 	modalId: string;
