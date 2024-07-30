@@ -22,8 +22,7 @@ export const TripActions = () => {
 	const [loading, setLoading] = useState(false);
 
 	const { bottom } = safeInsets;
-	const { startButton, confirmStart, endButton, confirmEnd } =
-		content.screens.map;
+	const { startButton, endButton, confirmEnd } = content.screens.map;
 
 	const handlePressStart = async () => {
 		if (!startTripMetadata) {
@@ -32,24 +31,8 @@ export const TripActions = () => {
 		}
 
 		setLoading(true);
-		const { title, confirm, cancel } = confirmStart;
-		showConfirmModal({
-			modalId: 'confirm-start-trip',
-			title: title,
-			confirmText: confirm,
-			cancelText: cancel,
-			mainAction: 'confirm',
-			onConfirm: async () => {
-				await mapActions.startNewTrip();
-				setLoading(false);
-			},
-			onClose: () => {
-				setLoading(false);
-			},
-			onReject: () => {
-				setLoading(false);
-			},
-		});
+		await mapActions.startNewTrip();
+		setLoading(false);
 	};
 
 	const handlePressEnd = async () => {
