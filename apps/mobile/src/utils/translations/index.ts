@@ -151,11 +151,6 @@ export type Content = {
 			};
 			startButton: string;
 			endButton: string;
-			confirmStart: {
-				title: string;
-				confirm: string;
-				cancel: string;
-			};
 			confirmEnd: {
 				title: string;
 				confirm: string;

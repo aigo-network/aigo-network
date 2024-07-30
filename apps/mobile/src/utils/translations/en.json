@@ -146,11 +146,6 @@
       },
       "startButton": "START",
       "endButton": "END",
-      "confirmStart": {
-        "title": "Ready? Go and get GO Points",
-        "confirm": "GO now",
-        "cancel": "Close"
-      },
       "confirmEnd": {
         "title": "Are you sure to end this trip?",
         "confirm": "Confirm",

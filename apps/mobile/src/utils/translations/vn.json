@@ -29,12 +29,12 @@
       "cancelButton": "Hủy"
     },
     "startTripBottomSheet": {
-      "title": "Just take you a second ...",
-      "userTypeTitle": "You are",
-      "userTypes": ["Driver", "Rider"],
-      "purposeTitle": "Your purpose is",
-      "purposes": ["Go to work", "Hang out"],
-      "continueButton": "Continue"
+      "title": "Cá nhân hoá trải nghiệm của bạn",
+      "userTypeTitle": "Bạn là",
+      "userTypes": ["Tài xế", "Người đi xe"],
+      "purposeTitle": "Bạn di chuyển để",
+      "purposes": ["Đi làm", "Đi chơi"],
+      "continueButton": "Tiếp tục"
     }
   },
   "screens": {
@@ -103,11 +103,11 @@
         "joinTelegramButton": "Tham gia Telegram"
       },
       "tripSummary": {
-        "title": "How we move today",
+        "title": "Tiến độ hôm nay",
         "infoUnit": {
           "km": "km",
-          "time": "Time",
-          "avgSpeed": "Avg Speed (km/h)"
+          "time": "Thời gian",
+          "avgSpeed": "Tốc độ (km/h)"
         }
       },
       "inviteSection": {
@@ -126,35 +126,30 @@
       "dailyMissionSection": {
         "title": "Nhiệm vụ hàng ngày"
       },
-      "mainButton": "Bắt đầu hành trình của bạn ngay" 
+      "mainButton": "Bắt đầu hành trình" 
     },
     "tripHistory": {
-      "title": "Trip History",
-      "loadingLocation": "Loading location",
-      "unknownLocation": "Unknown location",
+      "title": "Lịch sử di chuyển",
+      "loadingLocation": "Đang chờ dữ liệu",
+      "unknownLocation": "Vị trí không xác định",
       "infoUnit": {
         "km": "km",
-        "time": "Time",
-        "avgSpeed": "Avg Speed (km/h)"
+        "time": "Thời gian",
+        "avgSpeed": "Tốc độ (km/h)"
       }
     },
     "map": {
       "tripUnit": {
-        "distance": "Distance (km)",
-        "time": "Time",
-        "speed": "Speed (km/h)"
+        "distance": "Quãng đường (km)",
+        "time": "Thời gian",
+        "speed": " (km/h)"
       },
-      "startButton": "START",
-      "endButton": "END",
-      "confirmStart": {
-        "title": "Ready? Go and get GO Points",
-        "confirm": "GO now",
-        "cancel": "Close"
-      },
+      "startButton": "BẮT ĐẦU",
+      "endButton": "DỪNG LẠI",
       "confirmEnd": {
-        "title": "Are you sure to end this trip?",
-        "confirm": "Confirm",
-        "cancel": "Close"
+        "title": "Bạn có muốn dừng lại việc di chuyển?",
+        "confirm": "Xác nhận",
+        "cancel": "Huỷ"
       }
     },
     "profile": {
@@ -204,7 +199,7 @@
         "title": "Về AiGO Network",
         "logOutButton": "Đăng xuất",
         "deleteAccountButton": "Xóa tài khoản",
-        "versionPrefix": "Version"
+        "versionPrefix": "Phiên bản"
       }
     },
     "nnidVerify": {
@@ -216,9 +211,9 @@
       "continueButton": "Tiếp tục"
     },
     "phoneNumberVerify": {
-      "title": "Verify Phone number",
-      "subText": "Please confirm your country code and enter your phone number.",
-      "continueButton": "Continue",
+      "title": "Xác thực số điện thoại",
+      "subText": "Vui lòng xác nhận mã vùng và nhập số điện thoại của bạn",
+      "continueButton": "Tiếp tục",
       "OTP": {
         "title": "Nhập mã",
         "subText": "Chúng tôi vừa gửi một tin nhắn SMS gồm mã xác minh 6 chữ số đến số điện thoại của bạn",
