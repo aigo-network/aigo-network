@@ -111,7 +111,7 @@
         }
       },
       "inviteSection": {
-        "title": "Mời bạn bè:",
+        "title": "Mời bạn bè",
         "referral": "/giới thiệu",
         "referralCountSuffix": "Giới thiệu",
         "descriptionPrefix": "Nhận",
