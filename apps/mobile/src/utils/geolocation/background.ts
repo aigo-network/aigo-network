@@ -1,5 +1,6 @@
 import BackgroundService from 'react-native-background-actions';
 import Geolocation from '@react-native-community/geolocation';
+import { appState } from 'state/app';
 import { getMapState, mapActions } from 'state/map';
 import type { AppStateChangeCallback } from 'utils/hooks/appState';
 
@@ -50,11 +51,15 @@ export const handleAppStateChangeForBackgroundGPS: AppStateChangeCallback = (
 	prev,
 	cur,
 ) => {
-	if (cur === 'background' && prev === 'active') {
-		console.debug('start background task');
-		startBackground();
-	} else if (cur === 'active' && prev === 'background') {
-		console.debug('stop background task');
-		stopBackground();
+	if (appState.appUser?.id) {
+		if (cur === 'background' && prev === 'active') {
+			console.debug('start background task');
+			startBackground();
+		} else if (cur === 'active' && prev === 'background') {
+			console.debug('stop background task');
+			stopBackground();
+		}
+	} else {
+		console.debug('ignore appStateChange because not signed-in');
 	}
 };
