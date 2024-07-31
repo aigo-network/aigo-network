@@ -1,4 +1,10 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+	Platform,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Motorbike from '@aigo/components/icon/Motorbike';
 import { useNavigation } from '@react-navigation/native';
@@ -16,14 +22,23 @@ export const StartTrip = () => {
 		navigate('Map');
 	};
 
-	const containerStyle = [styles.container, { bottom }];
+	const containerStyle = [
+		styles.container,
+		{ bottom: Platform.OS === 'android' ? 30 : bottom },
+	];
 
 	return (
 		<View style={containerStyle}>
-			<TouchableOpacity style={styles.openButton} onPress={handleOpenMap}>
-				<Motorbike />
-				<Text style={styles.openButtonTitle}>{homeContent.mainButton}</Text>
-			</TouchableOpacity>
+			<View style={styles.buttonBackground}>
+				<TouchableOpacity
+					style={styles.openButton}
+					activeOpacity={0.5}
+					onPress={handleOpenMap}
+				>
+					<Motorbike />
+					<Text style={styles.openButtonTitle}>{homeContent.mainButton}</Text>
+				</TouchableOpacity>
+			</View>
 		</View>
 	);
 };
@@ -41,6 +56,10 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'space-between',
 	},
+	buttonBackground: {
+		borderRadius: 46,
+		backgroundColor: defaultTheme.bgLight,
+	},
 	openButton: {
 		padding: 16,
 		paddingVertical: 18,
@@ -50,10 +69,10 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		gap: 14,
-		// shadowColor: '#000000',
-		// shadowOpacity: 0.32,
-		// shadowRadius: 12,
-		// elevation: 8,
+		shadowColor: defaultTheme.textDark100,
+		shadowOpacity: 0.32,
+		shadowRadius: 12,
+		elevation: 8,
 	},
 	openButtonTitle: {
 		fontSize: 16,
