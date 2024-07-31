@@ -6,12 +6,18 @@ import Gift from '@aigo/components/icon/Gift';
 import { defaultTheme } from 'utils/global';
 import { useInspectingTrip } from 'utils/hooks/trips';
 
+import { showClaimTripPoint } from './shared';
+
 type Props = {
 	trip: Trip;
 };
 
 export const TripResult: FC<Props> = ({ trip }) => {
 	const { distance, time, avgSpeed } = useInspectingTrip(trip);
+
+	const handlePressClaim = () => {
+		showClaimTripPoint({ points: trip.GOPoints || 1 });
+	};
 
 	return (
 		<View style={styles.container}>
@@ -55,7 +61,11 @@ export const TripResult: FC<Props> = ({ trip }) => {
 				</View>
 
 				<View style={styles.claimContainer}>
-					<TouchableOpacity style={styles.claimButton} activeOpacity={0.8}>
+					<TouchableOpacity
+						style={styles.claimButton}
+						activeOpacity={0.8}
+						onPress={handlePressClaim}
+					>
 						<Gift />
 						<Text style={styles.claimText}>
 							Claim {trip.GOPoints || 1} GO Point
