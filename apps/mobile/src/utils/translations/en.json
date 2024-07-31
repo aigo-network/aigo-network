@@ -18,7 +18,7 @@
       "shareButton": "Share with friends"
     },
     "earnPoints": {
-      "title": "Congratulation",
+      "title": "Congratulations",
       "messagePrefix": "You've Earned",
       "messageSuffix": "points",
       "completedOnboardingMessage": "Your account is ready to use. You will be redirected to the Home Page in a few seconds."
