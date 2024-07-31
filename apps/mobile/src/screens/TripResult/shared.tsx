@@ -14,6 +14,7 @@ type TripPointsConfig = {
 export const showClaimTripPoint = ({ points }: TripPointsConfig) => {
 	const { title, messagePrefix, messageSuffix } =
 		appState.content.modal.earnPoints;
+	const { startNewTrip, backToHome } = appState.content.screens.tripResult;
 
 	const handleStartNewTrip = () => {
 		navigationRef.navigate('Map');
@@ -40,13 +41,13 @@ export const showClaimTripPoint = ({ points }: TripPointsConfig) => {
 						style={styles.startNewButton}
 						onPress={handleStartNewTrip}
 					>
-						<Text style={styles.startNewText}>Start new trip</Text>
+						<Text style={styles.startNewText}>{startNewTrip}</Text>
 					</TouchableOpacity>
 					<TouchableOpacity
 						style={styles.backButton}
 						onPress={handleBackToHome}
 					>
-						<Text style={styles.backText}>Back to home</Text>
+						<Text style={styles.backText}>{backToHome}</Text>
 					</TouchableOpacity>
 				</View>
 			</PointPopup>

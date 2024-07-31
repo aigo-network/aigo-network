@@ -147,6 +147,22 @@ export type Content = {
 				avgSpeed: string;
 			};
 		};
+		tripResult: {
+			pointsTitle: string;
+			infoTitles: {
+				distance: string;
+				duration: string;
+				avgSpeed: string;
+			};
+			infoUnits: {
+				km: string;
+				time: string;
+				speed: string;
+			};
+			claim: string;
+			startNewTrip: string;
+			backToHome: string;
+		};
 		map: {
 			tripUnit: {
 				distance: string;

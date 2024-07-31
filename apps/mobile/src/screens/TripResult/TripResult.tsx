@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import { useState } from 'react';
 import {
 	ActivityIndicator,
+	Platform,
 	StyleSheet,
 	Text,
 	TouchableOpacity,
@@ -14,9 +15,11 @@ import {
 import { graphqlClient } from '@aigo/api/graphql';
 import type { Trip } from '@aigo/api/sdk';
 import Gift from '@aigo/components/icon/Gift';
-import { appActions } from 'state/app';
+import mustache from 'mustache';
+import { appActions, appState } from 'state/app';
 import { defaultTheme } from 'utils/global';
 import { useInspectingTrip } from 'utils/hooks/trips';
+import { useSnapshot } from 'valtio';
 
 import { showClaimTripPoint } from './shared';
 
@@ -26,8 +29,12 @@ type Props = {
 
 export const TripResult: FC<Props> = ({ trip }) => {
 	const { bottom } = useSafeAreaInsets();
+	const { content } = useSnapshot(appState);
 	const [loading, setLoading] = useState(false);
 	const { distance, time, avgSpeed } = useInspectingTrip(trip);
+
+	const { pointsTitle, infoTitles, infoUnits, claim } =
+		content.screens.tripResult;
 
 	const handlePressClaim = async () => {
 		if (!trip.id) return;
@@ -37,7 +44,7 @@ export const TripResult: FC<Props> = ({ trip }) => {
 		await appActions.queryAndUpdateGOPoints();
 		setLoading(false);
 
-		showClaimTripPoint({ points: trip.GOPoints || 1 });
+		showClaimTripPoint({ points: trip.GOPoints || 0 });
 	};
 
 	return (
@@ -47,41 +54,47 @@ export const TripResult: FC<Props> = ({ trip }) => {
 					<View style={styles.pointsContainer}>
 						<View style={styles.innerPointsContainer}>
 							<View style={styles.pointsNumberContainer}>
-								<Text style={styles.pointsUnitText}>You have earned</Text>
-								<Text style={styles.pointsNumber}>{trip.GOPoints || 1} GO</Text>
+								<Text style={styles.pointsUnitText}>{pointsTitle}</Text>
+								<Text style={styles.pointsNumber}>{trip.GOPoints || 0} GO</Text>
 							</View>
 						</View>
 					</View>
 
 					<View style={styles.summaryContainer}>
 						<View style={styles.summaryItemContainer}>
-							<Text style={styles.title}>Distance</Text>
+							<Text style={styles.title}>{infoTitles.distance}</Text>
 							<Text style={styles.numberText}>
-								{distance} <Text style={styles.unitText}>km</Text>
+								{distance} <Text style={styles.unitText}>{infoUnits.km}</Text>
 							</Text>
 						</View>
 
 						<View style={styles.separateLine} />
 
 						<View style={styles.summaryItemContainer}>
-							<Text style={styles.title}>Duration</Text>
+							<Text style={styles.title}>{infoTitles.duration}</Text>
 							<Text style={styles.numberText}>
-								{time} <Text style={styles.unitText}>time</Text>
+								{time} <Text style={styles.unitText}>{infoUnits.time}</Text>
 							</Text>
 						</View>
 
 						<View style={styles.separateLine} />
 
 						<View style={styles.summaryItemContainer}>
-							<Text style={styles.title}>Average Speed</Text>
+							<Text style={styles.title}>{infoTitles.avgSpeed}</Text>
 							<Text style={styles.numberText}>
-								{avgSpeed} <Text style={styles.unitText}>km/h</Text>
+								{avgSpeed}{' '}
+								<Text style={styles.unitText}>{infoUnits.speed}</Text>
 							</Text>
 						</View>
 					</View>
 				</View>
 
-				<View style={[styles.claimContainer, { marginBottom: bottom || 30 }]}>
+				<View
+					style={[
+						styles.claimContainer,
+						Platform.OS === 'android' && { marginBottom: bottom || 30 },
+					]}
+				>
 					{loading ? (
 						<View style={styles.loadingContainer}>
 							<ActivityIndicator size={'large'} />
@@ -94,7 +107,7 @@ export const TripResult: FC<Props> = ({ trip }) => {
 						>
 							<Gift />
 							<Text style={styles.claimText}>
-								Claim {trip.GOPoints || 1} GO Point
+								{mustache.render(claim, { points: trip.GOPoints || 0 })}
 							</Text>
 						</TouchableOpacity>
 					)}
