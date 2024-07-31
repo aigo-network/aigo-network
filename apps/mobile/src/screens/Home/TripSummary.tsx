@@ -31,6 +31,11 @@ export const TripSummary = () => {
 	const { totalDistance, totalTimeInMs } =
 		useInspectingTrips(filteredTodayTrips);
 
+	const totalTimeInMinutes = useMemo(() => {
+		const minutes = totalTimeInMs / (60 * 1000);
+		return minutes.toPrecision(2);
+	}, [totalTimeInMs]);
+
 	const openTripHistory = () => {
 		navigate('TripHistory');
 	};
@@ -56,7 +61,7 @@ export const TripSummary = () => {
 							<Clock color={defaultTheme.textDark50} />
 							<Text style={styles.statisticTitle}>{infoTitle.time}</Text>
 						</View>
-						<Text style={styles.numberText}>{totalTimeInMs}</Text>
+						<Text style={styles.numberText}>{totalTimeInMinutes}</Text>
 						<Text style={styles.unitText}>{infoUnit.time}</Text>
 					</View>
 				</View>
