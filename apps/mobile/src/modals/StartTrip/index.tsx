@@ -14,6 +14,7 @@ import { appState } from 'state/app';
 import { mapActions } from 'state/map';
 import { useSnapshot } from 'valtio';
 
+import GoBack from './GoBack';
 import type { CardInfo } from './RadioCards';
 import RadioCards from './RadioCards';
 
@@ -25,6 +26,9 @@ export const showStartTripBottomSheet = () => {
 			align: Align.FullBottom,
 			showBackdrop: true,
 			closeOnPressBackdrop: false,
+			FloatComponent: () => {
+				return <GoBack onPress={cleanModal} />;
+			},
 		},
 	);
 
@@ -77,11 +81,7 @@ const StartTripBottomSheet: FC<Props> = ({ onClose }) => {
 	};
 
 	return (
-		<BottomSheetContainer
-			style={[styles.container, { paddingBottom: bottom }]}
-			onClose={onClose}
-			closeOffset={100}
-		>
+		<BottomSheetContainer style={[styles.container, { paddingBottom: bottom }]}>
 			<View style={styles.indicator} />
 
 			<View style={styles.titleContainer}>
