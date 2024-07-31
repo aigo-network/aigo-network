@@ -1,8 +1,17 @@
 import type { FC } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useState } from 'react';
+import {
+	ActivityIndicator,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { graphqlClient } from '@aigo/api/graphql';
 import type { Trip } from '@aigo/api/sdk';
 import Gift from '@aigo/components/icon/Gift';
+import { appActions } from 'state/app';
 import { defaultTheme } from 'utils/global';
 import { useInspectingTrip } from 'utils/hooks/trips';
 
@@ -13,9 +22,17 @@ type Props = {
 };
 
 export const TripResult: FC<Props> = ({ trip }) => {
+	const [loading, setLoading] = useState(false);
 	const { distance, time, avgSpeed } = useInspectingTrip(trip);
 
-	const handlePressClaim = () => {
+	const handlePressClaim = async () => {
+		if (!trip.id) return;
+
+		setLoading(true);
+		await graphqlClient.claimTrip({ tripId: trip.id });
+		await appActions.queryAndUpdateGOPoints();
+		setLoading(false);
+
 		showClaimTripPoint({ points: trip.GOPoints || 1 });
 	};
 
@@ -61,16 +78,22 @@ export const TripResult: FC<Props> = ({ trip }) => {
 				</View>
 
 				<View style={styles.claimContainer}>
-					<TouchableOpacity
-						style={styles.claimButton}
-						activeOpacity={0.8}
-						onPress={handlePressClaim}
-					>
-						<Gift />
-						<Text style={styles.claimText}>
-							Claim {trip.GOPoints || 1} GO Point
-						</Text>
-					</TouchableOpacity>
+					{loading ? (
+						<View style={styles.loadingContainer}>
+							<ActivityIndicator size={'large'} />
+						</View>
+					) : (
+						<TouchableOpacity
+							style={styles.claimButton}
+							activeOpacity={0.8}
+							onPress={handlePressClaim}
+						>
+							<Gift />
+							<Text style={styles.claimText}>
+								Claim {trip.GOPoints || 1} GO Point
+							</Text>
+						</TouchableOpacity>
+					)}
 				</View>
 			</SafeAreaView>
 		</View>
@@ -172,6 +195,9 @@ const styles = StyleSheet.create({
 	claimContainer: {
 		marginTop: 'auto',
 		paddingHorizontal: 16,
+	},
+	loadingContainer: {
+		alignItems: 'center',
 	},
 	claimButton: {
 		padding: 16,

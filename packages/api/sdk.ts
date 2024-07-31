@@ -428,6 +428,13 @@ export type CompleteTripMutationVariables = Exact<{
 
 export type CompleteTripMutation = { __typename?: 'RootMutation', completeTrip?: { __typename?: 'Trip', id?: string | null, route: string, status: string, startTime?: any | null, endTime?: any | null, userType?: string | null, GOPoints?: number | null, purpose?: string | null, createdAt?: any | null, updatedAt?: any | null } | null };
 
+export type ClaimTripMutationVariables = Exact<{
+  tripId: Scalars['String']['input'];
+}>;
+
+
+export type ClaimTripMutation = { __typename?: 'RootMutation', claimTrip?: boolean | null };
+
 export type InsertTripPointMutationVariables = Exact<{
   tripId: Scalars['String']['input'];
   geolocation: GeolocationInput;
@@ -711,6 +718,11 @@ export const CompleteTripDocument = gql`
   }
 }
     `;
+export const ClaimTripDocument = gql`
+    mutation claimTrip($tripId: String!) {
+  claimTrip(tripID: $tripId)
+}
+    `;
 export const InsertTripPointDocument = gql`
     mutation insertTripPoint($tripId: String!, $geolocation: GeolocationInput!) {
   insertTripPoint(tripID: $tripId, geolocation: $geolocation) {
@@ -970,6 +982,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     completeTrip(variables: CompleteTripMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<CompleteTripMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<CompleteTripMutation>(CompleteTripDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'completeTrip', 'mutation', variables);
+    },
+    claimTrip(variables: ClaimTripMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<ClaimTripMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<ClaimTripMutation>(ClaimTripDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'claimTrip', 'mutation', variables);
     },
     insertTripPoint(variables: InsertTripPointMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<InsertTripPointMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<InsertTripPointMutation>(InsertTripPointDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'insertTripPoint', 'mutation', variables);
