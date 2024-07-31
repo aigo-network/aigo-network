@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import type { Trip } from '@aigo/api/sdk';
+import Gift from '@aigo/components/icon/Gift';
 import { defaultTheme } from 'utils/global';
 import { useInspectingTrip } from 'utils/hooks/trips';
 
@@ -10,42 +11,52 @@ type Props = {
 };
 
 export const TripResult: FC<Props> = ({ trip }) => {
-	const { distance, time, avgSpeed, startTime, endTime } =
-		useInspectingTrip(trip);
-
-	const st = startTime.toLocaleTimeString();
-	const en = endTime.toLocaleTimeString();
+	const { distance, time, avgSpeed } = useInspectingTrip(trip);
 
 	return (
 		<View style={styles.container}>
 			<SafeAreaView style={styles.innerContainer}>
-				<View style={styles.pointsContainer}>
-					<Text style={styles.pointsNumber}>{trip.GOPoints || 1}</Text>
-					<Text style={styles.pointsUnitText}>GO points earned</Text>
-				</View>
+				<View style={styles.infoContainer}>
+					<View style={styles.pointsContainer}>
+						<View style={styles.innerPointsContainer}>
+							<View style={styles.pointsNumberContainer}>
+								<Text style={styles.pointsUnitText}>You have earned</Text>
+								<Text style={styles.pointsNumber}>{trip.GOPoints || 1} GO</Text>
+							</View>
+						</View>
+					</View>
 
-				<View style={styles.summaryContainer}>
-					<Text style={styles.summaryTitle}>
-						Today {st} - {en}
-					</Text>
-					<View style={styles.summaryInfoContainer}>
+					<View style={styles.summaryContainer}>
 						<View style={styles.summaryItemContainer}>
-							<Text style={styles.numberText}>{distance}</Text>
-							<Text style={styles.unitText}>km</Text>
+							<Text style={styles.title}>Distance</Text>
+							<Text style={styles.numberText}>
+								{distance} <Text style={styles.unitText}>km</Text>
+							</Text>
 						</View>
+
+						<View style={styles.separateLine} />
+
 						<View style={styles.summaryItemContainer}>
-							<Text style={styles.numberText}>{time}</Text>
-							<Text style={styles.unitText}>Duration</Text>
+							<Text style={styles.title}>Duration</Text>
+							<Text style={styles.numberText}>
+								{time} <Text style={styles.unitText}>time</Text>
+							</Text>
 						</View>
+
+						<View style={styles.separateLine} />
+
 						<View style={styles.summaryItemContainer}>
-							<Text style={styles.numberText}>{avgSpeed}</Text>
-							<Text style={styles.unitText}>Speed (km/h)</Text>
+							<Text style={styles.title}>Average Speed</Text>
+							<Text style={styles.numberText}>
+								{avgSpeed} <Text style={styles.unitText}>km/h</Text>
+							</Text>
 						</View>
 					</View>
 				</View>
 
 				<View style={styles.claimContainer}>
 					<TouchableOpacity style={styles.claimButton} activeOpacity={0.8}>
+						<Gift />
 						<Text style={styles.claimText}>
 							Claim {trip.GOPoints || 1} GO Point
 						</Text>
@@ -62,15 +73,34 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: defaultTheme.bgLight,
-		padding: 16,
 	},
 	innerContainer: {
 		flex: 1,
 	},
+	infoContainer: {
+		width: '100%',
+	},
 	pointsContainer: {
-		height: 240,
-		justifyContent: 'center',
+		width: '120%',
+		aspectRatio: 1,
+		left: '-10%',
+		borderRadius: 400,
 		position: 'relative',
+		backgroundColor: defaultTheme.cta20,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	innerPointsContainer: {
+		width: '78%',
+		aspectRatio: 1,
+		borderRadius: 400,
+		backgroundColor: defaultTheme.cta40,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	pointsNumberContainer: {
+		position: 'relative',
+		top: -30,
 	},
 	pointsNumber: {
 		fontSize: 48,
@@ -80,39 +110,58 @@ const styles = StyleSheet.create({
 	},
 	pointsUnitText: {
 		fontSize: 16,
+		lineHeight: 35,
 		color: defaultTheme.textDark80,
 		textAlign: 'center',
 	},
 	summaryContainer: {
-		backgroundColor: defaultTheme.gray10,
-		paddingVertical: 20,
-		paddingHorizontal: 16,
+		position: 'absolute',
+		left: 16,
+		right: 16,
+		bottom: -60,
+		backgroundColor: defaultTheme.bgLight,
+		paddingVertical: 28,
+		paddingHorizontal: 32,
 		borderRadius: 20,
 		gap: 18,
-	},
-	summaryTitle: {
-		color: defaultTheme.textDark70,
-		alignSelf: 'center',
-	},
-	summaryInfoContainer: {
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-		marginTop: 2,
+
+		elevation: 3,
+		shadowColor: '#cacaca',
+		shadowOffset: {
+			width: 0,
+			height: 0,
+		},
+		shadowOpacity: 0.6,
+		shadowRadius: 10,
 	},
 	summaryItemContainer: {
 		minWidth: 68,
+		flexDirection: 'row',
+		alignItems: 'flex-end',
+		justifyContent: 'space-between',
+	},
+	title: {
+		fontSize: 15,
+		fontWeight: '500',
+		color: defaultTheme.textDark60,
 	},
 	numberText: {
-		fontSize: 24,
-		fontWeight: '700',
-		color: defaultTheme.textDark90,
+		fontSize: 28,
+		fontWeight: '600',
+		color: defaultTheme.textDark80,
 	},
 	unitText: {
 		fontSize: 12,
-		color: defaultTheme.textDark70,
+		fontWeight: '600',
+		color: defaultTheme.textDark60,
+	},
+	separateLine: {
+		borderWidth: 1,
+		borderColor: defaultTheme.gray20,
 	},
 	claimContainer: {
 		marginTop: 'auto',
+		paddingHorizontal: 16,
 	},
 	claimButton: {
 		padding: 16,

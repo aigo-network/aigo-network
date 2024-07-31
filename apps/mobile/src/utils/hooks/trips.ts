@@ -54,7 +54,7 @@ export const useInspectingTrip = (
 		if (trip.status !== 'FINISHED' && trip.status !== 'CLAIMED') return '00:00';
 
 		const time = formatTimeDiffToHMS(endTime, startTime);
-		if (time.startsWith('00:')) return time.replace('00:', '');
+		return time;
 
 		return time;
 	}, [trip]);
