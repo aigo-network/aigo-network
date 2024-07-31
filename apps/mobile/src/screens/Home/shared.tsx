@@ -14,7 +14,7 @@ export const sharedStyles = StyleSheet.create({
 		backgroundColor: defaultTheme.gray10,
 		padding: 16,
 		paddingTop: 18,
-		paddingBottom: 22,
+		paddingBottom: 18,
 		borderRadius: 20,
 		gap: 14,
 	},
