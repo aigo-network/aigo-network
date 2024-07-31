@@ -29,14 +29,14 @@ export const PointPopup: FC<Props> = ({
 		<View style={styles.container}>
 			<View style={styles.giftContainer}>
 				<LottieView
+					speed={2}
 					source={require('assets/confetti-lottie.json')}
 					style={styles.gift}
 					autoPlay
 					loop
 				/>
 				<View style={styles.rewardContainer}>
-					<Text style={styles.highlightPoint}>{point}</Text>
-					<Text style={styles.explainText}>GO {messageSuffix}</Text>
+					<Text style={styles.highlightPoint}>{point} GO</Text>
 				</View>
 			</View>
 

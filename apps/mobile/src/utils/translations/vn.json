@@ -104,9 +104,13 @@
       },
       "tripSummary": {
         "title": "Tiến độ hôm nay",
+		"infoTitle": {
+			"distance": "Travel distance",
+			"time": "Travel time"
+		},
         "infoUnit": {
-          "km": "km",
-          "time": "Thời gian",
+          "distance": "km",
+          "time": "phút",
           "avgSpeed": "Tốc độ (km/h)"
         }
       },

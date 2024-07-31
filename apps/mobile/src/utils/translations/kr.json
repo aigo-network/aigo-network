@@ -103,10 +103,14 @@
         "joinTelegramButton": "텔레그램 입장"
       },
       "tripSummary": {
-        "title": "How we move today",
+        "title": "Today's travel log",
+		"infoTitle": {
+			"distance": "Travel distance",
+			"time": "Travel time"
+		},
         "infoUnit": {
-          "km": "km",
-          "time": "Time",
+          "distance": "km",
+          "time": "minutes",
           "avgSpeed": "Avg Speed (km/h)"
         }
       },

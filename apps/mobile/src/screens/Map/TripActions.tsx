@@ -79,7 +79,7 @@ export default TripActions;
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: 'transparent',
+		zIndex: 99,
 		position: 'absolute',
 		bottom: 0,
 		left: '50%',

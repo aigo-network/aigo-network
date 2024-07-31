@@ -107,8 +107,12 @@ export type Content = {
 			};
 			tripSummary: {
 				title: string;
+				infoTitle: {
+					distance: string;
+					time: string;
+				};
 				infoUnit: {
-					km: string;
+					distance: string;
 					time: string;
 					avgSpeed: string;
 				};
