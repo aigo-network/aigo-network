@@ -27,9 +27,9 @@ export const Invite = () => {
 				</Text>
 			</View>
 			<View style={styles.inviteContainer}>
-				<Text style={styles.inviteCountText}>
+				{/* <Text style={styles.inviteCountText}>
 					0 {homeContent.inviteSection.referralCountSuffix}
-				</Text>
+				</Text> */}
 				<TouchableOpacity
 					style={styles.inviteButton}
 					hitSlop={14}
@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
 	inviteContainer: {
 		gap: 10,
 		alignItems: 'center',
+		justifyContent: 'center',
 	},
 	descriptionText: {
 		flex: 1,

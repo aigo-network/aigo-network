@@ -26,8 +26,7 @@ export const TripSummary = () => {
 		});
 	}, [trips]);
 
-	const { totalDistance, totalTime, avgSpeed } =
-		useInspectingTrips(filteredTodayTrips);
+	const { totalDistance, totalTime } = useInspectingTrips(filteredTodayTrips);
 
 	const openTripHistory = () => {
 		navigate('TripHistory');
@@ -52,8 +51,10 @@ export const TripSummary = () => {
 							<Text style={styles.unitText}>{infoUnit.time}</Text>
 						</View>
 						<View style={styles.summaryItemContainer}>
-							<Text style={styles.numberText}>{avgSpeed}</Text>
-							<Text style={styles.unitText}>{infoUnit.avgSpeed}</Text>
+							{/* Temporary hide non-function data
+								<Text style={styles.numberText}>{avgSpeed}</Text>
+								<Text style={styles.unitText}>{infoUnit.avgSpeed}</Text> 
+							*/}
 						</View>
 					</View>
 				</View>
