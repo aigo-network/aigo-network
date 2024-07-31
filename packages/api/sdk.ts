@@ -123,8 +123,9 @@ export type RegisterDeviceInput = {
 export type RootMutation = {
   __typename?: 'RootMutation';
   checkIn?: Maybe<DailyCheckIn>;
+  claimTrip?: Maybe<Scalars['Boolean']['output']>;
   completeOnboarding?: Maybe<User>;
-  completeTrip?: Maybe<Scalars['Boolean']['output']>;
+  completeTrip?: Maybe<Trip>;
   createDeferredLinking?: Maybe<DeferredLinking>;
   deleteUser?: Maybe<User>;
   inputInvitationCode?: Maybe<Invitation>;
@@ -149,6 +150,11 @@ export type RootMutation = {
   web3FarmingInitProfile?: Maybe<Web3FarmingProfile>;
   web3FarmingRefreshReferrals?: Maybe<Array<Maybe<Web3FarmingReferralCode>>>;
   web3FarmingVerifyQuestAndClaimPoints?: Maybe<Web3FarmingQuest>;
+};
+
+
+export type RootMutationClaimTripArgs = {
+  tripID: Scalars['String']['input'];
 };
 
 
@@ -239,6 +245,8 @@ export type RootQueryTripsArgs = {
 
 export type Trip = {
   __typename?: 'Trip';
+  GOPoints?: Maybe<Scalars['Int']['output']>;
+  claimTime?: Maybe<Scalars['DateTime']['output']>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   endTime?: Maybe<Scalars['DateTime']['output']>;
   id?: Maybe<Scalars['String']['output']>;
@@ -418,7 +426,7 @@ export type CompleteTripMutationVariables = Exact<{
 }>;
 
 
-export type CompleteTripMutation = { __typename?: 'RootMutation', completeTrip?: boolean | null };
+export type CompleteTripMutation = { __typename?: 'RootMutation', completeTrip?: { __typename?: 'Trip', id?: string | null, route: string, status: string, startTime?: any | null, endTime?: any | null, userType?: string | null, GOPoints?: number | null, purpose?: string | null, createdAt?: any | null, updatedAt?: any | null } | null };
 
 export type InsertTripPointMutationVariables = Exact<{
   tripId: Scalars['String']['input'];
@@ -485,7 +493,7 @@ export type GetTripQueryVariables = Exact<{
 }>;
 
 
-export type GetTripQuery = { __typename?: 'RootQuery', trip?: { __typename?: 'Trip', id?: string | null, route: string, status: string, startTime?: any | null, endTime?: any | null, userType?: string | null, purpose?: string | null, createdAt?: any | null, updatedAt?: any | null } | null };
+export type GetTripQuery = { __typename?: 'RootQuery', trip?: { __typename?: 'Trip', id?: string | null, route: string, status: string, startTime?: any | null, endTime?: any | null, userType?: string | null, GOPoints?: number | null, purpose?: string | null, createdAt?: any | null, updatedAt?: any | null } | null };
 
 export type GetTripsQueryVariables = Exact<{
   after?: InputMaybe<Scalars['String']['input']>;
@@ -493,7 +501,7 @@ export type GetTripsQueryVariables = Exact<{
 }>;
 
 
-export type GetTripsQuery = { __typename?: 'RootQuery', trips?: { __typename?: 'TripConnection', edges: Array<{ __typename?: 'TripEdge', cursor: string, node: { __typename?: 'Trip', id?: string | null, route: string, status: string, startTime?: any | null, endTime?: any | null, userType?: string | null, purpose?: string | null, createdAt?: any | null, updatedAt?: any | null } } | null>, pageInfo: { __typename?: 'PageInfo', endCursor?: string | null, hasNextPage: boolean } } | null };
+export type GetTripsQuery = { __typename?: 'RootQuery', trips?: { __typename?: 'TripConnection', edges: Array<{ __typename?: 'TripEdge', cursor: string, node: { __typename?: 'Trip', id?: string | null, route: string, status: string, startTime?: any | null, endTime?: any | null, userType?: string | null, purpose?: string | null, GOPoints?: number | null, createdAt?: any | null, updatedAt?: any | null } } | null>, pageInfo: { __typename?: 'PageInfo', endCursor?: string | null, hasNextPage: boolean } } | null };
 
 export type GetUserWitDailyMissionsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -689,7 +697,18 @@ export const StartTripDocument = gql`
     `;
 export const CompleteTripDocument = gql`
     mutation completeTrip($tripId: String!) {
-  completeTrip(tripID: $tripId)
+  completeTrip(tripID: $tripId) {
+    id
+    route
+    status
+    startTime
+    endTime
+    userType
+    GOPoints
+    purpose
+    createdAt
+    updatedAt
+  }
 }
     `;
 export const InsertTripPointDocument = gql`
@@ -862,6 +881,7 @@ export const GetTripDocument = gql`
     startTime
     endTime
     userType
+    GOPoints
     purpose
     createdAt
     updatedAt
@@ -880,6 +900,7 @@ export const GetTripsDocument = gql`
         endTime
         userType
         purpose
+        GOPoints
         createdAt
         updatedAt
       }

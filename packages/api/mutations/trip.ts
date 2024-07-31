@@ -14,7 +14,24 @@ export const StartTripMutation = gql`
 
 export const CompleteTripMutation = gql`
 	mutation completeTrip($tripId: String!) {
-		completeTrip(tripID: $tripId)
+		completeTrip(tripID: $tripId) {
+			id
+			route
+			status
+			startTime
+			endTime
+			userType
+			GOPoints
+			purpose
+			createdAt
+			updatedAt
+		}
+	}
+`;
+
+export const ClaimTripMutation = gql`
+	mutation claimTrip($tripId: String!) {
+		claimTrip(tripID: $tripId)
 	}
 `;
 
