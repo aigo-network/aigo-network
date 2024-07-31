@@ -34,7 +34,7 @@
       "userTypes": ["Driver", "Rider"],
       "purposeTitle": "Your purpose is",
       "purposes": ["Go to work", "Hang out"],
-      "continueButton": "Continue"
+      "startButton": "Start"
     }
   },
   "screens": {

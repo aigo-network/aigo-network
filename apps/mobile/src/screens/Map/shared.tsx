@@ -32,7 +32,7 @@ const MS_PER_MINUTE = 1000 * 60;
 
 export const useCurrentTrip = () => {
 	const { currentTrip } = useMapState();
-	const [time, setTime] = useState('00:00');
+	const [time, setTime] = useState('00:00:00');
 
 	const distance = useMemo(() => {
 		if (!currentTrip) return 0;
@@ -56,17 +56,13 @@ export const useCurrentTrip = () => {
 		const timer = setInterval(() => {
 			const trip = getMapState().currentTrip;
 			if (!trip) {
-				setTime('00:00');
+				setTime('00:00:00');
 				return;
 			}
 
 			const timeInMs = new Date().valueOf() - trip.startedAt.valueOf();
-			const formattedTime = formatMsToHMS(timeInMs);
-			if (formattedTime.startsWith('00:')) {
-				setTime(formattedTime.replace('00:', ''));
-			} else {
-				setTime(formattedTime);
-			}
+			const formattedTime = formatMsToHMS(timeInMs > 0 ? timeInMs : 0);
+			setTime(formattedTime);
 		}, 1000);
 
 		return () => clearInterval(timer);

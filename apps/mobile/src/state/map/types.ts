@@ -7,6 +7,7 @@ export type MapState = {
 		id: string;
 		startedAt: Date;
 	};
+	completedTrip?: Trip;
 	startTripMetadata?: TripMetadata;
 	mapReady?: boolean;
 	permissionReady?: boolean;

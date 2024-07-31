@@ -1,6 +1,12 @@
 import type { FC } from 'react';
 import { useMemo, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+	ActivityIndicator,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import BottomSheetContainer from '@aigo/components/BottomSheetContainer';
 import { Align, showModal } from 'empty-modal/state';
@@ -18,6 +24,7 @@ export const showStartTripBottomSheet = () => {
 			id: 'start-trip-bottom-sheet',
 			align: Align.FullBottom,
 			showBackdrop: true,
+			closeOnPressBackdrop: false,
 		},
 	);
 
@@ -31,6 +38,7 @@ type Props = {
 const StartTripBottomSheet: FC<Props> = ({ onClose }) => {
 	const { bottom } = useSafeAreaInsets();
 	const { content } = useSnapshot(appState);
+	const [loading, setLoading] = useState(false);
 	const [userType, setUserType] = useState<CardInfo | null>(null);
 	const [purpose, setPurpose] = useState<CardInfo | null>(null);
 
@@ -42,7 +50,7 @@ const StartTripBottomSheet: FC<Props> = ({ onClose }) => {
 		userTypes,
 		purposeTitle,
 		purposes,
-		continueButton,
+		startButton,
 	} = content.modal.startTripBottomSheet;
 
 	const mappedUserTypes = useMemo(() => {
@@ -53,13 +61,17 @@ const StartTripBottomSheet: FC<Props> = ({ onClose }) => {
 		return purposes.map((t) => ({ title: t }));
 	}, [purposes]);
 
-	const handleContinue = () => {
+	const handleContinue = async () => {
 		if (disableContinue) return;
 
 		mapActions.setStartTripMetadata({
 			userType: userType.title,
 			purpose: purpose.title,
 		});
+
+		setLoading(true);
+		await mapActions.startNewTrip();
+		setLoading(false);
 
 		onClose?.();
 	};
@@ -96,16 +108,22 @@ const StartTripBottomSheet: FC<Props> = ({ onClose }) => {
 					/>
 				</View>
 
-				<TouchableOpacity
-					style={[
-						styles.continueButton,
-						disableContinue && styles.disableContinueButton,
-					]}
-					disabled={disableContinue}
-					onPress={handleContinue}
-				>
-					<Text style={styles.continueButtonTitle}>{continueButton}</Text>
-				</TouchableOpacity>
+				{loading ? (
+					<View style={styles.loadingContainer}>
+						<ActivityIndicator size={'large'} />
+					</View>
+				) : (
+					<TouchableOpacity
+						style={[
+							styles.continueButton,
+							disableContinue && styles.disableContinueButton,
+						]}
+						disabled={disableContinue}
+						onPress={handleContinue}
+					>
+						<Text style={styles.startButton}>{startButton}</Text>
+					</TouchableOpacity>
+				)}
 			</View>
 		</BottomSheetContainer>
 	);
@@ -156,6 +174,11 @@ const styles = StyleSheet.create({
 	infoItem: {
 		flex: 1,
 	},
+	loadingContainer: {
+		height: 80,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
 	continueButton: {
 		padding: 16,
 		borderRadius: 46,
@@ -165,7 +188,7 @@ const styles = StyleSheet.create({
 	disableContinueButton: {
 		opacity: 0.4,
 	},
-	continueButtonTitle: {
+	startButton: {
 		fontSize: 16,
 		fontWeight: '600',
 		textAlign: 'center',

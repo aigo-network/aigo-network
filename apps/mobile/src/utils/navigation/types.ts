@@ -13,6 +13,7 @@ export type RootStackParamList = {
 	VerifyPhoneNumber: undefined;
 	VerifyOTP: undefined;
 	Map: undefined;
+	TripResult: undefined;
 	TripHistory: undefined;
 };
 

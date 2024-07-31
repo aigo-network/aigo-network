@@ -98,6 +98,8 @@ export const mapActions = {
 					[longitude, latitude],
 				],
 			};
+
+			mapState.startTripMetadata = undefined;
 		} catch (error) {
 			crashlytics().recordError(error as Error, 'startTrip');
 			console.debug('Failed to start trip:', error);
@@ -109,16 +111,16 @@ export const mapActions = {
 				throw new MapError('current trip not found, invalid end action');
 			}
 
-			const { completeTrip: success } = await graphqlClient.completeTrip({
+			const { completeTrip } = await graphqlClient.completeTrip({
 				tripId: mapState.currentTrip.id,
 			});
 
-			if (!success) {
-				throw new MapError('Complete trip return false');
+			if (!completeTrip) {
+				throw new MapError('Complete trip return null');
 			}
 
+			mapState.completedTrip = completeTrip;
 			mapState.currentTrip = undefined;
-			mapState.startTripMetadata = undefined;
 		} catch (error) {
 			crashlytics().recordError(error as Error, 'completeTrip');
 			console.debug('Failed to complete trip:', error);

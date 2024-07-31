@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "date-fns": "^3.6.0",
-    "empty-modal": "^0.0.8",
+    "empty-modal": "^0.0.9",
     "firebase": "^10.12.2",
     "next": "14.2.4",
     "react": "18.2.0",

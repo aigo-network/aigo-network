@@ -42,7 +42,7 @@ export type Content = {
 			userTypes: string[];
 			purposeTitle: string;
 			purposes: string[];
-			continueButton: string;
+			startButton: string;
 		};
 	};
 	screens: {

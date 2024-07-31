@@ -34,7 +34,7 @@
       "userTypes": ["Tài xế", "Người đi xe"],
       "purposeTitle": "Bạn di chuyển để",
       "purposes": ["Đi làm", "Đi chơi"],
-      "continueButton": "Tiếp tục"
+      "startButton": "Bắt đầu"
     }
   },
   "screens": {
