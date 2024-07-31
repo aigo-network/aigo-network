@@ -7,7 +7,10 @@ import {
 	TouchableOpacity,
 	View,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {
+	SafeAreaView,
+	useSafeAreaInsets,
+} from 'react-native-safe-area-context';
 import { graphqlClient } from '@aigo/api/graphql';
 import type { Trip } from '@aigo/api/sdk';
 import Gift from '@aigo/components/icon/Gift';
@@ -22,6 +25,7 @@ type Props = {
 };
 
 export const TripResult: FC<Props> = ({ trip }) => {
+	const { bottom } = useSafeAreaInsets();
 	const [loading, setLoading] = useState(false);
 	const { distance, time, avgSpeed } = useInspectingTrip(trip);
 
@@ -77,7 +81,7 @@ export const TripResult: FC<Props> = ({ trip }) => {
 					</View>
 				</View>
 
-				<View style={styles.claimContainer}>
+				<View style={[styles.claimContainer, { marginBottom: bottom || 30 }]}>
 					{loading ? (
 						<View style={styles.loadingContainer}>
 							<ActivityIndicator size={'large'} />

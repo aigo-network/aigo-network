@@ -81,7 +81,9 @@ const StartTripBottomSheet: FC<Props> = ({ onClose }) => {
 	};
 
 	return (
-		<BottomSheetContainer style={[styles.container, { paddingBottom: bottom }]}>
+		<BottomSheetContainer
+			style={[styles.container, { paddingBottom: bottom || 30 }]}
+		>
 			<View style={styles.indicator} />
 
 			<View style={styles.titleContainer}>

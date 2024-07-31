@@ -55,20 +55,22 @@ export const TripActions = () => {
 
 	return (
 		<View style={[styles.container, { bottom }]}>
-			{loading ? (
-				<View style={styles.loadingContainer}>
-					<ActivityIndicator size={'large'} />
-				</View>
-			) : (
-				currentTrip && (
-					<TouchableOpacity
-						style={[styles.button, styles.endButton]}
-						onPress={handlePressEnd}
-					>
-						<Text style={styles.endButtonText}>{endButton}</Text>
-					</TouchableOpacity>
-				)
-			)}
+			<View style={styles.innerContainer}>
+				{loading ? (
+					<View style={styles.loadingContainer}>
+						<ActivityIndicator size={'large'} />
+					</View>
+				) : (
+					currentTrip && (
+						<TouchableOpacity
+							style={[styles.button, styles.endButton]}
+							onPress={handlePressEnd}
+						>
+							<Text style={styles.endButtonText}>{endButton}</Text>
+						</TouchableOpacity>
+					)
+				)}
+			</View>
 		</View>
 	);
 };
@@ -77,19 +79,16 @@ export default TripActions;
 
 const styles = StyleSheet.create({
 	container: {
+		backgroundColor: 'transparent',
 		position: 'absolute',
 		bottom: 0,
-		left: 0,
-		right: 0,
-		paddingHorizontal: 20,
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'center',
-		gap: 14,
+		left: '50%',
+	},
+	innerContainer: {
+		position: 'relative',
+		left: '-50%',
 	},
 	loadingContainer: {
-		width: 80,
-		height: 80,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
