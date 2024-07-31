@@ -1,6 +1,12 @@
 import type { FC } from 'react';
 import { useMemo, useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+	Platform,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import BottomSheetContainer from '@aigo/components/BottomSheetContainer';
 import { Align, showModal } from 'empty-modal/state';
@@ -66,7 +72,10 @@ const StartTripBottomSheet: FC<Props> = ({ onClose }) => {
 
 	return (
 		<BottomSheetContainer
-			style={[styles.container, { paddingBottom: bottom }]}
+			style={[
+				styles.container,
+				{ paddingBottom: Platform.OS === 'android' ? 30 : bottom },
+			]}
 			onClose={onClose}
 			closeOffset={100}
 		>
