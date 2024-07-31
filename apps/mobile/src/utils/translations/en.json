@@ -18,8 +18,8 @@
       "shareButton": "Share with friends"
     },
     "earnPoints": {
-      "title": "Congratulation",
-      "messagePrefix": "You've Earned",
+      "title": "Congratulations",
+      "messagePrefix": "You've earned",
       "messageSuffix": "points",
       "completedOnboardingMessage": "Your account is ready to use. You will be redirected to the Home Page in a few seconds."
     },
@@ -103,10 +103,14 @@
         "joinTelegramButton": "Join Telegram"
       },
       "tripSummary": {
-        "title": "How we move today",
+        "title": "Today's travel log",
+		"infoTitle": {
+			"distance": "Travel distance",
+			"time": "Travel time"
+		},
         "infoUnit": {
-          "km": "km",
-          "time": "Time",
+          "distance": "km",
+          "time": "minutes",
           "avgSpeed": "Avg Speed (km/h)"
         }
       },
