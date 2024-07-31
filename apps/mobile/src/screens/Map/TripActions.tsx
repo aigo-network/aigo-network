@@ -90,6 +90,7 @@ export default TripActions;
 
 const styles = StyleSheet.create({
 	container: {
+		zIndex: 99,
 		position: 'absolute',
 		bottom: 0,
 		left: 0,
