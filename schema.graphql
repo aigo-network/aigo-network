@@ -226,10 +226,13 @@ type RootMutation {
   checkIn: DailyCheckIn
 
   """"""
+  claimTrip(tripID: String!): Boolean
+
+  """"""
   completeOnboarding: User
 
   """"""
-  completeTrip(tripID: String!): Boolean
+  completeTrip(tripID: String!): Trip
 
   """"""
   createDeferredLinking(url: String!): DeferredLinking
@@ -303,6 +306,12 @@ type RootQuery {
 
 """"""
 type Trip {
+  """"""
+  GOPoints: Int
+
+  """"""
+  claimTime: DateTime
+
   """"""
   createdAt: DateTime
 

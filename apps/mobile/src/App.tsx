@@ -18,6 +18,7 @@ import UserDescription from 'screens/Onboard/UserDescription';
 import ProfileScreen from 'screens/Profile';
 import SplashScreen from 'screens/Splash';
 import TripHistoryScreen from 'screens/TripHistory';
+import TripResultScreen from 'screens/TripResult';
 import VerifyNNIDScreen from 'screens/VerifyNNID';
 import VerifyOTPScreen from 'screens/VerifyOTP';
 import VerifyPhoneNumberScreen from 'screens/VerifyPhoneNumber';
@@ -107,6 +108,7 @@ export const AppContainer: FC = () => {
 								/>
 								<Stack.Screen name="VerifyOTP" component={VerifyOTPScreen} />
 								<Stack.Screen name="Map" component={MapScreen} />
+								<Stack.Screen name="TripResult" component={TripResultScreen} />
 								<Stack.Screen
 									name="TripHistory"
 									component={TripHistoryScreen}

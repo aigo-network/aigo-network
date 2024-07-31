@@ -9,6 +9,7 @@ export const GetTripQuery = gql`
 			startTime
 			endTime
 			userType
+			GOPoints
 			purpose
 			createdAt
 			updatedAt
@@ -28,6 +29,7 @@ export const GetTripsQuery = gql`
 					endTime
 					userType
 					purpose
+					GOPoints
 					createdAt
 					updatedAt
 				}

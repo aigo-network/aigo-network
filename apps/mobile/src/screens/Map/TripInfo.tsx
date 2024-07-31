@@ -1,6 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import ChevronLeft from '@aigo/components/icon/ChevronLeft';
-import { useNavigation } from '@react-navigation/native';
+import { StyleSheet, Text, View } from 'react-native';
 import { appState } from 'state/app';
 import { defaultTheme } from 'utils/global';
 import { useSnapshot } from 'valtio';
@@ -8,7 +6,6 @@ import { useSnapshot } from 'valtio';
 import { useBouncedMapInsets, useCurrentTrip } from './shared';
 
 export const TripInfo = () => {
-	const { goBack } = useNavigation();
 	const { safeInsets } = useBouncedMapInsets();
 	const { content } = useSnapshot(appState);
 	const { distance, time, avgSpeed } = useCurrentTrip();
@@ -24,18 +21,6 @@ export const TripInfo = () => {
 				<View style={styles.distanceContainer}>
 					<Text style={styles.distanceText}>{distance.toPrecision(2)}</Text>
 					<Text style={styles.descriptionText}>{tripUnit.distance}</Text>
-
-					<TouchableOpacity
-						style={styles.backButton}
-						hitSlop={14}
-						onPress={goBack}
-					>
-						<ChevronLeft
-							width={28}
-							color={defaultTheme.textDark20}
-							strokeWidth="3"
-						/>
-					</TouchableOpacity>
 				</View>
 
 				<View style={styles.infoContainer}>

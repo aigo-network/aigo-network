@@ -34,7 +34,7 @@
       "userTypes": ["Tài xế", "Người đi xe"],
       "purposeTitle": "Bạn di chuyển để",
       "purposes": ["Đi làm", "Đi chơi"],
-      "continueButton": "Tiếp tục"
+      "startButton": "Bắt đầu"
     }
   },
   "screens": {
@@ -104,10 +104,10 @@
       },
       "tripSummary": {
         "title": "Tiến độ hôm nay",
-		"infoTitle": {
-			"distance": "Travel distance",
-			"time": "Travel time"
-		},
+        "infoTitle": {
+          "distance": "Tổng quãng đường",
+          "time": "Tổng thời gian"
+        },
         "infoUnit": {
           "distance": "km",
           "time": "phút",
@@ -141,6 +141,22 @@
         "time": "Thời gian",
         "avgSpeed": "Tốc độ (km/h)"
       }
+    },
+    "tripResult": {
+      "pointsTitle": "Bạn nhận được",
+      "infoTitles": {
+        "distance": "Quảng đường",
+        "duration": "Thời gian",
+        "avgSpeed": "Tốc độ trung bình"
+      },
+      "infoUnits": {
+        "km": "km",
+        "time": "time",
+        "speed": "km/h"
+      },
+      "claim": "Nhận {{points}} GO points",
+      "startNewTrip": "Bắt đầu hành trình mới",
+      "backToHome": "Về trang chính"
     },
     "map": {
       "tripUnit": {

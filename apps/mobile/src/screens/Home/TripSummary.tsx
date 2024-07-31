@@ -31,6 +31,11 @@ export const TripSummary = () => {
 	const { totalDistance, totalTimeInMs } =
 		useInspectingTrips(filteredTodayTrips);
 
+	const totalTimeInMinutes = useMemo(() => {
+		const minutes = totalTimeInMs / (60 * 1000);
+		return minutes.toPrecision(2);
+	}, [totalTimeInMs]);
+
 	const openTripHistory = () => {
 		navigate('TripHistory');
 	};
@@ -45,7 +50,7 @@ export const TripSummary = () => {
 				<View style={styles.contentContainer}>
 					<View style={styles.statisticContainer}>
 						<View style={styles.statisticTitleContainer}>
-							<Motorbike width={10} color={defaultTheme.textDark50} />
+							<Motorbike width={14} color={defaultTheme.textDark50} />
 							<Text style={styles.statisticTitle}>{infoTitle.distance}</Text>
 						</View>
 						<Text style={styles.numberText}>{totalDistance}</Text>
@@ -53,10 +58,10 @@ export const TripSummary = () => {
 					</View>
 					<View style={styles.statisticContainer}>
 						<View style={styles.statisticTitleContainer}>
-							<Clock color={defaultTheme.textDark50} />
+							<Clock width={10} color={defaultTheme.textDark50} />
 							<Text style={styles.statisticTitle}>{infoTitle.time}</Text>
 						</View>
-						<Text style={styles.numberText}>{totalTimeInMs}</Text>
+						<Text style={styles.numberText}>{totalTimeInMinutes}</Text>
 						<Text style={styles.unitText}>{infoUnit.time}</Text>
 					</View>
 				</View>
@@ -87,7 +92,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		backgroundColor: defaultTheme.gray20,
 		borderRadius: 15,
-		paddingVertical: 15,
+		paddingVertical: 12,
 	},
 	statisticTitleContainer: {
 		flexDirection: 'row',
@@ -95,20 +100,19 @@ const styles = StyleSheet.create({
 		gap: 5,
 	},
 	statisticTitle: {
-		fontSize: 9,
-		lineHeight: 10,
+		fontSize: 13,
+		lineHeight: 18,
 		color: defaultTheme.textDark50,
 	},
 	numberText: {
 		fontFamily: 'DMSans',
 		fontSize: 26,
 		fontWeight: '700',
-		lineHeight: 33,
+		lineHeight: 32,
 		color: defaultTheme.textDark80,
 	},
 	unitText: {
-		fontSize: 9,
-		lineHeight: 10,
+		fontSize: 13,
 		color: defaultTheme.textDark50,
 	},
 });

@@ -24,12 +24,20 @@ export const TripItem: FC<Props> = ({ trip }) => {
 			</View>
 
 			<View style={styles.contentContainer}>
-				<Text style={styles.startPositionText} numberOfLines={1}>
-					{startPosition || loadingLocation}
-				</Text>
-				<Text style={styles.startTimeText}>
-					{`${startTime.toLocaleDateString()} - ${startTime.toLocaleTimeString()}`}
-				</Text>
+				<View style={styles.titleContainer}>
+					<View style={styles.titleTextContainer}>
+						<Text style={styles.startPositionText} numberOfLines={1}>
+							{startPosition || loadingLocation}
+						</Text>
+						<Text style={styles.startTimeText}>
+							{`${startTime.toLocaleDateString()} - ${startTime.toLocaleTimeString()}`}
+						</Text>
+					</View>
+					<View style={styles.pointsContainer}>
+						<Text style={styles.pointsText}>{trip.GOPoints || 0} GO</Text>
+					</View>
+				</View>
+
 				<View style={styles.summaryContainer}>
 					<View style={styles.summaryItemContainer}>
 						<Text style={styles.numberText}>{distance}</Text>
@@ -70,6 +78,23 @@ const styles = StyleSheet.create({
 	contentContainer: {
 		flex: 1,
 		gap: 6,
+	},
+	titleContainer: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		gap: 6,
+	},
+	titleTextContainer: {
+		flex: 1,
+	},
+	pointsContainer: {
+		paddingVertical: 4,
+		paddingHorizontal: 8,
+		borderRadius: 24,
+		backgroundColor: defaultTheme.cta100,
+	},
+	pointsText: {
+		color: defaultTheme.textLight,
 	},
 	startPositionText: {
 		fontSize: 16,

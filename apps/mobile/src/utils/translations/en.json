@@ -34,7 +34,7 @@
       "userTypes": ["Driver", "Rider"],
       "purposeTitle": "Your purpose is",
       "purposes": ["Go to work", "Hang out"],
-      "continueButton": "Continue"
+      "startButton": "Start"
     }
   },
   "screens": {
@@ -141,6 +141,22 @@
         "time": "Time",
         "avgSpeed": "Avg Speed (km/h)"
       }
+    },
+    "tripResult": {
+      "pointsTitle": "You have earned",
+      "infoTitles": {
+        "distance": "Distance",
+        "duration": "Duration",
+        "avgSpeed": "Average Speed"
+      },
+      "infoUnits": {
+        "km": "km",
+        "time": "time",
+        "speed": "km/h"
+      },
+      "claim": "Claim {{points}} GO points",
+      "startNewTrip": "Start new trip",
+      "backToHome": "Back to home"
     },
     "map": {
       "tripUnit": {
