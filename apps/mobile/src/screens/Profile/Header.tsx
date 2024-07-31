@@ -22,7 +22,8 @@ export const Header = () => {
 				</Text>
 			</View>
 			<ImageBackground
-				source={require('/assets/img/balance-bg.png')}
+				source={require('/assets/img/balance-ic.png')}
+				imageStyle={styles.backgroundImage}
 				style={styles.balanceContainer}
 			>
 				<Text style={styles.balanceText}>
@@ -68,25 +69,32 @@ const styles = StyleSheet.create({
 		paddingVertical: 12,
 		borderRadius: 20,
 		overflow: 'hidden',
-		backgroundColor: defaultTheme.textDark100,
+		backgroundColor: defaultTheme.gray10,
 		shadowColor: defaultTheme.textDark100,
 		shadowOffset: {
 			width: 0,
-			height: -1,
+			height: 1,
 		},
-		shadowOpacity: 0.1,
-		shadowRadius: 1.5,
-		elevation: -2,
+		shadowOpacity: 1,
+		shadowRadius: 4,
+		elevation: 5,
 		objectFit: 'cover',
+	},
+	backgroundImage: {
+		width: 250,
+		height: 230,
+		left: 185,
+		top: -30,
+		transform: [{ rotate: '-10deg' }],
 	},
 	balanceText: {
 		fontSize: 17,
-		color: defaultTheme.textLight,
+		color: defaultTheme.textDark90,
 	},
 	balanceAmount: {
 		fontFamily: 'DMSans',
 		fontSize: 26,
 		fontWeight: '700',
-		color: defaultTheme.textLight,
+		color: defaultTheme.textDark90,
 	},
 });

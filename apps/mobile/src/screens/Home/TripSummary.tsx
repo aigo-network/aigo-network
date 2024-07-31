@@ -1,5 +1,7 @@
 import { useMemo } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import Clock from '@aigo/components/icon/Clock';
+import LeftArrowIcon from '@aigo/components/icon/LeftArrowIcon';
 import Motorbike from '@aigo/components/icon/Motorbike';
 import { useNavigation } from '@react-navigation/native';
 import { appState } from 'state/app';
@@ -14,7 +16,7 @@ export const TripSummary = () => {
 	const { content } = useSnapshot(appState);
 	const { trips } = useTrips();
 
-	const { title, infoUnit } = content.screens.home.tripSummary;
+	const { title, infoTitle, infoUnit } = content.screens.home.tripSummary;
 
 	const filteredTodayTrips = useMemo(() => {
 		const today = new Date().toLocaleDateString();
@@ -26,7 +28,8 @@ export const TripSummary = () => {
 		});
 	}, [trips]);
 
-	const { totalDistance, totalTime } = useInspectingTrips(filteredTodayTrips);
+	const { totalDistance, totalTimeInMs } =
+		useInspectingTrips(filteredTodayTrips);
 
 	const openTripHistory = () => {
 		navigate('TripHistory');
@@ -35,27 +38,26 @@ export const TripSummary = () => {
 	return (
 		<TouchableOpacity onPress={openTripHistory}>
 			<View style={[sharedStyles.container, styles.container]}>
-				<View style={styles.iconContainer}>
-					<Motorbike width={28} color={defaultTheme.textDark80} />
+				<View style={styles.iconWrapper}>
+					<LeftArrowIcon width={16} color={defaultTheme.textDark70} />
 				</View>
-
+				<Text style={sharedStyles.title}>{title}</Text>
 				<View style={styles.contentContainer}>
-					<Text style={styles.title}>{title}</Text>
-					<View style={styles.summaryContainer}>
-						<View style={styles.summaryItemContainer}>
-							<Text style={styles.numberText}>{totalDistance}</Text>
-							<Text style={styles.unitText}>{infoUnit.km}</Text>
+					<View style={styles.statisticContainer}>
+						<View style={styles.statisticTitleContainer}>
+							<Motorbike width={10} color={defaultTheme.textDark50} />
+							<Text style={styles.statisticTitle}>{infoTitle.distance}</Text>
 						</View>
-						<View style={styles.summaryItemContainer}>
-							<Text style={styles.numberText}>{totalTime}</Text>
-							<Text style={styles.unitText}>{infoUnit.time}</Text>
+						<Text style={styles.numberText}>{totalDistance}</Text>
+						<Text style={styles.unitText}>{infoUnit.distance}</Text>
+					</View>
+					<View style={styles.statisticContainer}>
+						<View style={styles.statisticTitleContainer}>
+							<Clock color={defaultTheme.textDark50} />
+							<Text style={styles.statisticTitle}>{infoTitle.time}</Text>
 						</View>
-						<View style={styles.summaryItemContainer}>
-							{/* Temporary hide non-function data
-								<Text style={styles.numberText}>{avgSpeed}</Text>
-								<Text style={styles.unitText}>{infoUnit.avgSpeed}</Text> 
-							*/}
-						</View>
+						<Text style={styles.numberText}>{totalTimeInMs}</Text>
+						<Text style={styles.unitText}>{infoUnit.time}</Text>
 					</View>
 				</View>
 			</View>
@@ -67,35 +69,46 @@ export default TripSummary;
 
 const styles = StyleSheet.create({
 	container: {
-		flexDirection: 'row',
+		gap: 12,
+		position: 'relative',
 	},
-	iconContainer: {
-		padding: 10,
-		justifyContent: 'center',
-		alignItems: 'center',
+	iconWrapper: {
+		position: 'absolute',
+		top: 18,
+		right: 15,
+		transform: [{ rotate: '135deg' }],
 	},
 	contentContainer: {
-		flex: 1,
-		gap: 10,
-	},
-	title: {
-		fontSize: 16,
-		lineHeight: 20,
-		color: defaultTheme.textDark70,
-	},
-	summaryContainer: {
 		flexDirection: 'row',
-		justifyContent: 'space-between',
+		gap: 8,
 	},
-	summaryItemContainer: {},
+	statisticContainer: {
+		alignItems: 'center',
+		flex: 1,
+		backgroundColor: defaultTheme.gray20,
+		borderRadius: 15,
+		paddingVertical: 15,
+	},
+	statisticTitleContainer: {
+		flexDirection: 'row',
+		alignItems: 'center',
+		gap: 5,
+	},
+	statisticTitle: {
+		fontSize: 9,
+		lineHeight: 10,
+		color: defaultTheme.textDark50,
+	},
 	numberText: {
-		fontSize: 20,
+		fontFamily: 'DMSans',
+		fontSize: 26,
 		fontWeight: '700',
-		lineHeight: 24,
-		color: defaultTheme.textDark90,
+		lineHeight: 33,
+		color: defaultTheme.textDark80,
 	},
 	unitText: {
-		fontSize: 12,
-		color: defaultTheme.textDark70,
+		fontSize: 9,
+		lineHeight: 10,
+		color: defaultTheme.textDark50,
 	},
 });
