@@ -3,7 +3,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import AppIcon from '@aigo/components/icon/AppIcon';
 import Tick from '@aigo/components/icon/Tick';
 import X from '@aigo/components/icon/X';
+import { appState } from 'state/app';
 import { defaultTheme } from 'utils/global';
+import { useSnapshot } from 'valtio';
 
 export type CheckInStatus =
 	| 'checkedIn'
@@ -20,6 +22,9 @@ type Props = {
 };
 
 export const CheckIn: FC<Props> = ({ width, status, points, dayNumber }) => {
+	const { content } = useSnapshot(appState);
+	const { today } = content.screens.home.dailyCheckInSection;
+
 	return (
 		<View style={[styles.container, { width }]}>
 			<View
@@ -53,7 +58,7 @@ export const CheckIn: FC<Props> = ({ width, status, points, dayNumber }) => {
 				)}
 			</View>
 			<Text style={{ textAlign: 'center', color: colorMap[status].dayText }}>
-				Day {dayNumber}
+				{status === 'today' ? today : `Day ${dayNumber}`}
 			</Text>
 		</View>
 	);

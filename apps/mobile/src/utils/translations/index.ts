@@ -134,6 +134,7 @@ export type Content = {
 				title: string;
 				checkInButton: string;
 				checkInDay: string;
+				today: string;
 			};
 			mainButton: string;
 		};
