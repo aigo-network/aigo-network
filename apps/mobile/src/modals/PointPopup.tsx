@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { FC, ReactNode } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import X from '@aigo/components/icon/X';
 import LottieView from 'lottie-react-native';
@@ -10,7 +10,9 @@ type Props = {
 	messagePrefix: string;
 	messageSuffix: string;
 	description?: string;
+	showClose?: boolean;
 	onPressClose?: () => void;
+	children?: ReactNode;
 };
 
 export const PointPopup: FC<Props> = ({
@@ -19,34 +21,35 @@ export const PointPopup: FC<Props> = ({
 	messagePrefix,
 	messageSuffix,
 	description,
+	showClose = true,
 	onPressClose,
+	children,
 }) => {
 	return (
 		<View style={styles.container}>
 			<View style={styles.giftContainer}>
 				<LottieView
+					speed={2}
 					source={require('assets/confetti-lottie.json')}
 					style={styles.gift}
 					autoPlay
 					loop
 				/>
 				<View style={styles.rewardContainer}>
-					<Text style={styles.highlightPoint}>{point}</Text>
-					<Text style={styles.explainText}>GO {messageSuffix}</Text>
+					<Text style={styles.highlightPoint}>{point} GO</Text>
 				</View>
 			</View>
 
-			<TouchableOpacity
-				style={styles.closeButton}
-				hitSlop={14}
-				onPress={onPressClose}
-			>
-				<X color={defaultTheme.textDark80} width={14} />
-			</TouchableOpacity>
-			{/* <Image
-				style={styles.pointTick}
-				source={require('assets/img/point-tick.png')}
-			/> */}
+			{showClose && (
+				<TouchableOpacity
+					style={styles.closeButton}
+					hitSlop={14}
+					onPress={onPressClose}
+				>
+					<X color={defaultTheme.textDark80} width={14} />
+				</TouchableOpacity>
+			)}
+
 			<View style={{ gap: 8, alignItems: 'center' }}>
 				<Text style={styles.title}>{title}</Text>
 				<Text style={styles.messageText}>
@@ -56,6 +59,8 @@ export const PointPopup: FC<Props> = ({
 				</Text>
 			</View>
 			{description && <Text style={styles.descriptionText}>{description}</Text>}
+
+			{children}
 		</View>
 	);
 };
@@ -66,7 +71,6 @@ const styles = StyleSheet.create({
 	container: {
 		backgroundColor: defaultTheme.bgLight,
 		gap: 20,
-		alignItems: 'center',
 		padding: 20,
 		paddingBottom: 40,
 		paddingTop: 60,
@@ -84,6 +88,7 @@ const styles = StyleSheet.create({
 		width: 200,
 		height: 200,
 		position: 'relative',
+		alignSelf: 'center',
 	},
 	gift: {
 		position: 'absolute',

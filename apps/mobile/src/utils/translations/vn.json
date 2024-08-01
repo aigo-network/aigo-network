@@ -18,7 +18,7 @@
       "shareButton": "Chia sẻ với bạn bè"
     },
     "earnPoints": {
-      "title": "Congratulation",
+      "title": "Congratulations",
       "messagePrefix": "Điểm thưởng đã được cộng!",
       "messageSuffix": "points",
       "completedOnboardingMessage": "Your account is ready to use. You will be redirected to the Home Page in a few seconds."
@@ -34,7 +34,7 @@
       "userTypes": ["Tài xế", "Người đi xe"],
       "purposeTitle": "Bạn di chuyển để",
       "purposes": ["Đi làm", "Đi chơi"],
-      "continueButton": "Tiếp tục"
+      "startButton": "Bắt đầu"
     }
   },
   "screens": {
@@ -104,9 +104,13 @@
       },
       "tripSummary": {
         "title": "Tiến độ hôm nay",
+        "infoTitle": {
+          "distance": "Tổng quãng đường",
+          "time": "Tổng thời gian"
+        },
         "infoUnit": {
-          "km": "km",
-          "time": "Thời gian",
+          "distance": "km",
+          "time": "phút",
           "avgSpeed": "Tốc độ (km/h)"
         }
       },
@@ -137,6 +141,22 @@
         "time": "Thời gian",
         "avgSpeed": "Tốc độ (km/h)"
       }
+    },
+    "tripResult": {
+      "pointsTitle": "Bạn nhận được",
+      "infoTitles": {
+        "distance": "Quảng đường",
+        "duration": "Thời gian",
+        "avgSpeed": "Tốc độ trung bình"
+      },
+      "infoUnits": {
+        "km": "km",
+        "time": "time",
+        "speed": "km/h"
+      },
+      "claim": "Nhận {{points}} GO points",
+      "startNewTrip": "Bắt đầu hành trình mới",
+      "backToHome": "Về trang chính"
     },
     "map": {
       "tripUnit": {

@@ -18,8 +18,8 @@
       "shareButton": "Share with friends"
     },
     "earnPoints": {
-      "title": "Congratulation",
-      "messagePrefix": "You've Earned",
+      "title": "Congratulations",
+      "messagePrefix": "You've earned",
       "messageSuffix": "points",
       "completedOnboardingMessage": "Your account is ready to use. You will be redirected to the Home Page in a few seconds."
     },
@@ -34,7 +34,7 @@
       "userTypes": ["Driver", "Rider"],
       "purposeTitle": "Your purpose is",
       "purposes": ["Go to work", "Hang out"],
-      "continueButton": "Continue"
+      "startButton": "Start"
     }
   },
   "screens": {
@@ -103,10 +103,14 @@
         "joinTelegramButton": "Join Telegram"
       },
       "tripSummary": {
-        "title": "How we move today",
+        "title": "Today's travel log",
+		"infoTitle": {
+			"distance": "Travel distance",
+			"time": "Travel time"
+		},
         "infoUnit": {
-          "km": "km",
-          "time": "Time",
+          "distance": "km",
+          "time": "minutes",
           "avgSpeed": "Avg Speed (km/h)"
         }
       },
@@ -137,6 +141,22 @@
         "time": "Time",
         "avgSpeed": "Avg Speed (km/h)"
       }
+    },
+    "tripResult": {
+      "pointsTitle": "You have earned",
+      "infoTitles": {
+        "distance": "Distance",
+        "duration": "Duration",
+        "avgSpeed": "Average Speed"
+      },
+      "infoUnits": {
+        "km": "km",
+        "time": "time",
+        "speed": "km/h"
+      },
+      "claim": "Claim {{points}} GO points",
+      "startNewTrip": "Start new trip",
+      "backToHome": "Back to home"
     },
     "map": {
       "tripUnit": {

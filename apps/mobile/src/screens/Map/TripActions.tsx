@@ -6,6 +6,7 @@ import {
 	TouchableOpacity,
 	View,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { showConfirmModal } from 'modals/Confirm';
 import { showStartTripBottomSheet } from 'modals/StartTrip';
 import { appState } from 'state/app';
@@ -16,24 +17,14 @@ import { useSnapshot } from 'valtio';
 import { useBouncedMapInsets } from './shared';
 
 export const TripActions = () => {
+	const { navigate } = useNavigation();
 	const { safeInsets } = useBouncedMapInsets();
 	const { content } = useSnapshot(appState);
-	const { currentTrip, startTripMetadata } = useMapState();
+	const { currentTrip } = useMapState();
 	const [loading, setLoading] = useState(false);
 
 	const { bottom } = safeInsets;
-	const { startButton, endButton, confirmEnd } = content.screens.map;
-
-	const handlePressStart = async () => {
-		if (!startTripMetadata) {
-			showStartTripBottomSheet();
-			return;
-		}
-
-		setLoading(true);
-		await mapActions.startNewTrip();
-		setLoading(false);
-	};
+	const { endButton, confirmEnd } = content.screens.map;
 
 	const handlePressEnd = async () => {
 		setLoading(true);
@@ -47,6 +38,7 @@ export const TripActions = () => {
 			onConfirm: async () => {
 				await mapActions.endCurrentTrip();
 				setLoading(false);
+				navigate('TripResult');
 			},
 			onClose: () => {
 				setLoading(false);
@@ -63,25 +55,22 @@ export const TripActions = () => {
 
 	return (
 		<View style={[styles.container, { bottom }]}>
-			{loading ? (
-				<View style={styles.loadingContainer}>
-					<ActivityIndicator size={'large'} />
-				</View>
-			) : !currentTrip ? (
-				<TouchableOpacity
-					style={[styles.button, styles.startButton]}
-					onPress={handlePressStart}
-				>
-					<Text style={styles.startButtonText}>{startButton}</Text>
-				</TouchableOpacity>
-			) : (
-				<TouchableOpacity
-					style={[styles.button, styles.endButton]}
-					onPress={handlePressEnd}
-				>
-					<Text style={styles.endButtonText}>{endButton}</Text>
-				</TouchableOpacity>
-			)}
+			<View style={styles.innerContainer}>
+				{loading ? (
+					<View style={styles.loadingContainer}>
+						<ActivityIndicator size={'large'} />
+					</View>
+				) : (
+					currentTrip && (
+						<TouchableOpacity
+							style={[styles.button, styles.endButton]}
+							onPress={handlePressEnd}
+						>
+							<Text style={styles.endButtonText}>{endButton}</Text>
+						</TouchableOpacity>
+					)
+				)}
+			</View>
 		</View>
 	);
 };
@@ -93,17 +82,13 @@ const styles = StyleSheet.create({
 		zIndex: 99,
 		position: 'absolute',
 		bottom: 0,
-		left: 0,
-		right: 0,
-		paddingHorizontal: 20,
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'center',
-		gap: 14,
+		left: '50%',
+	},
+	innerContainer: {
+		position: 'relative',
+		left: '-50%',
 	},
 	loadingContainer: {
-		width: 80,
-		height: 80,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},

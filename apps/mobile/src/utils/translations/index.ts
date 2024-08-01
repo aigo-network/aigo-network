@@ -42,7 +42,7 @@ export type Content = {
 			userTypes: string[];
 			purposeTitle: string;
 			purposes: string[];
-			continueButton: string;
+			startButton: string;
 		};
 	};
 	screens: {
@@ -107,8 +107,12 @@ export type Content = {
 			};
 			tripSummary: {
 				title: string;
+				infoTitle: {
+					distance: string;
+					time: string;
+				};
 				infoUnit: {
-					km: string;
+					distance: string;
 					time: string;
 					avgSpeed: string;
 				};
@@ -142,6 +146,22 @@ export type Content = {
 				time: string;
 				avgSpeed: string;
 			};
+		};
+		tripResult: {
+			pointsTitle: string;
+			infoTitles: {
+				distance: string;
+				duration: string;
+				avgSpeed: string;
+			};
+			infoUnits: {
+				km: string;
+				time: string;
+				speed: string;
+			};
+			claim: string;
+			startNewTrip: string;
+			backToHome: string;
 		};
 		map: {
 			tripUnit: {

@@ -16,6 +16,7 @@ export const defaultTheme = {
 	cta100: '#34c3f4',
 	cta40: '#aee7fb',
 	cta30: '#c2edfc',
+	cta20: '#D6F3FD',
 	cta12: '#e7f8fe',
 	cta10: '#ebf9fe',
 	gray20: '#f1f2f3',

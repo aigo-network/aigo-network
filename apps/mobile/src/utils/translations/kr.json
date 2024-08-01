@@ -18,7 +18,7 @@
       "shareButton": "친구에게 공유하기"
     },
     "earnPoints": {
-      "title": "Congratulation",
+      "title": "Congratulations",
       "messagePrefix": "포인트가 누적되었습니다",
       "messageSuffix": "포인트를",
       "completedOnboardingMessage": "계정을 사용할 준비가 되었습니다. 몇 초 안에 홈 페이지로 전환됩니다."
@@ -34,7 +34,7 @@
       "userTypes": ["Driver", "Rider"],
       "purposeTitle": "Your purpose is",
       "purposes": ["Go to work", "Hang out"],
-      "continueButton": "Continue"
+      "startButton": "Start"
     }
   },
   "screens": {
@@ -103,10 +103,14 @@
         "joinTelegramButton": "텔레그램 입장"
       },
       "tripSummary": {
-        "title": "How we move today",
+        "title": "Today's travel log",
+		"infoTitle": {
+			"distance": "Travel distance",
+			"time": "Travel time"
+		},
         "infoUnit": {
-          "km": "km",
-          "time": "Time",
+          "distance": "km",
+          "time": "minutes",
           "avgSpeed": "Avg Speed (km/h)"
         }
       },
@@ -137,6 +141,22 @@
         "time": "Time",
         "avgSpeed": "Avg Speed (km/h)"
       }
+    },
+    "tripResult": {
+      "pointsTitle": "You have earned",
+      "infoTitles": {
+        "distance": "Distance",
+        "duration": "Duration",
+        "avgSpeed": "Average Speed"
+      },
+      "infoUnits": {
+        "km": "km",
+        "time": "time",
+        "speed": "km/h"
+      },
+      "claim": "Claim {{points}} GO points",
+      "startNewTrip": "Start new trip",
+      "backToHome": "Back to home"
     },
     "map": {
       "tripUnit": {
