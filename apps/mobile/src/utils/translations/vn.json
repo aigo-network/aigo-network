@@ -11,20 +11,20 @@
     "confirmDeleteAccountMessage": "Bạn có chắc chắn muốn xóa tài khoản?",
     "invite": {
       "title": "Mời bạn bè cùng tham gia!",
-      "description": "Nhấn nút sao chép hoặc chia sẻ để mời bạn bè nhận phần thưởng ngay!",
+      "description": "Nhấn vào nút Sao Chép hoặc Chia sẻ để mời bạn bè và nhận",
       "referral": "giới thiệu",
-      "message": "Tải ngay ứng dụng AiGO {{{url}}}\nNhập mã giới thiệu của bạn để nhận ngay {{points}} GO points: {{code}}",
+      "message": "Tải ngay ứng dụng AiGO Ride tại {{{url}}}\nNhập mã giới thiệu để nhận ngay {{points}} GO: {{code}}",
       "codeTitle": "Mã giới thiệu của bạn",
       "shareButton": "Chia sẻ với bạn bè"
     },
     "earnPoints": {
-      "title": "Congratulations",
-      "messagePrefix": "Điểm thưởng đã được cộng!",
+      "title": "Tuyệt vời",
+      "messagePrefix": "Bạn đã nhận được",
       "messageSuffix": "points",
       "completedOnboardingMessage": "Your account is ready to use. You will be redirected to the Home Page in a few seconds."
     },
     "citySelection": {
-      "title": "Mã vùng:",
+      "title": "Mã quốc gia:",
       "placeholder": "Tìm kiếm quốc gia",
       "cancelButton": "Hủy"
     },
@@ -42,11 +42,11 @@
       "versionPrefix": "Phiên bản"
     },
     "logIn": {
-      "welcome": "Chào mừng bạn đến vớik\nAiGO",
-      "slogan": "Check-in mỗi ngày\nNhận quà liền tay",
+      "welcome": "Chào mừng bạn đến với\nAiGO Ride!",
+      "slogan": "Sở hữu và kiếm tiền từ mỗi chuyến đi hàng ngày của bạn",
       "phoneNumberButton": "Số điện thoại",
-      "googleButton": "Tài khoản Google",
-      "appleButton": "Tài khoản Apple",
+      "googleButton": "Đăng nhập với Google",
+      "appleButton": "Đăng nhập với Apple",
       "versionPrefix": "Phiên bản",
       "phoneNumberLogin": {
         "login": "Đăng nhập",
@@ -55,24 +55,24 @@
       },
       "otpConfirm": {
         "enterCode": "Nhập mã xác nhận",
-        "subText": "Chúng tôi vừa gửi một tin nhắn SMS gồm mã xác minh 6 chữ số đến số điện thoại của bạn",
+        "subText": "Chúng tôi đã gửi tin nhắn mã kích hoạt 6 chữ số tới số điện thoại của bạn",
         "verifyButton": "Xác nhận",
         "wrongCodeError": "Mã xác nhận không đúng.Vui lòng thử lại",
-        "getCredentialsError": "Xác minh người dùng thất bại",
-        "getProfileError": "Rất tiếc đã xảy ra lỗi khi tạo hồ sơ. Vui lòng thử lại sau"
+        "getCredentialsError": "Xác minh thất bại. Vui lòng thử lại",
+        "getProfileError": "Rất tiếc đã xảy ra lỗi khi tạo thông tin. Vui lòng thử lại sau"
       }
     },
     "onboard": {
       "name": {
-        "title": "Thiết lập tên người dùng",
+        "title": "Tên của bạn",
         "description": "Vui lòng nhập tên bạn muốn hiển thị trên hồ sơ",
         "continueButton": "Tuyệt vời :)",
-        "inputPlaceholder": "Tên người dùng"
+        "inputPlaceholder": "Nhập tên bạn"
       },
       "city": {
-        "title": "Bạn đang sống ở thành phố nào?",
-        "description": "Hãy cho chúng tôi biết bạn đang sống ở đâu để kết nối với bạn bè xung quanh",
-        "searchPlaceholder": "Tìm kiếm thành phố",
+        "title": "Thành phố của bạn",
+        "description": "Hãy cho AiGO biết bạn đang ở đâu để kết nối với những người bạn cùng thành phố",
+        "searchPlaceholder": "Tìm kiếm",
         "emptySearchTitle": "Không tìm thấy kết quả",
         "emptySearchMessage": "Không tìm thấy kết quả phù hợp.\nVui lòng thử tìm kiếm một thành phố khác hoặc kiểm tra laijkhu vực bạn đã nhập.",
         "continueButton": "Tiếp tục"
@@ -103,10 +103,10 @@
         "joinTelegramButton": "Tham gia Telegram"
       },
       "tripSummary": {
-        "title": "Tiến độ hôm nay",
+        "title": "Chuyến đi hôm nay",
         "infoTitle": {
-          "distance": "Tổng quãng đường",
-          "time": "Tổng thời gian"
+          "distance": "Quãng đường",
+          "time": "Thời gian di chuyển"
         },
         "infoUnit": {
           "distance": "km",
@@ -125,17 +125,18 @@
       "dailyCheckInSection": {
         "title": "Điểm danh hằng ngày",
         "checkInButton": "Nhận 10 GO",
-        "checkInDay": "Ngày"
+        "checkInDay": "Ngày",
+		"today": "Hôm nay"
       },
       "dailyMissionSection": {
         "title": "Nhiệm vụ hàng ngày"
       },
-      "mainButton": "Bắt đầu hành trình" 
+      "mainButton": "Bắt đầu chuyến đi" 
     },
     "tripHistory": {
       "title": "Lịch sử di chuyển",
-      "loadingLocation": "Đang chờ dữ liệu",
-      "unknownLocation": "Vị trí không xác định",
+      "loadingLocation": "Đang tải dữ liệu",
+      "unknownLocation": "Địa điểm không xác định",
       "infoUnit": {
         "km": "km",
         "time": "Thời gian",
@@ -143,32 +144,32 @@
       }
     },
     "tripResult": {
-      "pointsTitle": "Bạn nhận được",
+      "pointsTitle": "Bạn đã kiếm được",
       "infoTitles": {
-        "distance": "Quảng đường",
+        "distance": "Quãng đường",
         "duration": "Thời gian",
         "avgSpeed": "Tốc độ trung bình"
       },
       "infoUnits": {
         "km": "km",
-        "time": "time",
+        "time": "thời gian",
         "speed": "km/h"
       },
-      "claim": "Nhận {{points}} GO points",
-      "startNewTrip": "Bắt đầu hành trình mới",
-      "backToHome": "Về trang chính"
+      "claim": "Bạn đã nhận được {{points}} điểm GO",
+      "startNewTrip": "Bắt đầu chuyến đi mới",
+      "backToHome": "Quay lại trang chủ"
     },
     "map": {
       "tripUnit": {
         "distance": "Quãng đường (km)",
         "time": "Thời gian",
-        "speed": " (km/h)"
+        "speed": "Tốc độ (km/h)"
       },
       "startButton": "BẮT ĐẦU",
-      "endButton": "DỪNG LẠI",
+      "endButton": "KẾT THÚC",
       "confirmEnd": {
-        "title": "Bạn có muốn dừng lại việc di chuyển?",
-        "confirm": "Xác nhận",
+        "title": "Bạn có muốn kết thúc chuyến đi?",
+        "confirm": "Kết thúc",
         "cancel": "Huỷ"
       }
     },
@@ -182,7 +183,7 @@
         "name": "Tên",
         "email": "Email",
         "city": "Thành phố",
-        "descriptions": "Mô tả",
+        "descriptions": "Thông tin",
         "phoneNumber": "Số điện thoại"
       },
       "defaultInfo": {
@@ -209,9 +210,9 @@
       },
       "referralSection": {
         "title": "Mã giới thiệu",
-        "descriptionPrefix": "Nhận thêm phần thưởng",
-        "descriptionSuffix": "Nhập mã giới thiệu của bạn bè để nhận thưởng",
-        "enterCodePlaceholder": "Vui lòng nhập mã giới thiệu",
+        "descriptionPrefix": "Nhận thêmß",
+        "descriptionSuffix": "khi nhập mã giới thiệu từ bạn bè",
+        "enterCodePlaceholder": "Vui lòng nhập mã",
         "invalidCodeError": "Mã giới thiệu không đúng. Vui lòng thử lại",
         "verifyButton": "Xác minh ngay"
       },
@@ -231,17 +232,17 @@
       "continueButton": "Tiếp tục"
     },
     "phoneNumberVerify": {
-      "title": "Xác thực số điện thoại",
+      "title": "Xác minh số điện thoại",
       "subText": "Vui lòng xác nhận mã vùng và nhập số điện thoại của bạn",
       "continueButton": "Tiếp tục",
       "OTP": {
         "title": "Nhập mã",
-        "subText": "Chúng tôi vừa gửi một tin nhắn SMS gồm mã xác minh 6 chữ số đến số điện thoại của bạn",
+        "subText": "Chúng tôi đã gửi mã kích hoạt 6 chữ số qua SMS đến điện thoại của bạn.",
         "verifyButton": "Xác minh",
         "wrongCodeError": "Mã xác nhận không đúng.Vui lòng thử lại",
         "linkAccountError": "Liên kết tài khoản thất bại",
-        "updateAccountError": "Cập nhật tài khoản thất bại",
-        "updateVerificationError": "Cập nhật xác thực thất bại"
+        "updateAccountError": "Cập nhật thông tin tài khoản thất bại",
+        "updateVerificationError": "Cập nhật mã xác minh thất bại"
       }
     }
   }

@@ -125,7 +125,8 @@
       "dailyCheckInSection": {
         "title": "Daily Check-in",
         "checkInButton": "Collect 10 GO",
-        "checkInDay": "Day"
+        "checkInDay": "Day",
+		"today": "Today"
       },
       "dailyMissionSection": {
         "title": "Daily Missions"
@@ -154,7 +155,7 @@
         "time": "time",
         "speed": "km/h"
       },
-      "claim": "Claim {{points}} GO points",
+      "claim": "You've claimed {{points}} GO points successfully",
       "startNewTrip": "Start new trip",
       "backToHome": "Back to home"
     },
@@ -168,8 +169,8 @@
       "endButton": "END",
       "confirmEnd": {
         "title": "Are you sure to end this trip?",
-        "confirm": "Confirm",
-        "cancel": "Close"
+        "confirm": "End",
+        "cancel": "Cancel"
       }
     },
     "profile": {
