@@ -51,7 +51,8 @@ export const useInspectingTrip = (
 	}, [trip.route]);
 
 	const time = useMemo(() => {
-		if (trip.status !== 'FINISHED' && trip.status !== 'CLAIMED') return '00:00';
+		if (trip.status !== 'FINISHED' && trip.status !== 'CLAIMED')
+			return '00:00:00';
 
 		const time = formatTimeDiffToHMS(endTime, startTime);
 		return time;
@@ -65,16 +66,16 @@ export const useInspectingTrip = (
 		const line = turf.lineString(route.coordinates);
 		const length = turf.length(line, { units: 'kilometers' });
 
-		return length.toPrecision(2);
+		return length.toFixed(2);
 	}, [route]);
 
 	const avgSpeed = useMemo(() => {
 		const timeInMs = endTime.valueOf() - startTime.valueOf();
-		if (timeInMs === 0) return 0;
+		if (timeInMs <= 0) return Number(0).toFixed(2);
 
 		const timeInHour = timeInMs / (60 * 60 * 1000);
 
-		return (Number(distance) / timeInHour).toPrecision(2);
+		return (Number(distance) / timeInHour).toFixed(2);
 	}, [distance]);
 
 	useEffect(() => {
@@ -141,14 +142,14 @@ export const useInspectingTrips = (trips: Trip[]): InspectedTrips => {
 			return prev + length;
 		}, 0);
 
-		return distance.toPrecision(2);
+		return distance.toFixed(2);
 	}, [routes]);
 
 	const avgSpeed = useMemo(() => {
 		const totalTimeInHour = totalTimeInMs / (60 * 60 * 1000);
 		if (totalTimeInHour === 0) return 0;
 
-		return (Number(totalDistance) / totalTimeInHour).toPrecision(2);
+		return (Number(totalDistance) / totalTimeInHour).toFixed(2);
 	}, [totalDistance, totalTimeInMs]);
 
 	return {

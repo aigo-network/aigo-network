@@ -157,7 +157,10 @@
       },
       "claim": "Bạn đã nhận được {{points}} điểm GO",
       "startNewTrip": "Bắt đầu chuyến đi mới",
-      "backToHome": "Quay lại trang chủ"
+      "backToHome": "Quay lại trang chủ",
+      "sorryTitle": "We’re sorry",
+      "sorryMessage": "You have no points yet. It would be best if you got enough distance to earn points.",
+      "tryAgain": "Let’s try again"
     },
     "map": {
       "tripUnit": {

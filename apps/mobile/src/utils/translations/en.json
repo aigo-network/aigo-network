@@ -157,7 +157,10 @@
       },
       "claim": "You've claimed {{points}} GO points successfully",
       "startNewTrip": "Start new trip",
-      "backToHome": "Back to home"
+      "backToHome": "Back to home",
+      "sorryTitle": "We’re sorry",
+      "sorryMessage": "You have no points yet. It would be best if you got enough distance to earn points.",
+      "tryAgain": "Let’s try again"
     },
     "map": {
       "tripUnit": {

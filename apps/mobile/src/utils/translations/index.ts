@@ -163,6 +163,9 @@ export type Content = {
 			claim: string;
 			startNewTrip: string;
 			backToHome: string;
+			sorryTitle: string;
+			sorryMessage: string;
+			tryAgain: string;
 		};
 		map: {
 			tripUnit: {

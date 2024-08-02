@@ -39,15 +39,15 @@ export const TripItem: FC<Props> = ({ trip }) => {
 				</View>
 
 				<View style={styles.summaryContainer}>
-					<View style={styles.summaryItemContainer}>
+					<View style={[styles.summaryItemContainer]}>
 						<Text style={styles.numberText}>{distance}</Text>
 						<Text style={styles.unitText}>{infoUnit.km}</Text>
 					</View>
-					<View style={styles.summaryItemContainer}>
+					<View style={[styles.summaryItemContainer]}>
 						<Text style={styles.numberText}>{time}</Text>
 						<Text style={styles.unitText}>{infoUnit.time}</Text>
 					</View>
-					<View style={styles.summaryItemContainer}>
+					<View style={[styles.summaryItemContainer]}>
 						<Text style={styles.numberText}>{avgSpeed}</Text>
 						<Text style={styles.unitText}>{infoUnit.avgSpeed}</Text>
 					</View>
@@ -107,11 +107,12 @@ const styles = StyleSheet.create({
 	},
 	summaryContainer: {
 		flexDirection: 'row',
-		justifyContent: 'space-between',
 		marginTop: 2,
+		gap: 14,
 	},
 	summaryItemContainer: {
-		minWidth: 68,
+		flexGrow: 1,
+		minWidth: 40,
 	},
 	numberText: {
 		fontSize: 20,
