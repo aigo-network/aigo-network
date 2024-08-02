@@ -51,11 +51,15 @@ export const TripResult: FC<Props> = ({ trip }) => {
 		<View style={styles.container}>
 			<SafeAreaView style={styles.innerContainer}>
 				<View style={styles.infoContainer}>
-					<View style={styles.pointsContainer}>
-						<View style={styles.innerPointsContainer}>
-							<View style={styles.pointsNumberContainer}>
-								<Text style={styles.pointsUnitText}>{pointsTitle}</Text>
-								<Text style={styles.pointsNumber}>{trip.GOPoints || 0} GO</Text>
+					<View style={styles.outerPointsContainer}>
+						<View style={styles.pointsContainer}>
+							<View style={styles.innerPointsContainer}>
+								<View style={styles.pointsNumberContainer}>
+									<Text style={styles.pointsUnitText}>{pointsTitle}</Text>
+									<Text style={styles.pointsNumber}>
+										{trip.GOPoints || 0} GO
+									</Text>
+								</View>
 							</View>
 						</View>
 					</View>
@@ -130,12 +134,21 @@ const styles = StyleSheet.create({
 	infoContainer: {
 		width: '100%',
 	},
-	pointsContainer: {
-		width: '120%',
+	outerPointsContainer: {
+		width: '168%',
 		aspectRatio: 1,
-		left: '-10%',
+		left: '-34%',
+		marginTop: '-26%',
 		borderRadius: 400,
 		position: 'relative',
+		backgroundColor: defaultTheme.cta10,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	pointsContainer: {
+		width: '72%',
+		aspectRatio: 1,
+		borderRadius: 400,
 		backgroundColor: defaultTheme.cta20,
 		justifyContent: 'center',
 		alignItems: 'center',
@@ -168,12 +181,12 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		left: 16,
 		right: 16,
-		bottom: -60,
+		bottom: 0,
 		backgroundColor: defaultTheme.bgLight,
 		paddingVertical: 28,
 		paddingHorizontal: 32,
 		borderRadius: 20,
-		gap: 18,
+		gap: 24,
 
 		elevation: 3,
 		shadowColor: '#cacaca',
