@@ -88,4 +88,5 @@ export const showCheckInPoint = () => {
 
 export const bannerMap: Record<string, ImageSourcePropType> = {
 	tada: require('assets/img/banner/tada-banner.png'),
+	aigoQuest: require('assets/img/banner/aigo-quest-banner.png'),
 };

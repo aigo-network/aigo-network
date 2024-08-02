@@ -35,7 +35,12 @@ export const defaultRemoteConfig: RemoteConfig = {
 		{
 			id: 'tada',
 			name: 'tada',
-			url: '',
+			url: 'https://mirror.xyz/0x9B5691025120Af46356c20e9be3EbBd400B85f30/iuodYASlCtV7ZpEh8VTL9gDO71iPRLbiErC2ezn98OA',
+		},
+		{
+			id: 'aigoQuest',
+			name: 'AiGO Quest',
+			url: 'https://quest.aigo.network/',
 		},
 	],
 	enableMapFeature: true,
