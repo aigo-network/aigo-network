@@ -33,7 +33,7 @@ export const TripSummary = () => {
 
 	const totalTimeInMinutes = useMemo(() => {
 		const minutes = totalTimeInMs / (60 * 1000);
-		return minutes.toPrecision(2);
+		return minutes.toFixed(2);
 	}, [totalTimeInMs]);
 
 	const openTripHistory = () => {

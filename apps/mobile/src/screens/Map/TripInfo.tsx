@@ -19,7 +19,7 @@ export const TripInfo = () => {
 		<View style={styles.container}>
 			<View style={containerStyle}>
 				<View style={styles.distanceContainer}>
-					<Text style={styles.distanceText}>{distance.toPrecision(2)}</Text>
+					<Text style={styles.distanceText}>{distance.toFixed(2)}</Text>
 					<Text style={styles.descriptionText}>{tripUnit.distance}</Text>
 				</View>
 
@@ -30,7 +30,7 @@ export const TripInfo = () => {
 					</View>
 
 					<View style={styles.infoItemContainer}>
-						<Text style={styles.infoText}>{avgSpeed.toPrecision(2)}</Text>
+						<Text style={styles.infoText}>{avgSpeed.toFixed(2)}</Text>
 						<Text style={styles.descriptionText}>{tripUnit.speed}</Text>
 					</View>
 				</View>
