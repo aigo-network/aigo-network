@@ -157,7 +157,10 @@
       },
       "claim": "{{points}} GO 포인트를 성공적으로 획득하셨습니다",
       "startNewTrip": "새로운 주행 시작하기",
-      "backToHome": "홈 화면 바로가기"
+      "backToHome": "홈 화면 바로가기",
+      "sorryTitle": "We’re sorry",
+      "sorryMessage": "You have no points yet. It would be best if you got enough distance to earn points.",
+      "tryAgain": "Let’s try again"
     },
     "map": {
       "tripUnit": {

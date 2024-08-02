@@ -1,24 +1,22 @@
 import type { FC } from 'react';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import {
 	ActivityIndicator,
-	Platform,
 	StyleSheet,
 	Text,
 	TouchableOpacity,
 	View,
 } from 'react-native';
-import {
-	SafeAreaView,
-	useSafeAreaInsets,
-} from 'react-native-safe-area-context';
 import { graphqlClient } from '@aigo/api/graphql';
 import type { Trip } from '@aigo/api/sdk';
 import Gift from '@aigo/components/icon/Gift';
+import SafeContainer from '@aigo/components/SafeContainer';
+import { showStartTripBottomSheet } from 'modals/StartTrip';
 import mustache from 'mustache';
 import { appActions, appState } from 'state/app';
 import { defaultTheme } from 'utils/global';
 import { useInspectingTrip } from 'utils/hooks/trips';
+import { navigationRef } from 'utils/navigation';
 import { useSnapshot } from 'valtio';
 
 import { showClaimTripPoint } from './shared';
@@ -28,13 +26,22 @@ type Props = {
 };
 
 export const TripResult: FC<Props> = ({ trip }) => {
-	const { bottom } = useSafeAreaInsets();
 	const { content } = useSnapshot(appState);
 	const [loading, setLoading] = useState(false);
 	const { distance, time, avgSpeed } = useInspectingTrip(trip);
 
-	const { pointsTitle, infoTitles, infoUnits, claim } =
-		content.screens.tripResult;
+	const {
+		pointsTitle,
+		infoTitles,
+		infoUnits,
+		claim,
+		sorryTitle,
+		sorryMessage,
+		tryAgain,
+		backToHome,
+	} = content.screens.tripResult;
+
+	const inactive = !trip.GOPoints || trip.GOPoints === 0;
 
 	const handlePressClaim = async () => {
 		if (!trip.id) return;
@@ -47,77 +54,104 @@ export const TripResult: FC<Props> = ({ trip }) => {
 		showClaimTripPoint({ points: trip.GOPoints || 0 });
 	};
 
+	const handleTryAgain = () => {
+		navigationRef.navigate('Map');
+		showStartTripBottomSheet();
+	};
+
+	const handleBackToHome = () => {
+		navigationRef.navigate('Home');
+	};
+
 	return (
-		<View style={styles.container}>
-			<SafeAreaView style={styles.innerContainer}>
-				<View style={styles.infoContainer}>
-					<View style={styles.outerPointsContainer}>
-						<View style={styles.pointsContainer}>
-							<View style={styles.innerPointsContainer}>
+		<SafeContainer style={styles.container}>
+			<View style={styles.infoContainer}>
+				<View style={[styles.outerBg, inactive && styles.outerInactive]}>
+					<View style={[styles.mainBg, inactive && styles.inactive]}>
+						<View style={[styles.innerBg, inactive && styles.innerInactive]}>
+							{inactive ? (
+								<View style={styles.pointsNumberContainer}>
+									<Text style={styles.sorryTitle}>{sorryTitle}</Text>
+									<Text style={styles.sorryMessage}>{sorryMessage}</Text>
+								</View>
+							) : (
 								<View style={styles.pointsNumberContainer}>
 									<Text style={styles.pointsUnitText}>{pointsTitle}</Text>
 									<Text style={styles.pointsNumber}>
 										{trip.GOPoints || 0} GO
 									</Text>
 								</View>
-							</View>
-						</View>
-					</View>
-
-					<View style={styles.summaryContainer}>
-						<View style={styles.summaryItemContainer}>
-							<Text style={styles.title}>{infoTitles.distance}</Text>
-							<Text style={styles.numberText}>
-								{distance} <Text style={styles.unitText}>{infoUnits.km}</Text>
-							</Text>
-						</View>
-
-						<View style={styles.separateLine} />
-
-						<View style={styles.summaryItemContainer}>
-							<Text style={styles.title}>{infoTitles.duration}</Text>
-							<Text style={styles.numberText}>
-								{time} <Text style={styles.unitText}>{infoUnits.time}</Text>
-							</Text>
-						</View>
-
-						<View style={styles.separateLine} />
-
-						<View style={styles.summaryItemContainer}>
-							<Text style={styles.title}>{infoTitles.avgSpeed}</Text>
-							<Text style={styles.numberText}>
-								{avgSpeed}{' '}
-								<Text style={styles.unitText}>{infoUnits.speed}</Text>
-							</Text>
+							)}
 						</View>
 					</View>
 				</View>
 
-				<View
-					style={[
-						styles.claimContainer,
-						Platform.OS === 'android' && { marginBottom: bottom || 30 },
-					]}
-				>
-					{loading ? (
-						<View style={styles.loadingContainer}>
-							<ActivityIndicator size={'large'} />
-						</View>
-					) : (
+				<View style={styles.summaryContainer}>
+					<View style={styles.summaryItemContainer}>
+						<Text style={styles.title}>{infoTitles.distance}</Text>
+						<Text style={styles.numberText}>
+							{distance} <Text style={styles.unitText}>{infoUnits.km}</Text>
+						</Text>
+					</View>
+
+					<View style={styles.separateLine} />
+
+					<View style={styles.summaryItemContainer}>
+						<Text style={styles.title}>{infoTitles.duration}</Text>
+						<Text style={styles.numberText}>
+							{time} <Text style={styles.unitText}>{infoUnits.time}</Text>
+						</Text>
+					</View>
+
+					<View style={styles.separateLine} />
+
+					<View style={styles.summaryItemContainer}>
+						<Text style={styles.title}>{infoTitles.avgSpeed}</Text>
+						<Text style={styles.numberText}>
+							{avgSpeed} <Text style={styles.unitText}>{infoUnits.speed}</Text>
+						</Text>
+					</View>
+				</View>
+			</View>
+
+			<View style={styles.claimContainer}>
+				{inactive ? (
+					<Fragment>
 						<TouchableOpacity
-							style={styles.claimButton}
-							activeOpacity={0.8}
-							onPress={handlePressClaim}
+							style={styles.startNewButton}
+							onPress={handleTryAgain}
 						>
-							<Gift />
-							<Text style={styles.claimText}>
-								{mustache.render(claim, { points: trip.GOPoints || 0 })}
-							</Text>
+							<Text style={styles.startNewText}>{tryAgain}</Text>
 						</TouchableOpacity>
-					)}
-				</View>
-			</SafeAreaView>
-		</View>
+						<TouchableOpacity
+							style={styles.backButton}
+							onPress={handleBackToHome}
+						>
+							<Text style={styles.backText}>{backToHome}</Text>
+						</TouchableOpacity>
+					</Fragment>
+				) : (
+					<Fragment>
+						{loading ? (
+							<View style={styles.loadingContainer}>
+								<ActivityIndicator size={'large'} />
+							</View>
+						) : (
+							<TouchableOpacity
+								style={styles.claimButton}
+								activeOpacity={0.8}
+								onPress={handlePressClaim}
+							>
+								<Gift />
+								<Text style={styles.claimText}>
+									{mustache.render(claim, { points: trip.GOPoints || 0 })}
+								</Text>
+							</TouchableOpacity>
+						)}
+					</Fragment>
+				)}
+			</View>
+		</SafeContainer>
 	);
 };
 
@@ -134,18 +168,20 @@ const styles = StyleSheet.create({
 	infoContainer: {
 		width: '100%',
 	},
-	outerPointsContainer: {
+	outerBg: {
 		width: '168%',
 		aspectRatio: 1,
 		left: '-34%',
 		marginTop: '-26%',
 		borderRadius: 400,
 		position: 'relative',
-		backgroundColor: defaultTheme.cta10,
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
-	pointsContainer: {
+	outerInactive: {
+		backgroundColor: defaultTheme.bgGray1,
+	},
+	mainBg: {
 		width: '72%',
 		aspectRatio: 1,
 		borderRadius: 400,
@@ -153,13 +189,20 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
-	innerPointsContainer: {
+	inactive: {
+		backgroundColor: defaultTheme.bgGray2,
+	},
+	innerBg: {
 		width: '78%',
 		aspectRatio: 1,
 		borderRadius: 400,
 		backgroundColor: defaultTheme.cta40,
 		justifyContent: 'center',
 		alignItems: 'center',
+		paddingHorizontal: 40,
+	},
+	innerInactive: {
+		backgroundColor: defaultTheme.bgGray3,
 	},
 	pointsNumberContainer: {
 		position: 'relative',
@@ -175,6 +218,20 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 		lineHeight: 35,
 		color: defaultTheme.textDark80,
+		textAlign: 'center',
+	},
+	sorryTitle: {
+		fontSize: 24,
+		lineHeight: 40,
+		fontWeight: '600',
+		color: defaultTheme.textDark100,
+		textAlign: 'center',
+	},
+	sorryMessage: {
+		fontSize: 15,
+		lineHeight: 24,
+		fontWeight: '500',
+		color: defaultTheme.textDark70,
 		textAlign: 'center',
 	},
 	summaryContainer: {
@@ -247,5 +304,30 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 		fontWeight: '600',
 		color: defaultTheme.textLight,
+	},
+	startNewButton: {
+		padding: 16,
+		paddingVertical: 18,
+		borderRadius: 46,
+		backgroundColor: defaultTheme.textDark90,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	startNewText: {
+		fontSize: 16,
+		fontWeight: '600',
+		color: defaultTheme.textLight,
+	},
+	backButton: {
+		padding: 16,
+		paddingVertical: 18,
+		borderRadius: 46,
+		justifyContent: 'center',
+		alignItems: 'center',
+	},
+	backText: {
+		fontSize: 16,
+		fontWeight: '600',
+		color: defaultTheme.textDark50,
 	},
 });
