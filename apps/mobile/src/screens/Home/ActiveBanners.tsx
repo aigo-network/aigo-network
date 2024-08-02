@@ -126,6 +126,5 @@ const styles = StyleSheet.create({
 	},
 	banner: {
 		height: containerHeight,
-		backgroundColor: 'red',
 	},
 });
