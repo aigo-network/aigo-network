@@ -51,7 +51,8 @@ export const useInspectingTrip = (
 	}, [trip.route]);
 
 	const time = useMemo(() => {
-		if (trip.status !== 'FINISHED' && trip.status !== 'CLAIMED') return '00:00';
+		if (trip.status !== 'FINISHED' && trip.status !== 'CLAIMED')
+			return '00:00:00';
 
 		const time = formatTimeDiffToHMS(endTime, startTime);
 		return time;
@@ -70,7 +71,7 @@ export const useInspectingTrip = (
 
 	const avgSpeed = useMemo(() => {
 		const timeInMs = endTime.valueOf() - startTime.valueOf();
-		if (timeInMs <= 0) return 0;
+		if (timeInMs <= 0) return Number(0).toFixed(2);
 
 		const timeInHour = timeInMs / (60 * 60 * 1000);
 
