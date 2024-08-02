@@ -21,9 +21,11 @@ import { bannerMap } from './shared';
 
 const AnimatedView = Animated.createAnimatedComponent(View);
 const flexGap = 15;
+const containerHeight = 150;
 
 const ActiveBanners: FC = () => {
 	const [activeIndex, setActiveIndex] = useState(0);
+	const [imageWidth, setImageWidth] = useState(0);
 	const {
 		remoteConfig: { activeBanners },
 	} = useSnapshot(appState);
@@ -51,6 +53,7 @@ const ActiveBanners: FC = () => {
 
 	const handleLayoutChange = ({ nativeEvent }: LayoutChangeEvent) => {
 		carouselWidth.value += nativeEvent.layout.width;
+		setImageWidth(nativeEvent.layout.width);
 	};
 
 	useEffect(() => {
@@ -87,7 +90,10 @@ const ActiveBanners: FC = () => {
 								key={idx}
 								onPress={() => banner.url && Linking.openURL(banner.url)}
 							>
-								<Image style={styles.banner} source={imgSource} />
+								<Image
+									style={[styles.banner, { width: imageWidth }]}
+									source={imgSource}
+								/>
 							</TouchableOpacity>
 						);
 					})}
@@ -104,7 +110,7 @@ const styles = StyleSheet.create({
 		position: 'relative',
 		borderRadius: 20,
 		overflow: 'hidden',
-		height: 150,
+		height: containerHeight,
 	},
 	viewport: {
 		position: 'absolute',
@@ -112,13 +118,14 @@ const styles = StyleSheet.create({
 		bottom: 0,
 		left: 0,
 		right: 0,
+		backgroundColor: 'red',
 	},
 	carousel: {
 		flexDirection: 'row',
 		gap: flexGap,
 	},
 	banner: {
-		maxWidth: '100%',
-		height: '100%',
+		height: containerHeight,
+		backgroundColor: 'red',
 	},
 });
