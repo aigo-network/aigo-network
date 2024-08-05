@@ -17,7 +17,9 @@ import Animated, {
 import { appState } from 'state/app';
 import { useSnapshot } from 'valtio';
 
-import { bannerMap } from './shared';
+import { bannerMap } from '../shared';
+
+import Indicator from './Indicator';
 
 const AnimatedView = Animated.createAnimatedComponent(View);
 const flexGap = 15;
@@ -99,6 +101,16 @@ const ActiveBanners: FC = () => {
 					})}
 				</AnimatedView>
 			</View>
+			<View style={styles.indicatorContainer}>
+				{activeBanners.map((banner, index) => (
+					<Indicator
+						key={banner.id}
+						activeIndex={activeIndex}
+						index={index}
+						carouselLength={activeBanners.length}
+					/>
+				))}
+			</View>
 		</View>
 	);
 };
@@ -125,5 +137,14 @@ const styles = StyleSheet.create({
 	},
 	banner: {
 		height: containerHeight,
+	},
+	indicatorContainer: {
+		position: 'absolute',
+		bottom: 10,
+		left: 0,
+		right: 0,
+		flexDirection: 'row',
+		justifyContent: 'center',
+		gap: 4,
 	},
 });
