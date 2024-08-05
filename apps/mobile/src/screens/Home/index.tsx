@@ -4,6 +4,7 @@ import { appState } from 'state/app';
 import { defaultTheme } from 'utils/global';
 import { useTransparencyTracking, useUserProfile } from 'utils/hooks/app';
 import { useNotificationPermissionRequest } from 'utils/hooks/notification';
+import { useRecoverLastTrip } from 'utils/hooks/trips';
 import { useSnapshot } from 'valtio';
 
 import ActiveBanners from './ActiveBanners';
@@ -18,6 +19,8 @@ export const HomeScreen = () => {
 	useUserProfile();
 	useTransparencyTracking();
 	useNotificationPermissionRequest();
+	useRecoverLastTrip();
+
 	const { bottom } = useSafeAreaInsets();
 
 	const { remoteConfig } = useSnapshot(appState);

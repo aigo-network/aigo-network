@@ -2,9 +2,10 @@ import { useEffect, useMemo, useState } from 'react';
 import type { Trip, TripConnection } from '@aigo/api/sdk';
 import * as turf from '@turf/turf';
 import { appState } from 'state/app';
-import { mapActions, useMapState } from 'state/map';
+import { getMapState, mapActions, useMapState } from 'state/map';
 import { formatMsToHMS, formatTimeDiffToHMS } from 'utils/datetime';
 import { queryReverseGeocode } from 'utils/mapbox';
+import { navigationRef } from 'utils/navigation';
 
 type Trips = {
 	trips: Trip[];
@@ -159,4 +160,26 @@ export const useInspectingTrips = (trips: Trip[]): InspectedTrips => {
 		totalTimeInMs,
 		avgSpeed,
 	};
+};
+
+/**
+ * Navigate to map screen with last non-ended trip.
+ * Should only use by home screen
+ * */
+export const useRecoverLastTrip = () => {
+	useEffect(() => {
+		const mapState = getMapState();
+		if (mapState.currentTrip) return;
+
+		const handleRecoverLastTrip = async () => {
+			await mapActions.syncLastTripFromStorage();
+			const mapState = getMapState();
+
+			if (mapState.currentTrip) {
+				navigationRef.navigate('Map');
+			}
+		};
+
+		handleRecoverLastTrip();
+	}, []);
 };
