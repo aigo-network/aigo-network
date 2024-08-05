@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Telegram from '@aigo/components/icon/Telegram';
 import Twitter from '@aigo/components/icon/Twitter';
+import Link from 'next/link';
 
 import BlurBackground from '@/components/BlurBackground';
 import { clashDisplay } from '@/utils/style';
@@ -26,22 +27,26 @@ const ComingSoon: FC<Props> = ({ isMobile = false }) => {
 				</Text>
 			</View>
 			<View style={styles.socialGroup}>
-				<TouchableOpacity style={styles.button}>
-					<BlurBackground style={styles.innerButton}>
-						<Twitter color="#fff" width={20} />
-						<Text style={[styles.buttonText, isMobile && { fontSize: 16 }]}>
-							Follow us on Twitter
-						</Text>
-					</BlurBackground>
-				</TouchableOpacity>
-				<TouchableOpacity style={styles.button}>
-					<BlurBackground style={styles.innerButton}>
-						<Telegram color="#fff" width={20} />
-						<Text style={[styles.buttonText, isMobile && { fontSize: 16 }]}>
-							Join our Telegram channel
-						</Text>
-					</BlurBackground>
-				</TouchableOpacity>
+				<Link href="https://x.com/AIGO_network" target={'_blank'}>
+					<TouchableOpacity style={styles.button}>
+						<BlurBackground style={styles.innerButton}>
+							<Twitter color="#fff" width={20} />
+							<Text style={[styles.buttonText, isMobile && { fontSize: 16 }]}>
+								Follow us on Twitter
+							</Text>
+						</BlurBackground>
+					</TouchableOpacity>
+				</Link>
+				<Link href="https://t.me/aigocommunity" target={'_blank'}>
+					<TouchableOpacity style={styles.button}>
+						<BlurBackground style={styles.innerButton}>
+							<Telegram color="#fff" width={20} />
+							<Text style={[styles.buttonText, isMobile && { fontSize: 16 }]}>
+								Join our Telegram channel
+							</Text>
+						</BlurBackground>
+					</TouchableOpacity>
+				</Link>
 			</View>
 		</View>
 	);
