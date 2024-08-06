@@ -22,9 +22,7 @@ import TripResultScreen from 'screens/TripResult';
 import VerifyNNIDScreen from 'screens/VerifyNNID';
 import VerifyOTPScreen from 'screens/VerifyOTP';
 import VerifyPhoneNumberScreen from 'screens/VerifyPhoneNumber';
-import { handleAppStateChangeForBackgroundGPS } from 'utils/geolocation/background';
 import { useAppConfigure } from 'utils/hooks/app';
-import { useAppState } from 'utils/hooks/appState';
 import { useDeepLinkHandler } from 'utils/hooks/deeplink';
 import { useNavigationConfig } from 'utils/hooks/navigation';
 import { useNotifications } from 'utils/hooks/notification';
@@ -49,7 +47,7 @@ export const AppContainer: FC = () => {
 	useAppConfigure();
 	useNotifications();
 	useDeepLinkHandler();
-	useAppState(handleAppStateChangeForBackgroundGPS);
+	// useAppState(handleAppStateChangeForBackgroundGPS);
 
 	return (
 		<SafeAreaProvider>

@@ -5,6 +5,7 @@ import crashlytics from '@react-native-firebase/crashlytics';
 import pThrottle from 'p-throttle';
 import { proxy, useSnapshot } from 'valtio';
 
+import { getLastTripId, removeLastTripId, setLastTripId } from './storage';
 import type { MapState, PagingParams, TripMetadata } from './types';
 
 const initialMapState: MapState = {};
@@ -100,6 +101,8 @@ export const mapActions = {
 			};
 
 			mapState.startTripMetadata = undefined;
+
+			await setLastTripId(trip.id);
 		} catch (error) {
 			crashlytics().recordError(error as Error, 'startTrip');
 			console.debug('Failed to start trip:', error);
@@ -121,6 +124,8 @@ export const mapActions = {
 
 			mapState.completedTrip = completeTrip;
 			mapState.currentTrip = undefined;
+
+			await removeLastTripId();
 		} catch (error) {
 			crashlytics().recordError(error as Error, 'completeTrip');
 			console.debug('Failed to complete trip:', error);
@@ -143,6 +148,41 @@ export const mapActions = {
 			}
 		} catch (error) {
 			crashlytics().recordError(error as Error, 'getTrips');
+		}
+	},
+	syncLastTripFromStorage: async () => {
+		try {
+			const lastTripId = await getLastTripId();
+			if (!lastTripId) {
+				console.debug('No LastTripId found to resync');
+				return;
+			}
+
+			const { trip } = await graphqlClient.getTrip({ tripId: lastTripId });
+			if (!trip) {
+				console.debug('Can not fetch last trip from storage');
+				await removeLastTripId();
+				return;
+			}
+
+			const route = JSON.parse(trip.route) as GeoJSON.LineString;
+
+			// coordinates must be an array of two or more positions
+			if (route.coordinates.length === 1) {
+				route.coordinates.push(route.coordinates[0]);
+			}
+
+			if (trip.status === 'STARTED') {
+				mapState.currentTrip = {
+					id: trip.id as string,
+					startedAt: new Date(trip.startTime),
+					...route,
+				};
+			} else {
+				await removeLastTripId();
+			}
+		} catch (error) {
+			crashlytics().recordError(error as Error, 'syncLastTrip');
 		}
 	},
 };
