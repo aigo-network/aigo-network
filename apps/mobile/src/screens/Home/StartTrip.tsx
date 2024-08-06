@@ -15,11 +15,11 @@ import { useSnapshot } from 'valtio';
 export const StartTrip = () => {
 	const { bottom } = useSafeAreaInsets();
 	const { content } = useSnapshot(appState);
-	const { navigate } = useNavigation();
+	const { reset } = useNavigation();
 	const homeContent = content.screens.home;
 
 	const handleOpenMap = () => {
-		navigate('Map');
+		reset({ routes: [{ name: 'Map' }] });
 	};
 
 	const containerStyle = [

@@ -176,7 +176,7 @@ export const useRecoverLastTrip = () => {
 			const mapState = getMapState();
 
 			if (mapState.currentTrip) {
-				navigationRef.navigate('Map');
+				navigationRef.reset({ routes: [{ name: 'Map' }] });
 			}
 		};
 
