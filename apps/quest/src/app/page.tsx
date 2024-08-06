@@ -16,6 +16,9 @@ import ReferralBoard from './section/ReferralBoard';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useIsMobile } from '@/hooks/responsive';
+import ComingSoon from '@/screens/ComingSoon';
+
+const comingSoon = true;
 
 export default function Home() {
 	const isMobile = useIsMobile();
@@ -30,14 +33,18 @@ export default function Home() {
 		<ModalProvider>
 			<ImageBackground source={backgroundImgSrc}>
 				<LinearGradient colors={backgroundGradients}>
-					<ScrollView style={styles.container}>
-						<Banner isMobile={isMobile} />
-						<View style={[styles.groupBoard, isMobile && styles.mobileBoard]}>
-							<ReferralBoard />
-							<MissionBoard />
-						</View>
-						<Footer />
-					</ScrollView>
+					{comingSoon ? (
+						<ComingSoon isMobile={isMobile} />
+					) : (
+						<ScrollView style={styles.container}>
+							<Banner isMobile={isMobile} />
+							<View style={[styles.groupBoard, isMobile && styles.mobileBoard]}>
+								<ReferralBoard />
+								<MissionBoard />
+							</View>
+							<Footer />
+						</ScrollView>
+					)}
 				</LinearGradient>
 			</ImageBackground>
 			<ToastContainer />
