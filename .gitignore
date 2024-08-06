@@ -110,3 +110,5 @@ yarn-error.log
 ios/tmp.xcconfig
 
 .turbo
+
+*.keypair.json
