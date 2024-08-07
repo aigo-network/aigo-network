@@ -32,7 +32,16 @@ export const SplashScreen = () => {
 			} else if (!user.completeOnboarding) {
 				reset({ routes: [{ name: 'OnboardName' }] });
 			} else {
-				reset({ routes: [{ name: 'Home' }] });
+				reset({
+					routes: [
+						{
+							name: 'BottomTab',
+							params: {
+								screen: 'Home',
+							},
+						},
+					],
+				});
 			}
 		};
 

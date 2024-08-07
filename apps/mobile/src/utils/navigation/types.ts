@@ -7,14 +7,19 @@ export type RootStackParamList = {
 	OnboardName: undefined;
 	OnboardDescription: undefined;
 	OnboardCity: undefined;
-	Home: undefined;
-	Profile: undefined;
 	VerifyNNID: undefined;
 	VerifyPhoneNumber: undefined;
 	VerifyOTP: undefined;
-	Map: undefined;
 	TripResult: undefined;
+	BottomTab: BottomTabParamList;
+};
+
+export type BottomTabParamList = {
+	Home: undefined;
+	Reward: undefined;
+	Map: undefined;
 	TripHistory: undefined;
+	Profile: undefined;
 };
 
 declare global {
