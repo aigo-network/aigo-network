@@ -16,7 +16,7 @@ import VerifyOTPScreen from 'screens/VerifyOTP';
 import VerifyPhoneNumberScreen from 'screens/VerifyPhoneNumber';
 import type { RootStackParamList } from 'utils/navigation';
 
-import BottomTab from './BottomTab';
+import BottomTabStack from './BottomTab';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -62,7 +62,13 @@ const ApplicationStack: FC = () => {
 				/>
 				<Stack.Screen name="VerifyOTP" component={VerifyOTPScreen} />
 				<Stack.Screen name="TripResult" component={TripResultScreen} />
-				<Stack.Screen name="BottomTab" component={BottomTab} />
+				<Stack.Screen
+					name="BottomTab"
+					component={BottomTabStack}
+					options={{
+						cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
+					}}
+				/>
 			</Stack.Group>
 		</Stack.Navigator>
 	);

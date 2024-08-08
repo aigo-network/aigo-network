@@ -1,8 +1,7 @@
 import type { FC } from 'react';
-import type { StyleProp, ViewStyle } from 'react-native';
 import type { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import type { RouteProp } from '@react-navigation/native';
+import BottomTab from 'components/BottomTab';
 import HomeScreen from 'screens/Home';
 import MapScreen from 'screens/Map';
 import ProfileScreen from 'screens/Profile';
@@ -11,26 +10,19 @@ import type { BottomTabParamList } from 'utils/navigation';
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
-interface ScreenOptionsProps {
-	route: RouteProp<BottomTabParamList, keyof BottomTabParamList>;
-}
-
-const BottomTab: FC = () => {
-	const screenOptions = ({
-		route,
-	}: ScreenOptionsProps): BottomTabNavigationOptions => {
-		const tabBarStyle: StyleProp<ViewStyle> = {};
-		if (route.name == 'Map') {
-			tabBarStyle['height'] = 0;
-		}
+const BottomTabStack: FC = () => {
+	const screenOptions = (): BottomTabNavigationOptions => {
 		return {
 			headerShown: false,
-			tabBarStyle,
+			// tabBarIcon: ({focused}) => {},
 		};
 	};
 
 	return (
-		<Tab.Navigator screenOptions={screenOptions}>
+		<Tab.Navigator
+			tabBar={(props) => <BottomTab {...props} />}
+			screenOptions={screenOptions}
+		>
 			<Tab.Screen name="Home" component={HomeScreen} />
 			<Tab.Screen name="Reward" component={HomeScreen} />
 			<Tab.Screen name="Map" component={MapScreen} />
@@ -40,4 +32,4 @@ const BottomTab: FC = () => {
 	);
 };
 
-export default BottomTab;
+export default BottomTabStack;
