@@ -10,7 +10,7 @@ export const TripResultScreen = () => {
 	const { completedTrip } = useMapState();
 
 	useEffect(() => {
-		if (!completedTrip) navigate('Home');
+		if (!completedTrip) navigate('BottomTab', { screen: 'Home' });
 	}, []);
 
 	return (

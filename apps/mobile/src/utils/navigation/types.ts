@@ -1,3 +1,5 @@
+import type { ParamListBase } from '@react-navigation/native';
+
 export type RootStackParamList = {
 	Splash: undefined;
 	Open: undefined;
@@ -11,7 +13,7 @@ export type RootStackParamList = {
 	VerifyPhoneNumber: undefined;
 	VerifyOTP: undefined;
 	TripResult: undefined;
-	BottomTab: BottomTabParamList;
+	BottomTab: SubNavigator<BottomTabParamList>;
 };
 
 export type BottomTabParamList = {
@@ -21,6 +23,10 @@ export type BottomTabParamList = {
 	TripHistory: undefined;
 	Profile: undefined;
 };
+
+type SubNavigator<T extends ParamListBase> = {
+	[K in keyof T]: { screen: K; params?: T[K] };
+}[keyof T];
 
 declare global {
 	// eslint-disable-next-line @typescript-eslint/no-namespace

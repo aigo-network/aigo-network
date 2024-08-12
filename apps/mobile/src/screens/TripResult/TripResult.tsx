@@ -55,12 +55,12 @@ export const TripResult: FC<Props> = ({ trip }) => {
 	};
 
 	const handleTryAgain = () => {
-		navigationRef.navigate('Map');
+		navigationRef.navigate('BottomTab', { screen: 'Map' });
 		showStartTripBottomSheet();
 	};
 
 	const handleBackToHome = () => {
-		navigationRef.navigate('Home');
+		navigationRef.navigate('BottomTab', { screen: 'Home' });
 	};
 
 	return (

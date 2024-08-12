@@ -55,7 +55,7 @@ export const VerifyOTPScreen = () => {
 			throw Error(updateVerificationError);
 		}
 
-		navigate('Profile');
+		navigate('BottomTab', { screen: 'Profile' });
 	};
 	return (
 		<OTPFeature
