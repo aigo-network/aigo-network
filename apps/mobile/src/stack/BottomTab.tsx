@@ -5,6 +5,7 @@ import BottomTab from 'components/BottomTab';
 import HomeScreen from 'screens/Home';
 import MapScreen from 'screens/Map';
 import ProfileScreen from 'screens/Profile';
+import RewardScreen from 'screens/Reward';
 import TripHistoryScreen from 'screens/TripHistory';
 import type { BottomTabParamList } from 'utils/navigation';
 
@@ -24,7 +25,7 @@ const BottomTabStack: FC = () => {
 			screenOptions={screenOptions}
 		>
 			<Tab.Screen name="Home" component={HomeScreen} />
-			<Tab.Screen name="Reward" component={HomeScreen} />
+			<Tab.Screen name="Reward" component={RewardScreen} />
 			<Tab.Screen name="Map" component={MapScreen} />
 			<Tab.Screen name="TripHistory" component={TripHistoryScreen} />
 			<Tab.Screen name="Profile" component={ProfileScreen} />
