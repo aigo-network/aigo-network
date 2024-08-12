@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		paddingVertical: 20,
+		marginHorizontal: 16,
 		borderRadius: 20,
 		backgroundColor: defaultTheme.bgLight,
 		shadowColor: defaultTheme.textDark60,

@@ -5,6 +5,7 @@ import { appState } from 'state/app';
 import { defaultTheme } from 'utils/global';
 import { useSnapshot } from 'valtio';
 
+import HotRewards from './HotRewards';
 import RewardTab from './RewardTab';
 
 const RewardScreen: FC = () => {
@@ -21,6 +22,7 @@ const RewardScreen: FC = () => {
 			>
 				<View style={styles.scrollBackground} />
 				<RewardTab />
+				<HotRewards />
 				{/* <View style={{height: 2000, backgroundColor: 'red'}} /> */}
 			</ScrollView>
 		</View>
@@ -48,7 +50,7 @@ const styles = StyleSheet.create({
 	scrollContentContainer: {
 		paddingTop: 10,
 		paddingBottom: 350,
-		paddingHorizontal: 16,
+		// paddingHorizontal: 16,
 		position: 'relative',
 		minHeight: '100%',
 	},
