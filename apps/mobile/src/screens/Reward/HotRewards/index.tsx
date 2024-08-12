@@ -114,7 +114,6 @@ const styles = StyleSheet.create({
 	container: {
 		gap: 12,
 		marginTop: 24,
-		paddingLeft: 16,
 	},
 	title: {
 		fontSize: 16,
@@ -122,8 +121,10 @@ const styles = StyleSheet.create({
 		fontWeight: '600',
 		letterSpacing: -0.3,
 		color: defaultTheme.textDark90,
+		paddingLeft: 16,
 	},
 	scroll: {
 		gap: itemGap,
+		paddingLeft: 16,
 	},
 });
