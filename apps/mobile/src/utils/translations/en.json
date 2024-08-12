@@ -247,6 +247,17 @@
         "updateAccountError": "Failed to get updated account, something went wrong",
         "updateVerificationError": "Failed to update verification, something went wrong"
       }
+    },
+    "reward": {
+      "screenTitle": "AiGO Reward",
+      "rewardTab": {
+        "balance": "Balance",
+        "myReward": "My rewards",
+        "redeemed": "Redeemed"
+      },
+      "hotRewards": {
+        "title": "Hot rewards"
+      }
     }
   }
 }

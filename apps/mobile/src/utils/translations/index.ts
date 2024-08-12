@@ -253,5 +253,16 @@ export type Content = {
 				updateVerificationError: string;
 			};
 		};
+		reward: {
+			screenTitle: string;
+			rewardTab: {
+				balance: string;
+				myReward: string;
+				redeemed: string;
+			};
+			hotRewards: {
+				title: string;
+			};
+		};
 	};
 };

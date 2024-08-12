@@ -247,6 +247,17 @@
         "updateAccountError": "Cập nhật thông tin tài khoản thất bại",
         "updateVerificationError": "Cập nhật mã xác minh thất bại"
       }
+    },
+    "reward": {
+      "screenTitle": "AiGO Reward",
+      "rewardTab": {
+        "balance": "Balance",
+        "myReward": "My rewards",
+        "redeemed": "Redeemed"
+      },
+      "hotRewards": {
+        "title": "Hot rewards"
+      }
     }
   }
 }
