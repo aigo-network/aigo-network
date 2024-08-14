@@ -18,7 +18,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useIsMobile } from '@/hooks/responsive';
 import ComingSoon from '@/screens/ComingSoon';
 
-const comingSoon = true;
+const comingSoon = false;
 
 export default function Home() {
 	const isMobile = useIsMobile();
