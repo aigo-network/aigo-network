@@ -1,6 +1,13 @@
 import { useState } from 'react';
 import type { LayoutChangeEvent } from 'react-native';
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+	Image,
+	ScrollView,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import LeftArrowIcon from '@aigo/components/icon/LeftArrowIcon';
 import { useNavigation } from '@react-navigation/native';
@@ -18,41 +25,78 @@ const RewardDetail = () => {
 	};
 
 	return (
-		<View style={styles.container} onLayout={handleLayoutChange}>
-			<Image
-				width={screenWidth}
-				height={screenWidth}
-				source={{ uri: 'https://picsum.photos/300/300' }}
-				resizeMode="cover"
-			/>
+		<View style={styles.container}>
+			<ScrollView
+				style={styles.scrollContainer}
+				contentContainerStyle={styles.scrollContentContainer}
+				onLayout={handleLayoutChange}
+			>
+				<Image
+					width={screenWidth}
+					height={screenWidth}
+					source={{ uri: 'https://picsum.photos/300/300' }}
+					resizeMode="cover"
+				/>
 
-			<View style={styles.upperContainer}>
-				<View style={styles.brandContainer}>
-					<Image
-						width={brandImageSize}
-						height={brandImageSize}
-						resizeMode="contain"
-						source={{ uri: 'https://picsum.photos/48/48' }}
-					/>
-					<View style={{ flex: 1 }}>
-						<Text style={styles.brand}>Baskin Robbins</Text>
-						<Text style={styles.rewardName}>
-							Baskin Robbins Space Like Bonbon Blast
-						</Text>
+				<View style={styles.upperContainer}>
+					<View style={styles.brandContainer}>
+						<Image
+							width={brandImageSize}
+							height={brandImageSize}
+							resizeMode="contain"
+							source={{ uri: 'https://picsum.photos/48/48' }}
+						/>
+						<View style={{ flex: 1 }}>
+							<Text style={styles.brand}>Baskin Robbins</Text>
+							<Text style={styles.rewardName}>
+								Baskin Robbins Space Like Bonbon Blast
+							</Text>
+						</View>
+					</View>
+
+					<View style={styles.pointAndDateContainer}>
+						<View style={styles.tagContainer}>
+							<Text style={styles.tagTitle}>Points</Text>
+							<Text style={styles.point}>950,000 GO</Text>
+						</View>
+						<View style={styles.tagContainer}>
+							<Text style={styles.tagTitle}>Expire on</Text>
+							<Text style={styles.date}>9 Aug 2024</Text>
+						</View>
 					</View>
 				</View>
 
-				<View style={styles.pointAndDateContainer}>
-					<View style={styles.tagContainer}>
-						<Text style={styles.tagTitle}>Points</Text>
-						<Text style={styles.point}>950,000 GO</Text>
-					</View>
-					<View style={styles.tagContainer}>
-						<Text style={styles.tagTitle}>Expire on</Text>
-						<Text style={styles.date}>9 Aug 2024</Text>
-					</View>
+				<View style={styles.belowContainer}>
+					<Text style={styles.normalText}>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi,
+						voluptas quibusdam! Quam dolores quas, esse beatae suscipit dolorem
+						iure fugiat magni temporibus! Eos cum, cumque ipsum deleniti dolorum
+						ab quaerat suscipit repellat veritatis, quas quia. At odit veritatis
+						soluta magnam dolores, mollitia voluptas architecto facilis id quae
+						veniam! Rerum, non.
+					</Text>
+
+					<Text style={[styles.normalText, styles.highlightText]}>
+						{'\n'}
+						Term & Condition:
+					</Text>
+
+					<Text style={styles.normalText}>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus
+						tempore blanditiis quia sit eligendi eaque, explicabo beatae magnam
+						consequuntur unde laboriosam facere? Repellat voluptatibus
+						laudantium nisi deserunt corporis cumque fugiat doloribus quae, quam
+						temporibus aperiam tempora sit quisquam impedit nobis suscipit
+						soluta at tenetur ut doloremque ex totam, aliquam modi perferendis.
+						Inventore pariatur quod, odit eos dolor suscipit porro animi in hic
+						dolore doloremque beatae possimus maiores vel cum fuga ab rem
+						molestiae nemo. Eius, vitae! Nisi ratione facilis sapiente dolores
+						error architecto accusamus necessitatibus placeat, aperiam culpa
+						neque expedita, quae repellat suscipit unde quibusdam earum qui.
+						Exercitationem, incidunt aut.
+					</Text>
 				</View>
-			</View>
+			</ScrollView>
 
 			<TouchableOpacity
 				style={[styles.backButton, { top: top + 20 }]}
@@ -77,7 +121,12 @@ export default RewardDetail;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+	},
+	scrollContainer: {
 		backgroundColor: defaultTheme.bgLight,
+	},
+	scrollContentContainer: {
+		paddingBottom: 120,
 	},
 	upperContainer: {
 		paddingTop: 16,
@@ -133,6 +182,18 @@ const styles = StyleSheet.create({
 		fontWeight: '500',
 		letterSpacing: -0.3,
 		color: defaultTheme.textDark90,
+	},
+	belowContainer: {
+		marginTop: 24,
+	},
+	normalText: {
+		marginHorizontal: 16,
+		lineHeight: 24,
+		letterSpacing: -0.3,
+		color: defaultTheme.textDark90,
+	},
+	highlightText: {
+		fontWeight: '700',
 	},
 	backButton: {
 		position: 'absolute',
