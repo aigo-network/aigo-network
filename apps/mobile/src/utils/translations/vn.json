@@ -213,7 +213,7 @@
       },
       "referralSection": {
         "title": "Mã giới thiệu",
-        "descriptionPrefix": "Nhận thêmß",
+        "descriptionPrefix": "Nhận thêm",
         "descriptionSuffix": "khi nhập mã giới thiệu từ bạn bè",
         "enterCodePlaceholder": "Vui lòng nhập mã",
         "invalidCodeError": "Mã giới thiệu không đúng. Vui lòng thử lại",

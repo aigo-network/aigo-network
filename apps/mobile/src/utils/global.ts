@@ -33,10 +33,12 @@ setDefaultProps(Text, {
 		fontFamily: 'Lato',
 		color: defaultTheme.textLight,
 	},
+	allowFontScaling: false,
 });
 setDefaultProps(TextInput, {
 	style: {
 		fontFamily: 'Lato',
 		color: defaultTheme.textDark90,
 	},
+	allowFontScaling: false,
 });
