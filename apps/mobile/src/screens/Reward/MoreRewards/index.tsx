@@ -1,19 +1,24 @@
 import { useState } from 'react';
 import type { LayoutChangeEvent } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
+import { appState } from 'state/app';
 import { defaultTheme } from 'utils/global';
+import { useSnapshot } from 'valtio';
 
 import Item from './Item';
 
 const MoreRewards = () => {
 	const [containerWidth, setContainerWidth] = useState(0);
+	const { content } = useSnapshot(appState);
 	const handleLayoutChange = ({ nativeEvent }: LayoutChangeEvent) => {
 		setContainerWidth(nativeEvent.layout.width);
 	};
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.title}>🎁 More rewards from AiGO</Text>
+			<Text style={styles.title}>
+				{content.screens.reward.moreRewards.title}
+			</Text>
 			<View style={styles.contentContainer} onLayout={handleLayoutChange}>
 				{Array.from({ length: 5 })
 					.fill(() => 0)

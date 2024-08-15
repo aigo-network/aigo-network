@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import { useState } from 'react';
 import type { LayoutChangeEvent } from 'react-native';
 import {
@@ -11,14 +12,26 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import LeftArrowIcon from '@aigo/components/icon/LeftArrowIcon';
 import { useNavigation } from '@react-navigation/native';
+import { appState } from 'state/app';
 import { defaultTheme } from 'utils/global';
+import { useSnapshot } from 'valtio';
+
+import Description from './Description';
+import RewardTicket from './RewardTicket';
 
 const brandImageSize = 48;
 
-const RewardDetail = () => {
+interface Props {
+	redeemed?: boolean;
+}
+
+const RewardDetail: FC<Props> = ({ redeemed = false }) => {
 	const { top } = useSafeAreaInsets();
 	const { goBack } = useNavigation();
 	const [screenWidth, setScreenWidth] = useState(0);
+	const { content } = useSnapshot(appState);
+	const { expired, points, redeemButton, markUsedButton } =
+		content.screens.reward.rewardsDetail;
 
 	const handleLayoutChange = ({ nativeEvent }: LayoutChangeEvent) => {
 		setScreenWidth(nativeEvent.layout.width);
@@ -38,7 +51,9 @@ const RewardDetail = () => {
 					resizeMode="cover"
 				/>
 
-				<View style={styles.upperContainer}>
+				<View
+					style={[styles.upperContainer, !redeemed && styles.separateStyle]}
+				>
 					<View style={styles.brandContainer}>
 						<Image
 							width={brandImageSize}
@@ -48,54 +63,39 @@ const RewardDetail = () => {
 						/>
 						<View style={{ flex: 1 }}>
 							<Text style={styles.brand}>Baskin Robbins</Text>
-							<Text style={styles.rewardName}>
-								Baskin Robbins Space Like Bonbon Blast
-							</Text>
+							<View>
+								<Text style={styles.rewardName}>
+									Baskin Robbins Space Like Bonbon Blast
+								</Text>
+							</View>
 						</View>
 					</View>
 
+					{redeemed && <RewardTicket />}
+
 					<View style={styles.pointAndDateContainer}>
 						<View style={styles.tagContainer}>
-							<Text style={styles.tagTitle}>Points</Text>
-							<Text style={styles.point}>950,000 GO</Text>
+							<Text style={styles.tagTitle}>{points}</Text>
+							<View style={styles.pointContainer}>
+								<Text
+									style={[
+										styles.point,
+										redeemed && { color: defaultTheme.textDark90 },
+									]}
+								>
+									950,000 GO
+								</Text>
+								<Text style={styles.discount}>1,000,000</Text>
+							</View>
 						</View>
 						<View style={styles.tagContainer}>
-							<Text style={styles.tagTitle}>Expire on</Text>
+							<Text style={styles.tagTitle}>{expired}</Text>
 							<Text style={styles.date}>9 Aug 2024</Text>
 						</View>
 					</View>
 				</View>
 
-				<View style={styles.belowContainer}>
-					<Text style={styles.normalText}>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi,
-						voluptas quibusdam! Quam dolores quas, esse beatae suscipit dolorem
-						iure fugiat magni temporibus! Eos cum, cumque ipsum deleniti dolorum
-						ab quaerat suscipit repellat veritatis, quas quia. At odit veritatis
-						soluta magnam dolores, mollitia voluptas architecto facilis id quae
-						veniam! Rerum, non.
-					</Text>
-
-					<Text style={[styles.normalText, styles.highlightText]}>
-						{'\n'}
-						Term & Condition:
-					</Text>
-
-					<Text style={styles.normalText}>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus
-						tempore blanditiis quia sit eligendi eaque, explicabo beatae magnam
-						consequuntur unde laboriosam facere? Repellat voluptatibus
-						laudantium nisi deserunt corporis cumque fugiat doloribus quae, quam
-						temporibus aperiam tempora sit quisquam impedit nobis suscipit
-						soluta at tenetur ut doloremque ex totam, aliquam modi perferendis.
-						Inventore pariatur quod, odit eos dolor suscipit porro animi in hic
-						dolore doloremque beatae possimus maiores vel cum fuga ab rem
-						molestiae nemo. Eius, vitae! Nisi ratione facilis sapiente dolores
-						error architecto accusamus necessitatibus placeat, aperiam culpa
-						neque expedita, quae repellat suscipit unde quibusdam earum qui.
-						Exercitationem, incidunt aut.
-					</Text>
-				</View>
+				{!redeemed && <Description />}
 			</ScrollView>
 
 			<TouchableOpacity
@@ -109,7 +109,9 @@ const RewardDetail = () => {
 
 			<View style={styles.redeemButtonWrapper}>
 				<TouchableOpacity style={styles.redeemButton}>
-					<Text style={styles.redeemText}>Redeem</Text>
+					<Text style={styles.redeemText}>
+						{redeemed ? markUsedButton : redeemButton}
+					</Text>
 				</TouchableOpacity>
 			</View>
 		</View>
@@ -132,6 +134,8 @@ const styles = StyleSheet.create({
 		paddingTop: 16,
 		paddingBottom: 24,
 		marginHorizontal: 16,
+	},
+	separateStyle: {
 		borderBottomWidth: 1,
 		borderBottomColor: defaultTheme.textDark10,
 	},
@@ -171,11 +175,23 @@ const styles = StyleSheet.create({
 		letterSpacing: -0.3,
 		color: defaultTheme.textDark80,
 	},
+	pointContainer: {
+		flexDirection: 'row',
+		alignItems: 'baseline',
+		gap: 4,
+	},
 	point: {
 		lineHeight: 16,
 		fontWeight: '700',
 		letterSpacing: -0.3,
 		color: defaultTheme.cta100,
+	},
+	discount: {
+		fontSize: 12,
+		lineHeight: 14,
+		letterSpacing: -0.3,
+		color: defaultTheme.textDark30,
+		textDecorationLine: 'line-through',
 	},
 	date: {
 		lineHeight: 16,
