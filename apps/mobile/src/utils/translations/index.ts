@@ -263,6 +263,16 @@ export type Content = {
 			hotRewards: {
 				title: string;
 			};
+			moreRewards: {
+				title: string;
+			};
+			rewardsDetail: {
+				points: string;
+				expired: string;
+				termAndCondition: string;
+				redeemButton: string;
+				markUsedButton: string;
+			};
 		};
 	};
 };

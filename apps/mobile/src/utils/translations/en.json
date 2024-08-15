@@ -257,7 +257,17 @@
       },
       "hotRewards": {
         "title": "Hot rewards"
-      }
+      },
+      "moreRewards": {
+				"title": "🎁 More rewards from AiGO"
+			},
+			"rewardsDetail": {
+				"points": "Points",
+				"expired": "Expire on",
+				"termAndCondition": "Term & Condition:",
+        "redeemButton": "Redeem",
+        "markUsedButton": "Mark as used"
+			}
     }
   }
 }
