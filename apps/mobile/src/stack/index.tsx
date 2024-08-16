@@ -9,7 +9,7 @@ import PhoneLoginScreen from 'screens/Login/PhoneLogin';
 import CityName from 'screens/Onboard/CityName';
 import ProfileName from 'screens/Onboard/ProfileName';
 import UserDescription from 'screens/Onboard/UserDescription';
-import RewardDetail from 'screens/RewardDetail';
+import RewardDetailScreen from 'screens/RewardDetail';
 import SplashScreen from 'screens/Splash';
 import TripResultScreen from 'screens/TripResult';
 import VerifyNNIDScreen from 'screens/VerifyNNID';
@@ -70,7 +70,7 @@ const ApplicationStack: FC = () => {
 						cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
 					}}
 				/>
-				<Stack.Screen name="RewardDetail" component={RewardDetail} />
+				<Stack.Screen name="RewardDetail" component={RewardDetailScreen} />
 			</Stack.Group>
 		</Stack.Navigator>
 	);

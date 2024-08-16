@@ -25,7 +25,7 @@ interface Props {
 	redeemed?: boolean;
 }
 
-const RewardDetail: FC<Props> = ({ redeemed = false }) => {
+const RewardDetailScreen: FC<Props> = ({ redeemed = false }) => {
 	const { top } = useSafeAreaInsets();
 	const { goBack } = useNavigation();
 	const [screenWidth, setScreenWidth] = useState(0);
@@ -118,7 +118,7 @@ const RewardDetail: FC<Props> = ({ redeemed = false }) => {
 	);
 };
 
-export default RewardDetail;
+export default RewardDetailScreen;
 
 const styles = StyleSheet.create({
 	container: {
