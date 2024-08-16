@@ -15,6 +15,7 @@ export type RootStackParamList = {
 	TripResult: undefined;
 	BottomTab: SubNavigator<BottomTabParamList>;
 	RewardDetail: undefined;
+	MyRewards: undefined;
 };
 
 export type BottomTabParamList = {

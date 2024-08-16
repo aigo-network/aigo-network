@@ -2,11 +2,13 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Line, Svg } from 'react-native-svg';
 import CoinStack from '@aigo/components/icon/CoinStack';
 import Ticket from '@aigo/components/icon/Ticket';
+import { useNavigation } from '@react-navigation/native';
 import { appState } from 'state/app';
 import { defaultTheme } from 'utils/global';
 import { useSnapshot } from 'valtio';
 
 const RewardTab = () => {
+	const { navigate } = useNavigation();
 	const { content } = useSnapshot(appState);
 	const { balance, myReward, redeemed } = content.screens.reward.rewardTab;
 
@@ -24,7 +26,10 @@ const RewardTab = () => {
 			<Svg width="2" height="44" viewBox="0 0 2 44" fill="none">
 				<Line x1="1" x2="1" y2="44" stroke="#D8DADC" strokeDasharray="2 2" />
 			</Svg>
-			<TouchableOpacity style={styles.tabWrapper}>
+			<TouchableOpacity
+				style={styles.tabWrapper}
+				onPress={() => navigate('MyRewards')}
+			>
 				<View style={styles.tab}>
 					<Ticket width={22} />
 					<View style={styles.tabInfo}>

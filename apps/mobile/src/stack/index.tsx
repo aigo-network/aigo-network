@@ -6,6 +6,7 @@ import {
 import LoginScreen from 'screens/Login';
 import OTPLoginScreen from 'screens/Login/OTPLogin';
 import PhoneLoginScreen from 'screens/Login/PhoneLogin';
+import MyRewardScreen from 'screens/MyRewards';
 import CityName from 'screens/Onboard/CityName';
 import ProfileName from 'screens/Onboard/ProfileName';
 import UserDescription from 'screens/Onboard/UserDescription';
@@ -71,6 +72,7 @@ const ApplicationStack: FC = () => {
 					}}
 				/>
 				<Stack.Screen name="RewardDetail" component={RewardDetailScreen} />
+				<Stack.Screen name="MyRewards" component={MyRewardScreen} />
 			</Stack.Group>
 		</Stack.Navigator>
 	);
