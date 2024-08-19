@@ -71,7 +71,11 @@ const ApplicationStack: FC = () => {
 						cardStyleInterpolator: CardStyleInterpolators.forFadeFromCenter,
 					}}
 				/>
-				<Stack.Screen name="RewardDetail" component={RewardDetailScreen} />
+				<Stack.Screen
+					name="RewardDetail"
+					component={RewardDetailScreen}
+					initialParams={{ redeemed: false }}
+				/>
 				<Stack.Screen name="MyRewards" component={MyRewardScreen} />
 			</Stack.Group>
 		</Stack.Navigator>
