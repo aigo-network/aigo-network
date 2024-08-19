@@ -8,7 +8,7 @@ import {
 import analytics from '@react-native-firebase/analytics';
 import auth from '@react-native-firebase/auth';
 import type { UserInfo } from 'state/app/userInfo';
-import { setDefaultUserInfo } from 'state/app/userInfo';
+import { setDefaultUserInfoToStorage } from 'state/app/userInfo';
 
 import type { SignInFunction } from './types';
 
@@ -35,7 +35,7 @@ export const signInWithApple: SignInFunction = async () => {
 			const { givenName, familyName } = authResponse.fullName;
 			defaultUserInfo.displayName = [givenName, familyName].join(' ').trim();
 		}
-		await setDefaultUserInfo(defaultUserInfo);
+		await setDefaultUserInfoToStorage(defaultUserInfo);
 	} else if (Platform.OS === 'android') {
 		appleAuthAndroid.configure({
 			clientId: config.FIREBASE_APPLE_AUTH_SERVICE_ID,

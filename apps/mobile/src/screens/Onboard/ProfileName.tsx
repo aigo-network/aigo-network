@@ -12,7 +12,7 @@ import {
 import auth from '@react-native-firebase/auth';
 import type { StackScreenProps } from '@react-navigation/stack';
 import { appActions, appState } from 'state/app';
-import { getDefaultUserInfo } from 'state/app/userInfo';
+import { getDefaultUserInfoFromStorage } from 'state/app/userInfo';
 import { defaultTheme } from 'utils/global';
 import type { RootStackParamList } from 'utils/navigation';
 import { useSnapshot } from 'valtio';
@@ -34,7 +34,7 @@ export const ProfileName: FC<
 
 	useEffect(() => {
 		const loadDefaultUserInfo = async () => {
-			const userInfo = await getDefaultUserInfo();
+			const userInfo = await getDefaultUserInfoFromStorage();
 			setName(userInfo.displayName);
 		};
 		if (!name) loadDefaultUserInfo();
