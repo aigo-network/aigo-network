@@ -11,9 +11,15 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import LeftArrowIcon from '@aigo/components/icon/LeftArrowIcon';
-import { useNavigation } from '@react-navigation/native';
+import type { RouteProp } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import {
+	showConfirmRedemption,
+	showSuccessRedemption,
+} from 'modals/RewardModals';
 import { appState } from 'state/app';
 import { defaultTheme } from 'utils/global';
+import type { RootStackParamList } from 'utils/navigation';
 import { useSnapshot } from 'valtio';
 
 import Description from './Description';
@@ -21,13 +27,10 @@ import RewardTicket from './RewardTicket';
 
 const brandImageSize = 48;
 
-interface Props {
-	redeemed?: boolean;
-}
-
-const RewardDetailScreen: FC<Props> = ({ redeemed = false }) => {
+const RewardDetailScreen: FC = () => {
 	const { top } = useSafeAreaInsets();
 	const { goBack } = useNavigation();
+	const { params } = useRoute<RouteProp<RootStackParamList, 'RewardDetail'>>();
 	const [screenWidth, setScreenWidth] = useState(0);
 	const { content } = useSnapshot(appState);
 	const { expired, points, redeemButton, markUsedButton } =
@@ -35,6 +38,16 @@ const RewardDetailScreen: FC<Props> = ({ redeemed = false }) => {
 
 	const handleLayoutChange = ({ nativeEvent }: LayoutChangeEvent) => {
 		setScreenWidth(nativeEvent.layout.width);
+	};
+
+	const onRedeemPress = () => {
+		showConfirmRedemption({
+			rewardName: 'Baskin Robbin',
+			points: 100,
+			onConfirm: () => {
+				showSuccessRedemption({ rewardName: 'Baskin Robbin' });
+			},
+		});
 	};
 
 	return (
@@ -52,7 +65,10 @@ const RewardDetailScreen: FC<Props> = ({ redeemed = false }) => {
 				/>
 
 				<View
-					style={[styles.upperContainer, !redeemed && styles.separateStyle]}
+					style={[
+						styles.upperContainer,
+						!params?.redeemed && styles.separateStyle,
+					]}
 				>
 					<View style={styles.brandContainer}>
 						<Image
@@ -71,7 +87,7 @@ const RewardDetailScreen: FC<Props> = ({ redeemed = false }) => {
 						</View>
 					</View>
 
-					{redeemed && <RewardTicket />}
+					{params?.redeemed && <RewardTicket />}
 
 					<View style={styles.pointAndDateContainer}>
 						<View style={styles.tagContainer}>
@@ -80,7 +96,7 @@ const RewardDetailScreen: FC<Props> = ({ redeemed = false }) => {
 								<Text
 									style={[
 										styles.point,
-										redeemed && { color: defaultTheme.textDark90 },
+										params?.redeemed && { color: defaultTheme.textDark90 },
 									]}
 								>
 									950,000 GO
@@ -95,7 +111,7 @@ const RewardDetailScreen: FC<Props> = ({ redeemed = false }) => {
 					</View>
 				</View>
 
-				{!redeemed && <Description />}
+				{!params?.redeemed && <Description />}
 			</ScrollView>
 
 			<TouchableOpacity
@@ -108,11 +124,15 @@ const RewardDetailScreen: FC<Props> = ({ redeemed = false }) => {
 			</TouchableOpacity>
 
 			<View style={styles.redeemButtonWrapper}>
-				<TouchableOpacity style={styles.redeemButton}>
-					<Text style={styles.redeemText}>
-						{redeemed ? markUsedButton : redeemButton}
-					</Text>
-				</TouchableOpacity>
+				{params?.redeemed ? (
+					<TouchableOpacity style={styles.redeemButton}>
+						<Text style={styles.redeemText}>{markUsedButton}</Text>
+					</TouchableOpacity>
+				) : (
+					<TouchableOpacity style={styles.redeemButton} onPress={onRedeemPress}>
+						<Text style={styles.redeemText}>{redeemButton}</Text>
+					</TouchableOpacity>
+				)}
 			</View>
 		</View>
 	);
