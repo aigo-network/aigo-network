@@ -11,12 +11,14 @@ import CityName from 'screens/Onboard/CityName';
 import ProfileName from 'screens/Onboard/ProfileName';
 import UserDescription from 'screens/Onboard/UserDescription';
 import RewardDetailScreen from 'screens/RewardDetail';
+import RewardsBalanceScreen from 'screens/RewardsBalance';
 import SplashScreen from 'screens/Splash';
 import TripResultScreen from 'screens/TripResult';
 import VerifyNNIDScreen from 'screens/VerifyNNID';
 import VerifyOTPScreen from 'screens/VerifyOTP';
 import VerifyPhoneNumberScreen from 'screens/VerifyPhoneNumber';
 import type { RootStackParamList } from 'utils/navigation';
+import { RewardStatus } from 'utils/navigation';
 
 import BottomTabStack from './BottomTab';
 
@@ -74,9 +76,10 @@ const ApplicationStack: FC = () => {
 				<Stack.Screen
 					name="RewardDetail"
 					component={RewardDetailScreen}
-					initialParams={{ redeemed: false }}
+					initialParams={{ redeemed: false, status: RewardStatus.ACTIVE }}
 				/>
 				<Stack.Screen name="MyRewards" component={MyRewardScreen} />
+				<Stack.Screen name="RewardsBalance" component={RewardsBalanceScreen} />
 			</Stack.Group>
 		</Stack.Navigator>
 	);

@@ -14,7 +14,10 @@ const RewardTab = () => {
 
 	return (
 		<View style={styles.container}>
-			<TouchableOpacity style={styles.tabWrapper}>
+			<TouchableOpacity
+				style={styles.tabWrapper}
+				onPress={() => navigate('RewardsBalance')}
+			>
 				<View style={styles.tab}>
 					<CoinStack />
 					<View style={styles.tabInfo}>

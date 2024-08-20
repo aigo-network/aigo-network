@@ -1,5 +1,11 @@
 import type { ParamListBase } from '@react-navigation/native';
 
+export enum RewardStatus {
+	ACTIVE = 'Active',
+	USED = 'Used',
+	EXPIRED = 'Expired',
+}
+
 export type RootStackParamList = {
 	Splash: undefined;
 	Open: undefined;
@@ -14,8 +20,9 @@ export type RootStackParamList = {
 	VerifyOTP: undefined;
 	TripResult: undefined;
 	BottomTab: SubNavigator<BottomTabParamList>;
-	RewardDetail: { redeemed: boolean } | undefined;
+	RewardDetail: { redeemed: boolean; status: RewardStatus } | undefined;
 	MyRewards: undefined;
+	RewardsBalance: undefined;
 };
 
 export type BottomTabParamList = {
