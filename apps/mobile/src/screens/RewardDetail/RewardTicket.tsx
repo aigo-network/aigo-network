@@ -1,11 +1,25 @@
+import type { FC } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Path, Svg } from 'react-native-svg';
 import Copy from '@aigo/components/icon/Copy';
 import { defaultTheme } from 'utils/global';
+import { RewardStatus } from 'utils/navigation';
 
 const ticketHeight = 112;
+const statusMap = {
+	[RewardStatus.ACTIVE]: 'Available',
+	[RewardStatus.USED]: 'Used',
+	[RewardStatus.EXPIRED]: 'Expired',
+};
 
-const RewardTicket = () => {
+interface Props {
+	rewardStatus: RewardStatus;
+}
+
+const RewardTicket: FC<Props> = ({ rewardStatus }) => {
+	const isActive = rewardStatus === RewardStatus.ACTIVE;
+	const ticketHighlightColor = isActive ? '#2BD265' : defaultTheme.textDark20;
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.svgContainer}>
@@ -20,11 +34,11 @@ const RewardTicket = () => {
 						fillRule="evenodd"
 						clipRule="evenodd"
 						d="M0 16C0 7.16344 7.16344 0 16 0H32V112H16C7.16344 112 0 104.837 0 96V91C0.79565 91 1.55871 90.5786 2.12132 89.8284C2.68393 89.0783 3 88.0609 3 87C3 85.9391 2.68393 84.9217 2.12132 84.1716C1.55871 83.4214 0.795649 83 0 83V78C0.79565 78 1.55871 77.5786 2.12132 76.8284C2.68393 76.0783 3 75.0609 3 74C3 72.9391 2.68393 71.9217 2.12132 71.1716C1.55871 70.4214 0.795649 70 0 70V65C0.79565 65 1.55871 64.5786 2.12132 63.8284C2.68393 63.0783 3 62.0609 3 61C3 59.9391 2.68393 58.9217 2.12132 58.1716C1.55871 57.4214 0.795649 57 0 57V52C0.79565 52 1.55871 51.5786 2.12132 50.8284C2.68393 50.0783 3 49.0609 3 48C3 46.9391 2.68393 45.9217 2.12132 45.1716C1.55871 44.4214 0.795649 44 0 44V39C0.79565 39 1.55871 38.5786 2.12132 37.8284C2.68393 37.0783 3 36.0609 3 35C3 33.9391 2.68393 32.9217 2.12132 32.1716C1.55871 31.4214 0.795649 31 0 31V26C0.79565 26 1.55871 25.5786 2.12132 24.8284C2.68393 24.0783 3 23.0609 3 22C3 20.9391 2.68393 19.9217 2.12132 19.1716C1.55871 18.4214 0.795649 18 0 18V16Z"
-						fill="#2BD265"
+						fill={ticketHighlightColor}
 					/>
 				</Svg>
 				<View style={styles.rewardStatus}>
-					<Text style={styles.statusText}>Available</Text>
+					<Text style={styles.statusText}>{statusMap[rewardStatus]}</Text>
 				</View>
 			</View>
 			<View style={styles.infoContainer}>

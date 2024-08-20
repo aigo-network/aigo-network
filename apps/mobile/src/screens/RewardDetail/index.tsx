@@ -20,6 +20,7 @@ import {
 import { appState } from 'state/app';
 import { defaultTheme } from 'utils/global';
 import type { RootStackParamList } from 'utils/navigation';
+import { RewardStatus } from 'utils/navigation';
 import { useSnapshot } from 'valtio';
 
 import Description from './Description';
@@ -35,6 +36,7 @@ const RewardDetailScreen: FC = () => {
 	const { content } = useSnapshot(appState);
 	const { expired, points, redeemButton, markUsedButton } =
 		content.screens.reward.rewardsDetail;
+	const isExpired = params?.status === RewardStatus.EXPIRED;
 
 	const handleLayoutChange = ({ nativeEvent }: LayoutChangeEvent) => {
 		setScreenWidth(nativeEvent.layout.width);
@@ -68,6 +70,7 @@ const RewardDetailScreen: FC = () => {
 					style={[
 						styles.upperContainer,
 						!params?.redeemed && styles.separateStyle,
+						isExpired && styles.expiredStyle,
 					]}
 				>
 					<View style={styles.brandContainer}>
@@ -87,7 +90,7 @@ const RewardDetailScreen: FC = () => {
 						</View>
 					</View>
 
-					{params?.redeemed && <RewardTicket />}
+					{params?.redeemed && <RewardTicket rewardStatus={params?.status} />}
 
 					<View style={styles.pointAndDateContainer}>
 						<View style={styles.tagContainer}>
@@ -269,5 +272,8 @@ const styles = StyleSheet.create({
 		fontSize: 15,
 		lineHeight: 18,
 		fontWeight: '600',
+	},
+	expiredStyle: {
+		opacity: 0.5,
 	},
 });
