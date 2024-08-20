@@ -20,7 +20,7 @@ export type RootStackParamList = {
 	VerifyOTP: undefined;
 	TripResult: undefined;
 	BottomTab: SubNavigator<BottomTabParamList>;
-	RewardDetail: { redeemed: boolean; status: RewardStatus } | undefined;
+	RewardDetail: { redeemed?: boolean; status?: RewardStatus } | undefined;
 	MyRewards: undefined;
 	RewardsBalance: undefined;
 };

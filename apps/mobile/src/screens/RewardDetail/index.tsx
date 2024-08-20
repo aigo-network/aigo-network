@@ -90,7 +90,11 @@ const RewardDetailScreen: FC = () => {
 						</View>
 					</View>
 
-					{params?.redeemed && <RewardTicket rewardStatus={params?.status} />}
+					{params?.redeemed && (
+						<RewardTicket
+							rewardStatus={params?.status || RewardStatus.ACTIVE}
+						/>
+					)}
 
 					<View style={styles.pointAndDateContainer}>
 						<View style={styles.tagContainer}>
