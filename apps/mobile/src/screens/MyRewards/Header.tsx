@@ -1,8 +1,7 @@
 import type { FC } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import LeftArrowIcon from '@aigo/components/icon/LeftArrowIcon';
-import { useNavigation } from '@react-navigation/native';
+import CenterScreenHeader from 'components/CenterScreenHeader';
 import { defaultTheme } from 'utils/global';
 
 export enum TabId {
@@ -17,21 +16,10 @@ interface Props {
 
 const Header: FC<Props> = ({ activeTabId, onTabSelect }) => {
 	const { top } = useSafeAreaInsets();
-	const { goBack } = useNavigation();
 
 	return (
 		<View style={[styles.container, { paddingTop: top + 20 }]}>
-			<View style={styles.titleContainer}>
-				<TouchableOpacity
-					style={styles.backButton}
-					hitSlop={10}
-					onPress={goBack}
-				>
-					<LeftArrowIcon color={defaultTheme.textDark90} />
-				</TouchableOpacity>
-				<Text style={styles.title}>My rewards</Text>
-				<View style={{ flex: 1 }} />
-			</View>
+			<CenterScreenHeader title={'My rewards'} />
 			<View style={styles.tabContainer}>
 				<TouchableOpacity
 					style={[styles.tab, activeTabId === TabId.ACTIVE && styles.activeTab]}
