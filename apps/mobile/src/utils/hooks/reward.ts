@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import type { RewardInstance } from '@aigo/api/graphql';
 import { RewardStatus } from '@aigo/api/graphql';
 import { rewardActions, rewardState } from 'state/reward';
@@ -32,32 +32,34 @@ export const useReward = () => {
 };
 
 export const useRewardClassification = () => {
-	const [activeRedeemedReward, setActiveRedeemedReward] = useState<
-		RewardInstance[]
-	>([]);
-	const [nonActiveRedeemedReward, setNonActiveRedeemedReward] = useState<
-		RewardInstance[]
-	>([]);
-	const { rewards, activeReward, redeemedRewards } = useSnapshot(rewardState);
+	const { rewardsMap, activeRewards, redeemedRewards } =
+		useSnapshot(rewardState);
 
-	useEffect(() => {
+	const { activeRedeemedReward, nonActiveRedeemedReward } = useMemo(() => {
+		const activeRedeemedReward: RewardInstance[] = [];
+		const nonActiveRedeemedReward: RewardInstance[] = [];
 		redeemedRewards?.forEach((reward) => {
-			const rewardInfo = rewards?.[reward.infoId || ''];
+			const rewardInfo = rewardsMap?.[reward.infoId || ''];
+			const isExpired = new Date(rewardInfo?.expiredDate) < new Date();
 			const isActive =
 				rewardInfo?.status === RewardStatus.Live &&
 				(rewardInfo.amount || 0) > 0 &&
-				rewardInfo.expiredDate > Date.now() &&
+				!isExpired &&
 				!reward.used;
 
 			if (isActive) {
 				activeRedeemedReward.push(reward);
-				setActiveRedeemedReward(activeRedeemedReward);
 			} else {
 				nonActiveRedeemedReward.push(reward);
-				setNonActiveRedeemedReward(nonActiveRedeemedReward);
 			}
 		});
+
+		return { activeRedeemedReward, nonActiveRedeemedReward };
 	}, [redeemedRewards]);
 
-	return { activeReward, activeRedeemedReward, nonActiveRedeemedReward };
+	return {
+		activeRewards,
+		activeRedeemedReward,
+		nonActiveRedeemedReward,
+	};
 };
