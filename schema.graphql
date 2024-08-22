@@ -367,7 +367,7 @@ type RootMutation {
   markRewardAsUsed(rewardInfoID: String!): Boolean
 
   """"""
-  redeemReward(rewardInfoID: String!): Boolean
+  redeemReward(rewardInfoID: String!): RewardInstance
 
   """"""
   registerDevice(input: RegisterDeviceInput!): Device

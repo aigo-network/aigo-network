@@ -182,7 +182,7 @@ export type RootMutation = {
   insertBatchTripPoints?: Maybe<Trip>;
   insertTripPoint?: Maybe<Trip>;
   markRewardAsUsed?: Maybe<Scalars['Boolean']['output']>;
-  redeemReward?: Maybe<Scalars['Boolean']['output']>;
+  redeemReward?: Maybe<RewardInstance>;
   registerDevice?: Maybe<Device>;
   startTrip?: Maybe<Trip>;
   trackAppOpenWithLinkingEvent?: Maybe<Scalars['String']['output']>;
@@ -494,6 +494,13 @@ export type Web3FarmingRefreshReferralsMutationVariables = Exact<{ [key: string]
 
 export type Web3FarmingRefreshReferralsMutation = { __typename?: 'RootMutation', web3FarmingRefreshReferrals?: Array<{ __typename?: 'Web3FarmingReferralCode', id?: string | null, code?: string | null, invitedDate?: any | null, invitedId?: string | null, invitedGOPoints?: number | null, referrerGOPoints?: number | null, createdAt?: any | null, updatedAt?: any | null } | null> | null };
 
+export type RedeemRewardMutationVariables = Exact<{
+  rewardInfoId: Scalars['String']['input'];
+}>;
+
+
+export type RedeemRewardMutation = { __typename?: 'RootMutation', redeemReward?: { __typename?: 'RewardInstance', id?: string | null, infoId?: string | null, code?: string | null, link?: string | null, image?: string | null, used?: boolean | null } | null };
+
 export type StartTripMutationVariables = Exact<{
   geolocation: GeolocationInput;
   metadata?: InputMaybe<TripMetaData>;
@@ -786,6 +793,18 @@ export const Web3FarmingRefreshReferralsDocument = gql`
     referrerGOPoints
     createdAt
     updatedAt
+  }
+}
+    `;
+export const RedeemRewardDocument = gql`
+    mutation redeemReward($rewardInfoId: String!) {
+  redeemReward(rewardInfoID: $rewardInfoId) {
+    id
+    infoId
+    code
+    link
+    image
+    used
   }
 }
     `;
@@ -1122,6 +1141,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     web3FarmingRefreshReferrals(variables?: Web3FarmingRefreshReferralsMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Web3FarmingRefreshReferralsMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<Web3FarmingRefreshReferralsMutation>(Web3FarmingRefreshReferralsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'web3FarmingRefreshReferrals', 'mutation', variables);
+    },
+    redeemReward(variables: RedeemRewardMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<RedeemRewardMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<RedeemRewardMutation>(RedeemRewardDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'redeemReward', 'mutation', variables);
     },
     startTrip(variables: StartTripMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<StartTripMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<StartTripMutation>(StartTripDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'startTrip', 'mutation', variables);
