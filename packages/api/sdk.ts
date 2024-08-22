@@ -120,6 +120,56 @@ export type RegisterDeviceInput = {
   systemVersion?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type RewardInfo = {
+  __typename?: 'RewardInfo';
+  amount?: Maybe<Scalars['Int']['output']>;
+  brand?: Maybe<Scalars['String']['output']>;
+  brandImage?: Maybe<Scalars['String']['output']>;
+  categories?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  discount?: Maybe<Scalars['Int']['output']>;
+  expiredDate?: Maybe<Scalars['DateTime']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  images?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  name?: Maybe<Scalars['String']['output']>;
+  points?: Maybe<Scalars['Int']['output']>;
+  status?: Maybe<RewardStatus>;
+  type?: Maybe<RewardType>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type RewardInstance = {
+  __typename?: 'RewardInstance';
+  code?: Maybe<Scalars['String']['output']>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<Scalars['String']['output']>;
+  infoId?: Maybe<Scalars['String']['output']>;
+  link?: Maybe<Scalars['String']['output']>;
+  points?: Maybe<Scalars['Int']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  used?: Maybe<Scalars['Boolean']['output']>;
+  userId?: Maybe<Scalars['String']['output']>;
+};
+
+export enum RewardQueryEnum {
+  Active = 'ACTIVE',
+  Disable = 'DISABLE',
+  Init = 'INIT'
+}
+
+export enum RewardStatus {
+  Disabled = 'DISABLED',
+  Init = 'INIT',
+  Live = 'LIVE'
+}
+
+export enum RewardType {
+  Digital = 'DIGITAL',
+  Physical = 'PHYSICAL'
+}
+
 export type RootMutation = {
   __typename?: 'RootMutation';
   checkIn?: Maybe<DailyCheckIn>;
@@ -131,6 +181,8 @@ export type RootMutation = {
   inputInvitationCode?: Maybe<Invitation>;
   insertBatchTripPoints?: Maybe<Trip>;
   insertTripPoint?: Maybe<Trip>;
+  markRewardAsUsed?: Maybe<Scalars['Boolean']['output']>;
+  redeemReward?: Maybe<Scalars['Boolean']['output']>;
   registerDevice?: Maybe<Device>;
   startTrip?: Maybe<Trip>;
   trackAppOpenWithLinkingEvent?: Maybe<Scalars['String']['output']>;
@@ -185,6 +237,16 @@ export type RootMutationInsertTripPointArgs = {
 };
 
 
+export type RootMutationMarkRewardAsUsedArgs = {
+  rewardInfoID: Scalars['String']['input'];
+};
+
+
+export type RootMutationRedeemRewardArgs = {
+  rewardInfoID: Scalars['String']['input'];
+};
+
+
 export type RootMutationRegisterDeviceArgs = {
   input: RegisterDeviceInput;
 };
@@ -226,10 +288,29 @@ export type RootQuery = {
   deferredLinking?: Maybe<DeferredLinking>;
   linking?: Maybe<Scalars['String']['output']>;
   ping?: Maybe<Scalars['String']['output']>;
+  redeemedRewards?: Maybe<Array<Maybe<RewardInstance>>>;
+  reward?: Maybe<RewardInfo>;
+  rewardInstance?: Maybe<RewardInstance>;
+  rewards?: Maybe<Array<Maybe<RewardInfo>>>;
   trip?: Maybe<Trip>;
   trips?: Maybe<TripConnection>;
   user?: Maybe<User>;
   web3FarmingProfile?: Maybe<Web3FarmingProfile>;
+};
+
+
+export type RootQueryRewardArgs = {
+  id: Scalars['String']['input'];
+};
+
+
+export type RootQueryRewardInstanceArgs = {
+  rewardInstanceID: Scalars['String']['input'];
+};
+
+
+export type RootQueryRewardsArgs = {
+  status?: InputMaybe<RewardQueryEnum>;
 };
 
 
@@ -494,6 +575,23 @@ export type GetWeb3FarmingProfileQueryVariables = Exact<{ [key: string]: never; 
 
 
 export type GetWeb3FarmingProfileQuery = { __typename?: 'RootQuery', web3FarmingProfile?: { __typename?: 'Web3FarmingProfile', id?: string | null, createdAt?: any | null, invitedBy?: string | null, countSuccessReferrals?: number | null, quests?: Array<{ __typename?: 'Web3FarmingQuest', id?: string | null, title?: string | null, description?: string | null, GOPoints?: number | null, type?: Web3FarmingQuestType | null, URL?: string | null, androidDownloadLink?: string | null, appleDownloadLink?: string | null, completed?: boolean | null, createdAt?: any | null } | null> | null, referralCodes?: Array<{ __typename?: 'Web3FarmingReferralCode', id?: string | null, code?: string | null, invitedId?: string | null, invitedDate?: any | null, invitedGOPoints?: number | null, referrerGOPoints?: number | null } | null> | null } | null };
+
+export type GetRewardsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetRewardsQuery = { __typename?: 'RootQuery', rewards?: Array<{ __typename?: 'RewardInfo', id?: string | null, name?: string | null, description?: string | null, images?: Array<string | null> | null, amount?: number | null, points?: number | null, discount?: number | null, expiredDate?: any | null, type?: RewardType | null, brand?: string | null, brandImage?: string | null, status?: RewardStatus | null } | null> | null };
+
+export type GetActiveRewardsQueryVariables = Exact<{
+  status?: InputMaybe<RewardQueryEnum>;
+}>;
+
+
+export type GetActiveRewardsQuery = { __typename?: 'RootQuery', rewards?: Array<{ __typename?: 'RewardInfo', id?: string | null, name?: string | null, description?: string | null, images?: Array<string | null> | null, amount?: number | null, points?: number | null, discount?: number | null, expiredDate?: any | null, type?: RewardType | null, brand?: string | null, brandImage?: string | null, status?: RewardStatus | null } | null> | null };
+
+export type GetRedeemedRewardsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetRedeemedRewardsQuery = { __typename?: 'RootQuery', redeemedRewards?: Array<{ __typename?: 'RewardInstance', id?: string | null, infoId?: string | null, code?: string | null, link?: string | null, image?: string | null, used?: boolean | null } | null> | null };
 
 export type GetTripQueryVariables = Exact<{
   tripId: Scalars['String']['input'];
@@ -884,6 +982,54 @@ export const GetWeb3FarmingProfileDocument = gql`
   }
 }
     `;
+export const GetRewardsDocument = gql`
+    query getRewards {
+  rewards {
+    id
+    name
+    description
+    images
+    amount
+    points
+    discount
+    expiredDate
+    type
+    brand
+    brandImage
+    status
+  }
+}
+    `;
+export const GetActiveRewardsDocument = gql`
+    query getActiveRewards($status: RewardQueryEnum) {
+  rewards(status: $status) {
+    id
+    name
+    description
+    images
+    amount
+    points
+    discount
+    expiredDate
+    type
+    brand
+    brandImage
+    status
+  }
+}
+    `;
+export const GetRedeemedRewardsDocument = gql`
+    query getRedeemedRewards {
+  redeemedRewards {
+    id
+    infoId
+    code
+    link
+    image
+    used
+  }
+}
+    `;
 export const GetTripDocument = gql`
     query getTrip($tripId: String!) {
   trip(tripID: $tripId) {
@@ -1015,6 +1161,15 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     getWeb3FarmingProfile(variables?: GetWeb3FarmingProfileQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetWeb3FarmingProfileQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetWeb3FarmingProfileQuery>(GetWeb3FarmingProfileDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getWeb3FarmingProfile', 'query', variables);
+    },
+    getRewards(variables?: GetRewardsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetRewardsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetRewardsQuery>(GetRewardsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getRewards', 'query', variables);
+    },
+    getActiveRewards(variables?: GetActiveRewardsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetActiveRewardsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetActiveRewardsQuery>(GetActiveRewardsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getActiveRewards', 'query', variables);
+    },
+    getRedeemedRewards(variables?: GetRedeemedRewardsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetRedeemedRewardsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetRedeemedRewardsQuery>(GetRedeemedRewardsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getRedeemedRewards', 'query', variables);
     },
     getTrip(variables: GetTripQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetTripQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetTripQuery>(GetTripDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getTrip', 'query', variables);
