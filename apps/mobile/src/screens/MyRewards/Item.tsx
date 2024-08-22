@@ -9,20 +9,26 @@ import {
 } from 'react-native';
 import { Mask, Path, Svg } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
+import { rewardState } from 'state/reward';
 import { defaultTheme } from 'utils/global';
+import { useSnapshot } from 'valtio';
 
 interface Props {
 	active: boolean;
+	rewardId: string;
+	rewardInfoId: string;
 }
 
-const Item: FC<Props> = ({ active }) => {
+const Item: FC<Props> = ({ active, rewardId, rewardInfoId }) => {
 	const { navigate } = useNavigation();
+	const { rewardsMap } = useSnapshot(rewardState);
+	const rewardInfo = rewardsMap?.[rewardInfoId];
 
 	return (
 		<TouchableOpacity
 			onPress={() => {
 				if (active) {
-					navigate('RewardDetail', { redeemed: true });
+					navigate('RewardDetail', { redeemed: true, rewardInfoId, rewardId });
 				}
 			}}
 		>
@@ -74,17 +80,18 @@ const Item: FC<Props> = ({ active }) => {
 							<Image
 								width={48}
 								height={48}
-								source={{ uri: 'https://picsum.photos/48/48' }}
+								source={{ uri: rewardInfo?.brandImage || '' }}
 							/>
 						</View>
 					</View>
 
 					<View style={[styles.infoContainer, !active && styles.inactiveStyle]}>
-						<Text style={styles.name}>
-							Baskin Robbins Space Like Bonbon Blast
-						</Text>
+						<Text style={styles.name}>{rewardInfo?.name}</Text>
 						<View style={styles.infoBelowContainer}>
-							<Text style={styles.date}>Expire on 29 Aug 2014</Text>
+							<Text style={styles.date}>
+								Expire on{' '}
+								{new Date(rewardInfo?.expiredDate).toLocaleDateString()}
+							</Text>
 
 							{active ? (
 								<TouchableOpacity hitSlop={10}>

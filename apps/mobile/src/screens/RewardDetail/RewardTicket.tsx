@@ -2,8 +2,10 @@ import type { FC } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Path, Svg } from 'react-native-svg';
 import Copy from '@aigo/components/icon/Copy';
+import { rewardState } from 'state/reward';
 import { defaultTheme } from 'utils/global';
 import { RewardStatus } from 'utils/navigation';
+import { useSnapshot } from 'valtio';
 
 const ticketHeight = 112;
 const statusMap = {
@@ -14,9 +16,12 @@ const statusMap = {
 
 interface Props {
 	rewardStatus: RewardStatus;
+	rewardId: string;
 }
 
-const RewardTicket: FC<Props> = ({ rewardStatus }) => {
+const RewardTicket: FC<Props> = ({ rewardStatus, rewardId }) => {
+	const { redeemedRewards } = useSnapshot(rewardState);
+	const reward = redeemedRewards?.find((reward) => reward.id === rewardId);
 	const isActive = rewardStatus === RewardStatus.ACTIVE;
 	const ticketHighlightColor = isActive ? '#2BD265' : defaultTheme.textDark20;
 
@@ -45,7 +50,7 @@ const RewardTicket: FC<Props> = ({ rewardStatus }) => {
 				<Text style={styles.title}>🎁 Your reward</Text>
 				<View style={styles.codeContainer}>
 					<TouchableOpacity hitSlop={10}>
-						<Text style={styles.code}>https://v.gotit.vn/8h434NP9</Text>
+						<Text style={styles.code}>{reward?.link}</Text>
 					</TouchableOpacity>
 					<TouchableOpacity hitSlop={10}>
 						<View style={styles.copyButton}>

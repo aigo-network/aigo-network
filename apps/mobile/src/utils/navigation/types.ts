@@ -1,4 +1,4 @@
-import type { RewardInfo } from '@aigo/api/sdk';
+import type { RewardInfo, RewardInstance } from '@aigo/api/sdk';
 import type { ParamListBase } from '@react-navigation/native';
 
 export enum RewardStatus {
@@ -22,7 +22,12 @@ export type RootStackParamList = {
 	TripResult: undefined;
 	BottomTab: SubNavigator<BottomTabParamList>;
 	RewardDetail:
-		| { redeemed?: boolean; status?: RewardStatus; rewardId: RewardInfo['id'] }
+		| {
+				redeemed?: boolean;
+				status?: RewardStatus;
+				rewardInfoId: RewardInfo['id'];
+				rewardId?: RewardInstance['id'];
+		  }
 		| undefined;
 	MyRewards: undefined;
 	RewardsBalance: undefined;

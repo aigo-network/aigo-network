@@ -4,8 +4,8 @@ import { proxy } from 'valtio';
 // import type { RewardInfo } from './types';
 
 interface RewardState {
-	rewards?: Record<string, RewardInfo>;
-	activeReward?: RewardInfo[];
+	rewardsMap?: Record<string, RewardInfo>;
+	activeRewards?: RewardInfo[];
 	redeemedRewards?: RewardInstance[];
 }
 
@@ -15,14 +15,14 @@ export const rewardActions = {
 	setRewards: (rewards: RewardInfo[]) => {
 		rewards.forEach((reward) => {
 			if (reward?.id) {
-				rewardState.rewards = Object.assign(rewardState.rewards || {}, {
+				rewardState.rewardsMap = Object.assign(rewardState.rewardsMap || {}, {
 					[reward.id]: reward,
 				});
 			}
 		});
 	},
 	setActiveRewards: (activeRewards: RewardInfo[]) => {
-		rewardState.activeReward = activeRewards;
+		rewardState.activeRewards = activeRewards;
 	},
 	setRedeemedReward: (redeemedRewards: RewardInstance[]) => {
 		rewardState.redeemedRewards = redeemedRewards;

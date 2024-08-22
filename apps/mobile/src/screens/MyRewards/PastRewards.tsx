@@ -7,11 +7,13 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { defaultTheme } from 'utils/global';
+import { useRewardClassification } from 'utils/hooks/reward';
 
 import Item from './Item';
 
 const PastRewards = () => {
 	const { navigate } = useNavigation();
+	const { nonActiveRedeemedReward } = useRewardClassification();
 
 	const goToRewards = () => {
 		navigate('BottomTab', { screen: 'Reward' });
@@ -22,20 +24,29 @@ const PastRewards = () => {
 			style={styles.container}
 			contentContainerStyle={styles.contentContainer}
 		>
-			<Item active={false} />
-			<View style={styles.emptyRewardContainer}>
-				<Text style={styles.boldText}>No Rewards Redeemed</Text>
-				<Text style={styles.normalText}>
-					Start exchange GO points to get rewards now
-				</Text>
-				<TouchableOpacity
-					style={styles.goToRewardsButton}
-					hitSlop={10}
-					onPress={goToRewards}
-				>
-					<Text style={styles.buttonText}>Go to AiGO Rewards</Text>
-				</TouchableOpacity>
-			</View>
+			{nonActiveRedeemedReward.map((reward) => (
+				<Item
+					key={reward.id}
+					active={false}
+					rewardId={reward.id || ''}
+					rewardInfoId={reward.infoId || ''}
+				/>
+			))}
+			{nonActiveRedeemedReward.length === 0 && (
+				<View style={styles.emptyRewardContainer}>
+					<Text style={styles.boldText}>No Rewards Redeemed</Text>
+					<Text style={styles.normalText}>
+						Start exchange GO points to get rewards now
+					</Text>
+					<TouchableOpacity
+						style={styles.goToRewardsButton}
+						hitSlop={10}
+						onPress={goToRewards}
+					>
+						<Text style={styles.buttonText}>Go to AiGO Rewards</Text>
+					</TouchableOpacity>
+				</View>
+			)}
 		</ScrollView>
 	);
 };

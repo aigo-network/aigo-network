@@ -34,14 +34,15 @@ const RewardDetailScreen: FC = () => {
 	const { goBack } = useNavigation();
 	const { params } = useRoute<RouteProp<RootStackParamList, 'RewardDetail'>>();
 	const [screenWidth, setScreenWidth] = useState(0);
-	const { rewards } = useSnapshot(rewardState);
-	const reward = rewards?.[params?.rewardId || ''];
-	const [rewardDescription, termAndCondition] = (
-		reward?.description || ''
-	).split('_*_');
+	const { rewardsMap } = useSnapshot(rewardState);
+
 	const { content } = useSnapshot(appState);
 	const { expired, points, redeemButton, markUsedButton } =
 		content.screens.reward.rewardsDetail;
+	const rewardInfo = rewardsMap?.[params?.rewardInfoId || ''];
+	const [rewardDescription, termAndCondition] = (
+		rewardInfo?.description || ''
+	).split('_*_');
 	const isExpired = params?.status === RewardStatus.EXPIRED;
 
 	const handleLayoutChange = ({ nativeEvent }: LayoutChangeEvent) => {
@@ -68,7 +69,7 @@ const RewardDetailScreen: FC = () => {
 				<Image
 					width={screenWidth}
 					height={screenWidth}
-					source={{ uri: reward?.images?.[0] || '' }}
+					source={{ uri: rewardInfo?.images?.[0] || '' }}
 					resizeMode="cover"
 				/>
 
@@ -84,18 +85,19 @@ const RewardDetailScreen: FC = () => {
 							width={brandImageSize}
 							height={brandImageSize}
 							resizeMode="contain"
-							source={{ uri: reward?.brandImage || '' }}
+							source={{ uri: rewardInfo?.brandImage || '' }}
 						/>
 						<View style={{ flex: 1 }}>
-							<Text style={styles.brand}>{reward?.brand}</Text>
+							<Text style={styles.brand}>{rewardInfo?.brand}</Text>
 							<View>
-								<Text style={styles.rewardName}>{reward?.name}</Text>
+								<Text style={styles.rewardName}>{rewardInfo?.name}</Text>
 							</View>
 						</View>
 					</View>
 
 					{params?.redeemed && (
 						<RewardTicket
+							rewardId={params.rewardId || ''}
 							rewardStatus={params?.status || RewardStatus.ACTIVE}
 						/>
 					)}
@@ -110,20 +112,21 @@ const RewardDetailScreen: FC = () => {
 										params?.redeemed && { color: defaultTheme.textDark90 },
 									]}
 								>
-									{reward?.discount
-										? (reward?.points || 0) * (1 - reward.discount / 100)
-										: reward?.points}{' '}
+									{rewardInfo?.discount
+										? (rewardInfo?.points || 0) *
+											(1 - rewardInfo.discount / 100)
+										: rewardInfo?.points}{' '}
 									GO
 								</Text>
-								{!!reward?.discount && (
-									<Text style={styles.discount}>{reward?.points}</Text>
+								{!!rewardInfo?.discount && !params?.redeemed && (
+									<Text style={styles.discount}>{rewardInfo?.points}</Text>
 								)}
 							</View>
 						</View>
 						<View style={styles.tagContainer}>
 							<Text style={styles.tagTitle}>{expired}</Text>
 							<Text style={styles.date}>
-								{new Date(reward?.expiredDate).toLocaleDateString()}
+								{new Date(rewardInfo?.expiredDate).toLocaleDateString()}
 							</Text>
 						</View>
 					</View>

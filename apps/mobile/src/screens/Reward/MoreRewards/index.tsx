@@ -14,7 +14,7 @@ const MoreRewards = () => {
 	const handleLayoutChange = ({ nativeEvent }: LayoutChangeEvent) => {
 		setContainerWidth(nativeEvent.layout.width);
 	};
-	const { activeReward } = useRewardClassification();
+	const { activeRewards } = useRewardClassification();
 
 	return (
 		<View style={styles.container}>
@@ -22,7 +22,7 @@ const MoreRewards = () => {
 				{content.screens.reward.moreRewards.title}
 			</Text>
 			<View style={styles.contentContainer} onLayout={handleLayoutChange}>
-				{activeReward?.map((reward) => {
+				{activeRewards?.map((reward) => {
 					return (
 						<Item
 							key={reward.id}

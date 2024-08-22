@@ -16,13 +16,15 @@ interface Props {
 
 const Item: FC<Props> = ({ containerWidth, rewardId }) => {
 	const { navigate } = useNavigation();
-	const { rewards } = useSnapshot(rewardState);
-	const reward = rewards?.[rewardId || ''];
+	const { rewardsMap } = useSnapshot(rewardState);
+	const reward = rewardsMap?.[rewardId || ''];
 	const imageSize = containerWidth / 2 - 2 * padding;
 
 	return (
 		<View style={styles.container}>
-			<TouchableOpacity onPress={() => navigate('RewardDetail', { rewardId })}>
+			<TouchableOpacity
+				onPress={() => navigate('RewardDetail', { rewardInfoId: rewardId })}
+			>
 				<View style={styles.innerContainer}>
 					<Image
 						style={styles.image}
