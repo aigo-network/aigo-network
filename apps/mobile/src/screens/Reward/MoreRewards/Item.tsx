@@ -1,36 +1,47 @@
 import type { FC } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import type { RewardInfo } from '@aigo/api/sdk';
 import { useNavigation } from '@react-navigation/native';
+import { rewardState } from 'state/reward';
 import { defaultTheme } from 'utils/global';
+import { useSnapshot } from 'valtio';
 
 const padding = 12;
 
 interface Props {
 	containerWidth: number;
+	rewardId: RewardInfo['id'];
 }
 
-const Item: FC<Props> = ({ containerWidth }) => {
+const Item: FC<Props> = ({ containerWidth, rewardId }) => {
 	const { navigate } = useNavigation();
+	const { rewards } = useSnapshot(rewardState);
+	const reward = rewards?.[rewardId || ''];
 	const imageSize = containerWidth / 2 - 2 * padding;
 
 	return (
 		<View style={styles.container}>
-			<TouchableOpacity onPress={() => navigate('RewardDetail')}>
+			<TouchableOpacity onPress={() => navigate('RewardDetail', { rewardId })}>
 				<View style={styles.innerContainer}>
 					<Image
 						style={styles.image}
 						width={imageSize}
 						height={imageSize}
 						resizeMode="cover"
-						source={{ uri: 'https://picsum.photos/200/200' }}
+						source={{ uri: reward?.images?.[0] || '' }}
 					/>
 					<View>
-						<Text style={styles.brand}>Brands</Text>
-						<Text style={styles.name}>
-							Lorem ipsum dolor sit amet consectetur.
+						<Text style={styles.brand}>{reward?.brand}</Text>
+						<Text style={styles.name} numberOfLines={2}>
+							{reward?.name}
 						</Text>
-						<Text style={styles.points}>40 GO</Text>
+						<Text style={styles.points}>
+							{reward?.discount
+								? (reward?.points || 0) * (1 - reward.discount / 100)
+								: reward?.points}{' '}
+							GO
+						</Text>
 					</View>
 				</View>
 			</TouchableOpacity>

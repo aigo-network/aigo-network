@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { appState } from 'state/app';
 import { defaultTheme } from 'utils/global';
+import { useReward } from 'utils/hooks/reward';
 import { useSnapshot } from 'valtio';
 
 import HotRewards from './HotRewards';
@@ -13,6 +14,8 @@ const RewardScreen: FC = () => {
 	const { top } = useSafeAreaInsets();
 	const { content } = useSnapshot(appState);
 	const { screenTitle } = content.screens.reward;
+
+	useReward();
 
 	return (
 		<View style={styles.container}>

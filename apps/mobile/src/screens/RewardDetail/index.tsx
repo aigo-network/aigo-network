@@ -18,6 +18,7 @@ import {
 	showSuccessRedemption,
 } from 'modals/RewardModals';
 import { appState } from 'state/app';
+import { rewardState } from 'state/reward';
 import { defaultTheme } from 'utils/global';
 import type { RootStackParamList } from 'utils/navigation';
 import { RewardStatus } from 'utils/navigation';
@@ -33,6 +34,11 @@ const RewardDetailScreen: FC = () => {
 	const { goBack } = useNavigation();
 	const { params } = useRoute<RouteProp<RootStackParamList, 'RewardDetail'>>();
 	const [screenWidth, setScreenWidth] = useState(0);
+	const { rewards } = useSnapshot(rewardState);
+	const reward = rewards?.[params?.rewardId || ''];
+	const [rewardDescription, termAndCondition] = (
+		reward?.description || ''
+	).split('_*_');
 	const { content } = useSnapshot(appState);
 	const { expired, points, redeemButton, markUsedButton } =
 		content.screens.reward.rewardsDetail;
@@ -62,7 +68,7 @@ const RewardDetailScreen: FC = () => {
 				<Image
 					width={screenWidth}
 					height={screenWidth}
-					source={{ uri: 'https://picsum.photos/300/300' }}
+					source={{ uri: reward?.images?.[0] || '' }}
 					resizeMode="cover"
 				/>
 
@@ -78,14 +84,12 @@ const RewardDetailScreen: FC = () => {
 							width={brandImageSize}
 							height={brandImageSize}
 							resizeMode="contain"
-							source={{ uri: 'https://picsum.photos/48/48' }}
+							source={{ uri: reward?.brandImage || '' }}
 						/>
 						<View style={{ flex: 1 }}>
-							<Text style={styles.brand}>Baskin Robbins</Text>
+							<Text style={styles.brand}>{reward?.brand}</Text>
 							<View>
-								<Text style={styles.rewardName}>
-									Baskin Robbins Space Like Bonbon Blast
-								</Text>
+								<Text style={styles.rewardName}>{reward?.name}</Text>
 							</View>
 						</View>
 					</View>
@@ -106,19 +110,31 @@ const RewardDetailScreen: FC = () => {
 										params?.redeemed && { color: defaultTheme.textDark90 },
 									]}
 								>
-									950,000 GO
+									{reward?.discount
+										? (reward?.points || 0) * (1 - reward.discount / 100)
+										: reward?.points}{' '}
+									GO
 								</Text>
-								<Text style={styles.discount}>1,000,000</Text>
+								{!!reward?.discount && (
+									<Text style={styles.discount}>{reward?.points}</Text>
+								)}
 							</View>
 						</View>
 						<View style={styles.tagContainer}>
 							<Text style={styles.tagTitle}>{expired}</Text>
-							<Text style={styles.date}>9 Aug 2024</Text>
+							<Text style={styles.date}>
+								{new Date(reward?.expiredDate).toLocaleDateString()}
+							</Text>
 						</View>
 					</View>
 				</View>
 
-				{!params?.redeemed && <Description />}
+				{!params?.redeemed && (
+					<Description
+						rewardDescription={rewardDescription}
+						termAndConditions={termAndCondition}
+					/>
+				)}
 			</ScrollView>
 
 			<TouchableOpacity

@@ -3,6 +3,7 @@ import type { LayoutChangeEvent } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 import { appState } from 'state/app';
 import { defaultTheme } from 'utils/global';
+import { useRewardClassification } from 'utils/hooks/reward';
 import { useSnapshot } from 'valtio';
 
 import Item from './Item';
@@ -13,6 +14,7 @@ const MoreRewards = () => {
 	const handleLayoutChange = ({ nativeEvent }: LayoutChangeEvent) => {
 		setContainerWidth(nativeEvent.layout.width);
 	};
+	const { activeReward } = useRewardClassification();
 
 	return (
 		<View style={styles.container}>
@@ -20,11 +22,15 @@ const MoreRewards = () => {
 				{content.screens.reward.moreRewards.title}
 			</Text>
 			<View style={styles.contentContainer} onLayout={handleLayoutChange}>
-				{Array.from({ length: 5 })
-					.fill(() => 0)
-					.map((_number, index) => (
-						<Item key={index} containerWidth={containerWidth} />
-					))}
+				{activeReward?.map((reward) => {
+					return (
+						<Item
+							key={reward.id}
+							rewardId={reward.id}
+							containerWidth={containerWidth}
+						/>
+					);
+				})}
 			</View>
 		</View>
 	);
