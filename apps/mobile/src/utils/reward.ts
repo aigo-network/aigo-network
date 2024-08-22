@@ -29,3 +29,11 @@ export const getRedeemedRewards = async () => {
 
 	return filteredReward;
 };
+
+export const redeemReward = async (rewardInfoId: string) => {
+	const { redeemReward: newRedeemedReward } = await graphqlClient.redeemReward({
+		rewardInfoId,
+	});
+
+	return newRedeemedReward;
+};

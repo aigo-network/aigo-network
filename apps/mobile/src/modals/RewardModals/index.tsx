@@ -84,7 +84,6 @@ const showSuccessRedemption = ({
 	);
 };
 
-// eslint-disable-next-line no-empty-pattern
 const showFailRedemption = ({ onConfirm, onCancel }: FailRedemptionConfig) => {
 	const { cleanModal } = showModal(
 		<Animated.View entering={FadeInDown}>

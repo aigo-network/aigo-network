@@ -27,4 +27,7 @@ export const rewardActions = {
 	setRedeemedReward: (redeemedRewards: RewardInstance[]) => {
 		rewardState.redeemedRewards = redeemedRewards;
 	},
+	addNewRedeemedReward: (redeemedReward: RewardInstance) => {
+		rewardState.redeemedRewards?.unshift(redeemedReward);
+	},
 };

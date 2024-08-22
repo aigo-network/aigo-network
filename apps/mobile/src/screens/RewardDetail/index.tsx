@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import { useState } from 'react';
 import type { LayoutChangeEvent } from 'react-native';
 import {
+	ActivityIndicator,
 	Image,
 	ScrollView,
 	StyleSheet,
@@ -13,10 +14,6 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import LeftArrowIcon from '@aigo/components/icon/LeftArrowIcon';
 import type { RouteProp } from '@react-navigation/native';
 import { useNavigation, useRoute } from '@react-navigation/native';
-import {
-	showConfirmRedemption,
-	showSuccessRedemption,
-} from 'modals/RewardModals';
 import { appState } from 'state/app';
 import { rewardState } from 'state/reward';
 import { defaultTheme } from 'utils/global';
@@ -25,6 +22,7 @@ import { RewardStatus } from 'utils/navigation';
 import { useSnapshot } from 'valtio';
 
 import Description from './Description';
+import { handleRedeemPress } from './internal';
 import RewardTicket from './RewardTicket';
 
 const brandImageSize = 48;
@@ -34,6 +32,7 @@ const RewardDetailScreen: FC = () => {
 	const { goBack } = useNavigation();
 	const { params } = useRoute<RouteProp<RootStackParamList, 'RewardDetail'>>();
 	const [screenWidth, setScreenWidth] = useState(0);
+	const [loading, setLoading] = useState(false);
 	const { rewardsMap } = useSnapshot(rewardState);
 
 	const { content } = useSnapshot(appState);
@@ -49,14 +48,18 @@ const RewardDetailScreen: FC = () => {
 		setScreenWidth(nativeEvent.layout.width);
 	};
 
-	const onRedeemPress = () => {
-		showConfirmRedemption({
-			rewardName: 'Baskin Robbin',
-			points: 100,
-			onConfirm: () => {
-				showSuccessRedemption({ rewardName: 'Baskin Robbin' });
-			},
-		});
+	const onRedeemPress = async () => {
+		setLoading(true);
+
+		const calculatedPoints =
+			(rewardInfo?.points || 0) -
+			((rewardInfo?.points || 0) * (rewardInfo?.discount || 0)) / 100;
+		await handleRedeemPress(
+			params?.rewardInfoId || '',
+			rewardInfo?.name || '',
+			calculatedPoints,
+			() => setLoading(false),
+		);
 	};
 
 	return (
@@ -150,7 +153,9 @@ const RewardDetailScreen: FC = () => {
 			</TouchableOpacity>
 
 			<View style={styles.redeemButtonWrapper}>
-				{params?.redeemed ? (
+				{loading ? (
+					<ActivityIndicator size={30} />
+				) : params?.redeemed ? (
 					<TouchableOpacity style={styles.redeemButton}>
 						<Text style={styles.redeemText}>{markUsedButton}</Text>
 					</TouchableOpacity>
