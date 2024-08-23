@@ -1,24 +1,29 @@
 import type { FC } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
+import type { RewardInfo } from '@aigo/api/sdk';
 import { defaultTheme } from 'utils/global';
+import { calculatePoints } from 'utils/reward';
 
 export const itemWidth = 300;
 
 interface Props {
-	index: number;
+	rewardInfo: RewardInfo;
 }
 
-const HotItem: FC<Props> = ({ index }) => {
+const HotItem: FC<Props> = ({ rewardInfo }) => {
+	const calculatedPoints = calculatePoints(
+		rewardInfo?.points || 0,
+		rewardInfo?.discount || 0,
+	);
+
 	return (
 		<View style={styles.container}>
 			<Image
-				source={{ uri: 'https://picsum.photos/300/180' }}
+				source={{ uri: rewardInfo?.images?.[0] || '' }}
 				style={styles.image}
 			/>
-			<Text style={styles.name}>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi.
-			</Text>
-			<Text style={styles.points}>{index} 40 GO</Text>
+			<Text style={styles.name}>{rewardInfo.name}</Text>
+			<Text style={styles.points}>{calculatedPoints} GO</Text>
 		</View>
 	);
 };

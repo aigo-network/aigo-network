@@ -43,3 +43,7 @@ export const redeemReward = async (rewardInfoId: string) => {
 
 	return newRedeemedReward;
 };
+
+export const calculatePoints = (points: number, discount: number) => {
+	return points * (1 - discount / 100);
+};

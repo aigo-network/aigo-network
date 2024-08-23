@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { defaultTheme } from 'utils/global';
+import { useRewardClassification } from 'utils/hooks/reward';
 
 import HotItem, { itemWidth } from './HotItem';
 
@@ -11,14 +12,23 @@ const carouselWidth = itemWidth + itemGap;
 
 const HotRewards: FC = () => {
 	const scrollRef = useRef<ScrollView>(null);
+	const { activeRewards } = useRewardClassification();
 	const [currentIndex, setCurrentIndex] = useState(2);
 	const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>();
+
+	const carouselList = [
+		activeRewards?.[activeRewards?.length - 2],
+		activeRewards?.[activeRewards?.length - 1],
+		...(activeRewards as never),
+		activeRewards?.[0],
+		activeRewards?.[1],
+	];
 
 	const onScrollEnd = ({
 		nativeEvent,
 	}: NativeSyntheticEvent<NativeScrollEvent>) => {
 		const newIndex = Math.floor(nativeEvent.contentOffset.x / carouselWidth);
-		if (newIndex > 4) {
+		if (newIndex > carouselList.length) {
 			scrollRef.current?.scrollTo({
 				x: 2 * carouselWidth,
 				y: nativeEvent.contentOffset.y,
@@ -28,12 +38,12 @@ const HotRewards: FC = () => {
 			setCurrentIndex(2);
 		} else if (newIndex < 2) {
 			scrollRef.current?.scrollTo({
-				x: 4 * carouselWidth,
+				x: carouselList.length * carouselWidth,
 				y: nativeEvent.contentOffset.y,
 				animated: false,
 			});
 
-			setCurrentIndex(4);
+			setCurrentIndex(carouselList.length);
 		} else {
 			setCurrentIndex(newIndex);
 		}
@@ -43,7 +53,7 @@ const HotRewards: FC = () => {
 		setTimeout(() => {
 			let newIndex: number;
 
-			if (currentIndex > 4) {
+			if (currentIndex > carouselList.length) {
 				scrollRef.current?.scrollTo({
 					x: 2 * carouselWidth,
 					y: 0,
@@ -68,6 +78,7 @@ const HotRewards: FC = () => {
 			y: 0,
 			animated: false,
 		});
+		console.log(JSON.stringify(carouselList, null, 2));
 	}, []);
 
 	useEffect(() => {
@@ -96,13 +107,9 @@ const HotRewards: FC = () => {
 				}}
 				disableIntervalMomentum
 			>
-				<HotItem index={2} />
-				<HotItem index={3} />
-				<HotItem index={1} />
-				<HotItem index={2} />
-				<HotItem index={3} />
-				<HotItem index={1} />
-				<HotItem index={2} />
+				{carouselList?.map((reward, index) => (
+					<HotItem key={index} rewardInfo={reward as never} />
+				))}
 			</ScrollView>
 		</View>
 	);
