@@ -364,7 +364,7 @@ type RootMutation {
   insertTripPoint(geolocation: GeolocationInput!, tripID: String!): Trip
 
   """"""
-  markRewardAsUsed(rewardInfoID: String!): Boolean
+  markRewardAsUsed(rewardInstanceID: String!): Boolean
 
   """"""
   redeemReward(rewardInfoID: String!): RewardInstance

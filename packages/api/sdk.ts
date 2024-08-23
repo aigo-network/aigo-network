@@ -238,7 +238,7 @@ export type RootMutationInsertTripPointArgs = {
 
 
 export type RootMutationMarkRewardAsUsedArgs = {
-  rewardInfoID: Scalars['String']['input'];
+  rewardInstanceID: Scalars['String']['input'];
 };
 
 
@@ -500,6 +500,13 @@ export type RedeemRewardMutationVariables = Exact<{
 
 
 export type RedeemRewardMutation = { __typename?: 'RootMutation', redeemReward?: { __typename?: 'RewardInstance', id?: string | null, infoId?: string | null, code?: string | null, link?: string | null, image?: string | null, used?: boolean | null } | null };
+
+export type MarkUsedMutationVariables = Exact<{
+  rewardInstanceId: Scalars['String']['input'];
+}>;
+
+
+export type MarkUsedMutation = { __typename?: 'RootMutation', markRewardAsUsed?: boolean | null };
 
 export type StartTripMutationVariables = Exact<{
   geolocation: GeolocationInput;
@@ -806,6 +813,11 @@ export const RedeemRewardDocument = gql`
     image
     used
   }
+}
+    `;
+export const MarkUsedDocument = gql`
+    mutation markUsed($rewardInstanceId: String!) {
+  markRewardAsUsed(rewardInstanceID: $rewardInstanceId)
 }
     `;
 export const StartTripDocument = gql`
@@ -1144,6 +1156,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     redeemReward(variables: RedeemRewardMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<RedeemRewardMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<RedeemRewardMutation>(RedeemRewardDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'redeemReward', 'mutation', variables);
+    },
+    markUsed(variables: MarkUsedMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<MarkUsedMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<MarkUsedMutation>(MarkUsedDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'markUsed', 'mutation', variables);
     },
     startTrip(variables: StartTripMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<StartTripMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<StartTripMutation>(StartTripDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'startTrip', 'mutation', variables);

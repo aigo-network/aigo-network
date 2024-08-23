@@ -56,10 +56,9 @@ export const handleRedeemPress = (
 };
 
 const handleMarkUsed = async (rewardInstanceId: string) => {
-	// const { markRewardAsUsed } = await graphqlClient.markUsed({
-	// 	rewardInstanceId,
-	// });
-	const markRewardAsUsed = true;
+	const { markRewardAsUsed } = await graphqlClient.markUsed({
+		rewardInstanceId,
+	});
 
 	if (markRewardAsUsed) {
 		rewardActions.markRedeemedRewardUsed(rewardInstanceId);

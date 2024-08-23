@@ -11,4 +11,7 @@ export const rewardMutation = gql`
 			used
 		}
 	}
+	mutation markUsed($rewardInstanceId: String!) {
+		markRewardAsUsed(rewardInstanceID: $rewardInstanceId)
+	}
 `;
