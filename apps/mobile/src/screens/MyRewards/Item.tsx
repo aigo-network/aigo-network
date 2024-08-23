@@ -9,9 +9,10 @@ import {
 } from 'react-native';
 import { Mask, Path, Svg } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
-import { rewardState } from 'state/reward';
 import { defaultTheme } from 'utils/global';
-import { useSnapshot } from 'valtio';
+import { useRewardDetail } from 'utils/hooks/reward';
+
+import { handleMarkUsedPress } from './internal';
 
 interface Props {
 	active: boolean;
@@ -21,15 +22,16 @@ interface Props {
 
 const Item: FC<Props> = ({ active, rewardId, rewardInfoId }) => {
 	const { navigate } = useNavigation();
-	const { rewardsMap } = useSnapshot(rewardState);
-	const rewardInfo = rewardsMap?.[rewardInfoId];
+	const { rewardInfo } = useRewardDetail({ rewardInfoId });
+
+	const onMarkUsedPress = () => {
+		handleMarkUsedPress(rewardId);
+	};
 
 	return (
 		<TouchableOpacity
 			onPress={() => {
-				if (active) {
-					navigate('RewardDetail', { redeemed: true, rewardInfoId, rewardId });
-				}
+				navigate('RewardDetail', { redeemed: true, rewardInfoId, rewardId });
 			}}
 		>
 			<View style={styles.container}>
@@ -94,7 +96,7 @@ const Item: FC<Props> = ({ active, rewardId, rewardInfoId }) => {
 							</Text>
 
 							{active ? (
-								<TouchableOpacity hitSlop={10}>
+								<TouchableOpacity hitSlop={10} onPress={onMarkUsedPress}>
 									<Text style={styles.buttonText}>Mark as used</Text>
 								</TouchableOpacity>
 							) : (
