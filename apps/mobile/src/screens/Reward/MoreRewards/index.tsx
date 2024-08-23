@@ -26,7 +26,7 @@ const MoreRewards = () => {
 					return (
 						<Item
 							key={reward.id}
-							rewardId={reward.id}
+							rewardInfoId={reward.id || ''}
 							containerWidth={containerWidth}
 						/>
 					);

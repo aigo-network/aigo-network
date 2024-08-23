@@ -19,6 +19,7 @@ const showConfirmRedemption = ({
 		<Animated.View entering={FadeInDown}>
 			<RewardModalCore
 				onClose={() => {
+					onCancel?.();
 					cleanModal();
 				}}
 				title="Confirm redemption?"
@@ -39,7 +40,7 @@ const showConfirmRedemption = ({
 		</Animated.View>,
 		{
 			id: 'confirm-redemption',
-			closeOnPressBackdrop: true,
+			closeOnPressBackdrop: false,
 			showBackdrop: true,
 			align: Align.CenterCenter,
 		},
@@ -55,6 +56,7 @@ const showSuccessRedemption = ({
 		<Animated.View entering={FadeInDown}>
 			<RewardModalCore
 				onClose={() => {
+					onCancel?.();
 					cleanModal();
 				}}
 				title={'Awesome!!'}
@@ -77,7 +79,7 @@ const showSuccessRedemption = ({
 		</Animated.View>,
 		{
 			id: 'success-redemption',
-			closeOnPressBackdrop: true,
+			closeOnPressBackdrop: false,
 			showBackdrop: true,
 			align: Align.CenterCenter,
 		},
@@ -89,6 +91,7 @@ const showFailRedemption = ({ onConfirm, onCancel }: FailRedemptionConfig) => {
 		<Animated.View entering={FadeInDown}>
 			<RewardModalCore
 				onClose={() => {
+					onCancel?.();
 					cleanModal();
 				}}
 				title={'Oops! Not enough GO'}
@@ -109,7 +112,7 @@ const showFailRedemption = ({ onConfirm, onCancel }: FailRedemptionConfig) => {
 		</Animated.View>,
 		{
 			id: 'fail-redemption',
-			closeOnPressBackdrop: true,
+			closeOnPressBackdrop: false,
 			showBackdrop: true,
 			align: Align.CenterCenter,
 		},
@@ -121,6 +124,7 @@ const showMarkAsUsed = ({ onConfirm, onCancel }: MarkAsUsedConfig) => {
 		<Animated.View entering={FadeInDown}>
 			<RewardModalCore
 				onClose={() => {
+					onCancel?.();
 					cleanModal();
 				}}
 				title={'Mark as used?'}
@@ -141,7 +145,7 @@ const showMarkAsUsed = ({ onConfirm, onCancel }: MarkAsUsedConfig) => {
 		</Animated.View>,
 		{
 			id: 'mark-as-used',
-			closeOnPressBackdrop: true,
+			closeOnPressBackdrop: false,
 			showBackdrop: true,
 			align: Align.CenterCenter,
 		},

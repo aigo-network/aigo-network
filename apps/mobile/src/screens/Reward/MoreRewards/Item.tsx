@@ -1,29 +1,26 @@
 import type { FC } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import type { RewardInfo } from '@aigo/api/sdk';
 import { useNavigation } from '@react-navigation/native';
-import { rewardState } from 'state/reward';
 import { defaultTheme } from 'utils/global';
-import { useSnapshot } from 'valtio';
+import { useRewardDetail } from 'utils/hooks/reward';
 
 const padding = 12;
 
 interface Props {
 	containerWidth: number;
-	rewardId: RewardInfo['id'];
+	rewardInfoId: string;
 }
 
-const Item: FC<Props> = ({ containerWidth, rewardId }) => {
+const Item: FC<Props> = ({ containerWidth, rewardInfoId }) => {
 	const { navigate } = useNavigation();
-	const { rewardsMap } = useSnapshot(rewardState);
-	const reward = rewardsMap?.[rewardId || ''];
+	const { rewardInfo } = useRewardDetail({ rewardInfoId });
 	const imageSize = containerWidth / 2 - 2 * padding;
 
 	return (
 		<View style={styles.container}>
 			<TouchableOpacity
-				onPress={() => navigate('RewardDetail', { rewardInfoId: rewardId })}
+				onPress={() => navigate('RewardDetail', { rewardInfoId })}
 			>
 				<View style={styles.innerContainer}>
 					<Image
@@ -31,17 +28,17 @@ const Item: FC<Props> = ({ containerWidth, rewardId }) => {
 						width={imageSize}
 						height={imageSize}
 						resizeMode="cover"
-						source={{ uri: reward?.images?.[0] || '' }}
+						source={{ uri: rewardInfo?.images?.[0] || '' }}
 					/>
 					<View>
-						<Text style={styles.brand}>{reward?.brand}</Text>
+						<Text style={styles.brand}>{rewardInfo?.brand}</Text>
 						<Text style={styles.name} numberOfLines={2}>
-							{reward?.name}
+							{rewardInfo?.name}
 						</Text>
 						<Text style={styles.points}>
-							{reward?.discount
-								? (reward?.points || 0) * (1 - reward.discount / 100)
-								: reward?.points}{' '}
+							{rewardInfo?.discount
+								? (rewardInfo?.points || 0) * (1 - rewardInfo.discount / 100)
+								: rewardInfo?.points}{' '}
 							GO
 						</Text>
 					</View>
