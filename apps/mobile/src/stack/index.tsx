@@ -18,7 +18,6 @@ import VerifyNNIDScreen from 'screens/VerifyNNID';
 import VerifyOTPScreen from 'screens/VerifyOTP';
 import VerifyPhoneNumberScreen from 'screens/VerifyPhoneNumber';
 import type { RootStackParamList } from 'utils/navigation';
-import { RewardStatus } from 'utils/navigation';
 
 import BottomTabStack from './BottomTab';
 
@@ -76,7 +75,7 @@ const ApplicationStack: FC = () => {
 				<Stack.Screen
 					name="RewardDetail"
 					component={RewardDetailScreen}
-					initialParams={{ redeemed: false, status: RewardStatus.ACTIVE }}
+					initialParams={{ redeemed: false }}
 				/>
 				<Stack.Screen name="MyRewards" component={MyRewardScreen} />
 				<Stack.Screen name="RewardsBalance" component={RewardsBalanceScreen} />

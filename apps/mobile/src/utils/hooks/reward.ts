@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from 'react';
-import type { RewardInstance } from '@aigo/api/graphql';
+import type { RewardInfo, RewardInstance } from '@aigo/api/graphql';
 import { RewardStatus } from '@aigo/api/graphql';
 import { rewardActions, rewardState } from 'state/reward';
 import { getActiveRewards, getRedeemedRewards, getRewards } from 'utils/reward';
@@ -62,4 +62,30 @@ export const useRewardClassification = () => {
 		activeRedeemedReward,
 		nonActiveRedeemedReward,
 	};
+};
+
+export const useRewardDetail = ({
+	rewardInfoId,
+	redeemedRewardId = '',
+}: {
+	rewardInfoId: string;
+	redeemedRewardId?: string;
+}) => {
+	const { rewardsMap, redeemedRewards } = useSnapshot(rewardState);
+	const rewardDetail: { rewardInfo?: RewardInfo; reward?: RewardInstance } = {
+		rewardInfo: {},
+		reward: {},
+	};
+	const reward = rewardsMap?.[rewardInfoId];
+	rewardDetail.rewardInfo = reward as never;
+
+	if (redeemedRewardId) {
+		const reward = redeemedRewards?.find(
+			(reward) => reward.id === redeemedRewardId,
+		);
+
+		rewardDetail.reward = reward;
+	}
+
+	return rewardDetail;
 };

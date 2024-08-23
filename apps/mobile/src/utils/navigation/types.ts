@@ -1,12 +1,6 @@
 import type { RewardInfo, RewardInstance } from '@aigo/api/sdk';
 import type { ParamListBase } from '@react-navigation/native';
 
-export enum RewardStatus {
-	ACTIVE = 'Active',
-	USED = 'Used',
-	EXPIRED = 'Expired',
-}
-
 export type RootStackParamList = {
 	Splash: undefined;
 	Open: undefined;
@@ -24,7 +18,6 @@ export type RootStackParamList = {
 	RewardDetail:
 		| {
 				redeemed?: boolean;
-				status?: RewardStatus;
 				rewardInfoId: RewardInfo['id'];
 				rewardId?: RewardInstance['id'];
 		  }

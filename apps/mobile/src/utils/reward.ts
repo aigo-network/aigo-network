@@ -1,6 +1,12 @@
 import type { RewardInfo, RewardInstance } from '@aigo/api/graphql';
 import { graphqlClient, RewardQueryEnum } from '@aigo/api/graphql';
 
+export enum RewardStatus {
+	ACTIVE = 'Active',
+	USED = 'Used',
+	EXPIRED = 'Expired',
+}
+
 export const getRewards = async () => {
 	const { rewards } = await graphqlClient.getRewards();
 	const filteredReward: RewardInfo[] = rewards?.filter(

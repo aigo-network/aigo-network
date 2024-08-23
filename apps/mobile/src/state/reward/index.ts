@@ -1,8 +1,6 @@
 import type { RewardInfo, RewardInstance } from '@aigo/api/sdk';
 import { proxy } from 'valtio';
 
-// import type { RewardInfo } from './types';
-
 interface RewardState {
 	rewardsMap?: Record<string, RewardInfo>;
 	activeRewards?: RewardInfo[];
@@ -29,5 +27,14 @@ export const rewardActions = {
 	},
 	addNewRedeemedReward: (redeemedReward: RewardInstance) => {
 		rewardState.redeemedRewards?.unshift(redeemedReward);
+	},
+	markRedeemedRewardUsed: (redeemedRewardId: string) => {
+		const selectedReward = rewardState.redeemedRewards?.find(
+			(reward) => reward.id === redeemedRewardId,
+		);
+
+		if (selectedReward) {
+			selectedReward.used = true;
+		}
 	},
 };
