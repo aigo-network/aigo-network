@@ -38,6 +38,8 @@ const styles = StyleSheet.create({
 		width: itemWidth,
 		height: 180,
 		borderRadius: 20,
+		borderWidth: 1,
+		borderColor: defaultTheme.gray20,
 	},
 	name: {
 		marginTop: 8,
