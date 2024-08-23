@@ -1,12 +1,15 @@
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import CenterScreenHeader from 'components/CenterScreenHeader';
+import { rewardState } from 'state/reward';
 import { defaultTheme } from 'utils/global';
+import { useSnapshot } from 'valtio';
 
 import Item from './Item';
 
 const RewardsBalanceScreen = () => {
 	const { top, bottom } = useSafeAreaInsets();
+	const { redeemedRewards } = useSnapshot(rewardState);
 
 	return (
 		<View style={[styles.container, { paddingTop: top + 20 }]}>
@@ -15,12 +18,22 @@ const RewardsBalanceScreen = () => {
 				style={styles.scrollContainer}
 				contentContainerStyle={{ paddingBottom: bottom || 20 }}
 			>
-				<Item />
+				{redeemedRewards?.map((reward) => {
+					return (
+						<Item
+							key={reward.id}
+							rewardId={reward.id || ''}
+							rewardInfoId={reward.infoId || ''}
+						/>
+					);
+				})}
 
-				<View style={styles.emptyRewardContainer}>
-					<Text style={styles.boldText}>Nothing here yet</Text>
-					<Text style={styles.normalText}>There is no recent activity</Text>
-				</View>
+				{redeemedRewards?.length === 0 && (
+					<View style={styles.emptyRewardContainer}>
+						<Text style={styles.boldText}>Nothing here yet</Text>
+						<Text style={styles.normalText}>There is no recent activity</Text>
+					</View>
+				)}
 			</ScrollView>
 		</View>
 	);

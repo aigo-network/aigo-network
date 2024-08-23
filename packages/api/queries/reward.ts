@@ -41,6 +41,7 @@ export const rewardsQuery = gql`
 			link
 			image
 			used
+			updatedAt
 		}
 	}
 `;

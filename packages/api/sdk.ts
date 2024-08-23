@@ -605,7 +605,7 @@ export type GetActiveRewardsQuery = { __typename?: 'RootQuery', rewards?: Array<
 export type GetRedeemedRewardsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetRedeemedRewardsQuery = { __typename?: 'RootQuery', redeemedRewards?: Array<{ __typename?: 'RewardInstance', id?: string | null, infoId?: string | null, code?: string | null, link?: string | null, image?: string | null, used?: boolean | null } | null> | null };
+export type GetRedeemedRewardsQuery = { __typename?: 'RootQuery', redeemedRewards?: Array<{ __typename?: 'RewardInstance', id?: string | null, infoId?: string | null, code?: string | null, link?: string | null, image?: string | null, used?: boolean | null, updatedAt?: any | null } | null> | null };
 
 export type GetTripQueryVariables = Exact<{
   tripId: Scalars['String']['input'];
@@ -1058,6 +1058,7 @@ export const GetRedeemedRewardsDocument = gql`
     link
     image
     used
+    updatedAt
   }
 }
     `;

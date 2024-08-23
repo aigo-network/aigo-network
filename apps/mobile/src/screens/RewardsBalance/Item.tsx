@@ -1,14 +1,31 @@
+import type { FC } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { defaultTheme } from 'utils/global';
+import { useRewardDetail } from 'utils/hooks/reward';
 
-const Item = () => {
+interface Props {
+	rewardInfoId: string;
+	rewardId: string;
+}
+
+const Item: FC<Props> = ({ rewardInfoId, rewardId }) => {
+	const { rewardInfo, reward } = useRewardDetail({
+		rewardInfoId,
+		redeemedRewardId: rewardId,
+	});
+
+	const calculatedPoints =
+		(rewardInfo?.points || 0) * (1 - (rewardInfo?.discount || 0) / 100);
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.leftContainer}>
-				<Text style={styles.title}>Baskin Robbins Space Like Bonbon Blast</Text>
-				<Text style={styles.date}>22 Jul 2024 - 10:37 AM</Text>
+				<Text style={styles.title}>{rewardInfo?.name}</Text>
+				<Text style={styles.date}>
+					{new Date(reward?.updatedAt).toDateString()}
+				</Text>
 			</View>
-			<Text style={styles.points}>-1,000,000</Text>
+			<Text style={styles.points}>-{calculatedPoints}</Text>
 		</View>
 	);
 };
