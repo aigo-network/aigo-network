@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { LayoutChangeEvent } from 'react-native';
 import {
 	ActivityIndicator,
@@ -15,17 +15,17 @@ import LeftArrowIcon from '@aigo/components/icon/LeftArrowIcon';
 import type { RouteProp } from '@react-navigation/native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { appState } from 'state/app';
-import { rewardState } from 'state/reward';
 import { defaultTheme } from 'utils/global';
+import { useRewardDetail } from 'utils/hooks/reward';
 import type { RootStackParamList } from 'utils/navigation';
-import { RewardStatus } from 'utils/navigation';
+import { RewardStatus } from 'utils/reward';
 import { useSnapshot } from 'valtio';
 
 import Description from './Description';
-import { handleRedeemPress } from './internal';
-import RewardTicket from './RewardTicket';
-
-const brandImageSize = 48;
+import { handleMarkUsedPress, handleRedeemPress } from './internal';
+import PointsAndDate from './PointsAndDate';
+import Ticket from './Ticket';
+import Title from './Title';
 
 const RewardDetailScreen: FC = () => {
 	const { top } = useSafeAreaInsets();
@@ -33,34 +33,52 @@ const RewardDetailScreen: FC = () => {
 	const { params } = useRoute<RouteProp<RootStackParamList, 'RewardDetail'>>();
 	const [screenWidth, setScreenWidth] = useState(0);
 	const [loading, setLoading] = useState(false);
-	const { rewardsMap } = useSnapshot(rewardState);
+	const [rewardStatus, setRewardStatus] = useState(RewardStatus.ACTIVE);
+	const { rewardInfo, reward } = useRewardDetail({
+		rewardInfoId: params?.rewardInfoId || '',
+		redeemedRewardId: params?.rewardId || '',
+	});
 
 	const { content } = useSnapshot(appState);
-	const { expired, points, redeemButton, markUsedButton } =
-		content.screens.reward.rewardsDetail;
-	const rewardInfo = rewardsMap?.[params?.rewardInfoId || ''];
+	const { redeemButton, markUsedButton } = content.screens.reward.rewardsDetail;
 	const [rewardDescription, termAndCondition] = (
 		rewardInfo?.description || ''
 	).split('_*_');
-	const isExpired = params?.status === RewardStatus.EXPIRED;
+	const isExpired = new Date(rewardInfo?.expiredDate) < new Date();
+	const isUsed = reward?.used || false;
+	const isActive = !isExpired && !isUsed;
 
 	const handleLayoutChange = ({ nativeEvent }: LayoutChangeEvent) => {
 		setScreenWidth(nativeEvent.layout.width);
 	};
 
-	const onRedeemPress = async () => {
+	const onRedeemPress = () => {
 		setLoading(true);
 
 		const calculatedPoints =
 			(rewardInfo?.points || 0) -
 			((rewardInfo?.points || 0) * (rewardInfo?.discount || 0)) / 100;
-		await handleRedeemPress(
+		handleRedeemPress(
 			params?.rewardInfoId || '',
 			rewardInfo?.name || '',
 			calculatedPoints,
 			() => setLoading(false),
 		);
 	};
+
+	const onMarkUsedPress = () => {
+		setLoading(true);
+
+		handleMarkUsedPress(params?.rewardId || '', () => setLoading(false));
+	};
+
+	useEffect(() => {
+		if (isExpired) {
+			setRewardStatus(RewardStatus.EXPIRED);
+		} else if (isUsed) {
+			setRewardStatus(RewardStatus.USED);
+		}
+	}, [reward]);
 
 	return (
 		<View style={styles.container}>
@@ -83,56 +101,23 @@ const RewardDetailScreen: FC = () => {
 						isExpired && styles.expiredStyle,
 					]}
 				>
-					<View style={styles.brandContainer}>
-						<Image
-							width={brandImageSize}
-							height={brandImageSize}
-							resizeMode="contain"
-							source={{ uri: rewardInfo?.brandImage || '' }}
-						/>
-						<View style={{ flex: 1 }}>
-							<Text style={styles.brand}>{rewardInfo?.brand}</Text>
-							<View>
-								<Text style={styles.rewardName}>{rewardInfo?.name}</Text>
-							</View>
-						</View>
-					</View>
+					<Title
+						brandImage={rewardInfo?.brandImage || ''}
+						brand={rewardInfo?.brand || ''}
+						name={rewardInfo?.name || ''}
+					/>
 
 					{params?.redeemed && (
-						<RewardTicket
+						<Ticket
 							rewardId={params.rewardId || ''}
-							rewardStatus={params?.status || RewardStatus.ACTIVE}
+							rewardStatus={rewardStatus}
 						/>
 					)}
 
-					<View style={styles.pointAndDateContainer}>
-						<View style={styles.tagContainer}>
-							<Text style={styles.tagTitle}>{points}</Text>
-							<View style={styles.pointContainer}>
-								<Text
-									style={[
-										styles.point,
-										params?.redeemed && { color: defaultTheme.textDark90 },
-									]}
-								>
-									{rewardInfo?.discount
-										? (rewardInfo?.points || 0) *
-											(1 - rewardInfo.discount / 100)
-										: rewardInfo?.points}{' '}
-									GO
-								</Text>
-								{!!rewardInfo?.discount && !params?.redeemed && (
-									<Text style={styles.discount}>{rewardInfo?.points}</Text>
-								)}
-							</View>
-						</View>
-						<View style={styles.tagContainer}>
-							<Text style={styles.tagTitle}>{expired}</Text>
-							<Text style={styles.date}>
-								{new Date(rewardInfo?.expiredDate).toLocaleDateString()}
-							</Text>
-						</View>
-					</View>
+					<PointsAndDate
+						isRedeemed={params?.redeemed}
+						rewardInfo={rewardInfo as never}
+					/>
 				</View>
 
 				{!params?.redeemed && (
@@ -152,15 +137,24 @@ const RewardDetailScreen: FC = () => {
 				</View>
 			</TouchableOpacity>
 
-			<View style={styles.redeemButtonWrapper}>
+			<View
+				style={[
+					styles.floatButtonWrapper,
+					!isActive && styles.hiddenFloatButton,
+				]}
+			>
 				{loading ? (
 					<ActivityIndicator size={30} />
 				) : params?.redeemed ? (
-					<TouchableOpacity style={styles.redeemButton}>
+					<TouchableOpacity
+						style={styles.floatButton}
+						onPress={onMarkUsedPress}
+						disabled={!isActive}
+					>
 						<Text style={styles.redeemText}>{markUsedButton}</Text>
 					</TouchableOpacity>
 				) : (
-					<TouchableOpacity style={styles.redeemButton} onPress={onRedeemPress}>
+					<TouchableOpacity style={styles.floatButton} onPress={onRedeemPress}>
 						<Text style={styles.redeemText}>{redeemButton}</Text>
 					</TouchableOpacity>
 				)}
@@ -190,66 +184,6 @@ const styles = StyleSheet.create({
 		borderBottomWidth: 1,
 		borderBottomColor: defaultTheme.textDark10,
 	},
-	brandContainer: {
-		flexDirection: 'row',
-		gap: 12,
-		alignItems: 'center',
-	},
-	brand: {
-		fontSize: 13,
-		lineHeight: 24,
-		letterSpacing: -0.3,
-		color: defaultTheme.textDark60,
-	},
-	rewardName: {
-		fontSize: 18,
-		lineHeight: 24,
-		fontWeight: '600',
-		letterSpacing: -0.3,
-		color: defaultTheme.textDark90,
-	},
-	pointAndDateContainer: {
-		marginTop: 16,
-		flexDirection: 'row',
-		gap: 14,
-	},
-	tagContainer: {
-		flex: 1,
-		padding: 12,
-		gap: 8,
-		borderRadius: 20,
-		backgroundColor: defaultTheme.gray10,
-	},
-	tagTitle: {
-		fontSize: 13,
-		lineHeight: 15,
-		letterSpacing: -0.3,
-		color: defaultTheme.textDark80,
-	},
-	pointContainer: {
-		flexDirection: 'row',
-		alignItems: 'baseline',
-		gap: 4,
-	},
-	point: {
-		lineHeight: 16,
-		fontWeight: '700',
-		letterSpacing: -0.3,
-		color: defaultTheme.cta100,
-	},
-	discount: {
-		fontSize: 12,
-		lineHeight: 14,
-		letterSpacing: -0.3,
-		color: defaultTheme.textDark30,
-		textDecorationLine: 'line-through',
-	},
-	date: {
-		lineHeight: 16,
-		fontWeight: '500',
-		letterSpacing: -0.3,
-		color: defaultTheme.textDark90,
-	},
 	belowContainer: {
 		marginTop: 24,
 	},
@@ -274,7 +208,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 	},
-	redeemButtonWrapper: {
+	floatButtonWrapper: {
 		position: 'absolute',
 		bottom: 40,
 		left: 32,
@@ -282,7 +216,10 @@ const styles = StyleSheet.create({
 		backgroundColor: defaultTheme.bgLight,
 		borderRadius: 50,
 	},
-	redeemButton: {
+	hiddenFloatButton: {
+		opacity: 0,
+	},
+	floatButton: {
 		paddingVertical: 20,
 		borderRadius: 50,
 		backgroundColor: defaultTheme.textDark90,

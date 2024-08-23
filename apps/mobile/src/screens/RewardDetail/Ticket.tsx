@@ -4,7 +4,7 @@ import { Path, Svg } from 'react-native-svg';
 import Copy from '@aigo/components/icon/Copy';
 import { rewardState } from 'state/reward';
 import { defaultTheme } from 'utils/global';
-import { RewardStatus } from 'utils/navigation';
+import { RewardStatus } from 'utils/reward';
 import { useSnapshot } from 'valtio';
 
 const ticketHeight = 112;
@@ -19,7 +19,7 @@ interface Props {
 	rewardId: string;
 }
 
-const RewardTicket: FC<Props> = ({ rewardStatus, rewardId }) => {
+const Ticket: FC<Props> = ({ rewardStatus, rewardId }) => {
 	const { redeemedRewards } = useSnapshot(rewardState);
 	const reward = redeemedRewards?.find((reward) => reward.id === rewardId);
 	const isActive = rewardStatus === RewardStatus.ACTIVE;
@@ -63,7 +63,7 @@ const RewardTicket: FC<Props> = ({ rewardStatus, rewardId }) => {
 	);
 };
 
-export default RewardTicket;
+export default Ticket;
 
 const styles = StyleSheet.create({
 	container: {
