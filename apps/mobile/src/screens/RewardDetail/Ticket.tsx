@@ -1,5 +1,11 @@
 import type { FC } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+	Linking,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+} from 'react-native';
 import { Path, Svg } from 'react-native-svg';
 import Copy from '@aigo/components/icon/Copy';
 import { rewardState } from 'state/reward';
@@ -49,10 +55,16 @@ const Ticket: FC<Props> = ({ rewardStatus, rewardId }) => {
 			<View style={styles.infoContainer}>
 				<Text style={styles.title}>🎁 Your reward</Text>
 				<View style={styles.codeContainer}>
-					<TouchableOpacity hitSlop={10}>
+					<TouchableOpacity
+						hitSlop={10}
+						onPress={() => Linking.openURL(reward?.link || '')}
+					>
 						<Text style={styles.code}>{reward?.link}</Text>
 					</TouchableOpacity>
-					<TouchableOpacity hitSlop={10}>
+					<TouchableOpacity
+						hitSlop={10}
+						onPress={() => navigator.clipboard.writeText(reward?.link || '')}
+					>
 						<View style={styles.copyButton}>
 							<Copy color={defaultTheme.textDark90} width={12} />
 						</View>

@@ -9,7 +9,7 @@ import { useSnapshot } from 'valtio';
 
 const RewardTab = () => {
 	const { navigate } = useNavigation();
-	const { content } = useSnapshot(appState);
+	const { content, appUser } = useSnapshot(appState);
 	const { balance, myReward, redeemed } = content.screens.reward.rewardTab;
 
 	return (
@@ -21,7 +21,7 @@ const RewardTab = () => {
 				<View style={styles.tab}>
 					<CoinStack />
 					<View style={styles.tabInfo}>
-						<Text style={styles.tabTitle}>1400 GO</Text>
+						<Text style={styles.tabTitle}>{appUser?.GOPoints} GO</Text>
 						<Text style={styles.tabSubText}>{balance}</Text>
 					</View>
 				</View>
