@@ -22,7 +22,7 @@ const HotItem: FC<Props> = ({ rewardInfo }) => {
 				source={{ uri: rewardInfo?.images?.[0] || '' }}
 				style={styles.image}
 			/>
-			<Text style={styles.name}>{rewardInfo.name}</Text>
+			<Text style={styles.name}>{rewardInfo?.name}</Text>
 			<Text style={styles.points}>{calculatedPoints} GO</Text>
 		</View>
 	);

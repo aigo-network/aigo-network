@@ -9,14 +9,16 @@ import { useSnapshot } from 'valtio';
 
 const RewardTab = () => {
 	const { navigate } = useNavigation();
-	const { content, appUser } = useSnapshot(appState);
+	const { content, appUser, remoteConfig } = useSnapshot(appState);
 	const { balance, myReward, redeemed } = content.screens.reward.rewardTab;
+	const { isSupportedRegion } = remoteConfig.rewardFeature;
 
 	return (
 		<View style={styles.container}>
 			<TouchableOpacity
 				style={styles.tabWrapper}
 				onPress={() => navigate('RewardsBalance')}
+				disabled={!isSupportedRegion}
 			>
 				<View style={styles.tab}>
 					<CoinStack />
@@ -32,6 +34,7 @@ const RewardTab = () => {
 			<TouchableOpacity
 				style={styles.tabWrapper}
 				onPress={() => navigate('MyRewards')}
+				disabled={!isSupportedRegion}
 			>
 				<View style={styles.tab}>
 					<Ticket width={22} />

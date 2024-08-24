@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import type { NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { defaultTheme } from 'utils/global';
@@ -12,23 +12,26 @@ const carouselWidth = itemWidth + itemGap;
 
 const HotRewards: FC = () => {
 	const scrollRef = useRef<ScrollView>(null);
-	const { activeRewards } = useRewardClassification();
+	const { activeRewards = [] } = useRewardClassification();
 	const [currentIndex, setCurrentIndex] = useState(2);
 	const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout>();
 
-	const carouselList = [
-		activeRewards?.[activeRewards?.length - 2],
-		activeRewards?.[activeRewards?.length - 1],
-		...(activeRewards as never),
-		activeRewards?.[0],
-		activeRewards?.[1],
-	];
+	const carouselList = useMemo(
+		() => [
+			activeRewards?.[activeRewards?.length - 2],
+			activeRewards?.[activeRewards?.length - 1],
+			...activeRewards,
+			activeRewards?.[0],
+			activeRewards?.[1],
+		],
+		[activeRewards],
+	);
 
 	const onScrollEnd = ({
 		nativeEvent,
 	}: NativeSyntheticEvent<NativeScrollEvent>) => {
 		const newIndex = Math.floor(nativeEvent.contentOffset.x / carouselWidth);
-		if (newIndex > carouselList.length + 1) {
+		if (newIndex > activeRewards.length + 1) {
 			scrollRef.current?.scrollTo({
 				x: 2 * carouselWidth,
 				y: nativeEvent.contentOffset.y,
@@ -38,12 +41,12 @@ const HotRewards: FC = () => {
 			setCurrentIndex(2);
 		} else if (newIndex < 2) {
 			scrollRef.current?.scrollTo({
-				x: (carouselList.length + 1) * carouselWidth,
+				x: (activeRewards.length + 1) * carouselWidth,
 				y: nativeEvent.contentOffset.y,
 				animated: false,
 			});
 
-			setCurrentIndex(carouselList.length + 1);
+			setCurrentIndex(activeRewards.length + 1);
 		} else {
 			setCurrentIndex(newIndex);
 		}
@@ -53,7 +56,7 @@ const HotRewards: FC = () => {
 		setTimeout(() => {
 			let newIndex: number;
 
-			if (currentIndex > carouselList.length + 1) {
+			if (currentIndex > activeRewards.length + 1) {
 				scrollRef.current?.scrollTo({
 					x: 2 * carouselWidth,
 					y: 0,
@@ -78,7 +81,6 @@ const HotRewards: FC = () => {
 			y: 0,
 			animated: false,
 		});
-		console.log(JSON.stringify(carouselList, null, 2));
 	}, []);
 
 	useEffect(() => {

@@ -9,6 +9,10 @@ export type RemoteConfig = {
 	enableMapFeature: boolean;
 	activeBanners: ActiveBanner[];
 	watchPositionOptions: GeolocationOptions;
+	rewardFeature: {
+		isSupportedRegion: boolean | null;
+		region: string;
+	};
 };
 
 export type Onboarding = {

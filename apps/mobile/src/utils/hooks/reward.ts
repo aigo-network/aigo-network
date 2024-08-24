@@ -1,11 +1,19 @@
 import { useEffect, useMemo } from 'react';
 import type { RewardInfo, RewardInstance } from '@aigo/api/graphql';
 import { RewardStatus } from '@aigo/api/graphql';
+import { appState } from 'state/app';
+import { syncRemoteConfig } from 'state/app/remoteConfig';
 import { rewardActions, rewardState } from 'state/reward';
 import { getActiveRewards, getRedeemedRewards, getRewards } from 'utils/reward';
 import { useSnapshot } from 'valtio';
 
 export const useReward = () => {
+	const { remoteConfig } = useSnapshot(appState);
+
+	useEffect(() => {
+		syncRemoteConfig();
+	}, []);
+
 	useEffect(() => {
 		const handleGetRewards = async () => {
 			const rewards = await getRewards();
@@ -25,10 +33,12 @@ export const useReward = () => {
 			rewardActions.setRedeemedReward(redeemedRewards);
 		};
 
-		handleGetRewards();
-		handleGetActiveRewards();
-		handleGetRedeemedRewards();
-	}, []);
+		if (remoteConfig.rewardFeature.isSupportedRegion) {
+			handleGetRewards();
+			handleGetActiveRewards();
+			handleGetRedeemedRewards();
+		}
+	}, [remoteConfig.rewardFeature]);
 };
 
 export const useRewardClassification = () => {

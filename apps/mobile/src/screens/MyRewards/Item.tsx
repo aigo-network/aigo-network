@@ -83,6 +83,7 @@ const Item: FC<Props> = ({ active, rewardId, rewardInfoId }) => {
 								width={48}
 								height={48}
 								source={{ uri: rewardInfo?.brandImage || '' }}
+								resizeMode="contain"
 							/>
 						</View>
 					</View>

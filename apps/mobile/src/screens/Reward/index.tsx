@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import { Fragment } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { appState } from 'state/app';
@@ -12,7 +13,7 @@ import RewardTab from './RewardTab';
 
 const RewardScreen: FC = () => {
 	const { top } = useSafeAreaInsets();
-	const { content } = useSnapshot(appState);
+	const { content, remoteConfig } = useSnapshot(appState);
 	const { screenTitle } = content.screens.reward;
 
 	useReward();
@@ -26,9 +27,12 @@ const RewardScreen: FC = () => {
 			>
 				<View style={styles.scrollBackground} />
 				<RewardTab />
-				<HotRewards />
-				<MoreRewards />
-				{/* <View style={{height: 2000, backgroundColor: 'red'}} /> */}
+				{remoteConfig.rewardFeature.isSupportedRegion && (
+					<Fragment>
+						<HotRewards />
+						<MoreRewards />
+					</Fragment>
+				)}
 			</ScrollView>
 		</View>
 	);
