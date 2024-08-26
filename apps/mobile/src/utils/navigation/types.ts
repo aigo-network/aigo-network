@@ -1,3 +1,6 @@
+import type { RewardInfo, RewardInstance } from '@aigo/api/sdk';
+import type { ParamListBase } from '@react-navigation/native';
+
 export type RootStackParamList = {
 	Splash: undefined;
 	Open: undefined;
@@ -7,15 +10,33 @@ export type RootStackParamList = {
 	OnboardName: undefined;
 	OnboardDescription: undefined;
 	OnboardCity: undefined;
-	Home: undefined;
-	Profile: undefined;
 	VerifyNNID: undefined;
 	VerifyPhoneNumber: undefined;
 	VerifyOTP: undefined;
-	Map: undefined;
 	TripResult: undefined;
-	TripHistory: undefined;
+	BottomTab: SubNavigator<BottomTabParamList>;
+	RewardDetail:
+		| {
+				redeemed?: boolean;
+				rewardInfoId: RewardInfo['id'];
+				rewardId?: RewardInstance['id'];
+		  }
+		| undefined;
+	MyRewards: undefined;
+	RewardsBalance: undefined;
 };
+
+export type BottomTabParamList = {
+	Home: undefined;
+	Reward: undefined;
+	Map: undefined;
+	TripHistory: undefined;
+	Profile: undefined;
+};
+
+type SubNavigator<T extends ParamListBase> = {
+	[K in keyof T]: { screen: K; params?: T[K] };
+}[keyof T];
 
 declare global {
 	// eslint-disable-next-line @typescript-eslint/no-namespace

@@ -29,7 +29,7 @@ export const LoginScreen = () => {
 			const { user } = await graphqlClient.getUserProfile();
 			if (user?.completeOnboarding) {
 				reset({
-					routes: [{ name: 'Home' }],
+					routes: [{ name: 'BottomTab', params: { screen: 'Home' } }],
 				});
 			} else {
 				reset({

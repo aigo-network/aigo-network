@@ -221,6 +221,120 @@ input RegisterDeviceInput {
 }
 
 """"""
+type RewardInfo {
+  """"""
+  amount: Int
+
+  """"""
+  brand: String
+
+  """"""
+  brandImage: String
+
+  """"""
+  categories: [String]
+
+  """"""
+  createdAt: DateTime
+
+  """"""
+  description: String
+
+  """"""
+  discount: Int
+
+  """"""
+  expiredDate: DateTime
+
+  """"""
+  id: String
+
+  """"""
+  images: [String]
+
+  """"""
+  name: String
+
+  """"""
+  points: Int
+
+  """"""
+  status: RewardStatus
+
+  """"""
+  type: RewardType
+
+  """"""
+  updatedAt: DateTime
+}
+
+""""""
+type RewardInstance {
+  """"""
+  code: String
+
+  """"""
+  createdAt: DateTime
+
+  """"""
+  id: String
+
+  """"""
+  image: String
+
+  """"""
+  infoId: String
+
+  """"""
+  link: String
+
+  """"""
+  points: Int
+
+  """"""
+  updatedAt: DateTime
+
+  """"""
+  used: Boolean
+
+  """"""
+  userId: String
+}
+
+""""""
+enum RewardQueryEnum {
+  """"""
+  ACTIVE
+
+  """"""
+  DISABLE
+
+  """"""
+  INIT
+}
+
+""""""
+enum RewardStatus {
+  """"""
+  DISABLED
+
+  """"""
+  INIT
+
+  """"""
+  LIVE
+}
+
+""""""
+enum RewardType {
+  """"""
+  DIGITAL
+
+  """"""
+  PHYSICAL
+}
+
+""""""
 type RootMutation {
   """"""
   checkIn: DailyCheckIn
@@ -248,6 +362,12 @@ type RootMutation {
 
   """"""
   insertTripPoint(geolocation: GeolocationInput!, tripID: String!): Trip
+
+  """"""
+  markRewardAsUsed(rewardInstanceID: String!): Boolean
+
+  """"""
+  redeemReward(rewardInfoID: String!): RewardInstance
 
   """"""
   registerDevice(input: RegisterDeviceInput!): Device
@@ -290,6 +410,18 @@ type RootQuery {
 
   """"""
   ping: String
+
+  """"""
+  redeemedRewards: [RewardInstance]
+
+  """"""
+  reward(id: String!): RewardInfo
+
+  """"""
+  rewardInstance(rewardInstanceID: String!): RewardInstance
+
+  """"""
+  rewards(status: RewardQueryEnum): [RewardInfo]
 
   """"""
   trip(tripID: String!): Trip

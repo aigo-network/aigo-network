@@ -17,13 +17,13 @@ export const showClaimTripPoint = ({ points }: TripPointsConfig) => {
 	const { startNewTrip, backToHome } = appState.content.screens.tripResult;
 
 	const handleStartNewTrip = () => {
-		navigationRef.navigate('Map');
+		navigationRef.navigate('BottomTab', { screen: 'Map' });
 		cleanModal();
 		showStartTripBottomSheet();
 	};
 
 	const handleBackToHome = () => {
-		navigationRef.navigate('Home');
+		navigationRef.navigate('BottomTab', { screen: 'Home' });
 		cleanModal();
 	};
 

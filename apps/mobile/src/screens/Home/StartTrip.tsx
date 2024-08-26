@@ -19,7 +19,7 @@ export const StartTrip = () => {
 	const homeContent = content.screens.home;
 
 	const handleOpenMap = () => {
-		reset({ routes: [{ name: 'Map' }] });
+		reset({ routes: [{ name: 'BottomTab', params: { screen: 'Map' } }] });
 	};
 
 	const containerStyle = [

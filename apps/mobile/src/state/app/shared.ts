@@ -55,6 +55,10 @@ export const defaultRemoteConfig: RemoteConfig = {
 	// 	interval: 4000, // in ms
 	// 	fastestInterval: 1000, // in ms
 	// },
+	rewardFeature: {
+		isSupportedRegion: null,
+		region: '',
+	},
 };
 
 export const initAppState: AppState = {

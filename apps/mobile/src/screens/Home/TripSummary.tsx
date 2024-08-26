@@ -37,7 +37,7 @@ export const TripSummary = () => {
 	}, [totalTimeInMs]);
 
 	const openTripHistory = () => {
-		navigate('TripHistory');
+		navigate('BottomTab', { screen: 'TripHistory' });
 	};
 
 	return (

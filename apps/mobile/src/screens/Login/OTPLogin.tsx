@@ -30,7 +30,9 @@ const OTPLoginScreen = () => {
 			});
 			const { user } = await graphqlClient.getUserProfile();
 			if (user?.completeOnboarding) {
-				navigation.reset({ routes: [{ name: 'Home' }] });
+				navigation.reset({
+					routes: [{ name: 'BottomTab', params: { screen: 'Home' } }],
+				});
 			} else {
 				navigation.reset({ routes: [{ name: 'OnboardName' }] });
 			}
