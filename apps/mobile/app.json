@@ -1,4 +1,7 @@
 {
   "name": "aigo",
-  "displayName": "AiGO Ride"
+  "displayName": "AiGO Ride",
+  "version": "1.0.10",
+  "buildNumber": 38,
+  "buildHash": "3a87601"
 }

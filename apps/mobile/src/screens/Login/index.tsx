@@ -14,7 +14,8 @@ import { useSnapshot } from 'valtio';
 
 export const LoginScreen = () => {
 	const { navigate, reset } = useNavigation();
-	const { version, buildNumber, content, remoteConfig } = useSnapshot(appState);
+	const { version, buildNumber, buildHash, content, remoteConfig } =
+		useSnapshot(appState);
 	const logInContent = content.screens.logIn;
 	const backgroundSrc = require('assets/img/login/aigo-ride-logo-light.png');
 	const googleIconSrc = require('assets/img/login/google-logo.png');
@@ -102,7 +103,7 @@ export const LoginScreen = () => {
 						</Button>
 					</View>
 					<Text style={styles.version}>
-						{logInContent.versionPrefix} {version} ({buildNumber})
+						{logInContent.versionPrefix} {version} ({buildNumber} {buildHash})
 					</Text>
 				</View>
 			</SafeContainer>

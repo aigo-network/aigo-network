@@ -20,7 +20,7 @@ import { showDeleteUserConfirm, showLogOutConfirm } from './shared';
 
 export const Footer = () => {
 	const { reset } = useNavigation();
-	const { content, version, buildNumber } = useSnapshot(appState);
+	const { content, version, buildNumber, buildHash } = useSnapshot(appState);
 	const footerContent = content.screens.profile.footerSection;
 
 	const handlePressFollowTwitter = () => {
@@ -94,7 +94,7 @@ export const Footer = () => {
 				</TouchableOpacity>
 			</View>
 			<Text style={styles.version}>
-				{footerContent.versionPrefix} {version} ({buildNumber})
+				{footerContent.versionPrefix} {version} ({buildNumber} {buildHash})
 			</Text>
 		</View>
 	);

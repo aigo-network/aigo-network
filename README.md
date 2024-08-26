@@ -34,3 +34,7 @@ password <secret token>
 ```
 
 - Android: Add `MAPBOX_DOWNLOADS_TOKEN=<secret token>` to home `~/.gradle/gradle.properties`
+
+### Versioning
+- Use `yarn versioning` command to automatically update version, buildNumber across Android, iOS and files
+- `yarn versioning bump` will force version update even no changes detected.
