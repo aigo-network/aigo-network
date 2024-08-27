@@ -26,7 +26,9 @@ export const Header = () => {
 					</View>
 				</View>
 
-				<TouchableOpacity onPress={() => navigate('Profile')}>
+				<TouchableOpacity
+					onPress={() => navigate('BottomTab', { screen: 'Profile' })}
+				>
 					<Image
 						style={styles.avatar}
 						source={{ uri: appUser?.imageUrl || defaultAvatar }}

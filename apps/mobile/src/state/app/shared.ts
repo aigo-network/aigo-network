@@ -6,6 +6,8 @@ import type { Content } from 'utils/translations';
 import { translations } from 'utils/translations';
 import { proxy } from 'valtio';
 
+import appJson from '../../../app.json';
+
 import type { Onboarding, RemoteConfig } from './types';
 
 interface AppState {
@@ -14,6 +16,7 @@ interface AppState {
 	content: Content;
 	version: string;
 	buildNumber: string;
+	buildHash: string;
 	phoneSignIn: {
 		phoneNumber?: PhoneNumber;
 	};
@@ -55,6 +58,10 @@ export const defaultRemoteConfig: RemoteConfig = {
 	// 	interval: 4000, // in ms
 	// 	fastestInterval: 1000, // in ms
 	// },
+	rewardFeature: {
+		isSupportedRegion: null,
+		region: '',
+	},
 };
 
 export const initAppState: AppState = {
@@ -62,6 +69,7 @@ export const initAppState: AppState = {
 	content: translations.en,
 	version: DeviceInfo.getVersion(),
 	buildNumber: DeviceInfo.getBuildNumber(),
+	buildHash: appJson.buildHash,
 	phoneSignIn: {},
 	remoteConfig: defaultRemoteConfig,
 };

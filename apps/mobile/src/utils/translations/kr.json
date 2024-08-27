@@ -247,6 +247,27 @@
         "updateAccountError": "계정 업데이트에 실패했습니다",
         "updateVerificationError": "인증 업데이트에 실패했습니다"
       }
+    },
+    "reward": {
+      "screenTitle": "AiGO Reward",
+      "rewardTab": {
+        "balance": "Balance",
+        "myReward": "My rewards",
+        "redeemed": "Redeemed"
+      },
+      "hotRewards": {
+        "title": "Hot rewards"
+      },
+      "moreRewards": {
+				"title": "🎁 More rewards from AiGO"
+			},
+			"rewardsDetail": {
+				"points": "Points",
+				"expired": "Expire on",
+				"termAndCondition": "Term & Condition:",
+        "redeemButton": "Redeem",
+        "markUsedButton": "Mark as used"
+			}
     }
   }
 }

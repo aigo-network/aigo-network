@@ -1,18 +1,15 @@
 import { Platform, ScrollView, StyleSheet, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { appState } from 'state/app';
 import { defaultTheme } from 'utils/global';
 import { useTransparencyTracking, useUserProfile } from 'utils/hooks/app';
 import { useNotificationPermissionRequest } from 'utils/hooks/notification';
 import { useRecoverLastTrip } from 'utils/hooks/trips';
-import { useSnapshot } from 'valtio';
 
 import ActiveBanners from './ActiveBanners';
 import Balance from './Balance';
 import DailyCheckIn from './DailyCheckIn';
 import Header from './Header';
 import Invite from './Invite';
-import StartTrip from './StartTrip';
 import TripSummary from './TripSummary';
 
 export const HomeScreen = () => {
@@ -22,8 +19,6 @@ export const HomeScreen = () => {
 	useRecoverLastTrip();
 
 	const { bottom } = useSafeAreaInsets();
-
-	const { remoteConfig } = useSnapshot(appState);
 
 	return (
 		<View
@@ -45,8 +40,6 @@ export const HomeScreen = () => {
 				<Invite />
 				{/* <DailyMissions /> */}
 			</ScrollView>
-
-			{remoteConfig.enableMapFeature && <StartTrip />}
 		</View>
 	);
 };

@@ -5,6 +5,7 @@ import {
 	requestTrackingPermission,
 } from 'react-native-tracking-transparency';
 import { graphqlClient } from '@aigo/api/graphql';
+import crashlytics from '@react-native-firebase/crashlytics';
 import { appActions, appState } from 'state/app';
 import { useSnapshot } from 'valtio';
 
@@ -14,6 +15,12 @@ export const useAppConfigure = () => {
 			StatusBar.setBackgroundColor('transparent');
 			StatusBar.setTranslucent(true);
 		}
+
+		crashlytics().setAttributes({
+			version: appState.version,
+			buildNumber: appState.buildNumber,
+			buildHash: appState.buildHash,
+		});
 	}, []);
 };
 

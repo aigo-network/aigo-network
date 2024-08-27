@@ -45,7 +45,7 @@ export const CityName = () => {
 	const handleCompleteOnboarding = async () => {
 		try {
 			await completeOnboarding(searchText);
-			reset({ routes: [{ name: 'Home' }] });
+			reset({ routes: [{ name: 'BottomTab', params: { screen: 'Home' } }] });
 		} catch (error) {
 			crashlytics().recordError(error as Error);
 			console.log('Failed to complete onboarding: ', error);

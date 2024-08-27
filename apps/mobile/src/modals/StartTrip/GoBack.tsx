@@ -10,7 +10,16 @@ type Props = {
 
 export const GoBack: FC<Props> = ({ onPress }) => {
 	const handlePressGoBack = () => {
-		navigationRef.reset({ routes: [{ name: 'Home' }] });
+		navigationRef.reset({
+			routes: [
+				{
+					name: 'BottomTab',
+					params: {
+						screen: 'Home',
+					},
+				},
+			],
+		});
 		onPress?.();
 	};
 

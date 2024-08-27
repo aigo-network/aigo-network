@@ -12,6 +12,7 @@
     "type-check": "turbo run type-check",
     "codegen": "graphql-codegen --config tools/codegen.ts",
     "test": "jest",
+    "versioning": "node tools/versioning",
     "deploy:prod": "sst deploy --stage production",
     "deploy:staging": "sst deploy --stage staging",
     "deploy:dev": "sst deploy --stage development",

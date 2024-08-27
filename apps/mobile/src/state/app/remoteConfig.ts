@@ -30,7 +30,6 @@ export const syncRemoteConfig = async () => {
 			: Platform.OS === 'ios'
 				? conf.iosWatchPositionOptions
 				: conf.watchPositionOptions;
-
 	appState.remoteConfig = {
 		nyamNyamCampaignActivated: conf.nyamNyamCampaignActivated?.asBoolean(),
 		invitationUrl: conf.invitationUrl?.asString(),
@@ -39,6 +38,7 @@ export const syncRemoteConfig = async () => {
 		enableMapFeature: conf.enableMapFeature?.asBoolean(),
 		watchPositionOptions: parseRemoteJSON(rawWatchPositionOptions),
 		activeBanners: parseRemoteJSON(conf.activeBanners),
+		rewardFeature: parseRemoteJSON(conf.rewardFeature),
 	};
 };
 
