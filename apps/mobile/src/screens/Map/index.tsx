@@ -9,7 +9,7 @@ import TripActions from './TripActions';
 import TripInfo from './TripInfo';
 
 export const MapScreen = () => {
-	const { goBack } = useNavigation();
+	const { reset } = useNavigation();
 	const { mapReady, permissionReady } = useMapState();
 
 	const handleFinishLoadingMap = useCallback(() => {
@@ -18,8 +18,6 @@ export const MapScreen = () => {
 	}, []);
 
 	const handleSuccessRequestGeoPermission = useCallback(async () => {
-		console.debug('Successfully request geolocation permission');
-
 		mapActions.setPermissionReady(true);
 
 		watchLocation(async (position) => {
@@ -28,11 +26,17 @@ export const MapScreen = () => {
 		});
 	}, []);
 
+	const handleRequestPermissionFailed = useCallback(() => {
+		setTimeout(() => {
+			reset({ routes: [{ name: 'BottomTab', params: { screen: 'Home' } }] });
+		}, 1000);
+	}, []);
+
 	useEffect(() => {
 		requestGeolocationPermission({
 			onSuccess: () => handleSuccessRequestGeoPermission(),
-			onDenied: () => goBack(),
-			onUnavailable: () => goBack(),
+			onDenied: () => handleRequestPermissionFailed(),
+			onUnavailable: () => handleRequestPermissionFailed(),
 		});
 	}, []);
 

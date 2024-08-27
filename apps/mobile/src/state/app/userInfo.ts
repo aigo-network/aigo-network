@@ -11,7 +11,7 @@ const userInfoPrefix = 'DefaultUserInfo';
  * store user info sign-in with Apple, these info is only provided at the first time sign-in with Apply.
  * After that these field is always null, so we need to store this info to revise onboarding flow
  */
-export const setDefaultUserInfo = async (userInfo: UserInfo) => {
+export const setDefaultUserInfoToStorage = async (userInfo: UserInfo) => {
 	const promises = Object.keys(userInfo).map(async (key) => {
 		await AsyncStorage.setItem(
 			`${userInfoPrefix}-${key}`,
@@ -21,7 +21,7 @@ export const setDefaultUserInfo = async (userInfo: UserInfo) => {
 	await Promise.all(promises);
 };
 
-export const getDefaultUserInfo = async () => {
+export const getDefaultUserInfoFromStorage = async () => {
 	const userInfo: UserInfo = { displayName: '', email: '' };
 	const promises = Object.keys(userInfo).map(async (key) => {
 		const value = await AsyncStorage.getItem(`${userInfoPrefix}-${key}`);

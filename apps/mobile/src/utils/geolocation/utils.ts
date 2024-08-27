@@ -1,7 +1,6 @@
 /**
  * Configure Geolocation and expose geolocation util wrapper
  */
-
 import type {
 	GeolocationConfiguration,
 	GeolocationError,
@@ -26,24 +25,53 @@ const config: GeolocationConfiguration = {
 
 Geolocation.setRNConfiguration(config);
 
+let lastGeolocationPermissionError: GeolocationError | null = null;
+
 export const requestGeolocationPermission = (
 	config: RequestPermissionConfig,
 ) => {
+	/**
+	 * `Geolocation.requestAuthorization` callbacks are triggered once after first call.
+	 * Track the last error to correctly handle permission flow when cont to go to Map screen
+	 */
+	if (lastGeolocationPermissionError) {
+		console.debug('[Geolocation] Use last permission error');
+		handleGeolocationError(config, lastGeolocationPermissionError);
+		return;
+	}
+
 	Geolocation.requestAuthorization(
 		async () => {
+			console.debug('[Geolocation] Request permission successfully');
 			config.onSuccess?.();
 		},
-		(error: GeolocationError) => {
-			if (error.code === error.TIMEOUT) {
-				// retry request location
-				requestGeolocationPermission(config);
-			} else if (error.code === error.PERMISSION_DENIED) {
-				config.onDenied?.();
-			} else if (error.code === error.POSITION_UNAVAILABLE) {
-				config.onUnavailable?.();
-			}
+		async (error: GeolocationError) => {
+			handleGeolocationError(config, error);
 		},
 	);
+};
+
+const handleGeolocationError = (
+	config: RequestPermissionConfig,
+	error: GeolocationError,
+) => {
+	if (error.code === error.TIMEOUT) {
+		// retry request location
+		requestGeolocationPermission(config);
+		return;
+	}
+
+	lastGeolocationPermissionError = error;
+
+	if (error.code === error.PERMISSION_DENIED) {
+		console.debug('[Geolocation] PERMISSION_DENIED');
+		config.onDenied?.();
+	} else if (error.code === error.POSITION_UNAVAILABLE) {
+		config.onUnavailable?.();
+		console.debug('[Geolocation] POSITION_UNAVAILABLE');
+	} else {
+		console.debug('[Geolocation] UNKNOWN_ERROR');
+	}
 };
 
 export const watchLocation = (

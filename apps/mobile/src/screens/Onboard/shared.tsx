@@ -5,15 +5,16 @@ import auth from '@react-native-firebase/auth';
 import { Align, showModal } from 'empty-modal';
 import PointPopup from 'modals/PointPopup';
 import { appActions, appState } from 'state/app';
-import { getDefaultUserInfo } from 'state/app/userInfo';
+import { getDefaultUserInfoFromStorage } from 'state/app/userInfo';
+import { getAuthEmail } from 'utils/auth';
 import { defaultAvatar, defaultEmail } from 'utils/misc';
 
 export const completeOnboarding = async (cityFallback?: string) => {
 	const { city, name, descriptions, phoneNumber } = appState.onboarding;
-	const email =
-		auth().currentUser?.email ||
-		(await getDefaultUserInfo()).email ||
-		defaultEmail;
+	const authEmail = getAuthEmail();
+	const storedEmail = (await getDefaultUserInfoFromStorage()).email;
+	const email = authEmail || storedEmail || defaultEmail;
+
 	const imageUrl = auth().currentUser?.photoURL || defaultAvatar;
 	const { updateProfile: updatedUser } = await graphqlClient.updateProfile({
 		profile: {

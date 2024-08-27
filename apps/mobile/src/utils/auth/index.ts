@@ -5,12 +5,15 @@ import auth from '@react-native-firebase/auth';
 import crashlytics from '@react-native-firebase/crashlytics';
 import { appActions } from 'state/app';
 import { cleanDefaultUserInfo } from 'state/app/userInfo';
+import { defaultEmail, defaultName } from 'utils/misc';
 
 injectGetJWTFunc(async () => {
 	return await auth().currentUser?.getIdToken();
 });
 
 auth().onIdTokenChanged(async (authUser) => {
+	console.debug('Id Token changed', authUser?.uid, authUser?.email);
+
 	if (authUser) {
 		crashlytics().setUserId(authUser.uid);
 
@@ -18,8 +21,8 @@ auth().onIdTokenChanged(async (authUser) => {
 			const { user } = await graphqlClient.getUserWitDailyMissions();
 			if (user) {
 				crashlytics().setAttributes({
-					email: authUser.email || 'unknown@aigo.network',
-					username: user.name || 'unknown',
+					email: authUser.email || defaultEmail,
+					username: user.name || defaultName,
 					goPoints: String(user.GOPoints),
 				});
 
@@ -65,6 +68,29 @@ export const logOut = async () => {
 	await auth().signOut();
 	await cleanDefaultUserInfo();
 	appActions.cleanState();
+};
+
+/**
+ * Returns the email associated with the current Firebase authentication user.
+ * Email might come from provider data instead of currentUser email field
+ */
+export const getAuthEmail = () => {
+	const authUser = auth().currentUser;
+
+	if (!authUser) {
+		return null;
+	} else if (authUser.email) {
+		return authUser.email;
+	} else if (authUser.providerData.length > 0) {
+		for (const index in authUser.providerData) {
+			const data = authUser.providerData[index];
+			if (data.email) {
+				return data.email;
+			}
+		}
+	}
+
+	return null;
 };
 
 export * from './signinApple';
