@@ -1,5 +1,4 @@
-import { Platform, ScrollView, StyleSheet, View } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import { defaultTheme } from 'utils/global';
 import { useTransparencyTracking, useUserProfile } from 'utils/hooks/app';
 import { useNotificationPermissionRequest } from 'utils/hooks/notification';
@@ -18,15 +17,8 @@ export const HomeScreen = () => {
 	useNotificationPermissionRequest();
 	useRecoverLastTrip();
 
-	const { bottom } = useSafeAreaInsets();
-
 	return (
-		<View
-			style={[
-				styles.container,
-				{ paddingBottom: Platform.OS === 'android' ? 30 : bottom },
-			]}
-		>
+		<View style={styles.container}>
 			<Header />
 			<ScrollView
 				style={styles.mainContainer}
@@ -59,7 +51,7 @@ const styles = StyleSheet.create({
 	mainContentContainer: {
 		flexGrow: 1,
 		paddingHorizontal: 16,
-		paddingBottom: 100,
+		paddingBottom: 150,
 		gap: 16,
 	},
 });
