@@ -46,15 +46,18 @@ const iconMap: ItemMap = {
 };
 
 const BottomItem: FC<Props> = ({ name, isActive }) => {
-	const { navigate } = useNavigation();
+	const { navigate, reset } = useNavigation();
 	const handelPress = () => {
 		navigate(name as never);
+	};
+	const handleNavigateMap = () => {
+		reset({ routes: [{ name: 'BottomTab', params: { screen: name } }] });
 	};
 	const { label, Component } = iconMap[name];
 
 	if (name === 'Map') {
 		return (
-			<TouchableOpacity onPress={handelPress}>
+			<TouchableOpacity onPress={handleNavigateMap}>
 				<View style={styles.container}>
 					<View style={styles.mainButton}>
 						<Motorbike width={28} />

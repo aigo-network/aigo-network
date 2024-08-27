@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: defaultTheme.bgLight,
+		paddingBottom: 40,
 	},
 	headerContainer: {
 		paddingHorizontal: 16,
@@ -72,6 +73,7 @@ const styles = StyleSheet.create({
 	scrollContentContainer: {
 		flexGrow: 1,
 		gap: 14,
+		paddingBottom: 100,
 	},
 	pagingLoading: {
 		marginVertical: 16,

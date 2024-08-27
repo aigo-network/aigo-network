@@ -23,7 +23,9 @@ const RewardTab = () => {
 				<View style={styles.tab}>
 					<CoinStack />
 					<View style={styles.tabInfo}>
-						<Text style={styles.tabTitle}>{appUser?.GOPoints} GO</Text>
+						<Text style={styles.tabTitle}>
+							{appUser?.GOPoints?.toLocaleString()} GO
+						</Text>
 						<Text style={styles.tabSubText}>{balance}</Text>
 					</View>
 				</View>

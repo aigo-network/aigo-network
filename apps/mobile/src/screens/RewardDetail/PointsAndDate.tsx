@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import type { RewardInfo } from '@aigo/api/sdk';
 import { appState } from 'state/app';
 import { defaultTheme } from 'utils/global';
+import { calculatePoints } from 'utils/reward';
 import { useSnapshot } from 'valtio';
 
 interface Props {
@@ -13,6 +14,10 @@ interface Props {
 const PointsAndDate: FC<Props> = ({ isRedeemed = false, rewardInfo }) => {
 	const { content } = useSnapshot(appState);
 	const { expired, points } = content.screens.reward.rewardsDetail;
+	const calculatedPoints = calculatePoints(
+		rewardInfo?.points || 0,
+		rewardInfo?.discount || 0,
+	);
 
 	return (
 		<View style={styles.container}>
@@ -25,13 +30,12 @@ const PointsAndDate: FC<Props> = ({ isRedeemed = false, rewardInfo }) => {
 							isRedeemed && { color: defaultTheme.textDark90 },
 						]}
 					>
-						{rewardInfo?.discount
-							? (rewardInfo?.points || 0) * (1 - rewardInfo.discount / 100)
-							: rewardInfo?.points}{' '}
-						GO
+						{calculatedPoints.toLocaleString()} GO
 					</Text>
 					{!!rewardInfo?.discount && !isRedeemed && (
-						<Text style={styles.discount}>{rewardInfo?.points}</Text>
+						<Text style={styles.discount}>
+							{rewardInfo?.points?.toLocaleString()}
+						</Text>
 					)}
 				</View>
 			</View>

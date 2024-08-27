@@ -9,6 +9,7 @@ export const sharedStyles = StyleSheet.create({
 	contentContainer: {
 		paddingVertical: 24,
 		paddingHorizontal: 16,
+		gap: 24,
 	},
 	emptyRewardContainer: {
 		alignItems: 'center',
