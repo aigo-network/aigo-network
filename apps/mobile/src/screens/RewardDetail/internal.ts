@@ -5,6 +5,7 @@ import {
 	showMarkAsUsed,
 	showSuccessRedemption,
 } from 'modals/RewardModals';
+import { appActions } from 'state/app';
 import { rewardActions } from 'state/reward';
 import { navigationRef } from 'utils/navigation';
 import { redeemReward } from 'utils/reward';
@@ -13,6 +14,10 @@ const handleRedeemReward = async (rewardInfoId: string, rewardName: string) => {
 	const newRedeemedReward = await redeemReward(rewardInfoId);
 
 	if (newRedeemedReward) {
+		const { user } = await graphqlClient.getUserWitDailyMissions();
+		if (user) {
+			appActions.setAppUser(user);
+		}
 		rewardActions.addNewRedeemedReward(newRedeemedReward);
 		const { id: rewardId } = newRedeemedReward;
 		showSuccessRedemption({
