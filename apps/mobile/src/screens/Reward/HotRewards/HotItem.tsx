@@ -29,7 +29,9 @@ const HotItem: FC<Props> = ({ rewardInfo }) => {
 					style={styles.image}
 				/>
 				<Text style={styles.name}>{rewardInfo?.name}</Text>
-				<Text style={styles.points}>{calculatedPoints} GO</Text>
+				<Text style={styles.points}>
+					{calculatedPoints.toLocaleString()} GO
+				</Text>
 			</View>
 		</TouchableOpacity>
 	);

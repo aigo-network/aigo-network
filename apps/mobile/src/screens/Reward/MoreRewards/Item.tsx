@@ -4,6 +4,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import { defaultTheme } from 'utils/global';
 import { useRewardDetail } from 'utils/hooks/reward';
+import { calculatePoints } from 'utils/reward';
 
 const padding = 12;
 
@@ -16,6 +17,10 @@ const Item: FC<Props> = ({ containerWidth, rewardInfoId }) => {
 	const { navigate } = useNavigation();
 	const { rewardInfo } = useRewardDetail({ rewardInfoId });
 	const imageSize = containerWidth / 2 - 2 * padding;
+	const calculatedPoints = calculatePoints(
+		rewardInfo?.points || 0,
+		rewardInfo?.discount || 0,
+	);
 
 	return (
 		<View style={styles.container}>
@@ -36,10 +41,7 @@ const Item: FC<Props> = ({ containerWidth, rewardInfoId }) => {
 							{rewardInfo?.name}
 						</Text>
 						<Text style={styles.points}>
-							{rewardInfo?.discount
-								? (rewardInfo?.points || 0) * (1 - rewardInfo.discount / 100)
-								: rewardInfo?.points}{' '}
-							GO
+							{calculatedPoints.toLocaleString()} GO
 						</Text>
 					</View>
 				</View>

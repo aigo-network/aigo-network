@@ -25,7 +25,7 @@ const Item: FC<Props> = ({ rewardInfoId, rewardId }) => {
 					{new Date(reward?.updatedAt).toDateString()}
 				</Text>
 			</View>
-			<Text style={styles.points}>-{calculatedPoints}</Text>
+			<Text style={styles.points}>-{calculatedPoints.toLocaleString()}</Text>
 		</View>
 	);
 };
