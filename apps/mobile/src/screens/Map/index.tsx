@@ -28,7 +28,7 @@ export const MapScreen = () => {
 
 	const handleRequestPermissionFailed = useCallback(() => {
 		setTimeout(() => {
-			reset({ routes: [{ name: 'Home' }] });
+			reset({ routes: [{ name: 'BottomTab', params: { screen: 'Home' } }] });
 		}, 1000);
 	}, []);
 
