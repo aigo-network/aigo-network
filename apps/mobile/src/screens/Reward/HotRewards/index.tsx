@@ -1,7 +1,13 @@
 import type { FC } from 'react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import {
+	ActivityIndicator,
+	ScrollView,
+	StyleSheet,
+	Text,
+	View,
+} from 'react-native';
 import { defaultTheme } from 'utils/global';
 import { useRewardClassification } from 'utils/hooks/reward';
 
@@ -109,9 +115,13 @@ const HotRewards: FC = () => {
 				}}
 				disableIntervalMomentum
 			>
-				{carouselList?.map((reward, index) => (
-					<HotItem key={index} rewardInfo={reward as never} />
-				))}
+				{carouselList.length !== 0 ? (
+					carouselList?.map((reward, index) => (
+						<HotItem key={index} rewardInfo={reward as never} />
+					))
+				) : (
+					<ActivityIndicator />
+				)}
 			</ScrollView>
 		</View>
 	);
