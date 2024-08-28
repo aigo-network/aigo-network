@@ -15,7 +15,6 @@ const BottomTabStack: FC = () => {
 	const screenOptions = (): BottomTabNavigationOptions => {
 		return {
 			headerShown: false,
-			// tabBarIcon: ({focused}) => {},
 		};
 	};
 

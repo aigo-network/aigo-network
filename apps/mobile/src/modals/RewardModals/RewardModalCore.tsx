@@ -16,6 +16,7 @@ interface Props {
 	onHighlightPress?: () => void;
 	onNormalPress?: () => void;
 	lottieEnable?: boolean;
+	limitNoteEnable?: boolean;
 }
 
 const RewardModalCore: FC<Props> = ({
@@ -29,6 +30,7 @@ const RewardModalCore: FC<Props> = ({
 	onHighlightPress,
 	onNormalPress,
 	lottieEnable = false,
+	limitNoteEnable = false,
 }) => {
 	return (
 		<View style={styles.container}>
@@ -68,6 +70,11 @@ const RewardModalCore: FC<Props> = ({
 				<Text style={styles.highlight}>{descriptionHighlight}</Text>{' '}
 				{descriptionSuffix}
 			</Text>
+			{limitNoteEnable && (
+				<Text style={styles.limitNote}>
+					Limitation for user: get 1 voucher each day.
+				</Text>
+			)}
 
 			<View style={styles.buttonGroup}>
 				<TouchableOpacity
@@ -145,6 +152,12 @@ const styles = StyleSheet.create({
 	},
 	highlight: {
 		color: defaultTheme.cta100,
+	},
+	limitNote: {
+		marginTop: 8,
+		textAlign: 'center',
+		lineHeight: 20,
+		color: defaultTheme.textDark50,
 	},
 	buttonGroup: {
 		marginTop: 24,

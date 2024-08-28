@@ -36,11 +36,12 @@ const showConfirmRedemption = ({
 					onCancel?.();
 					cleanModal();
 				}}
+				limitNoteEnable={true}
 			/>
 		</Animated.View>,
 		{
 			id: 'confirm-redemption',
-			closeOnPressBackdrop: false,
+			closeOnPressBackdrop: true,
 			showBackdrop: true,
 			align: Align.CenterCenter,
 		},
@@ -79,7 +80,7 @@ const showSuccessRedemption = ({
 		</Animated.View>,
 		{
 			id: 'success-redemption',
-			closeOnPressBackdrop: false,
+			closeOnPressBackdrop: true,
 			showBackdrop: true,
 			align: Align.CenterCenter,
 		},
@@ -91,7 +92,6 @@ const showFailRedemption = ({ onConfirm, onCancel }: FailRedemptionConfig) => {
 		<Animated.View entering={FadeInDown}>
 			<RewardModalCore
 				onClose={() => {
-					onCancel?.();
 					cleanModal();
 				}}
 				title={'Oops! Not enough GO'}
@@ -112,7 +112,39 @@ const showFailRedemption = ({ onConfirm, onCancel }: FailRedemptionConfig) => {
 		</Animated.View>,
 		{
 			id: 'fail-redemption',
-			closeOnPressBackdrop: false,
+			closeOnPressBackdrop: true,
+			showBackdrop: true,
+			align: Align.CenterCenter,
+		},
+	);
+};
+
+const showLimitReach = ({ onConfirm, onCancel }: FailRedemptionConfig) => {
+	const { cleanModal } = showModal(
+		<Animated.View entering={FadeInDown}>
+			<RewardModalCore
+				onClose={() => {
+					cleanModal();
+				}}
+				title={'Oops! Limit voucher'}
+				descriptionPrefix={
+					'You&apos;ve already redeemed voucher today. Come back tomorrow to get a new voucher.'
+				}
+				highlightButtonText={'Earn more GO point'}
+				normalButtonText={'Back to AiGO Rewards'}
+				onHighlightPress={() => {
+					onConfirm?.();
+					cleanModal();
+				}}
+				onNormalPress={() => {
+					onCancel?.();
+					cleanModal();
+				}}
+			/>
+		</Animated.View>,
+		{
+			id: 'limit-redemption-reach',
+			closeOnPressBackdrop: true,
 			showBackdrop: true,
 			align: Align.CenterCenter,
 		},
@@ -155,6 +187,7 @@ const showMarkAsUsed = ({ onConfirm, onCancel }: MarkAsUsedConfig) => {
 export {
 	showConfirmRedemption,
 	showFailRedemption,
+	showLimitReach,
 	showMarkAsUsed,
 	showSuccessRedemption,
 };

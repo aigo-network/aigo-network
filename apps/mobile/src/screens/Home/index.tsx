@@ -2,6 +2,7 @@ import { ScrollView, StyleSheet, View } from 'react-native';
 import { defaultTheme } from 'utils/global';
 import { useTransparencyTracking, useUserProfile } from 'utils/hooks/app';
 import { useNotificationPermissionRequest } from 'utils/hooks/notification';
+import { useReward } from 'utils/hooks/reward';
 import { useRecoverLastTrip } from 'utils/hooks/trips';
 
 import ActiveBanners from './ActiveBanners';
@@ -16,6 +17,7 @@ export const HomeScreen = () => {
 	useTransparencyTracking();
 	useNotificationPermissionRequest();
 	useRecoverLastTrip();
+	useReward();
 
 	return (
 		<View style={styles.container}>
