@@ -2,6 +2,7 @@ import { graphqlClient } from '@aigo/api/graphql';
 import {
 	showConfirmRedemption,
 	showFailRedemption,
+	showLimitReach,
 	showMarkAsUsed,
 	showSuccessRedemption,
 } from 'modals/RewardModals';
@@ -11,9 +12,9 @@ import { navigationRef } from 'utils/navigation';
 import { redeemReward } from 'utils/reward';
 
 const handleRedeemReward = async (rewardInfoId: string, rewardName: string) => {
-	const newRedeemedReward = await redeemReward(rewardInfoId);
+	const { newRedeemedReward, limitReach } = await redeemReward(rewardInfoId);
 
-	if (newRedeemedReward) {
+	if (newRedeemedReward?.id) {
 		const { user } = await graphqlClient.getUserWitDailyMissions();
 		if (user) {
 			appActions.setAppUser(user);
@@ -28,6 +29,13 @@ const handleRedeemReward = async (rewardInfoId: string, rewardName: string) => {
 					rewardInfoId,
 					rewardId,
 				}),
+			onCancel: () =>
+				navigationRef.navigate('BottomTab', {
+					screen: 'Reward',
+				}),
+		});
+	} else if (limitReach) {
+		showLimitReach({
 			onCancel: () =>
 				navigationRef.navigate('BottomTab', {
 					screen: 'Reward',

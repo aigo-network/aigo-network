@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { LayoutChangeEvent } from 'react-native';
-import { StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import { appState } from 'state/app';
 import { defaultTheme } from 'utils/global';
 import { useRewardClassification } from 'utils/hooks/reward';
@@ -22,15 +22,19 @@ const MoreRewards = () => {
 				{content.screens.reward.moreRewards.title}
 			</Text>
 			<View style={styles.contentContainer} onLayout={handleLayoutChange}>
-				{activeRewards?.map((reward) => {
-					return (
-						<Item
-							key={reward.id}
-							rewardInfoId={reward.id || ''}
-							containerWidth={containerWidth}
-						/>
-					);
-				})}
+				{activeRewards?.length != 0 ? (
+					activeRewards?.map((reward) => {
+						return (
+							<Item
+								key={reward.id}
+								rewardInfoId={reward.id || ''}
+								containerWidth={containerWidth}
+							/>
+						);
+					})
+				) : (
+					<ActivityIndicator />
+				)}
 			</View>
 		</View>
 	);

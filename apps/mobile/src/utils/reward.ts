@@ -36,12 +36,25 @@ export const getRedeemedRewards = async () => {
 	return filteredReward;
 };
 
-export const redeemReward = async (rewardInfoId: string) => {
-	const { redeemReward: newRedeemedReward } = await graphqlClient.redeemReward({
-		rewardInfoId,
-	});
+export const redeemReward = async (
+	rewardInfoId: string,
+): Promise<{ newRedeemedReward: RewardInstance; limitReach: boolean }> => {
+	const result = { newRedeemedReward: {}, limitReach: false };
 
-	return newRedeemedReward;
+	try {
+		const { redeemReward } = await graphqlClient.redeemReward({
+			rewardInfoId,
+		});
+		result.newRedeemedReward = Object.assign({}, redeemReward);
+		return result;
+	} catch (error) {
+		const errorString = JSON.stringify(error, null, 2);
+		const isLimitReached = errorString.indexOf('reach max redemption limit');
+		if (isLimitReached) {
+			result.limitReach = isLimitReached !== -1;
+		}
+		return result;
+	}
 };
 
 export const calculatePoints = (points: number, discount: number) => {
