@@ -44,7 +44,6 @@ const Container = styled.section`
 
 const HeroImg = styled.div`
 	width: 100%;
-	height: 100vh;
 	background: url(/img/hero-img.png) no-repeat center;
 	background-size: cover;
 
@@ -53,7 +52,7 @@ const HeroImg = styled.div`
 	}
 
 	@media (min-width: 992px) {
-		height: 100vh;
+		height: 90vh;
 	}
 `;
 
