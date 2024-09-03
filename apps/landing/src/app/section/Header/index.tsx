@@ -165,7 +165,6 @@ const InnerContainer = styled.div`
 	@media (min-width: 576px) {
 		max-width: var(--max-width-mobile-horizontal);
 	}
-
 	@media (min-width: 768px) {
 		max-width: var(--max-width-tablet);
 	}

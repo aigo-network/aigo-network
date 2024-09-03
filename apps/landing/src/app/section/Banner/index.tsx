@@ -79,6 +79,8 @@ const HeroImg = styled.div`
 	width: 100%;
 	background: url(/img/hero-img.png) no-repeat center;
 	background-size: cover;
+	height: 94vh;
+	margin-bottom: 100px;
 
 	@media (min-width: 576px) {
 		height: 700px;
@@ -182,6 +184,7 @@ const DataContainer = styled.div`
 	left: 0;
 	right: 0;
 	transform: translateY(50%);
+	padding: 18px 25px;
 `;
 
 const DataBox = styled.div`
@@ -192,10 +195,16 @@ const DataBox = styled.div`
 	padding: 32px 44px;
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 	justify-content: space-between;
+	align-items: center;
+	gap: 30px;
 
+	@media (min-width: 576px) {
+		max-width: var(--max-width-mobile-horizontal);
+	}
 	@media (min-width: 768px) {
-		max-width: 90%;
+		max-width: 100%;
 	}
 	@media (min-width: 992px) {
 		max-width: var(--max-width-laptop);
@@ -206,10 +215,11 @@ const DataBox = styled.div`
 `;
 
 const DataItemContainer = styled.div`
-	width: 300px;
+	flex: 1;
+	width: auto;
 
-	@media (min-width: 768px) {
-		width: auto;
+	@media (min-width: 992px) {
+		width: 300px;
 	}
 `;
 
