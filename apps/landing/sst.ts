@@ -3,19 +3,13 @@ import { NextjsSite } from 'sst/constructs';
 
 import {
 	baseDomainName,
-	getDomainNameByStage,
+	constructDomainName,
 	hostedZone,
 } from '../../tools/stacks/shared';
 
-const landingAlias = {
-	production: ' ',
-	staging: 'staging.',
-	development: 'dev.',
-};
-
 export const landing = ({ stack, app }: StackContext) => {
 	const customDomain: StaticSiteDomainProps = {
-		domainName: getDomainNameByStage(landingAlias[app.stage as never]),
+		domainName: constructDomainName('landing', app.stage),
 		hostedZone,
 	};
 
