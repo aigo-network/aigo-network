@@ -1,5 +1,5 @@
 import { graphqlClient } from '@aigo/api/graphql';
-import { injectGetJWTFunc } from '@aigo/api/jwt';
+import { HeaderPrefixEnum, injectGetJWTFunc } from '@aigo/api/jwt';
 import { initializeApp } from 'firebase/app';
 import {
 	getAuth,
@@ -46,7 +46,11 @@ export const logOut = async () => {
 };
 
 injectGetJWTFunc(async () => {
-	return auth.currentUser?.getIdToken();
+	const jwt = await auth.currentUser?.getIdToken();
+	return {
+		jwt,
+		headerPrefix: HeaderPrefixEnum.BEARER,
+	};
 });
 
 auth.onIdTokenChanged(async (authUser) => {
@@ -74,3 +78,45 @@ auth.onIdTokenChanged(async (authUser) => {
 
 	appState.isAuthLoading = false;
 });
+
+export type TelegramUserData = {
+	id: number;
+	first_name: string;
+	last_name: string;
+	username: string;
+	auth_date: number;
+	hash: string;
+};
+
+export const signInWithTelegram = () => {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	(window as any).Telegram.Login.auth(
+		{
+			bot_id: process.env.NEXT_PUBLIC_BOT_TOKEN,
+			request_access: true,
+		},
+		(data: TelegramUserData) => {
+			if (data) {
+				createAndInjectTelegramToken(data);
+			} else {
+				console.log('unable to sign in');
+			}
+		},
+	);
+};
+
+export const createAndInjectTelegramToken = (data: TelegramUserData) => {
+	const jsonString = JSON.stringify(data);
+
+	let hexEncoded = '';
+	for (let i = 0; i < jsonString.length; i++) {
+		hexEncoded += jsonString.charCodeAt(i).toString(16).padStart(2, '0');
+	}
+
+	injectGetJWTFunc(async () => {
+		return {
+			jwt: hexEncoded,
+			headerPrefix: HeaderPrefixEnum.TELE_HASH,
+		};
+	});
+};
