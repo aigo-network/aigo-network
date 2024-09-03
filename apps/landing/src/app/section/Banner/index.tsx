@@ -79,7 +79,8 @@ const HeroImg = styled.div`
 	width: 100%;
 	background: url(/img/hero-img.png) no-repeat center;
 	background-size: cover;
-	height: 94vh;
+	height: 100vh;
+	max-height: 1024px;
 	margin-bottom: 100px;
 
 	@media (min-width: 576px) {
@@ -87,7 +88,7 @@ const HeroImg = styled.div`
 	}
 
 	@media (min-width: 992px) {
-		height: 100vh;
+		height: calc(100vh - 10px);
 	}
 `;
 
@@ -99,6 +100,7 @@ const ContentContainer = styled.div`
 	width: 100%;
 
 	& > div {
+		transform: translateY(-60px);
 		height: 100%;
 		margin: 0 auto;
 		padding: 0 25px;
@@ -110,6 +112,7 @@ const ContentContainer = styled.div`
 
 	@media (min-width: 576px) {
 		& > div {
+			transform: translateY(0px);
 			max-width: var(--max-width-mobile-horizontal);
 		}
 	}
