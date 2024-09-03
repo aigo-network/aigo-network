@@ -13,8 +13,9 @@ const Backers = () => {
 					<img src="/img/backers/gmnetwork-img.png" />
 					<img src="/img/backers/iotex-img.png" />
 					<img src="/img/backers/app-works-img.png" />
-					<img src="/img/backers/tada-img.png" />
 					<img src="/img/backers/mvl-img.png" />
+					<img src="/img/backers/tada-img.png" />
+					<img src="/img/backers/vana-img.png" />
 				</LogoLine>
 				<LogoLine>
 					<img src="/img/backers/powerpod-img.png" />
@@ -22,6 +23,7 @@ const Backers = () => {
 					<img src="/img/backers/ticker-img.png" />
 					<img src="/img/backers/nyam-nyam-img.png" />
 					<img src="/img/backers/airfoil-img.png" />
+					<img src="/img/backers/decharge-img.png" />
 				</LogoLine>
 				<MobileLogo>
 					<img src="/img/backers/gmnetwork-img.png" />

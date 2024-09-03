@@ -4,6 +4,7 @@ import AiGOLogo from '@/components/icon/AiGOLogo';
 import AiGOText from '@/components/icon/AiGOText';
 import DiscordIcon from '@/components/icon/Discord';
 import GithubIcon from '@/components/icon/Github';
+import MirrorIcon from '@/components/icon/MirrorIcon';
 import TelegramIcon from '@/components/icon/Telegram';
 import TwitterIcon from '@/components/icon/Twitter';
 
@@ -19,7 +20,8 @@ const Footer = () => {
 						<AiGOText size={70} />
 					</LogoGroup>
 					<Description>
-						Share your data on your terms, and be rewarded in the long term.
+						The First DePIN for Mobility Geo-Location Data. <br /> Share your
+						data on your terms, and be rewarded in the long term.
 					</Description>
 					<SocialGroup>
 						<a
@@ -49,6 +51,13 @@ const Footer = () => {
 							rel="noreferrer"
 						>
 							<GithubIcon size={34} />
+						</a>
+						<a
+							href="https://mirror.xyz/0x9B5691025120Af46356c20e9be3EbBd400B85f30"
+							target="_blank"
+							rel="noreferrer"
+						>
+							<MirrorIcon size={34} />
 						</a>
 					</SocialGroup>
 					<Copyright>© 2024 AiGO Network®. All rights reserved</Copyright>

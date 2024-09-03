@@ -18,10 +18,7 @@ export default function Home() {
 			<Header />
 			<main>
 				<Banner />
-				<About
-					data="AiGO Network is the first Web3-native platform specifically designed to aggregate & monetize mobility data from two-wheeler
-towards a smarter, safe and efficient cities"
-				/>
+				<About data="AiGO Network is committed to create a comprehensive go-to solution to all mobility scenarios guiding urban planning, enhancing traffic efficiency, automobile and navigation in the 21st century  — ultimately creating a more livable and sustainable world." />
 				<HowItWork />
 				<Ecosystem />
 				<StrategicPartner />

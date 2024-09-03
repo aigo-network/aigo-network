@@ -9,11 +9,11 @@ export const HowItWork = () => {
 			title="Powering the Future of Mobility"
 		>
 			<Description>
-				AiGO Network is a robust mobility data ecosystem where data providers
-				and validators can be incentivized for their contribution and developers
-				are empowered to build the next generation of transportation solutions
-				with the ease of AiGO SDKs and access to a trusted encrypted mobility
-				data pool
+				AiGO enables data providers to stream mobility intelligence on a network
+				that caters for their privacy and security. Using an assembly of
+				cutting-edge DePIN technologies and AI algorithms, it computes mobility
+				data to actionable inferences that can be used by key players in the
+				human mobility sector via permissionless integrations.
 			</Description>
 
 			<Diagram />
