@@ -6,17 +6,21 @@ import LeftArrow from './icon/LeftArrow';
 type Props = AnchorHTMLAttributes<HTMLAnchorElement> & {
 	outline?: boolean;
 	options?: 1 | 2;
+	titleColor?: string;
 };
 
 const BasicButton: FC<Props> = ({
 	title,
 	outline = false,
 	options = 1,
+	titleColor = '#34c3f4',
 	...props
 }) => {
 	return (
 		<Container $isOutline={outline} $options={options} {...props}>
-			<Title $options={options}>{title}</Title>
+			<Title $options={options} $color={titleColor}>
+				{title}
+			</Title>
 			{options === 1 && (
 				<RightArrow>
 					<LeftArrow size={18} color="#34c3f4" />
@@ -60,16 +64,16 @@ const Container = styled.a<{ $isOutline: boolean; $options: 1 | 2 }>`
 	`}
 `;
 
-const Title = styled.span<{ $options: 1 | 2 }>`
+const Title = styled.span<{ $options: 1 | 2; $color: string }>`
 	font-size: 16px;
 	font-weight: 500;
 	line-height: 24px;
 	transition: ease-out 0.3s;
 
-	${({ $options }) =>
+	${({ $options, $color }) =>
 		$options === 1
 			? `
-		color: #34c3f4;
+		color: ${$color};
 		position: relative;
 		left: 16px;
 		${Container}:hover & {

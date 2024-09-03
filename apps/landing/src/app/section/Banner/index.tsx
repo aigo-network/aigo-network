@@ -10,23 +10,25 @@ const Banner: FC = () => {
 			<ContentContainer>
 				<div>
 					<Title>
-						The first decentralized
+						Transforming Urban Mobility
 						<br />
-						AI-optimized mobility data network for <span>two-wheelers</span>
+						With <span>Decentralized Geo-Location Data</span>
 					</Title>
 					<SubTitle>
-						Join the world&apos;s biggest motorcycle & e-bike network & earn
-						today
+						AiGO Network is the first real-time, plug-and-play DePIN data
+						network offering decentralized access to verified GPS and
+						geo-location data.
 					</SubTitle>
 					<BtnGroup>
 						<BasicButton
 							title="Share your move"
 							href="https://ride.aigo.network/"
 							target="_blank"
+							titleColor="#FDFDFD"
 						/>
-						<LinkBtn href="https://quest.aigo.network/" target="_blank">
+						{/* <LinkBtn href="https://quest.aigo.network/" target="_blank">
 							AiGO Quest SS1
-						</LinkBtn>
+						</LinkBtn> */}
 					</BtnGroup>
 				</div>
 			</ContentContainer>
@@ -116,8 +118,12 @@ const Title = styled.p`
 
 const SubTitle = styled.p`
 	font-size: 18px;
-	line-height: 24px;
+	line-height: 28px;
 	color: #b8b8b8;
+
+	@media (min-width: 992px) {
+		max-width: 700px;
+	}
 `;
 
 const BtnGroup = styled.div`
@@ -126,14 +132,14 @@ const BtnGroup = styled.div`
 	align-items: center;
 `;
 
-const LinkBtn = styled.a`
-	font-size: 16px;
-	font-weight: 500;
-	text-decoration: none;
-	color: #888888;
-	transition: ease-out 0.3s;
+// const LinkBtn = styled.a`
+// 	font-size: 16px;
+// 	font-weight: 500;
+// 	text-decoration: none;
+// 	color: #888888;
+// 	transition: ease-out 0.3s;
 
-	&:hover {
-		color: #fdfdfd;
-	}
-`;
+// 	&:hover {
+// 		color: #fdfdfd;
+// 	}
+// `;
