@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import Avatar from '@aigo/components/Avatar';
 import ChevronDown from '@aigo/components/icon/ChevronDown';
@@ -12,7 +12,7 @@ import BlurBackground from './BlurBackground';
 
 import Button from '@/components/Button';
 import type { AuthUser } from '@/state/app';
-import { logOut, signInWithTwitter } from '@/utils/auth';
+import { logOut, signInWithTelegram, signInWithTwitter } from '@/utils/auth';
 
 const DynamicLoading = dynamic(
 	() => import('@aigo/components/LoadingContainer'),
@@ -26,10 +26,14 @@ interface Props {
 
 export const SignInBundle: FC<Props> = ({ user, isAuthLoading, isMobile }) => {
 	const [showDropdown, setShowDropdown] = useState(false);
+	const [isTelegram, setIsTelegram] = useState(false);
 
 	const handlePress = () => {
+		// mockEncode();
 		if (user) {
 			return;
+		} else if (isTelegram) {
+			signInWithTelegram();
 		} else {
 			signInWithTwitter();
 		}
@@ -40,18 +44,38 @@ export const SignInBundle: FC<Props> = ({ user, isAuthLoading, isMobile }) => {
 		setShowDropdown(false);
 	};
 
+	useEffect(() => {
+		if (typeof window == 'object') {
+			const url = new URL(window.location.href);
+			const { hash } = url;
+			if (hash.startsWith('#')) {
+				const id = hash.substring(1);
+				setIsTelegram(id.includes('telegram'));
+			}
+		}
+	}, []);
+
 	return (
 		<Fragment>
 			{!user?.uid ? (
 				<Button style={styles.buttonContainer} onPress={handlePress}>
 					<DynamicLoading isLoading={isAuthLoading}>
 						<Text style={styles.buttonText}>Sign In with</Text>
-						<Image
-							src="/x-icon-dark.png"
-							alt="Twitter or X icon"
-							width={18}
-							height={16}
-						/>
+						{isTelegram ? (
+							<Image
+								src="/dark-telegram-ic.svg"
+								width={22}
+								height={19}
+								alt="Dark Telegram icon"
+							/>
+						) : (
+							<Image
+								src="/x-icon-dark.png"
+								alt="Twitter or X icon"
+								width={18}
+								height={16}
+							/>
+						)}
 					</DynamicLoading>
 				</Button>
 			) : (
