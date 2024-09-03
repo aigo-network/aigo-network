@@ -16,8 +16,6 @@ const Backers = () => {
 					<img src="/img/backers/mvl-img.png" />
 					<img src="/img/backers/tada-img.png" />
 					<img src="/img/backers/vana-img.png" />
-				</LogoLine>
-				<LogoLine>
 					<img src="/img/backers/powerpod-img.png" />
 					<img src="/img/backers/skyvision-img.png" />
 					<img src="/img/backers/ticker-img.png" />
@@ -59,12 +57,14 @@ const LogoLine = styled.div`
 	display: none;
 
 	img {
-		width: 170px;
+		width: 140px;
 		height: auto;
 	}
 
 	@media (min-width: 992px) {
 		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
 		justify-content: center;
 		align-items: center;
 		gap: 45px;
