@@ -2,6 +2,7 @@ import type { FC } from 'react';
 import styled from 'styled-components';
 
 import BasicButton from '@/components/BasicButton';
+import { raleway } from '@/utils/styles';
 
 const Banner: FC = () => {
 	return (
@@ -32,11 +33,43 @@ const Banner: FC = () => {
 					</BtnGroup>
 				</div>
 			</ContentContainer>
+
+			<DataContainer>
+				<DataBox>
+					{dataItems.map(({ title, value }) => {
+						return (
+							<DataItemContainer key={title}>
+								<DataItemTitle>{title}</DataItemTitle>
+								<DataItemValue>{value}</DataItemValue>
+							</DataItemContainer>
+						);
+					})}
+				</DataBox>
+			</DataContainer>
 		</Container>
 	);
 };
 
 export default Banner;
+
+const dataItems = [
+	{
+		title: 'Total distributed points',
+		value: '43,177,306',
+	},
+	{
+		title: 'Total mapped km',
+		value: '185,000',
+	},
+	{
+		title: 'Total users',
+		value: '12,143',
+	},
+	{
+		title: 'Total trips',
+		value: '3,797',
+	},
+];
 
 const Container = styled.section`
 	position: relative;
@@ -142,3 +175,56 @@ const BtnGroup = styled.div`
 // 		color: #fdfdfd;
 // 	}
 // `;
+
+const DataContainer = styled.div`
+	position: absolute;
+	bottom: 0px;
+	left: 0;
+	right: 0;
+	transform: translateY(50%);
+`;
+
+const DataBox = styled.div`
+	margin: 0px auto;
+	background-color: #181717;
+	border: solid 1px #ffffff1a;
+	border-radius: 20px;
+	padding: 32px 44px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	@media (min-width: 768px) {
+		max-width: 90%;
+	}
+	@media (min-width: 992px) {
+		max-width: var(--max-width-laptop);
+	}
+	@media (min-width: 1200px) {
+		max-width: var(--max-width-desktop);
+	}
+`;
+
+const DataItemContainer = styled.div`
+	width: 300px;
+
+	@media (min-width: 768px) {
+		width: auto;
+	}
+`;
+
+const DataItemTitle = styled.p`
+	text-align: center;
+	font-size: 18px;
+	line-height: 22px;
+	color: #fdfdfd52;
+	font-family: ${raleway.style.fontFamily};
+`;
+
+const DataItemValue = styled.p`
+	text-align: center;
+	font-size: 40px;
+	line-height: 48px;
+	font-family: ${raleway.style.fontFamily};
+	font-weight: 600;
+`;
