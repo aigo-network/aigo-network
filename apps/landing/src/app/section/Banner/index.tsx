@@ -94,18 +94,20 @@ const HeroImg = styled.div`
 const ContentContainer = styled.div`
 	position: absolute;
 	top: 0;
+	bottom: 0;
 	left: 0;
-	height: 100%;
-	width: 100%;
+	right: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 
 	& > div {
-		transform: translateY(-60px);
-		height: 100%;
-		margin: 0 auto;
-		padding: 0 25px;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		transform: translateY(-60px);
+		margin: 0 auto;
+		padding: 0 25px;
 		gap: 25px;
 	}
 
