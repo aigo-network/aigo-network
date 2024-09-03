@@ -25,7 +25,6 @@ const Banner: FC = () => {
 							title="Share your move"
 							href="https://ride.aigo.network/"
 							target="_blank"
-							titleColor="#FDFDFD"
 						/>
 						{/* <LinkBtn href="https://quest.aigo.network/" target="_blank">
 							AiGO Quest SS1

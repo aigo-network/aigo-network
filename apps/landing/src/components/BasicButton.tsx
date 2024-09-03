@@ -7,13 +7,15 @@ type Props = AnchorHTMLAttributes<HTMLAnchorElement> & {
 	outline?: boolean;
 	options?: 1 | 2;
 	titleColor?: string;
+	arrowColor?: string;
 };
 
 const BasicButton: FC<Props> = ({
 	title,
 	outline = false,
 	options = 1,
-	titleColor = '#34c3f4',
+	titleColor = '#fdfdfd',
+	arrowColor = '#fdfdfd',
 	...props
 }) => {
 	return (
@@ -23,7 +25,7 @@ const BasicButton: FC<Props> = ({
 			</Title>
 			{options === 1 && (
 				<RightArrow>
-					<LeftArrow size={18} color="#34c3f4" />
+					<LeftArrow size={18} color={arrowColor} />
 				</RightArrow>
 			)}
 		</Container>
@@ -78,11 +80,10 @@ const Title = styled.span<{ $options: 1 | 2; $color: string }>`
 		left: 16px;
 		${Container}:hover & {
 				left: 0;
-			}
+		}
 		`
 			: `
-		color: #fdfdfd;
-			
+		color: ${$color}
 		`}
 `;
 
