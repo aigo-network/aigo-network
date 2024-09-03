@@ -2,13 +2,13 @@ export const baseDomainName = 'aigo.network';
 export const hostedZone = 'aigo.network';
 
 const stageAlias: Record<string, string> = {
-	production: '',
+	production: ' ',
 	staging: 'staging',
 	development: 'dev',
 };
 
 const siteAlias = {
-	landing: '',
+	landing: ' ',
 	quest: 'quest',
 	ride: 'ride',
 };
@@ -17,6 +17,7 @@ export const constructDomainName = (
 	site: keyof typeof siteAlias,
 	stage: string,
 ) => {
-	const stagePrefix = stageAlias[stage] || `${stage}`;
-	return [stagePrefix, site, baseDomainName].filter(Boolean).join('.');
+	const stagePrefix = (stageAlias[stage] || `${stage}`).trim();
+	const sitePrefix = (siteAlias[site] || site).trim();
+	return [stagePrefix, sitePrefix, baseDomainName].filter(Boolean).join('.');
 };
