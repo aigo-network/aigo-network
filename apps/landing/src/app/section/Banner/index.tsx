@@ -79,11 +79,13 @@ const HeroImg = styled.div`
 	background: url(/img/hero-img.png) no-repeat center;
 	background-size: cover;
 	height: 100vh;
+	min-height: 72px;
 	max-height: 1024px;
-	margin-bottom: 100px;
+	margin-bottom: 200px;
 
 	@media (min-width: 576px) {
 		height: 700px;
+		margin-bottom: 0px;
 	}
 
 	@media (min-width: 992px) {
@@ -230,16 +232,27 @@ const DataItemContainer = styled.div`
 
 const DataItemTitle = styled.p`
 	text-align: center;
-	font-size: 18px;
-	line-height: 22px;
+	font-size: 16px;
+	line-height: 20px;
 	color: #fdfdfd52;
 	font-family: ${raleway.style.fontFamily};
+	text-wrap: nowrap;
+
+	@media (min-width: 576px) {
+		font-size: 18px;
+		line-height: 22px;
+	}
 `;
 
 const DataItemValue = styled.p`
 	text-align: center;
-	font-size: 40px;
-	line-height: 48px;
+	font-size: 32px;
+	line-height: 40px;
 	font-family: ${raleway.style.fontFamily};
 	font-weight: 600;
+
+	@media (min-width: 576px) {
+		font-size: 40px;
+		line-height: 48px;
+	}
 `;
