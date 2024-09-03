@@ -24,99 +24,112 @@ const Header: FC<Props> = ({ light }) => {
 	const scrollY = useScroll(light ? 1 : 0);
 
 	return (
-		<Container $bgActive={scrollY > 0}>
-			<InnerContainer>
-				<LeftContainer>
-					<LogoGroup onClick={() => router.push('/')}>
-						<AiGOLogo size={40} />
-						<AiGOText size={83} />
-					</LogoGroup>
-					<LogoGroup>
-						<AiGOLogo size={45} />
-						<AiGOText size={70} />
-					</LogoGroup>
-					<NavBar>
+		<StickyContainer>
+			<Container $bgActive={scrollY > 0}>
+				<InnerContainer>
+					<LeftContainer>
+						<LogoGroup onClick={() => router.push('/')}>
+							<AiGOLogo size={40} />
+							<AiGOText size={83} />
+						</LogoGroup>
+						<LogoGroup>
+							<AiGOLogo size={45} />
+							<AiGOText size={70} />
+						</LogoGroup>
+						<NavBar>
+							{navLinkArray.map((navLink) => (
+								<NavLink key={navLink.title} href={navLink.href || '#'}>
+									{navLink.title}
+								</NavLink>
+							))}
+						</NavBar>
+					</LeftContainer>
+
+					<RightContainer>
+						<SocialGroup>
+							<SocialWrapper href="https://x.com/aigo_network" target="_blank">
+								<TwitterIcon size={12} color="#171717" />
+							</SocialWrapper>
+							<SocialWrapper href="https://t.me/aigocommunity" target="_blank">
+								<TelegramIcon size={20} color="#fdfdfd" />
+							</SocialWrapper>
+							<SocialWrapper
+								href="https://discord.gg/vrVFkMdMpH"
+								target="_blank"
+							>
+								<DiscordIcon size={14} color="#171717" />
+							</SocialWrapper>
+						</SocialGroup>
+
+						<ExploreButton
+							options={2}
+							title="Explore AiGO Ride"
+							href="https://ride.aigo.network/"
+							target="_blank"
+						/>
+
+						<BurgerMenu
+							$isClosedBtn={showSideMenu}
+							onClick={() => setShowSideMenu(!showSideMenu)}
+						>
+							<span></span>
+							<span></span>
+							<span></span>
+						</BurgerMenu>
+					</RightContainer>
+				</InnerContainer>
+				<SideMenuBackground $active={showSideMenu}>
+					<Menu>
+						<MenuHead>Menu</MenuHead>
 						{navLinkArray.map((navLink) => (
-							<NavLink key={navLink.title} href={navLink.href || '#'}>
+							<SideNav key={navLink.title} href={navLink.href || '#'}>
 								{navLink.title}
-							</NavLink>
+							</SideNav>
 						))}
-					</NavBar>
-				</LeftContainer>
-
-				<RightContainer>
-					<SocialGroup>
-						<SocialWrapper href="https://x.com/aigo_network" target="_blank">
-							<TwitterIcon size={12} color="#171717" />
-						</SocialWrapper>
-						<SocialWrapper href="https://t.me/aigocommunity" target="_blank">
-							<TelegramIcon size={20} color="#fdfdfd" />
-						</SocialWrapper>
-						<SocialWrapper href="https://discord.gg/vrVFkMdMpH" target="_blank">
-							<DiscordIcon size={14} color="#171717" />
-						</SocialWrapper>
-					</SocialGroup>
-
-					<ExploreButton
-						options={2}
-						title="Explore AiGO Ride"
-						href="https://ride.aigo.network/"
-						target="_blank"
-					/>
-
-					<BurgerMenu
-						$isClosedBtn={showSideMenu}
-						onClick={() => setShowSideMenu(!showSideMenu)}
-					>
-						<span></span>
-						<span></span>
-						<span></span>
-					</BurgerMenu>
-				</RightContainer>
-			</InnerContainer>
-			<SideMenuBackground $active={showSideMenu}>
-				<Menu>
-					<MenuHead>Menu</MenuHead>
-					{navLinkArray.map((navLink) => (
-						<SideNav key={navLink.title} href={navLink.href || '#'}>
-							{navLink.title}
-						</SideNav>
-					))}
-				</Menu>
-				<SideMenuBottom>
-					<SideSocialGroup>
-						<SideSocial href="https://x.com/aigo_network" target="_blank">
-							<TwitterIcon size={18} color="#171717" />
-						</SideSocial>
-						<SideSocial href="https://t.me/aigocommunity" target="_blank">
-							<TelegramIcon size={33} color="#fdfdfd" />
-						</SideSocial>
-						<SideSocial href="https://discord.gg/vrVFkMdMpH" target="_blank">
-							<DiscordIcon size={20} color="#171717" />
-						</SideSocial>
-					</SideSocialGroup>
-					<BasicButton
-						style={{ justifyContent: 'center' }}
-						options={2}
-						title="Explore AiGO Ride"
-						href="https://ride.aigo.network/"
-						target="_blank"
-					/>
-				</SideMenuBottom>
-			</SideMenuBackground>
-		</Container>
+					</Menu>
+					<SideMenuBottom>
+						<SideSocialGroup>
+							<SideSocial href="https://x.com/aigo_network" target="_blank">
+								<TwitterIcon size={18} color="#171717" />
+							</SideSocial>
+							<SideSocial href="https://t.me/aigocommunity" target="_blank">
+								<TelegramIcon size={33} color="#fdfdfd" />
+							</SideSocial>
+							<SideSocial href="https://discord.gg/vrVFkMdMpH" target="_blank">
+								<DiscordIcon size={20} color="#171717" />
+							</SideSocial>
+						</SideSocialGroup>
+						<BasicButton
+							style={{ justifyContent: 'center' }}
+							options={2}
+							title="Explore AiGO Ride"
+							href="https://ride.aigo.network/"
+							target="_blank"
+						/>
+					</SideMenuBottom>
+				</SideMenuBackground>
+			</Container>
+		</StickyContainer>
 	);
 };
 
 export default Header;
 
-const Container = styled.header<{ $bgActive: boolean }>`
+const StickyContainer = styled.header`
 	position: sticky;
 	top: 0;
 	left: 0;
 	right: 0;
 	z-index: 10;
-	width: 100%;
+`;
+
+const Container = styled.div<{ $bgActive: boolean }>`
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	z-index: 11;
+
 	background: rgba(23, 23, 23, 0.2);
 	display: flex;
 	align-items: flex-end;
@@ -142,12 +155,10 @@ const Container = styled.header<{ $bgActive: boolean }>`
 `;
 
 const InnerContainer = styled.div`
-	position: relative;
-	z-index: 11;
+	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	width: 100%;
 	padding: 18px 25px;
 	margin: 0 auto;
 

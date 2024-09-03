@@ -52,7 +52,7 @@ const HeroImg = styled.div`
 	}
 
 	@media (min-width: 992px) {
-		height: 90vh;
+		height: 100vh;
 	}
 `;
 
