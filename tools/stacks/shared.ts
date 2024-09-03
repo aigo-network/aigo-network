@@ -19,5 +19,11 @@ export const constructDomainName = (
 ) => {
 	const stagePrefix = (stageAlias[stage] || `${stage}`).trim();
 	const sitePrefix = (siteAlias[site] || site).trim();
-	return [stagePrefix, sitePrefix, baseDomainName].filter(Boolean).join('.');
+	const domainName = [stagePrefix, sitePrefix, baseDomainName]
+		.filter(Boolean)
+		.join('.');
+
+	console.log('Domain', domainName);
+
+	return domainName;
 };
