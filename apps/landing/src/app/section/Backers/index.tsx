@@ -9,7 +9,7 @@ const Backers = () => {
 			title="Expanding the AiGO Horizon"
 		>
 			<ContentContainer>
-				<LogoLine>
+				<LogoContainer>
 					<img src="/img/backers/gmnetwork-img.png" />
 					<img src="/img/backers/iotex-img.png" />
 					<img src="/img/backers/app-works-img.png" />
@@ -22,19 +22,7 @@ const Backers = () => {
 					<img src="/img/backers/nyam-nyam-img.png" />
 					<img src="/img/backers/airfoil-img.png" />
 					<img src="/img/backers/decharge-img.png" />
-				</LogoLine>
-				<MobileLogo>
-					<img src="/img/backers/gmnetwork-img.png" />
-					<img src="/img/backers/iotex-img.png" />
-					<img src="/img/backers/app-works-img.png" />
-					<img src="/img/backers/tada-img.png" />
-					<img src="/img/backers/mvl-img.png" />
-					<img src="/img/backers/powerpod-img.png" />
-					<img src="/img/backers/skyvision-img.png" />
-					<img src="/img/backers/ticker-img.png" />
-					<img src="/img/backers/nyam-nyam-img.png" />
-					<img src="/img/backers/airfoil-img.png" />
-				</MobileLogo>
+				</LogoContainer>
 			</ContentContainer>
 		</SectionLayout>
 	);
@@ -53,8 +41,13 @@ const ContentContainer = styled.div`
 	}
 `;
 
-const LogoLine = styled.div`
-	display: none;
+const LogoContainer = styled.div`
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 25px;
 
 	img {
 		width: 140px;
@@ -62,27 +55,6 @@ const LogoLine = styled.div`
 	}
 
 	@media (min-width: 992px) {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: center;
-		align-items: center;
 		gap: 45px;
-	}
-`;
-
-const MobileLogo = styled.div`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
-	gap: 25px;
-
-	& > img {
-		max-width: 150px;
-	}
-
-	@media (min-width: 992px) {
-		display: none;
 	}
 `;
