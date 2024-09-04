@@ -1,5 +1,6 @@
 import { graphqlClient } from '@aigo/api/graphql';
 import { HeaderPrefixEnum, injectGetJWTFunc } from '@aigo/api/jwt';
+import { config } from '@aigo/config';
 import { initializeApp } from 'firebase/app';
 import {
 	getAuth,
@@ -55,6 +56,7 @@ injectGetJWTFunc(async () => {
 
 auth.onIdTokenChanged(async (authUser) => {
 	if (authUser) {
+		console.log(JSON.stringify(authUser, null, 2));
 		try {
 			const { user } = await graphqlClient.getUserProfile();
 			appState.user = user as never;
@@ -83,23 +85,43 @@ export type TelegramUserData = {
 	id: number;
 	first_name: string;
 	last_name: string;
+	photo_url: string;
 	username: string;
 	auth_date: number;
 	hash: string;
 };
 
-export const signInWithTelegram = () => {
+export const signInWithTelegram = async () => {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	(window as any).Telegram.Login.auth(
 		{
-			bot_id: process.env.NEXT_PUBLIC_BOT_TOKEN,
+			bot_id: config.TELEGRAM_BOT_TOKEN,
 			request_access: true,
 		},
-		(data: TelegramUserData) => {
-			if (data) {
-				createAndInjectTelegramToken(data);
-			} else {
-				console.log('unable to sign in');
+		async (data: TelegramUserData) => {
+			try {
+				if (data) {
+					createAndInjectTelegramToken(data);
+					const { user } = await graphqlClient.getUserProfile();
+					appState.user = user as never;
+					appState.authUser = {
+						imageUrl: data.photo_url || '',
+						name: data.first_name,
+						uid: String(data.id),
+					};
+
+					const { web3FarmingProfile } =
+						await graphqlClient.getWeb3FarmingProfile();
+					if (web3FarmingProfile?.id) {
+						appState.web3FarmingProfile = web3FarmingProfile;
+					} else {
+						showImportCode();
+					}
+				} else {
+					console.log('unable to sign in');
+				}
+			} catch (err) {
+				console.log('auth error', err);
 			}
 		},
 	);
