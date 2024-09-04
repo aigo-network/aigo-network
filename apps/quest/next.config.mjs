@@ -49,6 +49,7 @@ const nextConfig = {
 			'FIREBASE_MESSAGING_SENDER_ID',
 			'FIREBASE_MEASUREMENT_ID',
 			'GRAPHQL_API_ENDPOINT',
+			'TELEGRAM_BOT_TOKEN',
 		].reduce((acc, cur) => {
 			acc[cur] = JSON.stringify(process.env[cur]);
 			return acc;
