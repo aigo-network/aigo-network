@@ -232,27 +232,27 @@ const DataItemContainer = styled.div`
 
 const DataItemTitle = styled.p`
 	text-align: center;
-	font-size: 16px;
-	line-height: 20px;
+	font-size: 14px;
+	line-height: 18px;
 	color: #fdfdfd52;
 	font-family: ${raleway.style.fontFamily};
 	text-wrap: nowrap;
 
 	@media (min-width: 576px) {
-		font-size: 18px;
-		line-height: 22px;
+		font-size: 16px;
+		line-height: 18px;
 	}
 `;
 
 const DataItemValue = styled.p`
 	text-align: center;
-	font-size: 32px;
+	font-size: 30px;
 	line-height: 40px;
 	font-family: ${raleway.style.fontFamily};
 	font-weight: 600;
 
 	@media (min-width: 576px) {
-		font-size: 40px;
+		font-size: 36px;
 		line-height: 48px;
 	}
 `;
