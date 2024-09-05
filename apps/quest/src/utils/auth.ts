@@ -58,21 +58,12 @@ auth.onIdTokenChanged(async (authUser) => {
 	if (authUser) {
 		console.log(JSON.stringify(authUser, null, 2));
 		try {
-			const { user } = await graphqlClient.getUserProfile();
-			appState.user = user as never;
 			appState.authUser = {
 				uid: authUser.uid,
 				name: authUser.displayName || authUser.email || 'Unknown',
 				imageUrl: authUser.photoURL || '',
 			};
-
-			const { web3FarmingProfile } =
-				await graphqlClient.getWeb3FarmingProfile();
-			if (web3FarmingProfile?.id) {
-				appState.web3FarmingProfile = web3FarmingProfile;
-			} else {
-				showImportCode();
-			}
+			handleAfterSignInSucceed();
 		} catch (err) {
 			console.log('auth error', err);
 		}
@@ -102,21 +93,12 @@ export const signInWithTelegram = async () => {
 			try {
 				if (data) {
 					createAndInjectTelegramToken(data);
-					const { user } = await graphqlClient.getUserProfile();
-					appState.user = user as never;
 					appState.authUser = {
 						imageUrl: data.photo_url || '',
-						name: data.first_name,
+						name: data.first_name || data.username || 'Unknown',
 						uid: String(data.id),
 					};
-
-					const { web3FarmingProfile } =
-						await graphqlClient.getWeb3FarmingProfile();
-					if (web3FarmingProfile?.id) {
-						appState.web3FarmingProfile = web3FarmingProfile;
-					} else {
-						showImportCode();
-					}
+					handleAfterSignInSucceed();
 				} else {
 					console.log('unable to sign in');
 				}
@@ -141,4 +123,20 @@ export const createAndInjectTelegramToken = (data: TelegramUserData) => {
 			headerPrefix: HeaderPrefixEnum.TELE_HASH,
 		};
 	});
+};
+
+const handleAfterSignInSucceed = async () => {
+	try {
+		const { user } = await graphqlClient.getUserProfile();
+		appState.user = user as never;
+
+		const { web3FarmingProfile } = await graphqlClient.getWeb3FarmingProfile();
+		if (web3FarmingProfile?.id) {
+			appState.web3FarmingProfile = web3FarmingProfile;
+		} else {
+			showImportCode();
+		}
+	} catch (err) {
+		console.log('Failed to handle after sign-in', err);
+	}
 };
