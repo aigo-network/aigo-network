@@ -18,7 +18,7 @@ type EnvironmentConfig = {
 	FIREBASE_APPLE_AUTH_REDIRECT_URL: string;
 
 	GRAPHQL_API_ENDPOINT: string;
-	TELEGRAM_BOT_TOKEN: string;
+	TELEGRAM_BOT_ID: string;
 };
 
 type ActivityConfig = {

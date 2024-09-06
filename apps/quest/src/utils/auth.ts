@@ -86,7 +86,7 @@ export const signInWithTelegram = async () => {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	(window as any).Telegram.Login.auth(
 		{
-			bot_id: config.TELEGRAM_BOT_TOKEN,
+			bot_id: config.TELEGRAM_BOT_ID,
 			request_access: true,
 		},
 		async (data: TelegramUserData) => {

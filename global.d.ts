@@ -9,7 +9,7 @@ declare module 'react-native-config' {
 		FIREBASE_APPLE_AUTH_REDIRECT_URL: string;
 		GRAPHQL_API_ENDPOINT: string;
 		MAPBOX_ACCESS_TOKEN: string;
-		TELEGRAM_BOT_TOKEN: string;
+		TELEGRAM_BOT_ID: string;
 	}
 
 	export const Config: NativeConfig;
