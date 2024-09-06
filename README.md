@@ -38,3 +38,7 @@ password <secret token>
 ### Versioning
 - Use `yarn versioning` command to automatically update version, buildNumber across Android, iOS and files
 - `yarn versioning bump` will force version update even no changes detected.
+
+
+### Quest system (AiGO Quest)
+See further details under [apps/quest](apps/quest/README.md).
