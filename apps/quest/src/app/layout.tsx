@@ -2,6 +2,7 @@
 
 import type { Metadata } from 'next';
 import { headers } from 'next/headers';
+import Script from 'next/script';
 import { userAgent } from 'next/server';
 
 import LayoutClient from './layoutClient';
@@ -31,6 +32,7 @@ export default async function RootLayout({
 				<ReactNativeRegistry>
 					<LayoutClient reqUserAgent={reqUserAgent}>{children}</LayoutClient>
 				</ReactNativeRegistry>
+				<Script src="https://telegram.org/js/telegram-widget.js" />
 			</body>
 		</html>
 	);

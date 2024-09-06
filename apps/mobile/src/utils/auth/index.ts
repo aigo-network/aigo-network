@@ -1,6 +1,6 @@
 import type { User } from '@aigo/api/graphql';
 import { graphqlClient } from '@aigo/api/graphql';
-import { injectGetJWTFunc } from '@aigo/api/jwt';
+import { HeaderPrefixEnum, injectGetJWTFunc } from '@aigo/api/jwt';
 import auth from '@react-native-firebase/auth';
 import crashlytics from '@react-native-firebase/crashlytics';
 import { appActions } from 'state/app';
@@ -8,7 +8,11 @@ import { cleanDefaultUserInfo } from 'state/app/userInfo';
 import { defaultEmail, defaultName } from 'utils/misc';
 
 injectGetJWTFunc(async () => {
-	return await auth().currentUser?.getIdToken();
+	const jwt = await auth().currentUser?.getIdToken();
+	return {
+		jwt,
+		headerPrefix: HeaderPrefixEnum.BEARER,
+	};
 });
 
 auth().onIdTokenChanged(async (authUser) => {
