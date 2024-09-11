@@ -37,6 +37,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@aigo/crypto@workspace:packages/crypto":
+  version: 0.0.0-use.local
+  resolution: "@aigo/crypto@workspace:packages/crypto"
+  dependencies:
+    "@babel/core": "npm:^7.20.0"
+    "@babel/preset-env": "npm:^7.20.0"
+    "@babel/preset-typescript": "npm:^7.24.7"
+    "@tanle/shamirs-secret-sharing": "npm:^0.0.1"
+    "@types/babel__core": "npm:^7"
+    "@types/babel__preset-env": "npm:^7"
+    "@types/jest": "npm:^29.5.12"
+    bip39: "npm:^3.1.0"
+    jest: "npm:^29.7.0"
+  languageName: unknown
+  linkType: soft
+
 "@aigo/landing@workspace:apps/landing":
   version: 0.0.0-use.local
   resolution: "@aigo/landing@workspace:apps/landing"
@@ -3263,7 +3279,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/preset-typescript@npm:^7.13.0, @babel/preset-typescript@npm:^7.16.7":
+"@babel/preset-typescript@npm:^7.13.0, @babel/preset-typescript@npm:^7.16.7, @babel/preset-typescript@npm:^7.24.7":
   version: 7.24.7
   resolution: "@babel/preset-typescript@npm:7.24.7"
   dependencies:
@@ -5557,6 +5573,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@noble/hashes@npm:^1.2.0":
+  version: 1.5.0
+  resolution: "@noble/hashes@npm:1.5.0"
+  checksum: 10/da7fc7af52af7afcf59810a7eea6155075464ff462ffda2572dc6d57d53e2669b1ea2ec774e814f6273f1697e567f28d36823776c9bf7068cba2a2855140f26e
+  languageName: node
+  linkType: hard
+
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
   resolution: "@nodelib/fs.scandir@npm:2.1.5"
@@ -7798,6 +7821,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanle/shamirs-secret-sharing@npm:^0.0.1":
+  version: 0.0.1
+  resolution: "@tanle/shamirs-secret-sharing@npm:0.0.1"
+  checksum: 10/cd6197577921ee7993b063c1d75482a9af29ebb8b83e54d0e9dee2df580de5336d159068c05573da806696aba92c7cf451cd7a34cc4c2b1c24131a31eea92ccc
+  languageName: node
+  linkType: hard
+
 "@trpc/server@npm:9.16.0":
   version: 9.16.0
   resolution: "@trpc/server@npm:9.16.0"
@@ -9470,7 +9500,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/babel__core@npm:^7.1.14":
+"@types/babel__core@npm:^7, @types/babel__core@npm:^7.1.14":
   version: 7.20.5
   resolution: "@types/babel__core@npm:7.20.5"
   dependencies:
@@ -9489,6 +9519,13 @@ __metadata:
   dependencies:
     "@babel/types": "npm:^7.0.0"
   checksum: 10/b53c215e9074c69d212402990b0ca8fa57595d09e10d94bda3130aa22b55d796e50449199867879e4ea0ee968f3a2099e009cfb21a726a53324483abbf25cd30
+  languageName: node
+  linkType: hard
+
+"@types/babel__preset-env@npm:^7":
+  version: 7.9.7
+  resolution: "@types/babel__preset-env@npm:7.9.7"
+  checksum: 10/624425a84d9149aec04795fed6b1ac2f27dfd5d7976fde479bb1a4d754de34c92cdc28a1a373a5826382a68127b536420a0e090aa5fae522cb62724b7a571cb5
   languageName: node
   linkType: hard
 
@@ -9609,6 +9646,16 @@ __metadata:
   dependencies:
     "@types/istanbul-lib-report": "npm:*"
   checksum: 10/93eb18835770b3431f68ae9ac1ca91741ab85f7606f310a34b3586b5a34450ec038c3eed7ab19266635499594de52ff73723a54a72a75b9f7d6a956f01edee95
+  languageName: node
+  linkType: hard
+
+"@types/jest@npm:^29.5.12":
+  version: 29.5.12
+  resolution: "@types/jest@npm:29.5.12"
+  dependencies:
+    expect: "npm:^29.0.0"
+    pretty-format: "npm:^29.0.0"
+  checksum: 10/312e8dcf92cdd5a5847d6426f0940829bca6fe6b5a917248f3d7f7ef5d85c9ce78ef05e47d2bbabc40d41a930e0e36db2d443d2610a9e3db9062da2d5c904211
   languageName: node
   linkType: hard
 
@@ -10289,6 +10336,7 @@ __metadata:
   dependencies:
     "@babel/core": "npm:^7.20.0"
     "@babel/preset-env": "npm:^7.20.0"
+    "@babel/preset-typescript": "npm:^7.24.7"
     "@babel/runtime": "npm:^7.20.0"
     "@graphql-codegen/cli": "npm:5.0.2"
     "@graphql-codegen/typescript-graphql-request": "npm:^6.2.0"
@@ -11067,6 +11115,15 @@ __metadata:
   version: 2.3.0
   resolution: "binary-extensions@npm:2.3.0"
   checksum: 10/bcad01494e8a9283abf18c1b967af65ee79b0c6a9e6fcfafebfe91dbe6e0fc7272bafb73389e198b310516ae04f7ad17d79aacf6cb4c0d5d5202a7e2e52c7d98
+  languageName: node
+  linkType: hard
+
+"bip39@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "bip39@npm:3.1.0"
+  dependencies:
+    "@noble/hashes": "npm:^1.2.0"
+  checksum: 10/406c0b5bdab0d43df2ff8916c5b57bb7f65cd36a115cbd7620a75b972638f8511840bfc27bfc68946027086fd33ed3050d8cd304e85fd527503b23d857a8486e
   languageName: node
   linkType: hard
 
@@ -13455,7 +13512,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expect@npm:^29.7.0":
+"expect@npm:^29.0.0, expect@npm:^29.7.0":
   version: 29.7.0
   resolution: "expect@npm:29.7.0"
   dependencies:
@@ -15993,7 +16050,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest@npm:^29.6.3":
+"jest@npm:^29.6.3, jest@npm:^29.7.0":
   version: 29.7.0
   resolution: "jest@npm:29.7.0"
   dependencies:
@@ -18471,7 +18528,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pretty-format@npm:^29.7.0":
+"pretty-format@npm:^29.0.0, pretty-format@npm:^29.7.0":
   version: 29.7.0
   resolution: "pretty-format@npm:29.7.0"
   dependencies:
