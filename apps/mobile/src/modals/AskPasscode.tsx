@@ -6,13 +6,15 @@ import OtpInput from 'components/OtpInput';
 import { Align, showModal } from 'empty-modal/state';
 import { defaultTheme } from 'utils/global';
 
-type AskPasscodeOption = Omit<Props, 'onClose'>;
+type AskPasscodeOption = Omit<Props, 'onClose'> & {
+	idSuffix?: string;
+};
 
 export const showAskPasscodeBottomSheet = (options?: AskPasscodeOption) => {
 	const { cleanModal } = showModal(
 		<AskPasscode onClose={() => cleanModal()} {...options} />,
 		{
-			id: 'ask-passcode-bottom-sheet',
+			id: ['ask-passcode-bottom-sheet', options?.idSuffix].join('-'),
 			align: Align.FullBottom,
 			showBackdrop: true,
 		},
@@ -26,6 +28,7 @@ type Props = {
 	description?: string;
 	onClose?: () => void;
 	onComplete?: (passcode: string) => void;
+	setChangeErrorFunction?: (callback: (error: string) => void) => void;
 };
 
 const AskPasscode: FC<Props> = ({
@@ -33,14 +36,26 @@ const AskPasscode: FC<Props> = ({
 	description,
 	onComplete,
 	onClose,
+	setChangeErrorFunction,
 }) => {
+	const [error, setError] = useState('');
 	const [passcode, setPasscode] = useState('');
 
 	useEffect(() => {
 		if (passcode.length === 6) {
 			onComplete?.(passcode);
+		} else if (passcode.length > 0) {
+			setError('');
 		}
 	}, [passcode]);
+
+	useEffect(() => {
+		setChangeErrorFunction?.(setError);
+	}, []);
+
+	useEffect(() => {
+		if (error.length > 0) setPasscode('');
+	}, [error]);
 
 	return (
 		<BottomSheetContainer style={[styles.container]} onClose={onClose}>
@@ -51,6 +66,7 @@ const AskPasscode: FC<Props> = ({
 				inputLength={6}
 				value={passcode}
 				onChangeText={setPasscode}
+				errorMessage={error}
 				hideValue
 				autoFocus
 			/>
@@ -60,9 +76,9 @@ const AskPasscode: FC<Props> = ({
 
 const styles = StyleSheet.create({
 	container: {
+		height: 640,
 		paddingHorizontal: 20,
 		paddingTop: 14,
-		paddingBottom: 400,
 		borderTopLeftRadius: 20,
 		borderTopRightRadius: 20,
 	},
