@@ -11,6 +11,7 @@ import Info from './Info';
 import PartnerProgram from './Partner';
 import Referral from './Referral';
 import Settings from './Settings';
+import Wallet from './Wallet';
 
 export const ProfileScreen = () => {
 	const { content, remoteConfig } = useSnapshot(appState);
@@ -28,6 +29,7 @@ export const ProfileScreen = () => {
 					<Header />
 					{remoteConfig.nyamNyamCampaignActivated && <PartnerProgram />}
 					<Info />
+					<Wallet />
 					<Settings />
 					<Referral />
 					<Footer />

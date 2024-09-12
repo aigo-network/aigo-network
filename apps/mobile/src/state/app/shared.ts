@@ -12,6 +12,7 @@ import type { Onboarding, RemoteConfig } from './types';
 
 interface AppState {
 	appUser?: User;
+	wallet?: string;
 	onboarding: Partial<Onboarding>;
 	content: Content;
 	version: string;
