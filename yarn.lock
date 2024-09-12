@@ -5,7 +5,7 @@ __metadata:
   version: 8
   cacheKey: 10
 
-"@aigo/api@workspace:packages/api":
+"@aigo/api@npm:*, @aigo/api@workspace:packages/api":
   version: 0.0.0-use.local
   resolution: "@aigo/api@workspace:packages/api"
   dependencies:
@@ -31,7 +31,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@aigo/config@workspace:packages/config":
+"@aigo/config@npm:*, @aigo/config@workspace:packages/config":
   version: 0.0.0-use.local
   resolution: "@aigo/config@workspace:packages/config"
   languageName: unknown
@@ -41,6 +41,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@aigo/crypto@workspace:packages/crypto"
   dependencies:
+    "@aigo/api": "npm:*"
+    "@aigo/config": "npm:*"
     "@babel/core": "npm:^7.20.0"
     "@babel/preset-env": "npm:^7.20.0"
     "@babel/preset-typescript": "npm:^7.24.7"
@@ -49,6 +51,7 @@ __metadata:
     "@types/babel__preset-env": "npm:^7"
     "@types/jest": "npm:^29.5.12"
     bip39: "npm:^3.1.0"
+    bs58: "npm:^6.0.0"
     jest: "npm:^29.7.0"
   languageName: unknown
   linkType: soft
@@ -11104,6 +11107,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"base-x@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "base-x@npm:5.0.0"
+  checksum: 10/fa82bc9a963f7a765a3287ba632661669fe553d06ee0d4d4e282640335bff30ec685e3c3b1714e265f697b234facd02a310f1e2465db88f4f1a448e6267fbc65
+  languageName: node
+  linkType: hard
+
 "base64-js@npm:^1.0.2, base64-js@npm:^1.3.1, base64-js@npm:^1.5.1":
   version: 1.5.1
   resolution: "base64-js@npm:1.5.1"
@@ -11229,6 +11239,15 @@ __metadata:
   bin:
     browserslist: cli.js
   checksum: 10/91da59f70a8e01ece97133670f9857d6d7e96be78e1b7ffa54b869f97d01d01c237612471b595cee41c1ab212e26e536ce0b6716ad1d6c4368a40c222698cac1
+  languageName: node
+  linkType: hard
+
+"bs58@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "bs58@npm:6.0.0"
+  dependencies:
+    base-x: "npm:^5.0.0"
+  checksum: 10/7c9bb2b2d93d997a8c652de3510d89772007ac64ee913dc4e16ba7ff47624caad3128dcc7f360763eb6308760c300b3e9fd91b8bcbd489acd1a13278e7949c4e
   languageName: node
   linkType: hard
 

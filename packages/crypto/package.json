@@ -9,8 +9,11 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@aigo/api": "*",
+    "@aigo/config": "*",
     "@tanle/shamirs-secret-sharing": "^0.0.1",
-    "bip39": "^3.1.0"
+    "bip39": "^3.1.0",
+    "bs58": "^6.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

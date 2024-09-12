@@ -18,6 +18,7 @@ type EnvironmentConfig = {
 	FIREBASE_APPLE_AUTH_REDIRECT_URL: string;
 
 	GRAPHQL_API_ENDPOINT: string;
+	API_RSA_PUBLIC_KEY: string;
 };
 
 type ActivityConfig = {

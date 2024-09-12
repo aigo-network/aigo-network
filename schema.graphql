@@ -376,6 +376,9 @@ type RootMutation {
   startTrip(geolocation: GeolocationInput!, tripMetadata: TripMetaData): Trip
 
   """"""
+  syncSecretShares(shares: [SecretShare]): Boolean
+
+  """"""
   trackAppOpenWithLinkingEvent(appStage: AppStage!, url: String!): String
 
   """"""
@@ -434,6 +437,24 @@ type RootQuery {
 
   """"""
   web3FarmingProfile: Web3FarmingProfile
+}
+
+""""""
+input SecretShare {
+  """"""
+  encrypted: String
+
+  """"""
+  type: SecretShareType
+}
+
+""""""
+enum SecretShareType {
+  """"""
+  PASSCODE_ENCRYPTED
+
+  """"""
+  PRIMARY
 }
 
 """"""

@@ -4,8 +4,8 @@
  * Shamir's Secret Sharing and additional encryption algorithms.
  *
  * The secret (seed phrase) will be split into shares and distributed/stored as follows:
- * - Share A will be encrypted using ROCKET_PUBLIC_KEY with asymmetric encryption and stored in our backend.
- * - Share B will be encrypted with the user’s passcode, then encrypted again with ROCKET_PUBLIC_KEY as described above
+ * - Share A will be encrypted using RSA with API public key stored in our backend.
+ * - Share B will be encrypted with the user’s passcode, then encrypted again by RSA as described above
  *   and stored in our backend. Additionally, this encrypted share will also be stored on the user's device.
  *
  * With a threshold of 2, users need at least 2 shares to reconstruct the secret.
@@ -40,5 +40,90 @@
  * 3. Alternative Approach
  * We could consider using the user's passcode to encrypt the entire seed phrase and store it.
  *
+ * This module manages cryptography, encryption depends on @aigo/api, @aigo/config
  */
+import { graphqlClient, SecretShareType } from '@aigo/api/graphql';
+import { config } from '@aigo/config';
+import { sss28 } from '@tanle/shamirs-secret-sharing';
+import { generateMnemonic, mnemonicToSeed } from 'bip39';
+import bs58 from 'bs58';
 
+import { aes } from './aes';
+import { rsa } from './rsa';
+
+/**
+ * Generate a seedphrase and sync encrypted shares (from threshold key encryption) to backend with passcode.
+ */
+export const createSafeSeedphraseWithPasscode = async (passcode: string) => {
+	const { mnemonic, seed, shares } = await createSeedphraseWithShares(2, 2);
+	const primaryShare = shares[0];
+	const encryptedShare = await aes.encryptAndMerge(shares[1], passcode);
+
+	await syncSharesToBackend({ primaryShare, encryptedShare });
+
+	return {
+		mnemonic,
+		seed,
+		shares,
+		primaryShare,
+		encryptedShare,
+	};
+};
+
+type SeedphraseWithShares = {
+	mnemonic: string;
+	seed: Buffer;
+	shares: sss28.Share[];
+};
+/**
+ * Create new seedphrase and split it by Shamirs's Secret Sharing to achieve threshold key encryption
+ */
+export const createSeedphraseWithShares = async (
+	numShares: number = 2,
+	threshold: number = 2,
+): Promise<SeedphraseWithShares> => {
+	const mnemonic = generateMnemonic();
+	const seed = await mnemonicToSeed(mnemonic);
+
+	const secret = new Uint8Array(seed);
+	const shares = sss28.split(secret, threshold, numShares);
+
+	return { mnemonic, seed, shares };
+};
+
+type SyncShares = {
+	primaryShare: Uint8Array;
+	/**
+	 * Encrypted by passcode or passkey
+	 */
+	encryptedShare: Uint8Array;
+};
+/**
+ * Sync the encrypted shares to backend for backup
+ */
+export const syncSharesToBackend = async ({
+	primaryShare,
+	encryptedShare,
+}: SyncShares) => {
+	const publicKeyBytes = bs58.decode(config.API_RSA_PUBLIC_KEY);
+	const publicKey = await rsa.importKey(publicKeyBytes, 'public');
+
+	const [encryptedPrimaryShare, encryptedPasscodeShare] = await Promise.all([
+		rsa.encrypt(primaryShare, publicKey),
+		rsa.encrypt(encryptedShare, publicKey),
+	]);
+
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const syncPayload = [
+		{
+			encrypted: bs58.encode(encryptedPrimaryShare),
+			type: SecretShareType.Primary,
+		},
+		{
+			encrypted: bs58.encode(encryptedPasscodeShare),
+			type: SecretShareType.PasscodeEncrypted,
+		},
+	];
+
+	await graphqlClient.syncSecretShares({ shares: syncPayload });
+};

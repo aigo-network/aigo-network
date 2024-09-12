@@ -185,6 +185,7 @@ export type RootMutation = {
   redeemReward?: Maybe<RewardInstance>;
   registerDevice?: Maybe<Device>;
   startTrip?: Maybe<Trip>;
+  syncSecretShares?: Maybe<Scalars['Boolean']['output']>;
   trackAppOpenWithLinkingEvent?: Maybe<Scalars['String']['output']>;
   updateProfile?: Maybe<User>;
   /**
@@ -258,6 +259,11 @@ export type RootMutationStartTripArgs = {
 };
 
 
+export type RootMutationSyncSecretSharesArgs = {
+  shares?: InputMaybe<Array<InputMaybe<SecretShare>>>;
+};
+
+
 export type RootMutationTrackAppOpenWithLinkingEventArgs = {
   appStage: AppStage;
   url: Scalars['String']['input'];
@@ -323,6 +329,16 @@ export type RootQueryTripsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
 };
+
+export type SecretShare = {
+  encrypted?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<SecretShareType>;
+};
+
+export enum SecretShareType {
+  PasscodeEncrypted = 'PASSCODE_ENCRYPTED',
+  Primary = 'PRIMARY'
+}
 
 export type Trip = {
   __typename?: 'Trip';
@@ -507,6 +523,13 @@ export type MarkUsedMutationVariables = Exact<{
 
 
 export type MarkUsedMutation = { __typename?: 'RootMutation', markRewardAsUsed?: boolean | null };
+
+export type SyncSecretSharesMutationVariables = Exact<{
+  shares?: InputMaybe<Array<InputMaybe<SecretShare>> | InputMaybe<SecretShare>>;
+}>;
+
+
+export type SyncSecretSharesMutation = { __typename?: 'RootMutation', syncSecretShares?: boolean | null };
 
 export type StartTripMutationVariables = Exact<{
   geolocation: GeolocationInput;
@@ -818,6 +841,11 @@ export const RedeemRewardDocument = gql`
 export const MarkUsedDocument = gql`
     mutation markUsed($rewardInstanceId: String!) {
   markRewardAsUsed(rewardInstanceID: $rewardInstanceId)
+}
+    `;
+export const SyncSecretSharesDocument = gql`
+    mutation syncSecretShares($shares: [SecretShare]) {
+  syncSecretShares(shares: $shares)
 }
     `;
 export const StartTripDocument = gql`
@@ -1160,6 +1188,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     markUsed(variables: MarkUsedMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<MarkUsedMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<MarkUsedMutation>(MarkUsedDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'markUsed', 'mutation', variables);
+    },
+    syncSecretShares(variables?: SyncSecretSharesMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SyncSecretSharesMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SyncSecretSharesMutation>(SyncSecretSharesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'syncSecretShares', 'mutation', variables);
     },
     startTrip(variables: StartTripMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<StartTripMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<StartTripMutation>(StartTripDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'startTrip', 'mutation', variables);
