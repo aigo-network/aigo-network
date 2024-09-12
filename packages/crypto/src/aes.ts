@@ -1,4 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+/**
+ * AES-GCM with PBKDF2 key derivation for passcode/password encryption
+ * Spec: https://csrc.nist.gov/pubs/sp/800/38/d/final
+ * Ref: https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto
+ */
 
 const DEFAULT_DERIVE_KEY_ITERATIONS = 100000;
 const COMMON_PBKDF2_SALT_SIZE = 16;
@@ -6,7 +11,7 @@ const AES_BLOCK_SIZE = 16;
 const AES_GCM_IV_SIZE = 12;
 const AES_256_GCM_KEY_LENGTH = 256;
 
-export type PasscodeEncrypted = {
+type PasscodeEncrypted = {
 	iv: Uint8Array;
 	salt: Uint8Array;
 	encrypted: Uint8Array;
@@ -48,7 +53,7 @@ const deriveKey = async (
  * AES encrypting with passcode
  * Ref: https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/encrypt#aes-gcm_2
  */
-export const encryptByPasscode = async (
+const encryptByPasscode = async (
 	data: Uint8Array,
 	passcode: string,
 ): Promise<PasscodeEncrypted> => {
@@ -70,7 +75,7 @@ export const encryptByPasscode = async (
  * AES decrypting with passcode
  * Ref: https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/decrypt#aes-gcm
  */
-export const decryptByPasscode = async (
+const decryptByPasscode = async (
 	encryptedData: PasscodeEncrypted,
 	passcode: string,
 ): Promise<Uint8Array> => {
@@ -85,3 +90,5 @@ export const decryptByPasscode = async (
 
 	return new Uint8Array(data);
 };
+
+export const aes = { encryptByPasscode, decryptByPasscode };
