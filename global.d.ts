@@ -10,6 +10,7 @@ declare module 'react-native-config' {
 		GRAPHQL_API_ENDPOINT: string;
 		API_RSA_PUBLIC_KEY: string;
 		MAPBOX_ACCESS_TOKEN: string;
+		TELEGRAM_BOT_ID: string;
 	}
 
 	export const Config: NativeConfig;

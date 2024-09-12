@@ -8,12 +8,12 @@ import { getSdk } from './sdk';
 export const graphqlClient: Sdk = getSdk(
 	new GraphQLClient(config.GRAPHQL_API_ENDPOINT, {
 		requestMiddleware: async (request) => {
-			const jwt = await getJWT();
+			const { jwt, headerPrefix } = await getJWT();
 			return {
 				...request,
 				headers: {
 					...request.headers,
-					authorization: jwt ? `Bearer ${jwt}` : '',
+					authorization: jwt ? `${headerPrefix} ${jwt}` : '',
 				},
 			};
 		},

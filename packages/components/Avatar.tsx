@@ -58,10 +58,12 @@ export default Avatar;
 const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
+		justifyContent: 'center',
 		alignItems: 'center',
 		gap: 8,
 	},
 	thumbText: {
+		textAlign: 'center',
 		fontSize: 32,
 	},
 	displayText: {
