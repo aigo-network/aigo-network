@@ -14,7 +14,7 @@ import crashlytics from '@react-native-firebase/crashlytics';
 import CopyButton from 'components/CopyButton';
 import { showAskPasscodeBottomSheet } from 'modals/AskPasscode';
 import { appActions, appState } from 'state/app';
-import { setEncryptedPrivateKey, setWalletAddress } from 'state/app/wallet';
+import { setEncryptedPrivateKey } from 'state/app/wallet';
 import { defaultTheme } from 'utils/global';
 import { useSnapshot } from 'valtio';
 
@@ -73,10 +73,7 @@ export const Wallet = () => {
 				passcode,
 			);
 
-			await Promise.all([
-				setWalletAddress(wallet.address),
-				setEncryptedPrivateKey(encryptedPrivateKey),
-			]);
+			await setEncryptedPrivateKey(encryptedPrivateKey);
 
 			appActions.setWallet(wallet.address);
 			setCreateLoading(false);
