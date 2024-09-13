@@ -5,6 +5,7 @@ import auth from '@react-native-firebase/auth';
 import crashlytics from '@react-native-firebase/crashlytics';
 import { appActions } from 'state/app';
 import { cleanDefaultUserInfo } from 'state/app/userInfo';
+import { cleanEncryptedPrivateKey } from 'state/app/wallet';
 import { defaultEmail, defaultName } from 'utils/misc';
 
 injectGetJWTFunc(async () => {
@@ -69,8 +70,12 @@ export const logOut = async () => {
 		};
 	});
 
-	await auth().signOut();
-	await cleanDefaultUserInfo();
+	await Promise.all([
+		auth().signOut(),
+		cleanDefaultUserInfo(),
+		cleanEncryptedPrivateKey(),
+	]);
+
 	appActions.cleanState();
 };
 

@@ -12,3 +12,7 @@ export const setEncryptedPrivateKey = async (
 ): Promise<void> => {
 	await AsyncStorage.setItem(PrivateKeyStorageKey, encryptedPrivateKey);
 };
+
+export const cleanEncryptedPrivateKey = async () => {
+	await AsyncStorage.removeItem(PrivateKeyStorageKey);
+};
