@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { Path, Svg } from 'react-native-svg';
 import Copy from '@aigo/components/icon/Copy';
+import Clipboard from '@react-native-clipboard/clipboard';
 import { rewardState } from 'state/reward';
 import { defaultTheme } from 'utils/global';
 import { RewardStatus } from 'utils/reward';
@@ -30,6 +31,9 @@ const Ticket: FC<Props> = ({ rewardStatus, rewardId }) => {
 	const reward = redeemedRewards?.find((reward) => reward.id === rewardId);
 	const isActive = rewardStatus === RewardStatus.ACTIVE;
 	const ticketHighlightColor = isActive ? '#2BD265' : defaultTheme.textDark20;
+	const onCopy = () => {
+		Clipboard.setString(reward?.link || '');
+	};
 
 	return (
 		<View style={styles.container}>
@@ -61,10 +65,7 @@ const Ticket: FC<Props> = ({ rewardStatus, rewardId }) => {
 					>
 						<Text style={styles.code}>{reward?.link}</Text>
 					</TouchableOpacity>
-					<TouchableOpacity
-						hitSlop={10}
-						onPress={() => navigator.clipboard.writeText(reward?.link || '')}
-					>
+					<TouchableOpacity hitSlop={10} onPress={onCopy}>
 						<View style={styles.copyButton}>
 							<Copy color={defaultTheme.textDark90} width={12} />
 						</View>
