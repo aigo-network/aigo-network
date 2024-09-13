@@ -14,6 +14,7 @@ module.exports = {
 					screens: './src/screens',
 					modals: './src/modals',
 					api: './src/api',
+					crypto: 'react-native-quick-crypto',
 				},
 			},
 		],

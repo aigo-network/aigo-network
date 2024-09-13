@@ -207,6 +207,7 @@ PODS:
     - nanopb/encode (= 2.30910.0)
   - nanopb/decode (2.30910.0)
   - nanopb/encode (2.30910.0)
+  - OpenSSL-Universal (3.1.5007)
   - PromisesObjC (2.4.0)
   - PromisesSwift (2.4.0):
     - PromisesObjC (= 2.4.0)
@@ -1165,6 +1166,29 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
+  - react-native-quick-crypto (0.7.4):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - OpenSSL-Universal
+    - RCT-Folly (= 2024.01.01.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React
+    - React-Codegen
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-ImageManager
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-rendererdebug
+    - React-utils
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
   - react-native-safe-area-context (4.10.4):
     - React-Core
   - react-native-tracking-transparency (0.1.2):
@@ -1563,6 +1587,7 @@ DEPENDENCIES:
   - react-native-background-actions (from `../../../node_modules/react-native-background-actions`)
   - react-native-config (from `../../../node_modules/react-native-config`)
   - "react-native-geolocation (from `../../../node_modules/@react-native-community/geolocation`)"
+  - react-native-quick-crypto (from `../../../node_modules/react-native-quick-crypto`)
   - react-native-safe-area-context (from `../../../node_modules/react-native-safe-area-context`)
   - react-native-tracking-transparency (from `../../../node_modules/react-native-tracking-transparency`)
   - React-nativeconfig (from `../../../node_modules/react-native/ReactCommon`)
@@ -1641,6 +1666,7 @@ SPEC REPOS:
     - MapboxMaps
     - MapboxMobileEvents
     - nanopb
+    - OpenSSL-Universal
     - PromisesObjC
     - PromisesSwift
     - RecaptchaInterop
@@ -1717,6 +1743,8 @@ EXTERNAL SOURCES:
     :path: "../../../node_modules/react-native-config"
   react-native-geolocation:
     :path: "../../../node_modules/@react-native-community/geolocation"
+  react-native-quick-crypto:
+    :path: "../../../node_modules/react-native-quick-crypto"
   react-native-safe-area-context:
     :path: "../../../node_modules/react-native-safe-area-context"
   react-native-tracking-transparency:
@@ -1848,6 +1876,7 @@ SPEC CHECKSUMS:
   MapboxMaps: e76b14f52c54c40b76ddecd04f40448e6f35a864
   MapboxMobileEvents: de50b3a4de180dd129c326e09cd12c8adaaa46d6
   nanopb: 438bc412db1928dac798aa6fd75726007be04262
+  OpenSSL-Universal: 2d916d735a0196be6a14b959ce976c564d392861
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
   PromisesSwift: 9d77319bbe72ebf6d872900551f7eeba9bce2851
   RCT-Folly: 02617c592a293bd6d418e0a88ff4ee1f88329b47
@@ -1877,6 +1906,7 @@ SPEC CHECKSUMS:
   react-native-background-actions: ea5bab231a28710eea614acb9ca595594415a5ec
   react-native-config: 86038147314e2e6d10ea9972022aa171e6b1d4d8
   react-native-geolocation: 26d62314499618e6a810ed4a9a6121542c76df04
+  react-native-quick-crypto: bfed90b6ce34a26bcd572c37261d14be0a89edfc
   react-native-safe-area-context: 399a5859f6acbdf67f671c69b53113f535f3b5b0
   react-native-tracking-transparency: 25ff1ff866e338c137c818bdec20526bb05ffcc1
   React-nativeconfig: 21d89c65ca39875fad2c5c465e0e013e514eba21

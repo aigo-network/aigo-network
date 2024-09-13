@@ -5,6 +5,7 @@ const monoPackages = {
 	'@aigo/api': path.resolve(__dirname, '../../packages/api'),
 	'@aigo/config': path.resolve(__dirname, '../../packages/config'),
 	'@aigo/components': path.resolve(__dirname, '../../packages/components'),
+	'@aigo/crypto': path.resolve(__dirname, '../../packages/crypto'),
 };
 
 const rootNodeModules = path.resolve(__dirname, '../../node_modules');

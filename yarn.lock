@@ -16,7 +16,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@aigo/components@workspace:packages/components":
+"@aigo/components@npm:*, @aigo/components@workspace:packages/components":
   version: 0.0.0-use.local
   resolution: "@aigo/components@workspace:packages/components"
   dependencies:
@@ -37,7 +37,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@aigo/crypto@workspace:packages/crypto":
+"@aigo/crypto@npm:*, @aigo/crypto@workspace:packages/crypto":
   version: 0.0.0-use.local
   resolution: "@aigo/crypto@workspace:packages/crypto"
   dependencies:
@@ -46,7 +46,7 @@ __metadata:
     "@babel/core": "npm:^7.20.0"
     "@babel/preset-env": "npm:^7.20.0"
     "@babel/preset-typescript": "npm:^7.24.7"
-    "@tanle/shamirs-secret-sharing": "npm:^0.0.1"
+    "@tanle/shamirs-secret-sharing": "npm:^0.0.2"
     "@types/babel__core": "npm:^7"
     "@types/babel__preset-env": "npm:^7"
     "@types/jest": "npm:^29.5.12"
@@ -77,6 +77,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@aigo/mobile@workspace:apps/mobile"
   dependencies:
+    "@aigo/api": "npm:*"
+    "@aigo/components": "npm:*"
+    "@aigo/config": "npm:*"
+    "@aigo/crypto": "npm:*"
     "@babel/core": "npm:^7.20.0"
     "@babel/preset-env": "npm:^7.20.0"
     "@babel/runtime": "npm:^7.20.0"
@@ -126,6 +130,7 @@ __metadata:
     react-native-haptic-feedback: "npm:^2.2.0"
     react-native-localize: "npm:^3.1.0"
     react-native-permissions: "npm:^4.1.5"
+    react-native-quick-crypto: "npm:^0.7.4"
     react-native-reanimated: "npm:3.11.0"
     react-native-safe-area-context: "npm:^4.10.1"
     react-native-screens: "npm:^3.31.1"
@@ -3386,6 +3391,16 @@ __metadata:
   version: 0.0.3
   resolution: "@cdklabs/tskb@npm:0.0.3"
   checksum: 10/357739cf2a626c8e16b6e19ced7674a2ba4109615549dd7c2bc926356192ac8c6b1a7af6f40305ee3253bde718143a2f67e116f2cf08d47d2ac8e4ae5e02cd32
+  languageName: node
+  linkType: hard
+
+"@craftzdog/react-native-buffer@npm:^6.0.5":
+  version: 6.0.5
+  resolution: "@craftzdog/react-native-buffer@npm:6.0.5"
+  dependencies:
+    ieee754: "npm:^1.2.1"
+    react-native-quick-base64: "npm:^2.0.5"
+  checksum: 10/9963b430d0cd2af030605a7e81b3982dfec36603406d4f14d520e28936d24a79d69ca4e8a3b650734f6e45b12d87f1bd1ce86f0db11379103e7b1c024a2510d5
   languageName: node
   linkType: hard
 
@@ -7824,10 +7839,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanle/shamirs-secret-sharing@npm:^0.0.1":
-  version: 0.0.1
-  resolution: "@tanle/shamirs-secret-sharing@npm:0.0.1"
-  checksum: 10/cd6197577921ee7993b063c1d75482a9af29ebb8b83e54d0e9dee2df580de5336d159068c05573da806696aba92c7cf451cd7a34cc4c2b1c24131a31eea92ccc
+"@tanle/shamirs-secret-sharing@npm:^0.0.2":
+  version: 0.0.2
+  resolution: "@tanle/shamirs-secret-sharing@npm:0.0.2"
+  checksum: 10/e8c5b4df6df123cd50a667d34906656e54b40ad4b797e7763de883a805ba3d304f47b87901dc946b1d5d5e5190514c77444c923a91a4fabb966db2b3fdce4d9b
   languageName: node
   linkType: hard
 
@@ -13500,7 +13515,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"events@npm:^3.2.0":
+"events@npm:^3.2.0, events@npm:^3.3.0":
   version: 3.3.0
   resolution: "events@npm:3.3.0"
   checksum: 10/a3d47e285e28d324d7180f1e493961a2bbb4cad6412090e4dec114f4db1f5b560c7696ee8e758f55e23913ede856e3689cd3aa9ae13c56b5d8314cd3b3ddd1be
@@ -19068,6 +19083,34 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-quick-base64@npm:^2.0.5":
+  version: 2.1.2
+  resolution: "react-native-quick-base64@npm:2.1.2"
+  dependencies:
+    base64-js: "npm:^1.5.1"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10/20b205612417a6c39452ad3ebd205d74fcfaa244832ec9e717b87ee075bf28076bf2445e8f690aad8cf0be6f3da89b4148eb8379d0b71d1c953bd06f66cc7c56
+  languageName: node
+  linkType: hard
+
+"react-native-quick-crypto@npm:^0.7.4":
+  version: 0.7.4
+  resolution: "react-native-quick-crypto@npm:0.7.4"
+  dependencies:
+    "@craftzdog/react-native-buffer": "npm:^6.0.5"
+    events: "npm:^3.3.0"
+    readable-stream: "npm:^4.5.2"
+    string_decoder: "npm:^1.3.0"
+    util: "npm:^0.12.5"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: 10/025c7cd70c1d0355160ab0c4d3d0544649fa9a546803eb616e6326ebdafbe5cb1d8ba267d0cdb7ef7ec436b8ad1d3abb3ddfe9b2152e0222556e592b8fd365db
+  languageName: node
+  linkType: hard
+
 "react-native-reanimated@npm:3.11.0":
   version: 3.11.0
   resolution: "react-native-reanimated@npm:3.11.0"
@@ -19454,6 +19497,19 @@ __metadata:
     string_decoder: "npm:^1.1.1"
     util-deprecate: "npm:^1.0.1"
   checksum: 10/d9e3e53193adcdb79d8f10f2a1f6989bd4389f5936c6f8b870e77570853561c362bee69feca2bbb7b32368ce96a85504aa4cedf7cf80f36e6a9de30d64244048
+  languageName: node
+  linkType: hard
+
+"readable-stream@npm:^4.5.2":
+  version: 4.5.2
+  resolution: "readable-stream@npm:4.5.2"
+  dependencies:
+    abort-controller: "npm:^3.0.0"
+    buffer: "npm:^6.0.3"
+    events: "npm:^3.3.0"
+    process: "npm:^0.11.10"
+    string_decoder: "npm:^1.3.0"
+  checksum: 10/01b128a559c5fd76a898495f858cf0a8839f135e6a69e3409f986e88460134791657eb46a2ff16826f331682a3c4d0c5a75cef5e52ef259711021ba52b1c2e82
   languageName: node
   linkType: hard
 
@@ -20782,7 +20838,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"string_decoder@npm:^1.1.1":
+"string_decoder@npm:^1.1.1, string_decoder@npm:^1.3.0":
   version: 1.3.0
   resolution: "string_decoder@npm:1.3.0"
   dependencies:
@@ -21751,7 +21807,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"util@npm:^0.12.4":
+"util@npm:^0.12.4, util@npm:^0.12.5":
   version: 0.12.5
   resolution: "util@npm:0.12.5"
   dependencies:
