@@ -22,6 +22,7 @@ export const userProfileQuery = gql`
 export const UserProfileFragment = gql`
 	fragment ProfilePart on User {
 		id
+		wallet
 		name
 		email
 		city

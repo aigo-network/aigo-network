@@ -18,7 +18,7 @@ export const appActions = {
 		appState.appUser = user;
 	},
 	setWallet: (wallet: string) => {
-		appState.wallet = wallet;
+		if (appState.appUser) appState.appUser.wallet = wallet;
 	},
 	updateOnboarding: (obj: Partial<Onboarding>) => {
 		appState.onboarding = { ...appState.onboarding, ...obj };

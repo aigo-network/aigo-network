@@ -19,7 +19,8 @@ import { defaultTheme } from 'utils/global';
 import { useSnapshot } from 'valtio';
 
 export const Wallet = () => {
-	const { wallet } = useSnapshot(appState);
+	const user = useSnapshot(appState).appUser;
+	const wallet = user?.wallet;
 
 	const newPasscode = useRef('');
 	const setChangeError = useRef<(error: string) => void>(() => ({}));
