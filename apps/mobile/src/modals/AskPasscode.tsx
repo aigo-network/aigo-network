@@ -6,13 +6,19 @@ import OtpInput from 'components/OtpInput';
 import { Align, showModal } from 'empty-modal/state';
 import { defaultTheme } from 'utils/global';
 
-type AskPasscodeOption = Omit<Props, 'onClose'> & {
+type AskPasscodeOption = Props & {
 	idSuffix?: string;
 };
 
 export const showAskPasscodeBottomSheet = (options?: AskPasscodeOption) => {
 	const { cleanModal } = showModal(
-		<AskPasscode onClose={() => cleanModal()} {...options} />,
+		<AskPasscode
+			{...options}
+			onClose={() => {
+				options?.onClose?.();
+				cleanModal();
+			}}
+		/>,
 		{
 			id: ['ask-passcode-bottom-sheet', options?.idSuffix].join('-'),
 			align: Align.FullBottom,

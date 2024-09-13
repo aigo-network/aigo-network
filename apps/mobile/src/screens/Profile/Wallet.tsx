@@ -12,10 +12,12 @@ import {
 } from '@aigo/crypto';
 import crashlytics from '@react-native-firebase/crashlytics';
 import CopyButton from 'components/CopyButton';
+import { ethers } from 'ethers';
 import { showAskPasscodeBottomSheet } from 'modals/AskPasscode';
 import { appActions, appState } from 'state/app';
 import { setEncryptedPrivateKey } from 'state/app/wallet';
 import { defaultTheme } from 'utils/global';
+import { smartGetPrivateKey } from 'utils/wallet';
 import { useSnapshot } from 'valtio';
 
 export const Wallet = () => {
@@ -24,7 +26,7 @@ export const Wallet = () => {
 
 	const newPasscode = useRef('');
 	const setChangeError = useRef<(error: string) => void>(() => ({}));
-	const [createLoading, setCreateLoading] = useState(false);
+	const [loading, setLoading] = useState(false);
 
 	const handlePressCreate = () => {
 		const { cleanModal } = showAskPasscodeBottomSheet({
@@ -47,7 +49,7 @@ export const Wallet = () => {
 			onComplete: (passcode) => {
 				if (passcode === newPasscode.current) {
 					console.debug('passcode matched');
-					setCreateLoading(true);
+					setLoading(true);
 					createWallet();
 					cleanModal();
 				} else {
@@ -76,27 +78,45 @@ export const Wallet = () => {
 			await setEncryptedPrivateKey(encryptedPrivateKey);
 
 			appActions.setWallet(wallet.address);
-			setCreateLoading(false);
+			setLoading(false);
 		} catch (error) {
 			crashlytics().recordError(error as Error, 'createWalletError');
 			console.debug('createWalletError', error);
 		}
 	};
 
+	// dev only
+	const handleReconstructEncrypted = async () => {
+		setLoading(true);
+		const privateKey = await smartGetPrivateKey();
+		const wallet = new ethers.Wallet(privateKey);
+		console.log('Reconstructed wallet', wallet);
+		setLoading(false);
+	};
+
 	return (
 		<View style={styles.container}>
 			<View style={styles.titleContainer}>
 				<Text style={styles.title}>Wallet</Text>
-				{!wallet && !createLoading && (
+				{!wallet && !loading && (
 					<TouchableOpacity
-						style={styles.createButton}
+						style={styles.button}
 						hitSlop={14}
 						onPress={handlePressCreate}
 					>
 						<Text>Create</Text>
 					</TouchableOpacity>
 				)}
-				{createLoading && <ActivityIndicator color={defaultTheme.textDark80} />}
+				{loading && <ActivityIndicator color={defaultTheme.textDark80} />}
+				{wallet && __DEV__ && (
+					<TouchableOpacity
+						style={styles.button}
+						hitSlop={14}
+						onPress={handleReconstructEncrypted}
+					>
+						<Text>Decrypt</Text>
+					</TouchableOpacity>
+				)}
 			</View>
 
 			{wallet && (
@@ -137,7 +157,7 @@ const styles = StyleSheet.create({
 		fontSize: 16,
 		color: defaultTheme.textDark70,
 	},
-	createButton: {
+	button: {
 		padding: 7,
 		paddingHorizontal: 26,
 		borderRadius: 20,
