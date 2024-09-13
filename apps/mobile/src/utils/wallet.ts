@@ -28,9 +28,9 @@ export const smartGetPrivateKey = async (): Promise<string> => {
 		const { secretShares: shares } = await graphqlClient.getSecretShares();
 		if (!shares) throw Error('Can not fetch secret shares');
 
-		const encryptedShare = shares.find((s) => s?.type === 'PASSCODE_ENCRYPTED');
 		const primaryShare = shares.find((s) => s?.type === 'PRIMARY');
-		if (!encryptedShare || !primaryShare)
+		const encryptedShare = shares.find((s) => s?.type === 'PASSCODE_ENCRYPTED');
+		if (!primaryShare || !encryptedShare)
 			throw Error('Required 2 shares to reconstruct');
 
 		const encryptedShareBytes = bs58.decode(encryptedShare.data as string);
