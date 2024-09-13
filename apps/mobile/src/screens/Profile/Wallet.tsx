@@ -85,7 +85,10 @@ export const Wallet = () => {
 		}
 	};
 
-	// dev only
+	/**
+	 * dev only
+	 * Note: a ref for get private key from everywhere
+	 * */
 	const handleReconstructEncrypted = async () => {
 		setLoading(true);
 		const privateKey = await smartGetPrivateKey();
@@ -108,7 +111,7 @@ export const Wallet = () => {
 					</TouchableOpacity>
 				)}
 				{loading && <ActivityIndicator color={defaultTheme.textDark80} />}
-				{wallet && __DEV__ && (
+				{wallet && !loading && __DEV__ && (
 					<TouchableOpacity
 						style={styles.button}
 						hitSlop={14}

@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 import BottomSheetContainer from '@aigo/components/BottomSheetContainer';
 import OtpInput from 'components/OtpInput';
 import { Align, showModal } from 'empty-modal/state';
@@ -44,12 +44,14 @@ const AskPasscode: FC<Props> = ({
 	onClose,
 	setChangeErrorFunction,
 }) => {
+	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState('');
 	const [passcode, setPasscode] = useState('');
 
 	useEffect(() => {
 		if (passcode.length === 6) {
 			onComplete?.(passcode);
+			setLoading(true);
 		} else if (passcode.length > 0) {
 			setError('');
 		}
@@ -60,7 +62,10 @@ const AskPasscode: FC<Props> = ({
 	}, []);
 
 	useEffect(() => {
-		if (error.length > 0) setPasscode('');
+		if (error.length > 0) {
+			setPasscode('');
+			setLoading(false);
+		}
 	}, [error]);
 
 	return (
@@ -68,14 +73,18 @@ const AskPasscode: FC<Props> = ({
 			<View style={styles.indicator} />
 			<Text style={styles.title}>{title}</Text>
 			<Text style={styles.description}>{description}</Text>
-			<OtpInput
-				inputLength={6}
-				value={passcode}
-				onChangeText={setPasscode}
-				errorMessage={error}
-				hideValue
-				autoFocus
-			/>
+			{loading ? (
+				<ActivityIndicator color={defaultTheme.textDark60} />
+			) : (
+				<OtpInput
+					inputLength={6}
+					value={passcode}
+					onChangeText={setPasscode}
+					errorMessage={error}
+					hideValue
+					autoFocus
+				/>
+			)}
 		</BottomSheetContainer>
 	);
 };

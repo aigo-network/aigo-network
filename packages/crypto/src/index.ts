@@ -143,6 +143,20 @@ export const syncSharesToBackend = async ({
 	});
 };
 
+export const reconstructSeedphraseAndWallet = (shares: sss28.Share[]) => {
+	const bytes = sss28.reconstruct(shares);
+	const mnemonic = Buffer.from(bytes).toString('utf-8');
+
+	const seed = new Uint8Array(mnemonicToSeedSync(mnemonic));
+	const wallet = deriveKeypair(seed, 'evm');
+
+	return {
+		mnemonic,
+		seed,
+		wallet,
+	};
+};
+
 export * from './aes';
 export * from './rsa';
 export * from './wallet';

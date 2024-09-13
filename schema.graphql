@@ -376,7 +376,7 @@ type RootMutation {
   startTrip(geolocation: GeolocationInput!, tripMetadata: TripMetaData): Trip
 
   """"""
-  syncSecretShares(shares: [SecretShare]): Boolean
+  syncWalletAndSecretShares(shares: [SecretShareInput]!, wallet: String!): Boolean
 
   """"""
   trackAppOpenWithLinkingEvent(appStage: AppStage!, url: String!): String
@@ -427,6 +427,9 @@ type RootQuery {
   rewards(status: RewardQueryEnum): [RewardInfo]
 
   """"""
+  secretShares(types: [SecretShareType]): [SecretShare]
+
+  """"""
   trip(tripID: String!): Trip
 
   """"""
@@ -440,7 +443,16 @@ type RootQuery {
 }
 
 """"""
-input SecretShare {
+type SecretShare {
+  """"""
+  data: String
+
+  """"""
+  type: String
+}
+
+""""""
+input SecretShareInput {
   """"""
   encrypted: String
 
@@ -572,6 +584,9 @@ type User {
 
   """"""
   updatedAt: DateTime
+
+  """"""
+  wallet: String
 }
 
 """"""

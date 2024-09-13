@@ -260,7 +260,7 @@ export type RootMutationStartTripArgs = {
 
 
 export type RootMutationSyncWalletAndSecretSharesArgs = {
-  shares: Array<InputMaybe<SecretShare>>;
+  shares: Array<InputMaybe<SecretShareInput>>;
   wallet: Scalars['String']['input'];
 };
 
@@ -299,6 +299,7 @@ export type RootQuery = {
   reward?: Maybe<RewardInfo>;
   rewardInstance?: Maybe<RewardInstance>;
   rewards?: Maybe<Array<Maybe<RewardInfo>>>;
+  secretShares?: Maybe<Array<Maybe<SecretShare>>>;
   trip?: Maybe<Trip>;
   trips?: Maybe<TripConnection>;
   user?: Maybe<User>;
@@ -321,6 +322,11 @@ export type RootQueryRewardsArgs = {
 };
 
 
+export type RootQuerySecretSharesArgs = {
+  types?: InputMaybe<Array<InputMaybe<SecretShareType>>>;
+};
+
+
 export type RootQueryTripArgs = {
   tripID: Scalars['String']['input'];
 };
@@ -332,6 +338,12 @@ export type RootQueryTripsArgs = {
 };
 
 export type SecretShare = {
+  __typename?: 'SecretShare';
+  data?: Maybe<Scalars['String']['output']>;
+  type?: Maybe<Scalars['String']['output']>;
+};
+
+export type SecretShareInput = {
   encrypted?: InputMaybe<Scalars['String']['input']>;
   type?: InputMaybe<SecretShareType>;
 };
@@ -528,7 +540,7 @@ export type MarkUsedMutation = { __typename?: 'RootMutation', markRewardAsUsed?:
 
 export type SyncWalletAndSecretSharesMutationVariables = Exact<{
   wallet: Scalars['String']['input'];
-  shares: Array<InputMaybe<SecretShare>> | InputMaybe<SecretShare>;
+  shares: Array<InputMaybe<SecretShareInput>> | InputMaybe<SecretShareInput>;
 }>;
 
 
@@ -632,6 +644,13 @@ export type GetRedeemedRewardsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetRedeemedRewardsQuery = { __typename?: 'RootQuery', redeemedRewards?: Array<{ __typename?: 'RewardInstance', id?: string | null, infoId?: string | null, code?: string | null, link?: string | null, image?: string | null, used?: boolean | null, updatedAt?: any | null } | null> | null };
+
+export type GetSecretSharesQueryVariables = Exact<{
+  types?: InputMaybe<Array<InputMaybe<SecretShareType>> | InputMaybe<SecretShareType>>;
+}>;
+
+
+export type GetSecretSharesQuery = { __typename?: 'RootQuery', secretShares?: Array<{ __typename?: 'SecretShare', data?: string | null, type?: string | null } | null> | null };
 
 export type GetTripQueryVariables = Exact<{
   tripId: Scalars['String']['input'];
@@ -848,7 +867,7 @@ export const MarkUsedDocument = gql`
 }
     `;
 export const SyncWalletAndSecretSharesDocument = gql`
-    mutation syncWalletAndSecretShares($wallet: String!, $shares: [SecretShare]!) {
+    mutation syncWalletAndSecretShares($wallet: String!, $shares: [SecretShareInput]!) {
   syncWalletAndSecretShares(wallet: $wallet, shares: $shares)
 }
     `;
@@ -1096,6 +1115,14 @@ export const GetRedeemedRewardsDocument = gql`
   }
 }
     `;
+export const GetSecretSharesDocument = gql`
+    query getSecretShares($types: [SecretShareType]) {
+  secretShares(types: $types) {
+    data
+    type
+  }
+}
+    `;
 export const GetTripDocument = gql`
     query getTrip($tripId: String!) {
   trip(tripID: $tripId) {
@@ -1245,6 +1272,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     getRedeemedRewards(variables?: GetRedeemedRewardsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetRedeemedRewardsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetRedeemedRewardsQuery>(GetRedeemedRewardsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getRedeemedRewards', 'query', variables);
+    },
+    getSecretShares(variables?: GetSecretSharesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetSecretSharesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetSecretSharesQuery>(GetSecretSharesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getSecretShares', 'query', variables);
     },
     getTrip(variables: GetTripQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetTripQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetTripQuery>(GetTripDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getTrip', 'query', variables);
