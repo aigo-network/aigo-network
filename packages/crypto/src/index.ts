@@ -114,7 +114,6 @@ export const syncSharesToBackend = async ({
 		rsa.encrypt(encryptedShare, publicKey),
 	]);
 
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const syncPayload = [
 		{
 			encrypted: bs58.encode(encryptedPrimaryShare),
@@ -128,3 +127,7 @@ export const syncSharesToBackend = async ({
 
 	await graphqlClient.syncSecretShares({ shares: syncPayload });
 };
+
+export * from './aes';
+export * from './rsa';
+export * from './wallet';

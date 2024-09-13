@@ -3,6 +3,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "moduleResolution": "Bundler",
+    "strict": true,
+    "noImplicitAny": true,
+    "strictFunctionTypes": true,
     "resolveJsonModule": true,
     "esModuleInterop": true
   }
