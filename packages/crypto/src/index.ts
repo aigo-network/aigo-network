@@ -45,24 +45,34 @@
 import { graphqlClient, SecretShareType } from '@aigo/api/graphql';
 import { config } from '@aigo/config';
 import { sss28 } from '@tanle/shamirs-secret-sharing';
-import { generateMnemonic } from 'bip39';
+import { generateMnemonic, mnemonicToSeedSync } from 'bip39';
 import bs58 from 'bs58';
 
 import { aes } from './aes';
 import { rsa } from './rsa';
+import { deriveKeypair } from './wallet';
 
 /**
- * Generate a seedphrase and sync encrypted shares (from threshold key encryption) to backend with passcode.
+ * Generate a seedphrase and derive wallet with syncing wallet, encrypted shares (from threshold key encryption) to backend.
  */
-export const createSafeSeedphraseWithPasscode = async (passcode: string) => {
+export const createSafeWalletWithPasscode = async (passcode: string) => {
 	const { mnemonic, shares } = await createSeedphraseWithShares(2, 2);
 	const primaryShare = shares[0];
 	const encryptedShare = await aes.encryptAndMerge(shares[1], passcode);
 
-	await syncSharesToBackend({ primaryShare, encryptedShare });
+	const seed = new Uint8Array(mnemonicToSeedSync(mnemonic));
+	const wallet = deriveKeypair(seed, 'evm');
+
+	await syncSharesToBackend({
+		walletAddress: wallet.address,
+		primaryShare,
+		encryptedShare,
+	});
 
 	return {
+		wallet,
 		mnemonic,
+		seed,
 		shares,
 		primaryShare,
 		encryptedShare,
@@ -93,6 +103,7 @@ export const createSeedphraseWithShares = async (
 };
 
 type SyncShares = {
+	walletAddress: string;
 	primaryShare: Uint8Array;
 	/**
 	 * Encrypted by passcode or passkey
@@ -103,6 +114,7 @@ type SyncShares = {
  * Sync the encrypted shares to backend for backup
  */
 export const syncSharesToBackend = async ({
+	walletAddress,
 	primaryShare,
 	encryptedShare,
 }: SyncShares) => {
@@ -125,7 +137,10 @@ export const syncSharesToBackend = async ({
 		},
 	];
 
-	await graphqlClient.syncSecretShares({ shares: syncPayload });
+	await graphqlClient.syncWalletAndSecretShares({
+		wallet: walletAddress,
+		shares: syncPayload,
+	});
 };
 
 export * from './aes';

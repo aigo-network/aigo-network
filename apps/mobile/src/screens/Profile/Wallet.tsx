@@ -7,12 +7,10 @@ import {
 	View,
 } from 'react-native';
 import {
-	createSafeSeedphraseWithPasscode,
-	deriveKeypair,
+	createSafeWalletWithPasscode,
 	encryptPrivateKeyHex,
 } from '@aigo/crypto';
 import crashlytics from '@react-native-firebase/crashlytics';
-import { mnemonicToSeedSync } from 'bip39';
 import CopyButton from 'components/CopyButton';
 import { showAskPasscodeBottomSheet } from 'modals/AskPasscode';
 import { appActions, appState } from 'state/app';
@@ -67,9 +65,7 @@ export const Wallet = () => {
 		if (passcode.length !== 6) throw Error('invalid passcode length');
 
 		try {
-			const { mnemonic } = await createSafeSeedphraseWithPasscode(passcode);
-			const seed = new Uint8Array(mnemonicToSeedSync(mnemonic));
-			const wallet = deriveKeypair(seed, 'evm');
+			const { wallet } = await createSafeWalletWithPasscode(passcode);
 
 			const encryptedPrivateKey = await encryptPrivateKeyHex(
 				wallet.privateKey,
