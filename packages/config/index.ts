@@ -19,6 +19,7 @@ type EnvironmentConfig = {
 
 	GRAPHQL_API_ENDPOINT: string;
 	TELEGRAM_BOT_ID: string;
+	API_RSA_PUBLIC_KEY: string;
 };
 
 type ActivityConfig = {

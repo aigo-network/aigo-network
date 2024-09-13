@@ -90,7 +90,7 @@ export default Referral;
 
 const styles = StyleSheet.create({
 	container: {
-		marginTop: 30,
+		marginTop: 32,
 		gap: 6,
 	},
 	title: {

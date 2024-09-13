@@ -8,7 +8,9 @@ import { defaultTheme } from 'utils/global';
 import SingleInput from './SingleInput';
 
 interface Props {
+	hideValue?: boolean;
 	inputLength?: number;
+	autoFocus?: boolean;
 	value?: string;
 	style?: ViewStyle;
 	errorMessage?: string;
@@ -18,7 +20,9 @@ interface Props {
 interface TextInputRef extends RefObject<TextInput> {}
 
 const OtpInput: FC<Props> = ({
+	hideValue,
 	inputLength = 6,
+	autoFocus,
 	value = '',
 	style,
 	errorMessage,
@@ -56,17 +60,26 @@ const OtpInput: FC<Props> = ({
 				}}
 				textContentType="oneTimeCode"
 				keyboardType="number-pad"
+				autoFocus={autoFocus}
 			/>
 			<View style={styles.singleInputContainer}>
-				{Array.from({ length: inputLength }, (_, i) => i).map((index) => (
-					<SingleInput
-						key={index}
-						index={index}
-						activeIndex={activeIndex}
-						value={innerValue[index]}
-						isError={!!errorMessage}
-					/>
-				))}
+				{Array.from({ length: inputLength }, (_, i) => i).map((index) => {
+					const value = !hideValue
+						? innerValue[index]
+						: innerValue[index]
+							? '﹡'
+							: '';
+
+					return (
+						<SingleInput
+							key={index}
+							index={index}
+							activeIndex={activeIndex}
+							value={value}
+							isError={!!errorMessage}
+						/>
+					);
+				})}
 			</View>
 			<Text style={styles.errorText}>{errorMessage || ''}</Text>
 		</TouchableWithoutFeedback>

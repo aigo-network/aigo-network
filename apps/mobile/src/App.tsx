@@ -10,6 +10,7 @@ import { useNotifications } from 'utils/hooks/notification';
 import { linking } from 'utils/navigation';
 import { navigationRef } from 'utils/navigation';
 
+import 'utils/shim';
 import 'utils/global';
 import 'utils/auth';
 import 'utils/mapbox';

@@ -54,7 +54,7 @@ export default Info;
 
 const styles = StyleSheet.create({
 	container: {
-		marginTop: 42,
+		marginTop: 32,
 		gap: 18,
 	},
 	title: {

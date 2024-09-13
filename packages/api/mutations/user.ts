@@ -4,6 +4,7 @@ export const updateProfile = gql`
 	mutation updateProfile($profile: UserProfile) {
 		updateProfile(profile: $profile) {
 			id
+			wallet
 			name
 			email
 			descriptions
@@ -18,6 +19,7 @@ export const deleteUserMutation = gql`
 	mutation deleteUser {
 		deleteUser {
 			id
+			wallet
 			name
 			email
 			imageUrl

@@ -185,6 +185,7 @@ export type RootMutation = {
   redeemReward?: Maybe<RewardInstance>;
   registerDevice?: Maybe<Device>;
   startTrip?: Maybe<Trip>;
+  syncWalletAndSecretShares?: Maybe<Scalars['Boolean']['output']>;
   trackAppOpenWithLinkingEvent?: Maybe<Scalars['String']['output']>;
   updateProfile?: Maybe<User>;
   /**
@@ -258,6 +259,12 @@ export type RootMutationStartTripArgs = {
 };
 
 
+export type RootMutationSyncWalletAndSecretSharesArgs = {
+  shares: Array<InputMaybe<SecretShareInput>>;
+  wallet: Scalars['String']['input'];
+};
+
+
 export type RootMutationTrackAppOpenWithLinkingEventArgs = {
   appStage: AppStage;
   url: Scalars['String']['input'];
@@ -292,6 +299,7 @@ export type RootQuery = {
   reward?: Maybe<RewardInfo>;
   rewardInstance?: Maybe<RewardInstance>;
   rewards?: Maybe<Array<Maybe<RewardInfo>>>;
+  secretShares?: Maybe<Array<Maybe<SecretShare>>>;
   trip?: Maybe<Trip>;
   trips?: Maybe<TripConnection>;
   user?: Maybe<User>;
@@ -314,6 +322,11 @@ export type RootQueryRewardsArgs = {
 };
 
 
+export type RootQuerySecretSharesArgs = {
+  types?: InputMaybe<Array<InputMaybe<SecretShareType>>>;
+};
+
+
 export type RootQueryTripArgs = {
   tripID: Scalars['String']['input'];
 };
@@ -323,6 +336,22 @@ export type RootQueryTripsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   first?: InputMaybe<Scalars['Int']['input']>;
 };
+
+export type SecretShare = {
+  __typename?: 'SecretShare';
+  data?: Maybe<Scalars['String']['output']>;
+  type?: Maybe<Scalars['String']['output']>;
+};
+
+export type SecretShareInput = {
+  encrypted?: InputMaybe<Scalars['String']['input']>;
+  type?: InputMaybe<SecretShareType>;
+};
+
+export enum SecretShareType {
+  PasscodeEncrypted = 'PASSCODE_ENCRYPTED',
+  Primary = 'PRIMARY'
+}
 
 export type Trip = {
   __typename?: 'Trip';
@@ -375,6 +404,7 @@ export type User = {
   phoneNumberVerified?: Maybe<Scalars['Boolean']['output']>;
   phoneNumberVerifiedAt?: Maybe<Scalars['DateTime']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
+  wallet?: Maybe<Scalars['String']['output']>;
 };
 
 export enum UserDescription {
@@ -508,6 +538,14 @@ export type MarkUsedMutationVariables = Exact<{
 
 export type MarkUsedMutation = { __typename?: 'RootMutation', markRewardAsUsed?: boolean | null };
 
+export type SyncWalletAndSecretSharesMutationVariables = Exact<{
+  wallet: Scalars['String']['input'];
+  shares: Array<InputMaybe<SecretShareInput>> | InputMaybe<SecretShareInput>;
+}>;
+
+
+export type SyncWalletAndSecretSharesMutation = { __typename?: 'RootMutation', syncWalletAndSecretShares?: boolean | null };
+
 export type StartTripMutationVariables = Exact<{
   geolocation: GeolocationInput;
   metadata?: InputMaybe<TripMetaData>;
@@ -551,12 +589,12 @@ export type UpdateProfileMutationVariables = Exact<{
 }>;
 
 
-export type UpdateProfileMutation = { __typename?: 'RootMutation', updateProfile?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, descriptions?: Array<UserDescription | null> | null, city?: string | null, imageUrl?: string | null, phoneNumber?: string | null } | null };
+export type UpdateProfileMutation = { __typename?: 'RootMutation', updateProfile?: { __typename?: 'User', id?: string | null, wallet?: string | null, name?: string | null, email?: string | null, descriptions?: Array<UserDescription | null> | null, city?: string | null, imageUrl?: string | null, phoneNumber?: string | null } | null };
 
 export type DeleteUserMutationVariables = Exact<{ [key: string]: never; }>;
 
 
-export type DeleteUserMutation = { __typename?: 'RootMutation', deleteUser?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, imageUrl?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, GOPoints?: number | null, invitationCode?: string | null, createdAt?: any | null, updatedAt?: any | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null } | null } | null };
+export type DeleteUserMutation = { __typename?: 'RootMutation', deleteUser?: { __typename?: 'User', id?: string | null, wallet?: string | null, name?: string | null, email?: string | null, imageUrl?: string | null, city?: string | null, descriptions?: Array<UserDescription | null> | null, GOPoints?: number | null, invitationCode?: string | null, createdAt?: any | null, updatedAt?: any | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null } | null } | null };
 
 export type VerifyPhoneNumberMutationVariables = Exact<{ [key: string]: never; }>;
 
@@ -607,6 +645,13 @@ export type GetRedeemedRewardsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetRedeemedRewardsQuery = { __typename?: 'RootQuery', redeemedRewards?: Array<{ __typename?: 'RewardInstance', id?: string | null, infoId?: string | null, code?: string | null, link?: string | null, image?: string | null, used?: boolean | null, updatedAt?: any | null } | null> | null };
 
+export type GetSecretSharesQueryVariables = Exact<{
+  types?: InputMaybe<Array<InputMaybe<SecretShareType>> | InputMaybe<SecretShareType>>;
+}>;
+
+
+export type GetSecretSharesQuery = { __typename?: 'RootQuery', secretShares?: Array<{ __typename?: 'SecretShare', data?: string | null, type?: string | null } | null> | null };
+
 export type GetTripQueryVariables = Exact<{
   tripId: Scalars['String']['input'];
 }>;
@@ -625,14 +670,14 @@ export type GetTripsQuery = { __typename?: 'RootQuery', trips?: { __typename?: '
 export type GetUserWitDailyMissionsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserWitDailyMissionsQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, city?: string | null, imageUrl?: string | null, descriptions?: Array<UserDescription | null> | null, invitationCode?: string | null, GOPoints?: number | null, completeOnboarding?: boolean | null, phoneNumber?: string | null, phoneNumberVerified?: boolean | null, phoneNumberVerifiedAt?: any | null, createdAt?: any | null, updatedAt?: any | null, NyamNyamUserProfile?: { __typename?: 'NyamNyamUserProfile', NNID?: string | null, createdAt?: any | null, extKey?: string | null, id?: string | null, name?: string | null, nick?: string | null, registrationNumber?: string | null, updatedAt?: any | null, verifiedAt?: any | null } | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null, latest7DaysCheckIn?: Array<{ __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null> | null } | null } | null };
+export type GetUserWitDailyMissionsQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, wallet?: string | null, name?: string | null, email?: string | null, city?: string | null, imageUrl?: string | null, descriptions?: Array<UserDescription | null> | null, invitationCode?: string | null, GOPoints?: number | null, completeOnboarding?: boolean | null, phoneNumber?: string | null, phoneNumberVerified?: boolean | null, phoneNumberVerifiedAt?: any | null, createdAt?: any | null, updatedAt?: any | null, NyamNyamUserProfile?: { __typename?: 'NyamNyamUserProfile', NNID?: string | null, createdAt?: any | null, extKey?: string | null, id?: string | null, name?: string | null, nick?: string | null, registrationNumber?: string | null, updatedAt?: any | null, verifiedAt?: any | null } | null, dailyMissions?: { __typename?: 'DailyMissions', checkIn?: { __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null, latest7DaysCheckIn?: Array<{ __typename?: 'DailyCheckIn', date?: any | null, completed?: boolean | null } | null> | null } | null } | null };
 
 export type GetUserProfileQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUserProfileQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, city?: string | null, imageUrl?: string | null, descriptions?: Array<UserDescription | null> | null, invitationCode?: string | null, GOPoints?: number | null, completeOnboarding?: boolean | null, phoneNumber?: string | null, phoneNumberVerified?: boolean | null, phoneNumberVerifiedAt?: any | null, createdAt?: any | null, updatedAt?: any | null, NyamNyamUserProfile?: { __typename?: 'NyamNyamUserProfile', NNID?: string | null, createdAt?: any | null, extKey?: string | null, id?: string | null, name?: string | null, nick?: string | null, registrationNumber?: string | null, updatedAt?: any | null, verifiedAt?: any | null } | null } | null };
+export type GetUserProfileQuery = { __typename?: 'RootQuery', user?: { __typename?: 'User', id?: string | null, wallet?: string | null, name?: string | null, email?: string | null, city?: string | null, imageUrl?: string | null, descriptions?: Array<UserDescription | null> | null, invitationCode?: string | null, GOPoints?: number | null, completeOnboarding?: boolean | null, phoneNumber?: string | null, phoneNumberVerified?: boolean | null, phoneNumberVerifiedAt?: any | null, createdAt?: any | null, updatedAt?: any | null, NyamNyamUserProfile?: { __typename?: 'NyamNyamUserProfile', NNID?: string | null, createdAt?: any | null, extKey?: string | null, id?: string | null, name?: string | null, nick?: string | null, registrationNumber?: string | null, updatedAt?: any | null, verifiedAt?: any | null } | null } | null };
 
-export type ProfilePartFragment = { __typename?: 'User', id?: string | null, name?: string | null, email?: string | null, city?: string | null, imageUrl?: string | null, descriptions?: Array<UserDescription | null> | null, invitationCode?: string | null, GOPoints?: number | null, completeOnboarding?: boolean | null, phoneNumber?: string | null, phoneNumberVerified?: boolean | null, phoneNumberVerifiedAt?: any | null, createdAt?: any | null, updatedAt?: any | null };
+export type ProfilePartFragment = { __typename?: 'User', id?: string | null, wallet?: string | null, name?: string | null, email?: string | null, city?: string | null, imageUrl?: string | null, descriptions?: Array<UserDescription | null> | null, invitationCode?: string | null, GOPoints?: number | null, completeOnboarding?: boolean | null, phoneNumber?: string | null, phoneNumberVerified?: boolean | null, phoneNumberVerifiedAt?: any | null, createdAt?: any | null, updatedAt?: any | null };
 
 export type NyamNyamProfilePartFragment = { __typename?: 'User', NyamNyamUserProfile?: { __typename?: 'NyamNyamUserProfile', NNID?: string | null, createdAt?: any | null, extKey?: string | null, id?: string | null, name?: string | null, nick?: string | null, registrationNumber?: string | null, updatedAt?: any | null, verifiedAt?: any | null } | null };
 
@@ -641,6 +686,7 @@ export type DailyMissionPartFragment = { __typename?: 'User', dailyMissions?: { 
 export const ProfilePartFragmentDoc = gql`
     fragment ProfilePart on User {
   id
+  wallet
   name
   email
   city
@@ -820,6 +866,11 @@ export const MarkUsedDocument = gql`
   markRewardAsUsed(rewardInstanceID: $rewardInstanceId)
 }
     `;
+export const SyncWalletAndSecretSharesDocument = gql`
+    mutation syncWalletAndSecretShares($wallet: String!, $shares: [SecretShareInput]!) {
+  syncWalletAndSecretShares(wallet: $wallet, shares: $shares)
+}
+    `;
 export const StartTripDocument = gql`
     mutation startTrip($geolocation: GeolocationInput!, $metadata: TripMetaData) {
   startTrip(geolocation: $geolocation, tripMetadata: $metadata) {
@@ -878,6 +929,7 @@ export const UpdateProfileDocument = gql`
     mutation updateProfile($profile: UserProfile) {
   updateProfile(profile: $profile) {
     id
+    wallet
     name
     email
     descriptions
@@ -891,6 +943,7 @@ export const DeleteUserDocument = gql`
     mutation deleteUser {
   deleteUser {
     id
+    wallet
     name
     email
     imageUrl
@@ -1062,6 +1115,14 @@ export const GetRedeemedRewardsDocument = gql`
   }
 }
     `;
+export const GetSecretSharesDocument = gql`
+    query getSecretShares($types: [SecretShareType]) {
+  secretShares(types: $types) {
+    data
+    type
+  }
+}
+    `;
 export const GetTripDocument = gql`
     query getTrip($tripId: String!) {
   trip(tripID: $tripId) {
@@ -1161,6 +1222,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     markUsed(variables: MarkUsedMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<MarkUsedMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<MarkUsedMutation>(MarkUsedDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'markUsed', 'mutation', variables);
     },
+    syncWalletAndSecretShares(variables: SyncWalletAndSecretSharesMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<SyncWalletAndSecretSharesMutation> {
+      return withWrapper((wrappedRequestHeaders) => client.request<SyncWalletAndSecretSharesMutation>(SyncWalletAndSecretSharesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'syncWalletAndSecretShares', 'mutation', variables);
+    },
     startTrip(variables: StartTripMutationVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<StartTripMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<StartTripMutation>(StartTripDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'startTrip', 'mutation', variables);
     },
@@ -1208,6 +1272,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     getRedeemedRewards(variables?: GetRedeemedRewardsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetRedeemedRewardsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetRedeemedRewardsQuery>(GetRedeemedRewardsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getRedeemedRewards', 'query', variables);
+    },
+    getSecretShares(variables?: GetSecretSharesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetSecretSharesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetSecretSharesQuery>(GetSecretSharesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getSecretShares', 'query', variables);
     },
     getTrip(variables: GetTripQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<GetTripQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetTripQuery>(GetTripDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getTrip', 'query', variables);
