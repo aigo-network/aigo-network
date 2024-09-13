@@ -18,6 +18,7 @@ export const smartGetPrivateKey = async (): Promise<string> => {
 			 */
 			const { cleanModal } = showAskPasscodeBottomSheet({
 				title: 'Enter passcode',
+				description: 'Your passcode is required to make transaction',
 				idSuffix: 'decrypt-private-key',
 				setChangeErrorFunction: (cb) => (setError = cb),
 				onComplete: async (passcode) => {
