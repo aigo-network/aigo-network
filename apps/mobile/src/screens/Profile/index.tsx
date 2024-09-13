@@ -28,8 +28,8 @@ export const ProfileScreen = () => {
 				>
 					<Header />
 					{remoteConfig.nyamNyamCampaignActivated && <PartnerProgram />}
-					<Info />
 					<Wallet />
+					<Info />
 					<Settings />
 					<Referral />
 					<Footer />

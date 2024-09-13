@@ -6,8 +6,17 @@ import {
 	TouchableOpacity,
 	View,
 } from 'react-native';
+import {
+	createSafeSeedphraseWithPasscode,
+	deriveKeypair,
+	encryptPrivateKeyHex,
+} from '@aigo/crypto';
+import crashlytics from '@react-native-firebase/crashlytics';
+import { mnemonicToSeedSync } from 'bip39';
+import CopyButton from 'components/CopyButton';
 import { showAskPasscodeBottomSheet } from 'modals/AskPasscode';
-import { appState } from 'state/app';
+import { appActions, appState } from 'state/app';
+import { setEncryptedPrivateKey, setWalletAddress } from 'state/app/wallet';
 import { defaultTheme } from 'utils/global';
 import { useSnapshot } from 'valtio';
 
@@ -53,7 +62,32 @@ export const Wallet = () => {
 		});
 	};
 
-	const createWallet = () => {};
+	const createWallet = async () => {
+		const passcode = newPasscode.current;
+		if (passcode.length !== 6) throw Error('invalid passcode length');
+
+		try {
+			const { mnemonic } = await createSafeSeedphraseWithPasscode(passcode);
+			const seed = new Uint8Array(mnemonicToSeedSync(mnemonic));
+			const wallet = deriveKeypair(seed, 'evm');
+
+			const encryptedPrivateKey = await encryptPrivateKeyHex(
+				wallet.privateKey,
+				passcode,
+			);
+
+			await Promise.all([
+				setWalletAddress(wallet.address),
+				setEncryptedPrivateKey(encryptedPrivateKey),
+			]);
+
+			appActions.setWallet(wallet.address);
+			setCreateLoading(false);
+		} catch (error) {
+			crashlytics().recordError(error as Error, 'createWalletError');
+			console.debug('createWalletError', error);
+		}
+	};
 
 	return (
 		<View style={styles.container}>
@@ -72,11 +106,11 @@ export const Wallet = () => {
 			</View>
 
 			{wallet && (
-				<View style={styles.infoContainer}>
-					<View style={styles.fieldContainer}>
-						<Text style={styles.fieldTitle}>ETH</Text>
-						<Text style={styles.fieldValue}></Text>
-					</View>
+				<View style={styles.walletContainer}>
+					<Text style={styles.walletText} numberOfLines={1}>
+						{wallet}
+					</Text>
+					<CopyButton value={wallet} />
 				</View>
 			)}
 		</View>
@@ -98,22 +132,16 @@ const styles = StyleSheet.create({
 		fontWeight: '500',
 		color: defaultTheme.textDark90,
 	},
-	infoContainer: {
+	walletContainer: {
 		gap: 16,
-	},
-	fieldContainer: {
+		marginTop: 12,
 		flexDirection: 'row',
-		justifyContent: 'space-between',
+		alignItems: 'center',
 	},
-	fieldTitle: {
-		fontSize: 16,
-		color: defaultTheme.textDark90,
-	},
-	fieldValue: {
+	walletText: {
 		flex: 1,
 		fontSize: 16,
 		color: defaultTheme.textDark70,
-		textAlign: 'right',
 	},
 	createButton: {
 		padding: 7,
