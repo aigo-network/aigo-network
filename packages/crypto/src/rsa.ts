@@ -24,9 +24,10 @@ const importKey = async (
 	keyType: 'public' | 'private',
 ): Promise<CryptoKey> => {
 	const key = await crypto.subtle.importKey(
-		'raw',
+		keyType === 'public' ? 'spki' : 'pkcs8',
 		keyBytes,
-		{ name: 'RSA-OAEP', hash: { name: 'SHA-256' } },
+		// react-native-quick-crypto only normalizes hash string (not object)
+		{ name: 'RSA-OAEP', hash: 'SHA-256' },
 		true,
 		keyType === 'public' ? ['encrypt'] : ['decrypt'],
 	);

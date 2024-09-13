@@ -1,3 +1,5 @@
+import bs58 from 'bs58';
+
 import { rsa } from './rsa';
 
 describe('test RSA', () => {
@@ -44,5 +46,41 @@ describe('test RSA', () => {
 				'The operation failed for an operation-specific reason',
 			);
 		}
+	});
+
+	it('encrypt/decrypt with import/export key', async () => {
+		const keypair = await rsa.generateKeypair();
+		const exportedKeypair = await rsa.exportKey(keypair);
+		const importedPublicKey = await rsa.importKey(
+			exportedKeypair.publicKey,
+			'public',
+		);
+		const importedPrivateKey = await rsa.importKey(
+			exportedKeypair.privateKey,
+			'private',
+		);
+		const reExportedKeypair = await rsa.exportKey({
+			publicKey: importedPublicKey,
+			privateKey: importedPrivateKey,
+		});
+
+		// console.log(bs58.encode(exportedKeypair.publicKey));
+		// console.log(bs58.encode(exportedKeypair.privateKey));
+		expect(exportedKeypair.publicKey.toString()).toEqual(
+			reExportedKeypair.publicKey.toString(),
+		);
+		expect(bs58.encode(exportedKeypair.publicKey)).toEqual(
+			bs58.encode(reExportedKeypair.publicKey),
+		);
+		expect(exportedKeypair.privateKey.toString()).toEqual(
+			reExportedKeypair.privateKey.toString(),
+		);
+		expect(bs58.encode(exportedKeypair.privateKey)).toEqual(
+			bs58.encode(reExportedKeypair.privateKey),
+		);
+
+		const encrypted = await rsa.encrypt(unalignedData, importedPublicKey);
+		const decrypted = await rsa.decrypt(encrypted, importedPrivateKey);
+		expect(unalignedData.toString()).toEqual(decrypted.toString());
 	});
 });
