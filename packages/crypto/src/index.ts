@@ -45,7 +45,7 @@
 import { graphqlClient, SecretShareType } from '@aigo/api/graphql';
 import { config } from '@aigo/config';
 import { sss28 } from '@tanle/shamirs-secret-sharing';
-import { generateMnemonic, mnemonicToSeed } from 'bip39';
+import { generateMnemonic } from 'bip39';
 import bs58 from 'bs58';
 
 import { aes } from './aes';
@@ -55,7 +55,7 @@ import { rsa } from './rsa';
  * Generate a seedphrase and sync encrypted shares (from threshold key encryption) to backend with passcode.
  */
 export const createSafeSeedphraseWithPasscode = async (passcode: string) => {
-	const { mnemonic, seed, shares } = await createSeedphraseWithShares(2, 2);
+	const { mnemonic, shares } = await createSeedphraseWithShares(2, 2);
 	const primaryShare = shares[0];
 	const encryptedShare = await aes.encryptAndMerge(shares[1], passcode);
 
@@ -63,7 +63,6 @@ export const createSafeSeedphraseWithPasscode = async (passcode: string) => {
 
 	return {
 		mnemonic,
-		seed,
 		shares,
 		primaryShare,
 		encryptedShare,
@@ -72,7 +71,6 @@ export const createSafeSeedphraseWithPasscode = async (passcode: string) => {
 
 type SeedphraseWithShares = {
 	mnemonic: string;
-	seed: Buffer;
 	shares: sss28.Share[];
 };
 /**
@@ -83,12 +81,15 @@ export const createSeedphraseWithShares = async (
 	threshold: number = 2,
 ): Promise<SeedphraseWithShares> => {
 	const mnemonic = generateMnemonic();
-	const seed = await mnemonicToSeed(mnemonic);
+	const secret = new Uint8Array(Buffer.from(mnemonic, 'utf-8'));
 
-	const secret = new Uint8Array(seed);
+	// took over 3.5s
+	// const seed = await mnemonicToSeed(mnemonic);
+
+	// took 2ms
 	const shares = sss28.split(secret, threshold, numShares);
 
-	return { mnemonic, seed, shares };
+	return { mnemonic, shares };
 };
 
 type SyncShares = {
