@@ -20,6 +20,8 @@ export type Encrypted = {
 /**
  * Key derivation from key bytes to AES key
  * Ref: https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/deriveKey#pbkdf2_derive_aes_key_from_password
+ *
+ * Note: crypto.subtle.deriveKey is undefined, use combination of deriveBits and importKey
  */
 const deriveKey = async (
 	keyBytes: Uint8Array,
@@ -30,10 +32,10 @@ const deriveKey = async (
 		keyBytes,
 		{ name: 'PBKDF2' },
 		false,
-		['deriveKey'],
+		['deriveBits'],
 	);
 
-	const derivedKey = await crypto.subtle.deriveKey(
+	const derivedKeyBits = await crypto.subtle.deriveBits(
 		{
 			name: 'PBKDF2',
 			iterations: DEFAULT_DERIVE_KEY_ITERATIONS,
@@ -41,8 +43,14 @@ const deriveKey = async (
 			salt,
 		},
 		baseKey,
-		{ name: 'AES-GCM', length: AES_256_GCM_KEY_LENGTH },
-		false,
+		AES_256_GCM_KEY_LENGTH,
+	);
+
+	const derivedKey = await crypto.subtle.importKey(
+		'raw',
+		derivedKeyBits,
+		'AES-GCM',
+		true,
 		['encrypt', 'decrypt'],
 	);
 
