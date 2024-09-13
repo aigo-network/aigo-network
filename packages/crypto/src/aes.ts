@@ -105,6 +105,15 @@ const encryptAndMerge = async (
 	return mergeEncrypted(encrypted);
 };
 
+const separateAndDecrypt = async (
+	encrypted: Uint8Array,
+	passcode: string,
+): Promise<Uint8Array> => {
+	const separatedEncrypted = separateEncrypted(encrypted);
+
+	return decrypt(separatedEncrypted, passcode);
+};
+
 const mergeEncrypted = (encrypted: Encrypted) => {
 	const { iv, salt, encrypted: encryptedData } = encrypted;
 	const merged = new Uint8Array(iv.length + salt.length + encryptedData.length);
@@ -137,6 +146,7 @@ export const aes = {
 	encrypt,
 	decrypt,
 	encryptAndMerge,
+	separateAndDecrypt,
 	mergeEncrypted,
 	separateEncrypted,
 };
