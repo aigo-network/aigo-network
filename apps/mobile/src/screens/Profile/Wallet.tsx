@@ -90,7 +90,7 @@ export const Wallet = () => {
 		setLoading(true);
 		const privateKey = await smartGetPrivateKey();
 		const wallet = new ethers.Wallet(privateKey);
-		console.log('Reconstructed wallet', wallet);
+		console.debug('Reconstructed wallet', wallet.address);
 		setLoading(false);
 	};
 
