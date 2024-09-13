@@ -128,7 +128,7 @@ const showLimitReach = ({ onConfirm, onCancel }: FailRedemptionConfig) => {
 				}}
 				title={'Oops! Limit voucher'}
 				descriptionPrefix={
-					'You&apos;ve already redeemed voucher today. Come back tomorrow to get a new voucher.'
+					"You've already redeemed voucher today. Come back tomorrow to get a new voucher."
 				}
 				highlightButtonText={'Earn more GO point'}
 				normalButtonText={'Back to AiGO Rewards'}
