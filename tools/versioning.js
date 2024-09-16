@@ -14,11 +14,7 @@ function getNextBuildVersion(version) {
 		minorVersion += 1;
 	}
 
-	return [
-		majorVersion,
-		minorVersion,
-		String(patchVersion).padStart(2, '0'),
-	].join('.');
+	return [majorVersion, minorVersion, patchVersion].join('.');
 }
 
 function getShortCommitHash() {

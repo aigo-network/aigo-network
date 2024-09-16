@@ -90,8 +90,8 @@ android {
         applicationId "network.aigo.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 38
-        versionName "1.0.10"
+        versionCode 47
+        versionName "1.1.3"
     }
     signingConfigs {
         debug {
