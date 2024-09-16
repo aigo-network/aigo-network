@@ -118,11 +118,11 @@ const styles = StyleSheet.create({
 	},
 	endButton: {
 		shadowColor: defaultTheme.textDark30,
-		backgroundColor: defaultTheme.textDark10,
+		backgroundColor: defaultTheme.cta100,
 	},
 	endButtonText: {
 		fontSize: 16,
 		fontWeight: '600',
-		color: defaultTheme.textDark90,
+		color: defaultTheme.textLight,
 	},
 });

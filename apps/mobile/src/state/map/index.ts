@@ -191,13 +191,12 @@ export const mapActions = {
 	registerDePINScan: async (position: GeolocationResponse) => {
 		if (appState.appUser?.id) {
 			try {
-				const response = await registerDePINScan({
+				await registerDePINScan({
 					userId: appState.appUser.id,
 					deviceId: await device.getUniqueId(),
 					latitude: position?.coords.latitude,
 					longitude: position?.coords.longitude,
 				});
-				console.log(response.json());
 			} catch (error) {
 				console.log(error);
 			}
