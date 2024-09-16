@@ -7,6 +7,7 @@ declare module 'react-native-config' {
 		FIREBASE_WEB_CLIENT_ID: string;
 		FIREBASE_APPLE_AUTH_SERVICE_ID: string;
 		FIREBASE_APPLE_AUTH_REDIRECT_URL: string;
+		DEPIN_SCAN_API_KEY: string;
 		GRAPHQL_API_ENDPOINT: string;
 		API_RSA_PUBLIC_KEY: string;
 		MAPBOX_ACCESS_TOKEN: string;
