@@ -1,8 +1,11 @@
+import device from 'react-native-device-info';
 import { graphqlClient } from '@aigo/api/graphql';
 import type { Trip, TripConnection } from '@aigo/api/sdk';
 import type { GeolocationResponse } from '@react-native-community/geolocation';
 import crashlytics from '@react-native-firebase/crashlytics';
 import pThrottle from 'p-throttle';
+import { appState } from 'state/app';
+import { registerDePINScan } from 'utils/iotex';
 import { proxy, useSnapshot } from 'valtio';
 
 import { getLastTripId, removeLastTripId, setLastTripId } from './storage';
@@ -183,6 +186,20 @@ export const mapActions = {
 			}
 		} catch (error) {
 			crashlytics().recordError(error as Error, 'syncLastTrip');
+		}
+	},
+	registerDePINScan: async (position: GeolocationResponse) => {
+		if (appState.appUser?.id) {
+			try {
+				await registerDePINScan({
+					userId: appState.appUser.id,
+					deviceId: await device.getUniqueId(),
+					latitude: position?.coords.latitude,
+					longitude: position?.coords.longitude,
+				});
+			} catch (error) {
+				console.log(error);
+			}
 		}
 	},
 };

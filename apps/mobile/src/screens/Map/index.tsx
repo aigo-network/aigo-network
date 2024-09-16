@@ -8,6 +8,8 @@ import MapView from './MapView';
 import TripActions from './TripActions';
 import TripInfo from './TripInfo';
 
+let depinScanRegistered = false;
+
 export const MapScreen = () => {
 	const { reset } = useNavigation();
 	const { mapReady, permissionReady } = useMapState();
@@ -23,6 +25,10 @@ export const MapScreen = () => {
 		watchLocation(async (position) => {
 			console.debug('Location change', new Date(position.timestamp));
 			await mapActions.throttledSetCurrentLocation(position);
+			if (depinScanRegistered === false) {
+				depinScanRegistered = true;
+				await mapActions.registerDePINScan(position);
+			}
 		});
 	}, []);
 

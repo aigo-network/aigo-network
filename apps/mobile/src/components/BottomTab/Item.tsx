@@ -47,7 +47,7 @@ const iconMap: ItemMap = {
 
 const BottomItem: FC<Props> = ({ name, isActive }) => {
 	const { navigate, reset } = useNavigation();
-	const handelPress = () => {
+	const handlePress = () => {
 		navigate(name as never);
 	};
 	const handleNavigateMap = () => {
@@ -57,7 +57,7 @@ const BottomItem: FC<Props> = ({ name, isActive }) => {
 
 	if (name === 'Map') {
 		return (
-			<TouchableOpacity onPress={handleNavigateMap}>
+			<TouchableOpacity hitSlop={extendedHitSlop} onPress={handleNavigateMap}>
 				<View style={styles.container}>
 					<View style={styles.mainButton}>
 						<Motorbike width={28} />
@@ -68,7 +68,7 @@ const BottomItem: FC<Props> = ({ name, isActive }) => {
 	}
 
 	return (
-		<TouchableOpacity onPress={handelPress}>
+		<TouchableOpacity onPress={handlePress}>
 			<View style={styles.container}>
 				<Component
 					width={18}
@@ -83,6 +83,13 @@ const BottomItem: FC<Props> = ({ name, isActive }) => {
 };
 
 export default BottomItem;
+
+const extendedHitSlop = {
+	top: 40, 
+	bottom: 8,
+	left: 8, 
+	right: 8,
+};
 
 const styles = StyleSheet.create({
 	container: {
