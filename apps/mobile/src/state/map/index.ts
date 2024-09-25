@@ -42,15 +42,16 @@ export const mapActions = {
 	throttledSetCurrentLocation: throttle(
 		async (location: GeolocationResponse) => {
 			try {
+				location = { ...location, timestamp: new Date().getTime() };
 				mapState.currentLocation = location;
 
 				if (!mapState.currentTrip) return;
 
-				const { coords, timestamp } = location;
+				const { coords } = location;
 
 				await graphqlClient.insertTripPoint({
 					tripId: mapState.currentTrip.id,
-					geolocation: { ...coords, timestamp: new Date(timestamp) },
+					geolocation: { ...coords, timestamp: new Date() },
 				});
 
 				const { longitude, latitude } = coords;
@@ -76,10 +77,10 @@ export const mapActions = {
 				);
 			}
 
-			const { coords, timestamp } = mapState.currentLocation;
+			const { coords } = mapState.currentLocation;
 
 			const { startTrip: trip } = await graphqlClient.startTrip({
-				geolocation: { ...coords, timestamp: new Date(timestamp) },
+				geolocation: { ...coords, timestamp: new Date() },
 				metadata: {
 					userType: mapState.startTripMetadata?.userType,
 					purpose: mapState.startTripMetadata?.purpose,

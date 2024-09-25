@@ -48,7 +48,12 @@ export const defaultRemoteConfig: RemoteConfig = {
 	],
 	enableMapFeature: true,
 	// ref: https://github.com/michalchudziak/react-native-geolocation?tab=readme-ov-file#watchposition
-	watchPositionOptions: { distanceFilter: 5, maximumAge: 1000, interval: 5000 },
+	watchPositionOptions: {
+		distanceFilter: 5,
+		maximumAge: 0,
+		interval: 5000,
+		// enableHighAccuracy: true,
+	},
 	//  {
 	// 	timeout: 60000, // 1 minute timeout to refetch location
 	// 	maximumAge: 1000, // in ms
