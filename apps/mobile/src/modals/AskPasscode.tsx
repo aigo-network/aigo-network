@@ -1,7 +1,6 @@
 import type { FC } from 'react';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
-import { useAnimatedKeyboard } from 'react-native-reanimated';
 import BottomSheetContainer from '@aigo/components/BottomSheetContainer';
 import OtpInput from 'components/OtpInput';
 import { Align, showModal } from 'empty-modal/state';
@@ -49,7 +48,6 @@ const AskPasscode: FC<Props> = ({
 	const [error, setError] = useState('');
 	const [passcode, setPasscode] = useState('');
 
-	useAnimatedKeyboard();
 	useEffect(() => {
 		if (passcode.length === 6) {
 			onComplete?.(passcode);
