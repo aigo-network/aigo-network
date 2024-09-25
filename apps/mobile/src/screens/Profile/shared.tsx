@@ -97,3 +97,11 @@ export const showDeleteUserConfirm = ({
 		},
 	);
 };
+
+export const formatEmail = (email: string | undefined | null) => {
+	if (!email || email === 'unknown@aigo.network') {
+		return '';
+	}	
+
+	return email;
+};
