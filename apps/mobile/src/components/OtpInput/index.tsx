@@ -1,7 +1,7 @@
 import type { FC, RefObject } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import type { ViewStyle } from 'react-native';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { Keyboard, StyleSheet, Text, TextInput, View } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { defaultTheme } from 'utils/global';
 
@@ -29,6 +29,7 @@ const OtpInput: FC<Props> = ({
 	onChangeText,
 }) => {
 	const inputRef: TextInputRef = useRef(null);
+	const [keyboardShowed, setKeyboardShowed] = useState(Keyboard.isVisible());
 	const [innerValue, setInnerValue] = useState(value);
 	const [isFocused, setIsFocused] = useState(inputRef.current?.isFocused());
 	const handleChangeText = (text: string) => {
@@ -41,10 +42,33 @@ const OtpInput: FC<Props> = ({
 		setInnerValue(value);
 	}, [value]);
 
+	useEffect(() => {
+		if (keyboardShowed) {
+			inputRef.current?.focus();
+		} else {
+			inputRef.current?.blur();
+		}
+	}, [keyboardShowed]);
+
+	useEffect(() => {
+		const showSubscription = Keyboard.addListener('keyboardDidShow', () =>
+			setKeyboardShowed(true),
+		);
+		const hideSubscription = Keyboard.addListener('keyboardDidHide', () =>
+			setKeyboardShowed(false),
+		);
+		return () => {
+			showSubscription.remove();
+			hideSubscription.remove();
+		};
+	}, []);
+
 	return (
 		<TouchableWithoutFeedback
 			style={[styles.container, style]}
-			onPress={() => inputRef.current?.focus()}
+			onPress={() => {
+				inputRef.current?.focus();
+			}}
 		>
 			<TextInput
 				style={styles.input}
