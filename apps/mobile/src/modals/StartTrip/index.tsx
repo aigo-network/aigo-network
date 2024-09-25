@@ -10,8 +10,10 @@ import {
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import BottomSheetContainer from '@aigo/components/BottomSheetContainer';
 import { Align, showModal } from 'empty-modal/state';
+import { showNotificationModal } from 'modals/Notification';
 import { appState } from 'state/app';
-import { mapActions } from 'state/map';
+import { getMapState, mapActions } from 'state/map';
+import { navigationRef } from 'utils/navigation';
 import { useSnapshot } from 'valtio';
 
 import GoBack from './GoBack';
@@ -73,9 +75,16 @@ const StartTripBottomSheet: FC<Props> = ({ onClose }) => {
 			purpose: purpose.title,
 		});
 
-		setLoading(true);
-		await mapActions.startNewTrip();
-		setLoading(false);
+		if (!getMapState().currentLocation) {
+			showNotificationModal();
+			navigationRef.reset({
+				routes: [{ name: 'BottomTab', params: { screen: 'Home' } }],
+			});
+		} else {
+			setLoading(true);
+			await mapActions.startNewTrip();
+			setLoading(false);
+		}
 
 		onClose?.();
 	};

@@ -91,7 +91,7 @@ const AskPasscode: FC<Props> = ({
 
 const styles = StyleSheet.create({
 	container: {
-		height: 640,
+		// height: 640,
 		paddingHorizontal: 20,
 		paddingTop: 14,
 		borderTopLeftRadius: 20,

@@ -18,6 +18,7 @@ type EnvironmentConfig = {
 	FIREBASE_APPLE_AUTH_REDIRECT_URL: string;
 
 	DEPIN_SCAN_API_KEY: string;
+	DEPIN_SCAN_PROJECT_ID: string;
 	GRAPHQL_API_ENDPOINT: string;
 	TELEGRAM_BOT_ID: string;
 	API_RSA_PUBLIC_KEY: string;

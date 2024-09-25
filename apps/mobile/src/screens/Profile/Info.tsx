@@ -4,6 +4,8 @@ import { appState } from 'state/app';
 import { defaultTheme } from 'utils/global';
 import { useSnapshot } from 'valtio';
 
+import { formatEmail } from './shared';
+
 export const Info = () => {
 	const { content, appUser } = useSnapshot(appState);
 	const { infoTitle, defaultInfo } = content.screens.profile;
@@ -23,7 +25,7 @@ export const Info = () => {
 				<View style={styles.fieldContainer}>
 					<Text style={styles.fieldTitle}>{infoTitle.email}</Text>
 					<Text style={styles.fieldValue}>
-						{appUser?.email || defaultInfo.email}
+						{formatEmail(appUser?.email)}
 					</Text>
 				</View>
 				<View style={styles.fieldContainer}>
