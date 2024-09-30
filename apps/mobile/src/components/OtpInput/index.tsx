@@ -4,6 +4,7 @@ import type { ViewStyle } from 'react-native';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { defaultTheme } from 'utils/global';
+import { useKeyboardStatus } from 'utils/hooks/keyboard';
 
 import SingleInput from './SingleInput';
 
@@ -31,6 +32,7 @@ const OtpInput: FC<Props> = ({
 	const inputRef: TextInputRef = useRef(null);
 	const [innerValue, setInnerValue] = useState(value);
 	const [isFocused, setIsFocused] = useState(inputRef.current?.isFocused());
+	const { keyboardShowed } = useKeyboardStatus();
 	const handleChangeText = (text: string) => {
 		setInnerValue(text);
 		onChangeText?.(text);
@@ -40,6 +42,14 @@ const OtpInput: FC<Props> = ({
 	useEffect(() => {
 		setInnerValue(value);
 	}, [value]);
+
+	useEffect(() => {
+		if (keyboardShowed) {
+			inputRef.current?.focus();
+		} else {
+			inputRef.current?.blur();
+		}
+	}, [keyboardShowed]);
 
 	return (
 		<TouchableWithoutFeedback
