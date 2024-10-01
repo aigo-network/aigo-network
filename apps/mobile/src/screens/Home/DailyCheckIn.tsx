@@ -15,6 +15,7 @@ import crashlytics from '@react-native-firebase/crashlytics';
 import type { CheckInStatus } from 'components/CheckIn';
 import CheckIn from 'components/CheckIn';
 import { appActions, appState } from 'state/app';
+import { getThisWeekMonday } from 'utils/datetime';
 import { defaultTheme } from 'utils/global';
 import { useSnapshot } from 'valtio';
 
@@ -32,8 +33,24 @@ export const DailyCheckIn = () => {
 	const points = config.activity.DailyCheckIn.points;
 
 	const latest7DaysCheckIns: (DailyCheckInType | null)[] = useMemo(() => {
-		const checkIns = [...(appUser?.dailyMissions?.latest7DaysCheckIn || [])];
-		const mergedCheckIns = [];
+		const thisWeekMonday = getThisWeekMonday();
+		const checkIns = [
+			...(appUser?.dailyMissions?.latest7DaysCheckIn || []),
+		].filter((checkin) => {
+			const checkInDay = Math.floor(
+				new Date(checkin?.date).getTime() / MS_PER_DAY,
+			);
+			return checkInDay >= Math.floor(thisWeekMonday.getTime() / MS_PER_DAY);
+		});
+		const mergedCheckIns: (DailyCheckInType | null)[] = Array.from(
+			{ length: DAYS_PER_WEEK },
+			(_, index) => ({
+				completed: false,
+				date: new Date(
+					thisWeekMonday.setDate(thisWeekMonday.getDate() + index),
+				),
+			}),
+		);
 
 		// mock today check-in if no today checkedIn found
 		if (
@@ -44,31 +61,26 @@ export const DailyCheckIn = () => {
 		}
 
 		for (let i = 0; i < checkIns.length; i++) {
-			mergedCheckIns.push(checkIns[i]);
+			const indexFromMonday =
+				new Date(checkIns[i]?.date).getDay() -
+				(thisWeekMonday.getDay() as never);
+			mergedCheckIns[indexFromMonday] = checkIns[i];
 			if (i === checkIns.length - 1) break;
-
-			const currentDate = new Date(checkIns[i]?.date);
-			const nextCheckInDate = new Date(checkIns[i + 1]?.date);
-			const daysBetween = Math.ceil(
-				(nextCheckInDate.getTime() - currentDate.getTime()) / MS_PER_DAY,
-			);
-			for (let j = 0; j < daysBetween - 1; j++)
-				mergedCheckIns.push({ completed: false });
 		}
 
-		const currentDateIndex = mergedCheckIns.length - 1;
+		const currentDateIndex = mergedCheckIns.findIndex((mergedCheckIn) => {
+			const checkInDay = Math.floor(
+				new Date(mergedCheckIn?.date).getTime() / MS_PER_DAY,
+			);
+			const today = Math.floor(new Date().getTime() / MS_PER_DAY);
+			return checkInDay === today;
+		});
 		scrollViewRef.current?.scrollTo({
 			x: currentDateIndex * (checkInWidth + 4),
 		});
 
-		if (mergedCheckIns.length < DAYS_PER_WEEK) {
-			mergedCheckIns.push(
-				...new Array(DAYS_PER_WEEK - mergedCheckIns.length).fill(null),
-			);
-		}
-
 		return mergedCheckIns;
-	}, [appUser]);
+	}, [appUser?.dailyMissions?.checkIn]);
 
 	const handleCheckIn = async () => {
 		try {
