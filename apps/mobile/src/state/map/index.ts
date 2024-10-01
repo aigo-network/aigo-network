@@ -4,7 +4,6 @@ import type { Trip, TripConnection } from '@aigo/api/sdk';
 import type { GeolocationResponse } from '@react-native-community/geolocation';
 import crashlytics from '@react-native-firebase/crashlytics';
 import pThrottle from 'p-throttle';
-import { appState } from 'state/app';
 import { registerDePINScan } from 'utils/iotex';
 import { proxy, useSnapshot } from 'valtio';
 

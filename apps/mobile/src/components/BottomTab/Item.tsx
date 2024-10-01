@@ -85,9 +85,9 @@ const BottomItem: FC<Props> = ({ name, isActive }) => {
 export default BottomItem;
 
 const extendedHitSlop = {
-	top: 40, 
+	top: 40,
 	bottom: 8,
-	left: 8, 
+	left: 8,
 	right: 8,
 };
 

@@ -14,7 +14,7 @@ export const registerDePINScan = async ({
 	longitude,
 }: DePINScanPayload) => {
 	const payload = {
-		uid: config.DEPIN_SCAN_PROJECT_ID, 
+		uid: config.DEPIN_SCAN_PROJECT_ID,
 		events: [
 			{
 				publisher: deviceId,
