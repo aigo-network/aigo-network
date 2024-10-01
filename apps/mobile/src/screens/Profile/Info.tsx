@@ -24,9 +24,7 @@ export const Info = () => {
 				</View>
 				<View style={styles.fieldContainer}>
 					<Text style={styles.fieldTitle}>{infoTitle.email}</Text>
-					<Text style={styles.fieldValue}>
-						{formatEmail(appUser?.email)}
-					</Text>
+					<Text style={styles.fieldValue}>{formatEmail(appUser?.email)}</Text>
 				</View>
 				<View style={styles.fieldContainer}>
 					<Text style={styles.fieldTitle}>{infoTitle.city}</Text>
