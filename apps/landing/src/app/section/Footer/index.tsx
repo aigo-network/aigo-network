@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import AiGOLogo from '@/components/icon/AiGOLogo';
 import AiGOText from '@/components/icon/AiGOText';
 import DiscordIcon from '@/components/icon/Discord';
+import GitbookIcon from '@/components/icon/Gitbook';
 import GithubIcon from '@/components/icon/Github';
 import MirrorIcon from '@/components/icon/MirrorIcon';
 import TelegramIcon from '@/components/icon/Telegram';
@@ -51,6 +52,13 @@ const Footer = () => {
 							rel="noreferrer"
 						>
 							<GithubIcon size={34} />
+						</a>
+						<a
+							href="https://legacy-doc.aigo.network/"
+							target="_blank"
+							rel="noreferrer"
+						>
+							<GitbookIcon size={40} />
 						</a>
 						<a
 							href="https://mirror.xyz/0x9B5691025120Af46356c20e9be3EbBd400B85f30"

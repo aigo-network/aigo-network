@@ -16,6 +16,7 @@ import BasicButton from '@/components/BasicButton';
 import AiGOLogo from '@/components/icon/AiGOLogo';
 import AiGOText from '@/components/icon/AiGOText';
 import DiscordIcon from '@/components/icon/Discord';
+import GitbookIcon from '@/components/icon/Gitbook';
 import TelegramIcon from '@/components/icon/Telegram';
 import TwitterIcon from '@/components/icon/Twitter';
 import useScroll from '@/utils/hook/useScroll';
@@ -60,10 +61,7 @@ const Header: FC<Props> = ({ light }) => {
 								>
 									<TwitterIcon size={12} color="#171717" />
 								</SocialWrapper>
-								<SocialWrapper
-									href="https://t.me/aigo_network"
-									target="_blank"
-								>
+								<SocialWrapper href="https://t.me/aigo_network" target="_blank">
 									<TelegramIcon size={20} color="#fdfdfd" />
 								</SocialWrapper>
 								<SocialWrapper
@@ -71,6 +69,12 @@ const Header: FC<Props> = ({ light }) => {
 									target="_blank"
 								>
 									<DiscordIcon size={14} color="#171717" />
+								</SocialWrapper>
+								<SocialWrapper
+									href="https://legacy-doc.aigo.network/"
+									target="_blank"
+								>
+									<GitbookIcon size={16} color="#171717" />
 								</SocialWrapper>
 							</SocialGroup>
 
