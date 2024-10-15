@@ -39,7 +39,7 @@ const Footer = () => {
 							<DiscordIcon size={40} />
 						</a>
 						<a
-							href="https://t.me/aigocommunity"
+							href="https://t.me/aigo_network"
 							target="_blank"
 							rel="noreferrer"
 						>
