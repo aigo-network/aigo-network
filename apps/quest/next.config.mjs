@@ -22,10 +22,11 @@ const nextConfig = {
 		'react-native-qrcode-svg',
 		'react-native-linear-gradient',
 		'empty-modal',
+		'@react-native/assets-registry',
 	],
 	webpack: (config, { dev }) => {
 		const envFilename = dev ? '.env.development' : '.env.production';
-		dotenv.config({ path: path.join(__dirname, `../../${envFilename}`) });
+		dotenv.config({ path: path.join(__dirname, `../${envFilename}`) });
 
 		config.resolve.alias = {
 			...(config.resolve.alias || {}),
@@ -61,6 +62,19 @@ const nextConfig = {
 				...environments,
 			}),
 		);
+
+		config.module.rules.push({
+			test: /\.(ts|tsx)$/,
+			exclude: /node_modules/,
+			use: [
+				{
+					loader: 'babel-loader',
+					options: {
+						presets: ['next/babel'],
+					},
+				},
+			],
+		});
 
 		return config;
 	},
