@@ -18,11 +18,13 @@ const nextConfig = {
 		'react',
 		'react-dom',
 		'react-native',
+		'react-native-web',
+		'@react-native/assets',
+		'@react-native/assets-registry',
 		'react-native-reanimated',
 		'react-native-qrcode-svg',
 		'react-native-linear-gradient',
 		'empty-modal',
-		'@react-native/assets-registry',
 	],
 	webpack: (config, { dev }) => {
 		const envFilename = dev ? '.env.development' : '.env.production';
@@ -56,11 +58,12 @@ const nextConfig = {
 			return acc;
 		}, {});
 
-		// add babel loader for @react-native/assets-registry
+		// add assets registry plugin
 		config.module.rules.push({
 			test: /\.(js|ts|tsx)$/,
 			include: [
-				path.resolve(__dirname, 'node_modules/@react-native/assets-registry'),
+				/node_modules[\\/]+@react-native[\\/]+assets-registry/,
+				/node_modules[\\/]+@react-native[\\/]+assets/,
 			],
 			use: {
 				loader: 'babel-loader',
