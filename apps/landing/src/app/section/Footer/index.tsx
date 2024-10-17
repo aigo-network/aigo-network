@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import AiGOLogo from '@/components/icon/AiGOLogo';
 import AiGOText from '@/components/icon/AiGOText';
-import DiscordIcon from '@/components/icon/Discord';
+// import DiscordIcon from '@/components/icon/Discord';
 import GitbookIcon from '@/components/icon/Gitbook';
 import GithubIcon from '@/components/icon/Github';
 import MirrorIcon from '@/components/icon/MirrorIcon';
@@ -32,13 +32,13 @@ const Footer = () => {
 						>
 							<TwitterIcon size={30} />
 						</a>
-						<a
+						{/* <a
 							href="https://discord.gg/vrVFkMdMpH"
 							target="_blank"
 							rel="noreferrer"
 						>
 							<DiscordIcon size={40} />
-						</a>
+						</a> */}
 						<a
 							href="https://t.me/aigo_network"
 							target="_blank"

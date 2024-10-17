@@ -15,7 +15,7 @@ import {
 import BasicButton from '@/components/BasicButton';
 import AiGOLogo from '@/components/icon/AiGOLogo';
 import AiGOText from '@/components/icon/AiGOText';
-import DiscordIcon from '@/components/icon/Discord';
+// import DiscordIcon from '@/components/icon/Discord';
 import GitbookIcon from '@/components/icon/Gitbook';
 import TelegramIcon from '@/components/icon/Telegram';
 import TwitterIcon from '@/components/icon/Twitter';
@@ -64,12 +64,12 @@ const Header: FC<Props> = ({ light }) => {
 								<SocialWrapper href="https://t.me/aigo_network" target="_blank">
 									<TelegramIcon size={20} color="#fdfdfd" />
 								</SocialWrapper>
-								<SocialWrapper
+								{/* <SocialWrapper
 									href="https://discord.gg/vrVFkMdMpH"
 									target="_blank"
 								>
 									<DiscordIcon size={14} color="#171717" />
-								</SocialWrapper>
+								</SocialWrapper> */}
 								<SocialWrapper
 									href="https://legacy-doc.aigo.network/"
 									target="_blank"
