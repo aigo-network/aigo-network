@@ -17,10 +17,7 @@ const Banner: FC<Props> = ({ isMobile }) => {
 				<Text style={[styles.title, isMobile && styles.mobileTitle]}>
 					AiGO Quest Season 2
 				</Text>
-				<CountDown
-				// style={styles.countDown}
-				// date={new Date('2024-09-30T23:59:59.000Z')}
-				/>
+				<CountDown style={styles.countDown} />
 			</View>
 
 			<Header isMobile={isMobile} style={styles.headerContainer} />
