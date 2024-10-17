@@ -1,5 +1,6 @@
 import type { FC } from 'react';
 import type { ColorValue } from 'react-native';
+import { Linking } from 'react-native';
 import { graphqlClient } from '@aigo/api/graphql';
 import type { Web3FarmingQuest } from '@aigo/api/sdk';
 import { Web3FarmingQuestType } from '@aigo/api/sdk';
@@ -9,7 +10,7 @@ import Telegram from '@aigo/components/icon/Telegram';
 import Twitter from '@aigo/components/icon/Twitter';
 
 import { showInformation } from '@/modals/Information';
-import { showAppDownload } from '@/modals/ShowAppDownload';
+// import { showAppDownload } from '@/modals/ShowAppDownload';
 
 const likeTwitter = () => {
 	window.open(
@@ -125,7 +126,8 @@ export const getAction: (
 		case Web3FarmingQuestType.JoinDiscord:
 			return () => window.open(quest?.URL || '');
 		case Web3FarmingQuestType.DownloadApp:
-			return () => showAppDownload();
+			// return () => showAppDownload();
+			return () => Linking.openURL('https://ride.aigo.network');
 		default:
 			return;
 	}
