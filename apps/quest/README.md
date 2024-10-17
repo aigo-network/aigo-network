@@ -10,5 +10,5 @@
 ### Telegram Bot
 - Use [Telegram Bot Father](https://core.telegram.org/bots/tutorial) to create Bot.
 - Get `Bot ID` from the Bot Father
-- Under project's root: `.env.production`, make sure `TELEGRAM_BOT_ID` key configured with `Bot ID` above
+- Under project's root: `.env.production`, make sure `TELEGRAM_BOT_ID` key configured with `Bot ID` above.
 
