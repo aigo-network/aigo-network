@@ -129,13 +129,13 @@ const Container = styled.div<{ $bgActive: boolean }>`
 
 	@media (min-width: 992px) {
 		${({ $bgActive }) =>
-		$bgActive
-			? `
+			$bgActive
+				? `
 			background: rgba(23, 23, 23, 0.8);
 			backdrop-filter: blur(20px);
 			-webkit-backdrop-filter: blur(20px);
 		`
-			: `
+				: `
 			background: transparent;
 			backdrop-filter: none;
 			-webkit-backdrop-filter: none;
@@ -235,8 +235,8 @@ const BurgerMenu = styled.div<{ $isClosedBtn: boolean }>`
 		}
 
 		${({ $isClosedBtn }) =>
-		$isClosedBtn
-			? `
+			$isClosedBtn
+				? `
 			&:first-child {
 				transform: rotate(45deg);
 				top: 8px;
@@ -253,7 +253,7 @@ const BurgerMenu = styled.div<{ $isClosedBtn: boolean }>`
 				width: 30px;
 			}
 		`
-			: ``}
+				: ``}
 	}
 
 	@media (min-width: 992px) {
