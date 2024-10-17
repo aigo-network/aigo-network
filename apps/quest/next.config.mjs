@@ -56,25 +56,31 @@ const nextConfig = {
 			return acc;
 		}, {});
 
+		// add babel loader for @react-native/assets-registry
+		config.module.rules.push({
+			test: /\.(js|ts|tsx)$/,
+			include: [
+				path.resolve(__dirname, 'node_modules/@react-native/assets-registry'),
+			],
+			use: {
+				loader: 'babel-loader',
+				options: {
+					presets: ['next/babel'],
+					plugins: [
+						['@babel/plugin-transform-flow-strip-types'],
+						['@babel/plugin-proposal-decorators', { legacy: true }],
+						['@babel/plugin-proposal-class-properties', { loose: true }],
+					],
+				},
+			},
+		});
+
 		config.plugins.push(
 			new DefinePlugin({
 				__DEV__: dev,
 				...environments,
 			}),
 		);
-
-		config.module.rules.push({
-			test: /\.(ts|tsx)$/,
-			exclude: /node_modules/,
-			use: [
-				{
-					loader: 'babel-loader',
-					options: {
-						presets: ['next/babel'],
-					},
-				},
-			],
-		});
 
 		return config;
 	},
