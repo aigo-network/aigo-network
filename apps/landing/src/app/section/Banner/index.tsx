@@ -71,20 +71,20 @@ export default Banner;
 
 const dataItems = [
 	{
-		title: 'Total distributed points',
-		value: '43177306',
+		title: 'Registered devices on DePINscan',
+		value: '32115',
 	},
 	{
-		title: 'Total mapped km',
-		value: '185000',
+		title: 'AiGO mini app monthly users',
+		value: '192021',
 	},
 	{
-		title: 'Total users',
-		value: '12143',
+		title: 'TX on Base Chain',
+		value: '71538',
 	},
 	{
-		title: 'Total trips',
-		value: '3797',
+		title: 'Social media followers ',
+		value: '250831',
 	},
 ];
 
