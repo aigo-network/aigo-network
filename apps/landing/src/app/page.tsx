@@ -8,7 +8,7 @@ import Banner from './section/Banner';
 import Ecosystem from './section/Ecosystem';
 import Footer from './section/Footer';
 import Header from './section/Header';
-import Highlight from './section/Highlight';
+// import Highlight from './section/Highlight';
 // import News from './section/News';
 import StrategicPartner from './section/Strategic';
 import HowItWork from './section/Work';
@@ -16,7 +16,7 @@ import HowItWork from './section/Work';
 export default function Home() {
 	return (
 		<Fragment>
-			<Highlight />
+			{/* <Highlight /> */}
 			<Header />
 			<main>
 				<Banner />
