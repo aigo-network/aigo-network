@@ -1,51 +1,69 @@
 import type { FC } from 'react';
 import styled from 'styled-components';
 
+import { AnimatedNum } from '@/components/AnimatedNum';
 import BasicButton from '@/components/BasicButton';
 import { raleway } from '@/utils/styles';
 
-const Banner: FC = () => {
+const Banner: FC<{ headerHeight: number }> = ({ headerHeight }) => {
+	console.log('headerHeight', headerHeight);
 	return (
-		<Container>
+		<div>
 			<HeroImg />
-			<ContentContainer>
-				<div>
-					<Title>
-						Transforming Urban Mobility
-						<br />
-						With <span>Decentralized Geo-Location Data</span>
-					</Title>
-					<SubTitle>
-						AiGO Network is the first real-time, plug-and-play DePIN data
-						network offering decentralized access to verified GPS and
-						geo-location data.
-					</SubTitle>
-					<BtnGroup>
-						<BasicButton
-							title="Share your move"
-							href="https://ride.aigo.network/"
-							target="_blank"
-						/>
-						{/* <LinkBtn href="https://quest.aigo.network/" target="_blank">
+			<Container
+				style={{
+					display: 'flex',
+					flexDirection: 'column',
+					justifyContent: 'center',
+					gap: '20px',
+					height: `calc(100vh - 77px)`,
+				}}
+			>
+				<ContentContainer>
+					<div>
+						<Title>
+							Transforming Urban Mobility
+							<br />
+							With <span>Decentralized Geo-Location Data</span>
+						</Title>
+						<SubTitle>
+							AiGO Network is the first real-time, plug-and-play DePIN data
+							network offering decentralized access to verified GPS and
+							geo-location data.
+						</SubTitle>
+						<BtnGroup>
+							<BasicButton
+								title="Share your move"
+								href="https://ride.aigo.network/"
+								target="_blank"
+							/>
+							{/* <LinkBtn href="https://quest.aigo.network/" target="_blank">
 							AiGO Quest SS1
 						</LinkBtn> */}
-					</BtnGroup>
-				</div>
-			</ContentContainer>
+						</BtnGroup>
+					</div>
+				</ContentContainer>
 
-			<DataContainer>
-				<DataBox>
-					{dataItems.map(({ title, value }) => {
-						return (
-							<DataItemContainer key={title}>
-								<DataItemTitle>{title}</DataItemTitle>
-								<DataItemValue>{value}</DataItemValue>
-							</DataItemContainer>
-						);
-					})}
-				</DataBox>
-			</DataContainer>
-		</Container>
+				<DataContainer>
+					<DataBox>
+						{dataItems.map(({ title, value }) => {
+							return (
+								<DataItemContainer key={title}>
+									<DataItemTitle>{title}</DataItemTitle>
+									<DataItemValue>
+										<AnimatedNum
+											formatter={(num) => num.toLocaleString().split('.')[0]}
+											duration={3000}
+											target={Number(value)}
+										/>
+									</DataItemValue>
+								</DataItemContainer>
+							);
+						})}
+					</DataBox>
+				</DataContainer>
+			</Container>
+		</div>
 	);
 };
 
@@ -54,19 +72,19 @@ export default Banner;
 const dataItems = [
 	{
 		title: 'Total distributed points',
-		value: '43,177,306',
+		value: '43177306',
 	},
 	{
 		title: 'Total mapped km',
-		value: '185,000',
+		value: '185000',
 	},
 	{
 		title: 'Total users',
-		value: '12,143',
+		value: '12143',
 	},
 	{
 		title: 'Total trips',
-		value: '3,797',
+		value: '3797',
 	},
 ];
 
@@ -75,30 +93,17 @@ const Container = styled.section`
 `;
 
 const HeroImg = styled.div`
+	position: absolute;
+	top: 0;
+	left: 0;
 	width: 100%;
 	background: url(/img/hero-img.png) no-repeat center;
 	background-size: cover;
-	height: 100vh;
-	min-height: 72px;
-	max-height: 1024px;
-	margin-bottom: 200px;
-
-	@media (min-width: 576px) {
-		height: 700px;
-		margin-bottom: 0px;
-	}
-
-	@media (min-width: 992px) {
-		height: calc(100vh - 10px);
-	}
+	background-position: center;
+	height: 100%;
 `;
 
 const ContentContainer = styled.div`
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -108,7 +113,6 @@ const ContentContainer = styled.div`
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-		transform: translateY(-60px);
 		margin: 0 auto;
 		padding: 0 25px;
 		gap: 25px;
@@ -186,11 +190,10 @@ const BtnGroup = styled.div`
 // `;
 
 const DataContainer = styled.div`
-	position: absolute;
-	bottom: 0px;
+	// position: absolute;
 	left: 0;
 	right: 0;
-	transform: translateY(50%);
+	// transform: translateY(50%);
 	padding: 18px 25px;
 `;
 

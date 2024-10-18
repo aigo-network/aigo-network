@@ -1,6 +1,6 @@
 'use client';
 
-import { Fragment } from 'react';
+import { Fragment, useLayoutEffect, useRef, useState } from 'react';
 
 import About from './section/About';
 import Backers from './section/Backers';
@@ -14,12 +14,21 @@ import StrategicPartner from './section/Strategic';
 import HowItWork from './section/Work';
 
 export default function Home() {
+	const headerRef = useRef<{ offsetHeight: number } | null>(null);
+	const [headerHeight, setHeaderHeight] = useState(0);
+
+	useLayoutEffect(() => {
+		if (headerRef.current) {
+			setHeaderHeight(headerRef.current.offsetHeight);
+		}
+	}, [headerRef.current?.offsetHeight]);
+
 	return (
 		<Fragment>
 			{/* <Highlight /> */}
-			<Header />
+			<Header ref={headerRef} />
 			<main>
-				<Banner />
+				<Banner headerHeight={headerHeight} />
 				<About data="AiGO Network is committed to create a comprehensive go-to solution to all mobility scenarios guiding urban planning, enhancing traffic efficiency, automobile and navigation in the 21st century  — ultimately creating a more livable and sustainable world." />
 				<HowItWork />
 				<Ecosystem />
