@@ -64,15 +64,15 @@ const Backers = () => {
 							src="/img/backers/mvl-img.png"
 						/>
 					</div>
-					<div className="backers-logo-container">
+					{/* <div className="backers-logo-container">
 						<img
 							className="backers-logo powerpod-img"
 							src="/img/backers/powerpod-img.png"
 						/>
-					</div>
-					<div className="backers-logo-container">
+					</div> */}
+					{/* <div className="backers-logo-container">
 						<img className="backers-logo iqgpt" src="/img/backers/iqgpt.png" />
-					</div>
+					</div> */}
 				</LogoContainer>
 			</ContentContainer>
 		</SectionLayout>
