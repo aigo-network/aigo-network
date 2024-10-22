@@ -1,6 +1,8 @@
 import type { FC } from 'react';
 import styled from 'styled-components';
 
+import './index.css';
+
 import { AnimatedNum } from '@/components/AnimatedNum';
 import BasicButton from '@/components/BasicButton';
 import { raleway } from '@/utils/styles';
@@ -8,16 +10,9 @@ import { raleway } from '@/utils/styles';
 const Banner: FC<{ headerHeight: number }> = ({ headerHeight }) => {
 	console.log('headerHeight', headerHeight);
 	return (
-		<div style={{ marginTop: '10px' }}>
+		<div className="banner-wrapper">
 			<HeroImg />
-			<Container
-				style={{
-					display: 'flex',
-					flexDirection: 'column',
-					justifyContent: 'center',
-					gap: '20px',
-				}}
-			>
+			<Container className="banner-container">
 				<ContentContainer>
 					<div>
 						<Title>

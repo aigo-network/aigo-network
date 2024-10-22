@@ -8,7 +8,7 @@ import Banner from './section/Banner';
 import Ecosystem from './section/Ecosystem';
 import Footer from './section/Footer';
 import Header from './section/Header';
-import MapEmbedding from './section/MapEmbedding';
+// import MapEmbedding from './section/MapEmbedding';
 // import Highlight from './section/Highlight';
 // import News from './section/News';
 import StrategicPartner from './section/Strategic';
@@ -31,7 +31,7 @@ export default function Home() {
 			<main>
 				<Banner headerHeight={headerHeight} />
 				<About data="AiGO Network is committed to create a comprehensive go-to solution to all mobility scenarios guiding urban planning, enhancing traffic efficiency, automobile and navigation in the 21st century  — ultimately creating a more livable and sustainable world." />
-				<MapEmbedding />
+				{/* <MapEmbedding /> */}
 				<HowItWork />
 				<Ecosystem />
 				<StrategicPartner />
