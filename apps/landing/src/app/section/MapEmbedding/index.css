@@ -1,0 +1,31 @@
+.map-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 0 20px;
+
+    .map-embedding {
+        width: 100%;
+
+        @media (min-width: 576px) {
+            max-width: 540px;
+        }
+
+        @media (min-width: 768px) {
+            max-width: var(--max-width-tablet);
+        }
+
+        @media (min-width: 992px) {
+            max-width: var(--max-width-laptop);
+        }
+
+        @media (min-width: 1200px) {
+            max-width: var(--max-width-desktop);
+        }
+
+        .map-iframe {
+            border-radius: var(--border-radius);
+            border: 1px solid var(--secondary-color);
+        }
+    }
+}

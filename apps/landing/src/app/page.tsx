@@ -12,6 +12,7 @@ import Header from './section/Header';
 // import News from './section/News';
 import StrategicPartner from './section/Strategic';
 import HowItWork from './section/Work';
+import MapEmbedding from './section/MapEmbedding';
 
 export default function Home() {
 	const headerRef = useRef<{ offsetHeight: number } | null>(null);
@@ -30,6 +31,7 @@ export default function Home() {
 			<main>
 				<Banner headerHeight={headerHeight} />
 				<About data="AiGO Network is committed to create a comprehensive go-to solution to all mobility scenarios guiding urban planning, enhancing traffic efficiency, automobile and navigation in the 21st century  — ultimately creating a more livable and sustainable world." />
+				<MapEmbedding />
 				<HowItWork />
 				<Ecosystem />
 				<StrategicPartner />
