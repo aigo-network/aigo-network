@@ -53,7 +53,7 @@ const Banner: FC<{ headerHeight: number }> = ({ headerHeight }) => {
 									<DataItemValue>
 										<AnimatedNum
 											formatter={(num) => num.toLocaleString().split('.')[0]}
-											duration={3000}
+											duration={1000}
 											target={Number(value)}
 										/>
 									</DataItemValue>
