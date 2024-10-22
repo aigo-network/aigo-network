@@ -8,7 +8,7 @@ import { raleway } from '@/utils/styles';
 const Banner: FC<{ headerHeight: number }> = ({ headerHeight }) => {
 	console.log('headerHeight', headerHeight);
 	return (
-		<div>
+		<div style={{ marginTop: '10px' }}>
 			<HeroImg />
 			<Container
 				style={{
@@ -16,7 +16,6 @@ const Banner: FC<{ headerHeight: number }> = ({ headerHeight }) => {
 					flexDirection: 'column',
 					justifyContent: 'center',
 					gap: '20px',
-					height: `calc(100vh - 77px)`,
 				}}
 			>
 				<ContentContainer>
@@ -71,11 +70,11 @@ export default Banner;
 
 const dataItems = [
 	{
-		title: 'Registered devices on DePINscan',
+		title: 'devices on DePINscan',
 		value: '32115',
 	},
 	{
-		title: 'AiGO mini app monthly users',
+		title: 'AiGO monthly users',
 		value: '192021',
 	},
 	{
@@ -100,7 +99,7 @@ const HeroImg = styled.div`
 	background: url(/img/hero-img.png) no-repeat center;
 	background-size: cover;
 	background-position: center;
-	height: 100%;
+	height: 100vh;
 `;
 
 const ContentContainer = styled.div`
