@@ -8,11 +8,11 @@ import Banner from './section/Banner';
 import Ecosystem from './section/Ecosystem';
 import Footer from './section/Footer';
 import Header from './section/Header';
+import MapEmbedding from './section/MapEmbedding';
 // import Highlight from './section/Highlight';
 // import News from './section/News';
 import StrategicPartner from './section/Strategic';
 import HowItWork from './section/Work';
-import MapEmbedding from './section/MapEmbedding';
 
 export default function Home() {
 	const headerRef = useRef<{ offsetHeight: number } | null>(null);
