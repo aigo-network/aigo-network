@@ -6,7 +6,7 @@ export default function MapEmbedding() {
 			<div className="map-embedding">
 				<iframe
 					className="map-iframe"
-					src="https://depinscan.io/widget/map/aigo-network"
+					src="https://depinscan.io/widget/map"
 					name="showIframe"
 					width="100%"
 					height="600px"
