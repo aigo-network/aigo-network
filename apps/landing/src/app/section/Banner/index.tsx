@@ -66,19 +66,19 @@ export default Banner;
 const dataItems = [
 	{
 		title: 'devices on DePINscan',
-		value: '32115',
+		value: '100900',
 	},
 	{
-		title: 'AiGO monthly users',
-		value: '192021',
+		title: 'AiGO mini app monthly users',
+		value: '416700',
 	},
 	{
 		title: 'TX on Base Chain',
-		value: '71538',
+		value: '279400',
 	},
 	{
 		title: 'Social media followers ',
-		value: '250831',
+		value: '290000',
 	},
 ];
 
