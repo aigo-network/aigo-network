@@ -1,0 +1,169 @@
+/* styles.css */
+
+/* ContentContainer 样式 */
+.supporting-partners-content-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 60px;
+    align-items: center;
+}
+
+@media (min-width: 992px) {
+    .content-container {
+        padding-bottom: 120px;
+    }
+}
+
+/* LogoContainer 样式 */
+.supporting-partners-logo-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    max-width: 1440px;
+    width: 100%;
+}
+
+/* backers-logo-container 样式 */
+.backers-logo-container {
+    width: 220px;
+    height: 150px;
+    padding: 6px 10px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 465px) {
+    .backers-logo-container {
+        width: 150px;
+        height: 80px;
+    }
+}
+
+@media screen and (max-width: 385px) {
+    .backers-logo-container {
+        width: 130px;
+        height: 70px;
+    }
+}
+
+/* backers-logo 样式 */
+.backers-logo {
+    filter: grayscale(100%) brightness(150%) invert(1);
+    width: 100%;
+    height: auto;
+}
+
+/* 特定 logo 的样式 */
+.backers-logo.animoca {
+    /* transform: translateY(-10px); */
+}
+
+@media screen and (max-width: 385px) {
+    .backers-logo.animoca {
+        /* transform: translateY(-14px); */
+    }
+}
+
+.backers-logo.ticker-img {
+    transform: translateY(-2px) scale(1.1);
+}
+
+.backers-logo.waterdrip {
+    transform: scale(1.3) translateX(2px);
+}
+
+@media screen and (max-width: 465px) {
+    .backers-logo.waterdrip {
+        transform: scale(1.3) translateX(3px);
+    }
+}
+
+.backers-logo.k300 {
+    padding: 25px;
+    /* transform: translateY(-10px); */
+}
+
+@media screen and (max-width: 465px) {
+    .backers-logo.k300 {
+        padding: 20px;
+        /* transform: translateY(-12px); */
+    }
+}
+
+@media screen and (max-width: 385px) {
+    .backers-logo.k300 {
+        padding: 15px;
+        /* transform: translateY(-8px); */
+    }
+}
+
+.backers-logo.capital-chain {
+    padding: 30px;
+    /* transform: translateY(-40px); */
+}
+
+@media screen and (max-width: 465px) {
+    .backers-logo.capital-chain {
+        padding: 20px;
+        /* transform: translateY(-30px); */
+    }
+}
+
+.backers-logo.nnbox {
+    padding: 30px;
+    /* transform: translateY(-25px); */
+}
+
+@media screen and (max-width: 465px) {
+    .backers-logo.nnbox {
+        padding: 20px;
+        /* transform: translateY(-18px); */
+    }
+}
+
+.backers-logo.iotex {
+    /* transform: translateY(15px); */
+}
+
+.backers-logo.cryptomind {
+    /* transform: translateY(25px); */
+}
+
+@media screen and (max-width: 465px) {
+    .backers-logo.cryptomind {
+        /* transform: translateY(18px); */
+    }
+}
+
+.backers-logo.tada-img {
+    padding: 10px;
+    /* transform: translateY(-6px); */
+}
+
+.backers-logo.mvl-img {
+    /* 可根据需要添加样式 */
+}
+
+.backers-logo.powerpod-img {
+    transform: scale(1.2);
+}
+
+.backers-logo.iqgpt {
+    transform: translateY(10px);
+}
+
+/* 可选：添加过渡效果以实现动画效果 */
+.backers-logo-container {
+    transition: transform 0.3s ease, padding 0.3s ease;
+}
+
+.backers-logo {
+    transition: filter 0.3s ease, transform 0.3s ease;
+}

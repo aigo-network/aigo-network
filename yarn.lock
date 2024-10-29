@@ -75,6 +75,7 @@ __metadata:
     "@types/lodash": "npm:^4"
     "@types/react": "npm:^18.2.6"
     "@types/react-dom": "npm:^18.2.6"
+    eruda: "npm:^3.4.0"
     gsap: "npm:^3.12.5"
     lodash: "npm:^4.17.21"
     next: "npm:^14.2.15"
@@ -13473,6 +13474,13 @@ __metadata:
     accepts: "npm:~1.3.7"
     escape-html: "npm:~1.0.3"
   checksum: 10/73b7abb08fb751107e9bebecc33c40c0641a54be8bda8e4a045f3f5cb7b805041927fef5629ea39b1737799eb52fe2499ca531f11ac51b0294ccc4667d72cb91
+  languageName: node
+  linkType: hard
+
+"eruda@npm:^3.4.0":
+  version: 3.4.0
+  resolution: "eruda@npm:3.4.0"
+  checksum: 10/ab0043314c3bb8b5c03299a833974409e7d769bad468078fa46ac054db76fae9f02767ad3fbd7bdee2b9ec2928cab1687b9695a9e5bcc3a7a1e4e9bf334be6ea
   languageName: node
   linkType: hard
 
