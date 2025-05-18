@@ -8,16 +8,16 @@ import SectionLayout from '@/components/SectionLayout';
 import { scrollMap, SectionId } from '@/utils/scrollTo';
 
 const cards = [
-	{
-		image: {
-			desktopUrl: '/img/partnership/nyam-nyam-img.png',
-			mobileUrl: '/img/partnership/nyam-nyam-rect-img.png',
-		},
-		logoUrl: '/img/partnership/nyam-nyam-logo-img.png',
-		location: 'South Korea 🇰🇷',
-		description:
-			'AiGO Ride has partnered with Nyam Nyam Box, a leading food delivery platform, to onboard over 80,000 delivery drivers in South Korea and enhance the delivery experience through gamified incentives for sustainable transportation.',
-	},
+	// {
+	// 	image: {
+	// 		desktopUrl: '/img/partnership/nyam-nyam-img.png',
+	// 		mobileUrl: '/img/partnership/nyam-nyam-rect-img.png',
+	// 	},
+	// 	logoUrl: '/img/partnership/nyam-nyam-logo-img.png',
+	// 	location: 'South Korea 🇰🇷',
+	// 	description:
+	// 		'AiGO Ride has partnered with Nyam Nyam Box, a leading food delivery platform, to onboard over 80,000 delivery drivers in South Korea and enhance the delivery experience through gamified incentives for sustainable transportation.',
+	// },
 	{
 		image: {
 			desktopUrl: '/img/partnership/tada-img.png',
